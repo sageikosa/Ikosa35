@@ -2,19 +2,19 @@
   "Packages": [
     {
       "Name": "resources",
-      "Path": "G:\\Ikosa\\Root\\Packages"
+      "Path": "E:\\Ikosa\\Root\\Packages"
     }
   ],
   "Campaigns": [
     {
       "Name": "campaigns",
-      "Path": "G:\\Ikosa\\Root\\Campaigns"
+      "Path": "E:\\Ikosa\\Root\\Campaigns"
     }
   ],
   "TeamTracking": [
     {
       "Name": "teams",
-      "Path": "G:\\Ikosa\\Root\\Tracking"
+      "Path": "E:\\Ikosa\\Root\\Tracking"
     }
   ]
 }

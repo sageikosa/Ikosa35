@@ -6,7 +6,9 @@
       <Field Name="_Adjuncts" Hidden="true" />
       <Field Name="_Creator" Hidden="true" />
       <Field Name="_Height" Hidden="true" />
+      <Field Name="_IAngle" Hidden="true" />
       <Field Name="_InteractionHandlers" Hidden="true" />
+      <Field Name="_IScale" Hidden="true" />
       <Field Name="_Length" Hidden="true" />
       <Field Name="_Name" Hidden="true" />
       <Field Name="_PhysCtrl" Hidden="true" />
@@ -14,7 +16,7 @@
       <Field Name="_Width" Hidden="true" />
     </Members>
     <TypeIdentifier>
-      <HashCode>AAgCAAyABAAqyAgKMBAA4GRCgCCBkAGRAgAICIBJABA=</HashCode>
+      <HashCode>AQkCAA2ABDAqyEgKcBQIYGTCgCCBgEGRAgAICIDJABA=</HashCode>
       <FileName>CoreObject.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -26,7 +28,7 @@
       <Field Name="_Possessor" Hidden="true" />
     </Members>
     <TypeIdentifier>
-      <HashCode>AAAAAQAAAgAAAAIAAAAIAAAIAAAAAAAAAAAAAACEgAA=</HashCode>
+      <HashCode>AAAAAQEAAgAAAAIAAAQAAAAIAAAAAAAAAAAAAAAEgAA=</HashCode>
       <FileName>CoreItem.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -44,7 +46,7 @@
       <Field Name="_Possess" Hidden="true" />
     </Members>
     <TypeIdentifier>
-      <HashCode>EEQAEAAAIAgAQAAAJACAAAgABAAAAAAoAAAIIAABAAA=</HashCode>
+      <HashCode>EEQAGAAAIAgAQAAABASBAAgABAAAAAAoAAAIIAABAAA=</HashCode>
       <FileName>CoreActor.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -70,7 +72,7 @@
       </Path>
     </AssociationLine>
     <TypeIdentifier>
-      <HashCode>ACIAAAKAgAAAABAAABBEhIQAgWAAAAEABAAIAAARCAA=</HashCode>
+      <HashCode>ACIAAAKAgAAAABAAABBEhIQAgWAAAAEABAAIAAARAAA=</HashCode>
       <FileName>ObjectLoad.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
