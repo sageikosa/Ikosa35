@@ -1,0 +1,74 @@
+﻿<UserControl x:Class="Uzi.Ikosa.Workshop.SwitchActivationMechanismEditor"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:ikosaobj="clr-namespace:Uzi.Ikosa.Objects;assembly=Uzi.Ikosa"
+             xmlns:core="clr-namespace:Uzi.Core;assembly=Uzi.Core"
+             xmlns:local="clr-namespace:Uzi.Ikosa.Workshop"
+             mc:Ignorable="d" d:DesignWidth="300">
+    <Grid Margin="2">
+        <Grid.Resources>
+            <core:ActivationBoolConverter x:Key="convActivationBool" />
+            <Style TargetType="Label">
+                <Setter Property="HorizontalAlignment" Value="Right"/>
+                <Setter Property="FontWeight" Value="Bold"/>
+            </Style>
+            <Style TargetType="TextBox">
+                <Setter Property="Margin" Value="1"/>
+            </Style>
+            <Style TargetType="TextBlock">
+                <Setter Property="VerticalAlignment" Value="Center"/>
+            </Style>
+            <Style TargetType="ComboBox">
+                <Setter Property="Margin" Value="1"/>
+            </Style>
+            <Style TargetType="CheckBox">
+                <Setter Property="Margin" Value="1"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+            </Style>
+        </Grid.Resources>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0" Grid.ColumnSpan="5" Background="LightCyan" Padding="4,2">Switch Activation Mechanism</TextBlock>
+        <Label Grid.Row="1">Name</Label>
+        <Label Grid.Row="2">Difficulty</Label>
+        <Label Grid.Column="1" Grid.Row="2">Disable</Label>
+        <Label Grid.Row="3">Active</Label>
+        <Label Grid.Row="3" Grid.Column="2">Object</Label>
+        <Label Grid.Row="4">Targets</Label>
+        <Label Grid.Row="4" Grid.Column="2">Style</Label>
+        <Label Grid.Row="5">Open</Label>
+        <TextBox Grid.Column="1" Grid.Row="1" DataContext="{Binding Path=SwitchActivationMechanism}"
+                 Text="{Binding Path=Name}" Grid.ColumnSpan="3"></TextBox>
+        <TextBox Grid.Column="2" Grid.Row="2" DataContext="{Binding Path=SwitchActivationMechanism}"
+                 Text="{Binding Path=DisableDifficulty.BaseValue}" Grid.ColumnSpan="2"></TextBox>
+        <CheckBox Grid.Column="1" Grid.Row="3" DataContext="{Binding Path=SwitchActivationMechanism}"
+                  IsChecked="{Binding Path=Activation, Converter={StaticResource convActivationBool}, ConverterParameter={x:Null}}"/>
+        <local:ObjectTip Grid.Column="3" Grid.Row="3" DataContext="{Binding Path=SwitchActivationMechanism}" />
+        <Button Grid.Row="4" Grid.Column="1" Content="Targets..." Margin="2" Width="64" HorizontalAlignment="Left"
+                x:Name="btnTargets" Click="btnTargets_Click"></Button>
+        <ComboBox Grid.Row="4" Grid.Column="3" Margin="2" DataContext="{Binding Path=SwitchActivationMechanism}"
+                  SelectedItem="{Binding Path=ActivationMechanismStyle}">
+            <ComboBox.Items>
+                <ikosaobj:ActivationMechanismStyle>Circuit</ikosaobj:ActivationMechanismStyle>
+                <ikosaobj:ActivationMechanismStyle>FlipFlop</ikosaobj:ActivationMechanismStyle>
+            </ComboBox.Items>
+        </ComboBox>
+        <Slider Grid.Column="1" Grid.Row="5" Minimum="0" Maximum="1" Grid.ColumnSpan="3"
+                Value="{Binding Path=OpenState}" AutoToolTipPrecision="2"/>
+    </Grid>
+</UserControl>

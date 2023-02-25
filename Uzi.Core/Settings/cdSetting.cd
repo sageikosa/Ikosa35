@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Uzi.Core.CoreSetting">
+    <Position X="0.75" Y="0.75" Width="2" />
+    <Members>
+      <Field Name="_ContextSet" Hidden="true" />
+      <Field Name="_ID" Hidden="true" />
+      <Field Name="_InteractionHandlers" Hidden="true" />
+      <Field Name="_Name" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAKgAAgAAAAIAQAAAAEAAAAAAAAAAAEAAA=</HashCode>
+      <FileName>Settings\CoreSetting.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="ContextSet" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Uzi.Core.CoreSettingContextSet">
+    <Position X="4.5" Y="0.75" Width="3.25" />
+    <Members>
+      <Field Name="_AdjunctGroups" Hidden="true" />
+      <Field Name="_Contexts" Hidden="true" />
+      <Field Name="_Reactors" Hidden="true" />
+      <Field Name="_Setting" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AGJEAAAAAAAAABEACAAQBARARAAAAAAAiIAAIABQAAA=</HashCode>
+      <FileName>Settings\CoreSettingContextSet.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Setting" />
+      <Property Name="this[System.Int32]" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Uzi.Core.CoreSettingContext">
+    <Position X="9.5" Y="0.75" Width="2" />
+    <Members>
+      <Field Name="_ContextSet" Hidden="true" />
+      <Field Name="_Name" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAIAIQAEAAQAAAAgAAQAJAUAAAAEAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Settings\CoreSettingContext.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="ContextSet" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Field Name="_Tokens" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="Uzi.Core.CoreToken">
+    <Position X="5.75" Y="5.75" Width="2" />
+    <Members>
+      <Field Name="_Chief" Hidden="true" />
+      <Field Name="_Context" Hidden="true" />
+      <Field Name="_Name" Hidden="true" />
+      <Field Name="_ONCtrl" Hidden="true" />
+    </Members>
+    <AssociationLine Name="_Objects" Type="Uzi.Core.ICore" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="5.75" Y="6.542" />
+        <Point X="4.969" Y="6.542" />
+        <Point X="4.969" Y="5.139" />
+        <Point X="2.75" Y="5.139" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAJAAAAAAgAAAAAAAAUApIQAgQAAAADAAIAIAEARIAA=</HashCode>
+      <FileName>Settings\CoreToken.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Chief" />
+      <Property Name="Context" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Field Name="_Objects" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Uzi.Core.CoreActor">
+    <Position X="1.5" Y="6.5" Width="2.75" />
+    <Members>
+      <Field Name="_Actions" Hidden="true" />
+      <Field Name="_ActivityCtrl" Hidden="true" />
+      <Field Name="_InteractAlterCtrl" Hidden="true" />
+      <Field Name="_ObjLoad" Hidden="true" />
+      <Field Name="_Possess" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AEQAEAAAIAgAQAAAJACAAAgAAAAAAAAgAAAIIAABAAA=</HashCode>
+      <FileName>CoreActor.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Interface Name="Uzi.Core.ICore">
+    <Position X="1.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ICore.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

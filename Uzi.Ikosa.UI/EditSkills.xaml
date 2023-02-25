@@ -1,0 +1,121 @@
+﻿<UserControl x:Class="Uzi.Ikosa.UI.EditSkills"
+             xmlns:uziUI="clr-namespace:Uzi.Ikosa.UI"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <Style TargetType="Grid" x:Key="gridHover">
+            <Setter Property="Background" Value="Transparent"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="true">
+                    <Setter Property="Background" Value="LightCyan"/>
+                    <Setter Property="Cursor" Value="Hand"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <DataTemplate DataType="{x:Type uziUI:SkillMenuItem}">
+            <MenuItem IsChecked="{Binding Path=IsClassSkill}" Tag="{Binding}">
+                <MenuItem.Header>
+                    <TextBlock Text="{Binding Path=SkillBase.SkillName}"/>
+                </MenuItem.Header>
+            </MenuItem>
+        </DataTemplate>
+        <Style TargetType="{x:Type Button}" x:Key="sbSkills">
+            <Setter Property="Margin" Value="2"/>
+            <Setter Property="MinWidth" Value="12"/>
+        </Style>
+        <DataTemplate x:Key="cmdSkills">
+            <StackPanel Orientation="Horizontal">
+                <!-- TODO: style/template these -->
+                <Button Tag="+" ToolTip="Increase" Style="{StaticResource sbSkills}">+</Button>
+                <Button Tag="-" ToolTip="Decrease" Style="{StaticResource sbSkills}">-</Button>
+            </StackPanel>
+        </DataTemplate>
+        <Style TargetType="{x:Type Border}" x:Key="borderSkills" >
+            <Setter Property="MinHeight" Value="20"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Path=PowerDie.IsSkillAssignmentMissing}" Value="true">
+                    <Setter Property="Background" Value="LightSalmon"/>
+                    <Setter Property="BorderThickness" Value="1"/>
+                    <Setter Property="Padding" Value="2"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+    <Border BorderBrush="Black" CornerRadius="2" Style="{StaticResource borderSkills}">
+        <Grid MouseUp="itemsSkills_MouseUp" 
+              Tag="{Binding ElementName=popSkillEditor}"
+              DataContext="{Binding}" 
+              Style="{StaticResource gridHover}" 
+              ContextMenuOpening="mnuSkillGridOpening">
+            <Grid.ContextMenu>
+                <ContextMenu Tag="{Binding Path=PowerDie}" 
+                             MenuItem.Click="mnuSkillHeaderClick">
+                    <MenuItem Header="Add" Tag="Add" ></MenuItem>
+                    <MenuItem Header="Clear All" Tag="Clear All" ></MenuItem>
+                </ContextMenu>
+            </Grid.ContextMenu>
+            <ItemsControl ItemsSource="{Binding Path=PowerDie.SkillsAssigned}" VerticalAlignment="Center"
+                          Tag="{Binding ElementName=popSkillEditor}" Name="itemsSkills" >
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal" Margin="4,0">
+                            <TextBlock Text="{Binding Path=Skill.SkillName}"/>
+                            <TextBlock Text=":"/>
+                            <TextBlock Text="{Binding Path=RanksAccumulated}"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel></WrapPanel>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+            </ItemsControl>
+            <Popup Name="popSkillEditor" PlacementTarget="{Binding ElementName=itemsSkills}"
+                   Closed="popSkillEditor_Closed" Placement="Bottom" 
+                   StaysOpen="False" AllowsTransparency="True">
+                <Border Background="LightGoldenrodYellow"  Padding="2" BorderBrush="Black" 
+                        BorderThickness="1" CornerRadius="2">
+                    <HeaderedContentControl Margin="2">
+                        <HeaderedContentControl.Resources>
+                            <GridViewColumnCollection x:Key="colSkills">
+                                <GridViewColumn Header="Skill" DisplayMemberBinding="{Binding Path=Skill.SkillName}"/>
+                                <GridViewColumn Header="Points" DisplayMemberBinding="{Binding Path=PointsUsed}"/>
+                                <GridViewColumn Header="Ranks" DisplayMemberBinding="{Binding Path=RanksAccumulated}"/>
+                                <GridViewColumn Header="Cmd" CellTemplate="{StaticResource cmdSkills}">
+                                </GridViewColumn>
+                            </GridViewColumnCollection>
+                        </HeaderedContentControl.Resources>
+                        <HeaderedContentControl.Header>
+                            <GridViewHeaderRowPresenter Tag="{Binding Path=PowerDie}"
+                                                        ContextMenuOpening="mnuSkillHeaderOpening"
+                                                        Columns="{DynamicResource colSkills}">
+                                <GridViewHeaderRowPresenter.ContextMenu>
+                                    <ContextMenu Tag="{Binding Path=PowerDie}" 
+                                                 MenuItem.Click="mnuSkillHeaderClick">
+                                        <MenuItem Header="Add" Tag="Add" ></MenuItem>
+                                        <MenuItem Header="Clear All" Tag="Clear All" ></MenuItem>
+                                    </ContextMenu>
+                                </GridViewHeaderRowPresenter.ContextMenu>
+                            </GridViewHeaderRowPresenter>
+                        </HeaderedContentControl.Header>
+                        <ItemsControl ItemsSource="{Binding Path=PowerDie.SkillsAssigned}" 
+                                      Tag="{Binding Path=PowerDie}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <GridViewRowPresenter ButtonBase.Click="btnSkillClick" 
+                                                          Tag="{Binding}" 
+                                                          Columns="{DynamicResource colSkills}"></GridViewRowPresenter>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </HeaderedContentControl>
+                </Border>
+            </Popup>
+        </Grid>
+    </Border>
+</UserControl>

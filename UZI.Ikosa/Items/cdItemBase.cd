@@ -1,0 +1,288 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Uzi.Ikosa.Items.ItemBase" Collapsed="true">
+    <Position X="4" Y="1.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <InheritanceLine Type="Uzi.Core.CoreItem" ManuallyRouted="true" FixedFromPoint="true">
+      <Path>
+        <Point X="2.75" Y="1.188" />
+        <Point X="3.365" Y="1.188" />
+        <Point X="3.365" Y="1.846" />
+        <Point X="4" Y="1.846" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>gAAEAAEgIQAImgAAAhAIAAgCgOAAAlAAIIAAAAJYEAA=</HashCode>
+      <FileName>Items\ItemBase.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Uzi.Core.CoreItem" Collapsed="true">
+    <Position X="0.75" Y="0.75" Width="2" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Uzi.Ikosa.Items.Alchemal.AlignedWater" Collapsed="true">
+    <Position X="1" Y="2.75" Width="1.5" />
+    <InheritanceLine Type="Uzi.Ikosa.Items.ItemBase" FixedToPoint="true">
+      <Path>
+        <Point X="4.75" Y="2.191" />
+        <Point X="4.75" Y="3.062" />
+        <Point X="2.5" Y="3.062" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAIAAIACIABDAIQAAAAAAQAAAgAAAAAAAABAA=</HashCode>
+      <FileName>Items\Alchemal\AlignedWater.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Uzi.Ikosa.Items.ContainerItemBase" Collapsed="true">
+    <Position X="1" Y="4.25" Width="1.5" />
+    <InheritanceLine Type="Uzi.Ikosa.Items.ItemBase" FixedToPoint="true">
+      <Path>
+        <Point X="4.75" Y="2.191" />
+        <Point X="4.75" Y="4.562" />
+        <Point X="2.5" Y="4.562" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>QAAImEchNoAAQAAAAFEAAAAAAGoBQQAAAAAIAIARAAA=</HashCode>
+      <FileName>Items\Containers\ContainerItemBase.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Uzi.Ikosa.Items.KeyItem" Collapsed="true">
+    <Position X="1" Y="5.5" Width="1.5" />
+    <InheritanceLine Type="Uzi.Ikosa.Items.ItemBase" FixedToPoint="true">
+      <Path>
+        <Point X="4.75" Y="2.191" />
+        <Point X="4.75" Y="5.812" />
+        <Point X="2.5" Y="5.812" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAECAIAAAAAAACAAIAAAQAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Items\KeyItem.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Uzi.Ikosa.Items.SpellBook" Collapsed="true">
+    <Position X="6.5" Y="2.75" Width="1.5" />
+    <InheritanceLine Type="Uzi.Ikosa.Items.ItemBase" FixedToPoint="true">
+      <Path>
+        <Point X="4.75" Y="2.191" />
+        <Point X="4.75" Y="3.125" />
+        <Point X="6.5" Y="3.125" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAIAAkAEIAACQAAAAEAIFCQgAAAAAIAAAAAAgiAAAQA=</HashCode>
+      <FileName>Items\MagicItems\SpellItems\SpellBook.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Uzi.Ikosa.Items.Poison" Collapsed="true">
+    <Position X="8.25" Y="3.75" Width="1.5" />
+    <InheritanceLine Type="Uzi.Ikosa.Items.ItemBase" FixedToPoint="true">
+      <Path>
+        <Point X="4.75" Y="2.191" />
+        <Point X="4.75" Y="4.125" />
+        <Point X="8.25" Y="4.125" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAQAAEKAIAAAVQAAAAEoAYAAAAAACAAAAMAAABEAEAA=</HashCode>
+      <FileName>Items\Poisons\Poison.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Uzi.Ikosa.Items.SlottedItemBase" Collapsed="true">
+    <Position X="7.75" Y="6" Width="1.5" />
+    <InheritanceLine Type="Uzi.Ikosa.Items.ItemBase" FixedToPoint="true">
+      <Path>
+        <Point X="4.75" Y="2.191" />
+        <Point X="4.75" Y="6.312" />
+        <Point X="7.75" Y="6.312" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>IJEQAAAABACQhQIFAABQRAAAAAAARQAQBEAIAQAhAAA=</HashCode>
+      <FileName>Items\Slots\SlottedItemBase.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Uzi.Ikosa.Items.Weapons.AmmunitionSet&lt;AmmoType, ProjectileWeapon&gt;" Collapsed="true">
+    <Position X="5.75" Y="4.75" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAAAAgAAAAAAAAAIAAAAAAAAAQAAAAAAAACAAAA=</HashCode>
+      <FileName>Items\Weapons\Ranged\Ammunition\AmmunitionSet.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Uzi.Ikosa.Items.Armor.ArmorBase" Collapsed="true">
+    <Position X="2.75" Y="8.75" Width="1.5" />
+    <InheritanceLine Type="Uzi.Ikosa.Items.ProtectorItemBase" FixedToPoint="true">
+      <Path>
+        <Point X="6.25" Y="7.941" />
+        <Point X="6.25" Y="9.062" />
+        <Point X="4.25" Y="9.062" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAIAAQEggAAgAABABAAAAAAIEBABQAAAAACABgYAAA=</HashCode>
+      <FileName>Items\Protectors\Armor\ArmorBase.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Uzi.Ikosa.Items.AmmunitionContainer&lt;AmmoType, ProjectileWeapon&gt;" Collapsed="true">
+    <Position X="1.5" Y="12.75" Width="4" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAACCAIAAAQAAAAAAAAAACAAgAQAAAAAAAA=</HashCode>
+      <FileName>Items\Containers\AmmunitionContainer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Uzi.Ikosa.Items.SlottedContainerItemBase" Collapsed="true">
+    <Position X="4.25" Y="10.5" Width="2" />
+    <InheritanceLine Type="Uzi.Ikosa.Items.SlottedItemBase" FixedToPoint="true">
+      <Path>
+        <Point X="8.5" Y="6.691" />
+        <Point X="8.5" Y="10.875" />
+        <Point X="6.25" Y="10.875" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>QAAImEchNoAAQAAAAFEAAAAAAGoBQQAAAAAIAIARAAA=</HashCode>
+      <FileName>Items\Containers\SlottedContainerItemBase.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Uzi.Ikosa.Items.HoldingWrapper" Collapsed="true">
+    <Position X="5.5" Y="11.5" Width="1.5" />
+    <InheritanceLine Type="Uzi.Ikosa.Items.SlottedItemBase" FixedToPoint="true">
+      <Path>
+        <Point X="8.5" Y="6.691" />
+        <Point X="8.5" Y="11.812" />
+        <Point X="7" Y="11.812" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAAgQIBAAAIQAAAACAEBQAAAEAAAAAAAAA=</HashCode>
+      <FileName>Items\Slots\HoldingWrapper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Uzi.Ikosa.Items.Potion" Collapsed="true">
+    <Position X="6.5" Y="9.5" Width="1.5" />
+    <InheritanceLine Type="Uzi.Ikosa.Items.SlottedItemBase" FixedToPoint="true">
+      <Path>
+        <Point X="8.5" Y="6.691" />
+        <Point X="8.5" Y="9.75" />
+        <Point X="8" Y="9.75" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAUAAkCEIAgAlQABAgEoAIQAAACAAAAAAEAAZBEIAIA=</HashCode>
+      <FileName>Items\MagicItems\SpellItems\Potion.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Uzi.Ikosa.Items.Scroll" Collapsed="true">
+    <Position X="10.5" Y="7.25" Width="1.5" />
+    <InheritanceLine Type="Uzi.Ikosa.Items.SlottedItemBase" FixedToPoint="true">
+      <Path>
+        <Point X="8.5" Y="6.691" />
+        <Point X="8.5" Y="7.625" />
+        <Point X="10.5" Y="7.625" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAEAAEAAIAAAgQABEAAICAAAAAAEBYgAAEAAAQAAAAA=</HashCode>
+      <FileName>Items\MagicItems\SpellItems\Scroll.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Uzi.Ikosa.Items.Wand" Collapsed="true">
+    <Position X="10.5" Y="8.75" Width="1.5" />
+    <InheritanceLine Type="Uzi.Ikosa.Items.SlottedItemBase" FixedToPoint="true">
+      <Path>
+        <Point X="8.5" Y="6.691" />
+        <Point X="8.5" Y="9.062" />
+        <Point X="10.5" Y="9.062" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAEAAEAAIAAAgQAJABBIAAQAAEAAAAAQAEAAAQAQAAQ=</HashCode>
+      <FileName>Items\MagicItems\SpellItems\Wand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Uzi.Ikosa.Items.Shields.ShieldBase" Collapsed="true">
+    <Position X="1.25" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAIEAAMgAAgIABIABAAAAAAAAgVAAAAEADAACIAAQ=</HashCode>
+      <FileName>Items\Protectors\Shields\ShieldBase.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Uzi.Ikosa.Items.ThievesTools" Collapsed="true">
+    <Position X="10.5" Y="10" Width="1.5" />
+    <InheritanceLine Type="Uzi.Ikosa.Items.SlottedItemBase" FixedToPoint="true">
+      <Path>
+        <Point X="8.5" Y="6.691" />
+        <Point X="8.5" Y="10.312" />
+        <Point X="10.5" Y="10.312" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAAgQABAAAIAAAAAAAAAAAAAEAAAQAAAAA=</HashCode>
+      <FileName>Items\ThievesTools.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Uzi.Ikosa.Items.Weapons.WeaponBase" Collapsed="true">
+    <Position X="10.5" Y="12.75" Width="1.5" />
+    <InheritanceLine Type="Uzi.Ikosa.Items.SlottedItemBase" FixedToPoint="true">
+      <Path>
+        <Point X="8.5" Y="6.691" />
+        <Point X="8.5" Y="13.125" />
+        <Point X="10.5" Y="13.125" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AACAAAAAABAAAAAAEAAQIAAQAABAAAAAAACACAAgAAQ=</HashCode>
+      <FileName>Items\Weapons\WeaponBase.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Uzi.Ikosa.Magic.HeldCharge" Collapsed="true">
+    <Position X="10.5" Y="11.5" Width="1.5" />
+    <InheritanceLine Type="Uzi.Ikosa.Items.SlottedItemBase" FixedToPoint="true">
+      <Path>
+        <Point X="8.5" Y="6.691" />
+        <Point X="8.5" Y="11.812" />
+        <Point X="10.5" Y="11.812" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAEgAEAAIAAAgQABAAAIAAAAAEAAAAAAAEACAAAAAAA=</HashCode>
+      <FileName>Magic\Spells\HeldCharge.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Uzi.Ikosa.Items.ProtectorItemBase" Collapsed="true">
+    <Position X="5.5" Y="7.25" Width="1.5" />
+    <InheritanceLine Type="Uzi.Ikosa.Items.SlottedItemBase" FixedToPoint="true">
+      <Path>
+        <Point X="8.5" Y="6.691" />
+        <Point X="8.5" Y="7.625" />
+        <Point X="7" Y="7.625" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>IAAAAAIBCoCAAYAAAAAAgAAAAFAABRIAAAE4QASBAQE=</HashCode>
+      <FileName>Items\Protectors\ProtectorItemBase.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Uzi.Visualize.Contracts.Tactical.BasePanelInfo">
+    <Position X="6" Y="0.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AEAACAAAAACBAAAAAAAAAAQAAAQAAgAAAAAAAAQAAAA=</HashCode>
+      <FileName>Contracts\Tactical\Panels\BasePanelInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Uzi.Visualize.Contracts.Tactical.CornerPanelInfo" Collapsed="true">
+    <Position X="0.75" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAA=</HashCode>
+      <FileName>Contracts\Tactical\Panels\CornerPanelInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Uzi.Visualize.Contracts.Tactical.DiagonalCompositeInfo" Collapsed="true">
+    <Position X="3" Y="4.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Contracts\Tactical\Panels\DiagonalCompositeInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Uzi.Visualize.Contracts.Tactical.LFramePanelInfo" Collapsed="true">
+    <Position X="5.25" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAEAAAAAAACAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Contracts\Tactical\Panels\LFramePanelInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Uzi.Visualize.Contracts.Tactical.MaterialFillInfo" Collapsed="true">
+    <Position X="7.5" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Contracts\Tactical\Panels\MaterialFillInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Uzi.Visualize.Contracts.Tactical.NormalPanelInfo" Collapsed="true">
+    <Position X="9.75" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Contracts\Tactical\Panels\NormalPanelInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Uzi.Visualize.Contracts.Tactical.SlopeCompositeInfo" Collapsed="true">
+    <Position X="12" Y="4.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Contracts\Tactical\Panels\SlopeCompositeInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

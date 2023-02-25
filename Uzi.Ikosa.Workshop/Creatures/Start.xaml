@@ -1,0 +1,13 @@
+﻿<Page x:Class="Uzi.Ikosa.Workshop.Start"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="Start" Style="{StaticResource parchment}"
+    >
+	<TabControl>
+		<TabItem Header="Create">
+			<Frame x:Name="frmCreate" ></Frame>
+		</TabItem>
+		<TabItem Header="Load"></TabItem>
+        <TabItem Header="Review"></TabItem>
+	</TabControl>
+</Page>

@@ -1,0 +1,212 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Uzi.Ikosa.Tactical.CellLocation">
+    <Position X="5" Y="1" Width="3.25" />
+    <Members>
+      <Field Name="_X" Hidden="true" />
+      <Field Name="_Y" Hidden="true" />
+      <Field Name="_Z" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>ACAAAAAAJAAAABAAAAoAAAAAgAQAAAAAAAAIAAARYAE=</HashCode>
+      <FileName>Tactical\CellRefs\CellLocation.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Uzi.Ikosa.Tactical.CellRef">
+    <Position X="7.5" Y="5" Width="1.5" />
+    <Members>
+      <Field Name="_CellSpace" Hidden="true" />
+    </Members>
+    <InheritanceLine Type="Uzi.Ikosa.Tactical.CellLocation" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="8.25" Y="3.375" />
+        <Point X="8.625" Y="3.375" />
+        <Point X="8.625" Y="5" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAgAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Tactical\CellRefs\CellRef.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="CellSpace" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Uzi.Ikosa.Tactical.CellSpace">
+    <Position X="10.25" Y="1" Width="2" />
+    <Members>
+      <Field Name="_CellMaterial" Hidden="true" />
+      <Field Name="_DrawingItems" Hidden="true" />
+      <Field Name="_Locked" Hidden="true" />
+      <Field Name="_Mesh" Hidden="true" />
+      <Field Name="_Tiling" Hidden="true" />
+      <Field Name="_XMFlip" Hidden="true" />
+      <Field Name="_XMSpin" Hidden="true" />
+      <Field Name="_XPFlip" Hidden="true" />
+      <Field Name="_XPSpin" Hidden="true" />
+      <Field Name="_YMFlip" Hidden="true" />
+      <Field Name="_YPFlip" Hidden="true" />
+      <Field Name="_YPSpin" Hidden="true" />
+      <Field Name="_ZMAltFlip" Hidden="true" />
+      <Field Name="_ZMFlip" Hidden="true" />
+      <Field Name="_ZPBump" Hidden="true" />
+    </Members>
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Enum Name="Uzi.Ikosa.Tactical.CellSpace.TriangleCorner">
+        <TypeIdentifier>
+          <NewMemberFileName>Tactical\CellSpaces\CellSpace.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>kABIABgogAgEAACAAAEACBAAAAAIoBAEgAYCCEyIAAA=</HashCode>
+      <FileName>Tactical\CellSpaces\CellSpace.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Uzi.Ikosa.Tactical.DistantCellRef">
+    <Position X="7.5" Y="6.75" Width="1.5" />
+    <Members>
+      <Field Name="_Distance" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAgAAAAAAAAAAABAAAAAAAAAAAA=</HashCode>
+      <FileName>Tactical\CellRefs\DistantCellRef.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Uzi.Ikosa.Tactical.LinearCellRef">
+    <Position X="4.75" Y="5.5" Width="1.75" />
+    <Members>
+      <Field Name="_EntryPoint" Hidden="true" />
+      <Field Name="_ExitPoint" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>gAEAAAAAAAAAAAAAAAAAAIAAACEAAgAAABARAAAIAAA=</HashCode>
+      <FileName>Tactical\CellRefs\LinearCellRef.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Uzi.Ikosa.Tactical.CompositeCellSpace">
+    <Position X="0.5" Y="9.75" Width="1.75" />
+    <Members>
+      <Field Name="_Components" Hidden="true" />
+      <Field Name="_PlusMaterial" Hidden="true" />
+      <Field Name="_PlusTiling" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>gICAAAAAAAAEAAgAAAIACCAAAAAAgAAAAAAACAAIAAA=</HashCode>
+      <FileName>Tactical\CellSpaces\CompositeCellSpace.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Uzi.Ikosa.Tactical.SliverCellSpace">
+    <Position X="3" Y="9.75" Width="1.75" />
+    <Members>
+      <Field Name="_MMXMinusMesh" Hidden="true" />
+      <Field Name="_MMXPlusMesh" Hidden="true" />
+      <Field Name="_MMYMinusMesh" Hidden="true" />
+      <Field Name="_MMYPlusMesh" Hidden="true" />
+      <Field Name="_MMZMinusMesh" Hidden="true" />
+      <Field Name="_MMZPlusMesh" Hidden="true" />
+      <Field Name="_Offset" Hidden="true" />
+      <Field Name="_OrthogonalAxis" Hidden="true" />
+      <Field Name="_PlusMaterial" Hidden="true" />
+      <Field Name="_PlusTiling" Hidden="true" />
+      <Field Name="_PMXMinusMesh" Hidden="true" />
+      <Field Name="_PMXPlusMesh" Hidden="true" />
+      <Field Name="_PMYMinusMesh" Hidden="true" />
+      <Field Name="_PMYPlusMesh" Hidden="true" />
+      <Field Name="_PMZMinusMesh" Hidden="true" />
+      <Field Name="_PMZPlusMesh" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>gICiAEBAIQgAAAgAQAJACSAAAAEAgAAAAAAQGAAYgAA=</HashCode>
+      <FileName>Tactical\CellSpaces\SliverCellSpace.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Uzi.Ikosa.Tactical.SlopeCellSpace">
+    <Position X="5.5" Y="9.75" Width="1.75" />
+    <Members>
+      <Field Name="_MinusOffset" Hidden="true" />
+      <Field Name="_OrthogonalAxis" Hidden="true" />
+      <Field Name="_ParallelAxis" Hidden="true" />
+      <Field Name="_PlusMaterial" Hidden="true" />
+      <Field Name="_PlusOffset" Hidden="true" />
+      <Field Name="_PlusTiling" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>gICBQAAAAAAAAACAAAIACCAEAAEAgAAACAAAGAAIACA=</HashCode>
+      <FileName>Tactical\CellSpaces\SlopeCellSpace.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Uzi.Ikosa.Tactical.WedgeCellSpace">
+    <Position X="7.75" Y="9.75" Width="2.5" />
+    <Members>
+      <Field Name="_CornerStyle" Hidden="true" />
+      <Field Name="_ParallelAxis" Hidden="true" />
+      <Field Name="_PlusMaterial" Hidden="true" />
+      <Field Name="_PlusTiling" Hidden="true" />
+      <Field Name="_PrimaryOffset" Hidden="true" />
+      <Field Name="_SecondaryOffset" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>gIiAAAAAAIAgAAAAAQIECCAEQAAAgRCACQAACAAIEAA=</HashCode>
+      <FileName>Tactical\CellSpaces\WedgeCellSpace.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Uzi.Ikosa.Tactical.LineSet">
+    <Position X="0.5" Y="0.75" Width="1.75" />
+    <Members>
+      <Field Name="_BlockedCell" Hidden="true" />
+      <Field Name="_Map" Hidden="true" />
+      <Field Name="_NonDetectCell" Hidden="true" />
+      <Field Name="_Vector" Hidden="true" />
+    </Members>
+    <AssociationLine Name="BlockedCell" Type="Uzi.Ikosa.Tactical.LinearCellRef" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="2.25" Y="3.25" />
+        <Point X="3.578" Y="3.25" />
+        <Point X="3.578" Y="6.25" />
+        <Point X="4.75" Y="6.25" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="DetectBlockingCell" Type="Uzi.Ikosa.Tactical.LinearCellRef" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="2.25" Y="3.5" />
+        <Point X="3.057" Y="3.5" />
+        <Point X="3.057" Y="6.875" />
+        <Point X="4.75" Y="6.875" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>IKAEAAAAABAAQBAgAAAgAoAIBAAAgIAAAEQEAEAAAAg=</HashCode>
+      <FileName>Tactical\CellRefs\LineSet.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="BlockedCell" />
+      <Property Name="DetectBlockingCell" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Uzi.Ikosa.Tactical.ObservationLineSet">
+    <Position X="0.5" Y="6.25" Width="1.75" />
+    <Members>
+      <Field Name="_BadLine" Hidden="true" />
+      <Field Name="_Observer" Hidden="true" />
+      <Field Name="_Target" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQAAAAAIAAABAAKAAAAAAAAIAAAAAAAAACAA=</HashCode>
+      <FileName>Tactical\CellRefs\ObservationLineSet.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Uzi.Ikosa.Tactical.CellSet&lt;CRef&gt;" Collapsed="true">
+    <Position X="3" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACIAAEAAAAAAABAACAAAAIQAAAAAAAAAAAAAAAAQAgA=</HashCode>
+      <FileName>Tactical\CellRefs\CellSet.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

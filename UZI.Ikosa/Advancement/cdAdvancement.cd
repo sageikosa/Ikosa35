@@ -1,0 +1,159 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Uzi.Ikosa.Advancement.AdvancementLog">
+    <Position X="1.25" Y="1" Width="3.25" />
+    <Members>
+      <Field Name="_AdvLogCtrl" Hidden="true" />
+      <Field Name="_Creature" Hidden="true" />
+      <Field Name="_Groups" Hidden="true" />
+      <Field Name="_HDTallyCtrl" Hidden="true" />
+      <Field Name="_PowerLevel" Hidden="true" />
+    </Members>
+    <AssociationLine Name="this[Uzi.Ikosa.Advancement.AdvancementClass, System.Int32]" Type="Uzi.Ikosa.Advancement.AdvancementLogItem" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="4.5" Y="1.441" />
+        <Point X="12.75" Y="1.441" />
+        <Point X="12.75" Y="2.5" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>ACAYgIIARIAAFBAACAABhIQgkAAQIAAAgAIJAABRCBA=</HashCode>
+      <FileName>Advancement\AdvancementLog.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="this[System.Int32]" />
+      <Property Name="this[Uzi.Ikosa.Advancement.AdvancementClass, System.Int32]" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Uzi.Ikosa.Advancement.PowerDie">
+    <Position X="6" Y="2" Width="2.25" />
+    <Members>
+      <Field Name="_AbilityBoostMnemonic" Hidden="true" />
+      <Field Name="_Creature" Hidden="true" />
+      <Field Name="_Feat" Hidden="true" />
+      <Field Name="_HealthPoints" Hidden="true" />
+      <Field Name="_IsFractional" Hidden="true" />
+      <Field Name="_IsSmallFraction" Hidden="true" />
+      <Field Name="_Level" Hidden="true" />
+      <Field Name="_PowerGroup" Hidden="true" />
+      <Field Name="_SkillAssignments" Hidden="true" />
+      <Field Name="_SkillPointsLeft" Hidden="true" />
+      <Field Name="_ValueCtrlr" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAISCVEEQCHkIsAAQAIAQAAggQQUIAKBMBJYIggBBQE=</HashCode>
+      <FileName>Advancement\PowerDie.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Feat" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="SkillsAssigned" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Uzi.Ikosa.Advancement.AdvancementLogItem">
+    <Position X="10.25" Y="2.5" Width="3.25" />
+    <Members>
+      <Field Name="_AltPowerLevel" Hidden="true" />
+      <Field Name="_Creature" Hidden="true" />
+      <Field Name="_HealthPoints" Hidden="true" />
+      <Field Name="_PowerDiceList" Hidden="true" />
+      <Field Name="_ValueCtrlr" Hidden="true" />
+    </Members>
+    <AssociationLine Name="AdvancementClass" Type="Uzi.Ikosa.Advancement.AdvancementClass" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="13.5" Y="3.361" />
+        <Point X="15.438" Y="3.361" />
+        <Point X="15.438" Y="2.441" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>gCIQCFAAQACBABAASBABBAQggEMQpAAAEAAYEEARSAA=</HashCode>
+      <FileName>Advancement\AdvancementLogItem.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="AdvancementClass" />
+      <Property Name="this[System.Int32]" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="Features" />
+      <Property Name="Requirements" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Uzi.Ikosa.Advancement.AdvancementClass" Collapsed="true">
+    <Position X="15.25" Y="1.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>gAoFICQAQgCRgAyAAQkBAokSBAIMIAgAhEKgAhAeAFA=</HashCode>
+      <FileName>Advancement\AdvancementClass.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Uzi.Ikosa.AdvancementRequirement">
+    <Position X="15.75" Y="3.5" Width="2.25" />
+    <Members>
+      <Field Name="_AvailableOptions" Hidden="true" />
+      <Field Name="_Checker" Hidden="true" />
+      <Field Name="_Description" Hidden="true" />
+      <Field Name="_Name" Hidden="true" />
+      <Field Name="_SetOption" Hidden="true" />
+      <Field Name="_Val" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>QAAAAgAAIABgAAQAACgAIAQAAAAAAAAEACBAAAAAABA=</HashCode>
+      <FileName>Advancement\Requirements\AdvancementRequirement.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="AvailableOptions" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Uzi.Ikosa.Advancement.SkillBuy">
+    <Position X="2.75" Y="8.5" Width="1.75" />
+    <Members>
+      <Field Name="_Points" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>EAgAAAAAAAAAAAAAAAAAAAAAgAAAAAAAgQAAAAAAQAA=</HashCode>
+      <FileName>Advancement\SkillBuy.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Skill" />
+      <Property Name="PowerDie" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Uzi.Ikosa.Skills.SkillBase" Collapsed="true">
+    <Position X="0.5" Y="9.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIEABQAAAAggQAARAAABggoAAhAIgAABQAAAAAEAAA=</HashCode>
+      <FileName>Skills\SkillBase.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Uzi.Ikosa.Feats.FeatBase" Collapsed="true">
+    <Position X="9" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAgDAiAAUkAGCAMSgACAAAAMIIAAAAAAUFIA=</HashCode>
+      <FileName>Feats\FeatBase.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Interface Name="Uzi.Ikosa.IAdvancementOption">
+    <Position X="17" Y="7.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAAAAgAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Advancement\Requirements\IAdvancementOption.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Uzi.Ikosa.Advancement.IFeature">
+    <Position X="14.75" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABgAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Advancement\IFeature.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

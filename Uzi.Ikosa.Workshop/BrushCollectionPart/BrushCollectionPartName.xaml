@@ -1,0 +1,14 @@
+﻿<Window x:Class="Uzi.Ikosa.Workshop.BrushCollectionPartName"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" WindowStyle="ThreeDBorderWindow" SizeToContent="Height"
+    Title="Create New Material Collection" Width="300" ShowInTaskbar="False" ResizeMode="NoResize" 
+        WindowStartupLocation="CenterOwner" Padding="2">
+    <StackPanel FocusManager.FocusedElement="{Binding ElementName=txtName}">
+        <Label Margin="0,8,0,0">New Collection Name</Label>
+        <TextBox Margin="4" x:Name="txtName" ></TextBox>
+        <DockPanel LastChildFill="False">
+            <Button DockPanel.Dock="Right" Margin="4" MinWidth="48" IsCancel="True" x:Name="btnCancel" Click="btnCancel_Click">Cancel</Button>
+            <Button DockPanel.Dock="Right" Margin="4" MinWidth="48" IsDefault="True" x:Name="btnOK" Click="btnOK_Click">OK</Button>
+        </DockPanel>
+    </StackPanel>
+</Window>

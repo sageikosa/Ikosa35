@@ -1,0 +1,37 @@
+﻿<UserControl x:Class="Uzi.Ikosa.Workshop.Users"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Uzi.Ikosa.Workshop"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.CommandBindings>
+        <CommandBinding x:Name="cbAddUser" Command="{x:Static local:Users.AddUser}"
+                        CanExecute="cbAddUser_CanExecute" Executed="cbAddUser_Executed"/>
+        <CommandBinding x:Name="cbRemoveUser" Command="{x:Static local:Users.RemoveUser}"
+                        CanExecute="cbRemoveUser_CanExecute" Executed="cbRemoveUser_Executed"/>
+        <CommandBinding x:Name="cbRemoveAll" Command="{x:Static local:Users.RemoveAll}" 
+                        CanExecute="cbRemoveAll_CanExecute" Executed="cbRemoveAll_Executed"/>
+    </UserControl.CommandBindings>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Label Grid.Row="0" Grid.Column="0">Users</Label>
+        <Label Grid.Row="0" Grid.Column="2">Available</Label>
+        <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Vertical" VerticalAlignment="Center" Margin="4">
+            <Button Margin="4" Command="{x:Static local:Users.AddUser}" Content="&lt;- Add"></Button>
+            <Button Margin="4" Command="{x:Static local:Users.RemoveAll}" Content="Clear All -&gt;"></Button>
+            <Button Margin="4" Command="{x:Static local:Users.RemoveUser}" Content="Remove -&gt;"></Button>
+        </StackPanel>
+        <ListBox Grid.Row="1" Grid.Column="0" x:Name="lstUsers" MinWidth="96"></ListBox>
+        <ListBox Grid.Row="1" Grid.Column="2" x:Name="lstAvailable" MinWidth="96"></ListBox>
+    </Grid>
+</UserControl>

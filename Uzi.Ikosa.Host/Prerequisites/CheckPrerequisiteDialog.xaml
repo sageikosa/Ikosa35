@@ -1,0 +1,56 @@
+﻿<Window x:Class="Uzi.Ikosa.Host.Prerequisites.CheckPrerequisiteDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:prereq="clr-namespace:Uzi.Ikosa.Host.Prerequisites"
+        Title="Success Check" Height="Auto" Width="Auto">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <TextBlock Grid.ColumnSpan="2" Text="Roll for Check (1d20)" Background="LightCyan" />
+        <TextBlock Grid.Row="1" Grid.ColumnSpan="2" x:Name="txtValue" MinHeight="20" FontSize="16"></TextBlock>
+        <ComboBox Grid.Row="3" Margin="1" x:Name="cboRoll" SelectionChanged="cboRoll_SelectionChanged">
+            <ComboBoxItem Content="-"/>
+            <ComboBoxItem Content="1" />
+            <ComboBoxItem Content="2" />
+            <ComboBoxItem Content="3" />
+            <ComboBoxItem Content="4" />
+            <ComboBoxItem Content="5" />
+            <ComboBoxItem Content="6" />
+            <ComboBoxItem Content="7" />
+            <ComboBoxItem Content="8" />
+            <ComboBoxItem Content="9" />
+            <ComboBoxItem Content="10" />
+            <ComboBoxItem Content="11" />
+            <ComboBoxItem Content="12" />
+            <ComboBoxItem Content="13" />
+            <ComboBoxItem Content="14" />
+            <ComboBoxItem Content="15" />
+            <ComboBoxItem Content="16" />
+            <ComboBoxItem Content="17" />
+            <ComboBoxItem Content="18" />
+            <ComboBoxItem Content="19" />
+            <ComboBoxItem Content="20" />
+        </ComboBox>
+        <Button Content="Roll" Grid.Row="3" Grid.Column="1" Padding="2" Margin="1" x:Name="btnRoll" 
+                Click="btnRoll_Click"/>
+        <CheckBox Grid.Row="2" Margin="2" Content="Taking Penalty" x:Name="chkPenalty"/>
+        <DockPanel LastChildFill="False" Margin="4,0,4,4" Grid.Row="4" Grid.ColumnSpan="2">
+            <DockPanel.CommandBindings>
+                <CommandBinding x:Name="cmdbndOK" Command="{x:Static prereq:Commands.OKCommand}" 
+                                CanExecute="cmdbndOK_CanExecute" Executed="cmdbndOK_Executed" />
+            </DockPanel.CommandBindings>
+            <Button DockPanel.Dock="Right" Margin="4" MinWidth="60" IsCancel="True" x:Name="btnCancel" Click="btnCancel_Click">Cancel</Button>
+            <Button DockPanel.Dock="Right" Margin="4" MinWidth="60" IsDefault="True" x:Name="btnOK" 
+                    Command="{x:Static prereq:Commands.OKCommand}" >OK</Button>
+        </DockPanel>
+    </Grid>
+</Window>

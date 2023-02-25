@@ -1,0 +1,21 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+        <DataTemplate x:Key="deltaView">
+            <TextBlock Text="{Binding Path=EffectiveValue}" ToolTipService.ShowDuration="120000">
+			<TextBlock.ToolTip>
+				<StackPanel>
+					<TextBlock FontWeight="Bold">
+						Base = <TextBlock Text="{Binding Path=BaseValue}"/>						
+					</TextBlock>
+					<ItemsControl ItemsSource="{Binding Path=DeltaDescriptions}">
+						<ItemsControl.ItemsPanel>
+							<ItemsPanelTemplate>
+								<StackPanel/>
+							</ItemsPanelTemplate>
+						</ItemsControl.ItemsPanel>
+					</ItemsControl>
+				</StackPanel>
+			</TextBlock.ToolTip>
+		</TextBlock>
+	</DataTemplate>
+</ResourceDictionary>

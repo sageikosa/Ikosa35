@@ -1,0 +1,179 @@
+﻿<UserControl x:Class="Uzi.Ikosa.UI.ObjectIdentityEditor"
+             xmlns:uziui="clr-namespace:Uzi.Ikosa.UI"
+             xmlns:uzicore="clr-namespace:Uzi.Core;assembly=Uzi.Core"
+             xmlns:icontract="clr-namespace:Uzi.Ikosa.Contracts;assembly=Uzi.Ikosa.Contracts"
+             xmlns:ccontract="clr-namespace:Uzi.Core.Contracts;assembly=Uzi.Core.Contracts"
+             xmlns:uzisvc="clr-namespace:Uzi.Ikosa.Services;assembly=Uzi.Ikosa"
+             xmlns:ikosaadj="clr-namespace:Uzi.Ikosa.Adjuncts;assembly=Uzi.Ikosa"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid>
+        <Grid.Resources>
+            <HierarchicalDataTemplate DataType="{x:Type ikosaadj:Identity}"
+                                      ItemsSource="{Binding Path=SubFolders}">
+                <HierarchicalDataTemplate.ItemTemplateSelector>
+                    <uziui:ObjectIdentityFolderSelector>
+                        <uziui:ObjectIdentityFolderSelector.AdjunctFolder>
+                            <HierarchicalDataTemplate ItemsSource="{Binding Path=All}">
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Source="/Images/folder.png"/>
+                                    <TextBlock Text="Adjuncts" VerticalAlignment="Center"/>
+                                </StackPanel>
+                            </HierarchicalDataTemplate>
+                        </uziui:ObjectIdentityFolderSelector.AdjunctFolder>
+                        <uziui:ObjectIdentityFolderSelector.InfoFolder>
+                            <HierarchicalDataTemplate ItemsSource="{Binding Path=All}">
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Source="/Images/folder.png"/>
+                                    <TextBlock Text="Info" VerticalAlignment="Center"/>
+                                </StackPanel>
+                            </HierarchicalDataTemplate>
+                        </uziui:ObjectIdentityFolderSelector.InfoFolder>
+                        <uziui:ObjectIdentityFolderSelector.CreatureFolder>
+                            <HierarchicalDataTemplate ItemsSource="{Binding Path=All}"
+                                                      ItemTemplateSelector="{x:Null}">
+                                <HierarchicalDataTemplate.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock>
+                                                <Run Text="{Binding Path=Value, Mode=OneTime}"/>
+                                                <Run Text=" ("/>
+                                                <Run Text="{Binding Path=Key, Mode=OneTime}"/>
+                                                <Run Text=")"/>
+                                        </TextBlock>
+                                    </DataTemplate>
+                                </HierarchicalDataTemplate.ItemTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Source="/Images/folder.png"/>
+                                    <TextBlock Text="Creature" VerticalAlignment="Center"/>
+                                </StackPanel>
+                            </HierarchicalDataTemplate>
+                        </uziui:ObjectIdentityFolderSelector.CreatureFolder>
+                    </uziui:ObjectIdentityFolderSelector>
+                </HierarchicalDataTemplate.ItemTemplateSelector>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Image Source="/Images/information.png"/>
+                    <TextBlock Text="{Binding Path=Title}" Grid.Column="1">
+                        <TextBlock.ToolTip>
+                            <ItemsControl ItemsSource="{Binding Path=CreatureIDs}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock>
+                                                <Run Text="{Binding Path=Value, Mode=OneTime}"/>
+                                                <Run Text=" ("/>
+                                                <Run Text="{Binding Path=Key, Mode=OneTime}"/>
+                                                <Run Text=")"/>
+                                        </TextBlock>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </TextBlock.ToolTip>
+                        </TextBlock>
+                </Grid>
+            </HierarchicalDataTemplate>
+            <HierarchicalDataTemplate DataType="{x:Type icontract:WeaponHeadInfo}" ItemsSource="{Binding Path=AdjunctInfos}">
+                <TextBlock xml:space="preserve" VerticalAlignment="Center"><Run Text="{Binding Path=Message}"/><Run Text=" (" FontStyle="Italic"/><Run Text="{Binding Path=TypeName, Mode=OneWay}" FontStyle="Italic"></Run><Run Text=")" FontStyle="Italic"/></TextBlock>
+            </HierarchicalDataTemplate>
+            <HierarchicalDataTemplate DataType="{x:Type icontract:ArmorInfo}" ItemsSource="{Binding Path=AdjunctInfos}">
+                <TextBlock xml:space="preserve" VerticalAlignment="Center"><Run Text="{Binding Path=Message}"/><Run Text=" (" FontStyle="Italic"/><Run Text="{Binding Path=TypeName, Mode=OneWay}" FontStyle="Italic"></Run><Run Text=")" FontStyle="Italic"/></TextBlock>
+            </HierarchicalDataTemplate>
+            <HierarchicalDataTemplate DataType="{x:Type icontract:MeleeWeaponInfo}" ItemsSource="{Binding Path=AllInfos}">
+                <TextBlock xml:space="preserve" VerticalAlignment="Center"><Run Text="{Binding Path=Message}"/><Run Text=" (" FontStyle="Italic"/><Run Text="{Binding Path=TypeName, Mode=OneWay}" FontStyle="Italic"></Run><Run Text=")" FontStyle="Italic"/></TextBlock>
+            </HierarchicalDataTemplate>
+            <HierarchicalDataTemplate DataType="{x:Type icontract:ProjectileWeaponInfo}" ItemsSource="{Binding Path=AllInfos}">
+                <TextBlock xml:space="preserve" VerticalAlignment="Center"><Run Text="{Binding Path=Message}"/><Run Text=" (" FontStyle="Italic"/><Run Text="{Binding Path=TypeName, Mode=OneWay}" FontStyle="Italic"></Run><Run Text=")" FontStyle="Italic"/></TextBlock>
+            </HierarchicalDataTemplate>
+            <HierarchicalDataTemplate DataType="{x:Type icontract:ShieldInfo}" ItemsSource="{Binding Path=AdjunctInfos}">
+                <TextBlock xml:space="preserve" VerticalAlignment="Center"><Run Text="{Binding Path=Message}"/><Run Text=" (" FontStyle="Italic"/><Run Text="{Binding Path=TypeName, Mode=OneWay}" FontStyle="Italic"></Run><Run Text=")" FontStyle="Italic"/></TextBlock>
+            </HierarchicalDataTemplate>
+            <HierarchicalDataTemplate DataType="{x:Type icontract:ObjectInfo}" ItemsSource="{Binding Path=AdjunctInfos}">
+                <TextBlock xml:space="preserve" VerticalAlignment="Center"><Run Text="{Binding Path=Message}"/><Run Text=" (" FontStyle="Italic"/><Run Text="{Binding Path=TypeName, Mode=OneWay}" FontStyle="Italic"></Run><Run Text=")" FontStyle="Italic"/></TextBlock>
+            </HierarchicalDataTemplate>
+            <HierarchicalDataTemplate DataType="{x:Type ccontract:Description}" ItemsSource="{Binding Path=Descriptions}">
+                <TextBlock xml:space="preserve" VerticalAlignment="Center"><Run Text="{Binding Path=Message}"/><Run Text=" (" FontStyle="Italic"/><Run Text="{Binding Path=TypeName, Mode=OneWay}" FontStyle="Italic"></Run><Run Text=")" FontStyle="Italic"/></TextBlock>
+            </HierarchicalDataTemplate>
+            <HierarchicalDataTemplate DataType="{x:Type icontract:AmmoBundleInfo}" ItemsSource="{Binding Path=AdjunctInfos}">
+                <TextBlock xml:space="preserve" VerticalAlignment="Center"><Run Text="{Binding Path=Message}"/><Run Text=" (" FontStyle="Italic"/><Run Text="{Binding Path=TypeName, Mode=OneWay}" FontStyle="Italic"></Run><Run Text=")" FontStyle="Italic"/></TextBlock>
+            </HierarchicalDataTemplate>
+            <DataTemplate DataType="{x:Type ccontract:Info}">
+                <TextBlock xml:space="preserve" VerticalAlignment="Center"><Run Text="{Binding Path=Message}"/><Run Text=" (" FontStyle="Italic"/><Run Text="{Binding Path=TypeName, Mode=OneWay}" FontStyle="Italic"></Run><Run Text=")" FontStyle="Italic"/></TextBlock>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type icontract:SpellSourceInfo}">
+                <TextBlock xml:space="preserve"><Run Text="{Binding Path=Message}"/><Run Text=" (Level "/><Run Text="{Binding Path=CasterLevel}"/><Run Text=")"/></TextBlock>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type icontract:SpellTriggerInfo}">
+                <StackPanel>
+                    <ContentControl Content="{Binding SpellSource}"/>
+                    <TextBlock><Run Text="Charges/Use: "/><Run Text="{Binding ChargesPerUse}"/></TextBlock>
+                    <TextBlock><Run Text="Charges: "/><Run Text="{Binding ChargesRemaining}"/></TextBlock>
+                </StackPanel>
+            </DataTemplate>
+            <!-- TODO: Identity shouldn't show on Armor/Shield adjunct lists! -->
+        </Grid.Resources>
+        <Grid.CommandBindings>
+            <CommandBinding Command="New" x:Name="cmdbndNew" 
+                            CanExecute="cmdbndNew_CanExecute" Executed="cmdbndNew_Executed"/>
+            <CommandBinding Command="Delete" x:Name="cmdbndDelete"
+                            CanExecute="cmdbndDelete_CanExecute" Executed="cmdbndDelete_Executed"/>
+            <CommandBinding Command="{x:Static uziui:ObjectIdentityEditor.RenameCmd}" x:Name="cmdbndRename"
+                            CanExecute="cmdbndRename_CanExecute" Executed="cmdbndRename_Executed"/>
+        </Grid.CommandBindings>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition />
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Menu Grid.Row="0">
+            <MenuItem Command="New">
+                <MenuItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="/images/add.png" Margin="2"/>
+                        <TextBlock Text="Add" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </MenuItem.Header>
+            </MenuItem>
+            <MenuItem Command="{x:Static uziui:ObjectIdentityEditor.RenameCmd}">
+                <MenuItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="/images/tag_blue_edit.png" Margin="2"/>
+                        <TextBlock Text="Rename" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </MenuItem.Header>
+            </MenuItem>
+            <MenuItem Command="Delete">
+                <MenuItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="/images/delete.png" Margin="2"/>
+                        <TextBlock Text="Remove" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </MenuItem.Header>
+            </MenuItem>
+        </Menu>
+        <Border Grid.Row="2" BorderBrush="Black" BorderThickness="0.5" Background="LightGoldenrodYellow">
+            <StackPanel>
+                <Label Content="Base Value" FontWeight="Bold"></Label>
+                <TreeView x:Name="tvwBase" Background="LightGoldenrodYellow">
+                    <TreeView.ItemContainerStyle>
+                        <Style>
+                            <Setter Property="TreeViewItem.IsExpanded" Value="True"/>
+                        </Style>
+                    </TreeView.ItemContainerStyle>
+                </TreeView>
+            </StackPanel>
+        </Border>
+        <TreeView Grid.Row="1" x:Name="tvwIdentities">
+            <TreeView.ItemContainerStyle>
+                <Style>
+                    <Setter Property="TreeViewItem.IsExpanded" Value="True"/>
+                </Style>
+            </TreeView.ItemContainerStyle>
+        </TreeView>
+    </Grid>
+</UserControl>

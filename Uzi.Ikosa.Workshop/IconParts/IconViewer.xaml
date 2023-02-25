@@ -1,0 +1,30 @@
+﻿<UserControl x:Class="Uzi.Ikosa.Workshop.IconViewer"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <DockPanel>
+        <DockPanel.Resources>
+            <Style TargetType="{x:Type Label}">
+                <Setter Property="FontWeight" Value="Bold"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+            </Style>
+            <Style TargetType="{x:Type TextBlock}">
+                <Setter Property="VerticalAlignment" Value="Center"/>
+            </Style>
+        </DockPanel.Resources>
+        <Label DockPanel.Dock="Top">Name</Label>
+        <TextBox Text="{Binding Path=BindableName}" DockPanel.Dock="Top" Margin="1"/>
+        <Slider x:Name="sldrScale" DockPanel.Dock="Left" Orientation="Vertical" Minimum="1" Maximum="8" Value="4" 
+                IsSnapToTickEnabled="True" TickFrequency="0.05" LargeChange="1" SmallChange="0.25"></Slider>
+        <Border Padding="2" BorderThickness="1" CornerRadius="1" BorderBrush="Black" Margin="1" >
+            <ContentControl x:Name="ccHolder" Content="{Binding Path=Icon}">
+                <ContentControl.LayoutTransform>
+                    <ScaleTransform ScaleX="{Binding ElementName=sldrScale, Path=Value}" ScaleY="{Binding ElementName=sldrScale, Path=Value}"/>
+                </ContentControl.LayoutTransform>
+            </ContentControl>
+        </Border>
+    </DockPanel>
+</UserControl>

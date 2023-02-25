@@ -1,0 +1,76 @@
+﻿<Window x:Class="Uzi.Ikosa.Workshop.NewSliver"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:visualize="clr-namespace:Uzi.Visualize;assembly=Uzi.Visualize"
+        xmlns:shop="clr-namespace:Uzi.Ikosa.Workshop"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        WindowStyle="SingleBorderWindow" ResizeMode="NoResize" WindowStartupLocation="CenterOwner" 
+        Title="New Sliver Space" SizeToContent="WidthAndHeight">
+    <StackPanel>
+        <StackPanel.Resources>
+            <Style TargetType="TextBox" x:Key="styleText">
+                <Setter Property="Margin" Value="1"/>
+                <Style.Triggers>
+                    <Trigger Property="Tag" Value="Invalid">
+                        <Setter Property="Background" Value="LightSalmon"/>
+                        <Setter Property="ToolTip.Content" Value="Invalid value"/>
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+            <Style TargetType="TextBox" x:Key="dblCheck" BasedOn="{StaticResource styleText}">
+                <EventSetter Event="TextChanged" Handler="txtDouble_TextChanged"/>
+            </Style>
+            <Style TargetType="ComboBox">
+                <Setter Property="Margin" Value="2"/>
+            </Style>
+        </StackPanel.Resources>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition MinWidth="72"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition MinWidth="72"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition MinWidth="72"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Label Grid.Column="0" Grid.Row="0">Name</Label>
+            <Label Grid.Column="0" Grid.Row="1">Material</Label>
+            <Label Grid.Column="0" Grid.Row="2">Tiling</Label>
+            <Label Grid.Column="2" Grid.Row="1">Plus Material</Label>
+            <Label Grid.Column="2" Grid.Row="2">Plus Tiling</Label>
+            <Label Grid.Column="4" Grid.Row="1">Edge Material</Label>
+            <Label Grid.Column="4" Grid.Row="2">Edge Tiling</Label>
+            <Label Grid.Column="4" Grid.Row="3">Edge Width</Label>
+            <TextBox Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2" x:Name="txtName" Style="{StaticResource styleText}"></TextBox>
+            <ComboBox Grid.Column="1" Grid.Row="1" ItemsSource="{DynamicResource roomMaterials}" 
+                      Name="cboMaterial" DisplayMemberPath="Name"/>
+            <ComboBox Grid.Column="1" Grid.Row="2" DisplayMemberPath="Name" Name="cboTiling"
+                      ItemsSource="{Binding ElementName=cboMaterial, Path=SelectedValue.AvailableTilings}"></ComboBox>            
+            <ComboBox Grid.Column="3" Grid.Row="1" ItemsSource="{DynamicResource roomMaterials}" 
+                      Name="cboSlvPMaterial" DisplayMemberPath="Name"/>
+            <ComboBox Grid.Column="3" Grid.Row="2" ItemsSource="{Binding ElementName=cboSlvPMaterial, Path=SelectedValue.AvailableTilings}"
+                      DisplayMemberPath="Name" x:Name="cboSlvPTiling"></ComboBox>
+            <ComboBox Grid.Column="5" Grid.Row="1" ItemsSource="{DynamicResource roomMaterials}" 
+                      Name="cboEdgeMaterial" DisplayMemberPath="Name"/>
+            <ComboBox Grid.Column="5" Grid.Row="2" ItemsSource="{Binding ElementName=cboEdgeMaterial, Path=SelectedValue.AvailableTilings}"
+                      DisplayMemberPath="Name" x:Name="cboEdgeTiling"></ComboBox>
+            <Slider Grid.Column="5" Grid.Row="3" x:Name="sldrOffset" Margin="2" Maximum="0.75" 
+                    SmallChange="0.05" LargeChange="0.1" AutoToolTipPlacement="BottomRight" 
+                    AutoToolTipPrecision="2" IsSnapToTickEnabled="True" TickFrequency="0.05"></Slider>
+        </Grid>
+        <TextBlock Margin="4" x:Name="txtMessage" HorizontalAlignment="Right" Foreground="Red" FontWeight="Bold"></TextBlock>
+        <DockPanel LastChildFill="False" Margin="4,0,4,4">
+            <DockPanel.CommandBindings>
+                <CommandBinding x:Name="cmdbndOK" Command="{x:Static shop:App.OKCommand}" 
+                                CanExecute="cmdbndOK_CanExecute" Executed="cmdbndOK_Executed" />
+            </DockPanel.CommandBindings>
+            <Button DockPanel.Dock="Right" Margin="4" MinWidth="60" IsCancel="True" x:Name="btnCancel" Click="btnCancel_Click">Cancel</Button>
+            <Button DockPanel.Dock="Right" Margin="4" MinWidth="60" IsDefault="True" x:Name="btnOK" Command="{x:Static shop:App.OKCommand}">OK</Button>
+        </DockPanel>
+    </StackPanel>
+</Window>

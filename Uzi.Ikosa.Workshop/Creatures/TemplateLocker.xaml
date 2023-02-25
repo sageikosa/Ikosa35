@@ -1,0 +1,75 @@
+﻿<UserControl x:Class="Uzi.Ikosa.Workshop.TemplateLocker"
+             xmlns:shop="clr-namespace:Uzi.Ikosa.Workshop"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <Style TargetType="Grid" x:Key="gridHover">
+            <Setter Property="Background" Value="Transparent"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="true">
+                    <Setter Property="Background" Value="LightCyan"/>
+                    <Setter Property="Cursor" Value="Hand"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="styleLockable" TargetType="{x:Type Ellipse}">
+            <Setter Property="Visibility" Value="Hidden"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Path=IsLockable}" Value="true">
+                    <Setter Property="Visibility" Value="Visible"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="styleLocked" TargetType="{x:Type Ellipse}">
+            <Setter Property="Visibility" Value="Hidden"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Path=IsLocked}" Value="true">
+                    <Setter Property="Visibility" Value="Visible"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+    <Border Width="16" Height="16" BorderBrush="Black" BorderThickness="1" Padding="1"
+                        DataContext="{Binding}">
+        <Grid Style="{StaticResource gridHover}" Mouse.MouseDown="btnLockerClick">
+            <Ellipse Style="{StaticResource styleLockable}" Stroke="Blue"
+                                 VerticalAlignment="Center" HorizontalAlignment="Center"
+                                 Width="12" Height="12" StrokeThickness="1" />
+            <Ellipse Style="{StaticResource styleLocked}" Fill="DarkGreen" 
+                                 VerticalAlignment="Center" HorizontalAlignment="Center"
+                                 Width="10" Height="10" />
+            <Grid.ContextMenu>
+                <ContextMenu>
+                    <ContextMenu.CommandBindings>
+                        <CommandBinding x:Name="cmdbndUnLockLevel" 
+                                        Command="{x:Static shop:TemplateLocker.UnLockLevel}"
+                                        CanExecute="cmdbndUnLockLevel_CanExecute" 
+                                        Executed="cmdbndUnLockLevel_Executed"/>
+                        <CommandBinding x:Name="cmdbndLockLevel" 
+                                        Command="{x:Static shop:TemplateLocker.LockLevel}"
+                                        CanExecute="cmdbndLockLevel_CanExecute" 
+                                        Executed="cmdbndLockLevel_Executed"/>
+                        <CommandBinding x:Name="cmdbndRemoveLevel" 
+                                        Command="{x:Static shop:TemplateLocker.RemoveLevel}"
+                                        CanExecute="cmdbndRemoveLevel_CanExecute" 
+                                        Executed="cmdbndRemoveLevel_Executed"/>
+                    </ContextMenu.CommandBindings>
+                    <MenuItem Header="Unlock Back To Here"
+                              Command="{x:Static shop:TemplateLocker.UnLockLevel}"
+                              CommandParameter="{Binding}"/>
+                    <MenuItem Header="Lock Up To Here"
+                              Command="{x:Static shop:TemplateLocker.LockLevel}"
+                              CommandParameter="{Binding}"/>
+                    <Separator/>
+                    <MenuItem Header="Remove Back To Here" 
+                              Command="{x:Static shop:TemplateLocker.RemoveLevel}"
+                              CommandParameter="{Binding}"/>
+                </ContextMenu>
+            </Grid.ContextMenu>
+        </Grid>
+    </Border>
+</UserControl>

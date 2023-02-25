@@ -1,0 +1,89 @@
+﻿<TabItem x:Class="Uzi.Ikosa.Workshop.CreatureEditor"
+         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+         xmlns:shop="clr-namespace:Uzi.Ikosa.Workshop">
+    <!-- Tab Header -->    
+    <TabItem.Header>
+        <StackPanel Orientation="Horizontal">
+            <Image Source="/Images/user.png" Stretch="None" Margin="0,0,4,0"/>
+            <TextBlock Text="{Binding Path=Thing.Name}"/>
+            <Button DockPanel.Dock="Right" Margin="4,0,0,0" Focusable="False" BorderBrush="DarkGray" BorderThickness="1"
+                    Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="btnClose_Click" VerticalAlignment="Center">
+                <Canvas Width="8" Height="8">
+                    <Line X1="0" Y1="0" X2="8" Y2="8" Stroke="Red" />
+                    <Line X1="0" Y1="8" X2="8" Y2="0" Stroke="Red" />
+                </Canvas>
+            </Button>
+        </StackPanel>
+    </TabItem.Header>
+    <DockPanel LastChildFill="True">
+        <TabControl DockPanel.Dock="Top" TabStripPlacement="Left" Margin="2,4,2,0">
+            <TabItem>
+                <TabItem.Header>
+                    <Label Margin="2,6,2,6">Main</Label>
+                </TabItem.Header>
+                <ScrollViewer HorizontalScrollBarVisibility="Auto">
+                    <StackPanel>
+                        <shop:CharacterSheet DataContext="{Binding}" />
+                    </StackPanel>
+                </ScrollViewer>
+            </TabItem>
+            <TabItem>
+                <TabItem.Header>
+                    <Label Margin="2,6,2,6">Skills/Feats</Label>
+                </TabItem.Header>
+                <ScrollViewer HorizontalScrollBarVisibility="Auto">
+                    <StackPanel>
+                        <shop:AdditionalCharSheet DataContext="{Binding}" />
+                    </StackPanel>
+                </ScrollViewer>
+            </TabItem>
+            <TabItem>
+                 <TabItem.Header>
+                    <Label Margin="2,6,2,6">Qualities</Label>
+                </TabItem.Header>
+                <ScrollViewer HorizontalScrollBarVisibility="Auto">
+                    <StackPanel>
+                        <shop:QualitiesSheet DataContext="{Binding}" />
+                    </StackPanel>
+                </ScrollViewer>
+            </TabItem>
+            <TabItem>
+                <TabItem.Header>
+                    <Label Margin="2,6,2,6">Gear</Label>
+                </TabItem.Header>
+                <shop:EquipmentSheet DataContext="{Binding}"/>
+            </TabItem> 
+            <TabItem>
+                <TabItem.Header>
+                    <Label Margin="2,6,2,6">Items</Label>
+                </TabItem.Header>
+                <shop:PossessionsSheet DataContext="{Binding}"/>
+            </TabItem>
+            <TabItem>
+                <TabItem.Header>
+                    <Label Margin="2,6,2,6">Levels</Label>
+                </TabItem.Header>
+                <shop:AdvancementSheet DataContext="{Binding}"/>
+            </TabItem>
+            <TabItem x:Name="tiSpells">
+                <TabItem.Header>
+                    <Label Margin="2,6,2,6">Spells</Label>
+                </TabItem.Header>
+                <shop:SpellSlots DataContext="{Binding}"/>
+            </TabItem>
+            <TabItem x:Name="tiSocial">
+                <TabItem.Header>
+                    <Label Margin="2,6,2,6">Social</Label>
+                </TabItem.Header>
+                <shop:Social DataContext="{Binding}"/>
+            </TabItem>
+            <TabItem x:Name="Users">
+                <TabItem.Header>
+                    <Label Margin="2,6,2,6">Users</Label>
+                </TabItem.Header>
+                <shop:Users DataContext="{Binding Path=Thing}"/>
+            </TabItem>
+        </TabControl>
+    </DockPanel>
+</TabItem>

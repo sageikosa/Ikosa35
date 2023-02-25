@@ -1,0 +1,95 @@
+﻿<UserControl x:Class="Uzi.Ikosa.Workshop.KeyholeEditor"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:core="clr-namespace:Uzi.Core;assembly=Uzi.Core"
+             xmlns:workshop="clr-namespace:Uzi.Ikosa.Workshop"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Grid Margin="2">
+        <Grid.Resources>
+            <core:ActivationBoolConverter x:Key="convActivationBool" />
+            <Style TargetType="Label">
+                <Setter Property="HorizontalAlignment" Value="Right"/>
+                <Setter Property="FontWeight" Value="Bold"/>
+            </Style>
+            <Style TargetType="TextBox">
+                <Setter Property="Margin" Value="1"/>
+            </Style>
+            <Style TargetType="TextBlock">
+                <Setter Property="VerticalAlignment" Value="Center"/>
+            </Style>
+            <Style TargetType="ComboBox">
+                <Setter Property="Margin" Value="1"/>
+            </Style>
+            <Style TargetType="CheckBox">
+                <Setter Property="Margin" Value="1"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+            </Style>
+        </Grid.Resources>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0" Grid.ColumnSpan="5" Background="LightCyan" Padding="4,2">Keyhole</TextBlock>
+        <Label Grid.Row="1">Name</Label>
+        <Label Grid.Row="2">Lock</Label>
+        <Label Grid.Row="3">Keys</Label>
+        <Label Grid.Row="4">Difficulty</Label>
+        <Label Grid.Column="1" Grid.Row="4">Pick</Label>
+        <Label Grid.Column="3" Grid.Row="4">Disable</Label>
+        <Label Grid.Row="5">Active</Label>
+        <Label Grid.Row="5" Grid.Column="2">Object</Label>
+        <TextBox Grid.Column="1" Grid.Row="1" Text="{Binding Path=Name}" Grid.ColumnSpan="4"></TextBox>
+        <Expander Grid.Column="1" Grid.Row="2" IsExpanded="False" Background="LightGoldenrodYellow" Grid.ColumnSpan="4">
+            <Expander.Header>
+                <ComboBox x:Name="cboLock" SelectionChanged="cboLock_SelectionChanged" DisplayMemberPath="Name">
+                </ComboBox>
+            </Expander.Header>
+            <Grid DataContext="{Binding ElementName=cboLock, Path=SelectedItem}" Background="WhiteSmoke">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Label Grid.Column="0" Grid.Row="0">Name</Label>
+                <Label Grid.Column="0" Grid.Row="1">Locked</Label>
+                <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding Path=Name}"/>
+                <CheckBox Grid.Column="1" Grid.Row="1" IsChecked="{Binding Path=IsLocked}"/>
+            </Grid>
+        </Expander>
+        <Button Grid.Column="1" Grid.Row="3" Margin="1" Content="..." VerticalAlignment="Center" HorizontalAlignment="Left" 
+                MinWidth="24"
+                Padding="2,1" ToolTipService.ShowDuration="30000" x:Name="btnKeySelect" Click="btnKeySelect_Click">
+            <Button.ToolTip>
+                <ItemsControl x:Name="itemsKeys" ItemsSource="{Binding Path=NamedKeys}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{Binding Path=Value}"></TextBlock>
+                                <TextBlock xml:space="preserve"> (</TextBlock>
+                                <TextBlock Text="{Binding Path=Key}"></TextBlock>
+                                <TextBlock>)</TextBlock>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </Button.ToolTip>
+        </Button>
+        <TextBox Grid.Column="2" Grid.Row="4" Text="{Binding Path=PickDifficulty.BaseValue}"></TextBox>
+        <TextBox Grid.Column="4" Grid.Row="4" Text="{Binding Path=DisableDifficulty.BaseValue}"></TextBox>
+        <CheckBox Grid.Column="1" Grid.Row="5" IsChecked="{Binding Path=Activation, Converter={StaticResource convActivationBool}, ConverterParameter={x:Null}}"/>
+        <workshop:ObjectTip Grid.Column="3" Grid.Row="5" DataContext="{Binding}" Grid.ColumnSpan="2"/>
+    </Grid>
+</UserControl>

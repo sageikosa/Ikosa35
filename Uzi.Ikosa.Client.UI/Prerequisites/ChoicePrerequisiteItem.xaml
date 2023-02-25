@@ -1,0 +1,33 @@
+﻿<UserControl x:Class="Uzi.Ikosa.Client.UI.ChoicePrerequisiteItem"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:ccontract="clr-namespace:Uzi.Core.Contracts;assembly=Uzi.Core.Contracts"
+             Background="{Binding Path=Background}"
+             mc:Ignorable="d"  d:DesignWidth="300">
+    <Grid Margin="2">
+        <StackPanel Visibility="{Binding Path=MultipleVisibility}">
+            <TextBlock Text="Choose" Background="LightCyan" />
+            <ComboBox Margin="1" x:Name="cboChoice" ItemsSource="{Binding Path=Prerequisite.Choices}" 
+                      Focusable="False" SelectionChanged="cboChoice_SelectionChanged" >
+                <ComboBox.ItemTemplate>
+                    <DataTemplate DataType="{x:Type ccontract:OptionAimOption}">
+                        <TextBlock Text="{Binding Path=Name}" ToolTip="{Binding Path=Description}"/>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+        </StackPanel>
+        <StackPanel Visibility="{Binding Path=SingletonVisiblity}">
+            <TextBlock Text="Choose" Background="LightCyan" />
+            <ItemsControl ItemsSource="{Binding Path=Prerequisite.Choices}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate DataType="{x:Type ccontract:OptionAimOption}">
+                        <Button Content="{Binding Path=Name}" ToolTip="{Binding Path=Description}"
+                                Focusable="False" Click="Button_Click" Tag="{Binding}"/>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </StackPanel>
+    </Grid>
+</UserControl>

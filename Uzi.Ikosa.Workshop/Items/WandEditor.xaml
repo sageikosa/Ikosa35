@@ -1,0 +1,82 @@
+﻿<UserControl x:Class="Uzi.Ikosa.Workshop.WandEditor"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:xceed="clr-namespace:Xceed.Wpf.Toolkit;assembly=Xceed.Wpf.Toolkit"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Grid DataContext="{Binding Path=Thing}">
+        <Grid.Resources>
+            <ResourceDictionary>
+                <ResourceDictionary.MergedDictionaries>
+                    <ResourceDictionary Source="/Uzi.Ikosa.UI;Component/Deltable.xaml"/>
+                    <ResourceDictionary Source="/Items/ItemListTemplates.xaml"/>
+                </ResourceDictionary.MergedDictionaries>
+                <Style TargetType="Label">
+                    <Setter Property="FontWeight" Value="Bold"/>
+                    <Setter Property="HorizontalAlignment" Value="Right"/>
+                    <Setter Property="VerticalAlignment" Value="Center"/>
+                    <Setter Property="FontSize" Value="10"/>
+                </Style>
+                <Style TargetType="TextBlock">
+                    <Setter Property="VerticalAlignment" Value="Center"/>
+                </Style>
+                <Style TargetType="MenuItem">
+                    <Setter Property="VerticalAlignment" Value="Center"/>
+                </Style>
+                <Style TargetType="ContentControl">
+                    <Setter Property="VerticalAlignment" Value="Center"/>
+                </Style>
+                <Style TargetType="ItemsControl">
+                    <Setter Property="VerticalAlignment" Value="Center"/>
+                </Style>
+            </ResourceDictionary>
+        </Grid.Resources>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="25,*"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="25,*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Label Grid.Column="0" Grid.Row="0" Content="Name"/>
+        <TextBox Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="3" Text="{Binding Path=Name}" Margin="1" TextWrapping="Wrap"/>
+
+        <Label Grid.Column="0" Grid.Row="1" Content="Original Name"/>
+        <TextBlock Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="3" Text="{Binding Path=OriginalName}" Margin="1" TextWrapping="Wrap"/>
+
+        <Label Grid.Column="0" Grid.Row="2" Content="Spell"/>
+        <ContentControl Grid.Column="1" Grid.Row="2" Content="{Binding Path=SpellTrigger.SpellSource}" Grid.ColumnSpan="3" Margin="1"/>
+
+        <Label Grid.Column="0" Grid.Row="3" Content="Charges"/>
+        <xceed:IntegerUpDown Increment="1" AllowSpin="True" MouseWheelActiveOnFocus="True" Minimum="0" Maximum="100"
+                             ValueChanged="udCharge_ValueChanged"
+                             Grid.Column="1" Grid.Row="3"  x:Name="udCharge" AutoSelectBehavior="OnFocus"/>
+
+        <Label Grid.Column="0" Grid.Row="4" Content="Max Charges"/>
+        <xceed:IntegerUpDown Increment="1" AllowSpin="True" MouseWheelActiveOnFocus="True" Minimum="0" Maximum="100"
+                             ValueChanged="udMaxCharge_ValueChanged"
+                             Grid.Column="1" Grid.Row="4" x:Name="udMaxCharge" AutoSelectBehavior="OnFocus"/>
+
+        <Label Grid.Column="0" Grid.Row="5" Content="Price"/>
+        <TextBlock Grid.Column="1" Grid.Row="5" Text="{Binding Path=Price.BasePrice}" Margin="1"/>
+        <!-- TODO: price not immediately updating if MaxCharge change leads to Available Charge Change -->
+        
+        <Label Grid.Column="2" Grid.Row="5" Content="Weight"/>
+        <TextBlock Grid.Column="3" Grid.Row="5" Text="{Binding Path=Weight}" Margin="1"/>
+        <Label Grid.Column="0" Grid.Row="6" Content="Material"/>
+        <TextBlock Grid.Column="1" Grid.Row="6" Text="{Binding Path=ItemMaterial.Name}" Margin="1"/>
+        <Label Grid.Column="2" Grid.Row="6" Content="Hardness"/>
+        <ContentControl Grid.Column="3" Grid.Row="6" Content="{Binding Path=Hardness}" ContentTemplate="{StaticResource deltaView}"/>
+        <Label Grid.Column="0" Grid.Row="7" Content="Max Structure"/>
+        <ContentControl Grid.Column="1" Grid.Row="7" Content="{Binding Path=MaxStructurePoints}" ContentTemplate="{StaticResource deltaView}"/>
+        <Label Grid.Column="2" Grid.Row="7" Content="Structure"/>
+        <TextBlock Grid.Column="3" Grid.Row="7" Text="{Binding Path=StructurePoints}"/>
+    </Grid>
+</UserControl>

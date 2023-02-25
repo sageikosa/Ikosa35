@@ -1,0 +1,71 @@
+﻿<UserControl x:Class="Uzi.Ikosa.Workshop.Social"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Uzi.Ikosa.Workshop"
+             xmlns:uia="clr-namespace:Uzi.Ikosa.Adjuncts;assembly=Uzi.Ikosa"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" >
+    <UserControl.CommandBindings>
+        <CommandBinding x:Name="cbNewTeam" Command="{x:Static local:Social.NewTeam}"
+                        CanExecute="cbNewTeam_CanExecute" Executed="cbNewTeam_Executed"/>
+        <CommandBinding x:Name="cbAddTeam" Command="{x:Static local:Social.AddTeam}"
+                        CanExecute="cbAddTeam_CanExecute" Executed="cbAddTeam_Executed"/>
+        <CommandBinding x:Name="cbRemoveTeam" Command="{x:Static local:Social.RemoveTeam}"
+                        CanExecute="cbRemoveTeam_CanExecute" Executed="cbRemoveTeam_Executed"/>
+        <CommandBinding x:Name="cbRemoveAll" Command="{x:Static local:Social.RemoveAll}" 
+                        CanExecute="cbRemoveAll_CanExecute" Executed="cbRemoveAll_Executed"/>
+    </UserControl.CommandBindings>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <TextBlock Grid.Row="0" Grid.Column="0" FontWeight="Bold">Teams</TextBlock>
+        <TextBlock Grid.Row="0" Grid.Column="1" FontStyle="Italic">Members</TextBlock>
+        <TextBlock Grid.Row="0" Grid.Column="3" FontWeight="Bold">Available</TextBlock>
+        <TextBlock Grid.Row="0" Grid.Column="4" FontStyle="Italic">Members</TextBlock>
+        <StackPanel Grid.Row="1" Grid.Column="2" Orientation="Vertical" VerticalAlignment="Center" Margin="4">
+            <Button Margin="4" Command="{x:Static local:Social.NewTeam}" Content="New Team"></Button>
+            <Button Margin="4" Command="{x:Static local:Social.AddTeam}" Content="&lt;- Add"></Button>
+            <Button Margin="4" Command="{x:Static local:Social.RemoveAll}" Content="Clear All -&gt;"></Button>
+            <Button Margin="4" Command="{x:Static local:Social.RemoveTeam}" Content="Remove -&gt;"></Button>
+        </StackPanel>
+        <ListBox Grid.Row="1" Grid.Column="0" x:Name="lstTeams" MinWidth="96">
+            <ListBox.ItemTemplateSelector>
+                <local:TeamGroupTemplateSelector>
+                    <local:TeamGroupTemplateSelector.IsPrimaryTemplate>
+                        <DataTemplate DataType="{x:Type uia:TeamMember}">
+                            <TextBlock FontWeight="Bold" Text="{Binding Path=TeamGroup.Name}"/>
+                        </DataTemplate>
+                    </local:TeamGroupTemplateSelector.IsPrimaryTemplate>
+                    <local:TeamGroupTemplateSelector.IsAssociateTemplate>
+                        <DataTemplate DataType="{x:Type uia:TeamMember}">
+                            <TextBlock Text="{Binding Path=TeamGroup.Name}"/>
+                        </DataTemplate>
+                    </local:TeamGroupTemplateSelector.IsAssociateTemplate>
+                </local:TeamGroupTemplateSelector>
+            </ListBox.ItemTemplateSelector>
+        </ListBox>
+        <ListBox Grid.Row="1" Grid.Column="1" x:Name="lstTeamMembers" MinWidth="96"
+                 ItemsSource="{Binding ElementName=lstTeams, Path=SelectedItem.TeamGroup.TeamCreatures}" 
+                 DisplayMemberPath="Name"/>
+        <ListBox Grid.Row="1" Grid.Column="3" x:Name="lstAvailable" MinWidth="96" DisplayMemberPath="Name"></ListBox>
+        <ListBox Grid.Row="1" Grid.Column="4" x:Name="lstAvailableMembers" MinWidth="96"
+                 ItemsSource="{Binding ElementName=lstAvailable, Path=SelectedItem.TeamCreatures}" 
+                 DisplayMemberPath="Name"/>
+        <CheckBox Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Content="Is Primary" 
+                  DataContext="{Binding ElementName=lstTeams,Path=SelectedItem}" 
+                  IsChecked="{Binding Path=IsPrimary}"
+                  Checked="CheckBox_Checked"/>
+    </Grid>
+</UserControl>

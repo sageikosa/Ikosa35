@@ -1,0 +1,238 @@
+﻿<UserControl x:Class="Uzi.Ikosa.Workshop.ItemElementEditor"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:uiui="clr-namespace:Uzi.Ikosa.UI;assembly=Uzi.Ikosa.UI"
+             xmlns:shop="clr-namespace:Uzi.Ikosa.Workshop"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="Margin" Value="1,0"/>
+        </Style>
+        <Style TargetType="ContentControl">
+            <Setter Property="Margin" Value="1,0"/>
+        </Style>
+        <Style TargetType="ListBox">
+            <Setter Property="Margin" Value="1,0"/>
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="16"/>
+            <RowDefinition Height="100,*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="1,*"/>
+            <ColumnDefinition Width="50,*"/>
+        </Grid.ColumnDefinitions>
+        <TextBlock Text="Item Elements" Grid.Column="0" Grid.Row="0" MinWidth="360"/>
+        <ContentControl Grid.Row="1" Grid.Column="0" KeyboardNavigation.IsTabStop="False"
+                        Content="{Binding Path=Commands}">
+            <ContentControl.Resources>
+                <DataTemplate DataType="{x:Type uiui:AddItemElementCommands}">
+                    <DockPanel LastChildFill="True" FocusManager.IsFocusScope="True">
+                        <Menu VerticalAlignment="Center">
+                            <Menu.CommandBindings>
+                                <CommandBinding Command="{x:Static shop:AddItemMenu.NewItem}" x:Name="cmdbndNew" 
+                                                CanExecute="cmdbndNew_CanExecute" Executed="cmdbndNew_Executed"/>
+                                <CommandBinding Command="{x:Static shop:AddItemMenu.NewAmmoSet}" x:Name="cmdbndNewAmmoSet" 
+                                                CanExecute="cmdbndNew_CanExecute" Executed="cmdbndNewAmmoSet_Executed"/>
+                                <CommandBinding Command="{x:Static shop:AddItemMenu.NewWandItem}" x:Name="cmdbndNewWand" 
+                                                CanExecute="cmdbndNewWand_CanExecute" Executed="cmdbndNewWand_Executed"/>
+                                <CommandBinding Command="{x:Static shop:AddItemMenu.NewRingItem}" x:Name="cmdbndNewRing"
+                                                CanExecute="cmdbndNewRing_CanExecute" Executed="cmdbndNewRing_Executed"/>
+                                <CommandBinding Command="{x:Static shop:AddItemMenu.NewSlottedItem}" x:Name="cmdbndNewSlottedItem"
+                                                CanExecute="cmdbndNewSlottedItem_CanExecute" Executed="cmdbndNewSlottedItem_Executed"/>
+                                <CommandBinding Command="{x:Static shop:AddItemMenu.NewPotionItem}" x:Name="cmdbndNewPotion"
+                                                CanExecute="cmdbndNewPotion_CanExecute" Executed="cmdbndNewPotion_Executed"/>
+                                <CommandBinding Command="{x:Static shop:AddItemMenu.NewCoins}" x:Name="cmdbndNewCoin"
+                                                CanExecute="cmdbndNew_CanExecute" Executed="cmdbndNewCoin_Executed"/>
+                                <CommandBinding Command="{x:Static shop:AddItemMenu.NewGem}" x:Name="cmdbndNewGem"
+                                                CanExecute="cmdbndNew_CanExecute" Executed="cmdbndNewGem_Executed"/>
+                                <CommandBinding Command="{x:Static shop:AddItemMenu.NewKeyItem}" x:Name="cmdbndNewKeyItem"
+                                                CanExecute="cmdbndNew_CanExecute" Executed="cmdbndNewKeyItem_Executed"/>
+                                <CommandBinding Command="{x:Static shop:AddItemMenu.NewKeyRing}" x:Name="cmdbndNewKeyRing"
+                                                CanExecute="cmdbndNew_CanExecute" Executed="cmdbndNewKeyRing_Executed"/>
+                                <CommandBinding Command="{x:Static shop:AddItemMenu.NewSpellBook}" x:Name="cmdbndNewSpellBook"
+                                                CanExecute="cmdbndNew_CanExecute" Executed="cmdbndNewSpellBook_Executed"/>
+                                <CommandBinding Command="{x:Static shop:AddItemMenu.NewScrollItem}" x:Name="cmdbndNewScrollItem"
+                                                CanExecute="cmdbndNew_CanExecute" Executed="cmdbndNewScrollItem_Executed"/>
+                                <CommandBinding Command="{x:Static shop:AddItemMenu.NewDevotionalItem}" x:Name="cmdbndNewDevotionalSymbolItem"
+                                                CanExecute="cmdbndNew_CanExecute" Executed="cmdbndNewDevotionalSymbolItem_Executed"/>
+                            </Menu.CommandBindings>
+                            <shop:AddItemMenu DataContext="{Binding Path=Parent.IkosaModule.Visuals}"/>
+                            <MenuItem Command="{Binding Path=RemoveCommand}" 
+                                      CommandParameter="{Binding ElementName=lstItemElements,Path=SelectedItem}">
+                                <MenuItem.Icon>
+                                    <Image Source="/images/delete.png"/>
+                                </MenuItem.Icon>
+                                <MenuItem.Header>
+                                    <TextBlock Text="Remove" VerticalAlignment="Center"/>
+                                </MenuItem.Header>
+                            </MenuItem>
+                        </Menu>
+                    </DockPanel>
+                </DataTemplate>
+            </ContentControl.Resources>
+        </ContentControl>
+        <ListBox Grid.Row="2" Grid.RowSpan="2" Grid.Column="0" x:Name="lstItemElements" 
+                 SelectedItem="{Binding Path=SelectedItemElement}"
+                 ItemsSource="{Binding Path=ItemElements}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <uiui:ItemIcon DataContext="{Binding Path=ObjectPresentation}"/>
+                        <TextBlock Text="{Binding Path=Name}" VerticalAlignment="Center">
+                            <TextBlock.ToolTip>
+                                <ItemsControl ItemsSource="{Binding Path=Description.IndexedDescriptions}" >
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <TextBlock>
+                                            <Run Text="-"></Run>
+                                            <Run Text="{Binding Path=Description}"/>
+                                            </TextBlock>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </TextBlock.ToolTip>
+                        </TextBlock>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <TextBlock Text="Item" Grid.Column="2" Grid.Row="0"/>
+        
+        <!-- Command Renderings -->
+        <ContentControl Grid.Row="1" Grid.RowSpan="2" Grid.Column="2" KeyboardNavigation.IsTabStop="False"
+                        DataContext="{Binding ElementName=lstItemElements, Path=SelectedItem}"
+                        Content="{Binding Path=Commands}">
+            <ContentControl.Resources>
+                <DataTemplate DataType="{x:Type uiui:EditItemElementCommands}">
+                    <StackPanel>
+                        <DockPanel HorizontalAlignment="Stretch" FocusManager.IsFocusScope="True">
+                            <Button Width="72" Height="24" Margin="1" Content="Rename" Command="{Binding Path=EditCommand}" 
+                                    DockPanel.Dock="Left" TabIndex="0"/>
+                            <Border BorderBrush="DarkGray" BorderThickness="1" Margin="1" Padding="3"
+                                    VerticalAlignment="Center" 
+                                    Background="LightYellow" >
+                                <TextBlock Text="{Binding Path=ItemElement.Name}" VerticalAlignment="Center"/>
+                            </Border>
+                        </DockPanel>
+                        <Button Margin="1" HorizontalAlignment="Left" Width="72" ToolTip="Edit Icon" Click="btnIconEdit_Click">
+                            <uiui:ItemIcon DataContext="{Binding ElementName=lstItemElements, Path=SelectedItem.ObjectPresentation}"/>
+                        </Button>
+                    </StackPanel>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type uiui:DoEditItemElementCommands}">
+                    <StackPanel>
+                        <DockPanel LastChildFill="True" FocusManager.IsFocusScope="True"
+                                   KeyboardNavigation.TabNavigation="Local">
+                            <Button Width="72" Height="24" Margin="1" Content="Cancel" DockPanel.Dock="Left" TabIndex="0"
+                                    IsCancel="True"
+                                    Command="{Binding Path=CancelEditCommand}"/>
+                            <Button Width="72" Height="24" Margin="1" Content="Do Name" DockPanel.Dock="Right" TabIndex="2"
+                                    IsDefault="True"
+                                    Command="{Binding Path=DoEditCommand}"/>
+                            <TextBox Margin="1" Text="{Binding Path=Name, UpdateSourceTrigger=PropertyChanged}" TabIndex="1"
+                                     uiui:FocusExtension.IsFocused="True" VerticalAlignment="Center" Padding="2"
+                                     x:Name="txtName"/>
+                        </DockPanel>
+                        <Button Margin="1" HorizontalAlignment="Left" Width="72" ToolTip="Edit Icon" Click="btnIconEdit_Click">
+                            <uiui:ItemIcon DataContext="{Binding ElementName=lstItemElements, Path=SelectedItem.ObjectPresentation}"/>
+                        </Button>
+                    </StackPanel>
+                </DataTemplate>
+            </ContentControl.Resources>
+        </ContentControl>
+        <!-- item editors -->
+        <ContentControl Grid.Row="3" Grid.Column="2" x:Name="ctrlInventoryItem" 
+                        Content="{Binding ElementName=lstItemElements, Path=SelectedItem.ObjectPresentation}">
+            <ContentControl.CommandBindings>
+                <CommandBinding x:Name="cbOpen" Command="{x:Static shop:PackageExplorer.OpenItem}" 
+                                CanExecute="cbOpen_CanExecute" Executed="cbOpen_Executed" />
+            </ContentControl.CommandBindings>
+            <ContentControl.Resources>
+                <DataTemplate DataType="{x:Type uiui:ArmorVM}">
+                    <shop:ArmorEditor DataContext="{Binding}"/>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type uiui:ShieldVM}">
+                    <shop:ShieldEditor DataContext="{Binding}"/>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type uiui:MeleeWeaponVM}">
+                    <shop:MeleeWeaponEditor DataContext="{Binding}"/>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type uiui:DoubleMeleeWeaponVM}">
+                    <shop:DoubleWeaponEditor DataContext="{Binding}"/>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type uiui:ProjectileWeaponVM}">
+                    <shop:ProjectileWeaponEditor DataContext="{Binding}"/>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type uiui:ArrowBundleVM}">
+                    <shop:AmmoBundleEditor DataContext="{Binding}"/>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type uiui:CrossbowBoltBundleVM}">
+                    <shop:AmmoBundleEditor DataContext="{Binding}"/>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type uiui:SlingAmmoBundleVM}">
+                    <shop:AmmoBundleEditor DataContext="{Binding}"/>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type uiui:ShurikenBundleVM}">
+                    <shop:AmmoBundleEditor DataContext="{Binding}"/>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type uiui:WandVM}">
+                    <shop:WandEditor DataContext="{Binding}"/>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type uiui:PotionVM}">
+                    <shop:PotionEditor DataContext="{Binding}"/>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type uiui:CoinSetVM}">
+                    <shop:CoinSetEditor DataContext="{Binding}"/>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type uiui:GemVM}">
+                    <shop:GemEditor DataContext="{Binding}"/>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type uiui:KeyItemVM}">
+                    <shop:KeyItemEditor DataContext="{Binding}"/>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type uiui:KeyRingVM}">
+                    <shop:KeyRingEditor DataContext="{Binding}"/>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type uiui:PresentableContainerItemVM}">
+                    <shop:ContainerItemBaseEditor DataContext="{Binding}"/>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type uiui:PresentableSlottedContainerItemVM}">
+                    <shop:SlottedContainerItemBaseEditor DataContext="{Binding}"/>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type uiui:QuiverVM}">
+                    <shop:AmmoContainerEditor DataContext="{Binding}"/>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type uiui:BoltSashVM}">
+                    <shop:AmmoContainerEditor DataContext="{Binding}"/>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type uiui:SlingBagVM}">
+                    <shop:AmmoContainerEditor DataContext="{Binding}"/>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type uiui:ShurikenPouchVM}">
+                    <shop:AmmoContainerEditor DataContext="{Binding}"/>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type uiui:SpellBookVM}">
+                    <shop:SpellBookEditor DataContext="{Binding}"/>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type uiui:ScrollVM}">
+                    <shop:ScrollEditor DataContext="{Binding}"/>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type uiui:ItemVM}">
+                    <shop:ItemEditor DataContext="{Binding}"/>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type uiui:NaturalWeaponVM}">
+                    <shop:NaturalWeaponEditor DataContext="{Binding}"/>
+                </DataTemplate>
+            </ContentControl.Resources>
+        </ContentControl>
+    </Grid>
+</UserControl>

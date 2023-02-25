@@ -1,0 +1,433 @@
+﻿<UserControl x:Class="Uzi.Ikosa.Client.UI.ActivityInfoBuildControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:ccontract="clr-namespace:Uzi.Core.Contracts;assembly=Uzi.Core.Contracts"
+             xmlns:icontract="clr-namespace:Uzi.Ikosa.Contracts;assembly=Uzi.Ikosa.Contracts"
+             xmlns:ui="clr-namespace:Uzi.Ikosa.Client.UI"
+             xmlns:vm="clr-namespace:Uzi.Ikosa.Proxy.ViewModel;assembly=Uzi.Ikosa.Proxy"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <DockPanel>
+        <DockPanel.Resources>
+            <vm:NullableValueConverter x:Key="NullableValueConverter"/>
+            <DataTemplate DataType="{x:Type vm:QueuedCell}">
+                <ui:CellPointer SourceCell="{Binding Path=ActivityBuilderTacticalActor.LocaleViewModel.Sensors.AimCell}"
+                                TargetCell="{Binding Path=Location}"
+                                DownFace="{Binding Path=ActivityBuilderTacticalActor.LocaleViewModel.Sensors.GravityAnchorFace}"
+                                Heading="{Binding Path=ActivityBuilderTacticalActor.LocaleViewModel.ForwardHeading}"/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type icontract:AwarenessInfo}">
+                <ContentControl Content="{Binding Path=Info}" 
+                                ContentTemplateSelector="{DynamicResource slctItemListTemplate}">
+                </ContentControl>
+            </DataTemplate>
+
+            <!-- Awareness Aim and Target -->
+            <DataTemplate DataType="{x:Type vm:AwarenessChoice}">
+                <StackPanel Orientation="Horizontal">
+                    <ContentControl Content="{Binding Path=Awareness}" />
+                    <ui:GeometryPointer Heading="{Binding Path=Targeting.Builder.ActivityBuilderTacticalActor.LocaleViewModel.ForwardHeading}"
+                                        DownFace="{Binding Path=Targeting.Builder.ActivityBuilderTacticalActor.LocaleViewModel.Sensors.GravityAnchorFace}"
+                                        SourceGeometry="{Binding Path=Targeting.Builder.ActivityBuilderTacticalActor.LocaleViewModel.Sensors}"
+                                        TargetGeometry="{Binding Path=TargetRegion}"/>
+                </StackPanel>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vm:AwarenessTargetInfoBuilder}">
+                <ComboBox ItemsSource="{Binding Path=TargetBuilder.AwarenessChoices}"
+                          MinWidth="144" MinHeight="72"
+                          SelectedItem="{Binding Path=AwarenessChoice}"></ComboBox>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vm:AwarenessTargeting}">
+                <ui:AwarenessTargetingControl AwarenessTargeting="{Binding}"
+                                              QueuedAwarenesses="{Binding Path=Builder.ActivityBuilderActor.QueuedAwarenesses}"/>
+            </DataTemplate>
+
+            <!-- Attack Aim and Target -->
+            <DataTemplate DataType="{x:Type vm:AttackChoice}">
+                <StackPanel Orientation="Horizontal">
+                    <ContentControl Visibility="{Binding Path=AwarenessVisibility}" 
+                                    Content="{Binding Path=Awareness}" />
+                    <ui:CellPointer Visibility="{Binding Path=CellPointerVisibility}"
+                                    Heading="{Binding Path=Targeting.Builder.ActivityBuilderTacticalActor.LocaleViewModel.ForwardHeading}"
+                                    DownFace="{Binding Path=Targeting.Builder.ActivityBuilderTacticalActor.LocaleViewModel.Sensors.GravityAnchorFace}"
+                                    SourceCell="{Binding Path=Targeting.Builder.ActivityBuilderTacticalActor.LocaleViewModel.Sensors.AimCell}"
+                                    TargetCell="{Binding Path=TargetCell}"/>
+                    <ui:GeometryPointer Visibility="{Binding Path=GeometryPointerVisibility}"
+                                        Heading="{Binding Path=Targeting.Builder.ActivityBuilderTacticalActor.LocaleViewModel.ForwardHeading}"
+                                        DownFace="{Binding Path=Targeting.Builder.ActivityBuilderTacticalActor.LocaleViewModel.Sensors.GravityAnchorFace}"
+                                        SourcePoint="{Binding Path=Targeting.Builder.ActivityBuilderTacticalActor.LocaleViewModel.Sensors.AimPoint3D}"
+                                        TargetGeometry="{Binding Path=TargetRegion}"/>
+                </StackPanel>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vm:AttackTargetInfoBuilder}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="Target"></TextBlock>
+                    <ComboBox ItemsSource="{Binding Path=TargetBuilder.AttackChoices}" 
+                              Grid.Row="1" Grid.Column="0" MinWidth="144" MinHeight="72"
+                              SelectedItem="{Binding Path=AttackChoice}" />
+
+                    <TextBlock Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Text="Attack" 
+                               Visibility="{Binding Path=TargetBuilder.RollVisibility}"></TextBlock>
+                    <ComboBox Grid.Row="1" Grid.Column="1" ItemsSource="{Binding Path=RollValues}" 
+                              MinWidth="64" Visibility="{Binding Path=TargetBuilder.RollVisibility}"
+                              VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
+                              SelectedItem="{Binding Path=AttackScore}" >
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock FontSize="20" Margin="2" Text="{Binding}"/>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                        <ComboBox.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <UniformGrid Columns="5" Rows="5"/>
+                            </ItemsPanelTemplate>
+                        </ComboBox.ItemsPanel>
+                    </ComboBox>
+                    <Button Grid.Row="1" Grid.Column="2" Content="Roll" Padding="2" Margin="1" 
+                            Visibility="{Binding Path=TargetBuilder.RollVisibility}"
+                            Command="{Binding Path=AttackRollCommand}"/>
+
+                    <TextBlock Grid.Row="0" Grid.Column="3" Grid.ColumnSpan="2" Text="Critical"
+                               Visibility="{Binding Path=CriticalConfirmVisibility}"></TextBlock>
+                    <ComboBox Grid.Row="1" Grid.Column="3" ItemsSource="{Binding Path=RollValues}" 
+                              MinWidth="64" Visibility="{Binding Path=CriticalConfirmVisibility}"
+                              VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
+                              SelectedItem="{Binding Path=CriticalConfirm}" >
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock FontSize="20" Margin="2" Text="{Binding}"/>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                        <ComboBox.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <UniformGrid Columns="5" Rows="5"/>
+                            </ItemsPanelTemplate>
+                        </ComboBox.ItemsPanel>
+                    </ComboBox>
+                    <Button Grid.Row="1" Grid.Column="4" Content="Roll" Padding="2" Margin="1" 
+                            Visibility="{Binding Path=CriticalConfirmVisibility}"
+                            Command="{Binding Path=CriticalRollCommand}"/>
+
+                    <CheckBox Grid.Row="0" Grid.Column="5" Grid.RowSpan="2" VerticalAlignment="Center"
+                              Visibility="{Binding Path=TargetBuilder.LethalityVisibility}"
+                              Content="Non-Lethal" IsChecked="{Binding Path=IsNonLethal}"/>
+                </Grid>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vm:AttackTargeting}">
+                <ui:AttackTargetingControl AttackTargeting="{Binding}"
+                                           QueuedTargets="{Binding Path=Builder.ActivityBuilderActor.QueuedTargets}"
+                                           SourceCell="{Binding Path=Builder.ActivityBuilderTacticalActor.LocaleViewModel.Sensors.AimCell}"
+                                           SourcePoint="{Binding Path=Builder.ActivityBuilderTacticalActor.LocaleViewModel.Sensors.AimPoint3D}"/>
+            </DataTemplate>
+
+            <!-- Character String Aim and Target -->
+            <DataTemplate DataType="{x:Type vm:CharacterStringTargeting}">
+                <StackPanel>
+                    <TextBlock Background="LightCyan" DataContext="{Binding Path=AimingMode}">
+                    <Run Text="Characters(s): "/>
+                    <Run Text="{Binding Path=DisplayName}"/>
+                    <Run Text=" ("/>
+                    <Run Text="{Binding Path=MinimumAimingModes}"/>
+                    <Run Text=" to "/>
+                    <Run Text="{Binding Path=MaximumAimingModes}"/>
+                    <Run Text=")"/>
+                    </TextBlock>
+                    <TextBox x:Name="txtText" MinHeight="20" FontSize="16" Margin="1" 
+                             Text="{Binding Path=CharacterString}"></TextBox>
+                </StackPanel>
+            </DataTemplate>
+
+            <!-- Location Aim and Intersection Target -->
+            <DataTemplate DataType="{x:Type vm:LocationChoice}">
+                <ui:CellPointer Heading="{Binding Path=Targeting.Builder.ActivityBuilderTacticalActor.LocaleViewModel.ForwardHeading}"
+                                DownFace="{Binding Path=Targeting.Builder.ActivityBuilderTacticalActor.LocaleViewModel.Sensors.GravityAnchorFace}"
+                                SourceCell="{Binding Path=Targeting.Builder.ActivityBuilderTacticalActor.LocaleViewModel.Sensors.AimCell}"
+                                TargetCell="{Binding Path=TargetCell}"/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vm:LocationTargetInfoBuilder}">
+                <ComboBox ItemsSource="{Binding Path=TargetBuilder.LocationChoices}" 
+                          MinWidth="144" MinHeight="72"
+                          SelectedItem="{Binding Path=LocationChoice}" />
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vm:LocationTargeting}">
+                <ui:LocationTargetingControl LocationTargeting="{Binding}"
+                                             QueuedLocations="{Binding Path=Builder.ActivityBuilderTacticalActor.QueuedLocations}"
+                                             SourceCell="{Binding Path=Builder.ActivityBuilderTacticalActor.LocaleViewModel.Sensors.AimCell}"
+                                             SourcePoint="{Binding Path=Builder.ActivityBuilderTacticalActor.LocaleViewModel.Sensors.AimPoint3D}"/>
+            </DataTemplate>
+
+            <!-- CoreInfo List Aim and Target -->
+            <DataTemplate DataType="{x:Type vm:CoreInfoListAimInfoBuilder}">
+                <ComboBox ItemsSource="{Binding Path=TargetBuilder.Infos}" SelectedItem="{Binding Path=SelectedInfo}">
+                </ComboBox>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vm:CoreInfoListTargeting}">
+                <StackPanel>
+                    <TextBlock Background="LightCyan" DataContext="{Binding Path=AimingMode}">
+                    <Run Text="Object(s): "/>
+                    <Run Text="{Binding Path=DisplayName}"/>
+                    <Run Text=" ("/><Run Text="{Binding Path=MinimumAimingModes}"/>
+                    <Run Text=" to "/>
+                    <Run Text="{Binding Path=MaximumAimingModes}"/><Run Text=")"/>
+                    </TextBlock>
+                    <ItemsControl ItemsSource="{Binding Path=CoreInfoBuilders}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel Orientation="Horizontal"></StackPanel>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                    </ItemsControl>
+                </StackPanel>
+            </DataTemplate>
+
+            <!-- Quantity Selector Aim and Target -->
+            <DataTemplate DataType="{x:Type ccontract:QuantitySelectorInfo}">
+                <StackPanel Orientation="Vertical">
+                    <ContentControl Content="{Binding Path=CoreInfo}"/>
+                    <TextBlock>
+                    <Run Text="Selected:" FontWeight="Bold"></Run>
+                    <Run Text="{Binding Path=CurrentSelection}" ></Run>
+                    <Run Text="of" FontStyle="Italic"/>
+                    <Run Text="{Binding Path=MaximumSelection}" ></Run>
+                    </TextBlock>
+                </StackPanel>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vm:QuantitySelectAimInfoBuilder}">
+                <StackPanel Orientation="Horizontal">
+                    <ComboBox ItemsSource="{Binding Path=TargetBuilder.Selectors}" 
+                              SelectedItem="{Binding Path=SelectedInfo}">
+                    </ComboBox>
+                    <ComboBox MinWidth="96"
+                              ItemsSource="{Binding Path=Quantities}"
+                              SelectedItem="{Binding Path=SelectedInfo.CurrentSelection}"></ComboBox>
+                </StackPanel>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vm:QuantitySelectTargeting}">
+                <StackPanel>
+                    <TextBlock Background="LightCyan" DataContext="{Binding Path=AimingMode}">
+                    <Run Text="Object(s): "/>
+                    <Run Text="{Binding Path=DisplayName}"/>
+                    <Run Text=" ("/><Run Text="{Binding Path=MinimumAimingModes}"/>
+                    <Run Text=" to "/>
+                    <Run Text="{Binding Path=MaximumAimingModes}"/><Run Text=")"/>
+                    </TextBlock>
+                    <ItemsControl ItemsSource="{Binding Path=QuantitySelectBuilders}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel Orientation="Horizontal"></StackPanel>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                    </ItemsControl>
+                </StackPanel>
+            </DataTemplate>
+
+            <!-- Object List Aim and Target -->
+            <DataTemplate DataType="{x:Type vm:ObjectListAimInfoBuilder}">
+                <ComboBox ItemsSource="{Binding Path=TargetBuilder.Objects}" SelectedItem="{Binding Path=SelectedObject}">
+                </ComboBox>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vm:ObjectListTargeting}">
+                <StackPanel>
+                    <TextBlock Background="LightCyan" DataContext="{Binding Path=AimingMode}">
+                    <Run Text="Object(s): "/>
+                    <Run Text="{Binding Path=DisplayName}"/>
+                    <Run Text=" ("/><Run Text="{Binding Path=MinimumAimingModes}"/>
+                    <Run Text=" to "/>
+                    <Run Text="{Binding Path=MaximumAimingModes}"/><Run Text=")"/>
+                    </TextBlock>
+                    <ItemsControl ItemsSource="{Binding Path=ObjectBuilders}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel Orientation="Horizontal"></StackPanel>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                    </ItemsControl>
+                </StackPanel>
+            </DataTemplate>
+
+            <!-- Option Aim and Target -->
+            <DataTemplate DataType="{x:Type ccontract:OptionAimOption}">
+                <TextBlock Tag="{Binding Path=Key}" ToolTip="{Binding Path=Description}" Text="{Binding Path=Name}"/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vm:OptionAimOptionBuilder}">
+                <ComboBox ItemsSource="{Binding Path=TargetBuilder.Options}" SelectedItem="{Binding Path=SelectedOption}">
+                </ComboBox>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vm:OptionTargeting}">
+                <StackPanel>
+                    <TextBlock Background="LightCyan" DataContext="{Binding Path=AimingMode}">
+                    <Run Text="Option(s): "/>
+                    <Run Text="{Binding Path=DisplayName}"/>
+                    <Run Text=" ("/>
+                    <Run Text="{Binding Path=MinimumAimingModes}"/>
+                    <Run Text=" to "/>
+                    <Run Text="{Binding Path=MaximumAimingModes}"/>
+                    <Run Text=")"/>
+                    </TextBlock>
+                    <ItemsControl ItemsSource="{Binding Path=OptionBuilders}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel Orientation="Horizontal"></StackPanel>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                    </ItemsControl>
+                </StackPanel>
+            </DataTemplate>
+
+            <!-- Personal Aim Info -->
+            <DataTemplate DataType="{x:Type vm:PersonalAimInfoBuilder}">
+                <ComboBox ItemsSource="{Binding Path=TargetBuilder.Persons}" SelectedItem="{Binding Path=SelectedPerson}">
+                </ComboBox>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vm:PersonalAimTargeting}">
+                <StackPanel>
+                    <TextBlock Background="LightCyan" DataContext="{Binding Path=AimingMode}">
+                    <Run Text="Person(s): "/>
+                    <Run Text="{Binding Path=DisplayName}"/>
+                    <Run Text=" ("/>
+                    <Run Text="{Binding Path=MinimumAimingModes}"/>
+                    <Run Text=" to "/>
+                    <Run Text="{Binding Path=MaximumAimingModes}"/>
+                    <Run Text=")"/>
+                    </TextBlock>
+                    <ItemsControl ItemsSource="{Binding Path=PersonalBuilders}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel Orientation="Horizontal"></StackPanel>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                    </ItemsControl>
+                </StackPanel>
+            </DataTemplate>
+
+            <!-- Roll Aim and Target -->
+            <DataTemplate DataType="{x:Type vm:RollTargeting}">
+                <Grid >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.ColumnSpan="2" Background="LightCyan" DataContext="{Binding Path=AimingMode}">
+                    <Run Text="Roll: "/>
+                    <Run Text="{Binding Path=DisplayName}"/>
+                    <Run Text=" ("/>
+                    <Run Text="{Binding Path=RollerString}"/>
+                    <Run Text=")"/>
+                    </TextBlock>
+                    <TextBox Grid.Row="1" Grid.ColumnSpan="2" MinHeight="20" 
+                             Text="{Binding Path=Value, Converter={StaticResource NullableValueConverter}}"                          
+                             FontSize="16" Margin="1" ></TextBox>
+                    <Button Content="Roll" Grid.Row="2" Grid.Column="1" Padding="2" Margin="1" 
+                            Command="{Binding Path=RollCommand}" />
+                </Grid>
+            </DataTemplate>
+
+            <!-- SuccessCheck Aim and Target -->
+            <DataTemplate DataType="{x:Type vm:SuccessCheckTargeting}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.ColumnSpan="2" Background="LightCyan" DataContext="{Binding Path=AimingMode}">
+                    <Run Text="Roll for "/>
+                    <Run Text="{Binding Path=DisplayName}"/>
+                    <Run Text=" (1d20)"/>
+                    </TextBlock>
+                    <CheckBox Content="Using Penalty" 
+                              IsChecked="{Binding Path=IsUsingPenalty}" 
+                              Visibility="{Binding Path=PenaltyVisibility}"/>
+                    <ComboBox Grid.Row="1" Margin="1" MinWidth="64"
+                              ItemsSource="{Binding Path=RollValues}" 
+                              SelectedItem="{Binding Path=CheckRoll}" >
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock FontSize="20" Margin="2" Text="{Binding}"/>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                        <ComboBox.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <UniformGrid Columns="5" Rows="5"/>
+                            </ItemsPanelTemplate>
+                        </ComboBox.ItemsPanel>
+                    </ComboBox>
+                    <Button Content="Roll" Grid.Row="1" Grid.Column="1" Padding="2" Margin="1" 
+                            Command="{Binding Path=RollCommand}"/>
+                </Grid>
+
+            </DataTemplate>
+
+            <!-- Word Aim and Target -->
+            <DataTemplate DataType="{x:Type vm:WordTargeting}">
+                <StackPanel>
+                    <TextBlock Background="LightCyan" DataContext="{Binding Path=AimingMode}">
+                    <Run Text="Word(s): "/>
+                    <Run Text="{Binding Path=DisplayName}"/>
+                    <Run Text=" ("/>
+                    <Run Text="{Binding Path=MinimumAimingModes}"/>
+                    <Run Text=" to "/>
+                    <Run Text="{Binding Path=MaximumAimingModes}"/>
+                    <Run Text=")"/>
+                    </TextBlock>
+                    <TextBox x:Name="txtText" MinHeight="20" FontSize="16" Margin="1" 
+                             Text="{Binding Path=WordData}"></TextBox>
+                </StackPanel>
+            </DataTemplate>
+
+            <!-- Spell Splot Preparation Aim -->
+            <DataTemplate DataType="{x:Type vm:PrepareSpellSlotsTargeting}">
+                <ui:PrepareSpellSlotsTargetingControl DataContext="{Binding}" />
+            </DataTemplate>
+
+        </DockPanel.Resources>
+        <Button DockPanel.Dock="Left" Content="Cancel" Margin="2,4" Padding="8,4" Command="{Binding Path=CancelBuild}" />
+        <Button DockPanel.Dock="Left" Content="Do Act" Margin="2,4" Padding="8,4" Command="{Binding Path=DoAction}" Visibility="{Binding Path=ActivityBuilderActor.PerformVisibility}" />
+        <ContentControl DockPanel.Dock="Left" 
+                        Content="{Binding Path=Presenter}" 
+                        Visibility="{Binding Path=PresenterVisibility}"
+                        ContentTemplateSelector="{DynamicResource iconItemListTemplate}"
+                        Margin="2,4"/>
+        <ContentControl DockPanel.Dock="Left" 
+                        Content="{Binding Path=Provider}" 
+                        ContentTemplateSelector="{DynamicResource iconItemListTemplate}"
+                        Margin="2,4"/>
+        <TextBlock DockPanel.Dock="Top" Background="LightGreen" Margin="2" DataContext="{Binding Path=Action}">
+            <Run Text="{Binding Path=DisplayName}" FontWeight="Bold"/>
+            <Run Text=" - ("/>
+            <Run Text="{Binding Path=TimeCost}" FontStyle="Italic"/>
+            <Run Text=")"/>
+        </TextBlock>
+        <!-- TODO: buttons to cancel the builder... -->
+        <ItemsControl ItemsSource="{Binding Path=TargetBuilders}">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel Orientation="Horizontal"></StackPanel>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+        </ItemsControl>
+        <!-- TODO: buttons to cancel the builder... -->
+    </DockPanel>
+</UserControl>

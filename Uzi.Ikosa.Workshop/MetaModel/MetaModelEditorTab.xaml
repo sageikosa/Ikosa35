@@ -1,0 +1,27 @@
+﻿<TabItem x:Class="Uzi.Ikosa.Workshop.MetaModelEditorTab"
+         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+         xmlns:shop="clr-namespace:Uzi.Ikosa.Workshop"
+         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"  >
+    <TabItem.Header>
+        <StackPanel Orientation="Horizontal">
+            <Image Source="/images/bricks.png" Stretch="None" Margin="0,0,4,0"/>
+            <TextBlock Text="{Binding Path=Name}"/>
+            <Button DockPanel.Dock="Right" Margin="4,0,0,0" Focusable="False" BorderBrush="DarkGray" BorderThickness="1"
+                    Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="btnClose_Click" VerticalAlignment="Center">
+                <Canvas Width="8" Height="8">
+                    <Line X1="0" Y1="0" X2="8" Y2="8" Stroke="Red" />
+                    <Line X1="0" Y1="8" X2="8" Y2="0" Stroke="Red" />
+                </Canvas>
+            </Button>
+        </StackPanel>
+    </TabItem.Header>
+    <TabControl TabStripPlacement="Left">
+        <TabItem Header="Model">
+            <shop:MetaModelEditor x:Name="mmEditor" DataContext="{Binding}"></shop:MetaModelEditor>
+        </TabItem>
+        <TabItem Header="Brushes">
+            <shop:BrushCollectionPartControl DataContext="{Binding Path=Brushes}"/>
+        </TabItem>
+    </TabControl>
+</TabItem>

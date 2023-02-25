@@ -1,0 +1,83 @@
+﻿<Window x:Class="Uzi.Ikosa.Workshop.StackedBrush"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:shop="clr-namespace:Uzi.Ikosa.Workshop" WindowStartupLocation="CenterOwner" 
+        Title="Stacked Brush" SizeToContent="WidthAndHeight">
+    <Window.CommandBindings>
+        <CommandBinding x:Name="cbOK" Command="{x:Static shop:StackedBrush.OKCommand}"
+                        CanExecute="cbOK_CanExecute" Executed="cbOK_Executed"/>
+        <CommandBinding x:Name="cbUp" Command="{x:Static shop:StackedBrush.UpCommand}"
+                        CanExecute="cbUp_CanExecute" Executed="cbUp_Executed"/>
+        <CommandBinding x:Name="cbDown" Command="{x:Static shop:StackedBrush.UpCommand}"
+                        CanExecute="cbDown_CanExecute" Executed="cbDown_Executed"/>
+    </Window.CommandBindings>
+    <Window.Resources>
+        <DataTemplate x:Key="mtImage">
+            <StackPanel Orientation="Horizontal">
+                <Image Source="{Binding Path=BitmapImagePart.Image}" Height="64" Width="64"/>
+                <StackPanel>
+                    <Label Content="{Binding Path=BitmapImagePart.Name}"/>
+                    <CheckBox Margin="8,0,8,0" IsEnabled="False" Content="Is Local" IsChecked="{Binding Path=IsLocal}" />
+                </StackPanel>
+            </StackPanel>
+        </DataTemplate>
+    </Window.Resources>
+    <Grid>
+        <Grid.Resources>
+            <ResourceDictionary Source="/Uzi.Ikosa.UI;Component/themes/generic.xaml">
+            </ResourceDictionary>
+        </Grid.Resources>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition />
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition />
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Label Content="Name" HorizontalAlignment="Right"/>
+        <TextBox Grid.Column="1" x:Name="txtBrushKey" Margin="2" Grid.ColumnSpan="3" />
+        <Rectangle Grid.Column="1" Grid.Row="2" Margin="4" x:Name="rectSample" Stroke="Black" StrokeThickness="1" Width="192" Height="192" />
+        <StackPanel Grid.Column="2" Grid.Row="2" Orientation="Vertical" VerticalAlignment="Center">
+            <Button Content="▲" Margin="2" Command="{x:Static shop:StackedBrush.UpCommand}" />
+            <Button Content="▼" Margin="2" Command="{x:Static shop:StackedBrush.DownCommand}" />
+        </StackPanel>
+        <UniformGrid Columns="3" Grid.Column="3" Grid.Row="1" >
+            <UniformGrid.CommandBindings>
+                <CommandBinding Command="Delete" x:Name="cbDelete" 
+                                CanExecute="cbSelected" Executed="cbDelete_Executed"/>
+            </UniformGrid.CommandBindings>
+            <Button Margin="0,1,0,0" ToolTip="New Color Layer" Content="Color" x:Name="btnAddColor" Click="btnAddColor_Click"></Button>
+            <Button Margin="0,1,0,0" ToolTip="New Gradient Layer" Content="Gradient" x:Name="btnAddGradient" Click="btnAddGradient_Click"></Button>
+            <Button Margin="0,1,1,0" ToolTip="Remove Layer" Content="Remove" x:Name="btnRemove" Command="Delete"/>
+        </UniformGrid>
+        <ListBox Grid.Row="2" Grid.Column="3" MinWidth="192" Margin="1,0,1,1" x:Name="lstComponents" 
+                 MouseDoubleClick="lstComponents_MouseDoubleClick"
+                 SelectionChanged="lstComponents_SelectionChanged">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Border BorderBrush="DarkGray" BorderThickness="1" Margin="2">
+                        <Rectangle Margin="4,6" Width="48" Height="48" DataContext="{Binding}"
+                                    Fill="{Binding Path=Brush}"></Rectangle>
+                    </Border>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <DockPanel Grid.Row="4" Grid.ColumnSpan="4" LastChildFill="False">
+            <DockPanel.Resources>
+                <Style TargetType="Button">
+                    <Setter Property="DockPanel.Dock" Value="Right"/>
+                    <Setter Property="MinWidth" Value="72"/>
+                    <Setter Property="Margin" Value="2,1"/>
+                </Style>
+            </DockPanel.Resources>
+            <Button IsCancel="True" Content="Cancel" x:Name="btnCancel" Click="btnCancel_Click"/>
+            <Button IsDefault="True" Content="OK" Command="{x:Static shop:StackedBrush.OKCommand}"/>
+        </DockPanel >
+    </Grid>
+</Window>

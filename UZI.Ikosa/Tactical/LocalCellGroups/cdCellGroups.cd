@@ -1,0 +1,182 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Uzi.Ikosa.Tactical.LocalCellGroup">
+    <Position X="6" Y="3.5" Width="2.5" />
+    <Members>
+      <Field Name="_DeepShadows" Hidden="true" />
+      <Field Name="_Fresh" Hidden="true" />
+      <Field Name="_ID" Hidden="true" />
+      <Field Name="_Light" Hidden="true" />
+      <Field Name="_Links" Hidden="true" />
+      <Field Name="_Locators" Hidden="true" />
+      <Field Name="_Map" Hidden="true" />
+      <Field Name="_Name" Hidden="true" />
+    </Members>
+    <AssociationLine Name="Map" Type="Uzi.Ikosa.Tactical.LocalMap" FixedFromPoint="true">
+      <Path>
+        <Point X="8.5" Y="9.062" />
+        <Point X="15.25" Y="9.062" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>BAAAiAKFBNAAgCBAIAAAIiQAgABAAQCACAAEAAAUgGA=</HashCode>
+      <FileName>Tactical\LocalCellGroups\LocalCellGroup.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Map" />
+      <Property Name="Links" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Uzi.Ikosa.Tactical.BackgroundCellGroup">
+    <Position X="7.25" Y="11.25" Width="2" />
+    <Members>
+      <Field Name="_TemplateCell" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AACAgAIAAAAAAyAAAAAAAAAAAABAABAAAQAAAAIAAEA=</HashCode>
+      <FileName>Tactical\LocalCellGroups\BackgroundCellGroup.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Uzi.Ikosa.Tactical.Room">
+    <Position X="4.5" Y="11.25" Width="2" />
+    <Members>
+      <Field Name="_Cells" Hidden="true" />
+      <Field Name="_IsEnclosed" Hidden="true" />
+      <Field Name="_Levels" Hidden="true" />
+      <Field Name="_XDrop" Hidden="true" />
+      <Field Name="_XLift" Hidden="true" />
+      <Field Name="_YDrop" Hidden="true" />
+      <Field Name="_YLift" Hidden="true" />
+      <Field Name="_ZDrop" Hidden="true" />
+      <Field Name="_ZLift" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAgAIAAIIAQGEECICAggEAIBBogNABRAAAAQMAAEU=</HashCode>
+      <FileName>Tactical\LocalCellGroups\Room.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Uzi.Ikosa.Tactical.LocalMap">
+    <Position X="15.25" Y="2.5" Width="2.5" />
+    <Members>
+      <Field Name="_AmbientLights" Hidden="true" />
+      <Field Name="_Backgrounds" Hidden="true" />
+      <Field Name="_CellMaterials" Hidden="true" />
+      <Field Name="_CurrentTime" Hidden="true" />
+      <Field Name="_Initialized" Hidden="true" />
+      <Field Name="_MapPart" Hidden="true" />
+      <Field Name="_NamedKeys" Hidden="true" />
+      <Field Name="_NameManager" Hidden="true" />
+      <Field Name="_Panels" Hidden="true" />
+      <Field Name="_Resources" Hidden="true" />
+      <Field Name="_Rooms" Hidden="true" />
+      <Field Name="_Shadings" Hidden="true" />
+      <Field Name="_Spaces" Hidden="true" />
+      <Field Name="_SyncLock" Hidden="true" />
+      <Field Name="_Viewport" Hidden="true" />
+      <Method Name="GetLineIntersects" Hidden="true" />
+      <Field Name="IkosaMapRelation" Hidden="true" />
+      <Method Name="IncrementToNext" Hidden="true" />
+      <Method Name="LocalMap" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>QAARkJGAcAAEEpCAShgkYQWXioVQULCBoFoSrKaAwEo=</HashCode>
+      <FileName>Tactical\LocalMap.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Rooms" />
+      <Property Name="Backgrounds" />
+      <Property Name="MapContext" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Uzi.Ikosa.Tactical.BackgroundCellGroupSet">
+    <Position X="10.25" Y="10.5" Width="3.25" />
+    <Members>
+      <Field Name="_Map" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>gCAIAIAAABAAABAAAAAAhAQAAAAAABAAAIAEAAIAACA=</HashCode>
+      <FileName>Tactical\LocalCellGroups\BackgroundCellGroupSet.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Field Name="_Groups" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Uzi.Ikosa.Tactical.RoomSet">
+    <Position X="11" Y="16" Width="1.75" />
+    <Members>
+      <Field Name="_Map" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAABBABAABAAAAACAgAQAAAAAABAEAAAEAAIAAAA=</HashCode>
+      <FileName>Tactical\LocalCellGroups\RoomSet.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Uzi.Ikosa.Tactical.LocalLinkSet">
+    <Position X="9.75" Y="3.75" Width="1.5" />
+    <Members>
+      <Field Name="_Owner" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>BCIAAACAAAAAABAAAAAAhAQAAAAAABAAAIAAAAJAAAA=</HashCode>
+      <FileName>Tactical\LocalCellGroups\LocalLinkSet.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Owner" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Field Name="_Links" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Uzi.Ikosa.Tactical.LocalLink">
+    <Position X="12.25" Y="2.25" Width="2" />
+    <Members>
+      <Field Name="_AnchorFaceA" Hidden="true" />
+      <Field Name="_Cubic" Hidden="true" />
+      <Field Name="_GroupA" Hidden="true" />
+      <Field Name="_GroupB" Hidden="true" />
+      <Field Name="_Holder" Hidden="true" />
+      <Field Name="_LightA" Hidden="true" />
+      <Field Name="_LightB" Hidden="true" />
+      <Field Name="_LightFactor" Hidden="true" />
+      <Field Name="_Sounds" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>CAAACEACAAAAhAIACAAAIiQAEAAAABAAFEAIAISMYJI=</HashCode>
+      <FileName>Tactical\LocalCellGroups\LocalLink.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Groups" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Uzi.Ikosa.Tactical.MapContext">
+    <Position X="19" Y="2.5" Width="2.75" />
+    <Members>
+      <Field Name="_InteractTransitZones" Hidden="true" />
+      <Field Name="_LCtrl" Hidden="true" />
+      <Field Name="_LocatorZones" Hidden="true" />
+      <Field Name="_MoveZones" Hidden="true" />
+      <Field Name="_StrikeZones" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>QgABAgYAABAAgFAAAUkAgoAAiAAEBBAEAAAsAAKBQCA=</HashCode>
+      <FileName>Tactical\MapContext.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Uzi.Core.CoreSettingContext">
+    <Position X="19.75" Y="10" Width="2" />
+    <Members>
+      <Field Name="_Tokens" Hidden="true" />
+    </Members>
+    <TypeIdentifier />
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

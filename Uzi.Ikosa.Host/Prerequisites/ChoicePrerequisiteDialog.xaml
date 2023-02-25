@@ -1,0 +1,27 @@
+﻿<Window x:Class="Uzi.Ikosa.Host.Prerequisites.ChoicePrerequisiteDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:core="clr-namespace:Uzi.Core;assembly=Uzi.Core"
+        xmlns:ccore="clr-namespace:Uzi.Core.Contracts;assembly=Uzi.Core.Contracts"
+        xmlns:prereq="clr-namespace:Uzi.Ikosa.Host.Prerequisites"
+        Title="Choice" Height="Auto" Width="300">
+    <StackPanel>
+        <TextBlock Text="Choose" Background="LightCyan" />
+        <ComboBox Margin="2,1,8,1" x:Name="cboChoice" ItemsSource="{Binding Path=Choices}"  >
+            <ComboBox.ItemTemplate>
+                <DataTemplate DataType="{x:Type ccore:OptionAimOption}">
+                    <TextBlock Text="{Binding Path=Name}" ToolTip="{Binding Path=Description}"/>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+        <DockPanel LastChildFill="False" Margin="4,0,4,4" Grid.Row="3" Grid.ColumnSpan="2">
+            <DockPanel.CommandBindings>
+                <CommandBinding x:Name="cmdbndOK" Command="{x:Static prereq:Commands.OKCommand}" 
+                                CanExecute="cmdbndOK_CanExecute" Executed="cmdbndOK_Executed" />
+            </DockPanel.CommandBindings>
+            <Button DockPanel.Dock="Right" Margin="4" MinWidth="60" IsCancel="True" x:Name="btnCancel" Click="btnCancel_Click">Cancel</Button>
+            <Button DockPanel.Dock="Right" Margin="4" MinWidth="60" IsDefault="True" x:Name="btnOK" 
+                    Command="{x:Static prereq:Commands.OKCommand}" >OK</Button>
+        </DockPanel>
+    </StackPanel>
+</Window>

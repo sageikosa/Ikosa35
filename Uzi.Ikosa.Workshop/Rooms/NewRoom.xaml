@@ -1,0 +1,15 @@
+﻿<Window x:Class="Uzi.Ikosa.Workshop.NewRoom"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        WindowState="Normal" WindowStyle="ThreeDBorderWindow" ResizeMode="NoResize"
+        Title="New Room" SizeToContent="WidthAndHeight">
+    <StackPanel Orientation="Vertical">
+        <CheckBox Margin="4" x:Name="chkEnclosed" IsChecked="True" Content="Enclosed (Room-like)" ToolTip="unchecking enlists room in background lighting"></CheckBox>
+        <DockPanel LastChildFill="False">
+            <Button Content="Cancel" IsCancel="True" x:Name="btnCancel" Click="btnCancel_Click" 
+                    DockPanel.Dock="Right" Margin="2" MinWidth="72" />
+            <Button Content="OK" IsDefault="True" x:Name="btnOK" Click="btnOK_Click" 
+                    DockPanel.Dock="Right" Margin="2" MinWidth="72" />
+        </DockPanel>
+    </StackPanel>
+</Window>

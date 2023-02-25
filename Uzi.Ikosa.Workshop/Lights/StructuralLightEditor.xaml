@@ -1,0 +1,111 @@
+﻿<TabItem x:Class="Uzi.Ikosa.Workshop.StructuralLightEditor"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <TabItem.Header>
+        <StackPanel Orientation="Horizontal">
+            <Image Source="/Images/lightbulb.png" Stretch="None" Margin="0,0,4,0"/>
+            <TextBlock Text="{Binding Path=Name}"/>
+            <Button DockPanel.Dock="Right" Margin="4,0,0,0" Focusable="False" BorderBrush="DarkGray" BorderThickness="1"
+                    Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="btnClose_Click" VerticalAlignment="Center">
+                <Canvas Width="8" Height="8">
+                    <Line X1="0" Y1="0" X2="8" Y2="8" Stroke="Red" />
+                    <Line X1="0" Y1="8" X2="8" Y2="0" Stroke="Red" />
+                </Canvas>
+            </Button>
+        </StackPanel>
+    </TabItem.Header>
+    <TabItem.Resources>
+        <DataTemplate x:Key="tmplHeader">
+            <Label Background="LightCyan" Content="{Binding}" HorizontalAlignment="Stretch"/>
+        </DataTemplate>
+        <Style TargetType="Border">
+            <Setter Property="Margin" Value="2"/>
+            <Setter Property="BorderBrush" Value="DarkGray"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="CornerRadius" Value="4"/>
+        </Style>
+        <Style TargetType="HeaderedContentControl">
+            <Setter Property="Margin" Value="2"/>
+            <Setter Property="HeaderTemplate" Value="{StaticResource tmplHeader}"/>
+        </Style>
+        <Style TargetType="Label">
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="HorizontalAlignment" Value="Right"/>
+        </Style>
+        <Style TargetType="TextBox" x:Key="styleText">
+            <Setter Property="Margin" Value="1"/>
+            <Style.Triggers>
+                <Trigger Property="Tag" Value="Invalid">
+                    <Setter Property="Background" Value="LightSalmon"/>
+                    <Setter Property="ToolTip.Content" Value="Invalid value"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="TextBox" x:Key="dblCheck" BasedOn="{StaticResource styleText}">
+            <EventSetter Event="TextChanged" Handler="txtDbl_TextChanged"/>
+        </Style>
+        <Style TargetType="TextBox" x:Key="intCheck" BasedOn="{StaticResource styleText}">
+            <EventSetter Event="TextChanged" Handler="txtInt_TextChanged"/>
+        </Style>
+    </TabItem.Resources>
+    <StackPanel>
+        <Border>
+            <HeaderedContentControl Header="General">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Label Content="Name" Grid.Row="0" />
+                    <Label Content="Disable" Grid.Row="1" />
+                    <Label Content="Active" Grid.Row="2" />
+                    <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Path=Name}" Style="{StaticResource styleText}" />
+                    <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Path=DisableDifficulty.BaseValue, Mode=OneWay}" Style="{StaticResource intCheck}" />
+                    <CheckBox Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" IsChecked="{Binding Path=Activation.IsActive, Mode=OneWay}"
+                              Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked"/>
+                </Grid>
+            </HeaderedContentControl>
+        </Border>
+        <Border>
+            <HeaderedContentControl Header="Light">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Row="0">Very Bright</Label>
+                    <Label Grid.Row="1">Bright Range</Label>
+                    <Label Grid.Row="2">Shadowy Range</Label>
+                    <Label Grid.Row="3">Z Offset</Label>
+                    <Label Grid.Row="4">Y Offset</Label>
+                    <Label Grid.Row="5">X Offset</Label>
+                    <CheckBox Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" Name="chkVeryBright" 
+                              IsChecked="{Binding Path=Illumination.IsVeryBright}"/>
+                    <TextBox Grid.Row="1" Grid.Column="1" x:Name="txtBright" Style="{StaticResource dblCheck}" 
+                             Text="{Binding Path=Illumination.BrightRange}" />
+                    <TextBox Grid.Row="2" Grid.Column="1" x:Name="txtShadow" Style="{StaticResource dblCheck}"
+                             Text="{Binding Path=Illumination.ShadowyRange}"/>
+                    <TextBox Grid.Row="3" Grid.Column="1" x:Name="txtZOff" Style="{StaticResource dblCheck}"
+                             Text="{Binding Path=Illumination.ZOffset}"/>
+                    <TextBox Grid.Row="4" Grid.Column="1" x:Name="txtYOff" Style="{StaticResource dblCheck}"
+                             Text="{Binding Path=Illumination.YOffset}"/>
+                    <TextBox Grid.Row="5" Grid.Column="1" x:Name="txtXOff" Style="{StaticResource dblCheck}"
+                             Text="{Binding Path=Illumination.XOffset}"/>
+                </Grid>
+            </HeaderedContentControl>
+        </Border>
+    </StackPanel>
+</TabItem>

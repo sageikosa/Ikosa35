@@ -1,0 +1,173 @@
+﻿<UserControl x:Class="Uzi.Ikosa.Workshop.ObjectPalette"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:shop="clr-namespace:Uzi.Ikosa.Workshop"
+             xmlns:mat="clr-namespace:Uzi.Ikosa.Items.Materials;assembly=Uzi.Ikosa"
+             xmlns:locale="clr-namespace:Uzi.Ikosa.Workshop.Locale"
+             mc:Ignorable="d" >
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Items/ItemListTemplates.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <UserControl.CommandBindings>
+        <CommandBinding x:Name="cbSelectObject" Command="{x:Static shop:ObjectPalette.SelectObject}"
+                        CanExecute="cbSelectObject_CanExecute" Executed="cbSelectObject_Executed" />
+        <CommandBinding x:Name="cbCaptureObject" Command="{x:Static shop:ObjectPalette.CaptureObject}"
+                        CanExecute="cbCaptureObject_CanExecute" Executed="cbCaptureObject_Executed"/>
+    </UserControl.CommandBindings>
+    <StackPanel Orientation="Horizontal">
+        <StackPanel.Resources>
+            <Style TargetType="Border">
+                <Setter Property="Margin" Value="1,2"/>
+                <Setter Property="BorderBrush" Value="Black"/>
+                <Setter Property="Background" Value="#80b0b0b0"/>
+                <Setter Property="BorderThickness" Value="1"/>
+                <Setter Property="Padding" Value="2"/>
+            </Style>
+            <Style TargetType="Button">
+                <Setter Property="Height" Value="32"/>
+                <Setter Property="Width" Value="48"/>
+                <Setter Property="Command" Value="{x:Static locale:Preview.DrawObject}"/>
+                <Setter Property="VerticalAlignment" Value="Top"/>
+            </Style>
+            <DataTemplate DataType="{x:Type mat:Material}">
+                <TextBlock Text="{Binding Path=Name}"/>
+            </DataTemplate>
+        </StackPanel.Resources>
+        <StackPanel>
+            <Border>
+                <DockPanel>
+                    <Button x:Name="btnObject1" ToolTip="Alt+1" Content="Alt 1"/>
+                    <Menu DockPanel.Dock="Top">
+                        <MenuItem x:Name="mnuObject1" Tag="1">
+                            <MenuItem.Header>
+                                <ContentControl x:Name="ccObject1" Content="Assign"/>
+                            </MenuItem.Header>
+                        </MenuItem>
+                    </Menu>
+                </DockPanel>
+            </Border>
+            <Border>
+                <DockPanel>
+                    <Button x:Name="btnObject2" ToolTip="Alt+2" Content="Alt 2"/>
+                    <Menu DockPanel.Dock="Top">
+                        <MenuItem x:Name="mnuObject2" Tag="2">
+                            <MenuItem.Header>
+                                <ContentControl x:Name="ccObject2" Content="Assign"/>
+                            </MenuItem.Header>
+                        </MenuItem>
+                    </Menu>
+                </DockPanel>
+            </Border>
+            <Border>
+                <DockPanel>
+                    <Button x:Name="btnObject3" ToolTip="Alt+3" Content="Alt 3">
+                    </Button>
+                    <Menu DockPanel.Dock="Top">
+                        <MenuItem x:Name="mnuObject3" Tag="3">
+                            <MenuItem.Header>
+                                <ContentControl x:Name="ccObject3" Content="Assign"/>
+                            </MenuItem.Header>
+                        </MenuItem>
+                    </Menu>
+                </DockPanel>
+            </Border>
+            <Border>
+                <DockPanel MinWidth="192">
+                    <Button x:Name="btnObject4" ToolTip="Alt+4" Content="Alt 4">
+                    </Button>
+                    <Menu DockPanel.Dock="Top">
+                        <MenuItem x:Name="mnuObject4" Tag="4">
+                            <MenuItem.Header>
+                                <ContentControl x:Name="ccObject4" Content="Assign"/>
+                            </MenuItem.Header>
+                        </MenuItem>
+                    </Menu>
+                </DockPanel>
+            </Border>
+            <Border>
+                <DockPanel MinWidth="192">
+                    <Button x:Name="btnObject5" ToolTip="Alt+5" Content="Alt 5">
+                    </Button>
+                    <Menu DockPanel.Dock="Top">
+                        <MenuItem x:Name="mnuObject5" Tag="5">
+                            <MenuItem.Header>
+                                <ContentControl x:Name="ccObject5" Content="Assign"/>
+                            </MenuItem.Header>
+                        </MenuItem>
+                    </Menu>
+                </DockPanel>
+            </Border>
+        </StackPanel>
+        <StackPanel>
+            <Border>
+                <DockPanel>
+                    <Button x:Name="btnObject6" ToolTip="Alt+6" Content="Alt 6"/>
+                    <Menu DockPanel.Dock="Top">
+                        <MenuItem x:Name="mnuObject6" Tag="6">
+                            <MenuItem.Header>
+                                <ContentControl x:Name="ccObject6" Content="Assign"/>
+                            </MenuItem.Header>
+                        </MenuItem>
+                    </Menu>
+                </DockPanel>
+            </Border>
+            <Border>
+                <DockPanel>
+                    <Button x:Name="btnObject7" ToolTip="Alt+7" Content="Alt 7"/>
+                    <Menu DockPanel.Dock="Top">
+                        <MenuItem x:Name="mnuObject7" Tag="7">
+                            <MenuItem.Header>
+                                <ContentControl x:Name="ccObject7" Content="Assign"/>
+                            </MenuItem.Header>
+                        </MenuItem>
+                    </Menu>
+                </DockPanel>
+            </Border>
+            <Border>
+                <DockPanel>
+                    <Button x:Name="btnObject8" ToolTip="Alt+8" Content="Alt 8">
+                    </Button>
+                    <Menu DockPanel.Dock="Top">
+                        <MenuItem x:Name="mnuObject8" Tag="8">
+                            <MenuItem.Header>
+                                <ContentControl x:Name="ccObject8" Content="Assign"/>
+                            </MenuItem.Header>
+                        </MenuItem>
+                    </Menu>
+                </DockPanel>
+            </Border>
+            <Border>
+                <DockPanel MinWidth="192">
+                    <Button x:Name="btnObject9" ToolTip="Alt+9" Content="Alt 9">
+                    </Button>
+                    <Menu DockPanel.Dock="Top">
+                        <MenuItem x:Name="mnuObject9" Tag="9">
+                            <MenuItem.Header>
+                                <ContentControl x:Name="ccObject9" Content="Assign"/>
+                            </MenuItem.Header>
+                        </MenuItem>
+                    </Menu>
+                </DockPanel>
+            </Border>
+            <Border>
+                <DockPanel MinWidth="192">
+                    <Button x:Name="btnObject0" ToolTip="Alt+0" Content="Alt 0">
+                    </Button>
+                    <Menu DockPanel.Dock="Top">
+                        <MenuItem x:Name="mnuObject0" Tag="0">
+                            <MenuItem.Header>
+                                <ContentControl x:Name="ccObject0" Content="Assign"/>
+                            </MenuItem.Header>
+                        </MenuItem>
+                    </Menu>
+                </DockPanel>
+            </Border>
+        </StackPanel>
+    </StackPanel>
+</UserControl>

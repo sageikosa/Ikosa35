@@ -1,0 +1,1072 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:uiui="clr-namespace:Uzi.Ikosa.UI;assembly=Uzi.Ikosa.UI"
+                    xmlns:weapons="clr-namespace:Uzi.Ikosa.Items.Weapons;assembly=Uzi.Ikosa"
+                    xmlns:materials="clr-namespace:Uzi.Ikosa.Items.Materials;assembly=Uzi.Ikosa"
+                    xmlns:magic="clr-namespace:Uzi.Ikosa.Magic;assembly=Uzi.Ikosa"
+                    xmlns:wealth="clr-namespace:Uzi.Ikosa.Items.Wealth;assembly=Uzi.Ikosa"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!-- TextBlock Label -->
+    <Style TargetType="TextBlock" x:Key="styleLabel">
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="HorizontalAlignment" Value="Right"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="Margin" Value="0,0,2,0"/>
+    </Style>
+
+    <!-- STACKPANEL STYLE -->
+    <Style TargetType="StackPanel" x:Key="styleItemPanel">
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="true">
+                <Setter Property="Background" Value="LightGreen"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    <Style TargetType="Label" x:Key="styleILLabel">
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="HorizontalAlignment" Value="Right"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>
+    <Style TargetType="TextBlock" x:Key="styleILTextBlock">
+        <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>
+
+    <!-- WEAPON HEAD -->
+    <DataTemplate DataType="{x:Type weapons:WeaponHead}">
+        <Grid Margin="2,0">
+            <Grid.Resources>
+                <ResourceDictionary>
+                    <ResourceDictionary.MergedDictionaries>
+                        <ResourceDictionary Source="/Uzi.Ikosa.UI;Component/Deltable.xaml"/>
+                    </ResourceDictionary.MergedDictionaries>
+                    <Style TargetType="TextBlock">
+                        <Setter Property="VerticalAlignment" Value="Center"/>
+                    </Style>
+                    <Style TargetType="ContentControl">
+                        <Setter Property="VerticalAlignment" Value="Center"/>
+                    </Style>
+                    <Style TargetType="ItemsControl">
+                        <Setter Property="VerticalAlignment" Value="Center"/>
+                    </Style>
+                </ResourceDictionary>
+            </Grid.Resources>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <TextBlock Style="{StaticResource styleLabel}" Grid.Column="0" Grid.Row="0">Damage</TextBlock>
+            <TextBlock Style="{StaticResource styleLabel}" Grid.Column="0" Grid.Row="1">Enhancement</TextBlock>
+            <TextBlock Style="{StaticResource styleLabel}" Grid.Column="0" Grid.Row="2">Attack/Damage</TextBlock>
+            <TextBlock Style="{StaticResource styleLabel}" Grid.Column="0" Grid.Row="3">Critical Low</TextBlock>
+            <TextBlock Style="{StaticResource styleLabel}" Grid.Column="0" Grid.Row="4">Critical Damage</TextBlock>
+            <TextBlock Style="{StaticResource styleLabel}" Grid.Column="0" Grid.Row="5">Damage Types</TextBlock>
+            <TextBlock Style="{StaticResource styleLabel}" Grid.Column="0" Grid.Row="6">Material</TextBlock>
+            <TextBlock Style="{StaticResource styleLabel}" Grid.Column="0" Grid.Row="7">Is Main</TextBlock>
+            <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding Path=SizedDamageRollString}"/>
+            <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="1">
+                <TextBlock Text="{Binding Path=ListedEnhancement}"/>
+                <TextBlock Text="/"/>
+                <ContentControl Content="{Binding Path=TotalEnhancement}" ContentTemplate="{StaticResource deltaView}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="2">
+                <ContentControl Content="{Binding Path=AttackBonus}" ContentTemplate="{StaticResource deltaView}"/>
+                <TextBlock Text="/"/>
+                <ContentControl Content="{Binding Path=DamageBonus}" ContentTemplate="{StaticResource deltaView}"/>
+            </StackPanel>
+            <TextBlock Grid.Column="1" Grid.Row="3" Text="{Binding Path=CriticalLow}"/>
+            <TextBlock Grid.Column="1" Grid.Row="4" Text="{Binding Path=CriticalMultiplier}"/>
+            <!--<ContentControl Grid.Column="1" Grid.Row="4" Content="{Binding Path=CriticalDamageFactor}" ContentTemplate="{StaticResource deltaView}"/>-->
+            <ItemsControl Grid.Column="1" Grid.Row="5" ItemsSource="{Binding Path=DamageTypes}"/>
+            <TextBlock Grid.Column="1" Grid.Row="6" Text="{Binding Path=HeadMaterial.Name}"/>
+            <TextBlock Grid.Column="1" Grid.Row="7" Text="{Binding Path=IsMainHead}"/>
+        </Grid>
+    </DataTemplate>
+
+    <!-- DOUBLE WEAPON -->
+    <DataTemplate DataType="{x:Type uiui:DoubleMeleeWeaponVM}">
+        <StackPanel Orientation="Horizontal" ToolTipService.ShowDuration="30000" Style="{StaticResource styleItemPanel}">
+            <StackPanel.Resources>
+                <Style BasedOn="{StaticResource styleILTextBlock}" TargetType="TextBlock"/>
+                <Style BasedOn="{StaticResource styleILLabel}" TargetType="Label"/>
+            </StackPanel.Resources>
+            <StackPanel.ToolTip>
+                <Grid >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Style="{StaticResource styleLabel}" Grid.Column="0" Grid.Row="0">Proficiency</TextBlock>
+                    <TextBlock Style="{StaticResource styleLabel}" Grid.Column="0" Grid.Row="1">Wield-Template</TextBlock>
+                    <TextBlock Style="{StaticResource styleLabel}" Grid.Column="0" Grid.Row="2">Is Reach</TextBlock>
+                    <TextBlock Style="{StaticResource styleLabel}" Grid.Column="0" Grid.Row="3">Finessable</TextBlock>
+                    <TextBlock Style="{StaticResource styleLabel}" Grid.Column="0" Grid.Row="4">Using as Two Handed</TextBlock>
+                    <TextBlock Style="{StaticResource styleLabel}" Grid.Column="0" Grid.Row="5">Weapon Heads</TextBlock>
+                    <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding Path=Thing.ProficiencyType}"/>
+                    <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding Path=Thing.WieldTemplate}"/>
+                    <TextBlock Grid.Column="1" Grid.Row="2" Text="{Binding Path=Thing.IsReachWeapon}"/>
+                    <TextBlock Grid.Column="1" Grid.Row="3" Text="{Binding Path=Thing.IsFinessable}"/>
+                    <TextBlock Grid.Column="1" Grid.Row="4" Text="{Binding Path=Thing.UseAsTwoHanded}"/>
+                    <Border Grid.Column="1" Grid.Row="5" BorderThickness="0.5" BorderBrush="Brown">
+                        <ItemsControl ItemsSource="{Binding Path=Thing.AllHeads}" Margin="2">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel Orientation="Horizontal"/>
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                        </ItemsControl>
+                    </Border>
+                </Grid>
+            </StackPanel.ToolTip>
+            <uiui:ItemIcon DataContext="{Binding}"/>
+            <TextBlock Text="{Binding Path=Thing.Name}"></TextBlock>
+            <TextBlock Text="Price:" Margin="8,0,0,0"></TextBlock>
+            <TextBlock Text="{Binding Path=Thing.Price.BasePrice}"></TextBlock>
+            <TextBlock Text="Weight:" Margin="8,0,0,0"></TextBlock>
+            <TextBlock Text="{Binding Path=Thing.Weight}"></TextBlock>
+            <TextBlock Text="Size:" Margin="8,0,0,0"></TextBlock>
+            <TextBlock Text="{Binding Path=Thing.ItemSizer.Size.Name}"></TextBlock>
+            <TextBlock Text="Creature-Size:" Margin="8,0,0,0"></TextBlock>
+            <TextBlock Text="{Binding Path=Thing.ItemSizer.ExpectedCreatureSize.Name}"></TextBlock>
+        </StackPanel>
+    </DataTemplate>
+
+    <!-- PROJECTILE WEAPON -->
+    <DataTemplate DataType="{x:Type uiui:ProjectileWeaponVM}">
+        <StackPanel Orientation="Horizontal" ToolTipService.ShowDuration="30000" Style="{StaticResource styleItemPanel}">
+            <StackPanel.Resources>
+                <Style BasedOn="{StaticResource styleILTextBlock}" TargetType="TextBlock"/>
+                <Style BasedOn="{StaticResource styleILLabel}" TargetType="Label"/>
+            </StackPanel.Resources>
+            <StackPanel.ToolTip>
+                <Grid >
+                    <Grid.Resources>
+                        <ResourceDictionary>
+                            <ResourceDictionary.MergedDictionaries>
+                                <ResourceDictionary Source="/Uzi.Ikosa.UI;Component/Deltable.xaml"/>
+                            </ResourceDictionary.MergedDictionaries>
+                            <Style TargetType="ContentControl">
+                                <Setter Property="VerticalAlignment" Value="Center"/>
+                            </Style>
+                            <Style TargetType="ItemsControl">
+                                <Setter Property="VerticalAlignment" Value="Center"/>
+                            </Style>
+                        </ResourceDictionary>
+                    </Grid.Resources>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Style="{StaticResource styleLabel}" Grid.Column="0" Grid.Row="0">Proficiency</TextBlock>
+                    <TextBlock Style="{StaticResource styleLabel}" Grid.Column="0" Grid.Row="1">Wield-Template</TextBlock>
+                    <TextBlock Style="{StaticResource styleLabel}" Grid.Column="0" Grid.Row="2">Range/Incr</TextBlock>
+                    <TextBlock Style="{StaticResource styleLabel}" Grid.Column="0" Grid.Row="3">Max-Str/Hands</TextBlock>
+                    <TextBlock Style="{StaticResource styleLabel}" Grid.Column="0" Grid.Row="4">Damage</TextBlock>
+                    <TextBlock Style="{StaticResource styleLabel}" Grid.Column="0" Grid.Row="5">Enhancement</TextBlock>
+                    <TextBlock Style="{StaticResource styleLabel}" Grid.Column="0" Grid.Row="6">Attack/Damage</TextBlock>
+                    <TextBlock Style="{StaticResource styleLabel}" Grid.Column="0" Grid.Row="7">Critical Low</TextBlock>
+                    <TextBlock Style="{StaticResource styleLabel}" Grid.Column="0" Grid.Row="8">Critical Damage</TextBlock>
+                    <TextBlock Style="{StaticResource styleLabel}" Grid.Column="0" Grid.Row="10">Material</TextBlock>
+
+                    <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding Path=Thing.ProficiencyType}"/>
+                    <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding Path=Thing.WieldTemplate}"/>
+                    <TextBlock Grid.Column="1" Grid.Row="2">
+                        <Run Text="{Binding Path=Thing.MaxRange}"/>
+                        <Run Text="/"/>
+                        <Run Text="{Binding Path=Thing.RangeIncrement}"/>
+                    </TextBlock>
+                    <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="3">
+                        <TextBlock Text="{Binding Path=Thing.MaxStrengthBonus}"/>
+                    </StackPanel>
+
+                    <TextBlock Grid.Column="1" Grid.Row="4" Text="{Binding Path=Thing.MediumDamageRollString}"/>
+                    <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="5">
+                        <TextBlock Text="{Binding Path=Thing.ListedEnhancement}"/>
+                        <TextBlock Text="/"/>
+                        <ContentControl Content="{Binding Path=Thing.TotalEnhancement}" ContentTemplate="{StaticResource deltaView}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="6">
+                        <ContentControl Content="{Binding Path=Thing.AttackBonus}" ContentTemplate="{StaticResource deltaView}"/>
+                        <TextBlock Text="/"/>
+                        <ContentControl Content="{Binding Path=Thing.DamageBonus}" ContentTemplate="{StaticResource deltaView}"/>
+                    </StackPanel>
+                    <TextBlock Grid.Column="1" Grid.Row="7" Text="{Binding Path=Thing.CriticalLow}"/>
+                    <ContentControl Grid.Column="1" Grid.Row="8" Content="{Binding Path=Thing.CriticalDamageFactor}" ContentTemplate="{StaticResource deltaView}"/>
+                    <TextBlock Grid.Column="1" Grid.Row="10" Text="{Binding Path=Thing.ItemMaterial.Name}"/>
+                </Grid>
+            </StackPanel.ToolTip>
+            <uiui:ItemIcon DataContext="{Binding}"/>
+            <TextBlock Text="{Binding Path=Thing.Name}"></TextBlock>
+            <TextBlock Text="Price:" Margin="8,0,0,0"></TextBlock>
+            <TextBlock Text="{Binding Path=Thing.Price.BasePrice}"></TextBlock>
+            <TextBlock Text="Weight:" Margin="8,0,0,0"></TextBlock>
+            <TextBlock Text="{Binding Path=Thing.Weight}"></TextBlock>
+            <TextBlock Text="Size:" Margin="8,0,0,0"></TextBlock>
+            <TextBlock Text="{Binding Path=Thing.ItemSizer.Size.Name}"></TextBlock>
+            <TextBlock Text="Creature-Size:" Margin="8,0,0,0"></TextBlock>
+            <TextBlock Text="{Binding Path=Thing.ItemSizer.ExpectedCreatureSize.Name}"></TextBlock>
+        </StackPanel>
+    </DataTemplate>
+
+    <!-- MELEE WEAPON -->
+    <DataTemplate DataType="{x:Type uiui:MeleeWeaponVM}">
+        <StackPanel Orientation="Horizontal" ToolTipService.ShowDuration="30000" Style="{StaticResource styleItemPanel}">
+            <StackPanel.Resources>
+                <Style BasedOn="{StaticResource styleILTextBlock}" TargetType="TextBlock"/>
+                <Style BasedOn="{StaticResource styleILLabel}" TargetType="Label"/>
+            </StackPanel.Resources>
+            <StackPanel.ToolTip>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Style="{StaticResource styleLabel}" Grid.Column="0" Grid.Row="0">Proficiency</TextBlock>
+                    <TextBlock Style="{StaticResource styleLabel}" Grid.Column="0" Grid.Row="1">Wield-Template</TextBlock>
+                    <TextBlock Style="{StaticResource styleLabel}" Grid.Column="0" Grid.Row="2">Is Reach</TextBlock>
+                    <TextBlock Style="{StaticResource styleLabel}" Grid.Column="0" Grid.Row="3">Finessable</TextBlock>
+                    <TextBlock Style="{StaticResource styleLabel}" Grid.Column="0" Grid.Row="4">Weapon Head</TextBlock>
+                    <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding Path=Thing.ProficiencyType}"/>
+                    <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding Path=Thing.WieldTemplate}"/>
+                    <TextBlock Grid.Column="1" Grid.Row="2" Text="{Binding Path=Thing.IsReachWeapon}"/>
+                    <TextBlock Grid.Column="1" Grid.Row="3" Text="{Binding Path=Thing.IsFinessable}"/>
+                    <Border Grid.Column="1" Grid.Row="4" BorderThickness="0.5" BorderBrush="Brown">
+                        <ItemsControl ItemsSource="{Binding Path=Thing.AllHeads}" Margin="2">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel Orientation="Horizontal"/>
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                        </ItemsControl>
+                    </Border>
+                </Grid>
+            </StackPanel.ToolTip>
+            <uiui:ItemIcon DataContext="{Binding}"/>
+            <TextBlock Text="{Binding Path=Thing.Name}"></TextBlock>
+            <TextBlock Text="Price:" Margin="8,0,0,0"></TextBlock>
+            <TextBlock Text="{Binding Path=Thing.Price.BasePrice}"></TextBlock>
+            <TextBlock Text="Weight:" Margin="8,0,0,0"></TextBlock>
+            <TextBlock Text="{Binding Path=Thing.Weight}"></TextBlock>
+            <TextBlock Text="Size:" Margin="8,0,0,0"></TextBlock>
+            <TextBlock Text="{Binding Path=Thing.ItemSizer.Size.Name}"></TextBlock>
+            <TextBlock Text="Creature-Size:" Margin="8,0,0,0"></TextBlock>
+            <TextBlock Text="{Binding Path=Thing.ItemSizer.ExpectedCreatureSize.Name}"></TextBlock>
+        </StackPanel>
+    </DataTemplate>
+
+    <!-- NATURAL WEAPON -->
+    <DataTemplate DataType="{x:Type uiui:NaturalWeaponVM}">
+        <StackPanel Orientation="Horizontal" ToolTipService.ShowDuration="30000" Style="{StaticResource styleItemPanel}">
+            <StackPanel.Resources>
+                <Style BasedOn="{StaticResource styleILTextBlock}" TargetType="TextBlock"/>
+                <Style BasedOn="{StaticResource styleILLabel}" TargetType="Label"/>
+            </StackPanel.Resources>
+            <StackPanel.ToolTip>
+                <Grid >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Style="{StaticResource styleLabel}" Grid.Column="0" Grid.Row="0">Is Primary</TextBlock>
+                    <TextBlock Style="{StaticResource styleLabel}" Grid.Column="0" Grid.Row="1">Wield-Template</TextBlock>
+                    <TextBlock Style="{StaticResource styleLabel}" Grid.Column="0" Grid.Row="2">Is Reach</TextBlock>
+                    <TextBlock Style="{StaticResource styleLabel}" Grid.Column="0" Grid.Row="3">Finessable</TextBlock>
+                    <TextBlock Style="{StaticResource styleLabel}" Grid.Column="0" Grid.Row="4">Always On</TextBlock>
+                    <TextBlock Style="{StaticResource styleLabel}" Grid.Column="0" Grid.Row="5">Treat as Sole</TextBlock>
+                    <TextBlock Style="{StaticResource styleLabel}" Grid.Column="0" Grid.Row="6">Weapon Head</TextBlock>
+                    <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding Path=Thing.IsPrimary}"/>
+                    <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding Path=Thing.WieldTemplate}"/>
+                    <TextBlock Grid.Column="1" Grid.Row="2" Text="{Binding Path=Thing.IsReachWeapon}"/>
+                    <TextBlock Grid.Column="1" Grid.Row="3" Text="{Binding Path=Thing.IsFinessable}"/>
+                    <TextBlock Grid.Column="1" Grid.Row="4" Text="{Binding Path=Thing.AlwaysOn}"/>
+                    <TextBlock Grid.Column="1" Grid.Row="5" Text="{Binding Path=Thing.TreatAsSoleWeapon}"/>
+                    <Border Grid.Column="1" Grid.Row="6" BorderThickness="0.5" BorderBrush="Brown">
+                        <ItemsControl ItemsSource="{Binding Path=Thing.AllHeads}" Margin="2">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel Orientation="Horizontal"/>
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                        </ItemsControl>
+                    </Border>
+                </Grid>
+            </StackPanel.ToolTip>
+            <uiui:ItemIcon DataContext="{Binding}"/>
+            <TextBlock Text="{Binding Path=Thing.Name}"></TextBlock>
+            <TextBlock Text="Size:" Margin="8,0,0,0"></TextBlock>
+            <TextBlock Text="{Binding Path=Thing.ItemSizer.Size.Name}"></TextBlock>
+            <TextBlock Text="Creature-Size:" Margin="8,0,0,0"></TextBlock>
+            <TextBlock Text="{Binding Path=Thing.ItemSizer.ExpectedCreatureSize.Name}"></TextBlock>
+        </StackPanel>
+    </DataTemplate>
+
+    <!-- AMMUNITION -->
+    <DataTemplate DataType="{x:Type uiui:ArrowBundleVM}">
+        <StackPanel Orientation="Horizontal" Style="{StaticResource styleItemPanel}">
+            <StackPanel.Resources>
+                <Style BasedOn="{StaticResource styleILTextBlock}" TargetType="TextBlock"/>
+                <Style BasedOn="{StaticResource styleILLabel}" TargetType="Label"/>
+            </StackPanel.Resources>
+            <uiui:ItemIcon DataContext="{Binding}"/>
+            <TextBlock Text="{Binding Path=Thing.Name}"></TextBlock>
+            <TextBlock Text="*"></TextBlock>
+            <TextBlock Text="{Binding Path=Thing.Count}"></TextBlock>
+            <TextBlock Text="Price:" Margin="8,0,0,0"></TextBlock>
+            <TextBlock Text="{Binding Path=Thing.Price.BasePrice}"></TextBlock>
+            <TextBlock Text="Weight:" Margin="8,0,0,0"></TextBlock>
+            <TextBlock Text="{Binding Path=Thing.Weight}"></TextBlock>
+            <TextBlock Text="Size:" Margin="8,0,0,0"></TextBlock>
+            <TextBlock Text="{Binding Path=Thing.ItemSizer.Size.Name}"></TextBlock>
+            <TextBlock Text="Creature-Size:" Margin="8,0,0,0"></TextBlock>
+            <TextBlock Text="{Binding Path=Thing.ItemSizer.ExpectedCreatureSize.Name}"></TextBlock>
+        </StackPanel>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type uiui:CrossbowBoltBundleVM}">
+        <StackPanel Orientation="Horizontal" Style="{StaticResource styleItemPanel}">
+            <StackPanel.Resources>
+                <Style BasedOn="{StaticResource styleILTextBlock}" TargetType="TextBlock"/>
+                <Style BasedOn="{StaticResource styleILLabel}" TargetType="Label"/>
+            </StackPanel.Resources>
+            <uiui:ItemIcon DataContext="{Binding}"/>
+            <TextBlock Text="{Binding Path=Thing.Name}"></TextBlock>
+            <TextBlock Text="*"></TextBlock>
+            <TextBlock Text="{Binding Path=Thing.Count}"></TextBlock>
+            <TextBlock Text="Price:" Margin="8,0,0,0"></TextBlock>
+            <TextBlock Text="{Binding Path=Thing.Price.BasePrice}"></TextBlock>
+            <TextBlock Text="Weight:" Margin="8,0,0,0"></TextBlock>
+            <TextBlock Text="{Binding Path=Thing.Weight}"></TextBlock>
+            <TextBlock Text="Size:" Margin="8,0,0,0"></TextBlock>
+            <TextBlock Text="{Binding Path=Thing.ItemSizer.Size.Name}"></TextBlock>
+            <TextBlock Text="Creature-Size:" Margin="8,0,0,0"></TextBlock>
+            <TextBlock Text="{Binding Path=Thing.ItemSizer.ExpectedCreatureSize.Name}"></TextBlock>
+        </StackPanel>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type uiui:SlingAmmoBundleVM}">
+        <StackPanel Orientation="Horizontal" Style="{StaticResource styleItemPanel}">
+            <StackPanel.Resources>
+                <Style BasedOn="{StaticResource styleILTextBlock}" TargetType="TextBlock"/>
+                <Style BasedOn="{StaticResource styleILLabel}" TargetType="Label"/>
+            </StackPanel.Resources>
+            <uiui:ItemIcon DataContext="{Binding}"/>
+            <TextBlock Text="{Binding Path=Thing.Name}"></TextBlock>
+            <TextBlock Text="*"></TextBlock>
+            <TextBlock Text="{Binding Path=Thing.Count}"></TextBlock>
+            <TextBlock Text="Price:" Margin="8,0,0,0"></TextBlock>
+            <TextBlock Text="{Binding Path=Thing.Price.BasePrice}"></TextBlock>
+            <TextBlock Text="Weight:" Margin="8,0,0,0"></TextBlock>
+            <TextBlock Text="{Binding Path=Thing.Weight}"></TextBlock>
+            <TextBlock Text="Size:" Margin="8,0,0,0"></TextBlock>
+            <TextBlock Text="{Binding Path=Thing.ItemSizer.Size.Name}"></TextBlock>
+            <TextBlock Text="Creature-Size:" Margin="8,0,0,0"></TextBlock>
+            <TextBlock Text="{Binding Path=Thing.ItemSizer.ExpectedCreatureSize.Name}"></TextBlock>
+        </StackPanel>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type uiui:ShurikenBundleVM}">
+        <StackPanel Orientation="Horizontal" Style="{StaticResource styleItemPanel}">
+            <StackPanel.Resources>
+                <Style BasedOn="{StaticResource styleILTextBlock}" TargetType="TextBlock"/>
+                <Style BasedOn="{StaticResource styleILLabel}" TargetType="Label"/>
+            </StackPanel.Resources>
+            <uiui:ItemIcon DataContext="{Binding}"/>
+            <TextBlock Text="{Binding Path=Thing.Name}"></TextBlock>
+            <TextBlock Text="*"></TextBlock>
+            <TextBlock Text="{Binding Path=Thing.Count}"></TextBlock>
+            <TextBlock Text="Price:" Margin="8,0,0,0"></TextBlock>
+            <TextBlock Text="{Binding Path=Thing.Price.BasePrice}"></TextBlock>
+            <TextBlock Text="Weight:" Margin="8,0,0,0"></TextBlock>
+            <TextBlock Text="{Binding Path=Thing.Weight}"></TextBlock>
+            <TextBlock Text="Size:" Margin="8,0,0,0"></TextBlock>
+            <TextBlock Text="{Binding Path=Thing.ItemSizer.Size.Name}"></TextBlock>
+            <TextBlock Text="Creature-Size:" Margin="8,0,0,0"></TextBlock>
+            <TextBlock Text="{Binding Path=Thing.ItemSizer.ExpectedCreatureSize.Name}"></TextBlock>
+        </StackPanel>
+    </DataTemplate>
+
+    <!-- AMMO CONTAINER -->
+    <DataTemplate DataType="{x:Type uiui:QuiverVM}">
+        <StackPanel Orientation="Horizontal" Style="{StaticResource styleItemPanel}">
+            <StackPanel.Resources>
+                <Style BasedOn="{StaticResource styleILTextBlock}" TargetType="TextBlock"/>
+                <Style BasedOn="{StaticResource styleILLabel}" TargetType="Label"/>
+            </StackPanel.Resources>
+            <uiui:ItemIcon DataContext="{Binding}"/>
+            <TextBlock Text="{Binding Path=Thing.Name}"/>
+            <TextBlock Text="Ammo:" Margin="8,0,0,0"></TextBlock>
+            <TextBlock Text="{Binding Path=Thing.AmmunitionType.Name}"/>
+            <TextBlock Text="Price:" Margin="8,0,0,0"></TextBlock>
+            <TextBlock Text="{Binding Path=Thing.Price.BasePrice}"></TextBlock>
+            <TextBlock Text="Weight:" Margin="8,0,0,0"></TextBlock>
+            <TextBlock Text="{Binding Path=Thing.Weight}"></TextBlock>
+            <TextBlock Text="Size:" Margin="8,0,0,0"></TextBlock>
+            <TextBlock Text="{Binding Path=Thing.ItemSizer.Size.Name}"></TextBlock>
+            <TextBlock Text="Creature-Size:" Margin="8,0,0,0"></TextBlock>
+            <TextBlock Text="{Binding Path=Thing.ItemSizer.ExpectedCreatureSize.Name}"></TextBlock>
+        </StackPanel>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type uiui:BoltSashVM}">
+        <StackPanel Orientation="Horizontal" Style="{StaticResource styleItemPanel}">
+            <StackPanel.Resources>
+                <Style BasedOn="{StaticResource styleILTextBlock}" TargetType="TextBlock"/>
+                <Style BasedOn="{StaticResource styleILLabel}" TargetType="Label"/>
+            </StackPanel.Resources>
+            <uiui:ItemIcon DataContext="{Binding}"/>
+            <TextBlock Text="{Binding Path=Thing.Name}"/>
+            <TextBlock Text="Ammo:" Margin="8,0,0,0"></TextBlock>
+            <TextBlock Text="{Binding Path=Thing.AmmunitionType.Name}"/>
+            <TextBlock Text="Price:" Margin="8,0,0,0"></TextBlock>
+            <TextBlock Text="{Binding Path=Thing.Price.BasePrice}"></TextBlock>
+            <TextBlock Text="Weight:" Margin="8,0,0,0"></TextBlock>
+            <TextBlock Text="{Binding Path=Thing.Weight}"></TextBlock>
+            <TextBlock Text="Size:" Margin="8,0,0,0"></TextBlock>
+            <TextBlock Text="{Binding Path=Thing.ItemSizer.Size.Name}"></TextBlock>
+            <TextBlock Text="Creature-Size:" Margin="8,0,0,0"></TextBlock>
+            <TextBlock Text="{Binding Path=Thing.ItemSizer.ExpectedCreatureSize.Name}"></TextBlock>
+        </StackPanel>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type uiui:SlingBagVM}">
+        <StackPanel Orientation="Horizontal" Style="{StaticResource styleItemPanel}">
+            <StackPanel.Resources>
+                <Style BasedOn="{StaticResource styleILTextBlock}" TargetType="TextBlock"/>
+                <Style BasedOn="{StaticResource styleILLabel}" TargetType="Label"/>
+            </StackPanel.Resources>
+            <uiui:ItemIcon DataContext="{Binding}"/>
+            <TextBlock Text="{Binding Path=Thing.Name}"/>
+            <TextBlock Text="Ammo:" Margin="8,0,0,0"></TextBlock>
+            <TextBlock Text="{Binding Path=Thing.AmmunitionType.Name}"/>
+            <TextBlock Text="Price:" Margin="8,0,0,0"></TextBlock>
+            <TextBlock Text="{Binding Path=Thing.Price.BasePrice}"></TextBlock>
+            <TextBlock Text="Weight:" Margin="8,0,0,0"></TextBlock>
+            <TextBlock Text="{Binding Path=Thing.Weight}"></TextBlock>
+            <TextBlock Text="Size:" Margin="8,0,0,0"></TextBlock>
+            <TextBlock Text="{Binding Path=Thing.ItemSizer.Size.Name}"></TextBlock>
+            <TextBlock Text="Creature-Size:" Margin="8,0,0,0"></TextBlock>
+            <TextBlock Text="{Binding Path=Thing.ItemSizer.ExpectedCreatureSize.Name}"></TextBlock>
+        </StackPanel>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type uiui:ShurikenPouchVM}">
+        <StackPanel Orientation="Horizontal" Style="{StaticResource styleItemPanel}">
+            <StackPanel.Resources>
+                <Style BasedOn="{StaticResource styleILTextBlock}" TargetType="TextBlock"/>
+                <Style BasedOn="{StaticResource styleILLabel}" TargetType="Label"/>
+            </StackPanel.Resources>
+            <uiui:ItemIcon DataContext="{Binding}"/>
+            <TextBlock Text="{Binding Path=Thing.Name}"/>
+            <TextBlock Text="Ammo:" Margin="8,0,0,0"></TextBlock>
+            <TextBlock Text="{Binding Path=Thing.AmmunitionType.Name}"/>
+            <TextBlock Text="Price:" Margin="8,0,0,0"></TextBlock>
+            <TextBlock Text="{Binding Path=Thing.Price.BasePrice}"></TextBlock>
+            <TextBlock Text="Weight:" Margin="8,0,0,0"></TextBlock>
+            <TextBlock Text="{Binding Path=Thing.Weight}"></TextBlock>
+            <TextBlock Text="Size:" Margin="8,0,0,0"></TextBlock>
+            <TextBlock Text="{Binding Path=Thing.ItemSizer.Size.Name}"></TextBlock>
+            <TextBlock Text="Creature-Size:" Margin="8,0,0,0"></TextBlock>
+            <TextBlock Text="{Binding Path=Thing.ItemSizer.ExpectedCreatureSize.Name}"></TextBlock>
+        </StackPanel>
+    </DataTemplate>
+
+    <!-- ARMOR -->
+    <DataTemplate DataType="{x:Type uiui:ArmorVM}">
+        <StackPanel Orientation="Horizontal" ToolTipService.ShowDuration="30000" Style="{StaticResource styleItemPanel}">
+            <StackPanel.Resources>
+                <Style BasedOn="{StaticResource styleILTextBlock}" TargetType="TextBlock"/>
+                <Style BasedOn="{StaticResource styleILLabel}" TargetType="Label"/>
+            </StackPanel.Resources>
+            <StackPanel.ToolTip>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Style="{StaticResource styleLabel}" Grid.Column="0" Grid.Row="0">Proficiency</TextBlock>
+                    <TextBlock Style="{StaticResource styleLabel}" Grid.Column="0" Grid.Row="1">Protection</TextBlock>
+                    <TextBlock Style="{StaticResource styleLabel}" Grid.Column="0" Grid.Row="2">Enhancement</TextBlock>
+                    <TextBlock Style="{StaticResource styleLabel}" Grid.Column="0" Grid.Row="3">Enhance Value</TextBlock>
+                    <TextBlock Style="{StaticResource styleLabel}" Grid.Column="0" Grid.Row="4">Max Dexterity</TextBlock>
+                    <TextBlock Style="{StaticResource styleLabel}" Grid.Column="0" Grid.Row="5">Check Penalty</TextBlock>
+                    <TextBlock Style="{StaticResource styleLabel}" Grid.Column="0" Grid.Row="6">Spell Failure</TextBlock>
+                    <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding Path=Thing.ProficiencyType}"/>
+                    <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding Path=Thing.ProtectionBonus.EffectiveValue}"/>
+                    <TextBlock Grid.Column="1" Grid.Row="2" Text="{Binding Path=Thing.ListedEnhancement}"/>
+                    <TextBlock Grid.Column="1" Grid.Row="3" Text="{Binding Path=Thing.TotalEnhancement.EffectiveValue}"/>
+                    <TextBlock Grid.Column="1" Grid.Row="4" Text="{Binding Path=Thing.MaxDexterityBonus.EffectiveValue}"/>
+                    <TextBlock Grid.Column="1" Grid.Row="5" Text="{Binding Path=Thing.CheckPenalty.EffectiveValue}"/>
+                    <TextBlock Grid.Column="1" Grid.Row="6" Text="{Binding Path=Thing.ArcaneSpellFailureChance.EffectiveValue}"/>
+                </Grid>
+            </StackPanel.ToolTip>
+            <uiui:ItemIcon DataContext="{Binding}"/>
+            <TextBlock Text="{Binding Path=Thing.Name}"></TextBlock>
+            <TextBlock Text="Price:" Margin="8,0,0,0"></TextBlock>
+            <TextBlock Text="{Binding Path=Thing.Price.BasePrice}"></TextBlock>
+            <TextBlock Text="Weight:" Margin="8,0,0,0"></TextBlock>
+            <TextBlock Text="{Binding Path=Thing.Weight}"></TextBlock>
+            <TextBlock Text="Size:" Margin="8,0,0,0"></TextBlock>
+            <TextBlock Text="{Binding Path=Thing.ItemSizer.Size.Name}"></TextBlock>
+            <TextBlock Text="Creature-Size:" Margin="8,0,0,0"></TextBlock>
+            <TextBlock Text="{Binding Path=Thing.ItemSizer.ExpectedCreatureSize.Name}"></TextBlock>
+        </StackPanel>
+    </DataTemplate>
+
+    <!-- SHIELD -->
+    <DataTemplate DataType="{x:Type uiui:ShieldVM}">
+        <StackPanel Orientation="Horizontal" ToolTipService.ShowDuration="30000" Style="{StaticResource styleItemPanel}">
+            <StackPanel.Resources>
+                <Style BasedOn="{StaticResource styleILTextBlock}" TargetType="TextBlock"/>
+                <Style BasedOn="{StaticResource styleILLabel}" TargetType="Label"/>
+            </StackPanel.Resources>
+            <StackPanel.ToolTip>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Style="{StaticResource styleLabel}" Grid.Column="0" Grid.Row="0">Protection</TextBlock>
+                    <TextBlock Style="{StaticResource styleLabel}" Grid.Column="0" Grid.Row="1">Enhancement</TextBlock>
+                    <TextBlock Style="{StaticResource styleLabel}" Grid.Column="0" Grid.Row="2">Enhance Value</TextBlock>
+                    <TextBlock Style="{StaticResource styleLabel}" Grid.Column="0" Grid.Row="3">Check Penalty</TextBlock>
+                    <TextBlock Style="{StaticResource styleLabel}" Grid.Column="0" Grid.Row="4">Spell Failure</TextBlock>
+                    <TextBlock Style="{StaticResource styleLabel}" Grid.Column="0" Grid.Row="5">Carry in Hand</TextBlock>
+                    <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding Path=Thing.ProtectionBonus.EffectiveValue}"/>
+                    <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding Path=Thing.ListedEnhancement}"/>
+                    <TextBlock Grid.Column="1" Grid.Row="2" Text="{Binding Path=Thing.TotalEnhancement.EffectiveValue}"/>
+                    <TextBlock Grid.Column="1" Grid.Row="3" Text="{Binding Path=Thing.CheckPenalty.EffectiveValue}"/>
+                    <TextBlock Grid.Column="1" Grid.Row="4" Text="{Binding Path=Thing.ArcaneSpellFailureChance.EffectiveValue}"/>
+                    <TextBlock Grid.Column="1" Grid.Row="5" Text="{Binding Path=Thing.UseHandToCarry}"/>
+                </Grid>
+            </StackPanel.ToolTip>
+            <uiui:ItemIcon DataContext="{Binding}"/>
+            <TextBlock Text="{Binding Path=Thing.Name}"></TextBlock>
+            <TextBlock Text="Price:" Margin="8,0,0,0"></TextBlock>
+            <TextBlock Text="{Binding Path=Thing.Price.BasePrice}"></TextBlock>
+            <TextBlock Text="Weight:" Margin="8,0,0,0"></TextBlock>
+            <TextBlock Text="{Binding Path=Thing.Weight}"></TextBlock>
+            <TextBlock Text="Size:" Margin="8,0,0,0"></TextBlock>
+            <TextBlock Text="{Binding Path=Thing.ItemSizer.Size.Name}"></TextBlock>
+            <TextBlock Text="Creature-Size:" Margin="8,0,0,0"></TextBlock>
+            <TextBlock Text="{Binding Path=Thing.ItemSizer.ExpectedCreatureSize.Name}"></TextBlock>
+        </StackPanel>
+    </DataTemplate>
+
+    <!-- Magic Spell Definition Base Class -->
+    <DataTemplate DataType="{x:Type magic:SpellDef}">
+        <StackPanel Orientation="Horizontal" ToolTipService.ShowDuration="30000" Style="{StaticResource styleItemPanel}"
+                    Margin="1" ToolTip="{Binding Path=Description}">
+            <StackPanel.Resources>
+                <Style TargetType="TextBlock">
+                    <Setter Property="VerticalAlignment" Value="Center"/>
+                    <Setter Property="FontWeight" Value="Normal"/>
+                </Style>
+            </StackPanel.Resources>
+            <TextBlock Text="{Binding Path=DisplayName}"/>
+        </StackPanel>
+    </DataTemplate>
+
+    <!-- Magic Spell Source Base Class -->
+    <DataTemplate DataType="{x:Type magic:SpellSource}">
+        <StackPanel Orientation="Horizontal" ToolTipService.ShowDuration="30000" Style="{StaticResource styleItemPanel}" 
+                    ToolTip="{Binding Path=SpellDef.Description}">
+            <StackPanel.Resources>
+                <Style BasedOn="{StaticResource styleILTextBlock}" TargetType="TextBlock"/>
+                <Style BasedOn="{StaticResource styleILLabel}" TargetType="Label"/>
+            </StackPanel.Resources>
+            <TextBlock>
+                <Run Text="{Binding Path=SpellDef.DisplayName, Mode=OneWay}"/>
+                <Run Text="(CL:" xml:space="preserve"/><Run Text="{Binding Path=CasterLevel, Mode=OneWay}" xml:space="preserve"/><Run Text=")"/>
+            </TextBlock>
+        </StackPanel>
+    </DataTemplate>
+
+    <!-- WAND -->
+    <DataTemplate DataType="{x:Type uiui:WandVM}">
+        <StackPanel Orientation="Horizontal" ToolTipService.ShowDuration="30000" Style="{StaticResource styleItemPanel}" 
+                    ToolTip="{Binding Path=Thing.SpellTrigger.SpellSource}">
+            <StackPanel.Resources>
+                <Style BasedOn="{StaticResource styleILTextBlock}" TargetType="TextBlock"/>
+                <Style BasedOn="{StaticResource styleILLabel}" TargetType="Label"/>
+            </StackPanel.Resources>
+            <uiui:ItemIcon DataContext="{Binding}"/>
+            <TextBlock Text="{Binding Path=Thing.Name}"/>
+            <TextBlock Text="Charges:" Margin="8,0,0,0"/>
+            <TextBlock Text="{Binding Path=Thing.SpellTrigger.PowerBattery.AvailableCharges}"/>
+            <TextBlock Text="Price:" Margin="8,0,0,0"></TextBlock>
+            <TextBlock Text="{Binding Path=Thing.Price.BasePrice}"></TextBlock>
+            <TextBlock Text="Weight:" Margin="8,0,0,0"></TextBlock>
+            <TextBlock Text="{Binding Path=Thing.Weight}"></TextBlock>
+            <TextBlock Text="Size:" Margin="8,0,0,0"></TextBlock>
+            <TextBlock Text="{Binding Path=Thing.ItemSizer.Size.Name}"></TextBlock>
+        </StackPanel>
+    </DataTemplate>
+
+    <!-- POTION -->
+    <DataTemplate DataType="{x:Type uiui:PotionVM}">
+        <StackPanel Orientation="Horizontal" ToolTipService.ShowDuration="30000" Style="{StaticResource styleItemPanel}" 
+                    ToolTip="{Binding Path=Thing.SpellSource}">
+            <StackPanel.Resources>
+                <Style BasedOn="{StaticResource styleILTextBlock}" TargetType="TextBlock"/>
+                <Style BasedOn="{StaticResource styleILLabel}" TargetType="Label"/>
+            </StackPanel.Resources>
+            <uiui:ItemIcon DataContext="{Binding}"/>
+            <TextBlock Text="{Binding Path=Thing.Name}"/>
+            <TextBlock Text="Price:" Margin="8,0,0,0"></TextBlock>
+            <TextBlock Text="{Binding Path=Thing.Price.BasePrice}"></TextBlock>
+            <TextBlock Text="Weight:" Margin="8,0,0,0"></TextBlock>
+            <TextBlock Text="{Binding Path=Thing.Weight}"></TextBlock>
+            <TextBlock Text="Size:" Margin="8,0,0,0"></TextBlock>
+            <TextBlock Text="{Binding Path=Thing.ItemSizer.Size.Name}"></TextBlock>
+        </StackPanel>
+    </DataTemplate>
+
+    <!-- SCROLL -->
+    <DataTemplate DataType="{x:Type uiui:ScrollVM}">
+        <StackPanel Orientation="Horizontal" ToolTipService.ShowDuration="30000" Style="{StaticResource styleItemPanel}" >
+            <StackPanel.Resources>
+                <Style BasedOn="{StaticResource styleILTextBlock}" TargetType="TextBlock"/>
+                <Style BasedOn="{StaticResource styleILLabel}" TargetType="Label"/>
+            </StackPanel.Resources>
+            <uiui:ItemIcon DataContext="{Binding}"/>
+            <TextBlock Text="{Binding Path=Thing.Name}"/>
+            <TextBlock Text="Price:" Margin="8,0,0,0"></TextBlock>
+            <TextBlock Text="{Binding Path=Thing.Price.BasePrice}"></TextBlock>
+            <TextBlock Text="Weight:" Margin="8,0,0,0"></TextBlock>
+            <TextBlock Text="{Binding Path=Thing.Weight}"></TextBlock>
+            <TextBlock Text="Size:" Margin="8,0,0,0"></TextBlock>
+            <TextBlock Text="{Binding Path=Thing.ItemSizer.Size.Name}"></TextBlock>
+        </StackPanel>
+    </DataTemplate>
+
+    <!-- SPELLBOOK -->
+    <DataTemplate DataType="{x:Type uiui:SpellBookVM}">
+        <StackPanel Orientation="Horizontal" ToolTipService.ShowDuration="30000" Style="{StaticResource styleItemPanel}" >
+            <StackPanel.Resources>
+                <Style BasedOn="{StaticResource styleILTextBlock}" TargetType="TextBlock"/>
+                <Style BasedOn="{StaticResource styleILLabel}" TargetType="Label"/>
+            </StackPanel.Resources>
+            <uiui:ItemIcon DataContext="{Binding}"/>
+            <TextBlock Text="{Binding Path=Thing.Name}"/>
+            <TextBlock Text="Price:" Margin="8,0,0,0"></TextBlock>
+            <TextBlock Text="{Binding Path=Thing.Price.BasePrice}"></TextBlock>
+            <TextBlock Text="Weight:" Margin="8,0,0,0"></TextBlock>
+            <TextBlock Text="{Binding Path=Thing.Weight}"></TextBlock>
+            <TextBlock Text="Size:" Margin="8,0,0,0"></TextBlock>
+            <TextBlock Text="{Binding Path=Thing.ItemSizer.Size.Name}"></TextBlock>
+        </StackPanel>
+    </DataTemplate>
+
+    <!-- COINSET -->
+    <DataTemplate DataType="{x:Type uiui:CoinSetVM}">
+        <StackPanel Orientation="Horizontal" Style="{StaticResource styleItemPanel}">
+            <StackPanel.Resources>
+                <Style BasedOn="{StaticResource styleILTextBlock}" TargetType="TextBlock"/>
+                <Style BasedOn="{StaticResource styleILLabel}" TargetType="Label"/>
+            </StackPanel.Resources>
+            <uiui:ItemIcon DataContext="{Binding}"/>
+            <TextBlock Text="{Binding Path=Thing.Name}"/>
+            <TextBlock Text="Type:" Margin="8,0,0,0"></TextBlock>
+            <ContentControl Content="{Binding Path=Thing.CoinTypeName}"/>
+            <TextBlock Text="Count:" Margin="8,0,0,0"></TextBlock>
+            <TextBlock Text="{Binding Path=Thing.Count}"></TextBlock>
+            <TextBlock Text="Price:" Margin="8,0,0,0"></TextBlock>
+            <TextBlock Text="{Binding Path=Thing.Price.BasePrice}"></TextBlock>
+            <TextBlock Text="Weight:" Margin="8,0,0,0"></TextBlock>
+            <TextBlock Text="{Binding Path=Thing.Weight}"></TextBlock>
+        </StackPanel>
+    </DataTemplate>
+
+    <!-- GEM -->
+    <DataTemplate DataType="{x:Type materials:GemMaterial}">
+        <TextBlock VerticalAlignment="Center" Text="{Binding Path=Name}"/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type uiui:GemVM}">
+        <StackPanel Orientation="Horizontal" Style="{StaticResource styleItemPanel}">
+            <StackPanel.Resources>
+                <Style BasedOn="{StaticResource styleILTextBlock}" TargetType="TextBlock"/>
+                <Style BasedOn="{StaticResource styleILLabel}" TargetType="Label"/>
+            </StackPanel.Resources>
+            <uiui:ItemIcon DataContext="{Binding}"/>
+            <TextBlock Text="{Binding Path=Thing.Name}"/>
+            <TextBlock Text="Material:" Margin="8,0,0,0"></TextBlock>
+            <ContentControl Content="{Binding Path=Thing.ItemMaterial}"/>
+            <TextBlock Text="Price:" Margin="8,0,0,0"></TextBlock>
+            <TextBlock Text="{Binding Path=Thing.Price.BasePrice}"></TextBlock>
+            <TextBlock Text="Weight:" Margin="8,0,0,0"></TextBlock>
+            <TextBlock Text="{Binding Path=Thing.Weight}"></TextBlock>
+        </StackPanel>
+    </DataTemplate>
+
+    <!-- ITEMBASE -->
+    <DataTemplate DataType="{x:Type uiui:ItemVM}">
+        <StackPanel Orientation="Horizontal" Style="{StaticResource styleItemPanel}">
+            <StackPanel.Resources>
+                <Style BasedOn="{StaticResource styleILTextBlock}" TargetType="TextBlock"/>
+                <Style BasedOn="{StaticResource styleILLabel}" TargetType="Label"/>
+            </StackPanel.Resources>
+            <uiui:ItemIcon DataContext="{Binding}"/>
+            <TextBlock Text="{Binding Path=Thing.Name}"/>
+            <TextBlock Text="Price:" Margin="8,0,0,0"></TextBlock>
+            <TextBlock Text="{Binding Path=Thing.Price.BasePrice}"></TextBlock>
+            <TextBlock Text="Weight:" Margin="8,0,0,0"></TextBlock>
+            <TextBlock Text="{Binding Path=Thing.Weight}"></TextBlock>
+            <TextBlock Text="Size:" Margin="8,0,0,0"></TextBlock>
+            <TextBlock Text="{Binding Path=Thing.ItemSizer.Size.Name}"></TextBlock>
+            <TextBlock Text="Creature-Size:" Margin="8,0,0,0"></TextBlock>
+            <TextBlock Text="{Binding Path=Thing.ItemSizer.ExpectedCreatureSize.Name}"></TextBlock>
+        </StackPanel>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type uiui:KeyItemVM}">
+        <StackPanel Orientation="Horizontal" Style="{StaticResource styleItemPanel}">
+            <StackPanel.Resources>
+                <Style BasedOn="{StaticResource styleILTextBlock}" TargetType="TextBlock"/>
+                <Style BasedOn="{StaticResource styleILLabel}" TargetType="Label"/>
+            </StackPanel.Resources>
+            <uiui:ItemIcon DataContext="{Binding}"/>
+            <TextBlock Text="{Binding Path=Thing.Name}"/>
+            <TextBlock Text="Price:" Margin="8,0,0,0"></TextBlock>
+            <TextBlock Text="{Binding Path=Thing.Price.BasePrice}"></TextBlock>
+            <TextBlock Text="Weight:" Margin="8,0,0,0"></TextBlock>
+            <TextBlock Text="{Binding Path=Thing.Weight}"></TextBlock>
+            <TextBlock Text="Size:" Margin="8,0,0,0"></TextBlock>
+            <TextBlock Text="{Binding Path=Thing.ItemSizer.Size.Name}"></TextBlock>
+            <TextBlock Text="Creature-Size:" Margin="8,0,0,0"></TextBlock>
+            <TextBlock Text="{Binding Path=Thing.ItemSizer.ExpectedCreatureSize.Name}"></TextBlock>
+        </StackPanel>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type uiui:KeyRingVM}">
+        <StackPanel Orientation="Horizontal" Style="{StaticResource styleItemPanel}">
+            <StackPanel.Resources>
+                <Style BasedOn="{StaticResource styleILTextBlock}" TargetType="TextBlock"/>
+                <Style BasedOn="{StaticResource styleILLabel}" TargetType="Label"/>
+            </StackPanel.Resources>
+            <uiui:ItemIcon DataContext="{Binding}"/>
+            <TextBlock Text="{Binding Path=Thing.Name}"/>
+            <TextBlock Text="Price:" Margin="8,0,0,0"></TextBlock>
+            <TextBlock Text="{Binding Path=Thing.Price.BasePrice}"></TextBlock>
+            <TextBlock Text="Weight:" Margin="8,0,0,0"></TextBlock>
+            <TextBlock Text="{Binding Path=Thing.Weight}"></TextBlock>
+            <TextBlock Text="Size:" Margin="8,0,0,0"></TextBlock>
+            <TextBlock Text="{Binding Path=Thing.ItemSizer.Size.Name}"></TextBlock>
+            <TextBlock Text="Creature-Size:" Margin="8,0,0,0"></TextBlock>
+            <TextBlock Text="{Binding Path=Thing.ItemSizer.ExpectedCreatureSize.Name}"></TextBlock>
+        </StackPanel>
+    </DataTemplate>
+
+    <!-- other presentable items -->
+    <DataTemplate DataType="{x:Type uiui:PresentableCloseableContainerVM}">
+        <StackPanel Orientation="Horizontal" Style="{StaticResource styleItemPanel}">
+            <StackPanel.Resources>
+                <Style BasedOn="{StaticResource styleILTextBlock}" TargetType="TextBlock"/>
+                <Style BasedOn="{StaticResource styleILLabel}" TargetType="Label"/>
+            </StackPanel.Resources>
+            <uiui:ItemIcon DataContext="{Binding}"/>
+            <TextBlock Text="{Binding Path=Thing.Name}"/>
+            <TextBlock>
+                <Run Text="; LWH=" />
+                <Run Text="{Binding Path=Thing.Length}"/>
+                <Run Text="*" />
+                <Run Text="{Binding Path=Thing.Width}"/>
+                <Run Text="*" />
+                <Run Text="{Binding Path=Thing.Height}"/>
+                <Run Text="; Wt=" />
+                <Run Text="{Binding Path=Thing.Weight}"/>
+            </TextBlock>
+            <TextBlock Text="; (" />
+            <ContentControl Content="{Binding Path=Thing.ObjectMaterial}"/>
+            <TextBlock Text=")"></TextBlock>
+            <TextBlock Text="Size:" Margin="8,0,0,0"></TextBlock>
+            <TextBlock Text="{Binding Path=Thing.ObjectSizer.Size.Name}"></TextBlock>
+        </StackPanel>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type uiui:PresentableContainerItemVM}">
+        <StackPanel Orientation="Horizontal" Style="{StaticResource styleItemPanel}">
+            <StackPanel.Resources>
+                <Style BasedOn="{StaticResource styleILTextBlock}" TargetType="TextBlock"/>
+                <Style BasedOn="{StaticResource styleILLabel}" TargetType="Label"/>
+            </StackPanel.Resources>
+            <uiui:ItemIcon DataContext="{Binding}"/>
+            <TextBlock Text="{Binding Path=Thing.Name}"/>
+            <TextBlock Text="Price:" Margin="8,0,0,0"></TextBlock>
+            <TextBlock Text="{Binding Path=Thing.Price.BasePrice}"></TextBlock>
+            <TextBlock Text="Weight:" Margin="8,0,0,0"></TextBlock>
+            <TextBlock Text="{Binding Path=Thing.Weight}"></TextBlock>
+            <TextBlock Text="Size:" Margin="8,0,0,0"></TextBlock>
+            <TextBlock Text="{Binding Path=Thing.ItemSizer.Size.Name}"></TextBlock>
+            <TextBlock Text="Creature-Size:" Margin="8,0,0,0"></TextBlock>
+            <TextBlock Text="{Binding Path=Thing.ItemSizer.ExpectedCreatureSize.Name}"></TextBlock>
+        </StackPanel>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type uiui:PresentableContainerObjectVM}">
+        <StackPanel Orientation="Horizontal" Style="{StaticResource styleItemPanel}">
+            <StackPanel.Resources>
+                <Style BasedOn="{StaticResource styleILTextBlock}" TargetType="TextBlock"/>
+                <Style BasedOn="{StaticResource styleILLabel}" TargetType="Label"/>
+            </StackPanel.Resources>
+            <uiui:ItemIcon DataContext="{Binding}"/>
+            <TextBlock Text="{Binding Path=Thing.Name}"/>
+            <TextBlock>
+                <Run Text="; LWH=" />
+                <Run Text="{Binding Path=Thing.Length}"/>
+                <Run Text="*" />
+                <Run Text="{Binding Path=Thing.Width}"/>
+                <Run Text="*" />
+                <Run Text="{Binding Path=Thing.Height}"/>
+                <Run Text="; Wt=" />
+                <Run Text="{Binding Path=Thing.Weight}"/>
+            </TextBlock>
+            <TextBlock Text="; (" />
+            <ContentControl Content="{Binding Path=Thing.ObjectMaterial}"/>
+            <TextBlock Text=")"></TextBlock>
+            <TextBlock Text="Size:" Margin="8,0,0,0"></TextBlock>
+            <TextBlock Text="{Binding Path=Thing.ObjectSizer.Size.Name}"></TextBlock>
+        </StackPanel>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type uiui:PresentableSlottedContainerItemVM}">
+        <StackPanel Orientation="Horizontal" Style="{StaticResource styleItemPanel}">
+            <StackPanel.Resources>
+                <Style BasedOn="{StaticResource styleILTextBlock}" TargetType="TextBlock"/>
+                <Style BasedOn="{StaticResource styleILLabel}" TargetType="Label"/>
+            </StackPanel.Resources>
+            <uiui:ItemIcon DataContext="{Binding}"/>
+            <TextBlock Text="{Binding Path=Thing.Name}"/>
+            <TextBlock Text="Price:" Margin="8,0,0,0"></TextBlock>
+            <TextBlock Text="{Binding Path=Thing.Price.BasePrice}"></TextBlock>
+            <TextBlock Text="Weight:" Margin="8,0,0,0"></TextBlock>
+            <TextBlock Text="{Binding Path=Thing.Weight}"></TextBlock>
+            <TextBlock Text="Size:" Margin="8,0,0,0"></TextBlock>
+            <TextBlock Text="{Binding Path=Thing.ItemSizer.Size.Name}"></TextBlock>
+            <TextBlock Text="Creature-Size:" Margin="8,0,0,0"></TextBlock>
+            <TextBlock Text="{Binding Path=Thing.ItemSizer.ExpectedCreatureSize.Name}"></TextBlock>
+        </StackPanel>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type uiui:PresentableMechanismMountVM}">
+        <StackPanel Orientation="Horizontal" Style="{StaticResource styleItemPanel}">
+            <StackPanel.Resources>
+                <Style BasedOn="{StaticResource styleILTextBlock}" TargetType="TextBlock"/>
+                <Style BasedOn="{StaticResource styleILLabel}" TargetType="Label"/>
+            </StackPanel.Resources>
+            <uiui:ItemIcon DataContext="{Binding}"/>
+            <TextBlock Text="{Binding Path=Thing.Name}"/>
+            <TextBlock>
+                <Run Text="; LWH=" />
+                <Run Text="{Binding Path=Thing.Length}"/>
+                <Run Text="*" />
+                <Run Text="{Binding Path=Thing.Width}"/>
+                <Run Text="*" />
+                <Run Text="{Binding Path=Thing.Height}"/>
+                <Run Text="; Wt=" />
+                <Run Text="{Binding Path=Thing.Weight}"/>
+            </TextBlock>
+            <TextBlock Text="Size:" Margin="8,0,0,0"></TextBlock>
+            <TextBlock Text="{Binding Path=Thing.Sizer.Size.Name}"></TextBlock>
+        </StackPanel>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type uiui:PresentablePortalVM}">
+        <StackPanel Orientation="Horizontal" Style="{StaticResource styleItemPanel}">
+            <StackPanel.Resources>
+                <Style BasedOn="{StaticResource styleILTextBlock}" TargetType="TextBlock"/>
+                <Style BasedOn="{StaticResource styleILLabel}" TargetType="Label"/>
+            </StackPanel.Resources>
+            <uiui:ItemIcon DataContext="{Binding}"/>
+            <TextBlock Text="{Binding Path=Thing.Name}"/>
+            <TextBlock>
+                <Run Text="; LWH=" />
+                <Run Text="{Binding Path=Thing.Length}"/>
+                <Run Text="*" />
+                <Run Text="{Binding Path=Thing.Width}"/>
+                <Run Text="*" />
+                <Run Text="{Binding Path=Thing.Height}"/>
+                <Run Text="; Wt=" />
+                <Run Text="{Binding Path=Thing.Weight}"/>
+            </TextBlock>
+        </StackPanel>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type uiui:ConveyanceVM}">
+        <StackPanel Orientation="Horizontal" Style="{StaticResource styleItemPanel}">
+            <StackPanel.Resources>
+                <Style BasedOn="{StaticResource styleILTextBlock}" TargetType="TextBlock"/>
+                <Style BasedOn="{StaticResource styleILLabel}" TargetType="Label"/>
+            </StackPanel.Resources>
+            <uiui:ItemIcon DataContext="{Binding}"/>
+            <TextBlock Text="{Binding Path=Thing.Name}"/>
+            <TextBlock>
+                <Run Text="; LWH=" />
+                <Run Text="{Binding Path=Thing.Length}"/>
+                <Run Text="*" />
+                <Run Text="{Binding Path=Thing.Width}"/>
+                <Run Text="*" />
+                <Run Text="{Binding Path=Thing.Height}"/>
+                <Run Text="; Wt=" />
+                <Run Text="{Binding Path=Thing.Weight}"/>
+            </TextBlock>
+            <TextBlock Text="; (" />
+            <ContentControl Content="{Binding Path=Thing.ObjectMaterial}"/>
+            <TextBlock Text=")"></TextBlock>
+            <TextBlock Text="Size:" Margin="8,0,0,0"></TextBlock>
+            <TextBlock Text="{Binding Path=Thing.ObjectSizer.Size.Name}"></TextBlock>
+        </StackPanel>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type uiui:FlexibleFlatPanelVM}">
+        <StackPanel Orientation="Horizontal" Style="{StaticResource styleItemPanel}">
+            <StackPanel.Resources>
+                <Style BasedOn="{StaticResource styleILTextBlock}" TargetType="TextBlock"/>
+                <Style BasedOn="{StaticResource styleILLabel}" TargetType="Label"/>
+            </StackPanel.Resources>
+            <uiui:ItemIcon DataContext="{Binding}"/>
+            <TextBlock Text="{Binding Path=Thing.Name}"/>
+            <TextBlock>
+                <Run Text="; LWH=" />
+                <Run Text="{Binding Path=Thing.Length}"/>
+                <Run Text="*" />
+                <Run Text="{Binding Path=Thing.Width}"/>
+                <Run Text="*" />
+                <Run Text="{Binding Path=Thing.Height}"/>
+                <Run Text="; Wt=" />
+                <Run Text="{Binding Path=Thing.Weight}"/>
+            </TextBlock>
+            <TextBlock Text="; (" />
+            <ContentControl Content="{Binding Path=Thing.ObjectMaterial}"/>
+            <TextBlock Text=")"></TextBlock>
+            <TextBlock Text="Size:" Margin="8,0,0,0"></TextBlock>
+            <TextBlock Text="{Binding Path=Thing.ObjectSizer.Size.Name}"></TextBlock>
+        </StackPanel>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type uiui:HollowFurnishingLidVM}">
+        <StackPanel Orientation="Horizontal" Style="{StaticResource styleItemPanel}">
+            <StackPanel.Resources>
+                <Style BasedOn="{StaticResource styleILTextBlock}" TargetType="TextBlock"/>
+                <Style BasedOn="{StaticResource styleILLabel}" TargetType="Label"/>
+            </StackPanel.Resources>
+            <uiui:ItemIcon DataContext="{Binding}"/>
+            <TextBlock Text="{Binding Path=Thing.Name}"/>
+            <TextBlock>
+                <Run Text="; LWH=" />
+                <Run Text="{Binding Path=Thing.Length}"/>
+                <Run Text="*" />
+                <Run Text="{Binding Path=Thing.Width}"/>
+                <Run Text="*" />
+                <Run Text="{Binding Path=Thing.Height}"/>
+                <Run Text="; Wt=" />
+                <Run Text="{Binding Path=Thing.Weight}"/>
+            </TextBlock>
+            <TextBlock Text="; (" />
+            <ContentControl Content="{Binding Path=Thing.ObjectMaterial}"/>
+            <TextBlock Text=")"></TextBlock>
+            <TextBlock Text="Size:" Margin="8,0,0,0"></TextBlock>
+            <TextBlock Text="{Binding Path=Thing.ObjectSizer.Size.Name}"></TextBlock>
+        </StackPanel>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type uiui:HollowFurnishingVM}">
+        <StackPanel Orientation="Horizontal" Style="{StaticResource styleItemPanel}">
+            <StackPanel.Resources>
+                <Style BasedOn="{StaticResource styleILTextBlock}" TargetType="TextBlock"/>
+                <Style BasedOn="{StaticResource styleILLabel}" TargetType="Label"/>
+            </StackPanel.Resources>
+            <uiui:ItemIcon DataContext="{Binding}"/>
+            <TextBlock Text="{Binding Path=Thing.Name}"/>
+            <TextBlock>
+                <Run Text="; LWH=" />
+                <Run Text="{Binding Path=Thing.Length}"/>
+                <Run Text="*" />
+                <Run Text="{Binding Path=Thing.Width}"/>
+                <Run Text="*" />
+                <Run Text="{Binding Path=Thing.Height}"/>
+                <Run Text="; Wt=" />
+                <Run Text="{Binding Path=Thing.Weight}"/>
+            </TextBlock>
+            <TextBlock Text="; (" />
+            <ContentControl Content="{Binding Path=Thing.ObjectMaterial}"/>
+            <TextBlock Text=")"></TextBlock>
+            <TextBlock Text="Size:" Margin="8,0,0,0"></TextBlock>
+            <TextBlock Text="{Binding Path=Thing.ObjectSizer.Size.Name}"></TextBlock>
+        </StackPanel>
+    </DataTemplate>
+
+    <!-- Furniture -->
+    <DataTemplate DataType="{x:Type uiui:FurnishingVM}">
+        <StackPanel Orientation="Horizontal" Style="{StaticResource styleItemPanel}">
+            <StackPanel.Resources>
+                <Style BasedOn="{StaticResource styleILTextBlock}" TargetType="TextBlock"/>
+                <Style BasedOn="{StaticResource styleILLabel}" TargetType="Label"/>
+            </StackPanel.Resources>
+            <uiui:ItemIcon DataContext="{Binding}"/>
+            <TextBlock Text="{Binding Path=Thing.Name}" Margin="8,0,0,0"/>
+            <TextBlock>
+                <Run Text="; LWH=" />
+                <Run Text="{Binding Path=Thing.Length}"/>
+                <Run Text="*" />
+                <Run Text="{Binding Path=Thing.Width}"/>
+                <Run Text="*" />
+                <Run Text="{Binding Path=Thing.Height}"/>
+                <Run Text="; Wt=" />
+                <Run Text="{Binding Path=Thing.Weight}"/>
+            </TextBlock>
+            <TextBlock Text="; (" />
+            <ContentControl Content="{Binding Path=Thing.ObjectMaterial}"/>
+            <TextBlock Text=")"></TextBlock>
+        </StackPanel>
+
+    </DataTemplate>
+</ResourceDictionary>

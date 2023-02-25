@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Uzi.Ikosa.Movement.MovementAction" Collapsed="true">
+    <Position X="0.75" Y="0.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAMABgCKgCAQBGBAIAAEAAAQAgAEBAAAACBEAAgAA=</HashCode>
+      <FileName>Movement\Actions\MovementAction.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Uzi.Ikosa.Actions.Crawl" Collapsed="true">
+    <Position X="3.5" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAEAAAAAAAAARCAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Actions\Brief\Crawl.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Uzi.Ikosa.Movement.ContinueMove" Collapsed="true">
+    <Position X="2.75" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgIEAAAIAAAAASCAAAAAAAAAAAAQAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Movement\Actions\Continue\ContinueMove.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Uzi.Ikosa.Movement.JumpDown" Collapsed="true">
+    <Position X="4.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIEAAAAIAAAATCAAAAAAAAAAAAQAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Movement\Actions\JumpDown.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Uzi.Ikosa.Movement.ShiftPosition" Collapsed="true">
+    <Position X="5.75" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAEAAAAAgAAAQCAAAAAEAAAAAAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>Movement\Actions\ShiftPosition.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Uzi.Ikosa.Movement.StartCharge" Collapsed="true">
+    <Position X="8.75" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIEAAAAAAAAATGQAAAAAAAAAAAQABAQAAAAAAAgAA=</HashCode>
+      <FileName>Movement\Actions\Start\StartCharge.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Uzi.Ikosa.Movement.StartMove" Collapsed="true">
+    <Position X="2.75" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIEAAAAAAAAASGAAAAAAAAAAAAQAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Movement\Actions\Start\StartMove.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Uzi.Ikosa.Movement.StartRun" Collapsed="true">
+    <Position X="6.75" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIEAAAAAAAAATCAAAAAAAAAQAAQABAQAAAAAAAAAA=</HashCode>
+      <FileName>Movement\Actions\Start\StartRun.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Uzi.Ikosa.Movement.Tumble" Collapsed="true">
+    <Position X="2.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIEAAAAAAAAASCAAAAAAAAAAAAQAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Movement\Actions\Tumble.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Uzi.Ikosa.Movement.StartWithdraw" Collapsed="true">
+    <Position X="4.75" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIEAAAAAgAAATCAAAAAAAAAAAAQAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Movement\Actions\Start\StartWithdraw.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Uzi.Ikosa.Movement.ContinueLinearMove" Collapsed="true">
+    <Position X="8.75" Y="7.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAgAEAAAIAgAAAQGAAAAAAAAAQAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Movement\Actions\Continue\ContinueLinearMove.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Uzi.Ikosa.Movement.BullRush" Collapsed="true">
+    <Position X="8.5" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAEAAAAIAAAARERAAAAEAgAAAAIEAACAAAAAAAAAA=</HashCode>
+      <FileName>Movement\Actions\BullRush.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Uzi.Ikosa.Movement.BullRushFinisher" Collapsed="true">
+    <Position X="8.5" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAEAAAIIAAAARERAAAAEAgAAAAIEAACAAAAAAAgAA=</HashCode>
+      <FileName>Movement\Actions\BullRushFinisher.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Uzi.Ikosa.Movement.Overrun" Collapsed="true">
+    <Position X="8.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIEAAAAAAAAASGAAAAAAAAAAAAQEAAAAAAAAAAAAA=</HashCode>
+      <FileName>Movement\Actions\Overrun.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Uzi.Ikosa.Movement.HopUp" Collapsed="true">
+    <Position X="6.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIEAAAAIAAAATCAAAAAAAAAAAAQAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Movement\Actions\HopUp.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Uzi.Ikosa.Movement.MoveSubAct" Collapsed="true">
+    <Position X="0.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgIAAAAIAgAAACEAAAAAAAAAAAAQAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Movement\Actions\MoveSubAct.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

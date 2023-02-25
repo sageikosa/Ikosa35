@@ -1,0 +1,69 @@
+﻿<UserControl x:Class="Uzi.Ikosa.Client.UI.PrerequisiteList"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:ccontract="clr-namespace:Uzi.Core.Contracts;assembly=Uzi.Core.Contracts"
+             xmlns:uicui="clr-namespace:Uzi.Ikosa.Client.UI"
+             xmlns:proxyact="clr-namespace:Uzi.Ikosa.Proxy.IkosaSvc;assembly=Uzi.Ikosa.Proxy"
+             mc:Ignorable="d" 
+             d:DesignHeight="150" d:DesignWidth="300">
+    <UserControl.Resources>
+        <uicui:PrerequisiteItemSelector x:Key="slctPrereq">
+            <uicui:PrerequisiteItemSelector.AimTargetPrerequisiteTemplate>
+                <DataTemplate>
+                    <uicui:AimTargetPrerequisiteItem DataContext="{Binding}"/>
+                </DataTemplate>
+            </uicui:PrerequisiteItemSelector.AimTargetPrerequisiteTemplate>
+            <uicui:PrerequisiteItemSelector.CheckPrerequisiteTemplate>
+                <DataTemplate>
+                    <uicui:CheckPrerequisiteItem DataContext="{Binding}" />
+                </DataTemplate>
+            </uicui:PrerequisiteItemSelector.CheckPrerequisiteTemplate>
+            <uicui:PrerequisiteItemSelector.ChoicePrerequisiteTemplate>
+                <DataTemplate>
+                    <uicui:ChoicePrerequisiteItem DataContext="{Binding}"/>
+                </DataTemplate>
+            </uicui:PrerequisiteItemSelector.ChoicePrerequisiteTemplate>
+            <uicui:PrerequisiteItemSelector.CoreSelectPrerequisiteTemplate>
+                <DataTemplate>
+                    <uicui:CoreSelectPrerequisiteItem DataContext="{Binding}"/>
+                </DataTemplate>
+            </uicui:PrerequisiteItemSelector.CoreSelectPrerequisiteTemplate>
+            <uicui:PrerequisiteItemSelector.ReactivePrerequisiteTemplate>
+                <DataTemplate>
+                    <uicui:ReactivePrerequisiteItem DataContext="{Binding}"/>
+                </DataTemplate>
+            </uicui:PrerequisiteItemSelector.ReactivePrerequisiteTemplate>
+            <uicui:PrerequisiteItemSelector.OpportunisticPrerequisiteTemplate>
+                <DataTemplate>
+                    <uicui:OpportunisticPrerequisiteItem DataContext="{Binding}"/>
+                </DataTemplate>
+            </uicui:PrerequisiteItemSelector.OpportunisticPrerequisiteTemplate>
+            <uicui:PrerequisiteItemSelector.RollPrerequisiteTemplate>
+                <DataTemplate>
+                    <uicui:RollPrerequisiteItem DataContext="{Binding}" />
+                </DataTemplate>
+            </uicui:PrerequisiteItemSelector.RollPrerequisiteTemplate>
+            <uicui:PrerequisiteItemSelector.SavePrerequisiteTemplate>
+                <DataTemplate>
+                    <uicui:SavePrerequisiteItem DataContext="{Binding}" />
+                </DataTemplate>
+            </uicui:PrerequisiteItemSelector.SavePrerequisiteTemplate>
+        </uicui:PrerequisiteItemSelector>            
+    </UserControl.Resources>
+    
+    <!-- DataContext = ActorModel -->
+    <ItemsControl x:Name="itemsPrerequisites" ItemsSource="{Binding}">
+        <ItemsControl.ItemTemplate>
+            <DataTemplate DataType="{x:Type ccontract:PrerequisiteInfo}">
+                <GroupBox BorderBrush="Black" BorderThickness="1">
+                    <GroupBox.Header>
+                        <TextBlock Text="{Binding Path=Prerequisite.Name}" ToolTip="{Binding Path=Prerequisite.BindKey}"/>
+                    </GroupBox.Header>
+                    <ContentControl Content="{Binding}" ContentTemplateSelector="{StaticResource slctPrereq}" />
+                </GroupBox>
+            </DataTemplate>            
+        </ItemsControl.ItemTemplate>
+    </ItemsControl>
+</UserControl>

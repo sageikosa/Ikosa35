@@ -1,0 +1,158 @@
+﻿<Window x:Class="Uzi.Ikosa.UI.VariableValueEnablerDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:uiui="clr-namespace:Uzi.Ikosa.UI"
+        mc:Ignorable="d"
+        Title="Variable Value Enabler Edit" Height="450" Width="800">
+    <DockPanel LastChildFill="True">
+        <TextBlock DockPanel.Dock="Top" Text="Name"></TextBlock>
+        <TextBox DockPanel.Dock="Top" Margin="1" TabIndex="1" Padding="2"
+                 Text="{Binding Path=Name, UpdateSourceTrigger=PropertyChanged}"                  
+                 uiui:FocusExtension.IsFocused="True" VerticalAlignment="Center" 
+                 x:Name="txtName"/>
+        <DockPanel DockPanel.Dock="Bottom" LastChildFill="False">
+            <Button DockPanel.Dock="Right" Content="Cancel" Margin="2" MinWidth="72" 
+                    x:Name="btnCancel" Command="{Binding Path=CancelEditCommand}" IsCancel="True" />
+            <Button DockPanel.Dock="Right" Content="OK" Margin="2" MinWidth="72" 
+                    x:Name="btnOK" Command="{Binding Path=DoEditCommand}" IsDefault="True"/>
+        </DockPanel>
+        <uiui:DescriptionVMEditor x:Name="editDescription" 
+                                  DataContext="{Binding Path=Description}"
+                                  DockPanel.Dock="Top" MinHeight="144" Margin="1,2" />
+        <ContentControl DockPanel.Dock="Top"
+                        Content="{Binding}">
+            <ContentControl.Resources>
+                <DataTemplate DataType="{x:Type uiui:EditInfoKeyValueEnablerCommands}">
+                    <DockPanel >
+                        <TextBlock DockPanel.Dock="Top" Text="Module"></TextBlock>
+                        <ComboBox DockPanel.Dock="Top" ItemsSource="{Binding Path=Modules}" SelectedItem="{Binding Path=SelectedModule}">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Path=Name}"/>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                        <TextBlock DockPanel.Dock="Top" Text="InfoKey"></TextBlock>
+                        <ListBox ItemsSource="{Binding Path=InfoKeys}" SelectedItem="{Binding Path=SelectedInfoKey}">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Path=Name}"></TextBlock>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </DockPanel>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type uiui:EditVariableValueEnablerCommands}">
+                    <DockPanel >
+                        <TextBlock DockPanel.Dock="Top" Text="Module"></TextBlock>
+                        <ComboBox DockPanel.Dock="Top" ItemsSource="{Binding Path=Modules}" SelectedItem="{Binding Path=SelectedModule}">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Path=Name}"/>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                        <TextBlock DockPanel.Dock="Top" Text="Variable"></TextBlock>
+                        <ComboBox DockPanel.Dock="Top" ItemsSource="{Binding Path=Variables}" SelectedItem="{Binding Path=SelectedVariable}">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Path=Name}"></TextBlock>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                        <TextBlock DockPanel.Dock="Top" Text="Value"></TextBlock>
+                        <ListBox ItemsSource="{Binding Path=Values}" SelectedItem="{Binding Path=SelectedValue}">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Path=Description.Message}"></TextBlock>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </DockPanel>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type uiui:EditItemValueEnablerCommands}">
+                    <DockPanel>
+                        <DockPanel DockPanel.Dock="Left">
+                            <TextBlock DockPanel.Dock="Top" Text="Module"></TextBlock>
+                            <ComboBox DockPanel.Dock="Top" x:Name="cboModules"
+                                      ItemsSource="{Binding Path=Modules}" 
+                                      SelectedItem="{Binding Path=SelectedModule}">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Path=Name}"/>
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+                            <TextBlock DockPanel.Dock="Top" Text="Available Items"></TextBlock>
+                            <ListBox x:Name="lstResolvable"
+                                     ItemsSource="{Binding Path=ItemElements}">
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate DataType="{x:Type uiui:ItemElementVM}">
+                                        <StackPanel Orientation="Horizontal">
+                                            <uiui:ItemIcon DataContext="{Binding Path=ObjectPresentation}"/>
+                                            <TextBlock Text="{Binding Path=Name}" VerticalAlignment="Center">
+                                                <TextBlock.ToolTip>
+                                                    <ItemsControl ItemsSource="{Binding Path=Description.IndexedDescriptions}" >
+                                                        <ItemsControl.ItemTemplate>
+                                                            <DataTemplate>
+                                                                <TextBlock>
+                                                                    <Run Text="-"></Run>
+                                                                    <Run Text="{Binding Path=Description}"/>
+                                                                </TextBlock>
+                                                            </DataTemplate>
+                                                        </ItemsControl.ItemTemplate>
+                                                    </ItemsControl>
+                                                </TextBlock.ToolTip>
+                                            </TextBlock>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
+                            </ListBox>
+                        </DockPanel>
+                        <StackPanel DockPanel.Dock="Left" VerticalAlignment="Center" Margin="4,0">
+                            <Button Command="{Binding Path=AddItemCommand}" Content="Add &gt;&gt;"
+                                    CommandParameter="{Binding ElementName=lstResolvable, Path=SelectedItem}">
+                            </Button>
+                            <Button Command="{Binding Path=RemoveItemCommand}" Content="&lt;&lt; Remove"
+                                    CommandParameter="{Binding ElementName=lstRequired, Path=SelectedItem}">
+                            </Button>
+                        </StackPanel>
+                        <DockPanel>
+                            <TextBlock DockPanel.Dock="Top" Text="Required Items"></TextBlock>
+                            <ListBox x:Name="lstRequired" 
+                                     ItemsSource="{Binding Path=RequiredItems}">
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate DataType="{x:Type uiui:ItemElementVM}">
+                                        <StackPanel Orientation="Horizontal">
+                                            <uiui:ItemIcon DataContext="{Binding Path=ObjectPresentation}"/>
+                                            <TextBlock VerticalAlignment="Center">
+                                                <TextBlock.ToolTip>
+                                                    <ItemsControl ItemsSource="{Binding Path=Description.IndexedDescriptions}" >
+                                                        <ItemsControl.ItemTemplate>
+                                                            <DataTemplate>
+                                                                <TextBlock>
+                                                                    <Run Text="-"></Run>
+                                                                    <Run Text="{Binding Path=Description}"/>
+                                                                </TextBlock>
+                                                            </DataTemplate>
+                                                        </ItemsControl.ItemTemplate>
+                                                    </ItemsControl>
+                                                </TextBlock.ToolTip>
+                                                <Run Text="{Binding Path=Name, Mode=OneWay}"/>
+                                                <Run Text="(" xml:space="preserve"/>
+                                                <Run Text="{Binding Path=Module.Name, Mode=OneWay}" xml:space="preserve"/>
+                                                <Run Text=")" xml:space="preserve"/>
+                                            </TextBlock>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
+                            </ListBox>
+                        </DockPanel>
+                    </DockPanel>
+                </DataTemplate>
+            </ContentControl.Resources>
+        </ContentControl>
+    </DockPanel>
+</Window>

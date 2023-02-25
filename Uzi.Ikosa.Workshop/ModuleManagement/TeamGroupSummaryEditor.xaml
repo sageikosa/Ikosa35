@@ -1,0 +1,185 @@
+﻿<UserControl x:Class="Uzi.Ikosa.Workshop.TeamGroupSummaryEditor"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:uiui="clr-namespace:Uzi.Ikosa.UI;assembly=Uzi.Ikosa.UI"
+             xmlns:ikosa="clr-namespace:Uzi.Ikosa;assembly=Uzi.Ikosa"
+             xmlns:local="clr-namespace:Uzi.Ikosa.Workshop"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="100,*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="50,*"/>
+            <ColumnDefinition Width="2,*"/>
+            <ColumnDefinition Width="50,*"/>
+        </Grid.ColumnDefinitions>
+        <TextBlock Text="Team Groups" Grid.Column="0" Grid.Row="0"/>
+        <ContentControl Grid.Row="1" Grid.Column="0" 
+                        Content="{Binding Path=Commands}">
+            <ContentControl.Resources>
+                <DataTemplate DataType="{x:Type uiui:AddRemoveCommands}">
+                    <StackPanel Grid.Row="2" Grid.Column="0" Orientation="Horizontal" FocusManager.IsFocusScope="True">
+                        <Button Width="72" Height="24" Margin="1" Content="Add" Command="{Binding Path=AddCommand}" TabIndex="0"/>
+                        <Button Width="72" Height="24" Margin="1" Content="Remove" Command="{Binding Path=RemoveCommand}" TabIndex="1"
+                                CommandParameter="{Binding ElementName=lstTeams,Path=SelectedItem}"/>
+                    </StackPanel>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type uiui:AddTeamGroupSummaryCommands}">
+                    <DockPanel Grid.Row="2" Grid.Column="0" LastChildFill="True" FocusManager.IsFocusScope="True">
+                        <Button Width="72" Height="24" Margin="1" Content="Cancel" DockPanel.Dock="Left" TabIndex="0"
+                                IsCancel="True"
+                                Command="{Binding Path=CancelAddCommand}"/>
+                        <Button Width="72" Height="24" Margin="1" Content="DoAdd" DockPanel.Dock="Right" TabIndex="2"
+                                IsDefault="True"
+                                Command="{Binding Path=DoAddCommand}"/>
+                        <TextBox Margin="1" Text="{Binding Path=TeamGroupName, UpdateSourceTrigger=PropertyChanged}" TabIndex="1"
+                                 uiui:FocusExtension.IsFocused="True" Height="24"
+                                 x:Name="txtTeamName"/>
+                    </DockPanel>
+                </DataTemplate>
+            </ContentControl.Resources>
+        </ContentControl>
+        <ListBox Grid.Row="2" Grid.Column="0" x:Name="lstTeams" 
+                 SelectedItem="{Binding Path=SelectedTeamGroup}"
+                 ItemsSource="{Binding Path=TeamGroups}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Path=TeamGroupSummary.TeamName}"></TextBlock>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <TextBlock Text="Attitudes" Grid.Column="2" Grid.Row="0"/>
+        <ContentControl Grid.Row="1" Grid.Column="2" MinHeight="80"
+                        DataContext="{Binding Path=SelectedTeamGroup}"
+                        Content="{Binding Path=Commands}">
+            <ContentControl.Resources>
+                <DataTemplate DataType="{x:Type uiui:AddRemoveEditCommands}">
+                    <StackPanel Grid.Row="2" Grid.Column="0" Orientation="Horizontal" FocusManager.IsFocusScope="True">
+                        <Button Width="72" Height="24" Margin="1" Content="Add" Command="{Binding Path=AddCommand}" TabIndex="0"/>
+                        <Button Width="72" Height="24" Margin="1" Content="Remove" Command="{Binding Path=RemoveCommand}" TabIndex="1"
+                                CommandParameter="{Binding ElementName=lstAttitudes,Path=SelectedItem}"/>
+                        <Button Width="72" Height="24" Margin="1" Content="Edit" Command="{Binding Path=EditCommand}" TabIndex="2"
+                                CommandParameter="{Binding ElementName=lstAttitudes,Path=SelectedItem}"/>
+                    </StackPanel>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type uiui:AddTeamGroupAttitudeCommands}">
+                    <DockPanel Grid.Row="2" Grid.Column="0" LastChildFill="True" FocusManager.IsFocusScope="True">
+                        <Button Width="72" MinHeight="24" HorizontalAlignment="Stretch" Margin="1" Content="Cancel" DockPanel.Dock="Left" 
+                                TabIndex="0" IsCancel="True"
+                                Command="{Binding Path=CancelAddCommand}"/>
+                        <Button Width="72" MinHeight="24" HorizontalAlignment="Stretch" Margin="1" Content="Do Add" DockPanel.Dock="Right" 
+                                TabIndex="5" IsDefault="True"
+                                Command="{Binding Path=DoAddCommand}"/>
+                        <Grid >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <TextBlock Grid.Row="0" Grid.Column="0" Margin="1" HorizontalAlignment="Right"
+                                       Text="Team"/>
+                            <TextBlock Grid.Row="1" Grid.Column="0" Margin="1" HorizontalAlignment="Right"
+                                       Text="Description"/>
+                            <TextBlock Grid.Row="2" Grid.Column="0" Margin="1" HorizontalAlignment="Right"
+                                       Text="Attitude"/>
+                            <ComboBox Grid.Row="0" Grid.Column="1" Margin="1" TabIndex="1"
+                                      SelectedItem="{Binding Path=SelectedTeamGroup}"
+                                      ItemsSource="{Binding Path=TargetGroups}" DisplayMemberPath="TeamName">
+                            </ComboBox>
+                            <TextBox Grid.Row="1" Grid.Column="1" Margin="1" TabIndex="2"
+                                     Text="{Binding Path=Description, UpdateSourceTrigger=PropertyChanged}"
+                                     uiui:FocusExtension.IsFocused="True"
+                                     x:Name="txtDescription"/>
+                            <ComboBox Grid.Row="2" Grid.Column="1" Margin="1" SelectedItem="{Binding Path=Attitude}" TabIndex="3">
+                                <ikosa:Attitude>Hostile</ikosa:Attitude>
+                                <ikosa:Attitude>Unfriendly</ikosa:Attitude>
+                                <ikosa:Attitude>Unbiased</ikosa:Attitude>
+                                <ikosa:Attitude>Friendly</ikosa:Attitude>
+                                <ikosa:Attitude>Helpful</ikosa:Attitude>
+                                <ikosa:Attitude>Fanatic</ikosa:Attitude>
+                            </ComboBox>
+                            <CheckBox Grid.Row="3" Grid.Column="1" Margin="1" IsChecked="{Binding Path=IsConstituted}" 
+                                      TabIndex="4" Content="Constituted"/>
+                        </Grid>
+                    </DockPanel>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type uiui:EditTeamGroupAttitudeCommands}">
+                    <DockPanel Grid.Row="2" Grid.Column="0" LastChildFill="True" FocusManager.IsFocusScope="True">
+                        <Button Width="72" MinHeight="24" HorizontalAlignment="Stretch" Margin="1" Content="Cancel" DockPanel.Dock="Left" TabIndex="0"
+                                IsCancel="True"
+                                Command="{Binding Path=CancelEditCommand}"/>
+                        <Button Width="72" MinHeight="24" HorizontalAlignment="Stretch" Margin="1" Content="Do Edit" DockPanel.Dock="Right" TabIndex="2"
+                                IsDefault="True"
+                                Command="{Binding Path=DoEditCommand}"/>
+                        <Grid >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <TextBlock Grid.Row="0" Grid.Column="0" Margin="1" HorizontalAlignment="Right"
+                                       Text="Team"/>
+                            <TextBlock Grid.Row="1" Grid.Column="0" Margin="1" HorizontalAlignment="Right"
+                                       Text="Description"/>
+                            <TextBlock Grid.Row="2" Grid.Column="0" Margin="1" HorizontalAlignment="Right"
+                                       Text="Attitude"/>
+                            <TextBlock Grid.Row="0" Grid.Column="1" Margin="1" 
+                                       Text="{Binding Path=TeamGroupAttitude.TargetTeam.Name}">
+                            </TextBlock>
+                            <TextBox Grid.Row="1" Grid.Column="1" Margin="1"
+                                     Text="{Binding Path=Description, UpdateSourceTrigger=PropertyChanged}" TabIndex="1"
+                                     uiui:FocusExtension.IsFocused="True"
+                                     x:Name="txtDescription"/>
+                            <ComboBox Grid.Row="2" Grid.Column="1" Margin="1" SelectedItem="{Binding Path=Attitude}">
+                                <ikosa:Attitude>Hostile</ikosa:Attitude>
+                                <ikosa:Attitude>Unfriendly</ikosa:Attitude>
+                                <ikosa:Attitude>Unbiased</ikosa:Attitude>
+                                <ikosa:Attitude>Friendly</ikosa:Attitude>
+                                <ikosa:Attitude>Helpful</ikosa:Attitude>
+                                <ikosa:Attitude>Fanatic</ikosa:Attitude>
+                            </ComboBox>
+                            <CheckBox Grid.Row="3" Grid.Column="1" Margin="1" IsChecked="{Binding Path=IsConstituted}" Content="Constituted"/>
+                        </Grid>
+                    </DockPanel>
+                </DataTemplate>
+            </ContentControl.Resources>
+        </ContentControl>
+        <ListBox Grid.Row="2" Grid.Column="2" x:Name="lstAttitudes" 
+                 DataContext="{Binding Path=SelectedTeamGroup}" 
+                 ItemsSource="{Binding Path=Attitudes}">
+            <ListBox.ItemTemplate>
+                <DataTemplate DataType="{x:Type uiui:TeamGroupAttitudeVM}">
+                    <Border Background="LightYellow" Margin="1" BorderBrush="DarkGray" BorderThickness="1">
+                        <StackPanel Margin="1">
+                            <TextBlock>
+                                <Run Text="Towards"/>
+                                <Run Text="{Binding Path=TargetTeam.Name, Mode=OneWay}" FontWeight="Bold"/>
+                            </TextBlock>
+                            <TextBlock >
+                                <Run Text="is"/> <Run Text="{Binding Path=Constituted, Mode=OneWay}"/>
+                                <Run Text="{Binding Path=TeamAttitude.Attitude}" FontStyle="Italic" />
+                                <Run Text="(" xml:space="preserve"/><Run Text="{Binding Path=TeamAttitude.Description}" /><Run Text=")" xml:space="preserve"/>
+                            </TextBlock>
+                        </StackPanel>
+                    </Border>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+    </Grid>
+</UserControl>

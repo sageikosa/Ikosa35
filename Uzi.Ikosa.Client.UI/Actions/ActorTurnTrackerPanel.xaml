@@ -1,0 +1,40 @@
+﻿<UserControl x:Class="Uzi.Ikosa.Client.UI.ActorTurnTrackerPanel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Uzi.Ikosa.Client.UI"
+             xmlns:uic="clr-namespace:Uzi.Ikosa.Contracts;assembly=Uzi.Ikosa.Contracts"
+             xmlns:uich="clr-namespace:Uzi.Ikosa.Contracts.Host;assembly=Uzi.Ikosa.Contracts"
+             xmlns:uicui="clr-namespace:Uzi.Ikosa.Client.UI"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <uicui:BoolVisibilityConverter x:Key="bvcCollapse" TrueMode="Visible" FalseMode="Collapsed"></uicui:BoolVisibilityConverter>
+        <uicui:BoolVisibilityConverter x:Key="bvcHidden" TrueMode="Visible" FalseMode="Hidden"></uicui:BoolVisibilityConverter>
+        <DataTemplate DataType="{x:Type uich:CreatureLoginInfo}">
+            <Border Margin="2" BorderBrush="Black" CornerRadius="1" BorderThickness="0.5" Padding="1">
+                <Image Source="{Binding Path=Portrait.Image}" Stretch="Uniform" Width="48" Height="48"></Image>
+            </Border>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type uic:LocalActionBudgetInfo}">
+            <ContentControl Content="{Binding Path=CreatureLoginInfo}"></ContentControl>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type uic:TickInfo}">
+            <Border Background="Azure" BorderBrush="Black" BorderThickness="0.5">
+                <ContentControl Content="{Binding Path=Budgets}"/>
+            </Border>
+        </DataTemplate>
+    </UserControl.Resources>
+    <ItemsControl ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                  DataContext="{Binding Path=TurnTracker}" 
+                  ItemsSource="{Binding Path=UpcomingBudgets}">
+        <ItemsControl.ItemsPanel>
+            <ItemsPanelTemplate>
+                <WrapPanel IsItemsHost="True">
+
+                </WrapPanel>
+            </ItemsPanelTemplate>
+        </ItemsControl.ItemsPanel>
+    </ItemsControl>
+</UserControl>

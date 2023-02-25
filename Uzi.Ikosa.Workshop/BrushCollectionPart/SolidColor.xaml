@@ -1,0 +1,41 @@
+﻿<Window x:Class="Uzi.Ikosa.Workshop.SolidColor"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:wx="clr-namespace:Xceed.Wpf.Toolkit;assembly=Xceed.Wpf.Toolkit"
+        xmlns:shop="clr-namespace:Uzi.Ikosa.Workshop"
+        ResizeMode="NoResize" WindowStyle="ToolWindow" WindowStartupLocation="CenterOwner"
+        Title="Solid Color" SizeToContent="WidthAndHeight">
+    <Window.CommandBindings>
+        <CommandBinding x:Name="cbOK" Command="{x:Static shop:SolidColor.OKCommand}"
+                        CanExecute="cbOK_CanExecute" Executed="cbOK_Executed"/>
+    </Window.CommandBindings>
+    <Window.Resources>
+        <ResourceDictionary Source="/Uzi.Ikosa.UI;Component/themes/generic.xaml">
+        </ResourceDictionary>
+    </Window.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition />
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Label x:Name="lblBrushKey" Content="Name"/>
+        <TextBox Grid.Column="1" x:Name="txtBrushKey" Margin="2"/>
+        <wx:ColorCanvas x:Name="cpSolid" Grid.Row="1" Grid.Column="1" Margin="2" UsingAlphaChannel="True"/>
+        <DockPanel Grid.Row="2" Grid.ColumnSpan="2" LastChildFill="False">
+            <DockPanel.Resources>
+                <Style TargetType="Button">
+                    <Setter Property="DockPanel.Dock" Value="Right"/>
+                    <Setter Property="MinWidth" Value="72"/>
+                    <Setter Property="Margin" Value="2,1"/>
+                </Style>
+            </DockPanel.Resources>
+            <Button IsCancel="True" Content="Cancel" x:Name="btnCancel" Click="btnCancel_Click"/>
+            <Button IsDefault="True" Content="OK" Command="{x:Static shop:SolidColor.OKCommand}"/>
+        </DockPanel >
+    </Grid>
+</Window>

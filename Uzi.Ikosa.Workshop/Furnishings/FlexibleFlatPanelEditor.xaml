@@ -1,0 +1,213 @@
+﻿<UserControl x:Class="Uzi.Ikosa.Workshop.FlexibleFlatPanelEditor"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:ikosamaterials="clr-namespace:Uzi.Ikosa.Items.Materials;assembly=Uzi.Ikosa"
+             xmlns:tactical="clr-namespace:Uzi.Ikosa.Tactical;assembly=Uzi.Ikosa"
+             xmlns:uio="clr-namespace:Uzi.Ikosa.Objects;assembly=Uzi.Ikosa"
+             xmlns:local="clr-namespace:Uzi.Ikosa.Workshop"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.Resources>
+            <DataTemplate x:Key="tmplHeader">
+                <Label Background="LightCyan" Content="{Binding}"/>
+            </DataTemplate>
+            <Style TargetType="Border">
+                <Setter Property="Margin" Value="2"/>
+                <Setter Property="BorderBrush" Value="DarkGray"/>
+                <Setter Property="BorderThickness" Value="1"/>
+                <Setter Property="CornerRadius" Value="4"/>
+            </Style>
+            <Style TargetType="HeaderedContentControl">
+                <Setter Property="Margin" Value="2"/>
+                <Setter Property="HeaderTemplate" Value="{StaticResource tmplHeader}"/>
+            </Style>
+            <Style TargetType="TextBox" x:Key="styleText">
+                <Setter Property="Margin" Value="2"/>
+                <Style.Triggers>
+                    <Trigger Property="Tag" Value="Invalid">
+                        <Setter Property="Background" Value="LightSalmon"/>
+                        <Setter Property="ToolTip.Content" Value="Invalid value"/>
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+            <Style TargetType="TextBox" x:Key="intCheck" BasedOn="{StaticResource styleText}">
+                <Setter Property="Margin" Value="2"/>
+                <EventSetter Event="TextChanged" Handler="txtInt_TextChanged"/>
+            </Style>
+            <Style TargetType="TextBox" x:Key="dblSizeCheck" BasedOn="{StaticResource styleText}">
+                <Setter Property="Margin" Value="2"/>
+                <EventSetter Event="TextChanged" Handler="txtDblSize_TextChanged"/>
+            </Style>
+        </Grid.Resources>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <Border Grid.Row="0" Grid.Column="0">
+            <HeaderedContentControl Header="Flex-Flat-Panel Properties" 
+                                    DataContext="{Binding Path=FlexibleFlatPanel}">
+                <HeaderedContentControl.Resources>
+                    <Style TargetType="TextBox">
+                        <Setter Property="Margin" Value="2"/>
+                    </Style>
+                    <Style TargetType="Slider">
+                        <Setter Property="Orientation" Value="Horizontal" />
+                        <Setter Property="AutoToolTipPlacement" Value="BottomRight"/>
+                    </Style>
+                </HeaderedContentControl.Resources>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Row="0" Content="Name"/>
+                    <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding Path=Name}"/>
+                    <Label Grid.Row="0" Grid.Column="2" Content="Weight"/>
+                    <TextBlock Grid.Column="3" Grid.Row="0" VerticalAlignment="Center" Text="{Binding Path=Weight}"/>
+                    <Label Grid.Row="1" Content="ID"/>
+                    <TextBox Grid.Column="1" Grid.Row="1" IsReadOnly="True" Text="{Binding Path=ID}"/>
+                </Grid>
+            </HeaderedContentControl>
+        </Border>
+        <Border Grid.Row="0" Grid.Column="1">
+            <HeaderedContentControl Header="Model States" >
+                <HeaderedContentControl.Resources>
+                    <Style TargetType="TextBox">
+                        <Setter Property="Margin" Value="2"/>
+                    </Style>
+                </HeaderedContentControl.Resources>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Column="0" Grid.Row="0" Content="Flat Model"/>
+                    <Label Grid.Column="0" Grid.Row="1" Content="Folded Model"/>
+                    <Label Grid.Column="0" Grid.Row="2" Content="Rolled Model"/>
+                    <Label Grid.Column="0" Grid.Row="3" Content="Balled Model"/>
+                    <ComboBox Grid.Column="1" Grid.Row="0" x:Name="cboFlatModelKeys" 
+                                ItemsSource="{Binding Path=ResolvableModels}"
+                                DisplayMemberPath="Model3DPart.Name" SelectedValuePath="Model3DPart.Name" 
+                                SelectedValue="{Binding Path=FlexibleFlatPanel.FlatModelKey}"></ComboBox>
+                    <ComboBox Grid.Column="1" Grid.Row="1" x:Name="cboFoldedModelKeys" 
+                                ItemsSource="{Binding Path=ResolvableModels}"
+                                DisplayMemberPath="Model3DPart.Name" SelectedValuePath="Model3DPart.Name" 
+                                SelectedValue="{Binding Path=FlexibleFlatPanel.FoldedModelKey}"></ComboBox>
+                    <ComboBox Grid.Column="1" Grid.Row="2" x:Name="cboRolledModelKeys" 
+                                ItemsSource="{Binding Path=ResolvableModels}"
+                                DisplayMemberPath="Model3DPart.Name" SelectedValuePath="Model3DPart.Name" 
+                                SelectedValue="{Binding Path=FlexibleFlatPanel.RolledModelKey}"></ComboBox>
+                    <ComboBox Grid.Column="1" Grid.Row="3" x:Name="cboBalledModelKeys" 
+                                ItemsSource="{Binding Path=ResolvableModels}"
+                                DisplayMemberPath="Model3DPart.Name" SelectedValuePath="Model3DPart.Name" 
+                                SelectedValue="{Binding Path=FlexibleFlatPanel.BalledModelKey}"></ComboBox>
+                </Grid>
+            </HeaderedContentControl>
+        </Border>
+        <Border Grid.Row="1" Grid.ColumnSpan="2">
+            <HeaderedContentControl Header="Object Properties">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Column="0" Grid.Row="0" Content="Width"/>
+                    <Label Grid.Column="0" Grid.Row="1" Content="Height"/>
+                    <Label Grid.Column="0" Grid.Row="2" Content="Length"/>
+                    <Label Grid.Column="0" Grid.Row="3" Content="Weight"/>
+                    <Label Grid.Column="2" Grid.Row="0" Content="Max Struct Pts"/>
+                    <Label Grid.Column="2" Grid.Row="1" Content="Structure Pts"/>
+                    <Label Grid.Column="2" Grid.Row="2" Content="Material"/>
+                    <Label Grid.Column="2" Grid.Row="3" Content="Flex-State"/>
+                    <Label Grid.Column="4" Grid.Row="1" Content="Concealment"/>
+                    <Label Grid.Column="4" Grid.Row="2" Content="Opacity"/>
+                    <Label Grid.Column="4" Grid.Row="3" Content="Sound Difficulty"/>
+                    <Label Grid.Column="6" Grid.Row="0" Content="Blocks Effect"/>
+                    <Label Grid.Column="6" Grid.Row="1" Content="Blocks Detect"/>
+                    <Label Grid.Column="6" Grid.Row="2" Content="Blocks Spread"/>
+                    <TextBox Grid.Column="1" Grid.Row="0" Style="{StaticResource dblSizeCheck}" x:Name="txtWidth"/>
+                    <TextBox Grid.Column="1" Grid.Row="1" Style="{StaticResource dblSizeCheck}" x:Name="txtHeight"/>
+                    <TextBox Grid.Column="1" Grid.Row="2" Style="{StaticResource dblSizeCheck}" x:Name="txtLength"/>
+                    <TextBox Grid.Column="1" Grid.Row="3" Style="{StaticResource dblSizeCheck}" x:Name="txtWeight"/>
+                    <TextBox Grid.Column="3" Grid.Row="0" Style="{StaticResource intCheck}" x:Name="txtMaxStruct"/>
+                    <TextBox Grid.Column="3" Grid.Row="1" Style="{StaticResource intCheck}" x:Name="txtStructure"/>
+                    <ComboBox Grid.Column="3" Grid.Row="2" DisplayMemberPath="Name" x:Name="cboMaterial" 
+                              SelectionChanged="cboMaterial_SelectionChanged">
+                        <ikosamaterials:AdamantineMaterial />
+                        <ikosamaterials:BoneMaterial/>
+                        <ikosamaterials:ClothMaterial/>
+                        <ikosamaterials:ColdIronMaterial/>
+                        <ikosamaterials:GlassMaterial/>
+                        <ikosamaterials:GoldPlatingMaterial/>
+                        <ikosamaterials:HideMaterial/>
+                        <ikosamaterials:IceMaterial/>
+                        <ikosamaterials:IronMaterial/>
+                        <ikosamaterials:LeatherMaterial/>
+                        <ikosamaterials:MithralMaterial/>
+                        <ikosamaterials:PaperMaterial/>
+                        <ikosamaterials:RopeMaterial/>
+                        <ikosamaterials:SilverPlatingMaterial/>
+                        <ikosamaterials:SteelMaterial/>
+                        <ikosamaterials:StoneMaterial/>
+                        <ikosamaterials:WoodMaterial/>
+                    </ComboBox>
+                    <ComboBox Grid.Column="3" Grid.Row="3" x:Name="cboFlexState" 
+                              SelectionChanged="cboFlexState_SelectionChanged">
+                        <uio:FlexibleFlatState>Flat</uio:FlexibleFlatState>
+                        <uio:FlexibleFlatState>Folded</uio:FlexibleFlatState>
+                        <uio:FlexibleFlatState>Rolled</uio:FlexibleFlatState>
+                        <uio:FlexibleFlatState>Balled</uio:FlexibleFlatState>
+                    </ComboBox>
+                    <ComboBox Grid.Column="5" Grid.Row="1" x:Name="cboConcealment" 
+                              SelectionChanged="cboConcealment_SelectionChanged">
+                        <tactical:CoverConcealmentResult>None</tactical:CoverConcealmentResult>
+                        <tactical:CoverConcealmentResult>Partial</tactical:CoverConcealmentResult>
+                        <tactical:CoverConcealmentResult>Total</tactical:CoverConcealmentResult>
+                    </ComboBox>
+                    <TextBox Grid.Column="5" Grid.Row="3" Style="{StaticResource intCheck}" 
+                             x:Name="txtSoundDifficulty"/>
+                    <CheckBox Grid.Column="7" Grid.Row="0" 
+                              DataContext="{Binding Path=FlexibleFlatPanel}" 
+                              IsChecked="{Binding Path=BlocksEffect}"/>
+                    <CheckBox Grid.Column="7" Grid.Row="1" 
+                              DataContext="{Binding Path=FlexibleFlatPanel}" 
+                              IsChecked="{Binding Path=BlocksDetect}"/>
+                </Grid>
+            </HeaderedContentControl>
+        </Border>
+    </Grid>
+</UserControl>

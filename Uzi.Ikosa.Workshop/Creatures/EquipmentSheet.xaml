@@ -1,0 +1,119 @@
+﻿<UserControl x:Class="Uzi.Ikosa.Workshop.EquipmentSheet"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:shop="clr-namespace:Uzi.Ikosa.Workshop"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <DockPanel>
+        <DockPanel.Resources>
+            <ResourceDictionary>
+                <ResourceDictionary.MergedDictionaries>
+                    <ResourceDictionary Source="/Items/ItemListTemplates.xaml"/>
+                </ResourceDictionary.MergedDictionaries>
+                <Style TargetType="TextBlock" x:Key="styleTextBlockHover">
+                    <Setter Property="Background" Value="LightGray"/>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter Property="Background" Value="Cyan"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </ResourceDictionary>
+        </DockPanel.Resources>
+        <DockPanel.CommandBindings>
+            <CommandBinding x:Name="bndSlotItemCommand" Command="{x:Static shop:EquipmentSheet.SlotItemCommand}"
+                            CanExecute="bndSlotItemCommand_CanExecute" Executed="bndSlotItemCommand_Executed"/>
+            <CommandBinding x:Name="bndUnslotItemCommand" Command="{x:Static shop:EquipmentSheet.UnslotItemCommand}"
+                            CanExecute="bndUnslotItemCommand_CanExecute" Executed="bndUnslotItemCommand_Executed"/>
+            <CommandBinding x:Name="bndDoubleSlotItemCommand" Command="{x:Static shop:EquipmentSheet.DoubleSlotItemCommand}"
+                            CanExecute="bndDoubleSlotItemCommand_CanExecute" Executed="bndDoubleSlotItemCommand_Executed"/>
+            <CommandBinding x:Name="bndHoldItemCommand" Command="{x:Static shop:EquipmentSheet.HoldItemCommand}"
+                            CanExecute="bndHoldItemCommand_CanExecute" Executed="bndHoldItemCommand_Executed"/>
+            <CommandBinding x:Name="bndSwapMainCommand" Command="{x:Static shop:EquipmentSheet.SwapMainHeadCommand}"
+                            CanExecute="bndSwapMainCommand_CanExecute" Executed="bndSwapMainCommand_Executed"/>
+            <CommandBinding x:Name="bndUseDoubleCommand" Command="{x:Static shop:EquipmentSheet.UseDoubleCommand}"
+                            CanExecute="bndUseDoubleCommand_CanExecute" Executed="bndUseDoubleCommand_Executed"/>
+            <CommandBinding x:Name="bndUseTwoHandedCommand" Command="{x:Static shop:EquipmentSheet.UseTwoHandedCommand}"
+                            CanExecute="bndUseTwoHandedCommand_CanExecute" Executed="bndUseTwoHandedCommand_Executed"/>
+            <CommandBinding x:Name="cbMountItemCommand" Command="{x:Static shop:EquipmentSheet.MountItemCommand}"
+                            CanExecute="cbMountItemCommand_CanExecute" Executed="cbMountItemCommand_Executed"/>
+            <CommandBinding x:Name="cbUnmountItemCommand" Command="{x:Static shop:EquipmentSheet.UnmountItemCommand}"
+                            CanExecute="cbUnmountItemCommand_CanExecute" Executed="cbUnmountItemCommand_Executed"/>
+        </DockPanel.CommandBindings>
+        <!-- Carrying Capacity and Encumberance -->
+        <HeaderedContentControl x:Name="grpCarrying" Style="{StaticResource sheetGroup}" 
+                                DataContext="{Binding Path=Thing}"
+                                DockPanel.Dock="Top" Header="Carrying">
+            <Grid>
+                <Grid.Resources>
+                    <Style TargetType="TextBlock">
+                        <Setter Property="Margin" Value="0,2,8,2"/>
+                    </Style>
+                </Grid.Resources>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0" Grid.Column="0">Light Limit</TextBlock>
+                <TextBlock Grid.Row="1" Grid.Column="0">Med Limit</TextBlock>
+                <TextBlock Grid.Row="2" Grid.Column="0">Max Load</TextBlock>
+                <TextBlock Grid.Row="0" Grid.Column="2">Over Head</TextBlock>
+                <TextBlock Grid.Row="1" Grid.Column="2">Off Ground</TextBlock>
+                <TextBlock Grid.Row="2" Grid.Column="2">Push/Drag</TextBlock>
+                <TextBlock Grid.Row="0" Grid.Column="4">Curr Load</TextBlock>
+                <TextBlock Grid.Row="1" Grid.Column="4">Max Dex</TextBlock>
+                <TextBlock Grid.Row="2" Grid.Column="4">Check Pen</TextBlock>
+
+                <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding Path=CarryingCapacity.LightLoadLimit}"></TextBlock>
+                <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Path=CarryingCapacity.MediumLoadLimit}"></TextBlock>
+                <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding Path=CarryingCapacity.HeavyLoadLimit}"></TextBlock>
+                <TextBlock Grid.Row="0" Grid.Column="3" Text="{Binding Path=CarryingCapacity.LoadLiftOverHead}"></TextBlock>
+                <TextBlock Grid.Row="1" Grid.Column="3" Text="{Binding Path=CarryingCapacity.LoadLiftOffGround}"></TextBlock>
+                <TextBlock Grid.Row="2" Grid.Column="3" Text="{Binding Path=CarryingCapacity.LoadPushDrag}"></TextBlock>
+                <TextBlock Grid.Row="0" Grid.Column="5" Text="{Binding Path=ObjectLoad.Weight}"></TextBlock>
+                <TextBlock Grid.Row="1" Grid.Column="5" Text="{Binding Path=MaxDexterityToARBonus.Value}"></TextBlock>
+                <TextBlock Grid.Row="2" Grid.Column="5" Text="{Binding Path=EncumberanceCheck.Value}"></TextBlock>
+            </Grid>
+        </HeaderedContentControl>
+        <ListView ItemsSource="{Binding Path=ContextualItemSlots}">
+            <ListView.View>
+                <GridView>
+                    <GridView.Columns>
+                        <GridViewColumn Header="Type" DisplayMemberBinding="{Binding Path=ItemSlot.SlotType}"/>
+                        <GridViewColumn Header="SubType" DisplayMemberBinding="{Binding Path=ItemSlot.SubType}"/>
+                        <GridViewColumn Header="Magical" >
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <CheckBox IsChecked="{Binding Path=ItemSlot.MagicalSlot, Mode=OneWay}" IsEnabled="False"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="Item">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <ContentControl Content="{Binding Path=SlottedItem}"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="Control">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="Control" x:Name="tbControl" Tag="{Binding}"
+                                               Style="{StaticResource styleTextBlockHover}"
+                                               MouseDown="tbControl_MouseDown"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                    </GridView.Columns>
+                </GridView>
+            </ListView.View>
+        </ListView>
+    </DockPanel>
+</UserControl>

@@ -1,0 +1,79 @@
+﻿<UserControl x:Class="Uzi.Ikosa.UI.AppraisalEditor"
+             xmlns:uziui="clr-namespace:Uzi.Ikosa.UI"
+             xmlns:uzicore="clr-namespace:Uzi.Core;assembly=Uzi.Core"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" d:DesignWidth="300">
+    <Grid>
+        <Grid.Resources>
+            <Style TargetType="Label">
+                <Setter Property="HorizontalAlignment" Value="Right" />
+                <Setter Property="FontWeight" Value="Bold" />
+            </Style>
+        </Grid.Resources>
+        <Grid.CommandBindings>
+            <CommandBinding x:Name="cmdbndAdd" Command="New"
+                            CanExecute="cmdbndAdd_CanExecute" Executed="cmdbndAdd_Executed"/>
+            <CommandBinding x:Name="cmdbndDelete" Command="Delete"
+                            CanExecute="cmdbndDelete_CanExecute" Executed="cmdbndDelete_Executed"/>
+        </Grid.CommandBindings>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Menu Grid.Row="0" Grid.ColumnSpan="2">
+            <MenuItem Command="New">
+                <MenuItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="/images/add.png" Margin="2"/>
+                        <TextBlock Text="Add" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </MenuItem.Header>
+            </MenuItem>
+            <MenuItem Command="Delete">
+                <MenuItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="/images/delete.png" Margin="2"/>
+                        <TextBlock Text="Remove" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </MenuItem.Header>
+            </MenuItem>
+        </Menu>
+        <ListBox Grid.Row="1" x:Name="lstAppraise" Grid.ColumnSpan="2">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <StackPanel.ToolTip>
+                            <ItemsControl ItemsSource="{Binding Path=CreatureIDs}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock>
+                                                <Run Text="{Binding Path=Value, Mode=OneTime}"/>
+                                                <Run Text=" ("/>
+                                                <Run Text="{Binding Path=Key, Mode=OneTime}"/>
+                                                <Run Text=")"/>
+                                        </TextBlock>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </StackPanel.ToolTip>
+                        <Label Content="{Binding Path=Title}"/>
+                        <TextBlock Margin="4,0,0,0" VerticalAlignment="Center" Text="{Binding Path=Cost}"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <Label Grid.Row="2" Content="Name"/>
+        <TextBox Margin="1" Grid.Row="2" Grid.Column="1" Text="{Binding Path=SelectedItem.Title, ElementName=lstAppraise}"/>
+        <Label Grid.Row="3" Content="Cost"/>
+        <TextBox Margin="1" Grid.Row="3" Grid.Column="1" Text="{Binding Path=SelectedItem.Cost, ElementName=lstAppraise}"/>
+    </Grid>
+</UserControl>

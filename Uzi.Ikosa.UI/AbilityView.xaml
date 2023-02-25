@@ -1,0 +1,38 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:uzi="clr-namespace:Uzi.Core;assembly=Uzi.Core"
+    >
+	<DataTemplate x:Key="abilityView">
+		<!-- like delta, but add NonAbility support and PD boosts -->
+        <Label Content="{Binding Path=DisplayValue}" ToolTipService.ShowDuration="120000">
+            <Label.ToolTip>
+                <StackPanel>
+                    <TextBlock FontWeight="Bold">
+						Base = <TextBlock Text="{Binding Path=BaseValue}"/>						
+					</TextBlock>
+                    <ItemsControl ItemsSource="{Binding Path=DeltaDescriptions}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                    </ItemsControl>
+                    <ItemsControl ItemsSource="{Binding Path=Boosts}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel></StackPanel>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock>
+                                    Boost at PD <TextBlock Text="{Binding}"/>
+                                </TextBlock>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </StackPanel>
+            </Label.ToolTip>
+        </Label>
+    </DataTemplate>
+</ResourceDictionary>

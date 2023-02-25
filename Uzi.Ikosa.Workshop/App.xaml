@@ -1,0 +1,512 @@
+﻿<Application x:Class="Uzi.Ikosa.Workshop.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:tactical="clr-namespace:Uzi.Ikosa.Tactical;assembly=Uzi.Ikosa"
+             xmlns:uiui="clr-namespace:Uzi.Ikosa.UI;assembly=Uzi.Ikosa.UI"
+             ShutdownMode="OnMainWindowClose"
+             StartupUri="Workshop.xaml">
+    <Application.Resources>
+        <Style x:Key="oldSchool" TargetType="{x:Type TabItem}">
+            <Setter Property="Background" Value="Goldenrod"/>
+        </Style>
+        <Style x:Key="parchment" TargetType="{x:Type Window}">
+            <Setter Property="Background" Value="Beige"/>
+        </Style>
+
+        <Style TargetType="{x:Type uiui:ItemIcon}">
+            <Setter Property="Height" Value="64"/>
+            <Setter Property="Width" Value="64"/>
+        </Style>
+        
+        <!-- Header Content -->
+        <DataTemplate x:Key="sheetContent">
+            <Border Background="LightGoldenrodYellow" BorderBrush="Brown" BorderThickness="2,1,2,2" 
+                    CornerRadius="0,0,16,4">
+                <ContentPresenter Margin="4,1,8,4" Content="{TemplateBinding Property=ContentControl.Content}"/>
+            </Border>
+        </DataTemplate>
+
+        <DataTemplate x:Key="sheetHeader">
+            <Border HorizontalAlignment="Left" Background="Tan" BorderBrush="Brown" Margin="4,0,0,0" 
+                    BorderThickness="2,2,2,0" CornerRadius="16,4,0,0">
+                <ContentPresenter Margin="10,1,4,1"
+                                  Content="{TemplateBinding Property=ContentControl.Content}"></ContentPresenter>
+            </Border>
+        </DataTemplate>
+
+        <!-- Headered Content Style -->
+        <Style TargetType="{x:Type HeaderedContentControl}" x:Key="sheetGroup">
+            <Setter Property="Background" Value="LightGoldenrodYellow"/>
+            <Setter Property="Margin" Value="4"/>
+            <Setter Property="ContentTemplate" Value="{StaticResource sheetContent}"/>
+            <Setter Property="HeaderTemplate" Value="{StaticResource sheetHeader}"/>
+        </Style>
+        <Style TargetType="{x:Type TabItem}" x:Key="sheetTab">
+            <Setter Property="Background" Value="LightGoldenrodYellow"/>
+            <Setter Property="Margin" Value="4"/>
+            <Setter Property="ContentTemplate" Value="{StaticResource sheetContent}"/>
+            <Setter Property="HeaderTemplate" Value="{StaticResource sheetHeader}"/>
+        </Style>
+
+        <!-- NOTE: TreeViewItem control template from MSDN to get MouseOver just on the TreeViewItem and not parent -->
+        <!-- http://blogs.msdn.com/hulyap/archive/2008/07/07/mouseover-trigger-for-treeviewitem.aspx -->
+        <!-- http://msdn.microsoft.com/en-us/library/ms788727.aspx -->
+        <SolidColorBrush x:Key="GlyphBrush" Color="Black"/>
+        <Style x:Key="ExpandCollapseToggleStyle" TargetType="ToggleButton">
+            <Setter Property="Focusable" Value="False"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ToggleButton">
+                        <Grid Width="15" Height="13" Background="Transparent">
+                            <Path x:Name="ExpandPath" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="1,1,1,1"
+                              Fill="{StaticResource GlyphBrush}" Data="M 4 0 L 8 4 L 4 8 Z"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter Property="Data" TargetName="ExpandPath" Value="M 0 4 L 8 4 L 4 8 Z"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="TreeViewItemFocusVisual">
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Border>
+                            <Rectangle Margin="0,0,0,0" StrokeThickness="5" Stroke="Black" StrokeDashArray="1 2" Opacity="0"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style  x:Key="styleTreeViewItem" TargetType="{x:Type TreeViewItem}">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="HorizontalContentAlignment"      
+                    Value="{Binding Path=HorizontalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"/>
+            <Setter Property="VerticalContentAlignment"      
+                    Value="{Binding Path=VerticalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"/>
+            <Setter Property="Padding" Value="1,0,0,0"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="FocusVisualStyle" Value="{StaticResource TreeViewItemFocusVisual}"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TreeViewItem}" >
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition MinWidth="19" Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <ToggleButton x:Name="Expander" Style="{StaticResource ExpandCollapseToggleStyle}"
+                                          IsChecked="{Binding Path=IsExpanded, RelativeSource={RelativeSource TemplatedParent}}" 
+                                          ClickMode="Press"/>
+                            <Border Name="Bd" Grid.Column="1" Background="{TemplateBinding Background}" 
+                                    BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}"
+                                    Padding="{TemplateBinding Padding}">
+                                <ContentPresenter x:Name="PART_Header" ContentSource="Header"
+                                                  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"/>
+                            </Border>
+                            <ItemsPresenter x:Name="ItemsHost" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger SourceName="PART_Header" Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Bd" Property="Background" Value="LightCyan"/>
+                            </Trigger>
+                            <Trigger Property="IsExpanded" Value="false">
+                                <Setter TargetName="ItemsHost" Property="Visibility" Value="Collapsed"/>
+                            </Trigger>
+                            <Trigger Property="HasItems" Value="false">
+                                <Setter TargetName="Expander" Property="Visibility" Value="Hidden"/>
+                            </Trigger>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="HasHeader" Value="false"/>
+                                    <Condition Property="Width" Value="Auto"/>
+                                </MultiTrigger.Conditions>
+                                <Setter TargetName="PART_Header" Property="MinWidth" Value="75"/>
+                            </MultiTrigger>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="HasHeader" Value="false"/>
+                                    <Condition Property="Height" Value="Auto"/>
+                                </MultiTrigger.Conditions>
+                                <Setter TargetName="PART_Header" Property="MinHeight" Value="19"/>
+                            </MultiTrigger>
+                            <Trigger Property="IsSelected" Value="true">
+                                <Setter TargetName="Bd" Property="Background" 
+                                        Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                                <Setter Property="Foreground" 
+                                        Value="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}"/>
+                            </Trigger>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="IsSelected" Value="true"/>
+                                    <Condition Property="IsSelectionActive" Value="false"/>
+                                </MultiTrigger.Conditions>
+                                <Setter TargetName="Bd" Property="Background"
+                                        Value="{DynamicResource {x:Static SystemColors.ControlBrushKey}}"/>
+                                <Setter Property="Foreground"
+                                        Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+                            </MultiTrigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Foreground"
+                                        Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Uniform Cell Space in TreeView -->
+        <DataTemplate DataType="{x:Type tactical:CellSpace}">
+            <StackPanel Orientation="Horizontal" ToolTip="Uniform Cell Space">
+                <StackPanel.Resources>
+                    <uiui:DataResource x:Key="myParameter" BindingTarget="{Binding}"/>
+                </StackPanel.Resources>
+                <StackPanel.InputBindings>
+                    <MouseBinding Command="Open" Gesture="LeftDoubleClick">
+                        <MouseBinding.CommandParameter>
+                            <uiui:DataResourceBinding DataResource="{StaticResource myParameter}"/>
+                        </MouseBinding.CommandParameter>
+                    </MouseBinding>
+                </StackPanel.InputBindings>
+                <Image Source="/images/shape_square.png"/>
+                <TextBlock Text="{Binding Path=Name}"/>
+                <TextBlock Text=" ("/>
+                <TextBlock Text="{Binding Path=CellMaterial.Name}"/>
+                <TextBlock Text="; "/>
+                <TextBlock Text="{Binding Path=Tiling.Name}"/>
+                <TextBlock Text=")"/>
+            </StackPanel>
+        </DataTemplate>
+        <!-- Sliver Cell Space in TreeView -->
+        <DataTemplate DataType="{x:Type tactical:SliverCellSpace}">
+            <StackPanel Orientation="Horizontal" ToolTip="Sliver Cell Space">
+                <StackPanel.Resources>
+                    <uiui:DataResource x:Key="myParameter" BindingTarget="{Binding}"/>
+                </StackPanel.Resources>
+                <StackPanel.InputBindings>
+                    <MouseBinding Command="Open" Gesture="LeftDoubleClick">
+                        <MouseBinding.CommandParameter>
+                            <uiui:DataResourceBinding DataResource="{StaticResource myParameter}"/>
+                        </MouseBinding.CommandParameter>
+                    </MouseBinding>
+                </StackPanel.InputBindings>
+                <Image Source="/images/sliver.png"/>
+                <TextBlock Text="{Binding Path=Name}"/>
+                <TextBlock Text=" (("/>
+                <TextBlock Text="{Binding Path=CellMaterial.Name}"/>
+                <TextBlock Text=";"/>
+                <TextBlock Text="{Binding Path=Tiling.Name}"/>
+                <TextBlock Text="),"/>
+                <TextBlock Text="("/>
+                <TextBlock Text="{Binding Path=PlusMaterial.Name}"/>
+                <TextBlock Text=";"/>
+                <TextBlock Text="{Binding Path=PlusTiling.Name}"/>
+                <TextBlock Text="))"/>
+            </StackPanel>
+        </DataTemplate>
+        <!-- Slope Cell Space in TreeView -->
+        <DataTemplate DataType="{x:Type tactical:SlopeCellSpace}">
+            <StackPanel Orientation="Horizontal" ToolTip="Slope Cell Space">
+                <StackPanel.Resources>
+                    <uiui:DataResource x:Key="myParameter" BindingTarget="{Binding}"/>
+                </StackPanel.Resources>
+                <StackPanel.InputBindings>
+                    <MouseBinding Command="Open" Gesture="LeftDoubleClick">
+                        <MouseBinding.CommandParameter>
+                            <uiui:DataResourceBinding DataResource="{StaticResource myParameter}"/>
+                        </MouseBinding.CommandParameter>
+                    </MouseBinding>
+                </StackPanel.InputBindings>
+                <Image Source="/images/slope.png"/>
+                <TextBlock Text="{Binding Path=Name}"/>
+                <TextBlock Text=" (("/>
+                <TextBlock Text="{Binding Path=CellMaterial.Name}"/>
+                <TextBlock Text=";"/>
+                <TextBlock Text="{Binding Path=Tiling.Name}"/>
+                <TextBlock Text="),"/>
+                <TextBlock Text="("/>
+                <TextBlock Text="{Binding Path=PlusMaterial.Name}"/>
+                <TextBlock Text=";"/>
+                <TextBlock Text="{Binding Path=PlusTiling.Name}"/>
+                <TextBlock Text="))"/>
+            </StackPanel>
+        </DataTemplate>
+        <!-- Cylinder Space in TreeView -->
+        <DataTemplate DataType="{x:Type tactical:CylinderSpace}">
+            <StackPanel Orientation="Horizontal" ToolTip="Cylinder Space">
+                <StackPanel.Resources>
+                    <uiui:DataResource x:Key="myParameter" BindingTarget="{Binding}"/>
+                </StackPanel.Resources>
+                <StackPanel.InputBindings>
+                    <MouseBinding Command="Open" Gesture="LeftDoubleClick">
+                        <MouseBinding.CommandParameter>
+                            <uiui:DataResourceBinding DataResource="{StaticResource myParameter}"/>
+                        </MouseBinding.CommandParameter>
+                    </MouseBinding>
+                </StackPanel.InputBindings>
+                <Image Source="/images/shape_circle.png"/>
+                <TextBlock Text="{Binding Path=Name}"/>
+                <TextBlock Text=" (("/>
+                <TextBlock Text="{Binding Path=CellMaterial.Name}"/>
+                <TextBlock Text=";"/>
+                <TextBlock Text="{Binding Path=Tiling.Name}"/>
+                <TextBlock Text="),"/>
+                <TextBlock Text="("/>
+                <TextBlock Text="{Binding Path=PlusMaterial.Name}"/>
+                <TextBlock Text=";"/>
+                <TextBlock Text="{Binding Path=PlusTiling.Name}"/>
+                <TextBlock Text="))"/>
+            </StackPanel>
+        </DataTemplate>
+        <!-- Small Cylinder Cell Space in TreeView -->
+        <DataTemplate DataType="{x:Type tactical:SmallCylinderSpace}">
+            <StackPanel Orientation="Horizontal" ToolTip="Small Cylinder Cell Space">
+                <StackPanel.Resources>
+                    <uiui:DataResource x:Key="myParameter" BindingTarget="{Binding}"/>
+                </StackPanel.Resources>
+                <StackPanel.InputBindings>
+                    <MouseBinding Command="Open" Gesture="LeftDoubleClick">
+                        <MouseBinding.CommandParameter>
+                            <uiui:DataResourceBinding DataResource="{StaticResource myParameter}"/>
+                        </MouseBinding.CommandParameter>
+                    </MouseBinding>
+                </StackPanel.InputBindings>
+                <Image Source="/images/small_cylinder.png"/>
+                <TextBlock Text="{Binding Path=Name}"/>
+                <TextBlock Text=" (("/>
+                <TextBlock Text="{Binding Path=CellMaterial.Name}"/>
+                <TextBlock Text=";"/>
+                <TextBlock Text="{Binding Path=Tiling.Name}"/>
+                <TextBlock Text="),"/>
+                <TextBlock Text="("/>
+                <TextBlock Text="{Binding Path=PlusMaterial.Name}"/>
+                <TextBlock Text=";"/>
+                <TextBlock Text="{Binding Path=PlusTiling.Name}"/>
+                <TextBlock Text=")) ["/>
+                <TextBlock Text="{Binding Path=Offset1}"/>
+                <TextBlock Text=";"/>
+                <TextBlock Text="{Binding Path=Offset2}"/>
+                <TextBlock Text="]"/>
+            </StackPanel>
+        </DataTemplate>
+        <!-- Wedge Cell Space in TreeView -->
+        <DataTemplate DataType="{x:Type tactical:WedgeCellSpace}">
+            <StackPanel Orientation="Horizontal" ToolTip="Wedge Cell Space">
+                <StackPanel.Resources>
+                    <uiui:DataResource x:Key="myParameter" BindingTarget="{Binding}"/>
+                </StackPanel.Resources>
+                <StackPanel.InputBindings>
+                    <MouseBinding Command="Open" Gesture="LeftDoubleClick">
+                        <MouseBinding.CommandParameter>
+                            <uiui:DataResourceBinding DataResource="{StaticResource myParameter}"/>
+                        </MouseBinding.CommandParameter>
+                    </MouseBinding>
+                </StackPanel.InputBindings>
+                <Image Source="/images/wedge.png"/>
+                <TextBlock Text="{Binding Path=Name}"/>
+                <TextBlock Text=" (("/>
+                <TextBlock Text="{Binding Path=CellMaterial.Name}"/>
+                <TextBlock Text=";"/>
+                <TextBlock Text="{Binding Path=Tiling.Name}"/>
+                <TextBlock Text="),"/>
+                <TextBlock Text="("/>
+                <TextBlock Text="{Binding Path=PlusMaterial.Name}"/>
+                <TextBlock Text=";"/>
+                <TextBlock Text="{Binding Path=PlusTiling.Name}"/>
+                <TextBlock Text=")) ["/>
+                <TextBlock Text="{Binding Path=Offset1}"/>
+                <TextBlock Text=";"/>
+                <TextBlock Text="{Binding Path=Offset2}"/>
+                <TextBlock Text="]"/>
+            </StackPanel>
+        </DataTemplate>
+        <!-- Corner Cell Space in TreeView -->
+        <DataTemplate DataType="{x:Type tactical:CornerCellSpace}">
+            <StackPanel Orientation="Horizontal" ToolTip="Corner Cell Space">
+                <StackPanel.Resources>
+                    <uiui:DataResource x:Key="myParameter" BindingTarget="{Binding}"/>
+                </StackPanel.Resources>
+                <StackPanel.InputBindings>
+                    <MouseBinding Command="Open" Gesture="LeftDoubleClick">
+                        <MouseBinding.CommandParameter>
+                            <uiui:DataResourceBinding DataResource="{StaticResource myParameter}"/>
+                        </MouseBinding.CommandParameter>
+                    </MouseBinding>
+                </StackPanel.InputBindings>
+                <Image Source="/images/corner.png"/>
+                <TextBlock Text="{Binding Path=Name}"/>
+                <TextBlock Text=" (("/>
+                <TextBlock Text="{Binding Path=CellMaterial.Name}"/>
+                <TextBlock Text=";"/>
+                <TextBlock Text="{Binding Path=Tiling.Name}"/>
+                <TextBlock Text="),"/>
+                <TextBlock Text="("/>
+                <TextBlock Text="{Binding Path=PlusMaterial.Name}"/>
+                <TextBlock Text=";"/>
+                <TextBlock Text="{Binding Path=PlusTiling.Name}"/>
+                <TextBlock Text=")) ["/>
+                <TextBlock Text="{Binding Path=Offset1}"/>
+                <TextBlock Text=";"/>
+                <TextBlock Text="{Binding Path=Offset2}"/>
+                <TextBlock Text="]"/>
+            </StackPanel>
+        </DataTemplate>
+        <!-- Stairs Cell Space in TreeView -->
+        <DataTemplate DataType="{x:Type tactical:Stairs}" >
+            <StackPanel Orientation="Horizontal" ToolTip="Stairs Cell Space">
+                <StackPanel.Resources>
+                    <uiui:DataResource x:Key="myParameter" BindingTarget="{Binding}"/>
+                </StackPanel.Resources>
+                <StackPanel.InputBindings>
+                    <MouseBinding Command="Open" Gesture="LeftDoubleClick">
+                        <MouseBinding.CommandParameter>
+                            <uiui:DataResourceBinding DataResource="{StaticResource myParameter}"/>
+                        </MouseBinding.CommandParameter>
+                    </MouseBinding>
+                </StackPanel.InputBindings>
+                <Image Source="/images/stairs.png"/>
+                <TextBlock Text="{Binding Path=Name}"/>
+                <TextBlock Text=" (("/>
+                <TextBlock Text="{Binding Path=CellMaterial.Name}"/>
+                <TextBlock Text=";"/>
+                <TextBlock Text="{Binding Path=Tiling.Name}"/>
+                <TextBlock Text="),"/>
+                <TextBlock Text="("/>
+                <TextBlock Text="{Binding Path=PlusMaterial.Name}"/>
+                <TextBlock Text=";"/>
+                <TextBlock Text="{Binding Path=PlusTiling.Name}"/>
+                <TextBlock Text=")) [Steps="/>
+                <TextBlock Text="{Binding Path=Steps}"/>
+                <TextBlock Text="]"/>
+            </StackPanel>
+        </DataTemplate>
+        <!-- LFrame Space in TreeView -->
+        <DataTemplate DataType="{x:Type tactical:LFrame}" >
+            <StackPanel Orientation="Horizontal" ToolTip="LFrame Cell Space">
+                <StackPanel.Resources>
+                    <uiui:DataResource x:Key="myParameter" BindingTarget="{Binding}"/>
+                </StackPanel.Resources>
+                <StackPanel.InputBindings>
+                    <MouseBinding Command="Open" Gesture="LeftDoubleClick">
+                        <MouseBinding.CommandParameter>
+                            <uiui:DataResourceBinding DataResource="{StaticResource myParameter}"/>
+                        </MouseBinding.CommandParameter>
+                    </MouseBinding>
+                </StackPanel.InputBindings>
+                <Image Source="/images/lframe.png"/>
+                <TextBlock Text="{Binding Path=Name}"/>
+                <TextBlock Text=" (("/>
+                <TextBlock Text="{Binding Path=CellMaterial.Name}"/>
+                <TextBlock Text=";"/>
+                <TextBlock Text="{Binding Path=Tiling.Name}"/>
+                <TextBlock Text="),"/>
+                <TextBlock Text="("/>
+                <TextBlock Text="{Binding Path=PlusMaterial.Name}"/>
+                <TextBlock Text=";"/>
+                <TextBlock Text="{Binding Path=PlusTiling.Name}"/>
+                <TextBlock Text=")) ["/>
+                <TextBlock Text="{Binding Path=Thickness}"/>
+                <TextBlock Text=";"/>
+                <TextBlock Text="{Binding Path=Width1}"/>
+                <TextBlock Text=";"/>
+                <TextBlock Text="{Binding Path=Width2}"/>
+                <TextBlock Text="]"/>
+            </StackPanel>
+        </DataTemplate>
+        <!-- Panel Cell Space in TreeView -->
+        <DataTemplate DataType="{x:Type tactical:PanelCellSpace}" >
+            <StackPanel Orientation="Horizontal" ToolTip="Panel Cell Space">
+                <StackPanel.Resources>
+                    <uiui:DataResource x:Key="myParameter" BindingTarget="{Binding}"/>
+                </StackPanel.Resources>
+                <StackPanel.InputBindings>
+                    <MouseBinding Command="Open" Gesture="LeftDoubleClick">
+                        <MouseBinding.CommandParameter>
+                            <uiui:DataResourceBinding DataResource="{StaticResource myParameter}"/>
+                        </MouseBinding.CommandParameter>
+                    </MouseBinding>
+                </StackPanel.InputBindings>
+                <Image Source="/images/panelCell.png"/>
+                <TextBlock Text="{Binding Path=Name}"/>
+                <TextBlock Text=" ("/>
+                <TextBlock Text="{Binding Path=CellMaterial.Name}"/>
+                <TextBlock Text=";"/>
+                <TextBlock Text="{Binding Path=Tiling.Name}"/>
+                <TextBlock Text=")"/>
+            </StackPanel>
+        </DataTemplate>
+        <!-- Normal Panel in TreeView -->
+        <DataTemplate DataType="{x:Type tactical:NormalPanel}">
+            <StackPanel Orientation="Horizontal" ToolTip="Normal Panel">
+                <Image Source="/images/panelNormal.png"/>
+                <TextBlock Text="{Binding Path=Name}"/>
+                <TextBlock Text=" ("/>
+                <TextBlock Text="{Binding Path=Material.Name}"/>
+                <TextBlock Text=";"/>
+                <TextBlock Text="{Binding Path=Tiling.Name}"/>
+                <TextBlock Text=") ["/>
+                <TextBlock Text="{Binding Path=Thickness}"/>
+                <TextBlock Text="]"/>
+            </StackPanel>
+        </DataTemplate>
+        <!-- Corner Panel in TreeView -->
+        <DataTemplate DataType="{x:Type tactical:CornerPanel}">
+            <StackPanel Orientation="Horizontal" ToolTip="Corner Panel">
+                <Image Source="/images/panelCorner.png"/>
+                <TextBlock Text="{Binding Path=Name}"/>
+                <TextBlock Text=" ("/>
+                <TextBlock Text="{Binding Path=Material.Name}"/>
+                <TextBlock Text=";"/>
+                <TextBlock Text="{Binding Path=Tiling.Name}"/>
+                <TextBlock Text=") ["/>
+                <TextBlock Text="{Binding Path=Thickness}"/>
+                <TextBlock Text=","/>
+                <TextBlock Text="{Binding Path=Offset}"/>
+                <TextBlock Text="]"/>
+            </StackPanel>
+        </DataTemplate>
+        <!-- LFrame Panel in TreeView -->
+        <DataTemplate DataType="{x:Type tactical:LFramePanel}">
+            <StackPanel Orientation="Horizontal" ToolTip="LFrame Panel">
+                <Image Source="/images/panelLFrame.png"/>
+                <TextBlock Text="{Binding Path=Name}"/>
+                <TextBlock Text=" ("/>
+                <TextBlock Text="{Binding Path=Material.Name}"/>
+                <TextBlock Text=";"/>
+                <TextBlock Text="{Binding Path=Tiling.Name}"/>
+                <TextBlock Text=") ["/>
+                <TextBlock Text="{Binding Path=Thickness}"/>
+                <TextBlock Text=","/>
+                <TextBlock Text="{Binding Path=HorizontalWidth}"/>
+                <TextBlock Text=","/>
+                <TextBlock Text="{Binding Path=VerticalWidth}"/>
+                <TextBlock Text="]"/>
+            </StackPanel>
+        </DataTemplate>
+        <!-- Slope Panel in TreeView -->
+        <DataTemplate DataType="{x:Type tactical:SlopeComposite}">
+            <StackPanel Orientation="Horizontal" ToolTip="Slope Composite">
+                <Image Source="/images/panelSlope.png"/>
+                <TextBlock Text="{Binding Path=Name}"/>
+                <TextBlock Text=" ("/>
+                <TextBlock Text="{Binding Path=Material.Name}"/>
+                <TextBlock Text=";"/>
+                <TextBlock Text="{Binding Path=Tiling.Name}"/>
+                <TextBlock Text=") ["/>
+                <TextBlock Text="{Binding Path=LesserThickness}"/>
+                <TextBlock Text=","/>
+                <TextBlock Text="{Binding Path=GreaterThickness}"/>
+                <TextBlock Text="]"/>
+            </StackPanel>
+        </DataTemplate>
+    </Application.Resources>
+</Application>

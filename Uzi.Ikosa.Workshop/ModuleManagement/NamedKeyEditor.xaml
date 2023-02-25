@@ -1,0 +1,71 @@
+﻿<UserControl x:Class="Uzi.Ikosa.Workshop.NamedKeyEditor"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:uiui="clr-namespace:Uzi.Ikosa.UI;assembly=Uzi.Ikosa.UI"
+             xmlns:shop="clr-namespace:Uzi.Ikosa.Workshop"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="Margin" Value="1,0"/>
+        </Style>
+        <Style TargetType="ContentControl">
+            <Setter Property="Margin" Value="1,0"/>
+        </Style>
+        <Style TargetType="ListBox">
+            <Setter Property="Margin" Value="1,0"/>
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="100,*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100,*"/>
+        </Grid.ColumnDefinitions>
+        <TextBlock Text="Named Keys" Grid.Column="0" Grid.Row="0"/>
+        <ContentControl Grid.Row="1" Grid.Column="0" KeyboardNavigation.IsTabStop="False"
+                        Content="{Binding Path=Commands}">
+            <ContentControl.Resources>
+                <DataTemplate DataType="{x:Type uiui:AddRemoveCommands}">
+                    <StackPanel Grid.Row="2" Grid.Column="0" Orientation="Horizontal" FocusManager.IsFocusScope="True">
+                        <Button Width="72" Height="24" Margin="1" Content="Add" Command="{Binding Path=AddCommand}" TabIndex="0"/>
+                        <Button Width="72" Height="24" Margin="1" Content="Remove" Command="{Binding Path=RemoveCommand}" TabIndex="1"
+                                CommandParameter="{Binding ElementName=lstNamedKeys,Path=SelectedItem}"/>
+                    </StackPanel>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type uiui:AddNamedKeyCommands}">
+                    <DockPanel Grid.Row="2" Grid.Column="0" LastChildFill="True" FocusManager.IsFocusScope="True">
+                        <Button Width="72" Height="24" Margin="1" Content="Cancel" DockPanel.Dock="Left" TabIndex="0"
+                                IsCancel="True"
+                                Command="{Binding Path=CancelAddCommand}"/>
+                        <Button Width="72" Height="24" Margin="1" Content="Do Add" DockPanel.Dock="Right" TabIndex="2"
+                                IsDefault="True"
+                                Command="{Binding Path=DoAddCommand}"/>
+                        <TextBox Margin="1" Text="{Binding Path=Name, UpdateSourceTrigger=PropertyChanged}" TabIndex="1"
+                                 uiui:FocusExtension.IsFocused="True"
+                                 x:Name="txtDescription"/>
+                    </DockPanel>
+                </DataTemplate>
+            </ContentControl.Resources>
+        </ContentControl>
+        <ListBox Grid.Row="2" Grid.RowSpan="2" Grid.Column="0" x:Name="lstNamedKeys" 
+                 SelectedItem="{Binding Path=SelectedNamedKey}"
+                 ItemsSource="{Binding Path=NamedKeys}">
+            <ListBox.ItemTemplate>
+                <DataTemplate DataType="{x:Type uiui:NamedKeyVM}">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding Path=Name}" 
+                                   VerticalAlignment="Center" 
+                                   ToolTip="{Binding Path=KeyID}">
+                        </TextBlock>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+    </Grid>
+</UserControl>

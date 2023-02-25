@@ -1,0 +1,103 @@
+﻿<UserControl x:Class="Uzi.Ikosa.UI.IconCustomizationEditor"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:wx="clr-namespace:Xceed.Wpf.Toolkit;assembly=Xceed.Wpf.Toolkit"
+            xmlns:local="clr-namespace:Uzi.Ikosa.UI"
+             mc:Ignorable="d">
+    <UserControl.Resources>
+        <Style TargetType="Label">
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontSize" Value="10"/>
+        </Style>
+        <Style TargetType="TextBlock">
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="10"/>
+        </Style>
+        <Style TargetType="ComboBox">
+            <Setter Property="Margin" Value="1"/>
+            <Setter Property="FontSize" Value="10"/>
+        </Style>
+    </UserControl.Resources>
+    <DockPanel Margin="2">
+        <DockPanel DockPanel.Dock="Left" MinWidth="256">
+            <Label DockPanel.Dock="Top">Icon Keys</Label>
+            <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
+                <Button Content="Override" Command="{Binding Path=DoAddIconKey}" MinWidth="72"
+                        CommandParameter="{Binding ElementName=lstIconParts, Path=SelectedItem}"></Button>
+                <Button Content="Clear" Command="{Binding Path=DoRemoveIconKey}" MinWidth="72"></Button>
+            </StackPanel>
+            <ListBox Margin="1" ItemsSource="{Binding Path=ResolvableIcons}" x:Name="lstIconParts">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal" DataContext="{Binding Path=IconPart}">
+                            <Viewbox Width="48" Height="48">
+                                <ContentControl Content="{Binding Path=Icon}"></ContentControl>
+                            </Viewbox>
+                            <TextBlock VerticalAlignment="Center" Text="{Binding Path=Name}"></TextBlock>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            
+        </DockPanel>
+        <DockPanel DockPanel.Dock="Left">
+            <Label DockPanel.Dock="Top">Icon</Label>
+            <DockPanel DockPanel.Dock="Top">
+                <Slider DockPanel.Dock="Bottom" Minimum="-180" Maximum="180" LargeChange="15" SmallChange="5" TickFrequency="5"
+                        AutoToolTipPlacement="BottomRight" AutoToolTipPrecision="0" IsSnapToTickEnabled="True"
+                        Value="{Binding Path=IconAngle}" Orientation="Horizontal"></Slider>
+                <Slider DockPanel.Dock="Right" Minimum="1" Maximum="2" LargeChange="0.25" SmallChange="0.05" TickFrequency="0.05" 
+                        AutoToolTipPlacement="BottomRight" AutoToolTipPrecision="2" IsSnapToTickEnabled="True"
+                        Value="{Binding Path=IconScale}" Orientation="Vertical"/>
+                <Border BorderBrush="Black" BorderThickness="1" CornerRadius="1" Padding="2">
+                    <local:ItemIcon DataContext="{Binding Path=PresentableContext}" Width="144" Height="144">
+                    </local:ItemIcon>
+                </Border>
+            </DockPanel>
+            <ItemsControl ItemsSource="{Binding Path=IconKeys}" DockPanel.Dock="Top"></ItemsControl>
+        </DockPanel>
+        <!-- TODO: icon key adjunct management -->
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="33,*"></ColumnDefinition>
+                <ColumnDefinition Width="67,*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Label Grid.Row="0" Grid.Column="0">Colors</Label>
+            <Label Grid.Row="0" Grid.Column="1">Edit</Label>
+            <ListBox Grid.Row="1" Grid.Column="0" MinWidth="192"
+                     x:Name="lstColors"
+                     ItemsSource="{Binding Path=ColorMapping}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <Rectangle Width="16" Height="16" Margin="2">
+                                <Rectangle.Fill>
+                                    <SolidColorBrush Color="{Binding Path=ColorValue}"/>
+                                </Rectangle.Fill>
+                            </Rectangle>
+                            <TextBlock>
+                                <Run FontWeight="Bold" Text="{Binding Path=Key, Mode=OneWay}"/>
+                                <Run Text="{Binding Path=ColorString, Mode=OneWay}"/>
+                            </TextBlock>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            <StackPanel Grid.Row="2" Grid.Column="0">
+                <Button Command="{Binding Path=DoAddColorMap}">Add Colors</Button>
+                <Button Command="{Binding Path=DoRemoveColorMap}">Remove Colors</Button>
+            </StackPanel>
+            <wx:ColorCanvas x:Name="cpStart" Grid.Row="1" Grid.Column="1" Grid.RowSpan="2" 
+                            Margin="2" DataContext="{Binding ElementName=lstColors, Path=SelectedItem}"
+                            SelectedColor="{Binding Path=ColorValue}"
+                            UsingAlphaChannel="True"/>
+        </Grid>
+    </DockPanel>
+</UserControl>

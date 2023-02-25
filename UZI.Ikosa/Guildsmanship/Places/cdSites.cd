@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Uzi.Ikosa.Guildsmanship.ModuleElement">
+    <Position X="8.75" Y="0.5" Width="1.75" />
+    <Members>
+      <Field Name="_Description" Hidden="true" />
+      <Field Name="_ID" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAggAAAAAAAAAAAAAAAAAAEAAAAAAAEAAA=</HashCode>
+      <FileName>Guildsmanship\Modules\ModuleElement.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Uzi.Ikosa.Guildsmanship.LocalMapSite">
+    <Position X="5" Y="4.25" Width="1.5" />
+    <Members>
+      <Field Name="_File" Hidden="true" />
+      <Field Name="_LocalPlaces" Hidden="true" />
+      <Field Name="_Names" Hidden="true" />
+      <Field Name="_Path" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>IAAAgAAAAAAAAAAAAAAAIAAAAAAAEBQAAAAAAALAAAA=</HashCode>
+      <FileName>Guildsmanship\LocalMapping\LocalMapSite.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="LocalPlaces" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Uzi.Ikosa.Guildsmanship.Settlement">
+    <Position X="1.75" Y="4.75" Width="1.75" />
+    <Members>
+      <Field Name="_Names" Hidden="true" />
+      <Field Name="_Services" Hidden="true" />
+      <Field Name="_SubDivisions" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAAAAAAAEAAIAAAAAAAABARAAAAAAABAAA=</HashCode>
+      <FileName>Guildsmanship\Settlements\Settlement.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="SubDivisions" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Uzi.Ikosa.Guildsmanship.ModuleLink&lt;Node&gt;">
+    <Position X="11.5" Y="0.5" Width="2" />
+    <Members>
+      <Field Name="_LinkID" Hidden="true" />
+      <Field Name="_LinkModule" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>wAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAI=</HashCode>
+      <FileName>Guildsmanship\Modules\ModuleLink.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Uzi.Ikosa.Guildsmanship.ModuleNode">
+    <Position X="6.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAABAAAAAAAAIAAAA=</HashCode>
+      <FileName>Guildsmanship\Modules\ModuleNode.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Uzi.Ikosa.Guildsmanship.Site">
+    <Position X="3.75" Y="0.5" Width="1.75" />
+    <Members>
+      <Field Name="_StoryInfo" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAACAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAIAAAA=</HashCode>
+      <FileName>Guildsmanship\Places\Site.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="StoryInformation" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Uzi.Ikosa.Guildsmanship.LocalPlace">
+    <Position X="8.75" Y="3.5" Width="1.75" />
+    <Members>
+      <Field Name="_LocalMap" Hidden="true" />
+      <Field Name="_RoomIDs" Hidden="true" />
+      <Field Name="_StoryInfo" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAACAAAAIAAAAAAAAAAAAAAAAAAABBAAAAAAAAEAAE=</HashCode>
+      <FileName>Guildsmanship\LocalMapping\LocalPlace.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Uzi.Ikosa.Guildsmanship.SettlementSubDivision">
+    <Position X="11.5" Y="5.5" Width="2" />
+    <Members>
+      <Field Name="_Position" Hidden="true" />
+      <Field Name="_Size" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAABAAAgAAAAgAIAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Guildsmanship\Settlements\SettlementSubDivision.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Uzi.Ikosa.Guildsmanship.StoryInformation">
+    <Position X="0.5" Y="0.5" Width="1.75" />
+    <Members>
+      <Field Name="_Encounters" Hidden="true" />
+      <Field Name="_Infos" Hidden="true" />
+      <Field Name="_StoryStates" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAgAIACCAAAIAAAAAAAAAAAAAEAAAAA=</HashCode>
+      <FileName>Guildsmanship\StoryState\StoryInformation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="10" />
+</ClassDiagram>

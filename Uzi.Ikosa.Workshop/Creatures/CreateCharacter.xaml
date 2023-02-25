@@ -1,0 +1,185 @@
+﻿<Window x:Class="Uzi.Ikosa.Workshop.CreateCharacter"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:shop="clr-namespace:Uzi.Ikosa.Workshop"
+        Title="AbilityScores" Style="{StaticResource parchment}"
+    >
+	<Window.CommandBindings>
+		<CommandBinding Command="{x:Static shop:CreateCharacter.RollCmd}"
+						Executed="RollCmdExecuted"
+						CanExecute="RollCmdCanExecute"/>
+	</Window.CommandBindings>
+	<DockPanel LastChildFill="False">
+        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
+            <StackPanel>
+                <Label DockPanel.Dock="Top" FontWeight="Bold" FontSize="16">Define Ability Scores</Label>
+                <Grid VerticalAlignment="Top">
+                    <Grid.Resources>
+                        <!--  -->
+                        <!-- Spinner Button Style -->
+                        <Style TargetType="{x:Type Button}" x:Key="ctrlSpinStyle">
+                            <Setter Property="MinWidth" Value="12"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="true">
+                                    <Setter Property="Background" Value="LightGreen"/>
+                                </Trigger>
+                                <Trigger Property="IsPressed" Value="true">
+                                    <Setter Property="RenderTransform">
+                                        <Setter.Value>
+                                            <TranslateTransform X="-1" Y="0"></TranslateTransform>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+
+                        <!-- Spinner Button Template -->
+                        <ControlTemplate x:Key="ctrlSpin" TargetType="{x:Type Button}">
+                            <Border Background="{TemplateBinding Property=Background}" 
+								RenderTransform="{TemplateBinding Property=RenderTransform}"
+								BorderBrush="Black" BorderThickness="1" MinWidth="{TemplateBinding Property=MinWidth}">
+                                <ContentPresenter HorizontalAlignment="Center" Content="{TemplateBinding Property=Content}"></ContentPresenter>
+                            </Border>
+                        </ControlTemplate>
+
+                        <Style TargetType="{x:Type Label}">
+                            <Setter Property="VerticalAlignment" Value="Center"/>
+                        </Style>
+                        <Style x:Key="valDrop" TargetType="{x:Type Label}">
+                            <Setter Property="VerticalAlignment" Value="Center"/>
+                            <Setter Property="BorderBrush" Value="Black"></Setter>
+                            <Setter Property="Margin" Value="2"></Setter>
+                            <Setter Property="BorderThickness" Value="4,1,4,1"></Setter>
+                            <!-- Handle drag/drop -->
+                        </Style>
+
+                        <!-- Ability Value Template -->
+                        <ControlTemplate x:Key="spinLabel" TargetType="{x:Type ContentControl}">
+                            <ControlTemplate.Resources>
+                                <Style TargetType="{x:Type Label}">
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="true">
+                                            <Setter Property="Background" Value="LightGreen"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </ControlTemplate.Resources>
+                            <Grid HorizontalAlignment="Left" Margin="2">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+                                <Border Padding="2" Grid.RowSpan="2" CornerRadius="3" BorderThickness="3,1,3,1" BorderBrush="Black" 
+									MinWidth="36" MinHeight="24">
+                                    <Label Content="{TemplateBinding Property=Content}"/>
+                                </Border>
+                                <Button Grid.Column="1" Grid.Row="0" Template="{StaticResource ctrlSpin}" 
+									Style="{StaticResource ctrlSpinStyle}" Margin="2,1,2,0" Tag="+" Click="ButtonClick">+</Button>
+                                <Button Grid.Column="1" Grid.Row="1" Template="{StaticResource ctrlSpin}" 
+									Style="{StaticResource ctrlSpinStyle}" Margin="2,0,2,1" Tag="-" Click="ButtonClick">-</Button>
+                            </Grid>
+                        </ControlTemplate>
+                    </Grid.Resources>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+                    <!-- Labels -->
+                    <Label Grid.Column="0" ToolTip="Strength">STR</Label>
+                    <Label Grid.Column="1" ToolTip="Dexterity">DEX</Label>
+                    <Label Grid.Column="2" ToolTip="Constitution">CON</Label>
+                    <Label Grid.Column="0" Grid.Row="2" ToolTip="Intelligence">INT</Label>
+                    <Label Grid.Column="1" Grid.Row="2" ToolTip="Wisdom">WIS</Label>
+                    <Label Grid.Column="2" Grid.Row="2" ToolTip="Charisma">CHA</Label>
+
+                    <!-- Ability Value Display -->
+                    <ContentControl Grid.Column="0" Grid.Row="1" ToolTip="Strength" x:Name="ccSTR"
+					   Template="{StaticResource spinLabel}"></ContentControl>
+                    <ContentControl Grid.Column="1" Grid.Row="1" ToolTip="Dexterity" x:Name="ccDEX"
+					   Template="{StaticResource spinLabel}"></ContentControl>
+                    <ContentControl Grid.Column="2" Grid.Row="1" ToolTip="Constitution" x:Name="ccCON"
+					   Template="{StaticResource spinLabel}"></ContentControl>
+                    <ContentControl Grid.Column="0" Grid.Row="3" ToolTip="Intelligence" x:Name="ccINT"
+					   Template="{StaticResource spinLabel}"></ContentControl>
+                    <ContentControl Grid.Column="1" Grid.Row="3" ToolTip="Wisdom" x:Name="ccWIS"
+					   Template="{StaticResource spinLabel}"></ContentControl>
+                    <ContentControl Grid.Column="2" Grid.Row="3" ToolTip="Charisma" x:Name="ccCHA"
+					   Template="{StaticResource spinLabel}"></ContentControl>
+                </Grid>
+
+                <!-- Rolled Values -->
+                <StackPanel DockPanel.Dock="Top" Margin="4,0,4,0">
+                    <Label Margin="2" FontSize="12">Rolled Values</Label>
+                    <ListBox x:Name="lstValues" Margin="2" FontSize="24">
+                        <ListBox.Resources>
+                            <Style TargetType="{x:Type Label}">
+                                <Setter Property="BorderBrush" Value="Black"/>
+                                <Setter Property="BorderThickness" Value="2"/>
+                                <Setter Property="Margin" Value="2"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="true">
+                                        <Setter Property="Background" Value="LightGreen"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </ListBox.Resources>
+                        <ListBox.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel Orientation="Horizontal" MinHeight="48"></StackPanel>
+                            </ItemsPanelTemplate>
+                        </ListBox.ItemsPanel>
+                    </ListBox>
+                </StackPanel>
+            </StackPanel>
+
+            <!-- Score values to use: Standard, Elite, Average, 4d6h3, 5d6h3, BYOR, Point Buy (various) -->
+            <StackPanel Margin="4,0,4,0">
+                <StackPanel.Resources>
+                    <Style TargetType="{x:Type Button}">
+                        <Setter Property="Margin" Value="2"/>
+                        <Setter Property="MinWidth" Value="96"/>
+                        <Setter Property="Command" Value="{x:Static shop:CreateCharacter.RollCmd}"/>
+                    </Style>
+                </StackPanel.Resources>
+                <Label Margin="2" FontSize="12">Roll Away</Label>
+                <Button CommandParameter="Default">Default</Button>
+                <Button CommandParameter="3d6">3d6</Button>
+                <Button CommandParameter="4d6">4d6 Drop 1</Button>
+                <Button CommandParameter="5d6">5d6 Drop 2</Button>
+                <Button CommandParameter="Own">Roll Your Own</Button>
+            </StackPanel>
+            <StackPanel Margin="4,0,4,0">
+                <!-- Creature Type -->
+                <Label FontWeight="Bold" FontSize="16">Select Creature Type</Label>
+                <ComboBox x:Name="cboSpecies" DisplayMemberPath="Description"></ComboBox>
+                <!-- Inherited Templates -->
+                <!-- NOTE: only allow templates that are valid for the creature -->
+                <Label FontWeight="Bold" FontSize="16">Available Templates</Label>
+            </StackPanel>
+            <StackPanel Margin="4,0,4,0">
+                <!-- Inherited Templates -->
+                <!-- NOTE: only allow templates that are valid for the creature -->
+                <Label FontWeight="Bold" FontSize="16">Applied Templates</Label>
+                <ListBox MinHeight="96" x:Name="lstTemplates"></ListBox>
+                <Button x:Name="btnRemove" Margin="0,2,0,0">Remove</Button>
+            </StackPanel>
+        </StackPanel>
+        <!-- Finalized Values from Scores, Types and Templates -->
+        <UniformGrid Columns="2" DockPanel.Dock="Bottom">
+            <Button Margin="2" Grid.Column="0" Click="Button_Click">Create by Roll</Button>
+            <Button Margin="2" Grid.Column="1" Click="Default_Click">Create Default</Button>
+        </UniformGrid>
+    </DockPanel>
+</Window>

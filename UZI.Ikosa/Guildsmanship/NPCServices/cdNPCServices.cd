@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Uzi.Ikosa.Guildsmanship.NonPlayerService">
+    <Position X="5.25" Y="0.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Guildsmanship\NPCServices\NonPlayerService.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Uzi.Ikosa.Guildsmanship.Craftsman">
+    <Position X="0.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Guildsmanship\NPCServices\Craftsman.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Uzi.Ikosa.Guildsmanship.Lodging">
+    <Position X="9.5" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Guildsmanship\NPCServices\Lodging.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Uzi.Ikosa.Guildsmanship.MagicItemCrafter">
+    <Position X="1.5" Y="5.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Guildsmanship\NPCServices\MagicItemCrafter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Uzi.Ikosa.Guildsmanship.Merchant">
+    <Position X="6.75" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Guildsmanship\NPCServices\Merchant.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Uzi.Ikosa.Guildsmanship.Oracle">
+    <Position X="2.75" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Guildsmanship\NPCServices\Oracle.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Uzi.Ikosa.Guildsmanship.Sage">
+    <Position X="4" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Guildsmanship\NPCServices\Sage.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Uzi.Ikosa.Guildsmanship.SpellCasterService">
+    <Position X="5.25" Y="2.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Guildsmanship\NPCServices\SpellCasterService.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Uzi.Ikosa.Guildsmanship.Workshop">
+    <Position X="11" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Guildsmanship\NPCServices\Workshop.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Uzi.Ikosa.Guildsmanship.Recuperation">
+    <Position X="8" Y="2.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Guildsmanship\NPCServices\Recuperation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="10" />
+</ClassDiagram>

@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Interface Name="Uzi.Core.IActionProvider">
+    <Position X="0.75" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Processes\IActionProvider.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Uzi.Core.IAdjunctable">
+    <Position X="9.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAQAAAAAABAAAA=</HashCode>
+      <FileName>Adjuncts\IAdjunctable.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Uzi.Core.IProcessFeedback">
+    <Position X="3.25" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interaction\IProcessFeedback.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Uzi.Core.IInteractHandler">
+    <Position X="3.25" Y="3" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAQCAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interaction\IInteractHandler.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Uzi.Core.ICore">
+    <Position X="0.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ICore.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Uzi.Core.IAlterInteraction">
+    <Position X="5.75" Y="3" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAEA=</HashCode>
+      <FileName>Interaction\IAlterInteraction.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Uzi.Core.IChangeNotification">
+    <Position X="9" Y="3" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Deltas\IChangeNotification.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Uzi.Core.IObjectContainer">
+    <Position X="0.5" Y="5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAA=</HashCode>
+      <FileName>IObjectContainer.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Uzi.Core.IControlChange&lt;ChangeType&gt;">
+    <Position X="3.25" Y="0.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAABAAA=</HashCode>
+      <FileName>Dependents\IControlChange.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Uzi.Core.IControlTerminate">
+    <Position X="6.25" Y="0.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAE=</HashCode>
+      <FileName>Dependents\IControlTerminate.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Uzi.Core.IDependOnTerminate">
+    <Position X="9" Y="0.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAA=</HashCode>
+      <FileName>Dependents\IDependOnTerminate.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

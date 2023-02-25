@@ -1,0 +1,155 @@
+﻿<ContentControl x:Class="Uzi.Ikosa.Workshop.RoomContentControl"
+                xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                xmlns:tactical="clr-namespace:Uzi.Ikosa.Tactical;assembly=Uzi.Ikosa"
+                xmlns:visualize="clr-namespace:Uzi.Visualize;assembly=Uzi.Visualize"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <ContentControl.Resources>
+        <Style TargetType="TextBox" x:Key="styleText">
+            <Setter Property="Margin" Value="1"/>
+            <Style.Triggers>
+                <Trigger Property="Tag" Value="Invalid">
+                    <Setter Property="Background" Value="LightSalmon"/>
+                    <Setter Property="ToolTip.Content" Value="Invalid value"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="TextBox" x:Key="dblCheck" BasedOn="{StaticResource styleText}">
+            <EventSetter Event="TextChanged" Handler="txtDouble_TextChanged"/>
+        </Style>
+        <Style TargetType="TextBox" x:Key="intCheck" BasedOn="{StaticResource styleText}">
+            <EventSetter Event="TextChanged" Handler="txtInt_TextChanged"/>
+        </Style>
+        <!-- Cell Space Editor -->
+        <DataTemplate DataType="{x:Type tactical:CellSpace}">
+            <HeaderedContentControl Header="Cell Space">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Column="0" Grid.Row="0">Name</Label>
+                    <Label Grid.Column="0" Grid.Row="1">Material</Label>
+                    <Label Grid.Column="0" Grid.Row="2">Tiling</Label>
+                    <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding Path=Name}" Style="{StaticResource styleText}"></TextBox>
+                    <ComboBox Grid.Column="1" Grid.Row="1" ItemsSource="{DynamicResource roomMaterials}" 
+                                      SelectedItem="{Binding Path=CellMaterial}" Name="cboMaterial" DisplayMemberPath="Name"/>
+                    <ComboBox Grid.Column="1" Grid.Row="2" 
+                                      ItemsSource="{Binding ElementName=cboMaterial, Path=SelectedValue.AvailableTilings}"
+                                      DisplayMemberPath="Name" SelectedItem="{Binding Path=Tiling}"></ComboBox>
+                </Grid>
+            </HeaderedContentControl>
+        </DataTemplate>
+        <!-- Sliver Cell Space Editor -->
+        <DataTemplate DataType="{x:Type tactical:SliverCellSpace}">
+            <HeaderedContentControl Header="Sliver Cell Space">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Column="0" Grid.Row="0">Name</Label>
+                    <Label Grid.Column="0" Grid.Row="1">Material</Label>
+                    <Label Grid.Column="0" Grid.Row="2">Tiling</Label>
+                    <Label Grid.Column="0" Grid.Row="3">Plus Material</Label>
+                    <Label Grid.Column="0" Grid.Row="4">Plus Tiling</Label>
+                    <Label Grid.Column="0" Grid.Row="5">Ortho Axis</Label>
+                    <Label Grid.Column="0" Grid.Row="6">Offset</Label>
+                    <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding Path=Name}" Style="{StaticResource styleText}"></TextBox>
+                    <ComboBox Grid.Column="1" Grid.Row="1" ItemsSource="{DynamicResource roomMaterials}"
+                                      SelectedItem="{Binding Path=CellMaterial}" Name="cboSlvMaterial" DisplayMemberPath="Name"/>
+                    <ComboBox Grid.Column="1" Grid.Row="2" 
+                                      ItemsSource="{Binding ElementName=cboSlvMaterial, Path=SelectedValue.AvailableTilings}"
+                                      DisplayMemberPath="Name" SelectedItem="{Binding Path=Tiling}"></ComboBox>
+                    <ComboBox Grid.Column="1" Grid.Row="3" ItemsSource="{DynamicResource roomMaterials}"
+                                      SelectedItem="{Binding Path=PlusMaterial}" Name="cboSlvPMaterial" DisplayMemberPath="Name"/>
+                    <ComboBox Grid.Column="1" Grid.Row="4" 
+                                      ItemsSource="{Binding ElementName=cboSlvPMaterial, Path=SelectedValue.AvailableTilings}"
+                                      DisplayMemberPath="Name" SelectedItem="{Binding Path=PlusTiling}"></ComboBox>
+                    <ComboBox Grid.Column="1" Grid.Row="5" SelectedItem="{Binding Path=OrthogonalAxis}">
+                        <visualize:Axis>Z</visualize:Axis>
+                        <visualize:Axis>Y</visualize:Axis>
+                        <visualize:Axis>X</visualize:Axis>
+                    </ComboBox>
+                    <TextBox Grid.Column="1" Grid.Row="6" Text="{Binding Path=Offset}" Style="{StaticResource dblCheck}"></TextBox>
+                </Grid>
+            </HeaderedContentControl>
+        </DataTemplate>
+        <!-- Wedge/Corner Cell Space Editor -->
+        <DataTemplate DataType="{x:Type tactical:WedgeCellSpace}">
+            <HeaderedContentControl Header="Wedge/Corner Cell Space">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Column="0" Grid.Row="0">Name</Label>
+                    <Label Grid.Column="0" Grid.Row="1">Material</Label>
+                    <Label Grid.Column="0" Grid.Row="2">Tiling</Label>
+                    <Label Grid.Column="0" Grid.Row="3">Plus Material</Label>
+                    <Label Grid.Column="0" Grid.Row="4">Plus Tiling</Label>
+                    <Label Grid.Column="0" Grid.Row="5">Parallel Axis</Label>
+                    <Label Grid.Column="0" Grid.Row="6">1st Offset</Label>
+                    <Label Grid.Column="0" Grid.Row="7">2nd Offset</Label>
+                    <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding Path=Name}" Style="{StaticResource styleText}"></TextBox>
+                    <ComboBox Grid.Column="1" Grid.Row="1" ItemsSource="{DynamicResource roomMaterials}"
+                                      SelectedItem="{Binding Path=CellMaterial}" Name="cboWMaterial" DisplayMemberPath="Name"/>
+                    <ComboBox Grid.Column="1" Grid.Row="2" 
+                                      ItemsSource="{Binding ElementName=cboWMaterial, Path=SelectedValue.AvailableTilings}"
+                                      DisplayMemberPath="Name" SelectedItem="{Binding Path=Tiling}"></ComboBox>
+                    <ComboBox Grid.Column="1" Grid.Row="3" ItemsSource="{DynamicResource roomMaterials}"
+                                      SelectedItem="{Binding Path=PlusMaterial}" Name="cboWPMaterial" DisplayMemberPath="Name"/>
+                    <ComboBox Grid.Column="1" Grid.Row="4" 
+                                      ItemsSource="{Binding ElementName=cboWPMaterial, Path=SelectedValue.AvailableTilings}"
+                                      DisplayMemberPath="Name" SelectedItem="{Binding Path=PlusTiling}"></ComboBox>
+                    <ComboBox Grid.Column="1" Grid.Row="5" SelectedItem="{Binding Path=ParallelAxis}">
+                        <visualize:Axis>Z</visualize:Axis>
+                        <visualize:Axis>Y</visualize:Axis>
+                        <visualize:Axis>X</visualize:Axis>
+                    </ComboBox>
+                    <TextBox Grid.Column="1" Grid.Row="6" Text="{Binding Path=PrimaryOffset}" Style="{StaticResource dblCheck}"></TextBox>
+                    <TextBox Grid.Column="1" Grid.Row="7" Text="{Binding Path=SecondaryOffset}" Style="{StaticResource dblCheck}"></TextBox>
+                </Grid>
+            </HeaderedContentControl>
+        </DataTemplate>
+        <!-- Composite Cell Space Editor -->
+        <DataTemplate DataType="{x:Type tactical:Stairs}">
+            <HeaderedContentControl Header="Stairs Cell Space">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Column="0" Grid.Row="0">Name</Label>
+                    <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding Path=Name}" Style="{StaticResource styleText}"></TextBox>
+                </Grid>
+            </HeaderedContentControl>
+        </DataTemplate>
+    </ContentControl.Resources>
+</ContentControl>

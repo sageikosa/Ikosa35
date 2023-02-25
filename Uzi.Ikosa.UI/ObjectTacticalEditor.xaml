@@ -1,0 +1,87 @@
+﻿<UserControl x:Class="Uzi.Ikosa.UI.ObjectTacticalEditor"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:tactical="clr-namespace:Uzi.Ikosa.Tactical;assembly=Uzi.Ikosa"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <UserControl.Resources>
+        <Style TargetType="Label">
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="HorizontalAlignment" Value="Right"/>
+            <Setter Property="FontSize" Value="10"/>
+        </Style>
+        <Style TargetType="TextBlock">
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="10"/>
+        </Style>
+        <Style TargetType="TextBox" x:Key="styleText">
+            <Setter Property="Margin" Value="1"/>
+            <Setter Property="FontSize" Value="10"/>
+            <Style.Triggers>
+                <Trigger Property="Tag" Value="Invalid">
+                    <Setter Property="Background" Value="LightSalmon"/>
+                    <Setter Property="ToolTip.Content" Value="Invalid value"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="TextBox" x:Key="intCheck" BasedOn="{StaticResource styleText}">
+            <EventSetter Event="TextChanged" Handler="txtInt_TextChanged"/>
+        </Style>
+        <Style TargetType="ComboBox">
+            <Setter Property="Margin" Value="1"/>
+            <Setter Property="FontSize" Value="10"/>
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*" MinWidth="72"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Label Grid.Row="0">Cover</Label>
+        <Label Grid.Row="1">Concealment</Label>
+        <Label Grid.Row="2">Effect Lines</Label>
+        <Label Grid.Row="3">Detect Lines</Label>
+        <Label Grid.Row="4">Movement</Label>
+        <Label Grid.Row="5">Spread</Label>
+        <Label Grid.Row="6">Opacity</Label>
+        <Label Grid.Row="7">Sound Diff</Label>
+        <ComboBox Grid.Column="1" Grid.Row="0" x:Name="cboCover" SelectionChanged="cboCover_SelectionChanged">
+            <tactical:CoverLevel>None</tactical:CoverLevel>
+            <tactical:CoverLevel>Hard</tactical:CoverLevel>
+            <tactical:CoverLevel>Improved</tactical:CoverLevel>
+        </ComboBox>
+        <ComboBox Grid.Column="1" Grid.Row="1" x:Name="cboConcealment" SelectionChanged="cboConcealment_SelectionChanged">
+            <tactical:CoverConcealmentResult>None</tactical:CoverConcealmentResult>
+            <tactical:CoverConcealmentResult>Partial</tactical:CoverConcealmentResult>
+            <tactical:CoverConcealmentResult>Total</tactical:CoverConcealmentResult>
+        </ComboBox>
+        <ComboBox Grid.Column="1" Grid.Row="2" x:Name="cboEffectLines" SelectionChanged="cboEffectLines_SelectionChanged">
+            <ComboBoxItem Content="Block" Tag="Block"/>
+            <ComboBoxItem Content="Allow" Tag="Allow"/>
+        </ComboBox>
+        <ComboBox Grid.Column="1" Grid.Row="3" x:Name="cboDetectLines" SelectionChanged="cboDetectLines_SelectionChanged">
+            <ComboBoxItem Content="Block" Tag="Block"/>
+            <ComboBoxItem Content="Allow" Tag="Allow"/>
+        </ComboBox>
+        <ComboBox Grid.Column="1" Grid.Row="4" x:Name="cboMovement" SelectionChanged="cboMovement_SelectionChanged">
+            <ComboBoxItem Content="Block" Tag="Block"/>
+            <ComboBoxItem Content="Hinder" Tag="Hinder"/>
+            <ComboBoxItem Content="Allow" Tag="Allow"/>
+        </ComboBox>
+        <ComboBox Grid.Column="1" Grid.Row="5" x:Name="cboSpread" SelectionChanged="cboSpread_SelectionChanged">
+            <ComboBoxItem Content="Block" Tag="Block"/>
+            <ComboBoxItem Content="Allow" Tag="Allow"/>
+        </ComboBox>
+        <Slider Grid.Column="1" Grid.Row="6" Minimum="0" Maximum="1" TickFrequency="0.1" x:Name="sldrOpacity"
+                        Margin="1" AutoToolTipPlacement="BottomRight" AutoToolTipPrecision="1" ValueChanged="sldrOpacity_ValueChanged"/>
+        <TextBox Grid.Column="1" Grid.Row="7" Style="{StaticResource intCheck}" x:Name="txtSoundDifficulty"/>
+    </Grid>
+</UserControl>

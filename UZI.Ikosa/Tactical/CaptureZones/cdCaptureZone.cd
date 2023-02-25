@@ -1,0 +1,150 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Uzi.Ikosa.Tactical.CaptureZone">
+    <Position X="0.5" Y="0.5" Width="2.25" />
+    <Members>
+      <Field Name="_Geometry" Hidden="true" />
+      <Field Name="_LineToOrigin" Hidden="true" />
+      <Field Name="_MapContext" Hidden="true" />
+      <Field Name="_Origin" Hidden="true" />
+      <Field Name="_Source" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAIAAAAAkAAAAgAAAAQAAAAAEAAABEACEAAAAiAgAA=</HashCode>
+      <FileName>Tactical\CaptureZones\CaptureZone.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Uzi.Ikosa.Tactical.BurstCapture">
+    <Position X="0.5" Y="6.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAABAAAIAEAAAAAAAAAAAAAAAAAAAAAAAAIAAAA=</HashCode>
+      <FileName>Tactical\CaptureZones\BurstCapture.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_BurstBack" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Uzi.Ikosa.Tactical.InteractCapture">
+    <Position X="2.75" Y="6.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAABAAAAAAEA=</HashCode>
+      <FileName>Tactical\CaptureZones\InteractCapture.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_Alterer" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Uzi.Ikosa.Tactical.LocatorCapture">
+    <Position X="3.75" Y="0.5" Width="2.5" />
+    <Members>
+      <Field Name="_ACtrl" Hidden="true" />
+      <Field Name="_Contents" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>EAsAAAAAACAAAAAQEBAAAAAAgEAEAAAEIBAIABBZAEA=</HashCode>
+      <FileName>Tactical\CaptureZones\LocatorCapture.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_Capturer" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Uzi.Ikosa.Tactical.LocatorCaptureSet">
+    <Position X="7.5" Y="4.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAABAAAABAABCAAAFAAAAAAAAAAAACQAAA=</HashCode>
+      <FileName>Tactical\CaptureZones\LocatorCaptureSet.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Field Name="_Zones" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Uzi.Ikosa.Tactical.MapContext">
+    <Position X="5.75" Y="8" Width="2.75" />
+    <Members>
+      <Field Name="_InteractTransitZones" Hidden="true" />
+      <Field Name="_LCtrl" Hidden="true" />
+      <Field Name="_LocatorZones" Hidden="true" />
+      <Field Name="_MoveZones" Hidden="true" />
+      <Field Name="_StrikeZones" Hidden="true" />
+    </Members>
+    <AssociationLine Name="InteractTransitZones" Type="Uzi.Ikosa.Tactical.InteractCapture">
+      <MemberNameLabel ManuallyPlaced="true" ManuallySized="true">
+        <Position X="-0.869" Y="4.112" Height="0.182" Width="1.493" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="LocatorZones" Type="Uzi.Ikosa.Tactical.LocatorCaptureSet">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-1.098" Y="0.154" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AgABAgYAABAAgFAAAUkAgIAAiAAEBBAEAAAsAAKBQCA=</HashCode>
+      <FileName>Tactical\MapContext.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="LocatorZones" />
+      <Property Name="StrikeZones" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="InteractTransitZones" />
+      <Property Name="MovementZones" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Uzi.Ikosa.Tactical.StrikeCaptureSet">
+    <Position X="9.5" Y="11.75" Width="2" />
+    <AssociationLine Name="_Zones" Type="Uzi.Ikosa.Tactical.StrikeCapture" FixedFromPoint="true">
+      <Path>
+        <Point X="10.812" Y="11.75" />
+        <Point X="10.812" Y="10.127" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAQABAAAAAAABAAAABAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Tactical\CaptureZones\StrikeCaptureSet.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Field Name="_Zones" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="Uzi.Ikosa.Tactical.MovementZone">
+    <Position X="1" Y="11.75" Width="2.5" />
+    <Members>
+      <Field Name="_Properties" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAACAAAAAAAABAAAAAAgAAAAAAAAAAAAAAAAAACAAA=</HashCode>
+      <FileName>Tactical\CaptureZones\MovementZone.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Uzi.Ikosa.Tactical.StrikeCapture">
+    <Position X="10" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAACAAAAAA=</HashCode>
+      <FileName>Tactical\CaptureZones\StrikeCapture.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="Uzi.Ikosa.Tactical.IBurstCapture">
+    <Position X="0.5" Y="9.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAABAAAAAAAAI=</HashCode>
+      <FileName>Tactical\CaptureZones\IBurstCapture.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Uzi.Core.IAlterInteraction">
+    <Position X="2.5" Y="9.25" Width="2" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="Uzi.Ikosa.Tactical.ILocatorZone">
+    <Position X="7.25" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAACAAAAAAEAAAAAAAAAAEAAAAIBAAABAAAEA=</HashCode>
+      <FileName>Tactical\CaptureZones\ILocatorZone.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

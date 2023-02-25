@@ -1,0 +1,326 @@
+﻿<UserControl x:Class="Uzi.Ikosa.Client.UI.Advancement"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:uic="clr-namespace:Uzi.Ikosa.Contracts;assembly=Uzi.Ikosa.Contracts"
+             xmlns:uicui="clr-namespace:Uzi.Ikosa.Client.UI"
+             xmlns:uipvm="clr-namespace:Uzi.Ikosa.Proxy.ViewModel;assembly=Uzi.Ikosa.Proxy"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <DockPanel DataContext="{Binding Path=AdvancementVM}">
+        <DockPanel.Resources>
+            <Style TargetType="Button">
+                <Setter Property="MinWidth" Value="72"/>
+                <Setter Property="HorizontalAlignment" Value="Right"/>
+                <Setter Property="Margin" Value="2"/>
+            </Style>
+            <uipvm:AdvancementOptionTemplateSelector x:Key="slctAdvOpt">
+                <uipvm:AdvancementOptionTemplateSelector.LeafNodeTemplate>
+                    <DataTemplate DataType="{x:Type uipvm:AdvancementOptionVM}">
+                        <StackPanel>
+                            <TextBlock Margin="2" DataContext="{Binding Path=AdvancementOptionInfo}"
+                                       Text="{Binding Path=Name}"></TextBlock>
+                            <TextBlock Margin="2" DataContext="{Binding Path=AdvancementOptionInfo}"
+                                       Text="{Binding Path=Description}"></TextBlock>
+                            <Button HorizontalAlignment="Left"
+                                    Margin="2"
+                                    Content="Select" 
+                                    Command="{Binding Path=Selector}" 
+                                    CommandParameter="{Binding Path=SelectionValue}"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </uipvm:AdvancementOptionTemplateSelector.LeafNodeTemplate>
+                <uipvm:AdvancementOptionTemplateSelector.BranchNodeTemplate>
+                    <DataTemplate DataType="{x:Type uipvm:AdvancementOptionVM}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="50,*"></ColumnDefinition>
+                                <ColumnDefinition Width="50,*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <TextBlock Grid.ColumnSpan="2" Grid.Column="0" Grid.Row="0" 
+                                       Margin="2" DataContext="{Binding Path=AdvancementOptionInfo}"
+                                       Text="{Binding Path=Name}"></TextBlock>
+                            <TextBlock Grid.ColumnSpan="2" Grid.Column="0" Grid.Row="1" 
+                                       Margin="2" DataContext="{Binding Path=AdvancementOptionInfo}"
+                                       Text="{Binding Path=Description}"></TextBlock>
+                            <ListBox Grid.Row="2"
+                                     Grid.Column="0"
+                                     Margin="2"
+                                     MaxWidth="288"
+                                     ItemsSource="{Binding Path=AvailableParameters}" 
+                                     x:Name="lstAdvOption">
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate DataType="{x:Type uipvm:AdvancementOptionVM}">
+                                        <Grid DataContext="{Binding Path=AdvancementOptionInfo}">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                            </Grid.RowDefinitions>
+                                            <TextBlock Grid.Row="0" FontSize="12" FontWeight="Bold" Text="{Binding Path=Name}" />
+                                            <TextBlock Grid.Row="1" FontSize="10" Text="{Binding Path=Description}" TextWrapping="Wrap" />
+                                        </Grid>
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
+                            </ListBox>
+                            <ContentControl Grid.Row="2"
+                                            Grid.Column="1"
+                                            Content="{Binding ElementName=lstAdvOption,Path=SelectedItem}"
+                                            ContentTemplateSelector="{DynamicResource ResourceKey=slctAdvOpt}">
+                            </ContentControl>
+                        </Grid>
+                    </DataTemplate>
+                </uipvm:AdvancementOptionTemplateSelector.BranchNodeTemplate>
+            </uipvm:AdvancementOptionTemplateSelector>
+        </DockPanel.Resources>
+        <DockPanel DockPanel.Dock="Top" LastChildFill="False">
+            <Button DockPanel.Dock="Left" Content="Prev" Command="{Binding Path=DoPrevStep}" />
+            <Button DockPanel.Dock="Left" Content="Next" Command="{Binding Path=DoNextStep}" />
+        </DockPanel>
+        <ItemsControl DockPanel.Dock="Left" MinWidth="192" ItemsSource="{Binding Path=Workflow}">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate DataType="{x:Type uipvm:WorkflowStep}">
+                    <TextBlock Margin="1" FontSize="16" Text="{Binding Path=Description}"></TextBlock>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+        <Grid>
+            <Grid.Resources>
+                <ResourceDictionary>
+                    <ResourceDictionary.MergedDictionaries>
+                        <ResourceDictionary Source="/Uzi.Ikosa.Client.UI;Component/Deltable.xaml"/>
+                    </ResourceDictionary.MergedDictionaries>
+                </ResourceDictionary>
+            </Grid.Resources>
+            <DockPanel Visibility="{Binding Path=ClassSelectionVisibility}">
+                <Label DockPanel.Dock="Top">Select Class</Label>
+                <ListView ItemsSource="{Binding Path=AvailableClasses}" 
+                          SelectedItem="{Binding Path=SelectedClass}">
+                    <ListView.View>
+                        <GridView>
+                            <GridView.Columns>
+                                <GridViewColumn Header="Class" DisplayMemberBinding="{Binding Path=ClassName}"/>
+                                <GridViewColumn Header="PD Size" DisplayMemberBinding="{Binding Path=PowerDieSize}"/>
+                                <GridViewColumn Header="Base Atk" DisplayMemberBinding="{Binding Path=BaseAttackProgression}"/>
+                                <GridViewColumn Header="Skill Points" DisplayMemberBinding="{Binding Path=SkillPointsPerLevel}"/>
+                                <GridViewColumn Header="GoodFort" DisplayMemberBinding="{Binding Path=GoodFortitude}"/>
+                                <GridViewColumn Header="GoodRflx" DisplayMemberBinding="{Binding Path=GoodReflex}"/>
+                                <GridViewColumn Header="GoodWill" DisplayMemberBinding="{Binding Path=GoodWill}"/>
+                            </GridView.Columns>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </DockPanel>
+            <DockPanel Visibility="{Binding Path=AbilityBoostSelectionVisibility}">
+                <TextBlock DockPanel.Dock="Top">
+                    <Run Text="Ability to Boost for Power Die"></Run>
+                    <Run Text="{Binding Path=CurrentPowerDie.PowerLevel}"></Run>
+                </TextBlock>
+                <ListBox ItemsSource="{Binding Path=AvailableAbilityBoosts}"
+                         SelectedItem="{Binding Path=BoostedAbility}">
+                </ListBox>
+            </DockPanel>
+            <DockPanel Visibility="{Binding Path=HealthPointsAssignmentVisibility}">
+                <TextBlock DockPanel.Dock="Top">
+                    <Run Text="Health Points for Power Die"></Run>
+                    <Run Text="{Binding Path=CurrentPowerDie.PowerLevel}"></Run>
+                </TextBlock>
+                <TextBlock DockPanel.Dock="Top" xml:space="preserve"><Run Text="Roll 1d"/><Run Text="{Binding Path=SelectedClass.PowerDieSize}"/></TextBlock>
+                <uicui:AdvancementHealthPoints DataContext="{Binding}"
+                                               PowerDieInfo="{Binding Path=CurrentPowerDie}"/>
+            </DockPanel>
+            <DockPanel Visibility="{Binding Path=SkillAssignmentVisibility}">
+                <DockPanel.Resources>
+                    <Style TargetType="Button">
+                        <Setter Property="MinWidth" Value="24"/>
+                        <Setter Property="Margin" Value="0"/>
+                    </Style>
+                </DockPanel.Resources>
+                <TextBlock DockPanel.Dock="Top">
+                    <Run Text="Skill Points for Power Die"></Run>
+                    <Run Text="{Binding Path=CurrentPowerDie.PowerLevel}"></Run>
+                </TextBlock>
+                <TextBlock DockPanel.Dock="Top">
+                    <Run Text="Points Left:"></Run>
+                    <Run Text="{Binding Path=CurrentPowerDie.SkillPointsLeft}"></Run>
+                </TextBlock>
+                <DataGrid DockPanel.Dock="Left" 
+                          GridLinesVisibility="None"
+                          ItemsSource="{Binding Path=BasicSkills}" 
+                          AutoGenerateColumns="False">
+                    <DataGrid.Columns>
+                        <DataGridCheckBoxColumn Header="Class" IsReadOnly="True" Binding="{Binding Path=SkillBuyInfo.IsClassSkill}"/>
+                        <DataGridTextColumn Header="Points" IsReadOnly="True" Binding="{Binding Path=SkillBuyInfo.PointsUsed}"/>
+                        <DataGridTemplateColumn Header="Buy">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Button Content="+" Command="{Binding Path=DoIncreaseSkillBuy}" CommandParameter="{Binding Path=SkillBuyInfo}"/>
+                                        <Button Content="-" Command="{Binding Path=DoDecreaseSkillBuy}" CommandParameter="{Binding Path=SkillBuyInfo}"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTextColumn Header="Ranks" IsReadOnly="True" Binding="{Binding Path=SkillInfo.BaseDoubleValue}"/>
+                        <DataGridTemplateColumn Header="Value" CanUserSort="True" SortMemberPath="EffectiveValue">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <ContentControl HorizontalContentAlignment="Right" MinWidth="16" Margin="2,0" 
+                                                    ContentTemplate="{StaticResource deltaView}" 
+                                                    Content="{Binding Path=SkillInfo}"></ContentControl>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTextColumn Header="Skill" IsReadOnly="True" Binding="{Binding Path=SkillInfo.SkillName}"/>
+                        <DataGridTextColumn Header="Ability" IsReadOnly="True" Binding="{Binding Path=SkillInfo.KeyAbilityMnemonic}"/>
+                        <DataGridTextColumn Header="Check" IsReadOnly="True" Binding="{Binding Path=SkillInfo.CheckFactor}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+                <DataGrid DockPanel.Dock="Left" 
+                          GridLinesVisibility="None"
+                          ItemsSource="{Binding Path=ParameterizedSkills}" 
+                          AutoGenerateColumns="False">
+                    <DataGrid.Columns>
+                        <DataGridCheckBoxColumn Header="Class" IsReadOnly="True" Binding="{Binding Path=SkillBuyInfo.IsClassSkill}"/>
+                        <DataGridTextColumn Header="Points" IsReadOnly="True" Binding="{Binding Path=SkillBuyInfo.PointsUsed}"/>
+                        <DataGridTemplateColumn Header="Buy">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Button Content="+" Command="{Binding Path=DoIncreaseSkillBuy}" CommandParameter="{Binding Path=SkillBuyInfo}"/>
+                                        <Button Content="-" Command="{Binding Path=DoDecreaseSkillBuy}" CommandParameter="{Binding Path=SkillBuyInfo}"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTextColumn Header="Ranks" IsReadOnly="True" Binding="{Binding Path=SkillInfo.BaseDoubleValue}"/>
+                        <DataGridTemplateColumn Header="Value" CanUserSort="True" SortMemberPath="EffectiveValue">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <ContentControl HorizontalContentAlignment="Right" MinWidth="16" Margin="2,0" 
+                                                    ContentTemplate="{StaticResource deltaView}" 
+                                                    Content="{Binding Path=SkillInfo}"></ContentControl>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTextColumn Header="Skill" IsReadOnly="True" Binding="{Binding Path=SkillInfo.SkillName}"/>
+                        <DataGridTextColumn Header="Ability" IsReadOnly="True" Binding="{Binding Path=SkillInfo.KeyAbilityMnemonic}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </DockPanel>
+            <DockPanel Visibility="{Binding Path=FeatSelectionVisibility}">
+                <TextBlock Margin="2" DockPanel.Dock="Top">
+                    <Run Text="Feat for Power Die"></Run>
+                    <Run Text="{Binding Path=CurrentPowerDie.PowerLevel}"></Run>
+                </TextBlock>
+                <TextBlock Margin="2" DockPanel.Dock="Top" ToolTip="{Binding Path=SelectedFeat.Benefit, Mode=OneWay}">
+                    <Run Text="Selected Feat: "></Run>
+                    <Run Text="{Binding Path=SelectedFeat.FeatName, Mode=OneWay}"></Run>
+                </TextBlock>
+                <ListBox DockPanel.Dock="Left" 
+                         Margin="2"
+                         MaxWidth="288"
+                         ItemsSource="{Binding Path=SelectableFeats}" 
+                         x:Name="lstFeatOption">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate DataType="{x:Type uipvm:AdvancementOptionVM}">
+                            <Grid DataContext="{Binding Path=AdvancementOptionInfo}">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <TextBlock Grid.Row="0" FontSize="12" FontWeight="Bold" Text="{Binding Path=Name}" />
+                                <TextBlock Grid.Row="1" FontSize="10" Text="{Binding Path=Description}" TextWrapping="Wrap" />
+                            </Grid>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+                <ContentControl DockPanel.Dock="Left"
+                                Content="{Binding ElementName=lstFeatOption,Path=SelectedItem}"
+                                ContentTemplateSelector="{DynamicResource ResourceKey=slctAdvOpt}">
+                </ContentControl>
+            </DockPanel>
+            <DockPanel Visibility="{Binding Path=ClassRequirementsVisibility}">
+                <TextBlock DockPanel.Dock="Top">
+                    <Run Text="Class Requirements for"></Run>
+                    <Run Text="{Binding Path=SelectedClass.ClassName}"></Run>
+                </TextBlock>
+                <ListBox DockPanel.Dock="Left" 
+                         MaxWidth="288"
+                         ItemsSource="{Binding Path=Requirements}" 
+                         x:Name="lstRequirements">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate DataType="{x:Type uipvm:AdvancementRequirementVM}">
+                            <Grid DataContext="{Binding Path=AdvancementRequirementInfo}">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <TextBlock Grid.Row="0" FontSize="12" FontWeight="Bold" Text="{Binding Path=Name}" />
+                                <TextBlock Grid.Row="1" FontSize="10" Text="{Binding Path=Description}" TextWrapping="Wrap" />
+                            </Grid>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+                <ContentControl DockPanel.Dock="Left"
+                                Content="{Binding ElementName=lstRequirements,Path=SelectedItem}">
+                    <ContentControl.ContentTemplate>
+                        <DataTemplate DataType="{x:Type uipvm:AdvancementRequirementVM}">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="50,*"></ColumnDefinition>
+                                    <ColumnDefinition Width="50,*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"></RowDefinition>
+                                    <RowDefinition Height="Auto"></RowDefinition>
+                                    <RowDefinition Height="Auto"></RowDefinition>
+                                    <RowDefinition Height="*"></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <TextBlock Grid.ColumnSpan="2" Grid.Column="0" Grid.Row="0" 
+                                           Text="{Binding Path=AdvancementRequirementInfo.Name}"></TextBlock>
+                                <TextBlock Grid.ColumnSpan="2" Grid.Column="0" Grid.Row="1" 
+                                           Text="{Binding Path=AdvancementRequirementInfo.Description}"></TextBlock>
+                                <TextBlock Grid.ColumnSpan="2" Grid.Column="0" Grid.Row="2">
+                                    <Run Text="Selected:"/>
+                                    <Run Text="{Binding Path=AdvancementRequirementInfo.CurrentValue.Name}"/>
+                                </TextBlock>
+                                <ListBox Grid.Row="3"
+                                         Grid.Column="0"
+                                         MaxWidth="288"
+                                         ItemsSource="{Binding Path=Options}" 
+                                         x:Name="lstRootReqAdvOption">
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate DataType="{x:Type uipvm:AdvancementOptionVM}">
+                                            <StackPanel Orientation="Vertical" DataContext="{Binding Path=AdvancementOptionInfo}">
+                                                <TextBlock FontSize="12" FontWeight="Bold" Text="{Binding Path=Name}" />
+                                                <TextBlock FontSize="10" Text="{Binding Path=Description}" TextWrapping="Wrap" />
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                </ListBox>
+                                <ContentControl Grid.Row="3"
+                                                Grid.Column="1"
+                                                Content="{Binding ElementName=lstRootReqAdvOption,Path=SelectedItem}"
+                                                ContentTemplateSelector="{DynamicResource ResourceKey=slctAdvOpt}">
+                                </ContentControl>
+                            </Grid>
+                        </DataTemplate>
+                    </ContentControl.ContentTemplate>
+                </ContentControl>
+            </DockPanel>
+            <DockPanel Visibility="{Binding Path=ConfirmVisibility}" LastChildFill="False">
+                <TextBlock DockPanel.Dock="Top">
+                    <Run Text="Confirm Class: "></Run>
+                    <Run Text="{Binding Path=SelectedClass.ClassName}"></Run>
+                </TextBlock>
+                <Button DockPanel.Dock="Top" Command="{Binding Path=DoConfirm}">Confirm</Button>
+            </DockPanel>
+        </Grid>
+    </DockPanel>
+</UserControl>

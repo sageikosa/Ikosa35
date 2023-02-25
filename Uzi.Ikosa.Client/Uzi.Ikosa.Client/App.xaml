@@ -1,0 +1,255 @@
+﻿<Application x:Class="Uzi.Ikosa.Client.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:icontract="clr-namespace:Uzi.Ikosa.Contracts;assembly=Uzi.Ikosa.Contracts"
+             xmlns:ccontract="clr-namespace:Uzi.Core.Contracts;assembly=Uzi.Core.Contracts"
+             xmlns:act="clr-namespace:Uzi.Ikosa.Proxy.IkosaSvc;assembly=Uzi.Ikosa.Proxy"
+             xmlns:uicui="clr-namespace:Uzi.Ikosa.Client.UI;assembly=Uzi.Ikosa.Client.UI"
+             xmlns:uipvm="clr-namespace:Uzi.Ikosa.Proxy.ViewModel;assembly=Uzi.Ikosa.Proxy"
+             ShutdownMode="OnMainWindowClose"
+             StartupUri="ClientMain.xaml">
+    <Application.Resources>
+        <DataTemplate DataType="{x:Type icontract:ActionInfo}">
+            <StackPanel Orientation="Vertical">
+                <TextBlock>
+                    <Run Text="{Binding Path=DisplayName}"></Run>
+                    <Run FontStyle="Italic" Text="("/><Run FontStyle="Italic" Text="{Binding Path=TimeCost}"/><Run FontStyle="Italic" Text=")"/>
+                </TextBlock>
+                <TextBlock Text="{Binding Path=Description}" Visibility="{Binding Path=DescriptionVisibility}"/>
+            </StackPanel>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type ccontract:OptionAimOption}">
+            <StackPanel Orientation="Vertical">
+                <TextBlock FontWeight="Bold" Text="{Binding Path=Name}"/>
+                <TextBlock FontStyle="Italic" Text="{Binding Path=Description}" Visibility="{Binding Path=DescriptionVisibility}"/>
+            </StackPanel>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type ccontract:ObservedActivityInfo}">
+            <StackPanel Orientation="Vertical">
+                <TextBlock FontWeight="Bold" Text="{Binding Path=Message}"/>
+                <ContentControl Content="{Binding Path=Implement}"/>
+                <ContentControl Content="{Binding Path=Details}"/>
+                <ItemsControl ItemsSource="{Binding Path=Targets}"></ItemsControl>
+            </StackPanel>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type uipvm:ObjectInfoVM}">
+            <StackPanel Orientation="{Binding Path=StackOrientation}">
+                <uicui:ImageryIcon ImageryInfo="{Binding Path=ObjectInfo.Icon}" 
+                                   IconResolver="{Binding Path=ObjectInfo.IconResolver}"
+                                   ToolTip="{Binding Path=ObjectInfo.Message}"
+                                   Visibility="{Binding Path=IconVisibility}"
+                                   Background="#606060"
+                                   Opacity="0.8"
+                                   Width="{Binding Path=Size}" 
+                                   Height="{Binding Path=Size}">
+                </uicui:ImageryIcon>
+                <TextBlock FontWeight="Bold" 
+                           Text="{Binding Path=ObjectInfo.Message}"
+                           Visibility="{Binding Path=TextVisibility}"/>
+            </StackPanel>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type icontract:ObjectInfo}">
+            <StackPanel Orientation="Horizontal" ToolTipService.ShowDuration="30000" >
+                <StackPanel.Style>
+                    <Style TargetType="StackPanel" >
+                        <Setter Property="Margin" Value="2"/>
+                        <Setter Property="Background" Value="#FFA0A0A0"/>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Background" Value="LightGreen"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </StackPanel.Style>
+                <StackPanel.Resources>
+                    <Style TargetType="Label" >
+                        <Setter Property="FontWeight" Value="Bold"/>
+                        <Setter Property="HorizontalAlignment" Value="Right"/>
+                        <Setter Property="VerticalAlignment" Value="Center"/>
+                    </Style>
+                    <Style TargetType="TextBlock" >
+                        <Setter Property="VerticalAlignment" Value="Center"/>
+                    </Style>
+                </StackPanel.Resources>
+                <uicui:ImageryIcon Width="64" Height="64" ImageryInfo="{Binding Path=Icon}" IconResolver="{Binding Path=IconResolver}"/>
+                <StackPanel Orientation="Vertical" VerticalAlignment="Center" Margin="4,0,2,0">
+                    <TextBlock Text="{Binding Path=Message}"></TextBlock>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock xml:space="preserve"><Run Text="{Binding Path=Size.Name}"/><Run Text=" ("/><Run FontStyle="Italic" Text="{Binding Path=CreatureSize.Name}"/><Run Text=") "/></TextBlock>
+                        <TextBlock Visibility="{Binding Path=WeightVisibility}"><Run Text="{Binding Path=Weight}"/><Run Text="#"/></TextBlock>
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
+        </DataTemplate>
+        <Style x:Key="oldSchool" TargetType="{x:Type TabItem}">
+            <Setter Property="Background" Value="Goldenrod"/>
+        </Style>
+        <Style x:Key="parchment" TargetType="{x:Type Window}">
+            <Setter Property="Background" Value="Beige"/>
+        </Style>
+
+        <HierarchicalDataTemplate DataType="{x:Type ccontract:RollerLog}">
+            <Border BorderBrush="Black" BorderThickness="1" CornerRadius="2">
+                <HeaderedItemsControl ItemsSource="{Binding Path=Parts}" Margin="2">
+                    <HeaderedItemsControl.Header>
+                        <TextBlock Margin="2">
+                            <Run Text="{Binding Path=Total}"/>
+                            <Run Text=" ("/>
+                            <Run Text="{Binding Path=Expression}"/>
+                            <Run Text=")"/>
+                        </TextBlock>
+                    </HeaderedItemsControl.Header>
+                    <HeaderedItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Horizontal"></StackPanel>
+                        </ItemsPanelTemplate>
+                    </HeaderedItemsControl.ItemsPanel>
+                </HeaderedItemsControl>
+            </Border>
+        </HierarchicalDataTemplate>
+
+        <!-- Header Content -->
+        <DataTemplate x:Key="sheetContent">
+            <Border Background="LightGoldenrodYellow" BorderBrush="Brown" BorderThickness="2,1,2,2" 
+                    CornerRadius="0,0,16,4">
+                <ContentPresenter Margin="4,1,8,4" Content="{TemplateBinding Property=ContentControl.Content}"/>
+            </Border>
+        </DataTemplate>
+
+        <DataTemplate x:Key="sheetHeader">
+            <Border HorizontalAlignment="Left" Background="Tan" BorderBrush="Brown" Margin="4,0,0,0" 
+                    BorderThickness="2,2,2,0" CornerRadius="16,4,0,0">
+                <ContentPresenter Margin="10,1,4,1"
+                                  Content="{TemplateBinding Property=ContentControl.Content}"></ContentPresenter>
+            </Border>
+        </DataTemplate>
+        <!-- Headered Content Style -->
+        <Style TargetType="{x:Type HeaderedContentControl}" x:Key="sheetGroup">
+            <Setter Property="Background" Value="LightGoldenrodYellow"/>
+            <Setter Property="Margin" Value="4"/>
+            <Setter Property="ContentTemplate" Value="{StaticResource sheetContent}"/>
+            <Setter Property="HeaderTemplate" Value="{StaticResource sheetHeader}"/>
+        </Style>
+        <Style TargetType="{x:Type TabItem}" x:Key="sheetTab">
+            <Setter Property="Background" Value="LightGoldenrodYellow"/>
+            <Setter Property="Margin" Value="4"/>
+            <Setter Property="ContentTemplate" Value="{StaticResource sheetContent}"/>
+            <Setter Property="HeaderTemplate" Value="{StaticResource sheetHeader}"/>
+        </Style>
+        <!-- NOTE: TreeViewItem control template from MSDN to get MouseOver just on the TreeViewItem and not parent -->
+        <!-- http://blogs.msdn.com/hulyap/archive/2008/07/07/mouseover-trigger-for-treeviewitem.aspx -->
+        <!-- http://msdn.microsoft.com/en-us/library/ms788727.aspx -->
+        <SolidColorBrush x:Key="GlyphBrush" Color="Black"/>
+        <Style x:Key="ExpandCollapseToggleStyle" TargetType="ToggleButton">
+            <Setter Property="Focusable" Value="False"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ToggleButton">
+                        <Grid Width="15" Height="13" Background="Transparent">
+                            <Path x:Name="ExpandPath" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="1,1,1,1"
+                              Fill="{StaticResource GlyphBrush}" Data="M 4 0 L 8 4 L 4 8 Z"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter Property="Data" TargetName="ExpandPath" Value="M 0 4 L 8 4 L 4 8 Z"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="TreeViewItemFocusVisual">
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Border>
+                            <Rectangle Margin="0,0,0,0" StrokeThickness="5" Stroke="Black" StrokeDashArray="1 2" Opacity="0"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style  x:Key="styleTreeViewItem" TargetType="{x:Type TreeViewItem}">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="HorizontalContentAlignment"      
+                    Value="{Binding Path=HorizontalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"/>
+            <Setter Property="VerticalContentAlignment"      
+                    Value="{Binding Path=VerticalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"/>
+            <Setter Property="Padding" Value="1,0,0,0"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="FocusVisualStyle" Value="{StaticResource TreeViewItemFocusVisual}"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TreeViewItem}" >
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition MinWidth="19" Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <ToggleButton x:Name="Expander" Style="{StaticResource ExpandCollapseToggleStyle}"
+                                          IsChecked="{Binding Path=IsExpanded, RelativeSource={RelativeSource TemplatedParent}}" 
+                                          ClickMode="Press"/>
+                            <Border Name="Bd" Grid.Column="1" Background="{TemplateBinding Background}" 
+                                    BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}"
+                                    Padding="{TemplateBinding Padding}">
+                                <ContentPresenter x:Name="PART_Header" ContentSource="Header"
+                                                  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"/>
+                            </Border>
+                            <ItemsPresenter x:Name="ItemsHost" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger SourceName="PART_Header" Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Bd" Property="Background" Value="LightCyan"/>
+                            </Trigger>
+                            <Trigger Property="IsExpanded" Value="false">
+                                <Setter TargetName="ItemsHost" Property="Visibility" Value="Collapsed"/>
+                            </Trigger>
+                            <Trigger Property="HasItems" Value="false">
+                                <Setter TargetName="Expander" Property="Visibility" Value="Hidden"/>
+                            </Trigger>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="HasHeader" Value="false"/>
+                                    <Condition Property="Width" Value="Auto"/>
+                                </MultiTrigger.Conditions>
+                                <Setter TargetName="PART_Header" Property="MinWidth" Value="75"/>
+                            </MultiTrigger>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="HasHeader" Value="false"/>
+                                    <Condition Property="Height" Value="Auto"/>
+                                </MultiTrigger.Conditions>
+                                <Setter TargetName="PART_Header" Property="MinHeight" Value="19"/>
+                            </MultiTrigger>
+                            <Trigger Property="IsSelected" Value="true">
+                                <Setter TargetName="Bd" Property="Background" 
+                                        Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                                <Setter Property="Foreground" 
+                                        Value="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}"/>
+                            </Trigger>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="IsSelected" Value="true"/>
+                                    <Condition Property="IsSelectionActive" Value="false"/>
+                                </MultiTrigger.Conditions>
+                                <Setter TargetName="Bd" Property="Background"
+                                        Value="{DynamicResource {x:Static SystemColors.ControlBrushKey}}"/>
+                                <Setter Property="Foreground"
+                                        Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+                            </MultiTrigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Foreground"
+                                        Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Application.Resources>
+</Application>

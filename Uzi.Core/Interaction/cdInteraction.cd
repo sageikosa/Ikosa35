@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Uzi.Core.InteractionFeedback">
+    <Position X="9.25" Y="0.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interaction\InteractionFeedback.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Uzi.Core.Interaction">
+    <Position X="6.25" Y="0.75" Width="1.5" />
+    <Members>
+      <Field Name="_Feedback" Hidden="true" />
+      <Field Name="_InteractData" Hidden="true" />
+      <Field Name="_UseDefault" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>QAAAAABAQIAAAAAAAAACAAIBAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interaction\Interaction.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="InteractData" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="Feedback" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="Uzi.Core.InteractData">
+    <Position X="6.25" Y="3.75" Width="1.75" />
+    <Members>
+      <Field Name="_Alters" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAEA=</HashCode>
+      <FileName>Interaction\InteractData.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Alterations" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="Uzi.Core.InteractionAlteration">
+    <Position X="8.5" Y="5.25" Width="1.75" />
+    <AssociationLine Name="Interaction" Type="Uzi.Core.InteractData" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="9.875" Y="5.25" />
+        <Point X="9.875" Y="4.333" />
+        <Point X="8" Y="4.333" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAA=</HashCode>
+      <FileName>Interaction\InteractionAlteration.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Interaction" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="Information" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Uzi.Core.Qualifier">
+    <Position X="3.75" Y="0.75" Width="1.5" />
+    <Members>
+      <Field Name="_Actor" Hidden="true" />
+      <Field Name="_Source" Hidden="true" />
+      <Field Name="_Target" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQgAAgAAIAAAAACAAAEAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Deltas\Qualifier.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Target" />
+      <Property Name="Actor" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Uzi.Core.CoreActor" Collapsed="true">
+    <Position X="0.5" Y="0.75" Width="1.75" />
+    <Members>
+      <Field Name="_Actions" Hidden="true" />
+      <Field Name="_ActivityCtrl" Hidden="true" />
+      <Field Name="_InteractAlterCtrl" Hidden="true" />
+      <Field Name="_ObjLoad" Hidden="true" />
+      <Field Name="_Possess" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>EEQAEAAAIAgAQAAAJACAAAgABAAAAAAoAAAIIAABAAA=</HashCode>
+      <FileName>CoreActor.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Uzi.Core.Contracts.Info">
+    <Position X="11.5" Y="5.25" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Interface Name="Uzi.Core.IInteract">
+    <Position X="3.75" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interaction\IInteract.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Uzi.Core.ICore">
+    <Position X="1" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ICore.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

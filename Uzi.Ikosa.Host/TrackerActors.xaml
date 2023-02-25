@@ -1,0 +1,70 @@
+﻿<Window x:Class="Uzi.Ikosa.Host.TrackerActors"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:svc="clr-namespace:Uzi.Ikosa.Services;assembly=Uzi.Ikosa"
+        xmlns:host="clr-namespace:Uzi.Ikosa.Host"
+        xmlns:chost="clr-namespace:Uzi.Ikosa.Contracts.Host;assembly=Uzi.Ikosa.Contracts"
+        Title="Tracker Actors" Height="352" Width="300">
+    <Grid>
+        <Grid.CommandBindings>
+            <CommandBinding x:Name="cmdbndOK" Command="{x:Static host:TrackerActors.OKCommand}"
+                            CanExecute="cmdbndOK_CanExecute" Executed="cmdbndOK_Executed"/>
+        </Grid.CommandBindings>
+        <Grid.Resources>
+            <Style TargetType="Button">
+                <Setter Property="VerticalAlignment" Value="Top"/>
+                <Setter Property="Margin" Value="2,1"/>
+                <Setter Property="Padding" Value="8,0"/>
+                <Setter Property="MinWidth" Value="56"/>
+            </Style>
+            <DataTemplate DataType="{x:Type chost:CreatureLoginInfo}">
+                <Border Margin="2" BorderBrush="Black" CornerRadius="1" BorderThickness="0.5" Padding="2">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Image Grid.Column="0" Grid.RowSpan="2" Source="{Binding Path=Portrait.Image}" Width="40" Height="40"/>
+                        <Label Grid.Row="0" Grid.Column="1" Content="{Binding Path=Name}" HorizontalAlignment="Left"/>
+                        <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Path=Species}" FontSize="10"/>
+                        <ItemsControl Grid.Row="0" Grid.RowSpan="2" Grid.Column="2" ItemsSource="{Binding Path=Classes}" VerticalAlignment="Center">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel Orientation="Vertical">
+                                    </StackPanel>
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock FontSize="10">
+                                                <Run Text="{Binding Path=ClassName}"/>
+                                                <Run Text="-"/>
+                                                <Run Text="{Binding Path=CurrentLevel}"/>
+                                    </TextBlock>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </Grid>
+                </Border>
+            </DataTemplate>
+        </Grid.Resources>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition />
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Label Grid.Row="0">Select Actors</Label>
+        <ListBox Grid.Row="1" Margin="2,0" x:Name="lstActors" SelectionMode="Multiple"></ListBox>
+        <DockPanel LastChildFill="False" Grid.Row="2">
+            <DockPanel DockPanel.Dock="Bottom" LastChildFill="False" Margin="4">
+                <Button IsCancel="True" DockPanel.Dock="Right" Content="Cancel" Click="btnCancel_Click"/>
+                <Button IsDefault="True" DockPanel.Dock="Right" Tag="Portal" Content="OK" Command="{x:Static host:TrackerActors.OKCommand}"/>
+            </DockPanel>
+        </DockPanel>
+    </Grid>
+</Window>

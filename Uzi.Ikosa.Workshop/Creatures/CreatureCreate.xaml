@@ -1,0 +1,199 @@
+﻿<UserControl x:Class="Uzi.Ikosa.Workshop.CreatureCreate"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:abilities="clr-namespace:Uzi.Ikosa.Abilities;assembly=Uzi.Ikosa"
+             xmlns:shop="clr-namespace:Uzi.Ikosa.Workshop" mc:Ignorable="d" >
+    <DockPanel LastChildFill="False">
+        <DockPanel.CommandBindings>
+            <CommandBinding Command="{x:Static shop:CreateCharacter.RollCmd}"
+                                    Executed="RollCmdExecuted" CanExecute="RollCmdCanExecute"/>
+        </DockPanel.CommandBindings>
+        <!-- Starting Ability Scores -->
+        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
+            <StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <StackPanel>
+                        <TextBlock DockPanel.Dock="Top" FontWeight="Bold" FontSize="12" Text="Ability Scores"
+                                   Margin="2,1,2,4"/>
+                        <Grid VerticalAlignment="Top" Margin="0,8">
+                            <Grid.Resources>
+                                <!-- Spinner Button Style -->
+                                <Style TargetType="{x:Type Button}" x:Key="ctrlSpinStyle">
+                                    <Setter Property="MinWidth" Value="12"/>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="true">
+                                            <Setter Property="Background" Value="LightGreen"/>
+                                        </Trigger>
+                                        <Trigger Property="IsPressed" Value="true">
+                                            <Setter Property="RenderTransform">
+                                                <Setter.Value>
+                                                    <TranslateTransform X="-1" Y="0"></TranslateTransform>
+                                                </Setter.Value>
+                                            </Setter>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+
+                                <!-- Spinner Button Template -->
+                                <ControlTemplate x:Key="ctrlSpin" TargetType="{x:Type Button}">
+                                    <Border Background="{TemplateBinding Property=Background}" 
+								RenderTransform="{TemplateBinding Property=RenderTransform}"
+								BorderBrush="Black" BorderThickness="1" MinWidth="{TemplateBinding Property=MinWidth}">
+                                        <ContentPresenter HorizontalAlignment="Center" Content="{TemplateBinding Property=Content}"></ContentPresenter>
+                                    </Border>
+                                </ControlTemplate>
+
+                                <Style TargetType="{x:Type Label}">
+                                    <Setter Property="VerticalAlignment" Value="Center"/>
+                                </Style>
+                                <Style x:Key="valDrop" TargetType="{x:Type Label}">
+                                    <Setter Property="VerticalAlignment" Value="Center"/>
+                                    <Setter Property="BorderBrush" Value="Black"></Setter>
+                                    <Setter Property="Margin" Value="2"></Setter>
+                                    <Setter Property="BorderThickness" Value="4,1,4,1"></Setter>
+                                    <!-- Handle drag/drop -->
+                                </Style>
+
+                                <!-- Ability Value Template -->
+                                <DataTemplate DataType="{x:Type abilities:AbilityBase}">
+                                    <DataTemplate.Resources>
+                                        <Style TargetType="{x:Type Label}">
+                                            <Style.Triggers>
+                                                <Trigger Property="IsMouseOver" Value="true">
+                                                    <Setter Property="Background" Value="LightGreen"/>
+                                                </Trigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </DataTemplate.Resources>
+                                    <Label Content="{Binding Path=BaseValue}"/>
+                                </DataTemplate>
+                                <ControlTemplate x:Key="spinLabel" TargetType="{x:Type ContentControl}">
+                                    <ControlTemplate.Resources>
+                                        <Style TargetType="{x:Type Label}">
+                                            <Style.Triggers>
+                                                <Trigger Property="IsMouseOver" Value="true">
+                                                    <Setter Property="Background" Value="LightGreen"/>
+                                                </Trigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </ControlTemplate.Resources>
+                                    <Grid HorizontalAlignment="Left" Margin="2">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition/>
+                                            <ColumnDefinition/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition/>
+                                            <RowDefinition/>
+                                        </Grid.RowDefinitions>
+                                        <Border Padding="2" Grid.RowSpan="2" CornerRadius="3" BorderThickness="3,1,3,1" BorderBrush="Black" 
+                                                    MinWidth="36" MinHeight="24" AllowDrop="True">
+                                            <ContentControl Content="{TemplateBinding Property=Content}"/>
+                                        </Border>
+                                        <Button Grid.Column="1" Grid.Row="0" Template="{StaticResource ctrlSpin}" 
+                                                    Style="{StaticResource ctrlSpinStyle}" Margin="2,1,2,0" Tag="+" Click="ButtonClick">+</Button>
+                                        <Button Grid.Column="1" Grid.Row="1" Template="{StaticResource ctrlSpin}" 
+                                                    Style="{StaticResource ctrlSpinStyle}" Margin="2,0,2,1" Tag="-" Click="ButtonClick">-</Button>
+                                    </Grid>
+                                </ControlTemplate>
+                            </Grid.Resources>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+
+                            <!-- Labels -->
+                            <Label Grid.Column="0" ToolTip="Strength">STR</Label>
+                            <Label Grid.Column="1" ToolTip="Dexterity">DEX</Label>
+                            <Label Grid.Column="2" ToolTip="Constitution">CON</Label>
+                            <Label Grid.Column="0" Grid.Row="2" ToolTip="Intelligence">INT</Label>
+                            <Label Grid.Column="1" Grid.Row="2" ToolTip="Wisdom">WIS</Label>
+                            <Label Grid.Column="2" Grid.Row="2" ToolTip="Charisma">CHA</Label>
+
+                            <!-- Ability Value Display -->
+                            <ContentControl Grid.Column="0" Grid.Row="1" ToolTip="Strength" x:Name="ccSTR"
+                                                Template="{StaticResource spinLabel}"
+                                                DragEnter="Border_DragEnter" DragOver="Border_DragOver"
+                                                Drop="Border_Drop"/>
+                            <ContentControl Grid.Column="1" Grid.Row="1" ToolTip="Dexterity" x:Name="ccDEX"
+                                                Template="{StaticResource spinLabel}"
+                                                DragEnter="Border_DragEnter" DragOver="Border_DragOver"
+                                                Drop="Border_Drop"/>
+                            <ContentControl Grid.Column="2" Grid.Row="1" ToolTip="Constitution" x:Name="ccCON"
+                                                Template="{StaticResource spinLabel}"
+                                                DragEnter="Border_DragEnter" DragOver="Border_DragOver"
+                                                Drop="Border_Drop"/>
+                            <ContentControl Grid.Column="0" Grid.Row="3" ToolTip="Intelligence" x:Name="ccINT"
+                                                Template="{StaticResource spinLabel}"
+                                                DragEnter="Border_DragEnter" DragOver="Border_DragOver"
+                                                Drop="Border_Drop"/>
+                            <ContentControl Grid.Column="1" Grid.Row="3" ToolTip="Wisdom" x:Name="ccWIS"
+                                                Template="{StaticResource spinLabel}"
+                                                DragEnter="Border_DragEnter" DragOver="Border_DragOver"
+                                                Drop="Border_Drop"/>
+                            <ContentControl Grid.Column="2" Grid.Row="3" ToolTip="Charisma" x:Name="ccCHA"
+                                                Template="{StaticResource spinLabel}"
+                                                DragEnter="Border_DragEnter" DragOver="Border_DragOver"
+                                                Drop="Border_Drop"/>
+                        </Grid>
+                    </StackPanel>
+                    <!-- Score values to use: Standard, Elite, Average, 4d6h3, 5d6h3, BYOR, Point Buy (various) -->
+                    <StackPanel Margin="4,0,4,0">
+                        <StackPanel.Resources>
+                            <Style TargetType="{x:Type Button}">
+                                <Setter Property="Margin" Value="1"/>
+                                <Setter Property="MinWidth" Value="96"/>
+                                <Setter Property="Command" Value="{x:Static shop:CreateCharacter.RollCmd}"/>
+                            </Style>
+                        </StackPanel.Resources>
+                        <!-- Creature Type -->
+                        <TextBlock FontWeight="Bold" FontSize="12" Text="Species" Margin="2,1,2,4"/>
+                        <ComboBox x:Name="cboSpecies" DisplayMemberPath="Description" Margin="2,2,2,6"
+                                  SelectionChanged="cboSpecies_SelectionChanged"></ComboBox>
+                        <Button CommandParameter="Default">Default</Button>
+                        <Button CommandParameter="3d6">3d6</Button>
+                        <Button CommandParameter="4d6">4d6 Drop 1</Button>
+                        <Button CommandParameter="5d6">5d6 Drop 2</Button>
+                        <Button CommandParameter="Own">Roll Your Own</Button>
+                        <Button CommandParameter="Species">Species</Button>
+                    </StackPanel>
+                </StackPanel>
+
+                <!-- Rolled Values -->
+                <StackPanel DockPanel.Dock="Top" Margin="2,0,2,0">
+                    <TextBlock Margin="2,1" FontSize="12">Rolled Values</TextBlock>
+                    <ListBox x:Name="lstValues" Margin="2" FontSize="16" 
+                                        PreviewMouseLeftButtonDown="lstValues_PreviewMouseLeftButtonDown"
+                                        PreviewMouseMove="lstValues_PreviewMouseMove">
+                        <ListBox.Resources>
+                            <Style TargetType="{x:Type Label}">
+                                <Setter Property="BorderBrush" Value="Black"/>
+                                <Setter Property="BorderThickness" Value="2"/>
+                                <Setter Property="Margin" Value="2"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="true">
+                                        <Setter Property="Background" Value="LightGreen"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </ListBox.Resources>
+                        <ListBox.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel Orientation="Horizontal" MinHeight="48"></StackPanel>
+                            </ItemsPanelTemplate>
+                        </ListBox.ItemsPanel>
+                    </ListBox>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+    </DockPanel>
+</UserControl>

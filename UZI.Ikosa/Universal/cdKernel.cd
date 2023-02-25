@@ -1,0 +1,150 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Uzi.Ikosa.Universal.IkosaProcessManager">
+    <Position X="0.75" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>hAAAAAAAAAAAAAAAAAAAAAAAgEAAAAAAAAACAAAAAAA=</HashCode>
+      <FileName>Universal\IkosaProcessManager.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="LocalTurnTracker" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Uzi.Ikosa.Tactical.LocalTurnTracker">
+    <Position X="4.25" Y="0.5" Width="2" />
+    <Members>
+      <Field Name="_Budgets" Hidden="true" />
+      <Field Name="_CtxSet" Hidden="true" />
+      <Field Name="_Delayed" Hidden="true" />
+      <Field Name="_DelayIndex" Hidden="true" />
+      <Field Name="_Focus" Hidden="true" />
+      <Field Name="_Init" Hidden="true" />
+      <Field Name="_Process" Hidden="true" />
+      <Field Name="_Resolution" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>gA5AAAEAIBEAQACiACQAERAAkIAMAwAQAgAAAQgAACg=</HashCode>
+      <FileName>Tactical\TurnTracking\LocalTurnTracker.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Map" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="ContextSet" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Uzi.Core.CoreTickTracker">
+    <Position X="4.5" Y="7" Width="1.5" />
+    <TypeIdentifier />
+    <ShowAsAssociation>
+      <Property Name="LeadingTick" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Uzi.Core.CoreTurnTick">
+    <Position X="7.5" Y="7" Width="1.5" />
+    <TypeIdentifier />
+    <ShowAsAssociation>
+      <Property Name="Tracker" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Uzi.Ikosa.Tactical.LocalMap">
+    <Position X="16" Y="1.25" Width="2" />
+    <Members>
+      <Field Name="_AmbientLights" Hidden="true" />
+      <Field Name="_Backgrounds" Hidden="true" />
+      <Field Name="_CellMaterials" Hidden="true" />
+      <Field Name="_CurrentTime" Hidden="true" />
+      <Field Name="_DebugSegments" Hidden="true" />
+      <Field Name="_Index" Hidden="true" />
+      <Field Name="_Initialized" Hidden="true" />
+      <Field Name="_MapPart" Hidden="true" />
+      <Field Name="_NamedKeys" Hidden="true" />
+      <Field Name="_NameManager" Hidden="true" />
+      <Field Name="_Panels" Hidden="true" />
+      <Field Name="_Resources" Hidden="true" />
+      <Field Name="_Rooms" Hidden="true" />
+      <Field Name="_Shadings" Hidden="true" />
+      <Field Name="_Spaces" Hidden="true" />
+      <Field Name="_SyncLock" Hidden="true" />
+      <Field Name="_Viewport" Hidden="true" />
+      <Field Name="IkosaMapRelation" Hidden="true" />
+    </Members>
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>QCA5kJMAcAAEEZiASjkkYQW3isRRSLCRoEoSrKbAwEo=</HashCode>
+      <FileName>Tactical\LocalMap.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Uzi.Core.CoreProcessManager">
+    <Position X="0.75" Y="6.75" Width="2" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Uzi.Ikosa.Tactical.LocalTurnTick">
+    <Position X="7.5" Y="4.25" Width="1.5" />
+    <Members>
+      <Field Name="_Init" Hidden="true" />
+      <Field Name="_Time" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIAAAAAAAAAAAABAAAAAAAAAAAAAAACAQAQA=</HashCode>
+      <FileName>Tactical\TurnTracking\LocalTurnTick.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Uzi.Core.CoreSetting">
+    <Position X="16" Y="8.75" Width="2" />
+    <Members>
+      <Field Name="_ContextSet" Hidden="true" />
+      <Field Name="_Name" Hidden="true" />
+    </Members>
+    <TypeIdentifier />
+    <ShowAsAssociation>
+      <Property Name="ContextSet" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Uzi.Core.CoreSettingContext">
+    <Position X="13.5" Y="2.25" Width="2" />
+    <Members>
+      <Field Name="_Tokens" Hidden="true" />
+    </Members>
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Uzi.Ikosa.Tactical.MapContext">
+    <Position X="10" Y="4.25" Width="1.75" />
+    <Members>
+      <Field Name="_CreatureLogins" Hidden="true" />
+      <Field Name="_Index" Hidden="true" />
+      <Field Name="_InteractTransitZones" Hidden="true" />
+      <Field Name="_LCtrl" Hidden="true" />
+      <Field Name="_LocatorZones" Hidden="true" />
+      <Field Name="_MoveZones" Hidden="true" />
+      <Field Name="_StrikeZones" Hidden="true" />
+      <Field Name="_TransientVisualizers" Hidden="true" />
+    </Members>
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>QgAhAgYAABAAgFAAAUkIgqAgiAAEBhAEQAAsgAKBQCE=</HashCode>
+      <FileName>Tactical\MapContext.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Uzi.Core.CoreSettingContextSet">
+    <Position X="12.5" Y="6.75" Width="2" />
+    <Members>
+      <Field Name="_CoreIdx" Hidden="true" />
+    </Members>
+    <TypeIdentifier />
+    <ShowAsAssociation>
+      <Property Name="ProcessManager" />
+      <Property Name="this[System.Int32]" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

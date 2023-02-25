@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Interface Name="Uzi.Ikosa.Actions.IPowerSource">
+    <Position X="1" Y="0.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAAAAAAAAgAAAAAAAAAABAAAAAAAAAAAAA=</HashCode>
+      <FileName>Actions\Powers\IPowerSource.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Uzi.Ikosa.Actions.IPowerActionSource">
+    <Position X="1" Y="3" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAA=</HashCode>
+      <FileName>Actions\Powers\IPowerActionSource.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Uzi.Ikosa.Magic.IMagicPowerSource">
+    <Position X="4.25" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Magic\IMagicPowerSource.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Uzi.Ikosa.Magic.IMagicPowerActionSource">
+    <Position X="4.25" Y="3" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Magic\IMagicPowerActionSource.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Uzi.Ikosa.Magic.ISuperNaturalPowerSource">
+    <Position X="7.25" Y="0.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Magic\SuperNatural\ISuperNaturalPowerSource.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Uzi.Ikosa.Actions.IExtraOrdinaryPowerActionSource">
+    <Position X="1" Y="5.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Actions\ExtraOrdinary\IExtraOrdinaryPowerActionSource.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

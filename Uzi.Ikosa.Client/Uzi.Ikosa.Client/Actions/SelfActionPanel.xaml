@@ -1,0 +1,22 @@
+﻿<UserControl x:Class="Uzi.Ikosa.Client.SelfActionPanel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:icontract="clr-namespace:Uzi.Ikosa.Contracts;assembly=Uzi.Ikosa.Contracts"
+             xmlns:ccontract="clr-namespace:Uzi.Core.Contracts;assembly=Uzi.Core.Contracts"
+             xmlns:act="clr-namespace:Uzi.Ikosa.Proxy.IkosaSvc;assembly=Uzi.Ikosa.Proxy"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" Focusable="True">
+    <UserControl.Resources>
+        <DataTemplate DataType="{x:Type icontract:ActionInfo}">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="{Binding Path=DisplayName}"/>
+                <TextBlock Text="{Binding Path=Description}" Visibility="{Binding Path=DescriptionVisibility}"/>
+                <TextBlock FontStyle="Italic" Text="{Binding Path=TimeCost}"/>
+            </StackPanel>
+        </DataTemplate>
+    </UserControl.Resources>
+    <Border BorderBrush="Black" BorderThickness="1" Padding="1">
+        <Menu x:Name="mnuSelfActions"></Menu>
+    </Border>
+</UserControl>

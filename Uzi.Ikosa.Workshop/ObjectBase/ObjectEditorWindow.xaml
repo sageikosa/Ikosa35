@@ -1,0 +1,28 @@
+﻿<Window x:Class="Uzi.Ikosa.Workshop.ObjectEditorWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:Uzi.Ikosa.Workshop"
+        Title="ObjectEditorWindow" SizeToContent="WidthAndHeight">
+    <Window.CommandBindings>
+        <CommandBinding x:Name="cbOpenItem" Command="{x:Static local:PackageExplorer.OpenItem}"
+                        CanExecute="cbOpenItem_CanExecute" Executed="cbOpenItem_Executed"/>
+    </Window.CommandBindings>
+    <Grid>        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100,*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <TabControl x:Name="tabHost" ></TabControl>
+        <DockPanel Grid.Row="1" LastChildFill="False">
+            <DockPanel.Resources>
+                <Style TargetType="Button">
+                    <Setter Property="VerticalAlignment" Value="Top"/>
+                    <Setter Property="Margin" Value="2,1"/>
+                    <Setter Property="Padding" Value="8,0"/>
+                    <Setter Property="MinWidth" Value="56"/>
+                </Style>
+            </DockPanel.Resources>
+            <Button DockPanel.Dock="Right" Content="Close" IsDefault="True" IsCancel="True" x:Name="btnClose" Click="btnClose_Click"/>
+        </DockPanel>
+    </Grid>
+</Window>

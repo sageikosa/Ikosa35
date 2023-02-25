@@ -1,0 +1,5 @@
+<UserControl x:Class="Uzi.Ikosa.Workshop.LabelModifiable"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+	<Label x:Name="lblValue"></Label>
+</UserControl>

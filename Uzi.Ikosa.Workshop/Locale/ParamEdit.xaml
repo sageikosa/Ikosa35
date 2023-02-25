@@ -1,0 +1,29 @@
+﻿<Window x:Class="Uzi.Ikosa.Workshop.Locale.ParamEdit"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:shop="clr-namespace:Uzi.Ikosa.Workshop"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" WindowStyle="SingleBorderWindow" 
+        ResizeMode="NoResize" WindowStartupLocation="CenterOwner" Title="Param Edit" SizeToContent="WidthAndHeight">
+    <StackPanel>
+        <StackPanel.Resources>
+            <Style TargetType="TextBox" x:Key="styleText">
+                <Setter Property="Margin" Value="2"/>
+                <Style.Triggers>
+                    <Trigger Property="Tag" Value="Invalid">
+                        <Setter Property="Background" Value="LightSalmon"/>
+                        <Setter Property="ToolTip.Content" Value="Invalid value"/>
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+        </StackPanel.Resources>
+        <ContentControl x:Name="ccParams"/>
+        <TextBlock Margin="4" x:Name="txtMessage" HorizontalAlignment="Right" Foreground="Red" FontWeight="Bold"></TextBlock>
+        <DockPanel LastChildFill="False" Margin="4,0,4,4">
+            <DockPanel.CommandBindings>
+                <CommandBinding x:Name="cmdbndOK" Command="{x:Static shop:App.OKCommand}" 
+                                CanExecute="cmdbndOK_CanExecute" Executed="cmdbndOK_Executed" />
+            </DockPanel.CommandBindings>
+            <Button DockPanel.Dock="Right" Margin="4" MinWidth="60" IsCancel="True" x:Name="btnCancel" Click="btnCancel_Click">Cancel</Button>
+            <Button DockPanel.Dock="Right" Margin="4" MinWidth="60" IsDefault="True" x:Name="btnOK" Command="{x:Static shop:App.OKCommand}">OK</Button>
+        </DockPanel>
+    </StackPanel>
+</Window>

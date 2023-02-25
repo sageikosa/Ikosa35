@@ -1,0 +1,106 @@
+﻿<UserControl x:Class="Uzi.Ikosa.Workshop.AdditionalCharSheet"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:ub="clr-namespace:Uzi.Core;assembly=Uzi.Core"
+             xmlns:uzi20="clr-namespace:Uzi.Ikosa;assembly=Uzi.Ikosa"
+             xmlns:uziAct="clr-namespace:Uzi.Ikosa.Actions;assembly=Uzi.Ikosa"
+             xmlns:uziSkills="clr-namespace:Uzi.Ikosa.Skills;assembly=Uzi.Ikosa"
+             xmlns:uziSenses="clr-namespace:Uzi.Ikosa.Senses;assembly=Uzi.Ikosa"
+             xmlns:uziMovement="clr-namespace:Uzi.Ikosa.Movement;assembly=Uzi.Ikosa"
+             xmlns:uziLanguage="clr-namespace:Uzi.Ikosa.Languages;assembly=Uzi.Ikosa"
+             xmlns:uziFeats="clr-namespace:Uzi.Ikosa.Feats;assembly=Uzi.Ikosa"
+             xmlns:uziAdv="clr-namespace:Uzi.Ikosa.Advancement;assembly=Uzi.Ikosa">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Uzi.Ikosa.UI;Component/AbilityView.xaml"/>
+                <ResourceDictionary Source="/Uzi.Ikosa.UI;Component/Deltable.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <StackPanel Orientation="Horizontal" DataContext="{Binding Path=Thing}">
+        <StackPanel.Resources>
+            <Style TargetType="TextBlock">
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="Margin" Value="2"/>
+            </Style>
+            <Style TargetType="ContentControl">
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="Margin" Value="2"/>
+            </Style>
+            <DataTemplate DataType="{x:Type uziSenses:SensoryBase}">
+                <TextBlock Text="{Binding Path=Name}"/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type uziMovement:MovementBase}">
+                <TextBlock Text="{Binding Path=Description}"/>
+            </DataTemplate>
+        </StackPanel.Resources>
+        <StackPanel Orientation="Vertical">
+            <!-- Senses -->
+            <HeaderedContentControl x:Name="grpSenses" Style="{StaticResource sheetGroup}" Header="Senses">
+                <ItemsControl ItemsSource="{Binding Path=Senses.AllSenses}">
+                </ItemsControl>
+            </HeaderedContentControl>
+
+            <!-- Movements -->
+            <HeaderedContentControl x:Name="grpMovement" Style="{StaticResource sheetGroup}" 
+                                        Header="Movement" Margin="4">
+                <ItemsControl ItemsSource="{Binding Path=Movements.AllMovements}">
+                </ItemsControl>
+            </HeaderedContentControl>
+
+            <!-- Feats -->
+            <HeaderedContentControl x:Name="grpFeats" Style="{StaticResource sheetGroup}" Grid.Column="1" Grid.Row="3" 
+                                    Header="Feats" Margin="4">
+                <ItemsControl ItemsSource="{Binding Path=Feats}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate DataType="{x:Type uziFeats:FeatBase}">
+                            <TextBlock Text="{Binding Path=Name}" ToolTip="{Binding Path=Benefit}"/>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </HeaderedContentControl>
+        </StackPanel>
+        
+        <!-- Skills -->
+        <HeaderedContentControl FontSize="10" x:Name="grpSkills" Style="{StaticResource sheetGroup}" 
+                            Header="Skills" >
+            <StackPanel Orientation="Horizontal">
+                <!--BASIC SKILLS-->
+                <ItemsControl ItemsSource="{Binding Path=Skills.BasicSkills}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate DataType="{x:Type uziSkills:SkillBase}">
+                            <StackPanel Orientation="Horizontal" >
+                                <CheckBox IsEnabled="False" VerticalAlignment="Center" IsChecked="{Binding Path=IsClassSkill, Mode=OneWay}"></CheckBox>
+                                <ContentControl HorizontalContentAlignment="Right" MinWidth="16" Margin="2,0" VerticalAlignment="Center" ContentTemplate="{StaticResource deltaView}" Content="{Binding}"></ContentControl>
+                                <TextBlock Margin="0" VerticalAlignment="Center" Text="{Binding Path=SkillName}"></TextBlock>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel Orientation="Vertical" ></WrapPanel>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                </ItemsControl>
+                <!--PARAMETERIZED SKILLS-->
+                <ItemsControl ItemsSource="{Binding Path=Skills.ParameterizedSkills}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate DataType="{x:Type uziSkills:SkillBase}">
+                            <StackPanel Orientation="Horizontal" >
+                                <CheckBox IsEnabled="False" VerticalAlignment="Center" IsChecked="{Binding Path=IsClassSkill, Mode=OneWay}"></CheckBox>
+                                <ContentControl HorizontalContentAlignment="Right" MinWidth="16" Margin="2,0" VerticalAlignment="Center" ContentTemplate="{StaticResource deltaView}" Content="{Binding}"></ContentControl>
+                                <TextBlock Margin="0" VerticalAlignment="Center" Text="{Binding Path=SkillName}"></TextBlock>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel Orientation="Vertical" ></WrapPanel>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                </ItemsControl>
+            </StackPanel>
+        </HeaderedContentControl>
+    </StackPanel>
+</UserControl>

@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<Title>Uzi.D20.Skill</Title>
+		</Header>
+		<Snippet>
+			<Declarations>
+				<Literal>
+					<ID>SkillName</ID>
+					<ToolTip>Class name for skill</ToolTip>
+					<Default>NewSkill</Default>
+				</Literal>
+				<Literal>
+					<ID>StringName</ID>
+					<ToolTip>Text name for skill</ToolTip>
+					<Default>Skill Name</Default>
+				</Literal>
+				<Literal>
+					<ID>KeyAbility</ID>
+					<ToolTip>Mnemonic</ToolTip>
+					<Default>Int</Default>
+				</Literal>
+			</Declarations>
+			<Code Language="CSharp">
+				<![CDATA[ 
+    public class $SkillName$Skill: SkillBase 
+    {
+        public $SkillName$Skill(Creature skillUser)
+            :
+            base(skillUser)
+        {
+        }
+
+        public override string SkillName
+        {
+            get { return "$StringName$"; }
+        }
+
+        public override string KeyAbility
+        {
+            get { return Abilities.Mnemonic.$KeyAbility$; }
+        }
+    }
+
+				]]>				
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+</CodeSnippets>

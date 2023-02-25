@@ -1,0 +1,176 @@
+﻿<UserControl x:Class="Uzi.Ikosa.Workshop.AdvancementSheet"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:shop="clr-namespace:Uzi.Ikosa.Workshop"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:ub="clr-namespace:Uzi.Core;assembly=Uzi.Core"
+             xmlns:uzi20="clr-namespace:Uzi.Ikosa;assembly=Uzi.Ikosa"
+             xmlns:uziItems="clr-namespace:Uzi.Ikosa.Items;assembly=Uzi.Ikosa"
+             xmlns:uziFeats="clr-namespace:Uzi.Ikosa.Feats;assembly=Uzi.Ikosa"
+             xmlns:uziAdv="clr-namespace:Uzi.Ikosa.Advancement;assembly=Uzi.Ikosa"
+             xmlns:uziUI="clr-namespace:Uzi.Ikosa.UI;assembly=Uzi.Ikosa.UI"
+             xmlns:uziTL="clr-namespace:Uzi.Ikosa.TypeListers;assembly=Uzi.Ikosa"
+             xmlns:uziSkill="clr-namespace:Uzi.Ikosa.Skills;assembly=Uzi.Ikosa"
+             x:Name="_AdvancementSheet">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Uzi.Ikosa.UI;Component/AbilityView.xaml"/>
+                <ResourceDictionary Source="/Uzi.Ikosa.UI;Component/Deltable.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <uziUI:IntDoubleConverter x:Key="convIntDouble"/>
+            <Style TargetType="{x:Type GridViewColumnHeader}">
+                <Setter Property="Background" Value="Tan"/>
+            </Style>
+
+            <!-- HOVER STYLES -->
+            <Style TargetType="Grid" x:Key="gridHover">
+                <Setter Property="Background" Value="Transparent"/>
+                <Style.Triggers>
+                    <Trigger Property="IsMouseOver" Value="true">
+                        <Setter Property="Background" Value="LightCyan"/>
+                        <Setter Property="Cursor" Value="Hand"/>
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+            
+            <Style TargetType="StackPanel" x:Key="stackHover">
+                <Setter Property="Background" Value="Transparent"/>
+                <Style.Triggers>
+                    <Trigger Property="IsMouseOver" Value="true">
+                        <Setter Property="Background" Value="LightCyan"/>
+                        <Setter Property="Cursor" Value="Hand"/>
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+
+            <!-- Power Die Feat -->
+            <DataTemplate x:Key="tmplEditFeat" DataType="{x:Type uziAdv:PowerDie}">
+                <uziUI:EditFeat DataContext="{Binding}" AdvancementLogControl="{Binding ElementName=lvAdvLog}"/>
+            </DataTemplate>
+
+            <!-- Power Die Ability Boost -->
+            <DataTemplate DataType="{x:Type uziAdv:PowerDie}" x:Key="tmplEditAbilityBoost">
+                <uziUI:EditAbility DataContext="{Binding}"/>
+            </DataTemplate>
+            
+            <!-- Health Points -->
+            <DataTemplate x:Key="lblHealthPoints">
+                <uziUI:EditHealthPoints DataContext="{Binding}"/>
+            </DataTemplate>
+            
+            <!-- Class Level Requirements -->
+            <DataTemplate x:Key="tmplEditRequirements">
+                <uziUI:EditRequirements DataContext="{Binding}" 
+                                        AdvancementLogItemsControl="{Binding ElementName=lvAdvLog}" />
+            </DataTemplate>
+
+            <Style TargetType="{x:Type Border}" x:Key="borderMultiRequirements" >
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding Path=HasOpenRequirements}" Value="true">
+                        <Setter Property="Background" Value="LightSalmon"/>
+                        <Setter Property="BorderThickness" Value="1"/>
+                        <Setter Property="Padding" Value="2"/>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+            
+            <DataTemplate x:Key="tmplEditMultiRequirements">
+                <Border BorderBrush="DarkGray" CornerRadius="2" 
+                        Style="{StaticResource borderMultiRequirements}">
+                    <Grid Style="{StaticResource gridHover}" 
+                          x:Name="gridMultiRequirements" 
+                          MouseUp="gridMultiRequirements_MouseUp">
+                        <TextBlock VerticalAlignment="Center" Text="Multiple" ToolTip="Click to edit multiple requirements"/>
+                    </Grid>
+                </Border>
+            </DataTemplate>
+            
+            <!-- Class Level Features -->
+            <DataTemplate x:Key="tmplFeatures">
+                <ItemsControl ItemsSource="{Binding Path=Features}" Margin="1" VerticalAlignment="Center">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Path=Name}" ToolTip="{Binding Path=Description}"/>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </DataTemplate>
+            
+            <!-- Skill Point Allocation -->
+            <DataTemplate x:Key="tmplEditSkills">
+                <uziUI:EditSkills DataContext="{Binding}"/>
+            </DataTemplate>
+            
+            <!-- Lock/Unlock -->
+            <DataTemplate x:Key="tmplLocker">
+                <shop:TemplateLocker DataContext="{Binding}" 
+                                     AdvancementLogItemsControl="{Binding ElementName=lvAdvLog}"
+                                     RefreshCommand="{Binding ElementName=_AdvancementSheet, Path=Refresh}"/>
+            </DataTemplate>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid x:Name="grdAdvancement" DataContext="{Binding Path=Thing}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.Resources>
+            <Style TargetType="TextBlock">
+                <Setter Property="VerticalAlignment" Value="Center"/>
+            </Style>
+            <shop:RequirementEditorSelector x:Key="tmplSlctReqEdit" 
+                                            SingleTemplate="{StaticResource tmplEditRequirements}"
+                                            MultiTemplate="{StaticResource tmplEditMultiRequirements}"/>
+            <GridViewColumnCollection x:Key="gridColumns">
+                <GridViewColumn Header="Lock" CellTemplate="{StaticResource tmplLocker}"/>
+                <GridViewColumn DisplayMemberBinding="{Binding Path=EndLevel}" Header="PD"/>
+                <GridViewColumn DisplayMemberBinding="{Binding Path=AdvancementClass.ClassName}" Header="Class"/>
+                <GridViewColumn DisplayMemberBinding="{Binding Path=AdvancementClassLevelHigh}" Header="Level"/>
+                <GridViewColumn CellTemplate="{StaticResource lblHealthPoints}" Header="HP"/>
+                <GridViewColumn Header="Skills" CellTemplate="{StaticResource tmplEditSkills}"/>
+                <GridViewColumn Header="Feats" CellTemplate="{StaticResource tmplEditFeat}"/>
+                <GridViewColumn Header="Boosts" CellTemplate="{StaticResource tmplEditAbilityBoost}"/>
+                <GridViewColumn Header="Features" CellTemplate="{StaticResource tmplFeatures}"/>
+                <GridViewColumn Header="Requirements" CellTemplateSelector="{StaticResource tmplSlctReqEdit}"/>
+            </GridViewColumnCollection>
+            <DataTemplate x:Key="gridRowItemTemplate">
+                <Border BorderBrush="Black" BorderThickness="0.5" CornerRadius="2" Padding="0.5" Margin="0.5">
+                    <GridViewRowPresenter Columns="{StaticResource gridColumns}"/>
+                </Border>
+            </DataTemplate>
+        </Grid.Resources>
+        
+        <ToolBar Grid.Row="0">
+            <ToolBar.CommandBindings>
+                <CommandBinding x:Name="cmdbndAddLevel"  Command="{x:Static shop:AdvancementSheet.AddLevel}"
+                                CanExecute="cmdbndAddLevel_CanExecute" Executed="cmdbndAddLevel_Executed"/>
+            </ToolBar.CommandBindings>
+            <ComboBox x:Name="cboAddClass" SelectionChanged="cboAddClass_SelectionChanged" MinWidth="144">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Path=Name}"></TextBlock>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+            <ComboBox x:Name="cboAddLevels" MinWidth="36"></ComboBox>
+            <Button Command="{x:Static shop:AdvancementSheet.AddLevel}">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="/images/add.png"/>
+                    <TextBlock Text="Add"/>
+                </StackPanel>
+            </Button>
+        </ToolBar>
+
+        <!-- List Advancement Class Levels (data template for locked/unlocked) -->
+        <GridViewHeaderRowPresenter Columns="{StaticResource gridColumns}" Grid.Row="1"/>
+        <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Grid.Row="2">
+            <ItemsControl x:Name="lvAdvLog" ItemTemplate="{StaticResource gridRowItemTemplate}" 
+                          ItemsSource="{Binding Path=AdvancementLog}"/>
+        </ScrollViewer>
+
+        <!-- select new levels -->
+        <!-- list (aquired) templates -->
+        <!-- select new templates -->
+    </Grid>
+</UserControl>

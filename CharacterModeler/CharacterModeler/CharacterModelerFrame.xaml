@@ -1,0 +1,18 @@
+﻿<Window x:Class="CharacterModeler.CharacterModelerFrame"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:charmdl="clr-namespace:CharacterModeler"
+        MinHeight="640"
+        Title="Character Modeler" SizeToContent="Manual" WindowState="Maximized" ResizeMode="CanResize">
+    <TabControl>
+        <TabItem Header="Face Designer">
+            <charmdl:FaceDesigner></charmdl:FaceDesigner>
+        </TabItem>
+        <TabItem Header="Head Designer">
+            <charmdl:HeadDesigner></charmdl:HeadDesigner>
+        </TabItem>
+        <TabItem Header="Weapon Designer">
+            <Button Margin="24" Width="96" Height="48" Content="Generate" Click="GenerateWeapons"/>
+        </TabItem>
+    </TabControl>
+</Window>

@@ -1,0 +1,111 @@
+﻿<Window x:Class="Uzi.Ikosa.Workshop.ContainerContentsList"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:ui="clr-namespace:Uzi.Ikosa.UI;assembly=Uzi.Ikosa.UI"
+        xmlns:shop="clr-namespace:Uzi.Ikosa.Workshop"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        WindowStyle="ToolWindow" ResizeMode="CanResize" ShowInTaskbar="False"
+        Title="Container Contents" Height="480" Width="640">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="30,*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        
+        <!-- Remove menu -->
+        <Menu Grid.Row="0">
+            <Menu.CommandBindings>
+                <CommandBinding Command="{x:Static shop:ContainerEditorTab.RemoveItem}" x:Name="cmdbndRemove" 
+                                CanExecute="cmdbndRemove_CanExecute" Executed="cmdbndRemove_Executed"/>
+            </Menu.CommandBindings>
+            <MenuItem Command="{x:Static shop:ContainerEditorTab.RemoveItem}">
+                <MenuItem.Icon>
+                    <Image Source="/images/delete.png"/>
+                </MenuItem.Icon>
+                <MenuItem.Header>
+                    <TextBlock Text="Remove" VerticalAlignment="Center"></TextBlock>
+                </MenuItem.Header>
+            </MenuItem>
+        </Menu>
+
+        <!-- Inventory List -->
+        <ListBox x:Name="lstItems" Grid.Row="1" ItemsSource="{Binding Path=ContextualContents}">
+            <ListBox.Resources>
+                <ResourceDictionary>
+                    <ResourceDictionary.MergedDictionaries>
+                        <ResourceDictionary Source="/Items/ItemListTemplates.xaml"/>
+                    </ResourceDictionary.MergedDictionaries>
+                </ResourceDictionary>
+            </ListBox.Resources>
+        </ListBox>
+
+        <!-- Item Detail -->
+        <ContentControl Grid.Row="2" x:Name="ctrlInventoryItem" Content="{Binding ElementName=lstItems,Path=SelectedItem}">
+            <ContentControl.Resources>
+                <DataTemplate DataType="{x:Type ui:ArmorVM}">
+                    <shop:ArmorEditor DataContext="{Binding}"/>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type ui:ShieldVM}">
+                    <shop:ShieldEditor DataContext="{Binding}"/>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type ui:MeleeWeaponVM}">
+                    <shop:MeleeWeaponEditor DataContext="{Binding}"/>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type ui:DoubleMeleeWeaponVM}">
+                    <shop:DoubleWeaponEditor DataContext="{Binding}"/>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type ui:ProjectileWeaponVM}">
+                    <shop:ProjectileWeaponEditor DataContext="{Binding}"/>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type ui:ArrowBundleVM}">
+                    <shop:AmmoEditor DataContext="{Binding}"/>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type ui:CrossbowBoltBundleVM}">
+                    <shop:AmmoEditor DataContext="{Binding}"/>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type ui:SlingAmmoBundleVM}">
+                    <shop:AmmoEditor DataContext="{Binding}"/>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type ui:ShurikenBundleVM}">
+                    <shop:AmmoEditor DataContext="{Binding}"/>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type ui:WandVM}">
+                    <shop:WandEditor DataContext="{Binding}"/>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type ui:PotionVM}">
+                    <shop:PotionEditor DataContext="{Binding}"/>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type ui:CoinSetVM}">
+                    <shop:CoinSetEditor DataContext="{Binding}"/>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type ui:GemVM}">
+                    <shop:GemEditor DataContext="{Binding}"/>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type ui:KeyItemVM}">
+                    <shop:KeyItemEditor DataContext="{Binding}"/>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type ui:KeyRingVM}">
+                    <shop:KeyRingEditor DataContext="{Binding}"/>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type ui:PresentableContainerItemVM}">
+                    <shop:ContainerItemBaseEditor DataContext="{Binding}"/>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type ui:PresentableSlottedContainerItemVM}">
+                    <shop:SlottedContainerItemBaseEditor DataContext="{Binding}"/>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type ui:QuiverVM}">
+                    <shop:AmmoContainerEditor DataContext="{Binding}"/>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type ui:BoltSashVM}">
+                    <shop:AmmoContainerEditor DataContext="{Binding}"/>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type ui:SlingBagVM}">
+                    <shop:AmmoContainerEditor DataContext="{Binding}"/>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type ui:ShurikenPouchVM}">
+                    <shop:AmmoContainerEditor DataContext="{Binding}"/>
+                </DataTemplate>
+            </ContentControl.Resources>
+        </ContentControl>
+    </Grid>
+</Window>

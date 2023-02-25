@@ -1,0 +1,149 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Uzi.Ikosa.Creature">
+    <Position X="4.5" Y="2.25" Width="2.25" />
+    <Members>
+      <Field Name="_Abilities" Hidden="true" />
+      <Field Name="_AdvLog" Hidden="true" />
+      <Field Name="_Age" Hidden="true" />
+      <Field Name="_BaseAttack" Hidden="true" />
+      <Field Name="_Classes" Hidden="true" />
+      <Field Name="_Conds" Hidden="true" />
+      <Field Name="_Devotion" Hidden="true" />
+      <Field Name="_DivMarks" Hidden="true" />
+      <Field Name="_DmgReduces" Hidden="true" />
+      <Field Name="_EditMode" Hidden="true" />
+      <Field Name="_EncumberanceCheck" Hidden="true" />
+      <Field Name="_EnergyResist" Hidden="true" />
+      <Field Name="_ExtraAbilityCheck" Hidden="true" />
+      <Field Name="_ExtraClassPowerLevel" Hidden="true" />
+      <Field Name="_ExtraCriticalDamage" Hidden="true" />
+      <Field Name="_ExtraCriticalRange" Hidden="true" />
+      <Field Name="_ExtraDrivingBattery" Hidden="true" />
+      <Field Name="_ExtraSkillCheck" Hidden="true" />
+      <Field Name="_ExtraSpellDifficulty" Hidden="true" />
+      <Field Name="_ExtraWeaponDamage" Hidden="true" />
+      <Field Name="_Feats" Hidden="true" />
+      <Field Name="_FortitudeSave" Hidden="true" />
+      <Field Name="_FriendlyCreatures" Hidden="true" />
+      <Field Name="_Gender" Hidden="true" />
+      <Field Name="_HP" Hidden="true" />
+      <Field Name="_IncorporealAR" Hidden="true" />
+      <Field Name="_InfoKeys" Hidden="true" />
+      <Field Name="_Init" Hidden="true" />
+      <Field Name="_Languages" Hidden="true" />
+      <Field Name="_MaxDexterityToARBonus" Hidden="true" />
+      <Field Name="_Melee" Hidden="true" />
+      <Field Name="_Moves" Hidden="true" />
+      <Field Name="_MultiWpnDelta" Hidden="true" />
+      <Field Name="_NormalAR" Hidden="true" />
+      <Field Name="_Opposed" Hidden="true" />
+      <Field Name="_Profs" Hidden="true" />
+      <Field Name="_Ranged" Hidden="true" />
+      <Field Name="_ReflexSave" Hidden="true" />
+      <Field Name="_Senses" Hidden="true" />
+      <Field Name="_Skills" Hidden="true" />
+      <Field Name="_SResist" Hidden="true" />
+      <Field Name="_TempHP" Hidden="true" />
+      <Field Name="_TouchAR" Hidden="true" />
+      <Field Name="_Traits" Hidden="true" />
+      <Field Name="_UnfriendlyCreatures" Hidden="true" />
+      <Field Name="_UnknownAsUnFriendly" Hidden="true" />
+      <Field Name="_WillSave" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>snQEkRedfGGRVxuUt/AR2SIwEG4GMpAVHETC4oPwlUg=</HashCode>
+      <FileName>Creatures\Creature.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Body" />
+      <Property Name="CreatureType" />
+      <Property Name="Abilities" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="Skills" />
+      <Property Name="Feats" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Uzi.Ikosa.Abilities.AbilitySet">
+    <Position X="1" Y="0.5" Width="2" />
+    <Members>
+      <Field Name="_AbilitySet" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAACAAAAAAgAACEAAIAAAABBAAAAAAAAACCAAACA=</HashCode>
+      <FileName>Abilities\AbilitySet.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Uzi.Ikosa.Creatures.BodyType.Body">
+    <Position X="8" Y="8" Width="2" />
+    <Members>
+      <Field Name="_BaseHeight" Hidden="true" />
+      <Field Name="_BaseWeight" Hidden="true" />
+      <Field Name="_BodyMaterial" Hidden="true" />
+      <Field Name="_Dock" Hidden="true" />
+      <Field Name="_Height" Hidden="true" />
+      <Field Name="_ItemSlots" Hidden="true" />
+      <Field Name="_Reach" Hidden="true" />
+      <Field Name="_Sizer" Hidden="true" />
+      <Field Name="_UseExtraCarryingFactor" Hidden="true" />
+      <Field Name="_WCtrl" Hidden="true" />
+      <Field Name="_Weight" Hidden="true" />
+      <Field Name="NaturalWeapons" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AIAIAIAIJAgAAkCQABAUBhoggeIAAAeAAAAoAKARAAA=</HashCode>
+      <FileName>Creatures\BodyType\Body.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="ItemSlots" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Uzi.Ikosa.Items.ItemSlot">
+    <Position X="11.25" Y="6" Width="2" />
+    <TypeIdentifier>
+      <HashCode>ABAAAAYAAiAqBIIAAUBAEBAgIAUBAAAAAAgCAACDBgA=</HashCode>
+      <FileName>Items\ItemSlot.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Uzi.Ikosa.Creatures.Types.CreatureType">
+    <Position X="1.25" Y="10" Width="1.75" />
+    <Members>
+      <Field Name="_Dock" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIAAgAAAAAAAAAEAQgAAAAAAAAAAAgACAABAA=</HashCode>
+      <FileName>Creatures\Types\CreatureType.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Uzi.Ikosa.Feats.FeatBase">
+    <Position X="8" Y="1" Width="2.25" />
+    <Members>
+      <Field Name="_Enabled" Hidden="true" />
+      <Field Name="_ReqMonitors" Hidden="true" />
+      <Field Name="IgnorePreRequisite" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAADACAAUEAGCAMSgACAAAAMIIAAAAAAQFIA=</HashCode>
+      <FileName>Feats\FeatBase.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Uzi.Ikosa.Skills.SkillBase">
+    <Position X="0.75" Y="5.25" Width="2.5" />
+    <Members>
+      <Field Name="_Creature" Hidden="true" />
+      <Field Name="_Info" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAQAAAAgAQAARAAABgAoAAhAIAAABQAAACAEAAA=</HashCode>
+      <FileName>Skills\SkillBase.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

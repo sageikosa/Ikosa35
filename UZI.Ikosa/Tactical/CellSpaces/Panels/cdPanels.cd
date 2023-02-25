@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Uzi.Ikosa.Tactical.BasePanel">
+    <Position X="1" Y="1" Width="2.25" />
+    <Members>
+      <Field Name="_Base" Hidden="true" />
+      <Field Name="_Dangling" Hidden="true" />
+      <Field Name="_Ledge" Hidden="true" />
+      <Field Name="_Material" Hidden="true" />
+      <Field Name="_Name" Hidden="true" />
+      <Field Name="_Thick" Hidden="true" />
+      <Field Name="_Tiling" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>gEAASCgAABCBIQAJCAAIMIQAgEQQAhCAFCICAAeIQAA=</HashCode>
+      <FileName>Tactical\CellSpaces\Panels\BasePanel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Uzi.Ikosa.Tactical.BaseNaturalPanel">
+    <Position X="5.25" Y="6.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAAAACAAAAAAAAAAAgAAAQAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Tactical\CellSpaces\Panels\BaseNaturalPanel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Uzi.Ikosa.Tactical.BaseComposite">
+    <Position X="5.25" Y="1.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Tactical\CellSpaces\Panels\BaseComposite.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Uzi.Ikosa.Tactical.MaterialFill">
+    <Position X="4.75" Y="3.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>gAAAQAAAAAAAAQABAAAIEAAAAAAQAAAAAAAAAACAAAA=</HashCode>
+      <FileName>Tactical\CellSpaces\Panels\MaterialFill.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Uzi.Ikosa.Tactical.DiagonalComposite">
+    <Position X="11.75" Y="0.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>gQAASAAAAACAAQABAAAIEAgAAAQQAAAAAAAAAACAAAA=</HashCode>
+      <FileName>Tactical\CellSpaces\Panels\DiagonalComposite.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Uzi.Ikosa.Tactical.SlopeComposite">
+    <Position X="8.5" Y="2" Width="2.25" />
+    <Members>
+      <Field Name="_SlopeThickness" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>gQAASAAAAACAAAABAAAIEIgAAAQQwAAAQAgAAACAAAA=</HashCode>
+      <FileName>Tactical\CellSpaces\Panels\SlopeComposite.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Uzi.Ikosa.Tactical.CornerPanel">
+    <Position X="8.5" Y="8" Width="2.25" />
+    <Members>
+      <Field Name="_Offset" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>gABAQAAAAAgAAAABAAAIEAgAAAAAAAAAAAAAAACAgAA=</HashCode>
+      <FileName>Tactical\CellSpaces\Panels\CornerPanel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Uzi.Ikosa.Tactical.LFramePanel">
+    <Position X="11.75" Y="7.5" Width="2.25" />
+    <Members>
+      <Field Name="_Horiz" Hidden="true" />
+      <Field Name="_Vert" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>gQAAQAAAABAAESABAAAIGAgAAAAAAAAAAAAAAACAAAA=</HashCode>
+      <FileName>Tactical\CellSpaces\Panels\LFramePanel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Uzi.Ikosa.Tactical.NormalPanel">
+    <Position X="14.5" Y="4.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>gABAQAAAAAAAAAABAAAIEAgAAAAAAAAAAAAAAACAAAA=</HashCode>
+      <FileName>Tactical\CellSpaces\Panels\NormalPanel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

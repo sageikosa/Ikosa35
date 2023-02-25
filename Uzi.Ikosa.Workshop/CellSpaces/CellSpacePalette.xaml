@@ -1,0 +1,172 @@
+﻿<UserControl x:Class="Uzi.Ikosa.Workshop.CellSpacePalette"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:locale="clr-namespace:Uzi.Ikosa.Workshop.Locale"
+             xmlns:shop="clr-namespace:Uzi.Ikosa.Workshop"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d">
+    <UserControl.CommandBindings>
+        <CommandBinding x:Name="cbSelectCell" Command="{x:Static shop:CellSpacePalette.SelectCell}"
+                        CanExecute="cbSelectCell_CanExecute" Executed="cbSelectCell_Executed"/>
+        <CommandBinding x:Name="cbCaptureCell" Command="{x:Static shop:CellSpacePalette.CaptureCell}"
+                        CanExecute="cbCaptureCell_CanExecute" Executed="cbCaptureCell_Executed"/>
+    </UserControl.CommandBindings>
+    <StackPanel Orientation="Horizontal">
+        <StackPanel.Resources>
+            <Style TargetType="Border">
+                <Setter Property="Margin" Value="1,2"/>
+                <Setter Property="BorderBrush" Value="Black"/>
+                <Setter Property="Background" Value="#80b0b0b0"/>
+                <Setter Property="BorderThickness" Value="1"/>
+                <Setter Property="Padding" Value="2"/>
+            </Style>
+            <Style TargetType="Button">
+                <Setter Property="Height" Value="64"/>
+                <Setter Property="Width" Value="64"/>
+                <Setter Property="Command" Value="{x:Static locale:Preview.DrawCell}"/>
+                <Setter Property="VerticalAlignment" Value="Top"/>
+            </Style>
+        </StackPanel.Resources>
+        <StackPanel>
+            <Border>
+                <DockPanel>
+                    <Button x:Name="btnCell1" ToolTip="Ctrl+1" Content="Slot 1"/>
+                    <Menu DockPanel.Dock="Top">
+                        <MenuItem x:Name="mnuCell1" Tag="1">
+                            <MenuItem.Header>
+                                <ContentControl x:Name="ccCellSpace1" Content="Assign"/>
+                            </MenuItem.Header>
+                        </MenuItem>
+                    </Menu>
+                    <ContentControl x:Name="ccParams1"/>
+                </DockPanel>
+            </Border>
+            <Border>
+                <DockPanel>
+                    <Button x:Name="btnCell2" ToolTip="Ctrl+2" Content="Slot 2"/>
+                    <Menu DockPanel.Dock="Top">
+                        <MenuItem x:Name="mnuCell2" Tag="2">
+                            <MenuItem.Header>
+                                <ContentControl x:Name="ccCellSpace2" Content="Assign"/>
+                            </MenuItem.Header>
+                        </MenuItem>
+                    </Menu>
+                    <ContentControl x:Name="ccParams2"/>
+                </DockPanel>
+            </Border>
+            <Border>
+                <DockPanel>
+                        <Button x:Name="btnCell3" ToolTip="Ctrl+3" Content="Slot 3">
+                        </Button>
+                        <Menu DockPanel.Dock="Top">
+                        <MenuItem x:Name="mnuCell3" Tag="3">
+                            <MenuItem.Header>
+                                <ContentControl x:Name="ccCellSpace3" Content="Assign"/>
+                            </MenuItem.Header>
+                        </MenuItem>
+                    </Menu>
+                    <ContentControl x:Name="ccParams3"/>
+                </DockPanel>
+            </Border>
+            <Border>
+                <DockPanel MinWidth="192">
+                    <Button x:Name="btnCell4" ToolTip="Ctrl+4" Content="Slot 4">
+                    </Button>
+                    <Menu DockPanel.Dock="Top">
+                        <MenuItem x:Name="mnuCell4" Tag="4">
+                            <MenuItem.Header>
+                                <ContentControl x:Name="ccCellSpace4" Content="Assign"/>
+                            </MenuItem.Header>
+                        </MenuItem>
+                    </Menu>
+                    <ContentControl x:Name="ccParams4"/>
+                </DockPanel>
+            </Border>
+            <Border>
+                <DockPanel MinWidth="192">
+                    <Button x:Name="btnCell5" ToolTip="Ctrl+5" Content="Slot 5">
+                    </Button>
+                    <Menu DockPanel.Dock="Top">
+                        <MenuItem x:Name="mnuCell5" Tag="5">
+                            <MenuItem.Header>
+                                <ContentControl x:Name="ccCellSpace5" Content="Assign"/>
+                            </MenuItem.Header>
+                        </MenuItem>
+                    </Menu>
+                    <ContentControl x:Name="ccParams5"/>
+                </DockPanel>
+            </Border>
+        </StackPanel>
+        <StackPanel>
+            <Border>
+                <DockPanel>
+                    <Button x:Name="btnCell6" ToolTip="Ctrl+6" Content="Slot 6"/>
+                    <Menu DockPanel.Dock="Top">
+                        <MenuItem x:Name="mnuCell6" Tag="6">
+                            <MenuItem.Header>
+                                <ContentControl x:Name="ccCellSpace6" Content="Assign"/>
+                            </MenuItem.Header>
+                        </MenuItem>
+                    </Menu>
+                    <ContentControl x:Name="ccParams6"/>
+                </DockPanel>
+            </Border>
+            <Border>
+                <DockPanel>
+                    <Button x:Name="btnCell7" ToolTip="Ctrl+7" Content="Slot 7"/>
+                    <Menu DockPanel.Dock="Top">
+                        <MenuItem x:Name="mnuCell7" Tag="7">
+                            <MenuItem.Header>
+                                <ContentControl x:Name="ccCellSpace7" Content="Assign"/>
+                            </MenuItem.Header>
+                        </MenuItem>
+                    </Menu>
+                    <ContentControl x:Name="ccParams7"/>
+                </DockPanel>
+            </Border>
+            <Border>
+                <DockPanel>
+                        <Button x:Name="btnCell8" ToolTip="Ctrl+8" Content="Slot 8">
+                        </Button>
+                        <Menu DockPanel.Dock="Top">
+                        <MenuItem x:Name="mnuCell8" Tag="8">
+                            <MenuItem.Header>
+                                <ContentControl x:Name="ccCellSpace8" Content="Assign"/>
+                            </MenuItem.Header>
+                        </MenuItem>
+                    </Menu>
+                    <ContentControl x:Name="ccParams8"/>
+                </DockPanel>
+            </Border>
+            <Border>
+                <DockPanel MinWidth="192">
+                    <Button x:Name="btnCell9" ToolTip="Ctrl+9" Content="Slot 9">
+                    </Button>
+                    <Menu DockPanel.Dock="Top">
+                        <MenuItem x:Name="mnuCell9" Tag="9">
+                            <MenuItem.Header>
+                                <ContentControl x:Name="ccCellSpace9" Content="Assign"/>
+                            </MenuItem.Header>
+                        </MenuItem>
+                    </Menu>
+                    <ContentControl x:Name="ccParams9"/>
+                </DockPanel>
+            </Border>
+            <Border>
+                <DockPanel MinWidth="192">
+                    <Button x:Name="btnCell0" ToolTip="Ctrl+0" Content="Slot 0">
+                    </Button>
+                    <Menu DockPanel.Dock="Top">
+                        <MenuItem x:Name="mnuCell0" Tag="0">
+                            <MenuItem.Header>
+                                <ContentControl x:Name="ccCellSpace0" Content="Assign"/>
+                            </MenuItem.Header>
+                        </MenuItem>
+                    </Menu>
+                    <ContentControl x:Name="ccParams0"/>
+                </DockPanel>
+            </Border>
+        </StackPanel>
+    </StackPanel>
+</UserControl>

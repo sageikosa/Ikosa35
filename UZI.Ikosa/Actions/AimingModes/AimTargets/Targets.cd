@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Uzi.Ikosa.Actions.GeometricTarget">
+    <Position X="3.5" Y="4.25" Width="2.5" />
+    <Members>
+      <Field Name="_Ctx" Hidden="true" />
+      <Field Name="_Geom" Hidden="true" />
+      <Field Name="_Origin" Hidden="true" />
+      <Method Name="GeometricTarget" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAAEAAAAAAAAAAAAEAAAAAAAAAAAAAAAiAgAA=</HashCode>
+      <FileName>Actions\AimingModes\AimTargets\GeometricTarget.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Uzi.Core.AimTarget">
+    <Position X="6.25" Y="0.5" Width="2" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Uzi.Ikosa.Actions.AwarenessTarget">
+    <Position X="0.5" Y="4.25" Width="2.5" />
+    <Members>
+      <Method Name="AwarenessTarget" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Actions\AimingModes\AimTargets\AwarenessTarget.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Uzi.Ikosa.Actions.CubicTarget">
+    <Position X="6.5" Y="4.25" Width="2.25" />
+    <Members>
+      <Field Name="_Cubic" Hidden="true" />
+      <Field Name="_MapContext" Hidden="true" />
+      <Method Name="CubicTarget" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>CAAIAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAACAAAA=</HashCode>
+      <FileName>Actions\AimingModes\AimTargets\CubicTarget.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Uzi.Ikosa.Actions.IntersectionTarget">
+    <Position X="9.25" Y="4.25" Width="2.5" />
+    <Members>
+      <Field Name="_MapContext" Hidden="true" />
+      <Field Name="_Pt" Hidden="true" />
+      <Method Name="IntersectionTarget" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAIAAAAAAAAgAAAAAAAAAAAAAAIAAAAAAAAAACAAAA=</HashCode>
+      <FileName>Actions\AimingModes\AimTargets\IntersectionTarget.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Uzi.Ikosa.Actions.WallSurfaceTarget">
+    <Position X="6.25" Y="6.5" Width="2.5" />
+    <Members>
+      <Field Name="_Face" Hidden="true" />
+      <Method Name="WallSurfaceTarget" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAQAAAAAAAgAAAAAAAAAAAAA=</HashCode>
+      <FileName>Actions\AimingModes\AimTargets\WallSurfaceTarget.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Uzi.Ikosa.Actions.AttackTarget">
+    <Position X="0.5" Y="6.25" Width="2.25" />
+    <Members>
+      <Field Name="_Attack" Hidden="true" />
+      <Method Name="AttackTarget" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAIAEAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Actions\AimingModes\AimTargets\AttackTarget.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Uzi.Core.CharacterStringTarget">
+    <Position X="0.5" Y="0.5" Width="2.75" />
+    <Members>
+      <Method Name="CharacterStringTarget" Hidden="true" />
+    </Members>
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Uzi.Core.OptionTarget">
+    <Position X="8.75" Y="0.5" Width="2.25" />
+    <Members>
+      <Method Name="OptionTarget" Hidden="true" />
+    </Members>
+    <TypeIdentifier />
+    <ShowAsAssociation>
+      <Property Name="Option" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Uzi.Core.ValueTarget&lt;ValType&gt;">
+    <Position X="3.5" Y="1.5" Width="2" />
+    <Members>
+      <Method Name="ValueTarget" Hidden="true" />
+    </Members>
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Uzi.Core.PrerequisiteTarget">
+    <Position X="9" Y="2" Width="1.75" />
+    <Members>
+      <Method Name="PrerequisiteTarget" Hidden="true" />
+    </Members>
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Uzi.Core.OptionAimOption">
+    <Position X="12.25" Y="0.5" Width="1.75" />
+    <TypeIdentifier />
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

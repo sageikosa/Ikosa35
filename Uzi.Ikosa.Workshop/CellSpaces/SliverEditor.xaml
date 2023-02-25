@@ -1,0 +1,77 @@
+﻿<UserControl x:Class="Uzi.Ikosa.Workshop.SliverEditor"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:shop="clr-namespace:Uzi.Ikosa.Workshop"
+             mc:Ignorable="d" d:DesignHeight="300" >
+    <StackPanel>
+        <StackPanel.Resources>
+            <Style TargetType="TextBox" x:Key="styleText">
+                <Setter Property="Margin" Value="1"/>
+                <Style.Triggers>
+                    <Trigger Property="Tag" Value="Invalid">
+                        <Setter Property="Background" Value="LightSalmon"/>
+                        <Setter Property="ToolTip.Content" Value="Invalid value"/>
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+            <Style TargetType="ComboBox">
+                <Setter Property="Margin" Value="2"/>
+            </Style>
+        </StackPanel.Resources>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition MinWidth="72"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition MinWidth="72"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition MinWidth="72"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Label Grid.Column="0" Grid.Row="0">Name</Label>
+            <Label Grid.Column="0" Grid.Row="1">Material</Label>
+            <Label Grid.Column="0" Grid.Row="2">Tiling</Label>
+            <Label Grid.Column="2" Grid.Row="1">Plus Material</Label>
+            <Label Grid.Column="2" Grid.Row="2">Plus Tiling</Label>
+            <Label Grid.Column="4" Grid.Row="1">Edge Material</Label>
+            <Label Grid.Column="4" Grid.Row="2">Edge Tiling</Label>
+            <Label Grid.Column="4" Grid.Row="3">Edge Width</Label>
+            <TextBox Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2" x:Name="txtName" 
+                     Style="{StaticResource styleText}" Text="{Binding Path=Name}"></TextBox>
+            <ComboBox Grid.Column="1" Grid.Row="1" ItemsSource="{DynamicResource roomMaterials}" 
+                      SelectedItem="{Binding Path=CellMaterial}"
+                      Name="cboMaterial" DisplayMemberPath="Name"/>
+            <ComboBox Grid.Column="1" Grid.Row="2" DisplayMemberPath="Name" Name="cboTiling"
+                      SelectedItem="{Binding Path=Tiling}"
+                      ItemsSource="{Binding ElementName=cboMaterial, Path=SelectedValue.AvailableTilings}"></ComboBox>
+            <ComboBox Grid.Column="3" Grid.Row="1" ItemsSource="{DynamicResource roomMaterials}" 
+                      SelectedItem="{Binding Path=PlusMaterial}"
+                      Name="cboSlvPMaterial" DisplayMemberPath="Name"/>
+            <ComboBox Grid.Column="3" Grid.Row="2" ItemsSource="{Binding ElementName=cboSlvPMaterial, Path=SelectedValue.AvailableTilings}"
+                      SelectedItem="{Binding Path=PlusTiling}"
+                      DisplayMemberPath="Name" x:Name="cboSlvPTiling"></ComboBox>
+            <ComboBox Grid.Column="5" Grid.Row="1" ItemsSource="{DynamicResource roomMaterials}" 
+                      DataContext="{Binding Path=CellEdge}"
+                      SelectedItem="{Binding Path=Material}"
+                      Name="cboEdgeMaterial" DisplayMemberPath="Name"/>
+            <ComboBox Grid.Column="5" Grid.Row="2" ItemsSource="{Binding ElementName=cboEdgeMaterial, Path=SelectedValue.AvailableTilings}"
+                      DataContext="{Binding Path=CellEdge}"
+                      SelectedItem="{Binding Path=Tiling}"
+                      DisplayMemberPath="Name" x:Name="cboEdgeTiling"></ComboBox>
+            <Slider Grid.Column="5" Grid.Row="3" x:Name="sldrOffset" Margin="2" Maximum="0.75" 
+                    DataContext="{Binding Path=CellEdge}"
+                    Value="{Binding Path=Width}"
+                    SmallChange="0.05" LargeChange="0.1" AutoToolTipPlacement="BottomRight" 
+                    AutoToolTipPrecision="2" IsSnapToTickEnabled="True" TickFrequency="0.05"></Slider>
+        </Grid>
+        <TextBlock Margin="4" x:Name="txtMessage" HorizontalAlignment="Right" Foreground="Red" FontWeight="Bold"></TextBlock>
+        <shop:GripRules DataContext="{Binding}"/>
+    </StackPanel>
+</UserControl>

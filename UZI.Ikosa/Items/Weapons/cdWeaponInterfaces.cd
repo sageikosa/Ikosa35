@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Interface Name="Uzi.Ikosa.Items.Weapons.IProjectileWeapon">
+    <Position X="4.25" Y="4" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAACAAAAAAAAA=</HashCode>
+      <FileName>Items\Weapons\IProjectileWeapon.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Uzi.Ikosa.Actions.IRangedSource">
+    <Position X="4.5" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAIAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Actions\IRangedSource.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Uzi.Ikosa.Actions.IAttackSource">
+    <Position X="7" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAABAAAAAAAAAAAAAAAQAAAAAgAAAAAAAAgAAAA=</HashCode>
+      <FileName>Actions\Attack\IAttackSource.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Uzi.Ikosa.Actions.IDamageSource">
+    <Position X="7" Y="5.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAQAAAACBCAAAAAAAQAgQAAAAAAIAAAAAQA=</HashCode>
+      <FileName>Actions\IDamageSource.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Uzi.Ikosa.Adjuncts.IEnhancementTracker">
+    <Position X="4.25" Y="7" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQACAAAA=</HashCode>
+      <FileName>Adjuncts\Enhanced.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Uzi.Ikosa.Items.ISplatterWeapon">
+    <Position X="1.5" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAACAABBAAAAAAAAAAAAAgAAAAAAAABAA=</HashCode>
+      <FileName>Items\Weapons\ISplatterWeapon.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Uzi.Ikosa.Items.Weapons.IThrowableWeapon">
+    <Position X="6.75" Y="0.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Items\Weapons\IThrowableWeapon.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

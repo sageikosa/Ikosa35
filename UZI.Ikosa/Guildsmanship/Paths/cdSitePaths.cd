@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Uzi.Ikosa.Guildsmanship.SitePathGraph">
+    <Position X="0.5" Y="4" Width="2.5" />
+    <Members>
+      <Field Name="_Encounters" Hidden="true" />
+      <Field Name="_Links" Hidden="true" />
+      <Field Name="_Regions" Hidden="true" />
+      <Field Name="_Segments" Hidden="true" />
+      <Method Name="AddSegment" Hidden="true" />
+      <Method Name="AddSiteLink" Hidden="true" />
+      <Method Name="GetSiteLink" Hidden="true" />
+      <Method Name="GetSitePaths" Hidden="true" />
+      <Method Name="HasLinkedNode" Hidden="true" />
+      <Method Name="OnSetPackagePart" Hidden="true" />
+      <Method Name="Remove" Hidden="true" />
+      <Method Name="RemoveSiteLink" Hidden="true" />
+      <Method Name="SitePathGraph" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>BAAIEIEBBAAEAggAAAAiBAAAECMgIBAAAAQQAAKAABA=</HashCode>
+      <FileName>Guildsmanship\Paths\SitePathGraph.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="SiteLinks" />
+      <Property Name="Segments" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="Uzi.Ikosa.Guildsmanship.ModuleNode">
+    <Position X="1" Y="0.75" Width="1.5" />
+    <Members>
+      <Field Name="_NameManager" Hidden="true" />
+      <Field Name="_NodePart" Hidden="true" />
+      <Method Name="Close" Hidden="true" />
+      <Method Name="DoPropertyChanged" Hidden="true" />
+      <Method Name="ModuleNode" Hidden="true" />
+      <Method Name="OnSetPackagePart" Hidden="true" />
+      <Event Name="PropertyChanged" Hidden="true" />
+      <Method Name="RefreshPart" Hidden="true" />
+      <Method Name="Save" Hidden="true" />
+      <Method Name="SetPackagePart" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAgAEIAAZAAAEgAAAAAEAAQAgAQAIBGAgAQQAIKAgBA=</HashCode>
+      <FileName>Guildsmanship\Modules\ModuleNode.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Uzi.Ikosa.Guildsmanship.ModuleElement">
+    <Position X="7.5" Y="2" Width="1.75" />
+    <Members>
+      <Field Name="_Description" Hidden="true" />
+      <Field Name="_ID" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAggAAAAAAAAAAAAAAAAAAEAAAAAAAEAAA=</HashCode>
+      <FileName>Guildsmanship\Modules\ModuleElement.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Uzi.Ikosa.Guildsmanship.ModuleLink&lt;INode&gt;">
+    <Position X="10.75" Y="3.25" Width="2" />
+    <Members>
+      <Field Name="_Module" Hidden="true" />
+      <Field Name="_NodeID" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAQAAAAAAAAAAAAABAAAAEAAAAAAAAAAAAQAAAAAAI=</HashCode>
+      <FileName>Guildsmanship\Modules\ModuleLink.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Uzi.Ikosa.Guildsmanship.SiteLink">
+    <Position X="7.75" Y="5" Width="1.5" />
+    <Members>
+      <Field Name="_Location" Hidden="true" />
+      <Field Name="_Size" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgAAAAgAAAAAIAAAIAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Guildsmanship\Places\SiteLink.cs</FileName>
+      <NewMemberFileName>Guildsmanship\Places\Site.cs</NewMemberFileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Uzi.Ikosa.Guildsmanship.SitePath">
+    <Position X="4.5" Y="3.25" Width="1.75" />
+    <Members>
+      <Field Name="_Inflections" Hidden="true" />
+      <Field Name="_LosePathChance" Hidden="true" />
+      <Field Name="_RevFactor" Hidden="true" />
+      <Field Name="_Source" Hidden="true" />
+      <Field Name="_StoryInfo" Hidden="true" />
+      <Field Name="_Target" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AABACgAAQBAARAAAAAAAAAAAAEAAABAAAAAABAQAAYA=</HashCode>
+      <FileName>Guildsmanship\Paths\SitePath.cs</FileName>
+      <NewMemberFileName>Guildsmanship\Places\Site.cs</NewMemberFileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="10" />
+</ClassDiagram>

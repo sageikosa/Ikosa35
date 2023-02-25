@@ -1,0 +1,110 @@
+﻿<Window x:Class="Uzi.Ikosa.Workshop.LocatorCreate"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" WindowStyle="ToolWindow"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" ResizeMode="NoResize" 
+        xmlns:ikosamaterials="clr-namespace:Uzi.Ikosa.Items.Materials;assembly=Uzi.Ikosa"
+        xmlns:shop="clr-namespace:Uzi.Ikosa.Workshop"
+        Title="Create Locator" SizeToContent="WidthAndHeight">
+    <DockPanel>
+        <DockPanel.Resources>
+            <Style TargetType="ComboBox">
+                <Setter Property="Margin" Value="2"/>
+            </Style>
+            <Style TargetType="TextBox">
+                <Setter Property="Margin" Value="2"/>
+                <Setter Property="MinWidth" Value="24"/>
+            </Style>
+            <Style TargetType="Label">
+                <Setter Property="FontWeight" Value="Bold"/>
+                <Setter Property="HorizontalAlignment" Value="Right"/>
+            </Style>
+            <Style TargetType="Button">
+                <Setter Property="VerticalAlignment" Value="Top"/>
+                <Setter Property="Margin" Value="2,1"/>
+                <Setter Property="Padding" Value="8,0"/>
+                <Setter Property="MinWidth" Value="56"/>
+            </Style>
+            <Style TargetType="TextBox" x:Key="styleText">
+                <Setter Property="Margin" Value="2"/>
+                <Setter Property="MinWidth" Value="24"/>
+                <Style.Triggers>
+                    <Trigger Property="Tag" Value="Invalid">
+                        <Setter Property="Background" Value="LightSalmon"/>
+                        <Setter Property="ToolTip.Content" Value="Invalid value"/>
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+            <Style TargetType="TextBox" x:Key="intCheck" BasedOn="{StaticResource styleText}">
+                <EventSetter Event="TextChanged" Handler="txtInt_TextChanged"/>
+            </Style>
+            <Style TargetType="TextBox" x:Key="dblCheck" BasedOn="{StaticResource styleText}">
+                <EventSetter Event="TextChanged" Handler="txtDbl_TextChanged"/>
+            </Style>
+        </DockPanel.Resources>
+        <Grid DockPanel.Dock="Top">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Label Content="Name" Grid.Column="0" Grid.Row="0"/>
+            <Label Content="Location" Grid.Column="0" Grid.Row="1"/>
+            <Label Content="Z" Grid.Column="1" Grid.Row="1"/>            
+            <Label Content="Y" Grid.Column="3" Grid.Row="1"/>
+            <Label Content="X" Grid.Column="5" Grid.Row="1"/>
+            <Label Content="Size" Grid.Column="0" Grid.Row="2"/>
+            <Label Content="Z Height" Grid.Column="1" Grid.Row="2"/>
+            <Label Content="Y Length" Grid.Column="3" Grid.Row="2"/>
+            <Label Content="X Length" Grid.Column="5" Grid.Row="2"/>
+            <Label Content="Model Key" Grid.Column="3" Grid.Row="3"/>
+            <TextBox Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="8" x:Name="txtName"/>
+            <TextBox Grid.Column="2" Grid.Row="1" x:Name="txtZ" Style="{StaticResource intCheck}"/>
+            <TextBox Grid.Column="4" Grid.Row="1" x:Name="txtY" Style="{StaticResource intCheck}"/>
+            <TextBox Grid.Column="6" Grid.Row="1" x:Name="txtX" Style="{StaticResource intCheck}"/>
+            <TextBox Grid.Column="2" Grid.Row="2" x:Name="txtZHeight" Style="{StaticResource intCheck}" Text="1"/>
+            <TextBox Grid.Column="4" Grid.Row="2" x:Name="txtYLength" Style="{StaticResource intCheck}" Text="1"/>
+            <TextBox Grid.Column="6" Grid.Row="2" x:Name="txtXLength" Style="{StaticResource intCheck}" Text="1"/>
+            <ComboBox x:Name="cboModelKey" Grid.Column="4" Grid.Row="3" Grid.ColumnSpan="3"
+                      ItemsSource="{Binding Path=Resources.ResolvableModels}" DisplayMemberPath="Model3DPart.Name" 
+                      SelectedValuePath="Model3DPart.Name">                
+            </ComboBox>
+        </Grid>
+        <TabControl TabStripPlacement="Bottom" DockPanel.Dock="Top">
+            <TabItem Header="Creature" x:Name="tiCreature">
+                <shop:CreatureCreate x:Name="createCreature"/>
+            </TabItem>
+            <TabItem Header="Portal" x:Name="tiPortal">
+                <shop:PortalCreate x:Name="createPortal"/>
+            </TabItem>
+            <TabItem Header="Furnishing" x:Name="tiFurnishing">
+                <shop:FurnishingCreate x:Name="createFurnishing"/>
+            </TabItem>
+            <TabItem Header="Container" x:Name="tiContainer">
+                <shop:ContainerCreate x:Name="createContainer"/>
+            </TabItem>
+            <TabItem Header="Item Trove" Name="tiItem">
+                <Grid />
+            </TabItem>
+            <TabItem Header="Light" x:Name="tiLight">
+                <shop:LightCreate x:Name="createLight"/>
+            </TabItem>
+        </TabControl>
+        <DockPanel DockPanel.Dock="Bottom" LastChildFill="False">
+            <DockPanel.CommandBindings>
+                <CommandBinding x:Name="cbOKCommand" Command="{x:Static shop:LocatorCreate.OKCommand}"
+                                CanExecute="cbOKCommand_CanExecute" Executed="cbOKCommand_Executed"/>
+            </DockPanel.CommandBindings>
+            <Button DockPanel.Dock="Right" Content="Cancel" Click="btnCancel_Click" IsCancel="True"/>
+            <Button DockPanel.Dock="Right" Tag="Portal" Content="OK" Command="{x:Static shop:LocatorCreate.OKCommand}" IsDefault="True"/>
+        </DockPanel>
+    </DockPanel>
+</Window>

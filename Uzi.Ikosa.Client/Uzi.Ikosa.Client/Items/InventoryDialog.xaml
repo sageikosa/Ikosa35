@@ -1,0 +1,14 @@
+﻿<Window x:Class="Uzi.Ikosa.Client.InventoryDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:client="clr-namespace:Uzi.Ikosa.Client"
+        Title="InventoryDialog" Height="600" Width="1000">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100,*"/>
+            <RowDefinition Height="200"/>
+        </Grid.RowDefinitions>
+        <client:InventoryAdmin x:Name="invAdmin"></client:InventoryAdmin>
+        <!-- Control stuff -->
+    </Grid>
+</Window>

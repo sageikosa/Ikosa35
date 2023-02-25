@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Uzi.Packaging.BasePart">
+    <Position X="1.25" Y="2.25" Width="2" />
+    <Members>
+      <Field Name="_Name" Hidden="true" />
+      <Field Name="_NameManager" Hidden="true" />
+      <Field Name="_Part" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAEIAAYAAAAgAAAAAAIAQAgAAAABCAgAAAAIKACAA=</HashCode>
+      <FileName>BasePart.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Uzi.Packaging.CorePackagePartsFolder">
+    <Position X="7" Y="2" Width="2.75" />
+    <Members>
+      <Field Name="_IBaseParts" Hidden="true" />
+      <Field Name="_Invisible" Hidden="true" />
+      <Field Name="CorePackagePartsFolderRelation" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AQIAAIIAAABAAgAgAAAABAAAAAQAABAAAAAAAAKAgAA=</HashCode>
+      <FileName>CorePackagePartsFolder.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Uzi.Packaging.UnknownPart">
+    <Position X="4.5" Y="4.75" Width="1.75" />
+    <Members>
+      <Field Name="_RelationType" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAAAAAgAAAAAAAAAAAAQAABQAAAAAAAKAgAA=</HashCode>
+      <FileName>UnknownPart.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

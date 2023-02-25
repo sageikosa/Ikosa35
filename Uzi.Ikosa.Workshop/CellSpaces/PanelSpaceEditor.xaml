@@ -1,0 +1,113 @@
+﻿<UserControl x:Class="Uzi.Ikosa.Workshop.PanelSpaceEditor"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:vis="clr-namespace:Uzi.Visualize;assembly=Uzi.Visualize"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="800">
+    <StackPanel Orientation="Vertical">
+        <StackPanel.Resources>
+            <Style TargetType="ComboBox">
+                <Setter Property="Margin" Value="1,4"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+            </Style>
+            <Style TargetType="Button">
+                <Setter Property="Margin" Value="1,2"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+            </Style>
+            <Style TargetType="ListBox">
+                <Setter Property="Margin" Value="1,4"/>
+                <Setter Property="VerticalAlignment" Value="Top"/>
+            </Style>
+        </StackPanel.Resources>
+        <Grid VerticalAlignment="Top">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <Label Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" Content="X-"/>
+            <Label Grid.Row="0" Grid.Column="2" HorizontalAlignment="Center" Content="X+"/>
+            <Label Grid.Row="0" Grid.Column="3" HorizontalAlignment="Center" Content="Y-"/>
+            <Label Grid.Row="0" Grid.Column="4" HorizontalAlignment="Center" Content="Y+"/>
+            <Label Grid.Row="0" Grid.Column="5" HorizontalAlignment="Center" Content="Z-"/>
+            <Label Grid.Row="0" Grid.Column="6" HorizontalAlignment="Center" Content="Z+"/>
+            <Label Grid.Row="1" Grid.Column="0" Content="Panel 1"/>
+            <Label Grid.Row="2" Grid.Column="0" Content="Panel 2"/>
+            <Label Grid.Row="3" Grid.Column="0" Content="Panel 3"/>
+            <Label Grid.Row="4" Grid.Column="0" Content="Corner"/>
+            <Label Grid.Row="5" Grid.Column="0" Content="LFrame"/>
+            <Label Grid.Row="6" Grid.Column="0" Content="Slopes"/>
+            <ComboBox Grid.Column="1" Grid.Row="1" SelectedItem="{Binding Path=Panel1s[0]}" ItemsSource="{DynamicResource normalPanels}"></ComboBox>
+            <ComboBox Grid.Column="2" Grid.Row="1" SelectedItem="{Binding Path=Panel1s[1]}" ItemsSource="{DynamicResource normalPanels}"></ComboBox>
+            <ComboBox Grid.Column="3" Grid.Row="1" SelectedItem="{Binding Path=Panel1s[2]}" ItemsSource="{DynamicResource normalPanels}"></ComboBox>
+            <ComboBox Grid.Column="4" Grid.Row="1" SelectedItem="{Binding Path=Panel1s[3]}" ItemsSource="{DynamicResource normalPanels}"></ComboBox>
+            <ComboBox Grid.Column="5" Grid.Row="1" SelectedItem="{Binding Path=Panel1s[4]}" ItemsSource="{DynamicResource normalPanels}"></ComboBox>
+            <ComboBox Grid.Column="6" Grid.Row="1" SelectedItem="{Binding Path=Panel1s[5]}" ItemsSource="{DynamicResource normalPanels}"></ComboBox>
+            <ComboBox Grid.Column="1" Grid.Row="2" SelectedItem="{Binding Path=Panel2s[0]}" ItemsSource="{DynamicResource normalPanels}"></ComboBox>
+            <ComboBox Grid.Column="2" Grid.Row="2" SelectedItem="{Binding Path=Panel2s[1]}" ItemsSource="{DynamicResource normalPanels}"></ComboBox>
+            <ComboBox Grid.Column="3" Grid.Row="2" SelectedItem="{Binding Path=Panel2s[2]}" ItemsSource="{DynamicResource normalPanels}"></ComboBox>
+            <ComboBox Grid.Column="4" Grid.Row="2" SelectedItem="{Binding Path=Panel2s[3]}" ItemsSource="{DynamicResource normalPanels}"></ComboBox>
+            <ComboBox Grid.Column="5" Grid.Row="2" SelectedItem="{Binding Path=Panel2s[4]}" ItemsSource="{DynamicResource normalPanels}"></ComboBox>
+            <ComboBox Grid.Column="6" Grid.Row="2" SelectedItem="{Binding Path=Panel2s[5]}" ItemsSource="{DynamicResource normalPanels}"></ComboBox>
+            <ComboBox Grid.Column="1" Grid.Row="3" SelectedItem="{Binding Path=Panel3s[0]}" ItemsSource="{DynamicResource normalPanels}"></ComboBox>
+            <ComboBox Grid.Column="2" Grid.Row="3" SelectedItem="{Binding Path=Panel3s[1]}" ItemsSource="{DynamicResource normalPanels}"></ComboBox>
+            <ComboBox Grid.Column="3" Grid.Row="3" SelectedItem="{Binding Path=Panel3s[2]}" ItemsSource="{DynamicResource normalPanels}"></ComboBox>
+            <ComboBox Grid.Column="4" Grid.Row="3" SelectedItem="{Binding Path=Panel3s[3]}" ItemsSource="{DynamicResource normalPanels}"></ComboBox>
+            <ComboBox Grid.Column="5" Grid.Row="3" SelectedItem="{Binding Path=Panel3s[4]}" ItemsSource="{DynamicResource normalPanels}"></ComboBox>
+            <ComboBox Grid.Column="6" Grid.Row="3" SelectedItem="{Binding Path=Panel3s[5]}" ItemsSource="{DynamicResource normalPanels}"></ComboBox>
+            <ComboBox Grid.Column="1" Grid.Row="4" SelectedItem="{Binding Path=Corners[0]}" ItemsSource="{DynamicResource cornerPanels}"></ComboBox>
+            <ComboBox Grid.Column="2" Grid.Row="4" SelectedItem="{Binding Path=Corners[1]}" ItemsSource="{DynamicResource cornerPanels}"></ComboBox>
+            <ComboBox Grid.Column="3" Grid.Row="4" SelectedItem="{Binding Path=Corners[2]}" ItemsSource="{DynamicResource cornerPanels}"></ComboBox>
+            <ComboBox Grid.Column="4" Grid.Row="4" SelectedItem="{Binding Path=Corners[3]}" ItemsSource="{DynamicResource cornerPanels}"></ComboBox>
+            <ComboBox Grid.Column="5" Grid.Row="4" SelectedItem="{Binding Path=Corners[4]}" ItemsSource="{DynamicResource cornerPanels}"></ComboBox>
+            <ComboBox Grid.Column="6" Grid.Row="4" SelectedItem="{Binding Path=Corners[5]}" ItemsSource="{DynamicResource cornerPanels}"></ComboBox>
+            <ComboBox Grid.Column="1" Grid.Row="5" SelectedItem="{Binding Path=LFrames[0]}" ItemsSource="{DynamicResource lFramePanels}"></ComboBox>
+            <ComboBox Grid.Column="2" Grid.Row="5" SelectedItem="{Binding Path=LFrames[1]}" ItemsSource="{DynamicResource lFramePanels}"></ComboBox>
+            <ComboBox Grid.Column="3" Grid.Row="5" SelectedItem="{Binding Path=LFrames[2]}" ItemsSource="{DynamicResource lFramePanels}"></ComboBox>
+            <ComboBox Grid.Column="4" Grid.Row="5" SelectedItem="{Binding Path=LFrames[3]}" ItemsSource="{DynamicResource lFramePanels}"></ComboBox>
+            <ComboBox Grid.Column="5" Grid.Row="5" SelectedItem="{Binding Path=LFrames[4]}" ItemsSource="{DynamicResource lFramePanels}"></ComboBox>
+            <ComboBox Grid.Column="6" Grid.Row="5" SelectedItem="{Binding Path=LFrames[5]}" ItemsSource="{DynamicResource lFramePanels}"></ComboBox>
+            <ComboBox x:Name="cboAvailableSlopes" Grid.Column="1" Grid.Row="6" ItemsSource="{DynamicResource slopePanels}" VerticalAlignment="Top"></ComboBox>
+            <StackPanel Grid.Column="2" Grid.Row="6">
+                <Button x:Name="btnAdd" Click="btnAdd_Click">Add</Button>
+                <Button x:Name="btnRemove" Click="btnRemove_Click">Remove</Button>
+            </StackPanel>
+            <ListBox x:Name="lstCurrentSlopes" Grid.Column="3" Grid.Row="6" Grid.ColumnSpan="4" MinHeight="48" MaxHeight="144" ItemsSource="{Binding Path=Slopes}" />
+        </Grid>
+        <Rectangle Stroke="Black" HorizontalAlignment="Stretch" StrokeThickness="1" Margin="4,2" />
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Label Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" Content="Material 1"/>
+            <Label Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" Content="Tiling 1"/>
+            <Label Grid.Row="0" Grid.Column="2" HorizontalAlignment="Center" Content="Fill 2"/>
+            <Label Grid.Row="0" Grid.Column="3" HorizontalAlignment="Center" Content="Fill 3"/>
+            <Label Grid.Row="0" Grid.Column="4" HorizontalAlignment="Center" Content="Diagonal"/>
+            <!-- TODO: databound Combo boxes -->
+        </Grid>
+    </StackPanel>
+</UserControl>

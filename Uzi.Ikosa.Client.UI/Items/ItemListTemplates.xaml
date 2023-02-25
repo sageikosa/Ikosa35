@@ -1,0 +1,846 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+                    xmlns:uicui="clr-namespace:Uzi.Ikosa.Client.UI" 
+                    xmlns:icontract="clr-namespace:Uzi.Ikosa.Contracts;assembly=Uzi.Ikosa.Contracts"
+                    xmlns:ccontract="clr-namespace:Uzi.Core.Contracts;assembly=Uzi.Core.Contracts"
+                    xmlns:pvm="clr-namespace:Uzi.Ikosa.Proxy.ViewModel;assembly=Uzi.Ikosa.Proxy"
+                    xmlns:cis="clr-namespace:Uzi.Ikosa.Proxy.IkosaSvc;assembly=Uzi.Ikosa.Proxy"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/Uzi.Ikosa.Client.UI;Component/Deltable.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+
+    <DataTemplate DataType="{x:Type pvm:ContentStack}">
+        <ItemsControl ItemsSource="{Binding Path=Contents}" VerticalAlignment="Center">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel Orientation="{Binding Path=Orientation}"></StackPanel>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+        </ItemsControl>
+    </DataTemplate>
+
+    <!-- TextBlock Label -->
+    <Style TargetType="TextBlock" x:Key="styleLabel">
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="Margin" Value="0,0,2,0"/>
+    </Style>
+
+    <!-- STACKPANEL STYLE -->
+    <Style TargetType="StackPanel" x:Key="styleItemPanel">
+        <Setter Property="Margin" Value="2"/>
+        <Setter Property="HorizontalAlignment" Value="Stretch"/>
+        <Setter Property="VerticalAlignment" Value="Stretch"/>
+        <Setter Property="Background" Value="#00000000"/>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="true">
+                <Setter Property="Background" Value="LightGreen"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    <Style TargetType="DockPanel" x:Key="styleItemDockPanel">
+        <Setter Property="Margin" Value="2"/>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="true">
+                <Setter Property="Background" Value="LightGreen"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    <Style TargetType="Label" x:Key="styleILLabel">
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="HorizontalAlignment" Value="Right"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>
+    <Style TargetType="TextBlock" x:Key="styleILTextBlock">
+        <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>
+
+    <!-- Spell Trigger Info -->
+    <DataTemplate DataType="{x:Type icontract:SpellTriggerInfo}">
+        <StackPanel>
+            <ContentControl Content="{Binding SpellSource}"></ContentControl>
+            <TextBlock><Run Text="Charges/Use: "/><Run Text="{Binding ChargesPerUse}"/></TextBlock>
+            <TextBlock><Run Text="Charges: "/><Run Text="{Binding ChargesRemaining}"/></TextBlock>
+        </StackPanel>
+    </DataTemplate>
+    
+    <!-- Spell Source Info -->
+    <DataTemplate DataType="{x:Type icontract:SpellSourceInfo}">
+        <StackPanel>
+            <TextBlock xml:space="preserve"><Run Text="{Binding Path=SpellDef.Message}" FontStyle="Italic"/></TextBlock>
+            <TextBlock xml:space="preserve"><Run Text="Caster Level: " /><Run Text="{Binding Path=CasterLevel}" /></TextBlock>
+        </StackPanel>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type icontract:MagicPowerSourceInfo}">
+        <TextBlock FontStyle="Italic">
+            <Run Text="{Binding Path=Message}" />
+            <Run Text="(" ></Run>
+            <Run Text="{Binding Path=CasterLevel}" />
+            <Run Text=")" ></Run>
+        </TextBlock>
+    </DataTemplate>
+
+    <!-- INFO -->
+    <DataTemplate DataType="{x:Type ccontract:Info}">
+        <TextBlock Text="{Binding Path=Message}" FontStyle="Italic"/>
+    </DataTemplate>
+
+    <!-- Description -->
+    <DataTemplate DataType="{x:Type ccontract:Description}">
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="{Binding Path=Message}" FontStyle="Italic"/>
+            <ItemsControl ItemsSource="{Binding Path=Descriptions}" BorderBrush="Black" BorderThickness="0.25">
+            </ItemsControl>
+        </StackPanel>
+    </DataTemplate>
+
+    <!-- ADJUNCT INFO Set (for use in other templates) -->
+    <DataTemplate x:Key="tmplAdjunctInfos">
+        <ItemsControl ItemsSource="{Binding Path=AdjunctInfos}"></ItemsControl>
+    </DataTemplate>
+
+    <!-- WEAPON HEAD -->
+    <ResourceDictionary x:Key="rdWeaponHeadSub">
+        <ResourceDictionary.MergedDictionaries>
+            <ResourceDictionary Source="/Uzi.Ikosa.Client.UI;Component/Deltable.xaml"/>
+        </ResourceDictionary.MergedDictionaries>
+    </ResourceDictionary>
+    <DataTemplate DataType="{x:Type icontract:WeaponHeadInfo}" Resources="{StaticResource rdWeaponHeadSub}">
+        <Grid Margin="2,0">
+            <Grid.Resources>
+                <Style TargetType="TextBlock">
+                    <Setter Property="VerticalAlignment" Value="Center"/>
+                </Style>
+                <Style TargetType="ContentControl">
+                    <Setter Property="VerticalAlignment" Value="Center"/>
+                </Style>
+                <Style TargetType="ItemsControl">
+                    <Setter Property="VerticalAlignment" Value="Center"/>
+                </Style>
+            </Grid.Resources>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <TextBlock Style="{StaticResource styleLabel}" Grid.Column="0" Grid.Row="0">Combat</TextBlock>
+            <TextBlock Style="{StaticResource styleLabel}" Grid.Column="0" Grid.Row="1">Material</TextBlock>
+            <TextBlock Style="{StaticResource styleLabel}" Grid.Column="0" Grid.Row="2" Visibility="{Binding Path=AdjunctVisibility}">Extra Info</TextBlock>
+            <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding Path=CombatSummary}"/>
+            <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding Path=Material.Name}"/>
+            <ContentControl Grid.Column="1" Grid.Row="2" Visibility="{Binding Path=AdjunctVisibility}"
+                            Content="{Binding}" ContentTemplate="{StaticResource tmplAdjunctInfos}" >
+            </ContentControl>
+        </Grid>
+    </DataTemplate>
+
+    <!-- DOUBLE WEAPON -->
+    <DataTemplate DataType="{x:Type icontract:DoubleMeleeWeaponInfo}">
+        <StackPanel Orientation="Horizontal" ToolTipService.ShowDuration="30000" Style="{StaticResource styleItemPanel}">
+            <StackPanel.Resources>
+                <Style BasedOn="{StaticResource styleILTextBlock}" TargetType="TextBlock"/>
+                <Style BasedOn="{StaticResource styleILLabel}" TargetType="Label"/>
+            </StackPanel.Resources>
+            <StackPanel.ToolTip>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Style="{StaticResource styleLabel}" Grid.Column="0" Grid.Row="0">Summary</TextBlock>
+                    <!--<TextBlock Style="{StaticResource styleLabel}" Grid.Column="0" Grid.Row="4">Using as Two Handed</TextBlock>-->
+                    <TextBlock Style="{StaticResource styleLabel}" Grid.Column="0" Grid.Row="5">Weapon Heads</TextBlock>
+                    <TextBlock Style="{StaticResource styleLabel}" Grid.Column="0" Grid.Row="6" Visibility="{Binding Path=AdjunctVisibility}">Extra Info</TextBlock>
+                    <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding Path=WieldSummary}"/>
+                    <!--<TextBlock Grid.Column="1" Grid.Row="4" Text="{Binding Path=UseAsTwoHanded}"/>-->
+                    <Border Grid.Column="1" Grid.Row="5" BorderThickness="0.5" BorderBrush="Brown">
+                        <ItemsControl ItemsSource="{Binding Path=WeaponHeads}" Margin="2">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel Orientation="Horizontal"/>
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                        </ItemsControl>
+                    </Border>
+                    <ContentControl Grid.Column="1" Grid.Row="6" Visibility="{Binding Path=AdjunctVisibility}"
+                            Content="{Binding}" ContentTemplate="{StaticResource tmplAdjunctInfos}" >
+                    </ContentControl>
+                </Grid>
+            </StackPanel.ToolTip>
+            <uicui:ImageryIcon Width="64" Height="64" ImageryInfo="{Binding Path=Icon}" IconResolver="{Binding Path=IconResolver}"/>
+            <StackPanel Orientation="Vertical" VerticalAlignment="Center" Margin="4,0,2,0">
+                <TextBlock Text="{Binding Path=Message}"></TextBlock>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock xml:space="preserve"><Run Text="{Binding Path=Size.Name}"/><Run Text=" ("/><Run FontStyle="Italic" Text="{Binding Path=CreatureSize.Name}"/><Run Text=") "/></TextBlock>
+                    <TextBlock Visibility="{Binding Path=WeightVisibility}"><Run Text="{Binding Path=Weight}"/><Run Text="#"/></TextBlock>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+    </DataTemplate>
+
+    <!-- (Loadable)-PROJECTILE WEAPON -->
+    <DataTemplate DataType="{x:Type icontract:LoadableProjectileWeaponInfo}">
+        <StackPanel Orientation="Horizontal" ToolTipService.ShowDuration="30000" Style="{StaticResource styleItemPanel}">
+            <StackPanel.Resources>
+                <Style BasedOn="{StaticResource styleILTextBlock}" TargetType="TextBlock"/>
+                <Style BasedOn="{StaticResource styleILLabel}" TargetType="Label"/>
+            </StackPanel.Resources>
+            <StackPanel.ToolTip>
+                <Grid>
+                    <Grid.Resources>
+                        <ResourceDictionary>
+                            <Style TargetType="ContentControl">
+                                <Setter Property="VerticalAlignment" Value="Center"/>
+                            </Style>
+                            <Style TargetType="ItemsControl">
+                                <Setter Property="VerticalAlignment" Value="Center"/>
+                            </Style>
+                        </ResourceDictionary>
+                    </Grid.Resources>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Style="{StaticResource styleLabel}" Grid.Column="0" Grid.Row="0">Summary</TextBlock>
+                    <TextBlock Style="{StaticResource styleLabel}" Grid.Column="0" Grid.Row="2">Range/Incr</TextBlock>
+                    <TextBlock Style="{StaticResource styleLabel}" Grid.Column="0" Grid.Row="3">Max-Str</TextBlock>
+                    <TextBlock Style="{StaticResource styleLabel}" Grid.Column="0" Grid.Row="4">Combat</TextBlock>
+                    <TextBlock Style="{StaticResource styleLabel}" Grid.Column="0" Grid.Row="5">Material</TextBlock>
+                    <TextBlock Style="{StaticResource styleLabel}" Grid.Column="0" Grid.Row="6">Loaded-With</TextBlock>
+                    <TextBlock Style="{StaticResource styleLabel}" Grid.Column="0" Grid.Row="7" Visibility="{Binding Path=AdjunctVisibility}">Extra Info</TextBlock>
+
+                    <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding Path=WieldSummary}"/>
+                    <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="2">
+                        <TextBlock Text="{Binding Path=MaxRange}"/>
+                        <TextBlock Text="/"/>
+                        <TextBlock Text="{Binding Path=RangeIncrement}"/>
+                    </StackPanel>
+                    <TextBlock Text="{Binding Path=MaxStrengthBonus}" Grid.Column="1" Grid.Row="3"/>
+
+                    <TextBlock Grid.Column="1" Grid.Row="4" Text="{Binding Path=VirtualHead.CombatSummary}"/>
+                    <TextBlock Grid.Column="1" Grid.Row="5" Text="{Binding Path=VirtualHead.Material.Name}"/>
+                    <ItemsControl Grid.Column="1" Grid.Row="6" ItemsSource="{Binding Path=LoadedAmmunition}"  >
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel Orientation="Horizontal"></StackPanel>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                    </ItemsControl>
+                    <ContentControl Grid.Column="1" Grid.Row="7" Visibility="{Binding Path=AdjunctVisibility}"
+                                    Content="{Binding}" ContentTemplate="{StaticResource tmplAdjunctInfos}" >
+                    </ContentControl>
+                </Grid>
+            </StackPanel.ToolTip>
+            <uicui:ImageryIcon Width="64" Height="64" ImageryInfo="{Binding Path=Icon}" IconResolver="{Binding Path=IconResolver}"/>
+            <StackPanel Orientation="Vertical" VerticalAlignment="Center" Margin="4,0,2,0">
+                <TextBlock Text="{Binding Path=Message}"></TextBlock>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock xml:space="preserve"><Run Text="{Binding Path=Size.Name}"/><Run Text=" ("/><Run FontStyle="Italic" Text="{Binding Path=CreatureSize.Name}"/><Run Text=") "/></TextBlock>
+                    <TextBlock Visibility="{Binding Path=WeightVisibility}"><Run Text="{Binding Path=Weight}"/><Run Text="#"/></TextBlock>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type icontract:ProjectileWeaponInfo}">
+        <StackPanel Orientation="Horizontal" ToolTipService.ShowDuration="30000" Style="{StaticResource styleItemPanel}">
+            <StackPanel.Resources>
+                <Style BasedOn="{StaticResource styleILTextBlock}" TargetType="TextBlock"/>
+                <Style BasedOn="{StaticResource styleILLabel}" TargetType="Label"/>
+            </StackPanel.Resources>
+            <StackPanel.ToolTip>
+                <Grid>
+                    <Grid.Resources>
+                        <ResourceDictionary>
+                            <Style TargetType="ContentControl">
+                                <Setter Property="VerticalAlignment" Value="Center"/>
+                            </Style>
+                            <Style TargetType="ItemsControl">
+                                <Setter Property="VerticalAlignment" Value="Center"/>
+                            </Style>
+                        </ResourceDictionary>
+                    </Grid.Resources>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Style="{StaticResource styleLabel}" Grid.Column="0" Grid.Row="0">Summary</TextBlock>
+                    <TextBlock Style="{StaticResource styleLabel}" Grid.Column="0" Grid.Row="2">Range/Incr</TextBlock>
+                    <TextBlock Style="{StaticResource styleLabel}" Grid.Column="0" Grid.Row="3">Max-Str</TextBlock>
+                    <TextBlock Style="{StaticResource styleLabel}" Grid.Column="0" Grid.Row="4">Combat</TextBlock>
+                    <TextBlock Style="{StaticResource styleLabel}" Grid.Column="0" Grid.Row="5">Material</TextBlock>
+                    <TextBlock Style="{StaticResource styleLabel}" Grid.Column="0" Grid.Row="6" Visibility="{Binding Path=AdjunctVisibility}">Extra Info</TextBlock>
+
+                    <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding Path=WieldSummary}"/>
+                    <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="2">
+                        <TextBlock Text="{Binding Path=MaxRange}"/>
+                        <TextBlock Text="/"/>
+                        <TextBlock Text="{Binding Path=RangeIncrement}"/>
+                    </StackPanel>
+                    <TextBlock Text="{Binding Path=MaxStrengthBonus}" Grid.Column="1" Grid.Row="3"/>
+
+                    <TextBlock Grid.Column="1" Grid.Row="4" Text="{Binding Path=VirtualHead.CombatSummary}"/>
+                    <TextBlock Grid.Column="1" Grid.Row="5" Text="{Binding Path=VirtualHead.Material.Name}"/>
+                    <ContentControl Grid.Column="1" Grid.Row="6" Visibility="{Binding Path=AdjunctVisibility}"
+                            Content="{Binding}" ContentTemplate="{StaticResource tmplAdjunctInfos}" >
+                    </ContentControl>
+                </Grid>
+            </StackPanel.ToolTip>
+            <uicui:ImageryIcon Width="64" Height="64" ImageryInfo="{Binding Path=Icon}" IconResolver="{Binding Path=IconResolver}"/>
+            <StackPanel Orientation="Vertical" VerticalAlignment="Center" Margin="4,0,2,0">
+                <TextBlock Text="{Binding Path=Message}"></TextBlock>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock xml:space="preserve"><Run Text="{Binding Path=Size.Name}"/><Run Text=" ("/><Run FontStyle="Italic" Text="{Binding Path=CreatureSize.Name}"/><Run Text=") "/></TextBlock>
+                    <TextBlock Visibility="{Binding Path=WeightVisibility}"><Run Text="{Binding Path=Weight}"/><Run Text="#"/></TextBlock>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+    </DataTemplate>
+
+    <!-- MELEE WEAPON -->
+    <DataTemplate DataType="{x:Type icontract:MeleeWeaponInfo}">
+        <StackPanel Orientation="Horizontal" ToolTipService.ShowDuration="30000" Style="{StaticResource styleItemPanel}">
+            <StackPanel.Resources>
+                <Style BasedOn="{StaticResource styleILTextBlock}" TargetType="TextBlock"/>
+                <Style BasedOn="{StaticResource styleILLabel}" TargetType="Label"/>
+            </StackPanel.Resources>
+            <StackPanel.ToolTip>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Style="{StaticResource styleLabel}" Grid.Column="0" Grid.Row="0">Summary</TextBlock>
+                    <TextBlock Style="{StaticResource styleLabel}" Grid.Column="0" Grid.Row="4">Weapon Head</TextBlock>
+                    <TextBlock Style="{StaticResource styleLabel}" Grid.Column="0" Grid.Row="5" Visibility="{Binding Path=AdjunctVisibility}">Extra Info</TextBlock>
+                    <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding Path=WieldSummary}"/>
+                    <Border Grid.Column="1" Grid.Row="4" BorderThickness="0.5" BorderBrush="Brown">
+                        <ItemsControl ItemsSource="{Binding Path=WeaponHeads}" Margin="2">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel Orientation="Horizontal"/>
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                        </ItemsControl>
+                    </Border>
+                    <ContentControl Grid.Column="1" Grid.Row="5" Visibility="{Binding Path=AdjunctVisibility}"
+                            Content="{Binding}" ContentTemplate="{StaticResource tmplAdjunctInfos}" >
+                    </ContentControl>
+                </Grid>
+            </StackPanel.ToolTip>
+            <uicui:ImageryIcon Width="64" Height="64" ImageryInfo="{Binding Path=Icon}" IconResolver="{Binding Path=IconResolver}"/>
+            <StackPanel Orientation="Vertical" VerticalAlignment="Center" Margin="4,0,2,0">
+                <TextBlock Text="{Binding Path=Message}"></TextBlock>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock xml:space="preserve"><Run Text="{Binding Path=Size.Name}"/><Run Text=" ("/><Run FontStyle="Italic" Text="{Binding Path=CreatureSize.Name}"/><Run Text=") "/></TextBlock>
+                    <TextBlock Visibility="{Binding Path=WeightVisibility}"><Run Text="{Binding Path=Weight}"/><Run Text="#"/></TextBlock>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+    </DataTemplate>
+
+    <!-- NATURAL WEAPON -->
+    <DataTemplate DataType="{x:Type icontract:NaturalWeaponInfo}">
+        <StackPanel Orientation="Horizontal" ToolTipService.ShowDuration="30000" Style="{StaticResource styleItemPanel}">
+            <StackPanel.Resources>
+                <Style BasedOn="{StaticResource styleILTextBlock}" TargetType="TextBlock"/>
+                <Style BasedOn="{StaticResource styleILLabel}" TargetType="Label"/>
+            </StackPanel.Resources>
+            <StackPanel.ToolTip>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Style="{StaticResource styleLabel}" Grid.Column="0" Grid.Row="0">Summary</TextBlock>
+                    <TextBlock Style="{StaticResource styleLabel}" Grid.Column="0" Grid.Row="4">Always On</TextBlock>
+                    <TextBlock Style="{StaticResource styleLabel}" Grid.Column="0" Grid.Row="6">Weapon Head</TextBlock>
+                    <TextBlock Style="{StaticResource styleLabel}" Grid.Column="0" Grid.Row="7" Visibility="{Binding Path=AdjunctVisibility}">Extra Info</TextBlock>
+                    <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding Path=WieldSummary}"/>
+                    <TextBlock Grid.Column="1" Grid.Row="4" Text="{Binding Path=IsAlwaysOn}"/>
+                    <Border Grid.Column="1" Grid.Row="6" BorderThickness="0.5" BorderBrush="Brown">
+                        <ContentControl Content="{Binding Path=WeaponHead}" Margin="2"/>
+                    </Border>
+                    <ContentControl Grid.Column="1" Grid.Row="7" Visibility="{Binding Path=AdjunctVisibility}"
+                            Content="{Binding}" ContentTemplate="{StaticResource tmplAdjunctInfos}" >
+                    </ContentControl>
+                </Grid>
+            </StackPanel.ToolTip>
+            <uicui:ImageryIcon Width="64" Height="64"  ImageryInfo="{Binding Path=Icon}" IconResolver="{Binding Path=IconResolver}"/>
+            <StackPanel Orientation="Vertical" Margin="4,0,2,0">
+                <TextBlock Text="{Binding Path=Message}"></TextBlock>
+                <TextBlock xml:space="preserve"><Run Text="{Binding Path=Size.Name}"/><Run Text=" ("/><Run FontStyle="Italic" Text="{Binding Path=CreatureSize.Name}"/><Run Text=")"/></TextBlock>
+            </StackPanel>
+        </StackPanel>
+    </DataTemplate>
+
+    <!-- ARMOR -->
+    <DataTemplate DataType="{x:Type icontract:ArmorInfo}">
+        <StackPanel Orientation="Horizontal" ToolTipService.ShowDuration="30000" Style="{StaticResource styleItemPanel}">
+            <StackPanel.Resources>
+                <ResourceDictionary>
+                    <Style BasedOn="{StaticResource styleILTextBlock}" TargetType="TextBlock"/>
+                    <Style BasedOn="{StaticResource styleILLabel}" TargetType="Label"/>
+                </ResourceDictionary>
+            </StackPanel.Resources>
+            <StackPanel.ToolTip>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Style="{StaticResource styleLabel}" Grid.Column="0" Grid.Row="0">Proficiency</TextBlock>
+                    <TextBlock Style="{StaticResource styleLabel}" Grid.Column="0" Grid.Row="1">Protection</TextBlock>
+                    <TextBlock Style="{StaticResource styleLabel}" Grid.Column="0" Grid.Row="2">Max Dexterity</TextBlock>
+                    <TextBlock Style="{StaticResource styleLabel}" Grid.Column="0" Grid.Row="3">Check Penalty</TextBlock>
+                    <TextBlock Style="{StaticResource styleLabel}" Grid.Column="0" Grid.Row="4">Spell Failure</TextBlock>
+                    <TextBlock Style="{StaticResource styleLabel}" Grid.Column="0" Grid.Row="5">Body Type</TextBlock>
+                    <TextBlock Style="{StaticResource styleLabel}" Grid.Column="0" Grid.Row="6" Visibility="{Binding Path=AdjunctVisibility}">Extra Info</TextBlock>
+                    <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding Path=ProficiencyType}"/>
+                    <ContentControl Grid.Column="1" Grid.Row="1" Content="{Binding Path=ProtectionBonus}" ContentTemplate="{StaticResource deltaView}"/>
+                    <ContentControl Grid.Column="1" Grid.Row="2" Content="{Binding Path=MaxDexterityBonus}" ContentTemplate="{StaticResource deltaView}"/>
+                    <ContentControl Grid.Column="1" Grid.Row="3" Content="{Binding Path=CheckPenalty}" ContentTemplate="{StaticResource deltaView}"/>
+                    <ContentControl Grid.Column="1" Grid.Row="4" Content="{Binding Path=ArcaneSpellFailureChance}" ContentTemplate="{StaticResource deltaView}"/>
+                    <TextBlock Grid.Column="1" Grid.Row="5" Text="{Binding Path=BodyType}"/>
+                    <ContentControl Grid.Column="1" Grid.Row="6" Visibility="{Binding Path=AdjunctVisibility}"
+                            Content="{Binding}" ContentTemplate="{StaticResource tmplAdjunctInfos}" >
+                    </ContentControl>
+                </Grid>
+            </StackPanel.ToolTip>
+            <uicui:ImageryIcon Width="64" Height="64" ImageryInfo="{Binding Path=Icon}" IconResolver="{Binding Path=IconResolver}"/>
+            <StackPanel Orientation="Vertical" VerticalAlignment="Center" Margin="4,0,2,0">
+                <TextBlock Text="{Binding Path=Message}"></TextBlock>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock xml:space="preserve"><Run Text="{Binding Path=Size.Name}"/><Run Text=" ("/><Run FontStyle="Italic" Text="{Binding Path=CreatureSize.Name}"/><Run Text=") "/></TextBlock>
+                    <TextBlock Visibility="{Binding Path=WeightVisibility}"><Run Text="{Binding Path=Weight}"/><Run Text="#"/></TextBlock>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+    </DataTemplate>
+
+    <!-- SHIELD -->
+    <DataTemplate DataType="{x:Type icontract:ShieldInfo}">
+        <StackPanel Orientation="Horizontal" ToolTipService.ShowDuration="30000" Style="{StaticResource styleItemPanel}">
+            <StackPanel.Resources>
+                <ResourceDictionary>
+                    <Style BasedOn="{StaticResource styleILTextBlock}" TargetType="TextBlock"/>
+                    <Style BasedOn="{StaticResource styleILLabel}" TargetType="Label"/>
+                </ResourceDictionary>
+            </StackPanel.Resources>
+            <StackPanel.ToolTip>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Style="{StaticResource styleLabel}" Grid.Column="0" Grid.Row="0">Protection</TextBlock>
+                    <TextBlock Style="{StaticResource styleLabel}" Grid.Column="0" Grid.Row="1">Check Penalty</TextBlock>
+                    <TextBlock Style="{StaticResource styleLabel}" Grid.Column="0" Grid.Row="2">Spell Failure</TextBlock>
+                    <TextBlock Style="{StaticResource styleLabel}" Grid.Column="0" Grid.Row="3">Carry in Hand</TextBlock>
+                    <TextBlock Style="{StaticResource styleLabel}" Grid.Column="0" Grid.Row="4">IsTower</TextBlock>
+                    <TextBlock Style="{StaticResource styleLabel}" Grid.Column="0" Grid.Row="5" Visibility="{Binding Path=AdjunctVisibility}">Extra Info</TextBlock>
+                    <ContentControl Grid.Column="1" Grid.Row="0" Content="{Binding Path=ProtectionBonus}" ContentTemplate="{StaticResource deltaView}"/>
+                    <ContentControl Grid.Column="1" Grid.Row="1" Content="{Binding Path=CheckPenalty}" ContentTemplate="{StaticResource deltaView}"/>
+                    <ContentControl Grid.Column="1" Grid.Row="2" Content="{Binding Path=ArcaneSpellFailureChance}" ContentTemplate="{StaticResource deltaView}"/>
+                    <TextBlock Grid.Column="1" Grid.Row="3" Text="{Binding Path=UseHandToCarry}"/>
+                    <TextBlock Grid.Column="1" Grid.Row="4" Text="{Binding Path=IsTower}"/>
+                    <ContentControl Grid.Column="1" Grid.Row="5" Visibility="{Binding Path=AdjunctVisibility}"
+                            Content="{Binding}" ContentTemplate="{StaticResource tmplAdjunctInfos}" >
+                    </ContentControl>
+                </Grid>
+            </StackPanel.ToolTip>
+            <uicui:ImageryIcon Width="64" Height="64" ImageryInfo="{Binding Path=Icon}" IconResolver="{Binding Path=IconResolver}"/>
+            <StackPanel Orientation="Vertical" VerticalAlignment="Center" Margin="4,0,2,0">
+                <TextBlock Text="{Binding Path=Message}"></TextBlock>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock xml:space="preserve"><Run Text="{Binding Path=Size.Name}"/><Run Text=" ("/><Run FontStyle="Italic" Text="{Binding Path=CreatureSize.Name}"/><Run Text=") "/></TextBlock>
+                    <TextBlock Visibility="{Binding Path=WeightVisibility}"><Run Text="{Binding Path=Weight}"/><Run Text="#"/></TextBlock>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+    </DataTemplate>
+
+    <!-- AMMUNITION -->
+    <DataTemplate DataType="{x:Type icontract:AmmoInfo}">
+        <StackPanel Orientation="Horizontal" Style="{StaticResource styleItemPanel}">
+            <StackPanel.Resources>
+                <Style BasedOn="{StaticResource styleILTextBlock}" TargetType="TextBlock"/>
+                <Style BasedOn="{StaticResource styleILLabel}" TargetType="Label"/>
+            </StackPanel.Resources>
+            <StackPanel Orientation="Vertical" Margin="4,0,2,0" Resources="{StaticResource rdWeaponHeadSub}">
+                <TextBlock xml:space="preserve"><Run Text="{Binding Path=Message}"></Run><Run Text=" (* "></Run><Run Text="{Binding Path=Count}"/><Run Text=")"></Run></TextBlock>
+                <Grid Margin="2,0">
+                    <Grid.Resources>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="VerticalAlignment" Value="Center"/>
+                        </Style>
+                        <Style TargetType="ContentControl">
+                            <Setter Property="VerticalAlignment" Value="Center"/>
+                        </Style>
+                        <Style TargetType="ItemsControl">
+                            <Setter Property="VerticalAlignment" Value="Center"/>
+                        </Style>
+                    </Grid.Resources>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Style="{StaticResource styleLabel}" Grid.Column="0" Grid.Row="0">Combat</TextBlock>
+                    <TextBlock Style="{StaticResource styleLabel}" Grid.Column="0" Grid.Row="1">Material</TextBlock>
+                    <TextBlock Style="{StaticResource styleLabel}" Grid.Column="0" Grid.Row="2" Visibility="{Binding Path=AdjunctVisibility}">Extra Info</TextBlock>
+                    <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding Path=CombatSummary}"/>
+                    <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding Path=Material.Name}"/>
+                    <ContentControl Grid.Column="1" Grid.Row="2" Visibility="{Binding Path=AdjunctVisibility}"
+                            Content="{Binding}" ContentTemplate="{StaticResource tmplAdjunctInfos}" >
+                    </ContentControl>
+                </Grid>
+            </StackPanel>
+        </StackPanel>
+    </DataTemplate>
+
+    <!-- AMMO CONTAINER -->
+    <DataTemplate DataType="{x:Type icontract:AmmoBundleInfo}">
+        <StackPanel Orientation="Horizontal" ToolTipService.ShowDuration="30000" 
+                    Style="{StaticResource styleItemPanel}">
+            <StackPanel.Resources>
+                <Style BasedOn="{StaticResource styleILTextBlock}" TargetType="TextBlock"/>
+                <Style BasedOn="{StaticResource styleILLabel}" TargetType="Label"/>
+            </StackPanel.Resources>
+            <StackPanel.ToolTip>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Column="0" Grid.Row="0" Style="{StaticResource styleLabel}">Ammos</TextBlock>
+                    <ItemsControl Grid.Column="1" Grid.Row="0" ItemsSource="{Binding Path=Ammunitions}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel Orientation="Horizontal"/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                    </ItemsControl>
+                    <TextBlock Grid.Column="0" Grid.Row="1" Style="{StaticResource styleLabel}">Extra Info</TextBlock>
+                    <ContentControl  Grid.Column="1" Grid.Row="1" Content="{Binding}" ContentTemplate="{StaticResource tmplAdjunctInfos}" >
+                    </ContentControl>
+                </Grid>
+            </StackPanel.ToolTip>
+            <uicui:ImageryIcon Width="64" Height="64" ImageryInfo="{Binding Path=Icon}" IconResolver="{Binding Path=IconResolver}"/>
+            <StackPanel Orientation="Vertical" VerticalAlignment="Center" Margin="4,0,2,0">
+                <TextBlock Text="{Binding Path=Message}"></TextBlock>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock xml:space="preserve"><Run Text="{Binding Path=Size.Name}"/><Run Text=" ("/><Run FontStyle="Italic" Text="{Binding Path=CreatureSize.Name}"/><Run Text=") "/></TextBlock>
+                    <TextBlock Visibility="{Binding Path=WeightVisibility}"><Run Text="{Binding Path=Weight}"/><Run Text="#"/></TextBlock>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+    </DataTemplate>
+    
+    <!-- GEM -->
+    <!-- COINSET -->
+    <!-- CONTAINER -->
+    <!-- MAGIC ITEM... -->
+
+    <!-- ITEM -->
+    <DataTemplate x:Key="tmplItem">
+        <StackPanel Orientation="Horizontal" ToolTipService.ShowDuration="30000" 
+                    Style="{StaticResource styleItemPanel}">
+            <StackPanel.Resources>
+                <Style BasedOn="{StaticResource styleILTextBlock}" TargetType="TextBlock"/>
+                <Style BasedOn="{StaticResource styleILLabel}" TargetType="Label"/>
+            </StackPanel.Resources>
+            <StackPanel.ToolTip>
+                <StackPanel>
+                    <TextBlock Style="{StaticResource styleLabel}">Extra Info</TextBlock>
+                    <ContentControl Content="{Binding}" ContentTemplate="{StaticResource tmplAdjunctInfos}" >
+                    </ContentControl>
+                </StackPanel>
+            </StackPanel.ToolTip>
+            <uicui:ImageryIcon Width="64" Height="64" ImageryInfo="{Binding Path=Icon}" IconResolver="{Binding Path=IconResolver}"/>
+            <StackPanel Orientation="Vertical" VerticalAlignment="Center" Margin="4,0,2,0">
+                <TextBlock Text="{Binding Path=Message}"></TextBlock>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock xml:space="preserve"><Run Text="{Binding Path=Size.Name}"/><Run Text=" ("/><Run FontStyle="Italic" Text="{Binding Path=CreatureSize.Name}"/><Run Text=") "/></TextBlock>
+                    <TextBlock Visibility="{Binding Path=WeightVisibility}"><Run Text="{Binding Path=Weight}"/><Run Text="#"/></TextBlock>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+    </DataTemplate>
+
+    <!-- EMPTY -->
+    <DataTemplate x:Key="tmplEmpty">
+        <Grid></Grid>
+    </DataTemplate>
+
+    <!-- POWER CLASS -->
+    <DataTemplate DataType="{x:Type icontract:PowerClassInfo}">
+        <StackPanel Style="{StaticResource styleItemPanel}" Orientation="Horizontal">
+            <StackPanel.Resources>
+                <Style BasedOn="{StaticResource styleILTextBlock}" TargetType="TextBlock"/>
+                <Style BasedOn="{StaticResource styleILLabel}" TargetType="Label"/>
+            </StackPanel.Resources>
+            <uicui:ImageryIcon Width="64" Height="64" ImageryInfo="{Binding Path=Icon}" IconResolver="{Binding Path=IconResolver}"/>
+            <StackPanel Orientation="Vertical" VerticalAlignment="Center">
+                <TextBlock Text="{Binding Path=Message}" FontSize="20"></TextBlock>
+                <TextBlock FontSize="14">
+                    <Run Text="Level: "></Run>
+                    <Run Text="{Binding Path=ClassPowerLevel.EffectiveValue}"></Run>
+                </TextBlock>
+            </StackPanel>
+        </StackPanel>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type icontract:CasterClassInfo}">
+        <StackPanel ToolTipService.ShowDuration="30000" Style="{StaticResource styleItemPanel}"
+                    Orientation="Horizontal">
+            <StackPanel.Resources>
+                <Style BasedOn="{StaticResource styleILTextBlock}" TargetType="TextBlock"/>
+                <Style BasedOn="{StaticResource styleILLabel}" TargetType="Label"/>
+            </StackPanel.Resources>
+            <StackPanel.ToolTip>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition Width="10,*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Column="0" Grid.Row="0" Style="{StaticResource styleLabel}" >Magic</TextBlock>
+                    <TextBlock Grid.Column="0" Grid.Row="1" Style="{StaticResource styleLabel}" >Level</TextBlock>
+                    <TextBlock Grid.Column="0" Grid.Row="2" Style="{StaticResource styleLabel}" >Difficulty</TextBlock>
+
+                    <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding Path=MagicType}"></TextBlock>
+                    <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding Path=EffectiveLevel.EffectiveValue}"></TextBlock>
+                    <TextBlock Grid.Column="1" Grid.Row="2" Text="{Binding Path=SpellDifficultyBase.EffectiveValue}"></TextBlock>
+                </Grid>
+            </StackPanel.ToolTip>
+            <uicui:ImageryIcon Width="64" Height="64" ImageryInfo="{Binding Path=Icon}" IconResolver="{Binding Path=IconResolver}"/>
+            <StackPanel Orientation="Vertical" VerticalAlignment="Center">
+                <TextBlock Text="{Binding Path=Message}" FontSize="20"></TextBlock>
+                <TextBlock FontSize="14">
+                    <Run Text="Level: "></Run>
+                    <Run Text="{Binding Path=ClassPowerLevel.EffectiveValue}"></Run>
+                </TextBlock>
+            </StackPanel>
+        </StackPanel>
+    </DataTemplate>
+    
+    <!-- Creature -->
+    <DataTemplate DataType="{x:Type icontract:CreatureObjectInfo}">
+        <StackPanel Orientation="Horizontal" Style="{StaticResource styleItemPanel}" ToolTipService.ShowDuration="30000">
+            <StackPanel.Resources>
+                <Style BasedOn="{StaticResource styleILTextBlock}" TargetType="TextBlock"/>
+                <Style BasedOn="{StaticResource styleILLabel}" TargetType="Label"/>
+            </StackPanel.Resources>
+            <StackPanel.ToolTip>
+                <StackPanel>
+                    <ItemsControl x:Name="lstItems" ItemsSource="{Binding Path=ItemSlots}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <ContentControl Content="{Binding Path=ItemInfo}">
+                                    <ContentControl.ContentTemplateSelector>
+                                        <uicui:ItemListTemplateSelector DoubleWeaponTemplate="{StaticResource {x:Type icontract:DoubleMeleeWeaponInfo}}"
+                                                                        MeleeWeaponTemplate="{StaticResource {x:Type icontract:MeleeWeaponInfo}}"
+                                                                        NaturalWeaponTemplate="{StaticResource {x:Type icontract:NaturalWeaponInfo}}"
+                                                                        LoadableProjectileWeaponTemplate="{StaticResource {x:Type icontract:LoadableProjectileWeaponInfo}}"
+                                                                        ProjectileWeaponTemplate="{StaticResource {x:Type icontract:ProjectileWeaponInfo}}"
+                                                                        SpellTriggerTemplate="{StaticResource {x:Type icontract:SpellTriggerInfo}}"
+                                                                        AmmoBundleTemplate="{StaticResource {x:Type icontract:AmmoBundleInfo}}"
+                                                                        ArmorTemplate="{StaticResource {x:Type icontract:ArmorInfo}}"
+                                                                        ShieldTemplate="{StaticResource {x:Type icontract:ShieldInfo}}"
+                                                                        AmmoTemplate="{StaticResource {x:Type icontract:AmmoInfo}}"
+                                                                        ObjectInfoVMTemplate="{StaticResource {x:Type pvm:ObjectInfoVM}}"
+                                                                        ItemTemplate="{StaticResource tmplItem}"
+                                                                        PowerClassTemplate="{StaticResource {x:Type icontract:PowerClassInfo}}"
+                                                                        CasterClassTemplate="{StaticResource {x:Type icontract:CasterClassInfo}}"
+                                                                        EmptyTemplate="{StaticResource tmplEmpty}">
+                                        </uicui:ItemListTemplateSelector>
+                                    </ContentControl.ContentTemplateSelector>
+                                </ContentControl>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </StackPanel>
+            </StackPanel.ToolTip>
+            <Image DockPanel.Dock="Left" Source="{Binding Path=Portrait.Image}" Width="64" Height="64"/>
+            <StackPanel Orientation="Vertical" Margin="4,0,2,0">
+                <TextBlock Text="{Binding Path=Message}"></TextBlock>
+                <TextBlock>
+                    <Run Text="Size: "/>
+                    <Run Text="{Binding Path=Size.Name}"/>
+                </TextBlock>
+                <TextBlock>
+                    <Run Text="Body: "/>
+                    <Run Text="{Binding Path=BodySource}"/>
+                </TextBlock>
+            </StackPanel>
+        </StackPanel>
+    </DataTemplate>
+    <DataTemplate x:Key="tmplCreatureObject" DataType="{x:Type icontract:CreatureObjectInfo}">
+        <StackPanel Orientation="Horizontal" Style="{StaticResource styleItemPanel}" ToolTipService.ShowDuration="30000">
+            <StackPanel.Resources>
+                <Style BasedOn="{StaticResource styleILTextBlock}" TargetType="TextBlock"/>
+                <Style BasedOn="{StaticResource styleILLabel}" TargetType="Label"/>
+            </StackPanel.Resources>
+            <StackPanel.ToolTip>
+                <StackPanel>
+                    <ItemsControl x:Name="lstItems" ItemsSource="{Binding Path=ItemSlots}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <ContentControl Content="{Binding Path=ItemInfo}">
+                                    <ContentControl.ContentTemplateSelector>
+                                        <uicui:ItemListTemplateSelector DoubleWeaponTemplate="{StaticResource {x:Type icontract:DoubleMeleeWeaponInfo}}"
+                                                                        MeleeWeaponTemplate="{StaticResource {x:Type icontract:MeleeWeaponInfo}}"
+                                                                        NaturalWeaponTemplate="{StaticResource {x:Type icontract:NaturalWeaponInfo}}"
+                                                                        LoadableProjectileWeaponTemplate="{StaticResource {x:Type icontract:LoadableProjectileWeaponInfo}}"
+                                                                        ProjectileWeaponTemplate="{StaticResource {x:Type icontract:ProjectileWeaponInfo}}"
+                                                                        AmmoBundleTemplate="{StaticResource {x:Type icontract:AmmoBundleInfo}}"
+                                                                        SpellTriggerTemplate="{StaticResource {x:Type icontract:SpellTriggerInfo}}"
+                                                                        ArmorTemplate="{StaticResource {x:Type icontract:ArmorInfo}}"
+                                                                        ShieldTemplate="{StaticResource {x:Type icontract:ShieldInfo}}"
+                                                                        AmmoTemplate="{StaticResource {x:Type icontract:AmmoInfo}}"
+                                                                        ObjectInfoVMTemplate="{StaticResource {x:Type pvm:ObjectInfoVM}}"
+                                                                        ItemTemplate="{StaticResource tmplItem}"
+                                                                        PowerClassTemplate="{StaticResource {x:Type icontract:PowerClassInfo}}"
+                                                                        CasterClassTemplate="{StaticResource {x:Type icontract:CasterClassInfo}}"
+                                                                        EmptyTemplate="{StaticResource tmplEmpty}">
+                                        </uicui:ItemListTemplateSelector>
+                                    </ContentControl.ContentTemplateSelector>
+                                </ContentControl>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </StackPanel>
+            </StackPanel.ToolTip>
+            <Image DockPanel.Dock="Left" Source="{Binding Path=Portrait.Image}" Width="64" Height="64"/>
+            <StackPanel Orientation="Vertical" Margin="4,0,2,0">
+                <TextBlock Text="{Binding Path=Message}"></TextBlock>
+                <TextBlock>
+                    <Run Text="Size: "/>
+                    <Run Text="{Binding Path=Size.Name}"/>
+                </TextBlock>
+                <TextBlock>
+                    <Run Text="Body: "/>
+                    <Run Text="{Binding Path=BodySource}"/>
+                </TextBlock>
+            </StackPanel>
+        </StackPanel>
+    </DataTemplate>
+    <DataTemplate x:Key="iconCreatureObject" DataType="{x:Type icontract:CreatureObjectInfo}">
+        <Image DockPanel.Dock="Left" Source="{Binding Path=Portrait.Image}" Width="48" Height="48" Opacity="0.8" ToolTipService.ShowDuration="30000">
+            <Image.Resources>
+                <Style BasedOn="{StaticResource styleILTextBlock}" TargetType="TextBlock"/>
+                <Style BasedOn="{StaticResource styleILLabel}" TargetType="Label"/>
+            </Image.Resources>
+            <Image.ToolTip>
+                <StackPanel>
+                    <ItemsControl x:Name="lstItems" ItemsSource="{Binding Path=ItemSlots}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <ContentControl Content="{Binding Path=ItemInfo}">
+                                    <ContentControl.ContentTemplateSelector>
+                                        <uicui:ItemListTemplateSelector DoubleWeaponTemplate="{StaticResource {x:Type icontract:DoubleMeleeWeaponInfo}}"
+                                                                        MeleeWeaponTemplate="{StaticResource {x:Type icontract:MeleeWeaponInfo}}"
+                                                                        NaturalWeaponTemplate="{StaticResource {x:Type icontract:NaturalWeaponInfo}}"
+                                                                        LoadableProjectileWeaponTemplate="{StaticResource {x:Type icontract:LoadableProjectileWeaponInfo}}"
+                                                                        ProjectileWeaponTemplate="{StaticResource {x:Type icontract:ProjectileWeaponInfo}}"
+                                                                        AmmoBundleTemplate="{StaticResource {x:Type icontract:AmmoBundleInfo}}"
+                                                                        SpellTriggerTemplate="{StaticResource {x:Type icontract:SpellTriggerInfo}}"
+                                                                        ArmorTemplate="{StaticResource {x:Type icontract:ArmorInfo}}"
+                                                                        ShieldTemplate="{StaticResource {x:Type icontract:ShieldInfo}}"
+                                                                        AmmoTemplate="{StaticResource {x:Type icontract:AmmoInfo}}"
+                                                                        ObjectInfoVMTemplate="{StaticResource {x:Type pvm:ObjectInfoVM}}"
+                                                                        ItemTemplate="{StaticResource tmplItem}"
+                                                                        PowerClassTemplate="{StaticResource {x:Type icontract:PowerClassInfo}}"
+                                                                        CasterClassTemplate="{StaticResource {x:Type icontract:CasterClassInfo}}"
+                                                                        EmptyTemplate="{StaticResource tmplEmpty}">
+                                        </uicui:ItemListTemplateSelector>
+                                    </ContentControl.ContentTemplateSelector>
+                                </ContentControl>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </StackPanel>
+            </Image.ToolTip>
+        </Image>
+    </DataTemplate>
+</ResourceDictionary>

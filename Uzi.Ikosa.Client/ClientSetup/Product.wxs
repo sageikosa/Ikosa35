@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <?define Uzi.Ikosa.Client_TargetDir=$(var.Uzi.Ikosa.Client.TargetDir)?>
+  <Product Id="*" Name="Ikosa Test Client" Language="1033" Version="1.0.0.1" Manufacturer="Turn-Based Realities, LLC" UpgradeCode="05b662da-c368-4cc4-9839-49411da2ecc8">
+    <Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
+
+    <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+    <MediaTemplate />
+
+    <Feature Id="ProductFeature" Title="Ikosa Test Client" Level="1">
+      <ComponentGroupRef Id="ProductComponents" />
+      <ComponentRef Id="ApplicationShortcut" />
+      <ComponentRef Id="ApplicationShortcutDesktop" />
+    </Feature>
+  </Product>
+
+  <Fragment>
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="ProgramFilesFolder">
+        <Directory Id="INSTALLFOLDER" Name="Ikosa Test Client" />
+      </Directory>
+    </Directory>
+    <Directory Id="ProgramMenuFolder">
+      <Directory Id="ApplicationProgramsFolder" Name="MyWpfApplication"/>
+    </Directory>
+    <Directory Id="DesktopFolder" Name="Desktop"/>
+  </Fragment>
+
+  <Fragment>
+    <DirectoryRef Id="ApplicationProgramsFolder">
+      <Component Id="ApplicationShortcut" Guid="3E134264-B744-42F5-961A-861423B38BCB">
+        <Shortcut Id="ApplicationStartMenuShortcut" Name="Ikosa Test Client" Description="Ikosa Test Client" Target="[INSTALLFOLDER]MyWpfApplication.exe" WorkingDirectory="INSTALLFOLDER" />
+        <RemoveFolder Id="RemoveApplicationProgramsFolder" Directory="ApplicationProgramsFolder" On="uninstall" />
+        <RegistryValue Root="HKCU" Key="Software\Turn-Based Realities\Ikosa Test Client" Name="installed" Type="integer" Value="1" KeyPath="yes" />
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="DesktopFolder">
+      <Component Id="ApplicationShortcutDesktop" Guid="08675588-08F3-4375-9F7D-800653EB7524">
+        <Shortcut Id="ApplicationDesktopShortcut" Name="MyWpfApplication" Description="MyWpfApplication" Target="[INSTALLFOLDER]MyWpfApplication.exe" WorkingDirectory="INSTALLFOLDER" />
+        <RemoveFolder Id="RemoveDesktopFolder" Directory="DesktopFolder" On="uninstall" />
+        <RegistryValue Root="HKCU" Key="Software\Turn-Based Realities\Ikosa Test Client" Name="installed" Type="integer" Value="1" KeyPath="yes" />
+      </Component>
+    </DirectoryRef>
+  </Fragment>  
+  
+  <Fragment>
+    <ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
+      <!-- TODO: Remove the comments around this Component element and the ComponentRef below in order to add resources to this installer. -->
+      <Component Id="ProductComponent">
+        <File Source="$(var.Uzi.Ikosa.Client.TargetPath)" />
+      </Component>
+      <Component Id="Xceed.Wpf.AvalonDock.dll" Guid="b34a323d-bef6-4dd3-a11f-f3d96f8f2dfb">
+        <File Id="Xceed.Wpf.AvalonDock.dll" Name="Xceed.Wpf.AvalonDock.dll" Source="$(var.Uzi.Ikosa.Client_TargetDir)Xceed.Wpf.AvalonDock.dll" />
+      </Component>
+      <Component Id="Xceed.Wpf.AvalonDock.Themes.Aero.dll" Guid="d6afe65b-68ee-431a-afdf-884ba44d0818">
+        <File Id="Xceed.Wpf.AvalonDock.Themes.Aero.dll" Name="Xceed.Wpf.AvalonDock.Themes.Aero.dll" Source="$(var.Uzi.Ikosa.Client_TargetDir)Xceed.Wpf.AvalonDock.Themes.Aero.dll" />
+      </Component>
+      <Component Id="Xceed.Wpf.AvalonDock.Themes.Metro.dll" Guid="cf9e9e22-2936-4fe0-99dc-1927557d3024">
+        <File Id="Xceed.Wpf.AvalonDock.Themes.Metro.dll" Name="Xceed.Wpf.AvalonDock.Themes.Metro.dll" Source="$(var.Uzi.Ikosa.Client_TargetDir)Xceed.Wpf.AvalonDock.Themes.Metro.dll" />
+      </Component>
+      <Component Id="Xceed.Wpf.AvalonDock.Themes.VS2010.dll" Guid="d5f4b550-d705-460b-a507-b9d0205ff93c">
+        <File Id="Xceed.Wpf.AvalonDock.Themes.VS2010.dll" Name="Xceed.Wpf.AvalonDock.Themes.VS2010.dll" Source="$(var.Uzi.Ikosa.Client_TargetDir)Xceed.Wpf.AvalonDock.Themes.VS2010.dll" />
+      </Component>
+      <Component Id="Xceed.Wpf.DataGrid.dll" Guid="2f5edde7-bf91-4f7a-9722-3c6d20c52035">
+        <File Id="Xceed.Wpf.DataGrid.dll" Name="Xceed.Wpf.DataGrid.dll" Source="$(var.Uzi.Ikosa.Client_TargetDir)Xceed.Wpf.DataGrid.dll" />
+      </Component>
+      <Component Id="Xceed.Wpf.Toolkit.dll" Guid="b673c4d7-42cc-4245-89b0-eedd2664e55d">
+        <File Id="Xceed.Wpf.Toolkit.dll" Name="Xceed.Wpf.Toolkit.dll" Source="$(var.Uzi.Ikosa.Client_TargetDir)Xceed.Wpf.Toolkit.dll" />
+      </Component>
+      <Component Id="WriteableBitmapEx.Wpf.dll" Guid="2558ba67-200e-442d-b3b5-ffe39b0ac214">
+        <File Id="WriteableBitmapEx.Wpf.dll" Name="WriteableBitmapEx.Wpf.dll" Source="$(var.Uzi.Ikosa.Client_TargetDir)WriteableBitmapEx.Wpf.dll" />
+      </Component>
+      <Component Id="HelixToolkit.Wpf.dll" Guid="be347487-471a-4cbd-848d-9fd71084e13b">
+        <File Id="HelixToolkit.Wpf.dll" Name="HelixToolkit.Wpf.dll" Source="$(var.Uzi.Ikosa.Client_TargetDir)HelixToolkit.Wpf.dll" />
+      </Component>
+      <Component Id="Uzi.Core.Contracts.dll" Guid="50678016-67d3-4201-b828-abb1679efbb9">
+        <File Id="Uzi.Core.Contracts.dll" Name="Uzi.Core.Contracts.dll" Source="$(var.Uzi.Ikosa.Client_TargetDir)Uzi.Core.Contracts.dll" />
+      </Component>
+      <Component Id="Uzi.Ikosa.Client.exe" Guid="660c950e-30f4-4ea5-959c-9597227d1973">
+        <File Id="Uzi.Ikosa.Client.exe" Name="Uzi.Ikosa.Client.exe" Source="$(var.Uzi.Ikosa.Client_TargetDir)Uzi.Ikosa.Client.exe" />
+      </Component>
+      <Component Id="Uzi.Ikosa.Client.exe.config" Guid="bde96f44-1d52-4d84-90d5-1da69cfbf66b">
+        <File Id="Uzi.Ikosa.Client.exe.config" Name="Uzi.Ikosa.Client.exe.config" Source="$(var.Uzi.Ikosa.Client_TargetDir)Uzi.Ikosa.Client.exe.config" />
+      </Component>
+      <Component Id="Uzi.Ikosa.Client.UI.dll" Guid="8c3cf9ae-38ea-4112-a0fc-898e70c489f9">
+        <File Id="Uzi.Ikosa.Client.UI.dll" Name="Uzi.Ikosa.Client.UI.dll" Source="$(var.Uzi.Ikosa.Client_TargetDir)Uzi.Ikosa.Client.UI.dll" />
+      </Component>
+      <Component Id="Uzi.Ikosa.Contracts.dll" Guid="55fac207-708a-4160-9de3-d0f182875bcd">
+        <File Id="Uzi.Ikosa.Contracts.dll" Name="Uzi.Ikosa.Contracts.dll" Source="$(var.Uzi.Ikosa.Client_TargetDir)Uzi.Ikosa.Contracts.dll" />
+      </Component>
+      <Component Id="Uzi.Ikosa.Proxy.dll" Guid="82e08008-ff3a-4f26-b6cc-afca750ecb5f">
+        <File Id="Uzi.Ikosa.Proxy.dll" Name="Uzi.Ikosa.Proxy.dll" Source="$(var.Uzi.Ikosa.Client_TargetDir)Uzi.Ikosa.Proxy.dll" />
+      </Component>
+      <Component Id="Uzi.Packaging.dll" Guid="43f44888-be01-4af1-9530-9fe76e922a8e">
+        <File Id="Uzi.Packaging.dll" Name="Uzi.Packaging.dll" Source="$(var.Uzi.Ikosa.Client_TargetDir)Uzi.Packaging.dll" />
+      </Component>
+      <Component Id="Uzi.Visualize.dll" Guid="f0e491c3-85d5-406b-9546-027a6935b68d">
+        <File Id="Uzi.Visualize.dll" Name="Uzi.Visualize.dll" Source="$(var.Uzi.Ikosa.Client_TargetDir)Uzi.Visualize.dll" />
+      </Component>
+    </ComponentGroup>
+  </Fragment>
+</Wix>

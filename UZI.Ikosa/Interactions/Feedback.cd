@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Uzi.Ikosa.Interactions.SpellTransitFeedback">
+    <Position X="4" Y="0.5" Width="2.75" />
+    <Members>
+      <Field Name="_Message" Hidden="true" />
+      <Field Name="_Success" Hidden="true" />
+      <Field Name="_Target" Hidden="true" />
+      <Field Name="_TransPreReq" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEQAAAAAAAAiAAACAAAxFAAAAAAAAAIAAAAAA=</HashCode>
+      <FileName>Interactions\SpellTransitFeedback.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Uzi.Core.InteractionFeedback">
+    <Position X="0.5" Y="0.5" Width="1.75" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Uzi.Ikosa.Interactions.SpellResistanceFeedback">
+    <Position X="7.75" Y="0.5" Width="2" />
+    <Members>
+      <Field Name="_CastPreReq" Hidden="true" />
+      <Field Name="_Creature" Hidden="true" />
+      <Field Name="_Delivery" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAAAAAAAAAACAAAAAgAQBAICAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interactions\SpellResistanceFeedback.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Uzi.Ikosa.Interactions.AttackFeedback">
+    <Position X="0.5" Y="4.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAIAAAAAAAAAAQAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interactions\AttackData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Uzi.Ikosa.Interactions.IlluminateResult">
+    <Position X="3.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAA=</HashCode>
+      <FileName>Interactions\Illuminate.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Uzi.Ikosa.Interactions.InfoFeedback">
+    <Position X="5.25" Y="4.75" Width="1.5" />
+    <Members>
+      <Field Name="_Info" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interactions\InfoFeedback.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Uzi.Ikosa.Interactions.ObserveFeedback">
+    <Position X="7.5" Y="4.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAA=</HashCode>
+      <FileName>Interactions\Observe.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Uzi.Ikosa.Interactions.RequireSaveFeedback">
+    <Position X="9.75" Y="4.75" Width="2" />
+    <Members>
+      <Field Name="_Mode" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAIA=</HashCode>
+      <FileName>Interactions\RequireSaveFeedback.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

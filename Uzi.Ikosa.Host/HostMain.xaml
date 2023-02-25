@@ -1,0 +1,477 @@
+﻿<Window x:Class="Uzi.Ikosa.Host.HostMain"
+        xmlns:pack="clr-namespace:System.IO.Packaging;assembly=WindowsBase"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:ccontract="clr-namespace:Uzi.Core.Contracts;assembly=Uzi.Core.Contracts"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:svc="clr-namespace:Uzi.Ikosa.Services;assembly=Uzi.Ikosa"
+        xmlns:host="clr-namespace:Uzi.Ikosa.Host"
+        xmlns:chost="clr-namespace:Uzi.Ikosa.Contracts.Host;assembly=Uzi.Ikosa.Contracts"
+        xmlns:icontracts="clr-namespace:Uzi.Ikosa.Contracts.Host;assembly=Uzi.Ikosa.Contracts"
+        xmlns:core="clr-namespace:Uzi.Core;assembly=Uzi.Core"
+        xmlns:xcad="http://schemas.xceed.com/wpf/xaml/avalondock"
+        xmlns:xct="http://schemas.xceed.com/wpf/xaml/toolkit"
+        Icon="IkosaHost.ico" Title="Ikosa Test Host" Height="800" Width="800" Closing="Window_Closing" Initialized="Window_Initialized">
+    <Grid x:Name="grdHost" >
+        <Grid.Resources>
+            <Style TargetType="Label">
+                <Setter Property="FontWeight" Value="Bold"/>
+                <Setter Property="HorizontalAlignment" Value="Right"/>
+            </Style>
+            <Style TargetType="TextBlock">
+                <Setter Property="VerticalAlignment" Value="Center"/>
+            </Style>
+        </Grid.Resources>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.CommandBindings>
+            <CommandBinding Command="Open" x:Name="cmdOpen" CanExecute="cmdOpen_CanExecute" Executed="cmdOpen_Executed"/>
+            <CommandBinding Command="{x:Static host:HostMain.OpenAndGo}" x:Name="cmdOpenAndGo" CanExecute="cmdOpen_CanExecute"
+                            Executed="cmdOpenAndGo_Executed"/>
+            <CommandBinding Command="Save" x:Name="cmdSave" CanExecute="cmdSave_CanExecute" Executed="cmdSave_Executed"/>
+            <CommandBinding Command="SaveAs" x:Name="cmdSaveAs" CanExecute="cmdSaveAs_CanExecute" Executed="cmdSaveAs_Executed"/>
+            <CommandBinding Command="Refresh" x:Name="cmdRefresh" CanExecute="cmdRefresh_CanExecute" Executed="cmdRefresh_Executed"/>
+            <CommandBinding Command="{x:Static host:HostMain.AddUser}" x:Name="cbAddUser" 
+                            CanExecute="cbAddUser_CanExecute" Executed="cbAddUser_Executed"/>
+            <CommandBinding Command="{x:Static host:HostMain.DeleteUser}" x:Name="cbDeleteUser"
+                            CanExecute="cbDeleteUser_CanExecute" Executed="cbDeleteUser_Executed"/>
+            <CommandBinding Command="{x:Static host:HostMain.EditUser}" x:Name="cbEditUser"
+                            CanExecute="cbEditUser_CanExecute" Executed="cbEditUser_Executed"/>
+            <CommandBinding Command="{x:Static host:HostMain.SendMessage}" x:Name="cdSendMessage"
+                            CanExecute="cdSendMessage_CanExecute" Executed="cdSendMessage_Executed"/>
+            <CommandBinding Command="{x:Static host:HostMain.ClearMessages}" x:Name="cbClearMessages"
+                            CanExecute="cbClearMessages_CanExecute" Executed="cbClearMessages_Executed"/>
+            <CommandBinding Command="{x:Static host:HostMain.LogoutUser}" x:Name="cbLogoutuser"
+                            CanExecute="cbLogoutuser_CanExecute" Executed="cbLogoutuser_Executed"/>
+
+            <CommandBinding Command="{x:Static host:HostMain.StartService}" x:Name="cbStartService"
+                            CanExecute="cbStartService_CanExecute" Executed="cbStartService_Executed"/>
+            <CommandBinding Command="{x:Static host:HostMain.StopService}" x:Name="cbStopService"
+                            CanExecute="cbStopService_CanExecute" Executed="cbStopService_Executed"/>
+            <CommandBinding Command="{x:Static host:HostMain.StartTracker}" x:Name="cbStartTracker" 
+                            CanExecute="cbStartTracker_CanExecute" Executed="cbStartTracker_Executed"/>
+            <CommandBinding Command="{x:Static host:HostMain.StopTracker}" x:Name="cbStopTracker"
+                            CanExecute="cbStopTracker_CanExecute" Executed="cbStopTracker_Executed"/>
+            <CommandBinding Command="{x:Static host:HostMain.EditPrerequisite}" x:Name="cbEditPrerequisite"
+                            CanExecute="cbEditPrerequisite_CanExecute" Executed="cbEditPrerequisite_Executed"/>
+        </Grid.CommandBindings>
+        <Menu Grid.Row="0">
+            <MenuItem Header="Package">
+                <MenuItem Header="Open..." Command="Open"></MenuItem>
+                <MenuItem Header="Open to Time..." Command="{x:Static host:HostMain.OpenAndGo}"></MenuItem>
+                <Separator/>
+                <MenuItem Header="Save" Command="Save"></MenuItem>
+                <MenuItem Header="Save As..." Command="SaveAs"></MenuItem>
+            </MenuItem>
+            <MenuItem Header="Tracker">
+                <MenuItem Header="Start Time Tracker..." Command="{x:Static host:HostMain.StartTracker}"></MenuItem>
+                <MenuItem Header="Stop Time Tracker" Command="{x:Static host:HostMain.StopTracker}"></MenuItem>
+            </MenuItem>
+            <MenuItem Header="About..." Click="miAbout_Click" />
+        </Menu>
+        <xcad:DockingManager Grid.Row="1" x:Name="dmHost">
+            <xcad:DockingManager.Resources>
+                <DataTemplate DataType="{x:Type chost:CreatureLoginInfo}">
+                    <Border Margin="2" BorderBrush="Black" CornerRadius="1" BorderThickness="0.5" Padding="2">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Image Grid.Column="0" Grid.RowSpan="2" Source="{Binding Path=Portrait.Image}" Width="40" Height="40"/>
+                            <Label Grid.Row="0" Grid.Column="1" Content="{Binding Path=Name}" HorizontalAlignment="Left"/>
+                            <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Path=Species}" FontSize="10"/>
+                            <ItemsControl Grid.Row="0" Grid.RowSpan="2" Grid.Column="2" ItemsSource="{Binding Path=Classes}" VerticalAlignment="Center">
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <StackPanel Orientation="Vertical">
+                                        </StackPanel>
+                                    </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock FontSize="10">
+                                                <Run Text="{Binding Path=ClassName}"/>
+                                                <Run Text="-"/>
+                                                <Run Text="{Binding Path=CurrentLevel}"/>
+                                        </TextBlock>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </xcad:DockingManager.Resources>
+            <xcad:DockingManager.Theme>
+                <xcad:AeroTheme/>
+            </xcad:DockingManager.Theme>
+            <xcad:LayoutRoot>
+                <xcad:LayoutRoot.BottomSide>
+                    <xcad:LayoutAnchorSide>
+                        <xcad:LayoutAnchorGroup>
+                            <xcad:LayoutAnchorable Title="Messages" CanClose="False" CanHide="False"
+                                                   IconSource="/Images/comments.png"
+                                                   ContentId="laMessages" AutoHideHeight="200" >
+                                <!-- Host Message Chat -->
+                                <host:Chat x:Name="ctrlChat"/>
+                            </xcad:LayoutAnchorable>
+                            <xcad:LayoutAnchorable Title="Console" CanClose="False" CanHide="False"
+                                                   IconSource="/Images/monitor.png"
+                                                   ContentId="laConsole" AutoHideHeight="200" >
+                                <DockPanel>
+                                    <Button x:Name="btnLogClear" Content="Clear" DockPanel.Dock="Top" 
+                                            HorizontalAlignment="Left" Margin="4" Padding="16,2" 
+                                            Click="btnLogClear_Click"></Button>
+                                    <ListBox x:Name="lstConsoleLog" Margin="2">
+                                        <ListBox.ItemsPanel>
+                                            <ItemsPanelTemplate>
+                                                <VirtualizingStackPanel/>
+                                            </ItemsPanelTemplate>
+                                        </ListBox.ItemsPanel>
+                                        <ListBox.Resources>
+                                            <DataTemplate DataType="{x:Type svc:ConsoleMessage}">
+                                                <StackPanel Margin="2,4" ToolTip="{Binding Path=Source}">
+                                                    <TextBlock Text="{Binding Path=Title}" FontStyle="Italic"/>
+                                                    <TextBlock Text="{Binding Path=Message}"/>
+                                                    <TextBlock Text="{Binding Path=Details}"/>
+                                                </StackPanel>
+                                            </DataTemplate>
+                                        </ListBox.Resources>
+                                    </ListBox>
+                                </DockPanel>
+                            </xcad:LayoutAnchorable>
+                        </xcad:LayoutAnchorGroup>
+                    </xcad:LayoutAnchorSide>
+                </xcad:LayoutRoot.BottomSide>
+                <xcad:LayoutRoot.LeftSide>
+                    <xcad:LayoutAnchorSide>
+                        <xcad:LayoutAnchorGroup>
+                            <xcad:LayoutAnchorable Title="Processes" CanClose="False" CanHide="False" x:Name="anchorProcess" 
+                                                   IconSource="/Images/process.png"
+                                                   ContentId="laProcesses" AutoHideWidth="400" >
+                                <!-- process management (process stack, current step, prerequisites) -->
+                                <StackPanel x:Name="stackProcesses" DockPanel.Dock="Left">
+                                    <Button Content="Process" Command="Refresh"/>
+                                    <TextBlock>
+                                        <Run FontWeight="Bold" Text="Current Time: "/>
+                                        <Run Text="{Binding Path=LocalTurnTracker.Map.CurrentTime, Mode=OneWay}"/>
+                                    </TextBlock>
+                                    <GroupBox Header="Processes" MinWidth="96">
+                                        <ListBox ItemsSource="{Binding Path=AllProcesses}" DisplayMemberPath="Description">
+                                        </ListBox>
+                                    </GroupBox>
+                                    <GroupBox Header="Current Step" DataContext="{Binding Path=CurrentStep}">
+                                        <Grid>
+                                            <Grid.Resources>
+                                                <Style TargetType="CheckBox">
+                                                    <Setter Property="VerticalAlignment" Value="Center"/>
+                                                </Style>
+                                            </Grid.Resources>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition/>
+                                                <RowDefinition/>
+                                                <RowDefinition/>
+                                                <RowDefinition/>
+                                                <RowDefinition/>
+                                                <RowDefinition/>
+                                            </Grid.RowDefinitions>
+                                            <Label Grid.Column="0" Grid.Row="0" Content="Name"/>
+                                            <Label Grid.Column="0" Grid.Row="1" Content="Is Complete"/>
+                                            <Label Grid.Column="0" Grid.Row="2" Content="Is Dispensing"/>
+                                            <Label Grid.Column="0" Grid.Row="3" Content="Can Do Step"/>
+                                            <Label Grid.Column="0" Grid.Row="4" Content="Followers"/>
+                                            <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding Path=Name}"/>
+                                            <CheckBox Grid.Column="1" Grid.Row="1" IsEnabled="False" IsChecked="{Binding Path=IsComplete, Mode=OneTime}"/>
+                                            <CheckBox Grid.Column="1" Grid.Row="2" IsEnabled="False" IsChecked="{Binding Path=IsDispensingPrerequisites, Mode=OneTime}"/>
+                                            <CheckBox Grid.Column="1" Grid.Row="3" IsEnabled="False" IsChecked="{Binding Path=CanDoStep, Mode=OneTime}"/>
+                                            <TextBlock Grid.Column="1" Grid.Row="4" Text="{Binding Path=FollowingSteps.Count}"/>
+                                        </Grid>
+                                    </GroupBox>
+                                    <GroupBox Header="Prerequisites" DataContext="{Binding Path=CurrentStep}">
+                                        <ListView ItemsSource="{Binding Path=DispensedPrerequisites}" >
+                                            <ListView.View>
+                                                <GridView>
+                                                    <GridView.Columns>
+                                                        <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Path=Name}"></GridViewColumn>
+                                                        <GridViewColumn Header="BindKey" DisplayMemberBinding="{Binding Path=BindKey}"></GridViewColumn>
+                                                        <GridViewColumn Header="Ready">
+                                                            <GridViewColumn.CellTemplate>
+                                                                <DataTemplate>
+                                                                    <CheckBox IsChecked="{Binding Path=IsReady, Mode=OneWay}" IsEnabled="False"/>
+                                                                </DataTemplate>
+                                                            </GridViewColumn.CellTemplate>
+                                                        </GridViewColumn>
+                                                        <GridViewColumn Header="Fails">
+                                                            <GridViewColumn.CellTemplate>
+                                                                <DataTemplate>
+                                                                    <CheckBox IsChecked="{Binding Path=FailsProcess, Mode=OneWay}" IsEnabled="False"/>
+                                                                </DataTemplate>
+                                                            </GridViewColumn.CellTemplate>
+                                                        </GridViewColumn>
+                                                        <GridViewColumn Header="Serial">
+                                                            <GridViewColumn.CellTemplate>
+                                                                <DataTemplate>
+                                                                    <CheckBox IsChecked="{Binding Path=IsSerial, Mode=OneWay}" IsEnabled="False"/>
+                                                                </DataTemplate>
+                                                            </GridViewColumn.CellTemplate>
+                                                        </GridViewColumn>
+                                                        <GridViewColumn Header="Edit">
+                                                            <GridViewColumn.CellTemplate>
+                                                                <DataTemplate>
+                                                                    <Button Content="Edit" 
+                                                                Command="{x:Static host:HostMain.EditPrerequisite}" 
+                                                                CommandParameter="{Binding}"></Button>
+                                                                </DataTemplate>
+                                                            </GridViewColumn.CellTemplate>
+                                                        </GridViewColumn>
+                                                    </GridView.Columns>
+                                                </GridView>
+                                            </ListView.View>
+                                        </ListView>
+                                    </GroupBox>
+                                </StackPanel>
+                                <!-- TODO: ticks -->
+                            </xcad:LayoutAnchorable>
+                            <xcad:LayoutAnchorable Title="Time Budgets" CanClose="False" CanHide="False" x:Name="anchorBudget" 
+                                                   IconSource="/Images/time.png"
+                                                   ContentId="laBudgets" AutoHideWidth="400" >
+                                <!-- Budgets -->
+                                <Grid x:Name="gridBudgets">
+                                    <GroupBox Header="Upcoming Budgets" Margin="2" DataContext="{Binding Path=LocalTurnTracker}">
+                                        <ListView ItemsSource="{Binding Path=ReactableBudgets}">
+                                            <ListView.View>
+                                                <GridView>
+                                                    <GridView.Columns>
+                                                        <GridViewColumn Header="Twitch">
+                                                            <GridViewColumn.CellTemplate>
+                                                                <DataTemplate>
+                                                                    <CheckBox IsChecked="{Binding Path=IsTwitchAvailable, Mode=OneWay}" IsEnabled="False"/>
+                                                                </DataTemplate>
+                                                            </GridViewColumn.CellTemplate>
+                                                        </GridViewColumn>
+                                                        <GridViewColumn Header="Brief">
+                                                            <GridViewColumn.CellTemplate>
+                                                                <DataTemplate>
+                                                                    <CheckBox IsChecked="{Binding Path=CanPerformBrief, Mode=OneWay}" IsEnabled="False"/>
+                                                                </DataTemplate>
+                                                            </GridViewColumn.CellTemplate>
+                                                        </GridViewColumn>
+                                                        <GridViewColumn Header="Regular">
+                                                            <GridViewColumn.CellTemplate>
+                                                                <DataTemplate>
+                                                                    <CheckBox IsChecked="{Binding Path=CanPerformRegular, Mode=OneWay}" IsEnabled="False"/>
+                                                                </DataTemplate>
+                                                            </GridViewColumn.CellTemplate>
+                                                        </GridViewColumn>
+                                                        <GridViewColumn Header="Total">
+                                                            <GridViewColumn.CellTemplate>
+                                                                <DataTemplate>
+                                                                    <CheckBox IsChecked="{Binding Path=CanPerformTotal, Mode=OneWay}" IsEnabled="False"/>
+                                                                </DataTemplate>
+                                                            </GridViewColumn.CellTemplate>
+                                                        </GridViewColumn>
+                                                        <GridViewColumn Header="Actor" DisplayMemberBinding="{Binding Path=Actor.Name}"></GridViewColumn>
+                                                        <GridViewColumn Header="Next" DisplayMemberBinding="{Binding Path=NextReset}"/>
+                                                    </GridView.Columns>
+                                                </GridView>
+                                            </ListView.View>
+                                        </ListView>
+                                    </GroupBox>
+                                </Grid>
+                                <!-- TODO: ready budgets -->
+                                <!-- TODO: ticks -->
+                                <!-- TODO: startup, add actors, remove actors, shutdown -->
+                            </xcad:LayoutAnchorable>
+                        </xcad:LayoutAnchorGroup>
+                    </xcad:LayoutAnchorSide>
+                </xcad:LayoutRoot.LeftSide>
+                <xcad:LayoutRoot.TopSide>
+                    <xcad:LayoutAnchorSide>
+                        <xcad:LayoutAnchorGroup>
+                            <xcad:LayoutAnchorable Title="Host" CanClose="False" CanHide="False"
+                                                   IconSource="/Images/small_ikosa.png"
+                                                   ContentId="laHost" AutoHideHeight="200" >
+                                <!-- Map -->
+                                <Grid x:Name="gridHost">
+                                    <Grid.Resources>
+                                        <Style TargetType="Button">
+                                            <Setter Property="MinWidth" Value="72"/>
+                                        </Style>
+                                    </Grid.Resources>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <!-- Services -->
+                                    <StackPanel Grid.Column="0">
+                                        <StackPanel.Resources>
+                                            <Style TargetType="CheckBox">
+                                                <Setter Property="IsEnabled" Value="false"/>
+                                                <Setter Property="Margin" Value="4,2,4,2"/>
+                                            </Style>
+                                        </StackPanel.Resources>
+                                        <TextBlock Margin="4,2,4,2">
+                                            <Run FontWeight="Bold" Text="MapName: "/>
+                                            <Run Text="{Binding Path=Name, Mode=OneWay}"/>
+                                        </TextBlock>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Button Content="Start" Margin="4,4,4,2" Command="{x:Static host:HostMain.StartService}"/>
+                                            <Button Content="Stop" Margin="4,2,4,2" Command="{x:Static host:HostMain.StopService}"/>
+                                        </StackPanel>
+                                        <CheckBox x:Name="chkLoginService" Content="Login"/>
+                                        <CheckBox x:Name="chkIkosaService" Content="Ikosa"/>
+                                        <CheckBox x:Name="chkViewService" Content="View"/>
+                                        <CheckBox x:Name="chkMasterService" Content="Master"/>
+                                    </StackPanel>
+                                </Grid>
+                            </xcad:LayoutAnchorable>
+                            <xcad:LayoutAnchorable Title="Users" CanClose="False" CanHide="False"
+                                                   IconSource="/Images/group.png"
+                                                   ContentId="laUsers" AutoHideHeight="200" >
+                                <!-- Users -->
+                                <Grid x:Name="gridUsers">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="33,*"/>
+                                        <ColumnDefinition Width="66,*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.ColumnSpan="2">
+                                        <!-- User Command Buttons -->
+                                        <Button Command="{x:Static host:HostMain.AddUser}">
+                                            <StackPanel Orientation="Horizontal">
+                                                <Image Source="/images/user_add.png"/>
+                                                <TextBlock Text="Add"/>
+                                            </StackPanel>
+                                        </Button>
+                                        <Button Command="{x:Static host:HostMain.EditUser}">
+                                            <StackPanel Orientation="Horizontal">
+                                                <Image Source="/images/user_edit.png"/>
+                                                <TextBlock Text="Edit"/>
+                                            </StackPanel>
+                                        </Button>
+                                        <Button Command="{x:Static host:HostMain.DeleteUser}">
+                                            <StackPanel Orientation="Horizontal">
+                                                <Image Source="/images/user_delete.png"/>
+                                                <TextBlock Text="Delete"/>
+                                            </StackPanel>
+                                        </Button>
+                                        <Button Command="{x:Static host:HostMain.LogoutUser}">
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock Text="Logout"/>
+                                            </StackPanel>
+                                        </Button>
+                                    </StackPanel>
+                                    <ListBox ItemsSource="{Binding Path=UserDefinitions}"
+                                             Grid.Row="1" x:Name="lstUsers"
+                                             SelectionChanged="lstUsers_SelectionChanged" >
+                                        <ListBox.ItemTemplate>
+                                            <DataTemplate>
+                                                <Grid Margin="2" MinWidth="96">
+                                                    <Grid.InputBindings>
+                                                        <MouseBinding Command="{x:Static host:HostMain.EditUser}"
+                                                                      Gesture="LeftDoubleClick"/>
+                                                    </Grid.InputBindings>
+                                                    <TextBlock Text="{Binding Path=UserName}"/>
+                                                </Grid>
+                                            </DataTemplate>
+                                        </ListBox.ItemTemplate>
+                                    </ListBox>
+                                    <Grid Grid.Row="1" Grid.Column="1" 
+                                          DataContext="{Binding ElementName=lstUsers, Path=SelectedItem}">
+                                        <!-- User Details -->
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition/>
+                                        </Grid.RowDefinitions>
+                                        <Label Content="User Name" Grid.Row="0"/>
+                                        <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding Path=UserName}"/>
+                                        <Label Content="Character" Grid.Row="1"/>
+                                        <ContentControl Grid.Column="1" Grid.Row="1" x:Name="contCreatureInfo" />
+                                        <Label Content="Message" Grid.Row="2"/>
+                                        <StackPanel Grid.Row="2" Grid.Column="1" >
+                                            <TextBox x:Name="txtMessage" Margin="2"/>
+                                            <Button x:Name="btnSendMessage"
+                                                    Content="Send" Margin="2" 
+                                                    Command="{x:Static host:HostMain.SendMessage}" />
+                                        </StackPanel>
+                                        <StackPanel Grid.Row="3">
+                                            <Label Content="Message Log" Grid.Row="3"/>
+                                            <Button Margin="4" Content="Clear Old"
+                                                    Command="{x:Static host:HostMain.ClearMessages}"></Button>
+                                        </StackPanel>
+                                        <ListBox Grid.Column="1" Grid.Row="3" Margin="2,0,0,0" 
+                                                 Name="lstMessageLog" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                                            <ListBox.ItemTemplate>
+                                                <DataTemplate DataType="{x:Type icontracts:UserMessage}">
+                                                    <DataTemplate.Resources>
+                                                        <Style TargetType="TextBlock">
+                                                            <Setter Property="VerticalAlignment" Value="Center"/>
+                                                        </Style>
+                                                    </DataTemplate.Resources>
+                                                    <Border BorderBrush="Black" BorderThickness="0.5" CornerRadius="1" Margin="1"
+                                                            Padding="1,1,4,1">
+                                                        <Grid>
+                                                            <Grid.Resources>
+                                                                <Style TargetType="TextBlock" x:Key="tbLabel">
+                                                                    <Setter Property="FontWeight" Value="Bold"/>
+                                                                    <Setter Property="Background" Value="Cyan"/>
+                                                                    <Setter Property="Margin" Value="1,1,4,1"/>
+                                                                    <Setter Property="HorizontalAlignment" Value="Right"/>
+                                                                    <Setter Property="VerticalAlignment" Value="Center"/>
+                                                                </Style>
+                                                            </Grid.Resources>
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition Width="Auto"/>
+                                                                <ColumnDefinition Width="*"/>
+                                                                <ColumnDefinition Width="Auto"/>
+                                                                <ColumnDefinition Width="*"/>
+                                                            </Grid.ColumnDefinitions>
+                                                            <Grid.RowDefinitions>
+                                                                <RowDefinition/>
+                                                                <RowDefinition/>
+                                                                <RowDefinition/>
+                                                            </Grid.RowDefinitions>
+                                                            <TextBlock Style="{StaticResource tbLabel}" Grid.Row="0">From</TextBlock>
+                                                            <TextBlock Style="{StaticResource tbLabel}" Grid.Row="0" Grid.Column="2">To</TextBlock>
+                                                            <TextBlock Style="{StaticResource tbLabel}" Grid.Row="1">Sent</TextBlock>
+                                                            <TextBlock Style="{StaticResource tbLabel}" Grid.Row="1" Grid.Column="2">Received</TextBlock>
+                                                            <TextBlock Style="{StaticResource tbLabel}" Grid.Row="2">Message</TextBlock>
+                                                            <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding Path=FromUser}"></TextBlock>
+                                                            <TextBlock Grid.Column="3" Grid.Row="0" Text="{Binding Path=ToUser}"></TextBlock>
+                                                            <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding Path=Created}" ></TextBlock>
+                                                            <TextBlock Grid.Column="3" Grid.Row="1" Text="{Binding Path=Delivered}" ></TextBlock>
+                                                            <TextBlock Grid.Column="1" Grid.Row="2" Text="{Binding Path=Message}" Grid.ColumnSpan="3"></TextBlock>
+                                                        </Grid>
+                                                    </Border>
+                                                </DataTemplate>
+                                            </ListBox.ItemTemplate>
+                                        </ListBox>
+                                    </Grid>
+                                </Grid>
+                            </xcad:LayoutAnchorable>
+                        </xcad:LayoutAnchorGroup>
+                    </xcad:LayoutAnchorSide>
+                </xcad:LayoutRoot.TopSide>
+            </xcad:LayoutRoot>
+        </xcad:DockingManager>
+    </Grid>
+</Window>

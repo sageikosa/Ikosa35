@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Uzi.Core.CoreObject">
+    <Position X="0.5" Y="1.25" Width="2.75" />
+    <Members>
+      <Field Name="_Adjuncts" Hidden="true" />
+      <Field Name="_Creator" Hidden="true" />
+      <Field Name="_Height" Hidden="true" />
+      <Field Name="_InteractionHandlers" Hidden="true" />
+      <Field Name="_Length" Hidden="true" />
+      <Field Name="_Name" Hidden="true" />
+      <Field Name="_PhysCtrl" Hidden="true" />
+      <Field Name="_Weight" Hidden="true" />
+      <Field Name="_Width" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAgCAAyABAAqyAgKMBAA4GRCgCCBkAGRAgAICIBJABA=</HashCode>
+      <FileName>CoreObject.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Uzi.Core.CoreItem">
+    <Position X="4" Y="1.25" Width="2" />
+    <Members>
+      <Field Name="_OriginalName" Hidden="true" />
+      <Field Name="_Possessor" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAQAAAgAAAAIAAAAIAAAIAAAAAAAAAAAAAACEgAA=</HashCode>
+      <FileName>CoreItem.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Possessor" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Uzi.Core.CoreActor">
+    <Position X="7.5" Y="1.5" Width="2.75" />
+    <Members>
+      <Field Name="_Actions" Hidden="true" />
+      <Field Name="_ActivityCtrl" Hidden="true" />
+      <Field Name="_InteractAlterCtrl" Hidden="true" />
+      <Field Name="_ObjLoad" Hidden="true" />
+      <Field Name="_Possess" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>EEQAEAAAIAgAQAAAJACAAAgABAAAAAAoAAAIIAABAAA=</HashCode>
+      <FileName>CoreActor.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Possessions" />
+      <Property Name="ObjectLoad" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Uzi.Core.ObjectLoad">
+    <Position X="11" Y="4.5" Width="3.25" />
+    <Members>
+      <Field Name="_ICOCtrl" Hidden="true" />
+      <Field Name="_Objects" Hidden="true" />
+      <Field Name="_Owner" Hidden="true" />
+      <Field Name="_WCtrl" Hidden="true" />
+      <Field Name="_Weight" Hidden="true" />
+    </Members>
+    <AssociationLine Name="Owner" Type="Uzi.Core.CoreActor" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="13.375" Y="4.5" />
+        <Point X="13.375" Y="2.919" />
+        <Point X="10.25" Y="2.919" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>ACIAAAKAgAAAABAAABBEhIQAgWAAAAEABAAIAAARCAA=</HashCode>
+      <FileName>ObjectLoad.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Owner" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Uzi.Core.PossessionSet">
+    <Position X="4" Y="5.25" Width="3.25" />
+    <Members>
+      <Field Name="_ChangeCtrlr" Hidden="true" />
+      <Field Name="_Items" Hidden="true" />
+    </Members>
+    <AssociationLine Name="Owner" Type="Uzi.Core.CoreActor">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-0.788" Y="0.189" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>ACIAAACAABAAABAACAEAAIQAgAAAAACAAIAKABARCAA=</HashCode>
+      <FileName>PossessionSet.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Owner" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

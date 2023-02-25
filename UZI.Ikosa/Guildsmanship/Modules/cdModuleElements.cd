@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Uzi.Ikosa.Guildsmanship.ModuleElement">
+    <Position X="0.75" Y="0.75" Width="1.75" />
+    <Members>
+      <Field Name="_Description" Hidden="true" />
+      <Field Name="_ID" Hidden="true" />
+      <Method Name="ModuleElement" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAggAAAAAAAAAAAAAAAAAAEAAAAAAAEAAA=</HashCode>
+      <FileName>Guildsmanship\Modules\ModuleElement.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Uzi.Ikosa.Guildsmanship.PreConditionRequirement" Collapsed="true">
+    <Position X="9.25" Y="3.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Guildsmanship\StoryState\PreConditionRequirement.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Uzi.Ikosa.Guildsmanship.ModuleLink&lt;INode&gt;" Collapsed="true">
+    <Position X="4.25" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAAAAAAAAAAAABAAAAEAAAAAAAAAAAAQAAAAAAI=</HashCode>
+      <FileName>Guildsmanship\Modules\ModuleLink.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Uzi.Ikosa.Guildsmanship.SitePath" Collapsed="true">
+    <Position X="6.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABACgAAQBAARAAAAAAAAAAAAEAAABAAAAAABAQAAYA=</HashCode>
+      <FileName>Guildsmanship\Paths\SitePath.cs</FileName>
+      <NewMemberFileName>Guildsmanship\Places\Site.cs</NewMemberFileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Uzi.Ikosa.Guildsmanship.ModuleNode" Collapsed="true">
+    <Position X="2" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAEIAAZAAAEgAAAAAEAAQAgAQAIBGAgAQQAIKAgBE=</HashCode>
+      <FileName>Guildsmanship\Modules\ModuleNode.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Uzi.Ikosa.Guildsmanship.EncounterEntry" Collapsed="true">
+    <Position X="4.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAQAAAAAAAAAAAAFACQAAAAAAAAAAAAAAAAAAAAAQA=</HashCode>
+      <FileName>Guildsmanship\Encounters\EncounterEntry.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Uzi.Ikosa.Guildsmanship.InfoKey" Collapsed="true">
+    <Position X="4.25" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Guildsmanship\InfoKey.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Uzi.Ikosa.Guildsmanship.ItemRequirement" Collapsed="true">
+    <Position X="8.75" Y="6" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AEBAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Guildsmanship\StoryState\ItemRequirement.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Uzi.Ikosa.Guildsmanship.InfoKeyRequirement" Collapsed="true">
+    <Position X="11" Y="6" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAAACAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAA=</HashCode>
+      <FileName>Guildsmanship\StoryState\InfoKeyRequirement.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Uzi.Ikosa.Guildsmanship.LocalPlace" Collapsed="true">
+    <Position X="2" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAAAIAAAAAAAAAAAAAAAAAAABBAAAAAAAAEAAE=</HashCode>
+      <FileName>Guildsmanship\LocalMapping\LocalPlace.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Uzi.Ikosa.Guildsmanship.NodeRef&lt;INode&gt;" Collapsed="true">
+    <Position X="6.5" Y="7" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAAAAAAAAAAAAAAAAAAAEAAAAAQAAAAAAAAAAAA=</HashCode>
+      <FileName>Guildsmanship\Modules\NodeRef.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Uzi.Ikosa.Guildsmanship.StoryState" Collapsed="true">
+    <Position X="4.25" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAIAAAAAAAAEAAAAAAAABAAAAAAQAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>Guildsmanship\StoryState\StoryState.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Uzi.Ikosa.Guildsmanship.StoryStateValue" Collapsed="true">
+    <Position X="6.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIAAEIAAAAAAAAAAAAAAAAABAAAAgAKAAAAA=</HashCode>
+      <FileName>Guildsmanship\StoryState\StoryStateValue.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="10" />
+</ClassDiagram>

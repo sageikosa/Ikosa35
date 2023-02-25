@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Uzi.Ikosa.Guildsmanship.Overland.Region">
+    <Position X="4.5" Y="1" Width="1.75" />
+    <Members>
+      <Field Name="_Base" Hidden="true" />
+      <Field Name="_CellScale" Hidden="true" />
+      <Field Name="_Columns" Hidden="true" />
+      <Field Name="_Names" Hidden="true" />
+      <Field Name="_Order" Hidden="true" />
+      <Field Name="_Rows" Hidden="true" />
+      <Field Name="_Sites" Hidden="true" />
+      <Field Name="_StoryInfo" Hidden="true" />
+      <Field Name="_SubRegions" Hidden="true" />
+      <Field Name="_Terrain" Hidden="true" />
+      <Field Name="_TerrainIndex" Hidden="true" />
+      <Field Name="_Tiles" Hidden="true" />
+    </Members>
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AgEAiAAAAAABgESSEBAIIAACAEAAABIBACAABEoQAAI=</HashCode>
+      <FileName>Guildsmanship\Overland\Region.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="TerrainLayer" />
+      <Property Name="Tiles" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="SubRegions" />
+      <Property Name="Sites" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Uzi.Ikosa.Guildsmanship.Overland.RegionLayer&lt;LayerData&gt;">
+    <Position X="0.5" Y="2.75" Width="2.25" />
+    <Members>
+      <Field Name="_Cells" Hidden="true" />
+      <Field Name="_Region" Hidden="true" />
+      <Field Name="_Resolver" Hidden="true" />
+      <Field Name="_Validator" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>QgAAAQAAAgCAAAAQCAGAAAAJAAAACAEAAAAAAAAAAAE=</HashCode>
+      <FileName>Guildsmanship\Overland\RegionLayer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Uzi.Ikosa.Guildsmanship.ModuleLink&lt;Node&gt;">
+    <Position X="11.25" Y="3.25" Width="2" />
+    <Members>
+      <Field Name="_LinkID" Hidden="true" />
+      <Field Name="_LinkModule" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>wAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAI=</HashCode>
+      <FileName>Guildsmanship\Modules\ModuleLink.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Uzi.Ikosa.Guildsmanship.Overland.SubRegion">
+    <Position X="8" Y="2.25" Width="2" />
+    <Members>
+      <Field Name="_Offset" Hidden="true" />
+      <Field Name="_Size" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAAAgBAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Guildsmanship\Overland\SubRegion.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Uzi.Ikosa.Guildsmanship.ModuleElement">
+    <Position X="8" Y="5" Width="1.75" />
+    <Members>
+      <Field Name="_ID" Hidden="true" />
+      <Field Name="_Info" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAggAAAAAAAAAAIAAAAAAAAAAAAAAAEAAA=</HashCode>
+      <FileName>Guildsmanship\Modules\ModuleElement.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Uzi.Ikosa.Guildsmanship.ModuleNode">
+    <Position X="4.5" Y="5.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAABAAAAAAAAIAAAA=</HashCode>
+      <FileName>Guildsmanship\Modules\ModuleNode.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Uzi.Ikosa.Guildsmanship.SiteLink">
+    <Position X="11.5" Y="0.75" Width="1.5" />
+    <Members>
+      <Field Name="_Position" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAgAAAAgAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Guildsmanship\Places\SiteLink.cs</FileName>
+      <NewMemberFileName>Guildsmanship\Places\Site.cs</NewMemberFileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="10" />
+</ClassDiagram>

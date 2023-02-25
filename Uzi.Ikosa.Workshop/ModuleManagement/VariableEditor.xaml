@@ -1,0 +1,455 @@
+﻿<UserControl x:Class="Uzi.Ikosa.Workshop.VariableEditor"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:uiui="clr-namespace:Uzi.Ikosa.UI;assembly=Uzi.Ikosa.UI"
+             xmlns:shop="clr-namespace:Uzi.Ikosa.Workshop"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="Margin" Value="1,0"/>
+        </Style>
+        <Style TargetType="ContentControl">
+            <Setter Property="Margin" Value="1,0"/>
+        </Style>
+        <Style TargetType="ListBox">
+            <Setter Property="Margin" Value="1,0"/>
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+        <DockPanel>
+            <DockPanel DockPanel.Dock="Left" Width="{Binding ElementName=PH00,Path=ActualWidth, Mode=OneWay}"
+                       x:Name="dockVariables"
+                       Visibility="{Binding DescriptionEdit}">
+                <TextBlock Text="Variables" DockPanel.Dock="Top" />
+                <ContentControl DockPanel.Dock="Top" KeyboardNavigation.IsTabStop="False"
+                            Content="{Binding Path=Commands}">
+                    <ContentControl.Resources>
+                        <DataTemplate DataType="{x:Type uiui:AddRemoveCommands}">
+                            <StackPanel Grid.Row="2" Grid.Column="0" Orientation="Horizontal" FocusManager.IsFocusScope="True"
+                                    KeyboardNavigation.TabNavigation="Local">
+                                <Button Width="72" Height="24" Margin="1" Content="Add" Command="{Binding Path=AddCommand}" TabIndex="0"/>
+                                <Button Width="72" Height="24" Margin="1" Content="Remove" Command="{Binding Path=RemoveCommand}" TabIndex="1"
+                                    CommandParameter="{Binding ElementName=lstVariables,Path=SelectedItem}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                        <DataTemplate DataType="{x:Type uiui:AddVariableCommands}">
+                            <DockPanel Grid.Row="2" Grid.Column="0" LastChildFill="True" FocusManager.IsFocusScope="True"
+                                   KeyboardNavigation.TabNavigation="Local">
+                                <Button Width="72" Height="24" Margin="1" Content="Cancel" DockPanel.Dock="Left" TabIndex="0"
+                                    IsCancel="True"
+                                    Command="{Binding Path=CancelAddCommand}"/>
+                                <Button Width="72" Height="24" Margin="1" Content="Do Add" DockPanel.Dock="Right" TabIndex="2"
+                                    IsDefault="True"
+                                    Command="{Binding Path=DoAddCommand}"/>
+                                <TextBox Margin="1" Text="{Binding Path=Name, UpdateSourceTrigger=PropertyChanged}" TabIndex="1"
+                                     uiui:FocusExtension.IsFocused="True"
+                                     x:Name="txtName"/>
+                            </DockPanel>
+                        </DataTemplate>
+                    </ContentControl.Resources>
+                </ContentControl>
+                <ListBox Grid.Row="2" Grid.Column="0" x:Name="lstVariables" Grid.RowSpan="4"
+                     SelectedItem="{Binding Path=SelectedVariable}"
+                     ItemsSource="{Binding Path=Variables}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Path=Name}">
+                                <TextBlock.ToolTip>
+                                    <ItemsControl ItemsSource="{Binding Path=Description.IndexedDescriptions}" >
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate>
+                                                <TextBlock>
+                                                    <Run Text="-"></Run>
+                                                    <Run Text="{Binding Path=Description}"/>
+                                                </TextBlock>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+                                </TextBlock.ToolTip>
+                            </TextBlock>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </DockPanel>
+            <Rectangle DockPanel.Dock="Left" Width="4" VerticalAlignment="Stretch" Fill="LightCyan"
+                       Visibility="{Binding DescriptionEdit}"></Rectangle>
+            <Grid Visibility="{Binding ValuesEdit}" 
+                  DockPanel.Dock="Right" Background="AliceBlue">
+                <DockPanel DataContext="{Binding Path=SelectedVariable.Values.SelectedValue}"
+                           Width="{Binding ElementName=VH25, Path=ActualWidth}">
+                    <TextBlock Text="Variable Value" DockPanel.Dock="Top"></TextBlock>
+                    <ContentControl DockPanel.Dock="Top" KeyboardNavigation.IsTabStop="False"
+                                    Content="{Binding Path=Commands}">
+                        <ContentControl.Resources>
+                            <DataTemplate DataType="{x:Type uiui:EditVariableValueCommands}">
+                                <DockPanel Grid.Row="2" Grid.Column="0" FocusManager.IsFocusScope="True"
+                                       KeyboardNavigation.TabNavigation="Local">
+                                    <Button Width="72" Height="24" Margin="1" Content="Edit" 
+                                            Command="{Binding Path=EditCommand}" 
+                                            DockPanel.Dock="Left" TabIndex="0"/>
+                                    <Border BorderBrush="DarkGray" BorderThickness="1" Margin="1" Padding="3"
+                                            VerticalAlignment="Center" DockPanel.Dock="Top"
+                                            Background="LightYellow" >
+                                        <TextBlock Text="{Binding Path=VariableValue.Name}" VerticalAlignment="Center"/>
+                                    </Border>
+                                    <CheckBox DockPanel.Dock="Bottom" Content="Requires All Enablers"
+                                              IsEnabled="False" IsChecked="{Binding Path=VariableValue.RequiresAllEnablers}"/>
+                                </DockPanel>
+                            </DataTemplate>
+                            <DataTemplate DataType="{x:Type uiui:DoEditVariableValueCommands}">
+                                <DockPanel Grid.Row="2" Grid.Column="0" LastChildFill="True" 
+                                           FocusManager.IsFocusScope="True"
+                                           KeyboardNavigation.TabNavigation="Local">
+                                    <Button Width="72" Height="24" Margin="1" Content="Cancel" DockPanel.Dock="Left" 
+                                            TabIndex="0" IsCancel="True"
+                                            Command="{Binding Path=CancelEditCommand}"/>
+                                    <Button Width="72" Height="24" Margin="1" Content="Do Edit" DockPanel.Dock="Right" 
+                                            TabIndex="2" IsDefault="True" Command="{Binding Path=DoEditCommand}"/>
+                                    <TextBox Margin="1" Text="{Binding Path=Name, UpdateSourceTrigger=PropertyChanged}" 
+                                             TabIndex="1" uiui:FocusExtension.IsFocused="True" DockPanel.Dock="Top"
+                                             VerticalAlignment="Center" Padding="2" x:Name="txtName"/>
+                                    <CheckBox DockPanel.Dock="Bottom" Content="Requires All Enablers"
+                                              IsEnabled="True" IsChecked="{Binding Path=RequiresAllEnablers}"></CheckBox>
+                                </DockPanel>
+                            </DataTemplate>
+                        </ContentControl.Resources>
+                    </ContentControl>
+                    <uiui:DescriptionVMEditor DataContext="{Binding Description}"                                           
+                                              Height="{Binding ElementName=PH22, Path=ActualHeight, Mode=OneWay}"
+                                              DockPanel.Dock="Top" />
+                    <TextBlock Text="Value Enablers" DockPanel.Dock="Top"/>
+                    <ContentControl DockPanel.Dock="Top" KeyboardNavigation.IsTabStop="False"
+                                    DataContext="{Binding Path=ValueEnablers}" 
+                                    Content="{Binding Path=Commands}">
+                        <ContentControl.Resources>
+                            <DataTemplate DataType="{x:Type uiui:AddRemoveEditCommands}">
+                                <StackPanel Orientation="Horizontal" FocusManager.IsFocusScope="True">
+                                    <Button Width="72" Height="24" Margin="1" Content="Add" Command="{Binding Path=AddCommand}" TabIndex="0"/>
+                                    <Button Width="72" Height="24" Margin="1" Content="Remove" Command="{Binding Path=RemoveCommand}" TabIndex="1"
+                                        CommandParameter="{Binding Path=Owner.SelectedPreCondition}"/>
+                                    <Button Width="72" Height="24" Margin="1" Content="Edit" Command="{Binding Path=EditCommand}" TabIndex="2"
+                                        CommandParameter="{Binding Path=Owner.SelectedPreCondition}"/>
+                                </StackPanel>
+                            </DataTemplate>
+                            <DataTemplate DataType="{x:Type uiui:AddPreConditionRequirementCommands}">
+                                <DockPanel LastChildFill="True" FocusManager.IsFocusScope="True"
+                                           KeyboardNavigation.TabNavigation="Local">
+                                    <Button Width="72" Height="24" Margin="1" Content="Cancel" DockPanel.Dock="Left" TabIndex="0"
+                                            IsCancel="True" Command="{Binding Path=CancelAddCommand}"/>
+                                    <Button Width="72" Height="24" Margin="1" Content="Do Add" DockPanel.Dock="Right" TabIndex="2"
+                                            IsDefault="True" Command="{Binding Path=DoAddCommand}"/>
+                                    <ComboBox SelectedItem="{Binding Path=PreConditionRequirement}" DockPanel.Dock="Left">
+                                        <ComboBox.Items>
+                                            <uiui:PreConditionType>InfoKey</uiui:PreConditionType>
+                                            <uiui:PreConditionType>Variable</uiui:PreConditionType>
+                                            <uiui:PreConditionType>Item</uiui:PreConditionType>
+                                        </ComboBox.Items>
+                                    </ComboBox>
+                                    <TextBox Margin="1" Text="{Binding Path=Name, UpdateSourceTrigger=PropertyChanged}" TabIndex="1"
+                                             uiui:FocusExtension.IsFocused="True" x:Name="txtName"/>
+                                </DockPanel>
+                            </DataTemplate>
+                            <DataTemplate DataType="{x:Type uiui:EditPreConditionRequirementCommands}">
+                                <DockPanel LastChildFill="True" FocusManager.IsFocusScope="True"
+                                           KeyboardNavigation.TabNavigation="Local">
+                                    <Button Width="72" Height="24" Margin="1" Content="Cancel" DockPanel.Dock="Left" TabIndex="0"
+                                            IsCancel="True"
+                                            Command="{Binding Path=CancelEditCommand}"/>
+                                    <Button Width="72" Height="24" Margin="1" Content="Do Edit" DockPanel.Dock="Right" TabIndex="2"
+                                            IsDefault="True"
+                                            Command="{Binding Path=DoEditCommand}"/>
+                                    <TextBox Margin="1" Text="{Binding Path=Name, UpdateSourceTrigger=PropertyChanged}" TabIndex="1"
+                                             uiui:FocusExtension.IsFocused="True" VerticalAlignment="Center" Padding="2"
+                                             x:Name="txtName"/>
+                                </DockPanel>
+                            </DataTemplate>
+                        </ContentControl.Resources>
+                    </ContentControl>
+                    <ListBox DataContext="{Binding Path=ValueEnablers}" 
+                             DockPanel.Dock="Left" MinWidth="180"
+                             x:Name="lstPreConditions"
+                             SelectedItem="{Binding Path=SelectedPreCondition}"
+                             ItemsSource="{Binding Path=ValueEnablers}">
+                        <ListBox.Resources>
+                            <DataTemplate DataType="{x:Type uiui:InfoKeyValueEnablerVM}">
+                                <Border Padding="2" BorderBrush="DarkGray" BorderThickness="1" Background="LightYellow">
+                                    <Grid >
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="96"></ColumnDefinition>
+                                            <ColumnDefinition Width="100,*"></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"></RowDefinition>
+                                            <RowDefinition Height="Auto"></RowDefinition>
+                                            <RowDefinition Height="Auto"></RowDefinition>
+                                            <RowDefinition Height="Auto"></RowDefinition>
+                                        </Grid.RowDefinitions>
+                                        <TextBlock Grid.Row="0" Grid.Column="0" FontWeight="Bold" Text="Name" Margin="0,0,0,2"/>
+                                        <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding Path=Name}"></TextBlock>
+                                        <Rectangle Grid.Row="0" VerticalAlignment="Bottom" 
+                                                   Height="1" Grid.ColumnSpan="2"
+                                                   HorizontalAlignment="Stretch" Fill="Black" />
+                                        <TextBlock Grid.Row="1" Grid.Column="0" FontWeight="Bold" Text="Description" Margin="0,0,0,2"/>
+                                        <ItemsControl Grid.Row="1" Grid.Column="1"
+                                                      DataContext="{Binding Path=Description}"
+                                                      ItemsSource="{Binding Path=IndexedDescriptions}">
+                                            <ItemsControl.ItemTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock>
+                                                        <Run Text="-"></Run>
+                                                        <Run Text="{Binding Path=Description}"/>
+                                                    </TextBlock>
+                                                </DataTemplate>
+                                            </ItemsControl.ItemTemplate>
+                                        </ItemsControl>
+                                        <Rectangle Grid.Row="1" VerticalAlignment="Bottom" 
+                                                   Grid.ColumnSpan="2"
+                                                   Height="1" HorizontalAlignment="Stretch" Fill="Black" />
+                                        <TextBlock Grid.Row="2" Grid.Column="0" FontWeight="Bold" Text="Module"></TextBlock>
+                                        <TextBlock Grid.Row="2" Grid.Column="1" DataContext="{Binding RequiredInfoKey}">
+                                            <Run FontStyle="Italic" Text="{Binding Path=Module.Name, Mode=OneWay}"></Run>
+                                        </TextBlock>
+                                        <TextBlock Grid.Row="3" Grid.Column="0" FontWeight="Bold" Text="InfoKey"></TextBlock>
+                                        <TextBlock Grid.Row="3" Grid.Column="1"
+                                                   DataContext="{Binding RequiredInfoKey}">
+                                            <Run FontStyle="Italic" Text="{Binding Path=InfoKey.Name, Mode=OneWay}"></Run>
+                                        </TextBlock>
+                                    </Grid>
+                                </Border>
+                            </DataTemplate>
+                            <DataTemplate DataType="{x:Type uiui:ItemValueEnablerVM}">
+                                <Border Padding="2" BorderBrush="DarkGray" BorderThickness="1" Background="LightGreen">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="96"></ColumnDefinition>
+                                            <ColumnDefinition Width="100,*"></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"></RowDefinition>
+                                            <RowDefinition Height="Auto"></RowDefinition>
+                                            <RowDefinition Height="Auto"></RowDefinition>
+                                        </Grid.RowDefinitions>
+                                        <TextBlock Grid.Row="0" Grid.Column="0" FontWeight="Bold" Text="Name" Margin="0,0,0,2"/>
+                                        <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding Path=Name}"></TextBlock>
+                                        <Rectangle Grid.Row="0" VerticalAlignment="Bottom" 
+                                                   Height="1" Grid.ColumnSpan="2"
+                                                   HorizontalAlignment="Stretch" Fill="Black" />
+                                        <TextBlock Grid.Row="1" Grid.Column="0" FontWeight="Bold" Text="Description" Margin="0,0,0,2"/>
+                                        <ItemsControl Grid.Row="1" Grid.Column="1"
+                                                      DataContext="{Binding Path=Description}"
+                                                      ItemsSource="{Binding Path=IndexedDescriptions}">
+                                            <ItemsControl.ItemTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock>
+                                                        <Run Text="-"></Run>
+                                                        <Run Text="{Binding Path=Description}"/>
+                                                    </TextBlock>
+                                                </DataTemplate>
+                                            </ItemsControl.ItemTemplate>
+                                        </ItemsControl>
+                                        <Rectangle Grid.Row="1" VerticalAlignment="Bottom" 
+                                                   Grid.ColumnSpan="2"
+                                                   Height="1" HorizontalAlignment="Stretch" Fill="Black" />
+                                    </Grid>
+                                </Border>
+                            </DataTemplate>
+                            <DataTemplate DataType="{x:Type uiui:VariableValueEnablerVM}">
+                                <Border Padding="2" BorderBrush="DarkGray" BorderThickness="1" Background="LightCyan">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="96"></ColumnDefinition>
+                                            <ColumnDefinition Width="100,*"></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"></RowDefinition>
+                                            <RowDefinition Height="Auto"></RowDefinition>
+                                            <RowDefinition Height="Auto"></RowDefinition>
+                                            <RowDefinition Height="Auto"></RowDefinition>
+                                            <RowDefinition Height="Auto"></RowDefinition>
+                                        </Grid.RowDefinitions>
+                                        <TextBlock Grid.Row="0" Grid.Column="0" FontWeight="Bold" Text="Name" Margin="0,0,0,2"/>
+                                        <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding Path=Name}"></TextBlock>
+                                        <Rectangle Grid.Row="0" VerticalAlignment="Bottom" 
+                                                   Height="1" Grid.ColumnSpan="2"
+                                                   HorizontalAlignment="Stretch" Fill="Black" />
+                                        <TextBlock Grid.Row="1" Grid.Column="0" FontWeight="Bold" Text="Description" Margin="0,0,0,2"/>
+                                        <ItemsControl Grid.Row="1" Grid.Column="1"
+                                                      DataContext="{Binding Path=Description}"
+                                                      ItemsSource="{Binding Path=IndexedDescriptions}">
+                                            <ItemsControl.ItemTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock>
+                                                        <Run Text="-"></Run>
+                                                        <Run Text="{Binding Path=Description}"/>
+                                                    </TextBlock>
+                                                </DataTemplate>
+                                            </ItemsControl.ItemTemplate>
+                                        </ItemsControl>
+                                        <Rectangle Grid.Row="1" VerticalAlignment="Bottom" 
+                                                   Grid.ColumnSpan="2"
+                                                   Height="1" HorizontalAlignment="Stretch" Fill="Black" />
+                                        <TextBlock Grid.Row="2" Grid.Column="0" FontWeight="Bold" Text="Module"></TextBlock>
+                                        <TextBlock Grid.Row="2" Grid.Column="1" DataContext="{Binding RequiredVariableValue}">
+                                            <Run FontStyle="Italic" Text="{Binding Path=Module.Name, Mode=OneWay}"></Run>
+                                        </TextBlock>
+                                        <TextBlock Grid.Row="3" Grid.Column="0" FontWeight="Bold" Text="Variable"></TextBlock>
+                                        <TextBlock Grid.Row="3" Grid.Column="1"
+                                                   DataContext="{Binding RequiredVariableValue}">
+                                            <Run FontStyle="Italic" Text="{Binding Path=Variable.Name, Mode=OneWay}"></Run>
+                                        </TextBlock>
+                                        <TextBlock Grid.Row="4" Grid.Column="0" FontWeight="Bold" Text="Value"></TextBlock>
+                                        <TextBlock Grid.Row="4" Grid.Column="1"
+                                                   DataContext="{Binding RequiredVariableValue}">
+                                            <Run FontStyle="Italic" Text="{Binding Path=VariableValue.Description.Message, Mode=OneWay}"></Run>
+                                        </TextBlock>
+                                    </Grid>
+                                </Border>
+                            </DataTemplate>
+                        </ListBox.Resources>
+                    </ListBox>
+                </DockPanel>
+            </Grid>            
+            <Rectangle DockPanel.Dock="Right" Width="4" VerticalAlignment="Stretch" 
+                       Visibility="{Binding ValuesEdit}" Fill="AliceBlue"></Rectangle>
+            <DockPanel MinWidth="360" Background="LightCyan" >
+                <TextBlock Text="Variable" DockPanel.Dock="Top"/>
+                <ContentControl DockPanel.Dock="Top" KeyboardNavigation.IsTabStop="False"
+                                DataContext="{Binding ElementName=lstVariables, Path=SelectedItem}"
+                                Content="{Binding Path=Commands}">
+                    <ContentControl.Resources>
+                        <DataTemplate DataType="{x:Type uiui:EditVariableCommands}">
+                            <DockPanel Grid.Row="2" Grid.Column="0" FocusManager.IsFocusScope="True"
+                                   KeyboardNavigation.TabNavigation="Local">
+                                <Button Width="72" Height="24" Margin="1" Content="Edit" Command="{Binding Path=EditCommand}" 
+                                    DockPanel.Dock="Left" TabIndex="0"/>
+                                <Border BorderBrush="DarkGray" BorderThickness="1" Margin="1" Padding="3"
+                                    VerticalAlignment="Center" 
+                                    Background="LightYellow" >
+                                    <TextBlock Text="{Binding Path=Variable.Name}" VerticalAlignment="Center"/>
+                                </Border>
+                            </DockPanel>
+                        </DataTemplate>
+                        <DataTemplate DataType="{x:Type uiui:DoEditVariableCommands}">
+                            <DockPanel Grid.Row="2" Grid.Column="0" LastChildFill="True" FocusManager.IsFocusScope="True"
+                                   KeyboardNavigation.TabNavigation="Local">
+                                <Button Width="72" Height="24" Margin="1" Content="Cancel" DockPanel.Dock="Left" TabIndex="0"
+                                    IsCancel="True"
+                                    Command="{Binding Path=CancelEditCommand}"/>
+                                <Button Width="72" Height="24" Margin="1" Content="Do Edit" DockPanel.Dock="Right" TabIndex="2"
+                                    IsDefault="True"
+                                    Command="{Binding Path=DoEditCommand}"/>
+                                <TextBox Margin="1" Text="{Binding Path=Name, UpdateSourceTrigger=PropertyChanged}" TabIndex="1"
+                                     uiui:FocusExtension.IsFocused="True" VerticalAlignment="Center" Padding="2"
+                                     x:Name="txtName"/>
+                            </DockPanel>
+                        </DataTemplate>
+                    </ContentControl.Resources>
+                </ContentControl>
+                <uiui:DescriptionVMEditor DataContext="{Binding Path=SelectedVariable.Description}"
+                                          Height="{Binding ElementName=PH22, Path=ActualHeight, Mode=OneWay}"
+                                          Visibility="{Binding ElementName=dockVariables,Path=Visibility,Mode=OneWay}"
+                                          DockPanel.Dock="Top" />
+                <TextBlock Text="Values" DockPanel.Dock="Top" Margin="1"/>
+                <ContentControl DockPanel.Dock="Top" KeyboardNavigation.IsTabStop="False"
+                                DataContext="{Binding Path=SelectedVariable.Values}"
+                                Content="{Binding Path=Commands}">
+                    <ContentControl.Resources>
+                        <DataTemplate DataType="{x:Type uiui:CancelCommands}">
+                            <StackPanel Orientation="Horizontal" FocusManager.IsFocusScope="True">
+                                <Button Width="72" Height="24" Margin="1" Content="Variables" Command="{Binding Path=CancelCommand}"
+                                        ToolTip="Back to Variable Management"
+                                        TabIndex="0"/>
+                            </StackPanel>
+                        </DataTemplate>
+                        <DataTemplate DataType="{x:Type uiui:AddRemoveEditCommands}">
+                            <StackPanel Orientation="Horizontal" FocusManager.IsFocusScope="True">
+                                <Button Width="72" Height="24" Margin="1" Content="Add" Command="{Binding Path=AddCommand}" TabIndex="0"/>
+                                <Button Width="72" Height="24" Margin="1" Content="Remove" Command="{Binding Path=RemoveCommand}" TabIndex="1"
+                                        CommandParameter="{Binding Path=Owner.SelectedValue}"/>
+                                <Button Width="72" Height="24" Margin="1" Content="Edit" Command="{Binding Path=EditCommand}" TabIndex="2"
+                                        CommandParameter="{Binding Path=Owner.SelectedValue}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                        <DataTemplate DataType="{x:Type uiui:AddVariableValueCommands}">
+                            <DockPanel LastChildFill="True" FocusManager.IsFocusScope="True"
+                                   KeyboardNavigation.TabNavigation="Local">
+                                <Button Width="72" Height="24" Margin="1" Content="Cancel" DockPanel.Dock="Left" TabIndex="0"
+                                    IsCancel="True"
+                                    Command="{Binding Path=CancelAddCommand}"/>
+                                <Button Width="72" Height="24" Margin="1" Content="Do Add" DockPanel.Dock="Right" TabIndex="2"
+                                    IsDefault="True"
+                                    Command="{Binding Path=DoAddCommand}"/>
+                                <TextBox Margin="1" Text="{Binding Path=Name, UpdateSourceTrigger=PropertyChanged}" TabIndex="1"
+                                     uiui:FocusExtension.IsFocused="True"
+                                     x:Name="txtName"/>
+                            </DockPanel>
+                        </DataTemplate>
+                    </ContentControl.Resources>
+                </ContentControl>
+                <ListBox x:Name="lstVariableValues" 
+                         DataContext="{Binding Path=SelectedVariable.Values}"
+                         SelectedItem="{Binding Path=SelectedValue}"
+                         ItemsSource="{Binding Path=Values}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate DataType="{x:Type uiui:VariableValueVM}">
+                            <TextBlock Text="{Binding Path=Name}">
+                                <TextBlock.ToolTip>
+                                    <ItemsControl ItemsSource="{Binding Path=Description.IndexedDescriptions}" >
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate>
+                                                <TextBlock>
+                                                    <Run Text="-"></Run>
+                                                    <Run Text="{Binding Path=Description}"/>
+                                                </TextBlock>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+                                </TextBlock.ToolTip>
+                            </TextBlock>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </DockPanel>
+        </DockPanel>
+        <Grid Visibility="Hidden">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="30,*"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="60,*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="1,*"/>
+                <ColumnDefinition Width="50,*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="Placeholder" Grid.Column="0" Grid.Row="0" MinWidth="360" x:Name="PH00" 
+                       Visibility="{Binding Path=SelectedVariable.DescriptionLayout}"/>
+            <Rectangle Grid.Row="2" Grid.Column="2" x:Name="PH22" />
+            <Rectangle Grid.Row="5" Grid.Column="2" x:Name="PH25" />
+        </Grid>
+        <Grid Visibility="Hidden">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="30,*"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="60,*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="1,*"/>
+                <ColumnDefinition Width="50,*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="Placeholder" Grid.Column="0" Grid.Row="0" MinWidth="360" x:Name="VH00" />
+            <Rectangle Grid.Row="2" Grid.Column="2" x:Name="VH22" />
+            <Rectangle Grid.Row="5" Grid.Column="2" x:Name="VH25" />
+        </Grid>
+    </Grid>
+</UserControl>

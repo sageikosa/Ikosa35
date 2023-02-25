@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Uzi.Ikosa.Time.TradeExchange">
+    <Position X="0.75" Y="1" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgAAAEEAAAAAAAAAAAAAAAAAAAAAAAAABAAAA=</HashCode>
+      <FileName>Time\Timeline\ActionProviders\ActorTrade\TradeExchange.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="TradeParticipants" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Uzi.Ikosa.Time.TradeParticipant">
+    <Position X="4.75" Y="1.25" Width="2" />
+    <Members>
+      <Field Name="_Accepted" Hidden="true" />
+      <Field Name="_Offer" Hidden="true" />
+      <Method Name="Clone" Hidden="true" />
+      <Method Name="EnteringTimeline" Hidden="true" />
+      <Method Name="GetActions" Hidden="true" />
+      <Method Name="GetProviderInfo" Hidden="true" />
+      <Method Name="GetTradeParticipant" Hidden="true" />
+      <Method Name="LeavingTimeline" Hidden="true" />
+      <Method Name="TradeParticipant" Hidden="true" />
+    </Members>
+    <AssociationLine Name="Partner" Type="Uzi.Ikosa.Time.TradeParticipant" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="5.125" Y="3.495" />
+        <Point X="5.125" Y="3.745" />
+        <Point X="6.375" Y="3.745" />
+        <Point X="6.375" Y="3.495" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAFEAIAAAAAAAAAAAAIAgCIgAAAEAAAAAAAIEABg=</HashCode>
+      <FileName>Time\Timeline\ActionProviders\ActorTrade\TradeParticipant.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="TradeExchange" />
+      <Property Name="Partner" />
+      <Property Name="TradeOffer" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Uzi.Ikosa.Time.TradeOffer">
+    <Position X="8.75" Y="1.25" Width="1.5" />
+    <Members>
+      <Field Name="_Coins" Hidden="true" />
+      <Field Name="_Items" Hidden="true" />
+      <Method Name="ToInfo" Hidden="true" />
+      <Method Name="TradeOffer" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAACAAgABAACAAAAAAACAAAAAAAAAAAIAAAAAAAAAA=</HashCode>
+      <FileName>Time\Timeline\ActionProviders\ActorTrade\TradeOffer.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Items" />
+      <Property Name="Coins" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="Uzi.Ikosa.Contracts.CoinTradeInfo">
+    <Position X="10" Y="3" Width="1.5" />
+    <Members>
+      <Method Name="Clone" Hidden="true" />
+      <Method Name="CoinTradeInfo" Hidden="true" />
+    </Members>
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Uzi.Core.Contracts.CoreInfo">
+    <Position X="7.75" Y="3" Width="1.5" />
+    <Members>
+      <Method Name="Clone" Hidden="true" />
+      <Method Name="CoreInfo" Hidden="true" />
+    </Members>
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Uzi.Ikosa.Actions.TradeExchangeTarget">
+    <Position X="4.75" Y="5.5" Width="2" />
+    <Members>
+      <Field Name="_Offer" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAIAAAAQAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Actions\AimingModes\AimTargets\TradeExchangeTarget.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="PrincipalOffer" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Uzi.Ikosa.Actions.TradeExchangeAimMode">
+    <Position X="0.75" Y="5.25" Width="2.25" />
+    <Members>
+      <Field Name="_Other" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>BAACAAAAAAAABAAAAAAAIAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Actions\AimingModes\TradeExchangeAimMode.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Uzi.Ikosa.Contracts.TradeOfferInfo">
+    <Position X="8.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Font Name="Segoe UI" Size="10" />
+</ClassDiagram>

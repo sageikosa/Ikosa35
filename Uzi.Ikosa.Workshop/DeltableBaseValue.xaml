@@ -1,0 +1,13 @@
+﻿<Window x:Class="Uzi.Ikosa.Workshop.DeltableBaseValue"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" SizeToContent="WidthAndHeight"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" WindowStyle="ToolWindow" WindowStartupLocation="CenterOwner"
+        ResizeMode="NoResize" Title="Deltable BaseValue">
+    <StackPanel>
+        <Label Content="Base Value"/> 
+        <TextBox x:Name="txtBaseValue"/>
+        <StackPanel Orientation="Horizontal" Margin="4,2">
+            <Button Width="48" Content="OK" IsDefault="True" x:Name="btnOK" Click="btnOK_Click"/>
+            <Button Width="48" Content="Cancel" IsCancel="True" x:Name="btnCancel" Click="btnCancel_Click"/>
+        </StackPanel>
+    </StackPanel>
+</Window>

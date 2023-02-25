@@ -1,0 +1,73 @@
+﻿<Window x:Class="ModelMaker.Window1"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mm="clr-namespace:ModelMaker"
+    Title="Window1" Height="547" Width="532" MouseDown="Window_MouseDown">
+    <Viewport3D>
+        <Viewport3D.Camera>
+            <PerspectiveCamera Position="0,-10,10" LookDirection="0,1,-0.75" UpDirection="0,0,1"/>            
+        </Viewport3D.Camera>
+        <Viewport3D.Children>
+            <ModelVisual3D>
+                <ModelVisual3D.Content>
+                    <AmbientLight Color="DarkGray"></AmbientLight>
+                </ModelVisual3D.Content>
+            </ModelVisual3D>
+            <ModelVisual3D>
+                <ModelVisual3D.Content>
+                    <DirectionalLight Color="White" Direction="0,1,0"/>
+                </ModelVisual3D.Content>
+            </ModelVisual3D>
+            <ModelVisual3D>
+                <ModelVisual3D.Content>
+                    <GeometryModel3D x:Name="geomModel">
+                        <GeometryModel3D.Material>
+                            <DiffuseMaterial Brush="Teal"></DiffuseMaterial>
+                        </GeometryModel3D.Material>
+                        <GeometryModel3D.BackMaterial>
+                            <DiffuseMaterial Brush="Green"></DiffuseMaterial>
+                        </GeometryModel3D.BackMaterial>
+                    </GeometryModel3D>
+                </ModelVisual3D.Content>
+            </ModelVisual3D>
+            <mm:Cylinder3D Height="5" Radius="2.4975" Sides="3" Planes="2" IsFacetted="True" StartAngle="225" EndAngle="315" >
+                <mm:Cylinder3D.Material>
+                    <DiffuseMaterial>
+                        <DiffuseMaterial.Brush>
+                            <LinearGradientBrush StartPoint="0,0.5" EndPoint="1,0.5">
+                                <GradientStop Color="Red" Offset="0"></GradientStop>
+                                <GradientStop Color="Green" Offset="0.5"></GradientStop>
+                                <GradientStop Color="Blue" Offset="1"></GradientStop>
+                            </LinearGradientBrush>
+                        </DiffuseMaterial.Brush>
+                    </DiffuseMaterial>
+                </mm:Cylinder3D.Material>
+                <mm:Cylinder3D.BackMaterial>
+                    <DiffuseMaterial Brush="Green"/>
+                </mm:Cylinder3D.BackMaterial>
+            </mm:Cylinder3D>
+            <mm:Sphere3D Radius="1" LatSides="20" LongSides="20" LatAngleA="-45" LatAngleB="45" LongAngleA="0" LongAngleB="270" >
+                <mm:Sphere3D.Material>
+                    <DiffuseMaterial Brush="Violet"></DiffuseMaterial>
+                </mm:Sphere3D.Material>
+                <mm:Sphere3D.BackMaterial>
+                    <DiffuseMaterial Brush="DarkGreen"></DiffuseMaterial>
+                </mm:Sphere3D.BackMaterial>
+                <mm:Sphere3D.Transform>
+                    <TranslateTransform3D OffsetX="-2" OffsetY="2" OffsetZ="2"></TranslateTransform3D>
+                </mm:Sphere3D.Transform>
+            </mm:Sphere3D>
+            <mm:Cone3D UpperRadius="0.25" Height="1.5">
+                <mm:Cone3D.Material>
+                    <DiffuseMaterial Brush="Purple"></DiffuseMaterial>
+                </mm:Cone3D.Material>
+                <mm:Cone3D.BackMaterial>
+                    <DiffuseMaterial Brush="DarkGreen"/>
+                </mm:Cone3D.BackMaterial>
+                <mm:Cone3D.Transform>
+                    <TranslateTransform3D OffsetX="2" OffsetY="2" />
+                </mm:Cone3D.Transform>
+            </mm:Cone3D>
+        </Viewport3D.Children>
+    </Viewport3D>
+</Window>

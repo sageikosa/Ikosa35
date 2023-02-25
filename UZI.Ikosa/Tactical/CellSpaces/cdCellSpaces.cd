@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Uzi.Ikosa.Tactical.CellSpace" Collapsed="true">
+    <Position X="4.75" Y="1" Width="2" />
+    <TypeIdentifier>
+      <HashCode>0CAyyDAAAFCgiBBApAKL5JyAgcQEghCAVAOWAAbYQAA=</HashCode>
+      <FileName>Tactical\CellSpaces\CellSpace.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Uzi.Ikosa.Tactical.ComponentSpace" Collapsed="true">
+    <Position X="7.75" Y="2.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>gICQQSAAAEAgAIAAAAoIECgAAAAAgAIkQAAQBATIAAA=</HashCode>
+      <FileName>Tactical\CellSpaces\ComponentSpace.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Uzi.Ikosa.Tactical.SliverCellSpace" Collapsed="true">
+    <Position X="0.5" Y="2.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>4KCSwTEAGEIgCBgAogoIlKwAAIAAoAIsQADYBATIQhA=</HashCode>
+      <FileName>Tactical\CellSpaces\SliverCellSpace.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Uzi.Ikosa.Tactical.WedgeCellSpace" Collapsed="true">
+    <Position X="3.25" Y="2.25" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>wKCywTIAAMAoCCABoRoIlCwAUIAAgRYkQSAQBETKQQA=</HashCode>
+      <FileName>Tactical\CellSpaces\WedgeCellSpace.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Uzi.Ikosa.Tactical.CornerCellSpace" Collapsed="true">
+    <Position X="3.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Tactical\CellSpaces\CornerCellSpace.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Uzi.Ikosa.Tactical.LFrame" Collapsed="true">
+    <Position X="8" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QCACwJAAAAABAIAAIAAIhEQAAIAAgAAAACQAAAAAQAA=</HashCode>
+      <FileName>Tactical\CellSpaces\LFrame.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Uzi.Ikosa.Tactical.Stairs" Collapsed="true">
+    <Position X="5.75" Y="3.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>QCADwBAAAAAAAIAAoAAIhAwAAIAAgAAAAACAAAQAQAA=</HashCode>
+      <FileName>Tactical\CellSpaces\Stairs.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Uzi.Ikosa.Tactical.SlopeCellSpace" Collapsed="true">
+    <Position X="0.5" Y="3.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>YCCBwAAABAAAAAAAoAQIhAgAAIAAgAAAAAyAAAQIABA=</HashCode>
+      <FileName>Tactical\CellSpaces\SlopeCellSpace.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Uzi.Ikosa.Tactical.PanelCellSpace">
+    <Position X="9.75" Y="3.75" Width="2" />
+    <Members>
+      <Field Name="_AllFaces" Hidden="true" />
+      <Field Name="_Corners" Hidden="true" />
+      <Field Name="_Diagonal" Hidden="true" />
+      <Field Name="_Fill0" Hidden="true" />
+      <Field Name="_Fill1" Hidden="true" />
+      <Field Name="_Fill2" Hidden="true" />
+      <Field Name="_Fill3" Hidden="true" />
+      <Field Name="_LFrames" Hidden="true" />
+      <Field Name="_Panels1" Hidden="true" />
+      <Field Name="_Panels2" Hidden="true" />
+      <Field Name="_Panels3" Hidden="true" />
+      <Field Name="_Slopes" Hidden="true" />
+    </Members>
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <NestedTypes>
+      <Class Name="Uzi.Ikosa.Tactical.PanelCellSpace.GripState" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Tactical\CellSpaces\Panels\PanelCellSpace.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>wmASyhABAoEAjCAQoEYIgE0EgYACgACAwBgUEAaIQEA=</HashCode>
+      <FileName>Tactical\CellSpaces\Panels\PanelCellSpace.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Uzi.Ikosa.Tactical.CellSpaceUnit" Collapsed="true">
+    <Position X="9.5" Y="1" Width="1.75" />
+    <Members>
+      <Field Name="_Struc" Hidden="true" />
+      <Field Name="_Template" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>wiASwDAAAFAAgBAApAqKxIwAgIAAgAAAQIOQAATIQAA=</HashCode>
+      <FileName>Tactical\CellSpaces\CellSpaceUnit.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Template" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

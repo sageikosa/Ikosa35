@@ -1,0 +1,66 @@
+﻿<UserControl x:Class="Uzi.Ikosa.Client.UI.FurnishingCommands"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Uzi.Ikosa.Client.UI" Focusable="False"
+             mc:Ignorable="d" Width="144" >
+    <UserControl.Resources>
+        <Style TargetType="Button">
+            <Setter Property="FontSize" Value="32"/>
+            <Setter Property="Focusable" Value="False"/>
+            <Setter Property="Height" Value="48"/>
+        </Style>
+    </UserControl.Resources>
+    <StackPanel Orientation="Vertical">
+        <UniformGrid Columns="3" Rows="3">
+            <Button Content="&#10226;" Command="{Binding Path=Command}" 
+                    ToolTip="Tilt Anti-Clockwise"
+                    Visibility="{Binding Path=TiltVisibility}"
+                    CommandParameter="{Binding Path=Tilt.CounterClock}"></Button>
+            <Button Command="{Binding Path=Command}" 
+                    ToolTip="Tilt Away"
+                    Visibility="{Binding Path=TiltVisibility}"
+                    CommandParameter="{Binding Path=Tilt.Push}" >
+                <Image Source="pack://application:,,,/Uzi.Ikosa.Client.UI;component/images/Tilt-Push.png"/>
+            </Button>
+            <Button Content="&#10227;" Command="{Binding Path=Command}" 
+                    ToolTip="Tilt Clockwise"
+                    Visibility="{Binding Path=TiltVisibility}"
+                    CommandParameter="{Binding Path=Tilt.Clock}" ></Button>
+            <Button Command="{Binding Path=Command}" 
+                    ToolTip="Pivot Left"
+                    Visibility="{Binding Path=PivotVisibility}"
+                    CommandParameter="{Binding Path=Pivot.Left}">
+                <Image Source="pack://application:,,,/Uzi.Ikosa.Client.UI;component/images/Pivot-Left.png"/>
+            </Button>
+            <Button Command="{Binding Path=Command}" 
+                    ToolTip="Tilt Towards"
+                    Visibility="{Binding Path=TiltVisibility}"
+                    CommandParameter="{Binding Path=Tilt.Pull}" >
+                <Image Source="pack://application:,,,/Uzi.Ikosa.Client.UI;component/images/Tilt-Pull.png"/>
+            </Button>
+            <Button Command="{Binding Path=Command}" 
+                    ToolTip="Pivot Right"
+                    Visibility="{Binding Path=PivotVisibility}"
+                    CommandParameter="{Binding Path=Pivot.Right}" >
+                <Image Source="pack://application:,,,/Uzi.Ikosa.Client.UI;component/images/Pivot-Right.png"/>
+            </Button>
+            <Button Command="{Binding Path=Command}" 
+                    Content="&#9756;"
+                    ToolTip="Twist Left"
+                    Visibility="{Binding Path=PivotVisibility}"
+                    CommandParameter="{Binding Path=Pivot.TwistLeft}" />
+            <Button Content="&#9995;"
+                    ToolTip="Release Furniture"
+                    Command="{Binding Path=Command}"
+                    Visibility="{Binding Path=ReleaseVisibility}"
+                    CommandParameter="{Binding Path=Release.Action}"/>
+            <Button Command="{Binding Path=Command}" 
+                    Content="&#9758;"
+                    ToolTip="Twist Right"
+                    Visibility="{Binding Path=PivotVisibility}"
+                    CommandParameter="{Binding Path=Pivot.TwistRight}" />
+        </UniformGrid>
+    </StackPanel>
+</UserControl>

@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<Title>Uzi.D20.MeleeWeapon</Title>
+		</Header>
+		<Snippet>
+			<Declarations>
+				<Literal>
+					<ID>Name</ID>
+					<ToolTip>Name of the weapon</ToolTip>
+					<Default>Weapon</Default>
+				</Literal>
+				<Literal>
+					<ID>DisplayName</ID>
+					<ToolTip>Display Name of the weapon</ToolTip>
+					<Default>Weapon</Default>
+				</Literal>
+				<Literal>
+					<ID>WieldTemplate</ID>
+					<ToolTip>Light weapon boolean value</ToolTip>
+					<Default>.OneHanded</Default>
+				</Literal>
+				<Literal>
+					<ID>Finessable</ID>
+					<ToolTip>Finessable weapon boolean value</ToolTip>
+					<Default>false</Default>
+				</Literal>
+				<Literal>
+					<ID>Dice</ID>
+					<ToolTip>Damage dice for weapon</ToolTip>
+					<Default>1d6</Default>
+				</Literal>
+				<Literal>
+					<ID>CritLow</ID>
+					<ToolTip>Low Value for critical threat range</ToolTip>
+					<Default>20</Default>
+				</Literal>
+				<Literal>
+					<ID>CritMult</ID>
+					<ToolTip>Critical damage multiplier</ToolTip>
+					<Default>2</Default>
+				</Literal>
+				<Literal>
+					<ID>Price</ID>
+					<ToolTip>Base price of weapon</ToolTip>
+					<Default>2</Default>
+				</Literal>
+				<Literal>
+					<ID>Weight</ID>
+					<ToolTip>Base Weight of Weapon</ToolTip>
+					<Default>1</Default>
+				</Literal>
+				<Literal>
+					<ID>Proficiency</ID>
+					<ToolTip>Proficiency class</ToolTip>
+					<Default>.Simple</Default>
+				</Literal>
+				<Literal>
+					<ID>DamageType</ID>
+					<ToolTip>Damage Type</ToolTip>
+					<Default>.Slashing</Default>
+				</Literal>
+			</Declarations>
+			<Code Language="CSharp">
+				<![CDATA[ using Uzi.Core.Dice;
+
+namespace Uzi.D20.Items.Weapons
+{
+    public class $Name$: MeleeWeaponBase
+    {
+        public $Name$()
+            : base("$DisplayName$", WieldTemplate$WieldTemplate$, $Finessable$)
+        {
+            Setup(Size.Medium);
+        }
+
+        public $Name$(Size creatureSize)
+            : base("$DisplayName$", WieldTemplate$WieldTemplate$, $Finessable$)
+        {
+            Setup(creatureSize);
+        }
+
+        private void Setup(Size creatureSize)
+        {
+            pMainHead = new WeaponTypeBoundHead<$Name$>(this, WeaponDamageRollers.DiceLookup["$Dice$"][creatureSize],
+                WeaponHead.DamageType$DamageType$, $CritLow$, $CritMult$, Materials.SteelMaterial.Static);
+            this.ItemMaterial = Materials.SteelMaterial.Static;
+            this.pProficiencyType = WeaponProficiencyType$Proficiency$;
+            this.BasePrice = $Price$m;
+            this.Weight = $Weight$m; // TODO: adjust weight by creaturesize
+        }
+    }
+}
+]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+</CodeSnippets>

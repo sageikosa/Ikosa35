@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Campaign xmlns="http://uzi-icosa.com/campaign">
+  <Merge source="~SpellLists/Adept.xml"/>
+  <Merge source="~SpellLists/Assassin.xml"/>
+  <Merge source="~SpellLists/Bard.xml"/>
+  <Merge source="~SpellLists/Blackguard.xml"/>
+  <Merge source="~SpellLists/Cleric.xml"/>
+  <Merge source="~SpellLists/Druid.xml"/>
+  <Merge source="~SpellLists/Paladin.xml"/>
+  <Merge source="~SpellLists/Ranger.xml"/>
+  <Merge source="~SpellLists/Sorcerer.xml"/>
+  <Merge source="~SpellLists/Wizard.xml"/>
+
+  <Feats name="General">
+    <Feat class="" assembly="" description=""/>
+  </Feats>
+  
+  <Feats name="FighterBonus">
+    <Feat class="" assembly="" description=""/>
+  </Feats>
+  
+  <Classes name="Player">
+    <Class class="" assembly="" description=""/>
+  </Classes>
+  
+  <Classes name="NonPlayer">
+    <Class class="" assembly="" description=""/>
+  </Classes>
+  
+  <SpeciesList name="Player">
+    <Species class="" assembly="" description=""/>
+  </SpeciesList>
+
+  <SpeciesList name="NonPlayer">
+    <Species class="" assembly="" description=""/>
+  </SpeciesList>
+  
+  <!--<DivineDomains></DivineDomains>-->
+  
+  <Templates>
+    <Template class="" assembly="" description=""/>
+  </Templates>
+  
+  <WeaponTypes>
+    <WeaponType class="" assembly="" description=""/>
+  </WeaponTypes>
+  
+  <ItemTypes>
+    <ItemType class="" assembly="" description=""/>
+  </ItemTypes>
+  
+  <!--<Professions></Professions>-->
+  
+  <!--<Crafts></Crafts>-->
+
+  <!-- World Region Map -->
+  <!-- Graphical 2D Resources -->
+  <!-- Graphical 3D Resources -->
+  <!-- Referenced Assemblies -->
+</Campaign>

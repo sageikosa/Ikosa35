@@ -1,0 +1,125 @@
+<Model3DGroup xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+    <Model3DGroup.Children>
+        <GeometryModel3D>
+            <GeometryModel3D.Material>
+                <DiffuseMaterial Brush="#FFD2691E" />
+            </GeometryModel3D.Material>
+            <GeometryModel3D.Geometry>
+                <MeshGeometry3D Positions="0.75,0.5,0 0.25,0.5,0 0.25,0.25,0.5 0.75,0.25,0.5 0.25,-0.25,0 0.75,-0.25,0 0.75,-0.25,0.5 0.25,-0.25,0.5 -0.25,0.5,0 -0.75,0.5,0 -0.75,0.25,0.5 -0.25,0.25,0.5 -0.75,-0.25,0 -0.25,-0.25,0 -0.25,-0.25,0.5 -0.75,-0.25,0.5" TriangleIndices="0 1 2 0 2 3 5 0 3 5 3 6 4 5 6 4 6 7 1 4 7 1 7 2 5 4 1 5 1 0 8 9 10 8 10 11 13 8 11 13 11 14 12 13 14 12 14 15 9 12 15 9 15 10 13 12 9 13 9 8" />
+            </GeometryModel3D.Geometry>
+        </GeometryModel3D>
+        <GeometryModel3D>
+            <GeometryModel3D.Material>
+                <DiffuseMaterial Brush="#FF0000FF" />
+            </GeometryModel3D.Material>
+            <GeometryModel3D.Geometry>
+                <MeshGeometry3D Positions="0.75,0.25,0.5 0.25,0.25,0.5 0.25,0.25,2 0.75,0.25,2 0.25,-0.25,0.5 0.75,-0.25,0.5 0.75,-0.25,2 0.25,-0.25,2 -0.25,0.25,0.5 -0.75,0.25,0.5 -0.75,0.25,2 -0.25,0.25,2 -0.75,-0.25,0.5 -0.25,-0.25,0.5 -0.25,-0.25,2 -0.75,-0.25,2" TriangleIndices="0 1 2 0 2 3 5 0 3 5 3 6 4 5 6 4 6 7 1 4 7 1 7 2 8 9 10 8 10 11 13 8 11 13 11 14 12 13 14 12 14 15 9 12 15 9 15 10" />
+            </GeometryModel3D.Geometry>
+        </GeometryModel3D>
+        <GeometryModel3D>
+            <GeometryModel3D.Material>
+                <DiffuseMaterial Brush="#FF8B0000" />
+            </GeometryModel3D.Material>
+            <GeometryModel3D.Geometry>
+                <MeshGeometry3D Positions="1.1,0.6,2 -1.1,0.6,2 -1,0.5,2.5 1,0.5,2.5 -1.1,-0.6,2 1.1,-0.6,2 1,-0.5,2.5 -1,-0.5,2.5" TriangleIndices="0 1 2 0 2 3 5 0 3 5 3 6 4 5 6 4 6 7 1 4 7 1 7 2 5 4 1 5 1 0" />
+            </GeometryModel3D.Geometry>
+        </GeometryModel3D>
+        <GeometryModel3D>
+            <GeometryModel3D.Material>
+                <DiffuseMaterial Brush="#FFA52A2A" />
+            </GeometryModel3D.Material>
+            <GeometryModel3D.Geometry>
+                <MeshGeometry3D Positions="1,0.5,2.5 -1,0.5,2.5 -1,0.5,3 1,0.5,3 -1,-0.5,2.5 1,-0.5,2.5 1,-0.5,3 -1,-0.5,3" TriangleIndices="0 1 2 0 2 3 5 0 3 5 3 6 4 5 6 4 6 7 1 4 7 1 7 2" />
+            </GeometryModel3D.Geometry>
+        </GeometryModel3D>
+        <GeometryModel3D>
+            <GeometryModel3D.Material>
+                <DiffuseMaterial Brush="#FF8B0000" />
+            </GeometryModel3D.Material>
+            <GeometryModel3D.Geometry>
+                <MeshGeometry3D Positions="1,0.5,3 -1,0.5,3 -1,0.5,4.5 1,0.5,4.5 -1,-0.5,3 1,-0.5,3 1,-0.5,4.5 -1,-0.5,4.5" TriangleIndices="0 1 2 0 2 3 5 0 3 5 3 6 4 5 6 4 6 7 1 4 7 1 7 2 3 2 7 3 7 6" />
+            </GeometryModel3D.Geometry>
+        </GeometryModel3D>
+        <GeometryModel3D>
+            <GeometryModel3D.Material>
+                <DiffuseMaterial Brush="#FFFFFF00" />
+            </GeometryModel3D.Material>
+            <GeometryModel3D.Geometry>
+                <MeshGeometry3D Positions="1.5,0.25,2 1,0.25,2 1,0.25,2.5 1.5,0.25,2.5 1,-0.25,2 1.5,-0.25,2 1.5,-0.25,2.5 1,-0.25,2.5 -1,0.25,2 -1.5,0.25,2 -1.5,0.25,2.5 -1,0.25,2.5 -1.5,-0.25,2 -1,-0.25,2 -1,-0.25,2.5 -1.5,-0.25,2.5" TriangleIndices="0 1 2 0 2 3 5 0 3 5 3 6 4 5 6 4 6 7 1 4 7 1 7 2 5 4 1 5 1 0 8 9 10 8 10 11 13 8 11 13 11 14 12 13 14 12 14 15 9 12 15 9 15 10 13 12 9 13 9 8" />
+            </GeometryModel3D.Geometry>
+        </GeometryModel3D>
+        <GeometryModel3D>
+            <GeometryModel3D.Material>
+                <DiffuseMaterial Brush="#FF0000FF" />
+            </GeometryModel3D.Material>
+            <GeometryModel3D.Geometry>
+                <MeshGeometry3D Positions="1.5,0.25,2.5 1,0.25,2.5 1,0.25,4.5 1.5,0.25,4.5 1,-0.25,2.5 1.5,-0.25,2.5 1.5,-0.25,4.5 1,-0.25,4.5 -1,0.25,2.5 -1.5,0.25,2.5 -1.5,0.25,4.5 -1,0.25,4.5 -1.5,-0.25,2.5 -1,-0.25,2.5 -1,-0.25,4.5 -1.5,-0.25,4.5" TriangleIndices="0 1 2 0 2 3 5 0 3 5 3 6 4 5 6 4 6 7 1 4 7 1 7 2 3 2 7 3 7 6 8 9 10 8 10 11 13 8 11 13 11 14 12 13 14 12 14 15 9 12 15 9 15 10 11 10 15 11 15 14" />
+            </GeometryModel3D.Geometry>
+        </GeometryModel3D>
+        <GeometryModel3D>
+            <GeometryModel3D.Material>
+                <DiffuseMaterial Brush="#FFFFFF00" />
+            </GeometryModel3D.Material>
+            <GeometryModel3D.Geometry>
+                <MeshGeometry3D Positions="0.25,0.25,4.5 -0.25,0.25,4.5 -0.25,0.25,4.75 0.25,0.25,4.75 -0.25,-0.25,4.5 0.25,-0.25,4.5 0.25,-0.25,4.75 -0.25,-0.25,4.75" TriangleIndices="0 1 2 0 2 3 5 0 3 5 3 6 4 5 6 4 6 7 1 4 7 1 7 2" />
+            </GeometryModel3D.Geometry>
+        </GeometryModel3D>
+        <GeometryModel3D>
+            <GeometryModel3D.Material>
+                <DiffuseMaterial Brush="#FF008000" />
+            </GeometryModel3D.Material>
+            <GeometryModel3D.Geometry>
+                <MeshGeometry3D Positions="0.5,0,4.75 -0.5,0,4.75 -0.5,0,6 0.5,0,6 -0.5,-0.5,4.75 0.5,-0.5,4.75 0.5,-0.5,6 -0.5,-0.5,6" TriangleIndices="5 0 3 5 3 6 4 5 6 4 6 7 1 4 7 1 7 2 3 2 7 3 7 6 5 4 1 5 1 0" />
+            </GeometryModel3D.Geometry>
+        </GeometryModel3D>
+        <GeometryModel3D>
+            <GeometryModel3D.Material>
+                <DiffuseMaterial Brush="#FF008000" />
+            </GeometryModel3D.Material>
+            <GeometryModel3D.Geometry>
+                <MeshGeometry3D Positions="0.5,0.5,5.5 -0.5,0.5,5.5 -0.5,0.5,6 0.5,0.5,6 -0.5,0,5.5 0.5,0,5.5 0.5,0,6 -0.5,0,6" TriangleIndices="0 1 2 0 2 3 5 0 3 5 3 6 6 3 2 6 2 7 1 4 7 1 7 2" />
+            </GeometryModel3D.Geometry>
+        </GeometryModel3D>
+        <GeometryModel3D>
+            <GeometryModel3D.Material>
+                <DiffuseMaterial Brush="#FFFFFF00" />
+            </GeometryModel3D.Material>
+            <GeometryModel3D.Geometry>
+                <MeshGeometry3D Positions="0.5,0.5,4.75 -0.5,0.5,4.75 -0.5,0.5,5.5 0.5,0.5,5.5 -0.5,0,4.75 0.5,0,4.75 0.5,0,5.5 -0.5,0,5.5" TriangleIndices="5 0 3 5 3 6 1 4 7 1 7 2 5 4 1 5 1 0" />
+            </GeometryModel3D.Geometry>
+        </GeometryModel3D>
+        <GeometryModel3D>
+            <GeometryModel3D.Material>
+                <DiffuseMaterial>
+                    <DiffuseMaterial.Brush>
+                        <VisualBrush Stretch="Fill">
+                            <VisualBrush.Visual>
+                                <Grid Background="#FFFFFF00">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="10" />
+                                        <ColumnDefinition Width="15" />
+                                        <ColumnDefinition Width="10" />
+                                        <ColumnDefinition Width="15" />
+                                        <ColumnDefinition Width="10" />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="10" />
+                                        <RowDefinition Height="10" />
+                                        <RowDefinition Height="10" />
+                                        <RowDefinition Height="10" />
+                                    </Grid.RowDefinitions>
+                                    <Ellipse Fill="#FF0000FF" Stroke="#FFFFFFFF" StrokeThickness="2" Grid.Column="1" Grid.Row="1" />
+                                    <Ellipse Fill="#FF0000FF" Stroke="#FFFFFFFF" StrokeThickness="2" Grid.Column="3" Grid.Row="1" />
+                                    <Rectangle Height="4" Fill="#FF000000" VerticalAlignment="Top" Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="3" />
+                                </Grid>
+                            </VisualBrush.Visual>
+                        </VisualBrush>
+                    </DiffuseMaterial.Brush>
+                </DiffuseMaterial>
+            </GeometryModel3D.Material>
+            <GeometryModel3D.Geometry>
+                <MeshGeometry3D TextureCoordinates="0,1 1,1 1,0 0,0" Positions="0.5,0.5,4.75 -0.5,0.5,4.75 -0.5,0.5,5.5 0.5,0.5,5.5" TriangleIndices="0 1 2 0 2 3" />
+            </GeometryModel3D.Geometry>
+        </GeometryModel3D>
+    </Model3DGroup.Children>
+</Model3DGroup>

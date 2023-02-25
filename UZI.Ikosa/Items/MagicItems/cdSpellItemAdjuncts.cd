@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Uzi.Ikosa.Items.SpellActivation">
+    <Position X="1" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEIAIAYAAAAACABAAAAAAAAAAAAAAAAAIAAACAA=</HashCode>
+      <FileName>Items\MagicItems\SpellActivation.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="SpellSource" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Uzi.Ikosa.Items.SpellCompletion">
+    <Position X="7.75" Y="2" Width="2" />
+    <Members>
+      <Field Name="_AutoAct" Hidden="true" />
+      <Field Name="_Casters" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAIAIAAAEAIQICAAAIAAQABQAAAAgAAAAAABA=</HashCode>
+      <FileName>Items\MagicItems\SpellCompletion.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Uzi.Ikosa.Items.SpellTrigger">
+    <Position X="11" Y="0.5" Width="1.75" />
+    <Members>
+      <Field Name="_Battery" Hidden="true" />
+      <Field Name="_ChargePerUse" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAIAIIQAAAAAAAQACAAgAABIAAAAIAAAAAABA=</HashCode>
+      <FileName>Items\MagicItems\SpellTrigger.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Battery" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Uzi.Ikosa.Magic.SpellSource">
+    <Position X="4.5" Y="3.75" Width="1.75" />
+    <Members>
+      <Field Name="_IsSpontaneous" Hidden="true" />
+      <Field Name="_SlotLevel" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>EAAAEAAAAAABAAAAAAACAAAAAAAIAAAAAAAEAAAQAAU=</HashCode>
+      <FileName>Magic\Spells\SpellSource.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="Uzi.Ikosa.Adjuncts.IPowerBattery">
+    <Position X="11" Y="4.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAQAIAAABAAAAAAAACAAAAAAAAAAAAAAAAAAAI=</HashCode>
+      <FileName>Adjuncts\Batteries\IPowerBattery.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

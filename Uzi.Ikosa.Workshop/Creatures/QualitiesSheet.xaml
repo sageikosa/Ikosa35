@@ -1,0 +1,86 @@
+﻿<UserControl x:Class="Uzi.Ikosa.Workshop.QualitiesSheet"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:uziLanguage="clr-namespace:Uzi.Ikosa.Languages;assembly=Uzi.Ikosa"
+             xmlns:uziFeats="clr-namespace:Uzi.Ikosa.Feats;assembly=Uzi.Ikosa"
+             xmlns:uziadj="clr-namespace:Uzi.Ikosa.Adjuncts;assembly=Uzi.Ikosa"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Uzi.Ikosa.UI;Component/AbilityView.xaml"/>
+                <ResourceDictionary Source="/Uzi.Ikosa.UI;Component/Deltable.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <StackPanel DataContext="{Binding Path=Thing}">
+        <StackPanel.Resources>
+            <Style TargetType="TextBlock">
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="Margin" Value="2"/>
+            </Style>
+            <Style TargetType="ContentControl">
+                <Setter Property="VerticalAlignment" Value="Center"/>
+            </Style>
+        </StackPanel.Resources>
+
+        <StackPanel Orientation="Horizontal">
+            <!-- Languages -->
+            <HeaderedContentControl x:Name="grpLanguages" Style="{StaticResource sheetGroup}" 
+                                    Margin="4">
+                <HeaderedContentControl.Resources>
+                    <Style TargetType="TextBlock" x:Key="styleTextBlock">
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Background" Value="LightGreen"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </HeaderedContentControl.Resources>
+                <HeaderedContentControl.Header>
+                    <TextBlock x:Name="tbLanguages" Text="Languages" MouseDown="tbLanguages_MouseDown" 
+                               Style="{StaticResource styleTextBlock}"/>
+                </HeaderedContentControl.Header>
+                <ItemsControl ItemsSource="{Binding Path=Languages}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate DataType="{x:Type uziLanguage:Language}">
+                            <TextBlock Text="{Binding Path=Name}"/>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </HeaderedContentControl>
+            
+            <!-- Proficiencies -->
+            <HeaderedContentControl x:Name="grpProficiencies" Style="{StaticResource sheetGroup}"
+                                        Header="Proficiencies" Margin="4">
+                <ItemsControl ItemsSource="{Binding Path=Proficiencies.ProficiencyDescriptions}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding}"/>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </HeaderedContentControl>
+        </StackPanel>
+
+        <HeaderedContentControl x:Name="grpTraits" Style="{StaticResource sheetGroup}"
+                                        Header="Traits" Margin="4">
+            <ItemsControl ItemsSource="{Binding Path=Traits}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate DataType="{x:Type uziadj:TraitBase}">
+                        <TextBlock ToolTip="{Binding Path=Benefit, Mode=OneTime}">
+                            <Run Text="{Binding Path=Name, Mode=OneTime}"></Run>
+                            <Run Text=" ("></Run>
+                            <Run Text="{Binding Path=TraitNature, Mode=OneTime}"></Run>
+                            <Run Text=")"></Run>
+                        </TextBlock>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </HeaderedContentControl>
+    </StackPanel>
+</UserControl>

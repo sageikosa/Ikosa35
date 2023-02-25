@@ -1,0 +1,94 @@
+﻿<UserControl x:Class="Uzi.Ikosa.Workshop.ContainerItemBaseEditor"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:shop="clr-namespace:Uzi.Ikosa.Workshop"
+             xmlns:ikosa="clr-namespace:Uzi.Ikosa;assembly=Uzi.Ikosa"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Grid>
+        <Grid.Resources>
+            <ResourceDictionary>
+                <ResourceDictionary.MergedDictionaries>
+                    <ResourceDictionary Source="/Uzi.Ikosa.UI;Component/Deltable.xaml"/>
+                </ResourceDictionary.MergedDictionaries>
+                <Style TargetType="Label">
+                    <Setter Property="FontWeight" Value="Bold"/>
+                    <Setter Property="HorizontalAlignment" Value="Right"/>
+                    <Setter Property="VerticalAlignment" Value="Center"/>
+                    <Setter Property="FontSize" Value="10"/>
+                </Style>
+                <Style TargetType="TextBlock">
+                    <Setter Property="VerticalAlignment" Value="Center"/>
+                </Style>
+                <Style TargetType="MenuItem">
+                    <Setter Property="VerticalAlignment" Value="Center"/>
+                </Style>
+                <Style TargetType="ContentControl">
+                    <Setter Property="VerticalAlignment" Value="Center"/>
+                </Style>
+                <Style TargetType="ItemsControl">
+                    <Setter Property="VerticalAlignment" Value="Center"/>
+                </Style>
+                <Style TargetType="TextBox" x:Key="styleText">
+                    <Setter Property="Margin" Value="2"/>
+                    <Style.Triggers>
+                        <Trigger Property="Tag" Value="Invalid">
+                            <Setter Property="Background" Value="LightSalmon"/>
+                            <Setter Property="ToolTip.Content" Value="Invalid value"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+                <Style TargetType="TextBox" x:Key="dblCheck" BasedOn="{StaticResource styleText}">
+                    <EventSetter Event="TextChanged" Handler="txtDbl_TextChanged"/>
+                </Style>
+            </ResourceDictionary>
+        </Grid.Resources>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="25,*"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="25,*"/>
+            <ColumnDefinition Width="50,*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Label Grid.Column="0" Grid.Row="0" Content="Name"/>
+        <TextBox Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="3" Text="{Binding Path=Thing.Name}" Margin="1" TextWrapping="Wrap"/>
+        
+        <Label Grid.Column="0" Grid.Row="1" Content="Original Name"/>
+        <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding Path=Thing.OriginalName}" Margin="1" TextWrapping="Wrap"/>
+        <Button Grid.Column="2" Grid.Row="1" Content="Contents" Margin="1" Command="{x:Static shop:PackageExplorer.OpenItem}" 
+                CommandParameter="{Binding}"/>
+
+        <Label Grid.Column="0" Grid.Row="2" Content="Creature Size"/>
+        <ComboBox Grid.Column="1" Grid.Row="2" x:Name="cboSize" SelectionChanged="cboSize_SelectionChanged" Margin="2">
+            <ComboBoxItem Content="Fine" Tag="{x:Static ikosa:Size.Fine}"></ComboBoxItem>
+            <ComboBoxItem Content="Miniature" Tag="{x:Static ikosa:Size.Miniature}"></ComboBoxItem>
+            <ComboBoxItem Content="Tiny" Tag="{x:Static ikosa:Size.Tiny}"></ComboBoxItem>
+            <ComboBoxItem Content="Small" Tag="{x:Static ikosa:Size.Small}"></ComboBoxItem>
+            <ComboBoxItem Content="Medium" Tag="{x:Static ikosa:Size.Medium}"></ComboBoxItem>
+            <ComboBoxItem Content="Large" Tag="{x:Static ikosa:Size.Large}"></ComboBoxItem>
+            <ComboBoxItem Content="Huge" Tag="{x:Static ikosa:Size.Huge}"></ComboBoxItem>
+            <ComboBoxItem Content="Gigantic" Tag="{x:Static ikosa:Size.Gigantic}"></ComboBoxItem>
+            <ComboBoxItem Content="Colossal" Tag="{x:Static ikosa:Size.Colossal}"></ComboBoxItem>
+        </ComboBox>
+        <Label Grid.Column="2" Grid.Row="2" Content="Item Size"/>
+        <TextBlock Grid.Column="3" Grid.Row="2" Text="{Binding Path=Thing.ItemSizer.Size.Name}" Margin="1"/>
+        
+        <Label Grid.Column="0" Grid.Row="3" Content="Base Weight"/>
+        <TextBox Grid.Column="1" Grid.Row="3" Text="{Binding Path=Thing.TareWeight}" Style="{StaticResource dblCheck}"/>
+        <Label Grid.Column="2" Grid.Row="3" Content="Max Load"/>
+        <TextBox Grid.Column="3" Grid.Row="3" Text="{Binding Path=Thing.Container.MaximumLoadWeight}" Style="{StaticResource dblCheck}"/>
+
+        <Label Grid.Column="0" Grid.Row="5" Content="Price"/>
+        <TextBlock Grid.Column="1" Grid.Row="5" Text="{Binding Path=Thing.Price.BasePrice}" Margin="1"/>
+        <Label Grid.Column="2" Grid.Row="5" Content="Weight"/>
+        <TextBlock Grid.Column="3" Grid.Row="5" Text="{Binding Path=Thing.Weight}" Margin="1"/>
+    </Grid>
+</UserControl>

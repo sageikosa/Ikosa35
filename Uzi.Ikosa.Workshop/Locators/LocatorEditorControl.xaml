@@ -1,0 +1,97 @@
+﻿<UserControl x:Class="Uzi.Ikosa.Workshop.LocatorEditorControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:tactical="clr-namespace:Uzi.Ikosa.Tactical;assembly=Uzi.Ikosa"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d">
+    <DockPanel MinWidth="288">
+        <DockPanel.Resources>
+            <DataTemplate x:Key="tmplHeader">
+                <Label Background="LightCyan" Content="{Binding}"/>
+            </DataTemplate>
+            <Style TargetType="Border">
+                <Setter Property="Margin" Value="2"/>
+                <Setter Property="BorderBrush" Value="DarkGray"/>
+                <Setter Property="BorderThickness" Value="1"/>
+                <Setter Property="CornerRadius" Value="4"/>
+            </Style>
+            <Style TargetType="HeaderedContentControl">
+                <Setter Property="Margin" Value="2"/>
+                <Setter Property="HeaderTemplate" Value="{StaticResource tmplHeader}"/>
+            </Style>
+            <Style TargetType="TextBox" x:Key="styleText">
+                <Setter Property="Margin" Value="2"/>
+                <Style.Triggers>
+                    <Trigger Property="Tag" Value="Invalid">
+                        <Setter Property="Background" Value="LightSalmon"/>
+                        <Setter Property="ToolTip.Content" Value="Invalid value"/>
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+            <Style TargetType="TextBox" x:Key="intCheck" BasedOn="{StaticResource styleText}">
+                <EventSetter Event="TextChanged" Handler="txtInt_TextChanged"/>
+            </Style>
+            <Style TargetType="TextBox" x:Key="dblSizeCheck" BasedOn="{StaticResource styleText}">
+                <EventSetter Event="TextChanged" Handler="txtDblSize_TextChanged"/>
+            </Style>
+        </DockPanel.Resources>
+        <Border DockPanel.Dock="Top">
+            <HeaderedContentControl Header="Name">
+                <TextBlock Margin="2" Text="{Binding Path=Locator.Name, Mode=OneWay}"/>
+            </HeaderedContentControl>
+        </Border>
+        <Border DockPanel.Dock="Top" Visibility="Collapsed" x:Name="brdPresenter">
+            <!-- Model Info (if an ObjectPresenter) -->
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Label Grid.ColumnSpan="2" Background="LightCyan" Content="Model Presentation"/>
+                <Label Grid.Row="1" Content="Model Key"/>
+                <ComboBox Grid.Row="1" Grid.Column="1" x:Name="cboModelKeys" 
+                            ItemsSource="{Binding Path=Locator.ModelResolver.ResolvableModels}"
+                            DisplayMemberPath="Model3DPart.Name" SelectedValuePath="Model3DPart.Name" 
+                            SelectedValue="{Binding Path=ObjectPresenter.ModelKey}"></ComboBox>
+            </Grid>
+        </Border>
+        <Border DockPanel.Dock="Top">
+            <HeaderedContentControl Header="Extents">
+                <HeaderedContentControl.Resources>
+                    <Style TargetType="TextBox">
+                        <Setter Property="Margin" Value="2"/>
+                    </Style>
+                </HeaderedContentControl.Resources>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Row="0" Grid.Column="0" Content="Z Height"/>
+                    <Label Grid.Row="1" Grid.Column="0" Content="Y Length"/>
+                    <Label Grid.Row="2" Grid.Column="0" Content="X Length"/>
+                    <Label Grid.Row="3" Grid.Column="0" Content="Current"/>
+                    <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding Path=ZHeight}" Style="{StaticResource dblSizeCheck}" HorizontalAlignment="Stretch" />
+                    <TextBox Grid.Column="1" Grid.Row="1" Text="{Binding Path=YLength}" Style="{StaticResource dblSizeCheck}" HorizontalAlignment="Stretch" />
+                    <TextBox Grid.Column="1" Grid.Row="2" Text="{Binding Path=XLength}" Style="{StaticResource dblSizeCheck}" HorizontalAlignment="Stretch" />
+                    <Button Grid.Column="1" Grid.Row="3" Content="Sync" Margin="2"
+                            x:Name="btnSync" Click="btnSync_Click" 
+                            HorizontalAlignment="Stretch" MinHeight="24"></Button>
+                </Grid>
+            </HeaderedContentControl>
+        </Border>
+    </DockPanel>
+</UserControl>

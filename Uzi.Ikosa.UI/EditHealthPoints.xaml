@@ -1,0 +1,59 @@
+﻿<UserControl x:Class="Uzi.Ikosa.UI.EditHealthPoints"
+             xmlns:uziUI="clr-namespace:Uzi.Ikosa.UI"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <uziUI:IntDoubleConverter x:Key="convIntDouble"/>
+        <Style TargetType="StackPanel" x:Key="stackHover">
+            <Setter Property="Background" Value="Transparent"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="true">
+                    <Setter Property="Background" Value="LightCyan"/>
+                    <Setter Property="Cursor" Value="Hand"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+    <StackPanel Style="{StaticResource stackHover}" VerticalAlignment="Center">
+        <TextBlock Grid.Column="1" Grid.Row="2" x:Name="lblHPValue"
+                   MouseUp="lblHPValue_MouseUp" Tag="{Binding ElementName=popHPValue}" 
+                   Text="{Binding Path=HealthPoints}">
+            <TextBlock.ContextMenu>
+                <ContextMenu Tag="{Binding}">
+                    <ContextMenu.CommandBindings>
+                        <CommandBinding Command="{x:Static uziUI:EditHealthPoints.HPRoll}"
+                                        CanExecute="cbHPRoll_CanExecute" Executed="cbHPRoll_Executed"/>
+                        <CommandBinding Command="{x:Static uziUI:EditHealthPoints.HPAverage}"
+                                        CanExecute="cbHPAverage_CanExecute" Executed="cbHPAverage_Executed"/>
+                        <CommandBinding Command="{x:Static uziUI:EditHealthPoints.HPMax}"
+                                        CanExecute="cbHPMax_CanExecute" Executed="cbHPMax_Executed"/>
+                    </ContextMenu.CommandBindings>
+                    <MenuItem Tag="Roll" Header="Roll" Command="{x:Static uziUI:EditHealthPoints.HPRoll}" 
+                              CommandParameter="{Binding}"></MenuItem>
+                    <MenuItem Tag="Average" Header="Average" Command="{x:Static uziUI:EditHealthPoints.HPAverage}" 
+                              CommandParameter="{Binding}"></MenuItem>
+                    <MenuItem Tag="Maximum" Header="Maximum" Command="{x:Static uziUI:EditHealthPoints.HPMax}" 
+                              CommandParameter="{Binding}"></MenuItem>
+                </ContextMenu>                                                   
+            </TextBlock.ContextMenu>
+        </TextBlock>
+        <Popup PlacementTarget="{Binding ElementName=lblHPValue}" Placement="Bottom" Name="popHPValue"
+               StaysOpen="False" AllowsTransparency="True">
+            <Border Background="LightGoldenrodYellow"  Padding="2" BorderBrush="Black" 
+                    BorderThickness="1" CornerRadius="2">
+                <Slider Grid.ColumnSpan="2" Grid.Column="0" Grid.Row="3" Margin="2"
+                        Background="LightGoldenrodYellow" Orientation="Horizontal" 
+                        IsSnapToTickEnabled="True" MinWidth="72" Value="{Binding Path=HealthPoints}" 
+                        AutoToolTipPlacement="BottomRight" AutoToolTipPrecision="0" 
+                        TickFrequency="1" Name="sldrHP" Minimum="1" 
+                        Maximum="{Binding Path=AdvancementClass.PowerDieSize, Converter={StaticResource convIntDouble}}"
+                        Tag="{Binding}">
+                </Slider>
+            </Border>
+        </Popup>
+    </StackPanel>
+</UserControl>

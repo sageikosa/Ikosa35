@@ -1,0 +1,109 @@
+﻿<UserControl x:Class="Uzi.Ikosa.Client.UI.MoveActionPanel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:uicui="clr-namespace:Uzi.Ikosa.Client.UI"
+             xmlns:uic="clr-namespace:Uzi.Ikosa.Contracts;assembly=Uzi.Ikosa.Contracts"
+             mc:Ignorable="d" >
+    <UserControl.Resources>
+        <DataTemplate DataType="uic:MovementInfo">
+            <TextBlock Text="{Binding Description}"/>
+        </DataTemplate>
+    </UserControl.Resources>
+    <UserControl.CommandBindings>
+        <CommandBinding Command="{x:Static uicui:MoveActionPanel.PickMove}" x:Name="cbPickMove"
+                        CanExecute="cbPickMove_CanExecute" Executed="cbPickMove_Executed"/>
+        <CommandBinding Command="{x:Static uicui:MoveActionPanel.PickStart}" x:Name="cbPickStart"
+                        CanExecute="cbPickStart_CanExecute" Executed="cbPickStart_Executed"/>
+    </UserControl.CommandBindings>
+    <Border BorderBrush="Black" BorderThickness="0" Padding="0">
+        <Grid IsEnabled="{Binding Path=Budget.MovementBudget.CanStillMove}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="10,*"/>
+                <RowDefinition Height="10,*"/>
+            </Grid.RowDefinitions>
+            <Button x:Name="btnMovement" Margin="1" Grid.RowSpan="2" MinWidth="96" Grid.Column="1"
+                    Command="{x:Static uicui:MoveActionPanel.PickMove}" 
+                    Content="{Binding Path=ObservableActor.MovementCommands.SelectedMovement}">
+                <Button.ToolTip>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="100,*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Label FontWeight="Bold" Content="Movement Mode" Grid.ColumnSpan="2" Grid.Row="0"/>
+                        <Label FontWeight="Bold" Content="," Grid.Column="0" Grid.Row="1"/>
+                        <Label FontWeight="Bold" Content="." Grid.Column="0" Grid.Row="2"/>
+                        <TextBlock VerticalAlignment="Center" Grid.Row="1" Grid.Column="1" Text="Prev Movement Mode"/>
+                        <TextBlock VerticalAlignment="Center" Grid.Row="2" Grid.Column="1" Text="Next Movement Mode"/>
+                    </Grid>                    
+                </Button.ToolTip>
+            </Button>
+            <Button MinWidth="64" x:Name="btnMoveStart" Margin="1" Grid.RowSpan="2" Grid.Column="3"
+                    Content="{Binding Path=ObservableActor.MovementCommands.SelectedMovementStart}"
+                    Command="{x:Static uicui:MoveActionPanel.PickStart}">
+                <Button.ToolTip>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="100,*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Label FontWeight="Bold" Content="Movement Start" Grid.ColumnSpan="2" Grid.Row="0"/>
+                        <Label FontWeight="Bold" Content="&lt;" Grid.Column="0" Grid.Row="1"/>
+                        <Label FontWeight="Bold" Content="&gt;" Grid.Column="0" Grid.Row="2"/>
+                        <TextBlock VerticalAlignment="Center" Grid.Row="1" Grid.Column="1" Text="Prev Movement Start"/>
+                        <TextBlock VerticalAlignment="Center" Grid.Row="2" Grid.Column="1" Text="Next Movement Start"/>
+                    </Grid>
+                </Button.ToolTip>
+            </Button>
+            <ToggleButton x:Name="tbUseDouble" Content="Dbl" Margin="4,1,0,1" Grid.Column="4" Grid.RowSpan="2" 
+                          IsChecked="{Binding Path=ObservableActor.MovementCommands.UseDoubleMove}">
+                <ToggleButton.ToolTip>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="100,*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Label FontWeight="Bold" Content=";" Grid.Column="0" Grid.Row="0"/>
+                        <TextBlock VerticalAlignment="Center" Grid.Row="0" Grid.Column="1" Text="Allow/Deny Double Move"/>
+                    </Grid>
+                </ToggleButton.ToolTip>
+            </ToggleButton>
+            <ProgressBar Width="72" Margin="1" x:Name="prgMoveRemaining" Minimum="0" Maximum="1" Grid.Column="5"
+                         Value="{Binding Path=Budget.MovementRangeBudget.Remaining}" ToolTip="Remaining"></ProgressBar>
+            <ProgressBar Width="72" Margin="1" x:Name="prgMoveDouble" Minimum="0" Maximum="1" Grid.Column="5" Foreground="Yellow"
+                         Grid.Row="1" Value="{Binding Path=Budget.MovementRangeBudget.Double}" ToolTip="Double"></ProgressBar>
+            <uicui:Headings x:Name="hdngFlight" Margin="2,0" Grid.Column="6" Grid.RowSpan="2"
+                            MaxYaw="{Binding Path=ObservableActor.MovementCommands.MaxYaw}" 
+                            FreeYaw="{Binding Path=ObservableActor.MovementCommands.FreeYaw}"
+                            YawGap="{Binding Path=ObservableActor.MovementCommands.YawGap}"
+                            Incline="{Binding Path=ObservableActor.LocaleViewModel.Sensors.Incline}"
+                            MoveHeading="{Binding Path=Budget.MovementBudget.Heading}">
+                <!-- TODO: tooltip with move/turn keys -->
+            </uicui:Headings>
+        </Grid>
+    </Border>
+</UserControl>

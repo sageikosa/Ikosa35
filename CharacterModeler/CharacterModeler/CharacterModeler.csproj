@@ -1,0 +1,280 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{EFE9FD28-6E80-4BF9-9890-4EE9E56C6407}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CharacterModeler</RootNamespace>
+    <AssemblyName>CharacterModeler</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>ManagedMinimumRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>ManagedMinimumRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="Xceed.Wpf.AvalonDock">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.2.2.0\lib\net40\Xceed.Wpf.AvalonDock.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Aero">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.2.2.0\lib\net40\Xceed.Wpf.AvalonDock.Themes.Aero.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Metro">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.2.2.0\lib\net40\Xceed.Wpf.AvalonDock.Themes.Metro.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.VS2010">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.2.2.0\lib\net40\Xceed.Wpf.AvalonDock.Themes.VS2010.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.DataGrid">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.2.2.0\lib\net40\Xceed.Wpf.DataGrid.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.Toolkit">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.2.2.0\lib\net40\Xceed.Wpf.Toolkit.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="BridgeEndStyle.cs" />
+    <Compile Include="CenterReflector.cs" />
+    <Compile Include="CharacterModelerFrame.xaml.cs">
+      <DependentUpon>CharacterModelerFrame.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Generator\FragmentGenerator.cs" />
+    <Compile Include="Generator\FragmentPart.cs" />
+    <Compile Include="FaceModel.cs" />
+    <Compile Include="Generator\Weapon\HandCrossbow.cs" />
+    <Compile Include="Generator\Weapon\HeavyCrossbow.cs" />
+    <Compile Include="HeadDesigner.xaml.cs">
+      <DependentUpon>HeadDesigner.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="HeadModel.cs" />
+    <Compile Include="ItemDesigner.xaml.cs">
+      <DependentUpon>ItemDesigner.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SelectPart.xaml.cs">
+      <DependentUpon>SelectPart.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ValueInverter.cs" />
+    <Compile Include="Generator\Weapon\BastardSword.cs" />
+    <Compile Include="Generator\Weapon\Crossbow.cs" />
+    <Compile Include="Generator\Weapon\Dagger.cs" />
+    <Compile Include="Generator\Weapon\DrawnBow.cs" />
+    <Compile Include="Generator\Weapon\LightCrossbow.cs" />
+    <Compile Include="Generator\Weapon\LongBow.cs" />
+    <Compile Include="Generator\Weapon\Parts\BowPart.cs" />
+    <Compile Include="Generator\ConicPart.cs" />
+    <Compile Include="Generator\Weapon\Parts\CrossbowBarrel.cs" />
+    <Compile Include="Generator\CylindricalPart.cs" />
+    <Compile Include="Generator\IBottomDimensionProvider.cs" />
+    <Compile Include="Generator\IBottomRadiusProvider.cs" />
+    <Compile Include="Generator\ITopDimensionProvider.cs" />
+    <Compile Include="Generator\ITopRadiusProvider.cs" />
+    <Compile Include="Generator\Weapon\Parts\PommelShaft.cs" />
+    <Compile Include="Generator\Weapon\Parts\SmallPommel.cs" />
+    <Compile Include="Generator\TopRadiusProvider.cs" />
+    <Compile Include="Generator\Weapon\LongSword.cs" />
+    <Compile Include="Generator\Weapon\BattleAxe.cs" />
+    <Compile Include="Generator\Weapon\Dart.cs" />
+    <Compile Include="Generator\Weapon\DoubleAxe.cs" />
+    <Compile Include="Generator\Weapon\GreatAxe.cs" />
+    <Compile Include="Generator\Weapon\GreatSword.cs" />
+    <Compile Include="Generator\Weapon\Halberd.cs" />
+    <Compile Include="Generator\Weapon\HandAxe.cs" />
+    <Compile Include="Generator\Weapon\HeavyMace.cs" />
+    <Compile Include="Generator\Weapon\HeavyPick.cs" />
+    <Compile Include="Generator\Weapon\HookedHammer.cs" />
+    <Compile Include="Generator\Weapon\Javelin.cs" />
+    <Compile Include="Generator\Weapon\LightHammer.cs" />
+    <Compile Include="Generator\Weapon\LightMace.cs" />
+    <Compile Include="Generator\Weapon\LightPick.cs" />
+    <Compile Include="Generator\Weapon\Longspear.cs" />
+    <Compile Include="Generator\Weapon\MorningStar.cs" />
+    <Compile Include="Generator\Weapon\Parts\AxeBlade.cs" />
+    <Compile Include="Generator\Weapon\Parts\BladeShaft.cs" />
+    <Compile Include="Generator\Weapon\Parts\DartTail.cs" />
+    <Compile Include="Generator\Weapon\Parts\Grip.cs" />
+    <Compile Include="Generator\Weapon\Parts\Guard.cs" />
+    <Compile Include="Generator\Weapon\Parts\Haft.cs" />
+    <Compile Include="Generator\Weapon\Parts\HaftMount.cs" />
+    <Compile Include="Generator\Weapon\Parts\HeadBus.cs" />
+    <Compile Include="Generator\Weapon\Parts\MaceHead.cs" />
+    <Compile Include="Generator\Weapon\Parts\MaceOverhead.cs" />
+    <Compile Include="Generator\Weapon\Parts\PickHead.cs" />
+    <Compile Include="Generator\Weapon\Parts\PickTail.cs" />
+    <Compile Include="Generator\Weapon\Parts\Point.cs" />
+    <Compile Include="Generator\Weapon\Parts\PointTaper.cs" />
+    <Compile Include="Generator\Weapon\Parts\Pole.cs" />
+    <Compile Include="Generator\Weapon\Parts\ShieldRim.cs" />
+    <Compile Include="Generator\Weapon\Parts\ShieldFace.cs" />
+    <Compile Include="Generator\Weapon\Parts\Sphere.cs" />
+    <Compile Include="Generator\Weapon\Parts\Spike.cs" />
+    <Compile Include="Generator\Weapon\Parts\Stop.cs" />
+    <Compile Include="Generator\Weapon\Parts\Striker.cs" />
+    <Compile Include="Generator\Weapon\Parts\WaraxeBack.cs" />
+    <Compile Include="Generator\Weapon\Shield.cs" />
+    <Compile Include="Generator\Weapon\ShortBow.cs" />
+    <Compile Include="Generator\Weapon\ShortSword.cs" />
+    <Compile Include="Generator\Weapon\Spear.cs" />
+    <Compile Include="Generator\Weapon\ThrowingAxe.cs" />
+    <Compile Include="Generator\Weapon\TwoBladedSword.cs" />
+    <Compile Include="Generator\Weapon\WarAxe.cs" />
+    <Compile Include="Generator\Weapon\WarHammer.cs" />
+    <Page Include="CharacterModelerFrame.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FaceDesigner.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="HeadDesigner.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ItemDesigner.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ColorItem.cs" />
+    <Compile Include="FaceDesigner.xaml.cs">
+      <DependentUpon>FaceDesigner.xaml</DependentUpon>
+    </Compile>
+    <Page Include="SelectPart.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\HelixToolkit.Wpf\HelixToolkit.Wpf_NET40.csproj">
+      <Project>{3f3b4548-a9db-4874-86f7-e7c4fec8a351}</Project>
+      <Name>HelixToolkit.Wpf_NET40</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Uzi.Ikosa.Visualize\Uzi.Visualize.csproj">
+      <Project>{3ED35492-9CA6-4DC9-8AC7-9DC6FB1BE470}</Project>
+      <Name>Uzi.Visualize</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Uzi.Packaging\Uzi.Packaging.csproj">
+      <Project>{63EF7070-3DFA-4D1F-B80C-1415D3C9CA1A}</Project>
+      <Name>Uzi.Packaging</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\WPFShaderEffectLibrary\WPFShaderEffectLibrary.csproj">
+      <Project>{967D61A9-C8F0-4C2A-A784-6CDA648ECB19}</Project>
+      <Name>WPFShaderEffectLibrary</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Generator\Creature\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

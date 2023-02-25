@@ -1,0 +1,240 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{0495C9D2-BA9D-41F1-B167-825052C6B582}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Uzi.Ikosa.Proxy</RootNamespace>
+    <AssemblyName>Uzi.Ikosa.Proxy</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CellSpaces\CylinderSpaceViewModel.cs" />
+    <Compile Include="CellSpaces\Panels\BasePanelViewModel.cs" />
+    <Compile Include="CellSpaces\Panels\CornerPanelViewModel.cs" />
+    <Compile Include="CellSpaces\Panels\DiagonalCompositeViewModel.cs" />
+    <Compile Include="CellSpaces\Panels\IBaseComposite.cs" />
+    <Compile Include="CellSpaces\Panels\LFramePanelViewModel.cs" />
+    <Compile Include="CellSpaces\Panels\MaterialFillViewModel.cs" />
+    <Compile Include="CellSpaces\Panels\NormalPanelViewModel.cs" />
+    <Compile Include="CellSpaces\Panels\PanelSpaceViewModel.cs" />
+    <Compile Include="CellSpaces\Panels\SlopeCompositeViewModel.cs" />
+    <Compile Include="CellSpaces\SlopeSpaceViewModel.cs" />
+    <Compile Include="CellSpaces\IPreLoad.cs" />
+    <Compile Include="CellSpaces\SmallCylinderSpaceViewModel.cs" />
+    <Compile Include="IkosaSvc\IkosaServicesClient.cs" />
+    <Compile Include="IkosaSvc\TargetAimer.cs" />
+    <Compile Include="LoginServiceClient.cs" />
+    <Compile Include="MasterSvc\MasterServicesClient.cs" />
+    <Compile Include="Notification\NotificationTopic.cs" />
+    <Compile Include="Notification\NotificationVM.cs" />
+    <Compile Include="Notification\SysNotifyVM.cs" />
+    <Compile Include="RelayCommand.cs" />
+    <Compile Include="ServiceClient.cs" />
+    <Compile Include="Tactical\BackgroundCellGroupViewModel.cs" />
+    <Compile Include="Tactical\IGetCellStructure.cs" />
+    <Compile Include="Tactical\MapIconResolver.cs" />
+    <Compile Include="Tactical\RoomIndex\RoomTracker.cs" />
+    <Compile Include="Tactical\RoomIndex\RoomTrackerKey.cs" />
+    <Compile Include="ViewModel\AbilitySetVM.cs" />
+    <Compile Include="ViewModel\AbilityVM.cs" />
+    <Compile Include="ViewModel\ActivityBuild\CoreInfoListAimInfoBuilder.cs" />
+    <Compile Include="ViewModel\ActivityBuild\CoreInfoListTargeting.cs" />
+    <Compile Include="ViewModel\ActivityBuild\IActivityBuilderActor.cs" />
+    <Compile Include="ViewModel\ActivityBuild\PrepareSpellSlotSet\PreparedSpellSlotTargeting.cs" />
+    <Compile Include="ViewModel\ActivityBuild\PrepareSpellSlotSet\PrepareSpellSlotsTargeting.cs" />
+    <Compile Include="ViewModel\ActivityBuild\PrepareSpellSlotSet\SpellSlotLevelTargeting.cs" />
+    <Compile Include="ViewModel\ActivityBuild\PrepareSpellSlotSet\SpellSlotSetTargeting.cs" />
+    <Compile Include="ViewModel\ActivityBuild\QuantitySelectAimInfoBuilder.cs" />
+    <Compile Include="ViewModel\ActivityBuild\QuantitySelectTargeting.cs" />
+    <Compile Include="ViewModel\ActorLocalState.cs" />
+    <Compile Include="ViewModel\Advancement\AdvancementOptionTemplateSelector.cs" />
+    <Compile Include="ViewModel\Advancement\AdvancementOptionVM.cs" />
+    <Compile Include="ViewModel\Advancement\AdvancementRequirementVM.cs" />
+    <Compile Include="ViewModel\Advancement\AdvancementStep.cs" />
+    <Compile Include="ViewModel\Advancement\AdvancementVM.cs" />
+    <Compile Include="ViewModel\Advancement\SkillBuyVM.cs" />
+    <Compile Include="ViewModel\Advancement\WorkflowStep.cs" />
+    <Compile Include="ViewModel\EnumerableLift.cs" />
+    <Compile Include="ViewModel\GameBoardViewPointState.cs" />
+    <Compile Include="ViewModel\HealthBarVM.cs" />
+    <Compile Include="ViewModel\MasterSvcModels\CreatureTimelinePendingModel.cs" />
+    <Compile Include="ViewModel\MasterSvcModels\CreatureTrackerModel.cs" />
+    <Compile Include="ViewModel\MasterSvcModels\InitStartupMode.cs" />
+    <Compile Include="ViewModel\MasterSvcModels\MasterLog.cs" />
+    <Compile Include="ViewModel\MasterSvcModels\NeedsTurnTickInitiativeOrder.cs" />
+    <Compile Include="ViewModel\MasterSvcModels\NeedsTurnTickMode.cs" />
+    <Compile Include="ViewModel\MasterSvcModels\PromptTurnTrackerMode.cs" />
+    <Compile Include="ViewModel\MasterSvcModels\RoundMarkerMode.cs" />
+    <Compile Include="ViewModel\MasterSvcModels\CreatureGroupModel.cs" />
+    <Compile Include="ViewModel\MasterSvcModels\StandDownGroupModel.cs" />
+    <Compile Include="ViewModel\MasterSvcModels\TeamGroupModel.cs" />
+    <Compile Include="ViewModel\MasterSvcModels\TickTrackerModeBase.cs" />
+    <Compile Include="ViewModel\MasterSvcModels\TimelineActionProviderModel.cs" />
+    <Compile Include="ViewModel\MasterSvcModels\TimelineGroupModel.cs" />
+    <Compile Include="ViewModel\MasterSvcModels\TimelinePendingTickMode.cs" />
+    <Compile Include="ViewModel\MasterSvcModels\TimeTickMode.cs" />
+    <Compile Include="ViewModel\MasterSvcModels\TurnTickMode.cs" />
+    <Compile Include="ViewModel\Menus\ActionMenuBuilder.cs" />
+    <Compile Include="ViewModel\ActivityBuild\ActivityInfoBuilder.cs" />
+    <Compile Include="ViewModel\ActivityBuild\AimTargetingBase.cs" />
+    <Compile Include="ViewModel\ActivityBuild\AimTargetingFactory.cs" />
+    <Compile Include="ViewModel\ActivityBuild\AttackChoice.cs" />
+    <Compile Include="ViewModel\ActivityBuild\AttackTargetInfoBuilder.cs" />
+    <Compile Include="ViewModel\ActivityBuild\AttackTargeting.cs" />
+    <Compile Include="ViewModel\ActivityBuild\AwarenessChoice.cs" />
+    <Compile Include="ViewModel\ActivityBuild\AwarenessTargetInfoBuilder.cs" />
+    <Compile Include="ViewModel\ActivityBuild\AwarenessTargeting.cs" />
+    <Compile Include="ViewModel\ActivityBuild\CharacterStringTargeting.cs" />
+    <Compile Include="ViewModel\ActivityBuild\LocationChoice.cs" />
+    <Compile Include="ViewModel\ActivityBuild\LocationTargetInfoBuilder.cs" />
+    <Compile Include="ViewModel\ActivityBuild\LocationTargeting.cs" />
+    <Compile Include="ViewModel\ActivityBuild\ObjectListAimInfoBuilder.cs" />
+    <Compile Include="ViewModel\ActivityBuild\ObjectListTargeting.cs" />
+    <Compile Include="ViewModel\ActivityBuild\OptionAimOptionBuilder.cs" />
+    <Compile Include="ViewModel\ActivityBuild\OptionTargeting.cs" />
+    <Compile Include="ViewModel\ActivityBuild\PersonalAimInfoBuilder.cs" />
+    <Compile Include="ViewModel\ActivityBuild\PersonalAimTargeting.cs" />
+    <Compile Include="ViewModel\ActivityBuild\QueuedAwareness.cs" />
+    <Compile Include="ViewModel\ActivityBuild\QueuedCell.cs" />
+    <Compile Include="ViewModel\ActivityBuild\QueuedIntersection.cs" />
+    <Compile Include="ViewModel\ActivityBuild\QueuedTargetItem.cs" />
+    <Compile Include="ViewModel\ActivityBuild\RollTargeting.cs" />
+    <Compile Include="ViewModel\ActivityBuild\SuccessCheckTargeting.cs" />
+    <Compile Include="ViewModel\ActivityBuild\VolumeTargeting.cs" />
+    <Compile Include="ViewModel\ActivityBuild\WordTargeting.cs" />
+    <Compile Include="ViewModel\ActorModel.cs" />
+    <Compile Include="ViewModel\AimPointActivation.cs" />
+    <Compile Include="ViewModel\ActivityBuild\AimTargeting.cs" />
+    <Compile Include="ViewModel\CreatureModel.cs" />
+    <Compile Include="ViewModel\Furnishing\FurnishingActionSet.cs" />
+    <Compile Include="ViewModel\Furnishing\IFurnishingAction.cs" />
+    <Compile Include="ViewModel\Furnishing\PivotActionModel.cs" />
+    <Compile Include="ViewModel\Furnishing\ReleaseActionModel.cs" />
+    <Compile Include="ViewModel\Furnishing\TiltActionModel.cs" />
+    <Compile Include="ViewModel\Menus\ContentStack.cs" />
+    <Compile Include="ViewModel\IPrerequisiteProxy.cs" />
+    <Compile Include="ViewModel\MasterSvcModels\IsMasterModel.cs" />
+    <Compile Include="ViewModel\LocaleViewModel.cs" />
+    <Compile Include="ViewModel\Menus\IdentitiesMenuViewModel.cs" />
+    <Compile Include="ViewModel\Menus\MenuBaseViewModel.cs" />
+    <Compile Include="ViewModel\Menus\MenuViewModel.cs" />
+    <Compile Include="ViewModel\Menus\MenuViewModelStyleSelector.cs" />
+    <Compile Include="ViewModel\MessageBoardModel.cs" />
+    <Compile Include="ViewModel\MovementCommands.cs" />
+    <Compile Include="ViewModel\MoveParameters.cs" />
+    <Compile Include="ViewModel\MoveStart.cs" />
+    <Compile Include="ViewModel\NullableValueConverter.cs" />
+    <Compile Include="ViewModel\ObjectInfoVM.cs" />
+    <Compile Include="ViewModel\ObservableActor.cs" />
+    <Compile Include="ViewModel\Prerequisites\CoreSelectPrerequisiteModel.cs" />
+    <Compile Include="ViewModel\Prerequisites\AwarenessSelection.cs" />
+    <Compile Include="ViewModel\Prerequisites\OpportunisticPrerequisiteModel.cs" />
+    <Compile Include="ViewModel\Prerequisites\PrerequisiteListModel.cs" />
+    <Compile Include="ViewModel\Prerequisites\PrerequisiteModel.cs" />
+    <Compile Include="ViewModel\Prerequisites\PromptTurnTrackerPrerequisiteModel.cs" />
+    <Compile Include="ViewModel\ProxyModel.cs" />
+    <Compile Include="ViewModel\Menus\SeparatorViewModel.cs" />
+    <Compile Include="ViewModel\SkillVM.cs" />
+    <Compile Include="ViewModel\Take10VM.cs" />
+    <Compile Include="ViewModel\ThirdPersonViewPointState.cs" />
+    <Compile Include="ViewModel\ViewModelBase.cs" />
+    <Compile Include="ViewModel\ViewPointType.cs" />
+    <Compile Include="VisualizationSvc\BitmapImageInfo.cs" />
+    <Compile Include="VisualizationSvc\BrushCollectionViewModel.cs" />
+    <Compile Include="CellSpaces\CellSpaceViewModel.cs" />
+    <Compile Include="CellSpaces\CornerSpaceViewModel.cs" />
+    <Compile Include="CellSpaces\LFrameSpaceViewModel.cs" />
+    <Compile Include="VisualizationSvc\MetaModel3DViewModel.cs" />
+    <Compile Include="CellSpaces\SliverSpaceViewModel.cs" />
+    <Compile Include="CellSpaces\StairSpaceViewModel.cs" />
+    <Compile Include="Tactical\CellStructureInfo.cs" />
+    <Compile Include="Tactical\CubicInfo.cs" />
+    <Compile Include="Tactical\LocalMapInfo.cs" />
+    <Compile Include="VisualizationSvc\Model3DViewModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tactical\RoomViewModel.cs" />
+    <Compile Include="VisualizationSvc\TileSetViewModel.cs" />
+    <Compile Include="VisualizationSvc\VisualizationServiceClient.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="cdAwarenessInfo.cd" />
+    <None Include="cdCubicInfo.cd" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Black.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Uzi.Core.Contracts\Uzi.Core.Contracts.csproj">
+      <Project>{A684AC4C-1911-4101-897D-B97DEAD744C2}</Project>
+      <Name>Uzi.Core.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Uzi.Ikosa.Contracts\Uzi.Ikosa.Contracts.csproj">
+      <Project>{7DDE27BD-1C99-4054-AF54-321BB387AEF1}</Project>
+      <Name>Uzi.Ikosa.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Uzi.Ikosa.Visualize\Uzi.Visualize.csproj">
+      <Project>{3ED35492-9CA6-4DC9-8AC7-9DC6FB1BE470}</Project>
+      <Name>Uzi.Visualize</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Uzi.Packaging\Uzi.Packaging.csproj">
+      <Project>{63EF7070-3DFA-4D1F-B80C-1415D3C9CA1A}</Project>
+      <Name>Uzi.Packaging</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

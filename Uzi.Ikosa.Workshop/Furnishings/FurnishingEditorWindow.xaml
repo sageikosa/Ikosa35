@@ -1,0 +1,77 @@
+﻿<Window x:Class="Uzi.Ikosa.Workshop.FurnishingEditorWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Uzi.Ikosa.Workshop"
+        xmlns:ui="clr-namespace:Uzi.Ikosa.UI;assembly=Uzi.Ikosa.UI"
+        xmlns:obj="clr-namespace:Uzi.Ikosa.Objects;assembly=Uzi.Ikosa"
+        mc:Ignorable="d" SnapsToDevicePixels="True"
+        Title="Furnishing Editor" SizeToContent="WidthAndHeight">
+    <Window.CommandBindings>
+        <CommandBinding x:Name="cbOpenItem" Command="{x:Static local:PackageExplorer.OpenItem}"
+                        CanExecute="cbOpenItem_CanExecute" Executed="cbOpenItem_Executed"/>
+    </Window.CommandBindings>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100,*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.Resources>
+            <DataTemplate DataType="{x:Type ui:ConveyanceVM}">
+                <local:ConveyanceEditor DataContext="{Binding}"/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type ui:HollowFurnishingLidVM}">
+                <local:HollowFurnishingLidEditor DataContext="{Binding}"/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type ui:HollowFurnishingVM}">
+                <local:HollowFurnishingEditor DataContext="{Binding}"/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type ui:FurnishingVM}">
+                <local:FurnishingEditor DataContext="{Binding}"/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type ui:PresentableCloseableContainerVM}">
+                <local:CloseableContainerEditor DataContext="{Binding}"/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type ui:PresentableContainerObjectVM}">
+                <local:ContainerEditor DataContext="{Binding}"/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type ui:FlexibleFlatPanelVM}">
+                <local:FlexibleFlatPanelEditor DataContext="{Binding}"/>
+            </DataTemplate>
+        </Grid.Resources>
+        <TabControl x:Name="tabHost" ItemsSource="{Binding Path=EditorTabs}">
+            <TabControl.Resources>
+                <DataTemplate DataType="{x:Type ui:TabItemVM}">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="{Binding Path=ImageSource}" Stretch="None" Margin="0,0,4,0"/>
+                        <TextBlock Text="{Binding Path=Title}"/>
+                    </StackPanel>
+                </DataTemplate>
+            </TabControl.Resources>
+            <TabControl.ItemContainerStyle>
+                <Style TargetType="{x:Type TabItem}">
+                    <Setter Property="Header" Value="{Binding}"/>
+                    <Setter Property="IsSelected" Value="{Binding Path=IsSelected}"/>
+                </Style>
+            </TabControl.ItemContainerStyle>
+            <TabControl.ContentTemplate>
+                <DataTemplate>
+                    <ContentControl Content="{Binding Path=Content}"/>
+                </DataTemplate>
+            </TabControl.ContentTemplate>
+        </TabControl>
+        <DockPanel Grid.Row="1" LastChildFill="False">
+            <DockPanel.Resources>
+                <Style TargetType="Button">
+                    <Setter Property="VerticalAlignment" Value="Top"/>
+                    <Setter Property="Margin" Value="2,1"/>
+                    <Setter Property="Padding" Value="8,0"/>
+                    <Setter Property="MinWidth" Value="56"/>
+                </Style>
+            </DockPanel.Resources>
+            <Button DockPanel.Dock="Right" Content="Close" IsDefault="True" IsCancel="True" 
+                    x:Name="btnClose" Click="btnClose_Click"/>
+        </DockPanel>
+    </Grid>
+</Window>

@@ -1,0 +1,122 @@
+﻿<TabItem x:Class="Uzi.Ikosa.Workshop.ContainerItemBaseTab"
+         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+         xmlns:shop="clr-namespace:Uzi.Ikosa.Workshop"
+         xmlns:items="clr-namespace:Uzi.Ikosa.Items;assembly=Uzi.Ikosa"
+         xmlns:armor="clr-namespace:Uzi.Ikosa.Items.Armor;assembly=Uzi.Ikosa"
+         xmlns:shield="clr-namespace:Uzi.Ikosa.Items.Shields;assembly=Uzi.Ikosa"
+         xmlns:projectile="clr-namespace:Uzi.Ikosa.Items.Weapons.Ranged;assembly=Uzi.Ikosa"
+         xmlns:wpn="clr-namespace:Uzi.Ikosa.Items.Weapons;assembly=Uzi.Ikosa"
+         xmlns:wealth="clr-namespace:Uzi.Ikosa.Items.Wealth;assembly=Uzi.Ikosa"
+         xmlns:ui="clr-namespace:Uzi.Ikosa.UI;assembly=Uzi.Ikosa.UI"
+         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <TabItem.Header>
+        <StackPanel Orientation="Horizontal" DataContext="{Binding Path=Thing}">
+            <Image Source="/Images/Box.png" Stretch="None" Margin="0,0,4,0"/>
+            <TextBlock Text="{Binding Path=Name}"/>
+            <Button DockPanel.Dock="Right" Margin="4,0,0,0" Focusable="False" BorderBrush="DarkGray" BorderThickness="1"
+                    Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="btnClose_Click" VerticalAlignment="Center">
+                <Canvas Width="8" Height="8">
+                    <Line X1="0" Y1="0" X2="8" Y2="8" Stroke="Red" />
+                    <Line X1="0" Y1="8" X2="8" Y2="0" Stroke="Red" />
+                </Canvas>
+            </Button>
+        </StackPanel>
+    </TabItem.Header>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="30,*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <!-- Properties -->
+        <ScrollViewer Grid.RowSpan="4" VerticalScrollBarVisibility="Auto">
+            <StackPanel Grid.RowSpan="4">
+                <StackPanel.Resources>
+                    <DataTemplate x:Key="tmplHeader">
+                        <Label Background="LightCyan" Content="{Binding}"/>
+                    </DataTemplate>
+                    <Style TargetType="TextBlock">
+                        <Setter Property="FontSize" Value="10"/>
+                    </Style>
+                    <Style TargetType="Border">
+                        <Setter Property="Margin" Value="2"/>
+                        <Setter Property="BorderBrush" Value="DarkGray"/>
+                        <Setter Property="BorderThickness" Value="1"/>
+                        <Setter Property="CornerRadius" Value="4"/>
+                    </Style>
+                    <Style TargetType="HeaderedContentControl">
+                        <Setter Property="Margin" Value="2"/>
+                        <Setter Property="HeaderTemplate" Value="{StaticResource tmplHeader}"/>
+                    </Style>
+                    <Style TargetType="Label">
+                        <Setter Property="FontWeight" Value="Bold"/>
+                        <Setter Property="FontSize" Value="10"/>
+                    </Style>
+                    <Style TargetType="TextBox" x:Key="styleText">
+                        <Setter Property="Margin" Value="1"/>
+                        <Setter Property="FontSize" Value="10"/>
+                        <Style.Triggers>
+                            <Trigger Property="Tag" Value="Invalid">
+                                <Setter Property="Background" Value="LightSalmon"/>
+                                <Setter Property="ToolTip.Content" Value="Invalid value"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                    <Style TargetType="TextBox" x:Key="dblCheck" BasedOn="{StaticResource styleText}">
+                        <EventSetter Event="TextChanged" Handler="txtDbl_TextChanged"/>
+                    </Style>
+                </StackPanel.Resources>
+                <Border>
+                    <HeaderedContentControl Header="Container">
+                        <Grid DataContext="{Binding Path=Thing}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Label Grid.Row="0" Content="Name" HorizontalAlignment="Right" />
+                            <Label Grid.Row="1" Content="Max Load Weight" HorizontalAlignment="Right" />
+                            <Label Grid.Row="2" Content="Tare Weight" HorizontalAlignment="Right"/>
+                            <Label Grid.Row="3" Content="Open State" HorizontalAlignment="Right"/>
+                            <Label Grid.Row="4" Content="Open Weight" HorizontalAlignment="Right"/>
+                            <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Path=Name}" Style="{StaticResource styleText}" />
+                            <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Path=Container.MaximumLoadWeight}" Style="{StaticResource dblCheck}" />
+                            <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Path=TareWeight}" Style="{StaticResource dblCheck}"/>
+                            <Slider Grid.Row="3" Grid.Column="1" Minimum="0" Maximum="1" Value="{Binding Path=OpenState}"
+                            AutoToolTipPrecision="2"/>
+                            <TextBox Grid.Row="4" Grid.Column="1" Text="{Binding Path=OpenWeight}" Style="{StaticResource dblCheck}" />
+                        </Grid>
+                    </HeaderedContentControl>
+                </Border>
+                <Border>
+                    <HeaderedContentControl Header="Item" x:Name="hccItem">
+                        <ui:ItemPropertyEditor DataContext="{Binding Path=Thing}"/>
+                    </HeaderedContentControl>
+                </Border>
+            </StackPanel>
+        </ScrollViewer>
+        <GridSplitter Grid.Column="1" Grid.Row="0" Grid.RowSpan="4"  ResizeBehavior="PreviousAndNext" 
+                          ResizeDirection="Columns" Width="4" Background="LightGray"/>
+        <TabControl Grid.Column="2" Grid.Row="0" Grid.RowSpan="3" TabStripPlacement="Bottom">
+            <TabItem Header="Contents">
+                <!-- Inventory Management -->
+                <shop:ContainerInventory DataContext="{Binding Path=ContainerObjectContext}"/>
+            </TabItem>
+            <TabItem Header="Mechanisms">
+                <!-- Mechanism Management -->
+                <shop:MechanismManager DataContext="{Binding}"/>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</TabItem>

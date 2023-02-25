@@ -1,0 +1,20 @@
+{
+  "Packages": [
+    {
+      "Name": "resources",
+      "Path": "G:\\Ikosa\\Root\\Packages"
+    }
+  ],
+  "Campaigns": [
+    {
+      "Name": "campaigns",
+      "Path": "G:\\Ikosa\\Root\\Campaigns"
+    }
+  ],
+  "TeamTracking": [
+    {
+      "Name": "teams",
+      "Path": "G:\\Ikosa\\Root\\Tracking"
+    }
+  ]
+}

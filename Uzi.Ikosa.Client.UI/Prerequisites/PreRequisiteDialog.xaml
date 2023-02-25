@@ -1,0 +1,25 @@
+﻿<Window x:Class="Uzi.Ikosa.Client.UI.PreRequisiteDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:uicui="clr-namespace:Uzi.Ikosa.Client.UI" WindowStartupLocation="CenterOwner"
+        Title="PreRequisiteDialog" SizeToContent="Height" Width="300">
+    <Grid>
+        <Grid.Resources>
+            <Style TargetType="Button">
+                <Setter Property="MinWidth" Value="72"/>
+                <Setter Property="HorizontalAlignment" Value="Right"/>
+                <Setter Property="Margin" Value="2"/>
+            </Style>
+        </Grid.Resources>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition />
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Label Grid.Row="0">Prerequisites</Label>
+        <uicui:PrerequisiteList x:Name="preList" Grid.Row="1" Margin="2" DataContext="{Binding Path=Prerequisites}"/>
+        <DockPanel Grid.Row="2" LastChildFill="False">
+            <Button DockPanel.Dock="Right" Content="OK" IsDefault="True" Command="{Binding Path=DoSendPrerequisites}" />
+        </DockPanel>
+    </Grid>
+</Window>

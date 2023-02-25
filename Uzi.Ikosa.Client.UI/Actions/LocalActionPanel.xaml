@@ -1,0 +1,116 @@
+﻿<UserControl x:Class="Uzi.Ikosa.Client.UI.LocalActionPanel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:uipvm="clr-namespace:Uzi.Ikosa.Proxy.ViewModel;assembly=Uzi.Ikosa.Proxy"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:uicui="clr-namespace:Uzi.Ikosa.Client.UI"
+             mc:Ignorable="d" >
+    <UserControl.CommandBindings>
+        <CommandBinding x:Name="cbGrasp" Command="{x:Static uicui:LocalActionPanel.GraspCommand}"
+                        CanExecute="cbGrasp_CanExecute" Executed="cbGrasp_Executed"/>
+        <CommandBinding x:Name="cbSearch" Command="{x:Static uicui:LocalActionPanel.SearchCommand}"
+                        CanExecute="cbSearch_CanExecute" Executed="cbSearch_Executed"/>
+    </UserControl.CommandBindings>
+    <DockPanel LastChildFill="False" FocusManager.IsFocusScope="True">
+        <ToggleButton Content="Pin" DockPanel.Dock="Left" MinWidth="56" IsChecked="{Binding Path=IsListed}" Visibility="{Binding Path=PinVisibility}"/>
+        <Label BorderBrush="Black" BorderThickness="1" Background="LightGoldenrodYellow"
+               Visibility="Collapsed"
+               ToolTipService.ShowDuration="40000" 
+               DockPanel.Dock="Left" VerticalContentAlignment="Center">
+            <Label.Content>
+                <StackPanel MinWidth="48" Orientation="Vertical">
+                    <TextBlock FontSize="12" FontWeight="Bold" Text="Time"></TextBlock>
+                    <TextBlock FontSize="12" DataContext="{Binding Path=Budget}" Text="{Binding Path=CurrentTime, StringFormat=0.000}"></TextBlock>
+                </StackPanel>
+            </Label.Content>
+            <Label.ToolTip>
+                <StackPanel>
+                    <CheckBox Content="Using Turn" IsChecked="{Binding Path=Budget.IsUsingTurn}"/>
+                    <CheckBox Content="Current Budget" IsChecked="{Binding Path=Budget.IsFocusedBudget}"/>
+                    <Border BorderBrush="Black" BorderThickness="1">
+                        <ItemsControl ItemsSource="{Binding Path=Budget.BudgetItems}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock>
+                                        <Run FontWeight="Bold" Text="{Binding Path=Name}"/>
+                                        <Run Text=" "/>
+                                        <Run Text="{Binding Path=Description}"/>
+                                    </TextBlock>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </Border>
+                </StackPanel>
+            </Label.ToolTip>
+        </Label>
+        <DockPanel DockPanel.Dock="Left" MinHeight="56">
+            <Button DockPanel.Dock="Bottom" Content="Abort" Visibility="{Binding Path=AbortVisibility}"
+                    Command="{Binding DoAbortSpan}"
+                    ToolTip="{Binding Path=Budget.HeldActivity.ActionKey}" ToolTipService.ShowDuration="10000"></Button>
+            <Label DockPanel.Dock="Top" Margin="1" ToolTipService.ShowDuration="40000" 
+                   HorizontalContentAlignment="Center" VerticalContentAlignment="Center" 
+                   MinWidth="64" x:Name="lblBudgetParts" FontWeight="Bold">
+                <Label.ToolTip>
+                    <StackPanel>
+                        <uicui:ActorTurnTrackerPanel DataContext="{Binding}"/>
+                        <CheckBox Content="Using Turn" IsChecked="{Binding Path=Budget.IsUsingTurn}"/>
+                        <CheckBox Content="Current Budget" IsChecked="{Binding Path=Budget.IsFocusedBudget}"/>
+                        <Border BorderBrush="Black" BorderThickness="1">
+                            <ItemsControl ItemsSource="{Binding Path=Budget.BudgetItems}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock>
+                                            <Run FontWeight="Bold" Text="{Binding Path=Name}"/>
+                                            <Run Text=" "/>
+                                            <Run Text="{Binding Path=Description}"/>
+                                        </TextBlock>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </Border>
+                    </StackPanel>
+                </Label.ToolTip>
+            </Label>
+        </DockPanel>
+        <UniformGrid Rows="1" Columns="2" Background="DarkGray" Margin="2,0,0,0" DockPanel.Dock="Right">
+            <Button TabIndex="2" Content="Cancel" Margin="1" Padding="2,0" x:Name="btnCancel" Command="{Binding Path=DoCancel}" FontSize="10" Focusable="False" />
+            <Button TabIndex="3" Content="End" Margin="1" x:Name="btnEndTurn" Command="{Binding Path=DoEndTurn}" FontSize="10" Focusable="False" />
+        </UniformGrid>
+        <Grid DataContext="{Binding Path=ObservableActor}">
+            <uicui:AimPointPanel Margin="4,0" x:Name="actAimPoint" MinHeight="34" IsEnabled="False"
+                                 DataContext="{Binding}" VerticalAlignment="Center"
+                                 LocaleViewModel="{Binding Path=LocaleViewModel}" 
+                                 ForwardHeading="{Binding Path=LocaleViewModel.ForwardHeading}"
+                                 SensorHost="{Binding Path=LocaleViewModel.Sensors}" 
+                                 AimPointActivation="{Binding Path=AimPointActivation}">
+                <uicui:AimPointPanel.LayoutTransform>
+                    <ScaleTransform ScaleX="1.5" ScaleY="1.5"/>
+                </uicui:AimPointPanel.LayoutTransform>
+            </uicui:AimPointPanel>
+            <uicui:CellPointer DataContext="{Binding Path=LocaleViewModel}"
+                           SourceCell="{Binding Path=Sensors.AimCell}" 
+                           TargetCell="{Binding Path=TargetCell}" 
+                           DownFace="{Binding Path=Sensors.GravityAnchorFace}"
+                           Heading="{Binding Path=ForwardHeading}"
+                           Visibility="Hidden"
+                           x:Name="ptrCell" />
+            <uicui:IntersectPointer DataContext="{Binding Path=LocaleViewModel}"
+                           SourcePoint="{Binding Path=Sensors.AimPoint3D}" 
+                           TargetCell="{Binding Path=TargetCell}" 
+                           DownFace="{Binding Path=Sensors.GravityAnchorFace}"
+                           Heading="{Binding Path=ForwardHeading}"
+                           Visibility="Hidden"
+                           x:Name="ptrIntersect" />
+        </Grid>
+        <uicui:MoveActionPanel x:Name="actMove" MinHeight="34" TabIndex="0"
+                               DataContext="{Binding}" 
+                               Actions="{Binding Path=Actions}"
+                               IsEnabled="{Binding Path=ObservableActor.IsMoveEnabled}"
+                               Movements="{Binding Path=CreatureModel.Movements}" 
+                               SelectedMovement="{Binding Path=ObservableActor.MovementCommands.SelectedMovement}"
+                               Budget="{Binding Path=Budget}"
+                               LookHeading="{Binding Path=ObservableActor.LocaleViewModel.ForwardHeading}"
+                               Incline="{Binding Path=ObservableActor.LocaleViewModel.Sensors.Incline}"/>
+    </DockPanel>
+</UserControl>

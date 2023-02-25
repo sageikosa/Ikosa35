@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Uzi.Core.Range">
+    <Position X="1.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Actions\Ranges\Range.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Uzi.Core.DiceRange">
+    <Position X="0.75" Y="5.25" Width="2.25" />
+    <Members>
+      <Field Name="_MaxStepDice" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>QASAAAgAAIAAAAAAAAAAAAAAAAAAIAAAAAgAAAAAAEA=</HashCode>
+      <FileName>Actions\Ranges\DiceRange.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Uzi.Core.FixedRange">
+    <Position X="3.75" Y="5.25" Width="1.5" />
+    <Members>
+      <Field Name="_One" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAIAIAEAAAAAAAAIA=</HashCode>
+      <FileName>Actions\Ranges\FixedRange.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Uzi.Core.LinearRange">
+    <Position X="6.25" Y="1.5" Width="2.25" />
+    <Members>
+      <Field Name="_GroundStep" Hidden="true" />
+      <Field Name="_MaxRange" Hidden="true" />
+      <Field Name="_Offset" Hidden="true" />
+      <Field Name="_PerStep" Hidden="true" />
+      <Field Name="_StepSize" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>QACAAAgAAMgIAAAAAAAAAAAAAAAAIAAAIAkAAAAAAAA=</HashCode>
+      <FileName>Actions\Ranges\LinearRange.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Uzi.Core.PowerLevelRange">
+    <Position X="6.75" Y="5.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Actions\Ranges\PowerLevelRange.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

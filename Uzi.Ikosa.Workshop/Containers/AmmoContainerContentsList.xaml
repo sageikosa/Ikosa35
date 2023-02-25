@@ -1,0 +1,59 @@
+﻿<Window x:Class="Uzi.Ikosa.Workshop.AmmoContainerContentsList"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:local="clr-namespace:Uzi.Ikosa.Workshop"
+        xmlns:wpn="clr-namespace:Uzi.Ikosa.Items.Weapons.Ranged;assembly=Uzi.Ikosa"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" WindowStyle="ToolWindow" 
+        WindowStartupLocation="CenterOwner"
+        ResizeMode="CanResize" ShowInTaskbar="False"
+        Title="Ammo Container Contents" Height="240" Width="640">
+    <DockPanel>
+        <DockPanel.Resources>
+            <ResourceDictionary>
+                <ResourceDictionary.MergedDictionaries>
+                    <ResourceDictionary Source="/Adjuncts/AdjunctItemTemplates.xaml"/>
+                </ResourceDictionary.MergedDictionaries>
+            </ResourceDictionary>
+        </DockPanel.Resources>
+
+        <Menu DockPanel.Dock="Top" Height="20">
+            <MenuItem Command="{Binding Path=AddCmd}">
+                <MenuItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="/images/add.png"/>
+                        <TextBlock Text="Add"></TextBlock>
+                    </StackPanel>
+                </MenuItem.Header>
+            </MenuItem>
+            <MenuItem Command="{Binding Path=RemoveCmd}" 
+                      CommandParameter="{Binding ElementName=lstAmmoSets, Path=SelectedItem}">
+                <MenuItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="/images/delete.png"/>
+                        <TextBlock Text="Remove"></TextBlock>
+                    </StackPanel>
+                </MenuItem.Header>
+            </MenuItem>
+            <MenuItem Command="{Binding Path=ExtractCmd}" 
+                      CommandParameter="{Binding ElementName=lstAmmoSets, Path=SelectedItem}"
+                      Header="Extract">
+            </MenuItem>
+            <MenuItem Command="{Binding Path=IdentityCmd}" 
+                      CommandParameter="{Binding ElementName=lstAmmoSets, Path=SelectedItem}">
+                <MenuItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="/images/information.png"/>
+                        <TextBlock Text="Identity"></TextBlock>
+                    </StackPanel>
+                </MenuItem.Header>
+            </MenuItem>
+        </Menu>
+        <ListBox x:Name="lstAmmoSets"
+                 DataContext="{Binding Bundle}"
+                 ItemsSource="{Binding Path=AmmoSets, NotifyOnTargetUpdated=True}"
+                 DockPanel.Dock="Left"
+                 TargetUpdated="lstAmmoSets_TargetUpdated"
+                 MinWidth="144" DisplayMemberPath="Ammunition.Name">
+        </ListBox>
+        <local:AmmoEditor DataContext="{Binding ElementName=lstAmmoSets, Path=SelectedItem}" ></local:AmmoEditor>
+    </DockPanel>
+</Window>

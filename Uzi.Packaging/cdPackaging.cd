@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Uzi.Packaging.CorePackage">
+    <Position X="4" Y="0.75" Width="2.25" />
+    <Members>
+      <Field Name="_AllParts" Hidden="true" />
+      <Field Name="_FileInfo" Hidden="true" />
+      <Field Name="_Package" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAMAgIAAAAAAAAAAAAAQBCQAgAQAABAAAFAAEALAgAA=</HashCode>
+      <FileName>CorePackage.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Package" />
+      <Property Name="FileInfo" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="Relationships" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="System.IO.Packaging.Package" Collapsed="true">
+    <Position X="0.75" Y="4.25" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="System.IO.FileInfo" Collapsed="true">
+    <Position X="0.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="System.IO.Packaging.PackagePart">
+    <Position X="11.25" Y="4" Width="2.5" />
+    <TypeIdentifier />
+    <ShowAsAssociation>
+      <Property Name="Package" />
+    </ShowAsAssociation>
+  </Class>
+  <Interface Name="Uzi.Packaging.ICorePart">
+    <Position X="8" Y="3.5" Width="1.5" />
+    <AssociationLine Name="Relationships" Type="Uzi.Packaging.ICorePart" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="8" Y="4.5" />
+        <Point X="7.625" Y="4.5" />
+        <Point X="7.625" Y="5.171" />
+        <Point X="8.982" Y="5.171" />
+        <Point X="8.982" Y="4.796" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAABAAAAAAAAIAAAA=</HashCode>
+      <FileName>ICorePart.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Relationships" />
+    </ShowAsCollectionAssociation>
+  </Interface>
+  <Interface Name="Uzi.Packaging.IBasePart">
+    <Position X="11.5" Y="0.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAEIAAIAAAAAAAAAAAAAAAAAAAAAAAgAAAAICAAAA=</HashCode>
+      <FileName>IBasePart.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Part" />
+      <Property Name="NameManager" />
+    </ShowAsAssociation>
+  </Interface>
+  <Interface Name="Uzi.Packaging.ICorePartNameManager">
+    <Position X="7.25" Y="1" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAgAA=</HashCode>
+      <FileName>ICorePartNameManager.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

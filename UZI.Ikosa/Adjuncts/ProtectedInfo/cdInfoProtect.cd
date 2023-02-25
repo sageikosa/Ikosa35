@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Uzi.Ikosa.Adjuncts.PowerBattery">
+    <Position X="10.5" Y="1.25" Width="2" />
+    <Members>
+      <Field Name="_CCtrl" Hidden="true" />
+      <Field Name="_MaxCharges" Hidden="true" />
+      <Field Name="_Used" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAQAIAAABAAABAAAACBAEAAIAAACAAIAAERBBI=</HashCode>
+      <FileName>Adjuncts\Batteries\PowerBattery.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Uzi.Ikosa.Items.SpellTrigger">
+    <Position X="8" Y="4" Width="2" />
+    <Members>
+      <Field Name="_Battery" Hidden="true" />
+      <Field Name="_ChargePerUse" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIAIIQAAAAAAAQACAAgAABIAAAAAAAAAAABA=</HashCode>
+      <FileName>Items\MagicItems\SpellTrigger.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Interface Name="Uzi.Ikosa.Adjuncts.IProtectable">
+    <Position X="8" Y="2.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Adjuncts\ProtectedInfo\IProtectable.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Uzi.Ikosa.Adjuncts.IExposeProtectable">
+    <Position X="4.75" Y="2.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Adjuncts\ProtectedInfo\IExposeProtectable.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Uzi.Ikosa.Proxy.VisualizationSvc.CubicInfo">
+    <Position X="4" Y="1.5" Width="1.5" />
+    <Members>
+      <Field Name="XLField" Hidden="true" />
+      <Field Name="YLField" Hidden="true" />
+      <Field Name="ZHField" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AADAAAAAAAAAARAAQAAAAAEACAADEAAACAAAAAAAYC0=</HashCode>
+      <FileName>Service References\VisualizationSvc\Reference.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Uzi.Ikosa.Proxy.VisualizationSvc.CellInfo">
+    <Position X="0.75" Y="1.25" Width="2" />
+    <Members>
+      <Field Name="extensionDataField" Hidden="true" />
+      <Field Name="XField" Hidden="true" />
+      <Field Name="YField" Hidden="true" />
+      <Field Name="ZField" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAACAAAgAgAAAAAAAAgAgAAQAAAEAAAAAAIAYAE=</HashCode>
+      <FileName>Service References\VisualizationSvc\Reference.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Uzi.Ikosa.Proxy.VisualizationSvc.PresentationInfo">
+    <Position X="9" Y="0.75" Width="2.5" />
+    <Members>
+      <Field Name="_Dependencies" Hidden="true" />
+      <Field Name="_Effects" Hidden="true" />
+      <Field Name="_Lock" Hidden="true" />
+      <Field Name="_Properties" Hidden="true" />
+      <Field Name="_Transforms" Hidden="true" />
+      <Field Name="ApparentScaleField" Hidden="true" />
+      <Field Name="CubeFitScaleField" Hidden="true" />
+      <Field Name="CustomTransformStringField" Hidden="true" />
+      <Field Name="DependencyPropertyInfosField" Hidden="true" />
+      <Field Name="IsAdjustingPositionField" Hidden="true" />
+      <Field Name="ModelKeyField" Hidden="true" />
+      <Field Name="ModelScaleField" Hidden="true" />
+      <Field Name="PivotField" Hidden="true" />
+      <Field Name="PresentingIDsField" Hidden="true" />
+      <Field Name="TiltField" Hidden="true" />
+      <Field Name="VisualEffectBytesField" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>QQAEAACAAyIECJBgQEAgAQIAQAiJAAAACAYAAAIAASA=</HashCode>
+      <FileName>PresentationInfo.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Uzi.Ikosa.Proxy.VisualizationSvc.SensorHostInfo">
+    <Position X="6.75" Y="4.75" Width="1.5" />
+    <Members>
+      <Field Name="ForTargetingField" Hidden="true" />
+      <Field Name="ForTerrainField" Hidden="true" />
+      <Field Name="IDField" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAQQIAAAgAAAAAACAAAAAAAAAAAAAAAAAAAAAAI=</HashCode>
+      <FileName>Service References\VisualizationSvc\Reference.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Uzi.Ikosa.Proxy.VisualizationSvc.ShadingInfo">
+    <Position X="6.75" Y="2.5" Width="1.5" />
+    <Members>
+      <Field Name="EffectBytesField" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAEAAgCAAAAAAAAAAAAAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>Service References\VisualizationSvc\Reference.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Uzi.Ikosa.Proxy.VisualizationSvc.LocalCellGroupInfo">
+    <Position X="6.75" Y="0.5" Width="1.75" />
+    <Members>
+      <Field Name="FreshnessField" Hidden="true" />
+      <Field Name="IsDeepShadowsField" Hidden="true" />
+      <Field Name="NameField" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAACAAAAEgAAAAAAAAAQAAAAAAAAAAIAAAAAAABA=</HashCode>
+      <FileName>Service References\VisualizationSvc\Reference.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

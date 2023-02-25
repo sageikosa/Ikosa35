@@ -1,0 +1,202 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Uzi.Ikosa.Actions.RangedAim">
+    <Position X="7.25" Y="6.5" Width="2.25" />
+    <Members>
+      <Field Name="_Range" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAABAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Actions\AimingModes\RangedAim.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Range" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Uzi.Ikosa.Actions.AwarenessAim">
+    <Position X="0.5" Y="9" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAAAAAAAABAABAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Actions\AimingModes\AwarenessAim.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="ValidTargetTypes" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Uzi.Ikosa.Actions.LocationAim">
+    <Position X="8" Y="9.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Actions\AimingModes\LocationAim.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Uzi.Ikosa.Actions.TouchAim">
+    <Position X="4.25" Y="9.25" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAAAAAAAABAABAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Actions\AimingModes\TouchAim.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="ValidTargetTypes" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Uzi.Ikosa.Actions.VolumeAim">
+    <Position X="10.75" Y="9.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Actions\AimingModes\VolumeAim.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Uzi.Ikosa.Actions.WallAim">
+    <Position X="3.75" Y="6.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Actions\AimingModes\WallAim.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Uzi.Ikosa.Actions.WallSurfaceAim">
+    <Position X="0.75" Y="5.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAQAAAABAAAAAAAAAAAAAAAAAAAAAAQAAAAEAA=</HashCode>
+      <FileName>Actions\AimingModes\WallSurfaceAim.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Uzi.Ikosa.Actions.PersonalAim">
+    <Position X="3.5" Y="4.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Actions\AimingModes\PersonalAim.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Uzi.Ikosa.Actions.PersonalConicAim">
+    <Position X="0.5" Y="3.5" Width="2.5" />
+    <Members>
+      <Field Name="_Dist" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAABAAAAAAABAAAAAAAAAAAA=</HashCode>
+      <FileName>Actions\AimingModes\PersonalConicAim.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Uzi.Ikosa.Actions.PersonalStartAim">
+    <Position X="3.25" Y="2.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Actions\AimingModes\PersonalStartAim.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Uzi.Core.AimingMode">
+    <Position X="7.25" Y="3.25" Width="2.25" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Uzi.Ikosa.Actions.AutoSpellResistanceAim">
+    <Position X="5" Y="0.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Actions\AimingModes\AutoSpellResistanceAim.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Uzi.Ikosa.Actions.MovementAim">
+    <Position X="9" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Actions\AimingModes\MovementAim.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Uzi.Ikosa.Actions.SuccessCheckAim">
+    <Position X="11.25" Y="0.5" Width="1.75" />
+    <Members>
+      <Field Name="_Check" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAA=</HashCode>
+      <FileName>Actions\AimingModes\SuccessCheckAim.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Uzi.Core.Range">
+    <Position X="10.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Uzi.Ikosa.Actions.FarRange">
+    <Position X="10.25" Y="3.5" Width="2" />
+    <Members>
+      <Field Name="_Factor" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAABAAAAEAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Actions\Ranges\FarRange.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Uzi.Ikosa.Actions.MediumRange">
+    <Position X="12.5" Y="3.5" Width="2.25" />
+    <Members>
+      <Field Name="_Factor" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAABAAAAEAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Actions\Ranges\MediumRange.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Uzi.Ikosa.Actions.MeleeRange">
+    <Position X="15" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Actions\Ranges\MeleeRange.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Uzi.Ikosa.Actions.NearRange">
+    <Position X="15" Y="3.5" Width="2" />
+    <Members>
+      <Field Name="_Doubler" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAACAAAA=</HashCode>
+      <FileName>Actions\Ranges\NearRange.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Uzi.Ikosa.Actions.StrikeZoneRange">
+    <Position X="13.5" Y="8.25" Width="1.5" />
+    <Members>
+      <Field Name="_Weapon" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAAAAAAABAAAAAAAAAAIAgAAAAAAAAAAAA=</HashCode>
+      <FileName>Actions\Ranges\StrikeZoneRange.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Uzi.Ikosa.Actions.AttackAim">
+    <Position X="5.25" Y="12" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Actions\AimingModes\AttackAim.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Uzi.Ikosa.Actions.LocationAttackAim">
+    <Position X="7.75" Y="11.25" Width="2.5" />
+    <Members>
+      <Field Name="_ARTarget" Hidden="true" />
+      <Field Name="_Surface" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAAAAAAAAAAAAAEAAAAAAAQAABAAAAAAA=</HashCode>
+      <FileName>Actions\AimingModes\LocationAttackAim.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Uzi.Ikosa.Actions.EnvironmentAim">
+    <Position X="10.75" Y="11.25" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Actions\AimingModes\EnvironmentAim.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="Uzi.Ikosa.Actions.ITargetType">
+    <Position X="1.25" Y="11.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Actions\TargetTypes\ITargetType.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

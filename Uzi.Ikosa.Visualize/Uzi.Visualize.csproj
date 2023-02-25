@@ -1,0 +1,423 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{3ED35492-9CA6-4DC9-8AC7-9DC6FB1BE470}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Uzi.Visualize</RootNamespace>
+    <AssemblyName>Uzi.Visualize</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+    <TargetFrameworkProfile />
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\CharacterModeler\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="WriteableBitmapEx.Wpf">
+      <HintPath>..\Uzi.Ikosa.Client\packages\WriteableBitmapEx.1.0.12.0\lib\net40\WriteableBitmapEx.Wpf.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AnchorFace.cs" />
+    <Compile Include="AnchorFaceList.cs" />
+    <Compile Include="AxisSnap.cs" />
+    <Compile Include="Brushes\AccentBrushes.cs" />
+    <Compile Include="Brushes\BrushCollection.cs" />
+    <Compile Include="Brushes\BrushCollectionListItem.cs" />
+    <Compile Include="Brushes\BrushDefinition.cs" />
+    <Compile Include="Brushes\BrushDefinitionListItem.cs" />
+    <Compile Include="Brushes\BrushesResourceReference.cs" />
+    <Compile Include="Brushes\BrushSetsResourceReference.cs" />
+    <Compile Include="Brushes\IGetBrushByEffect.cs" />
+    <Compile Include="Brushes\IkosaVisualEffect.cs" />
+    <Compile Include="Axis.cs" />
+    <Compile Include="Brushes\ImageBrushDefinition.cs" />
+    <Compile Include="Brushes\IResolveBrushCollection.cs" />
+    <Compile Include="Brushes\IResolveMaterial.cs" />
+    <Compile Include="Brushes\LinearGradientBrushDefinition.cs" />
+    <Compile Include="Brushes\ResourceBrushesResolver.cs" />
+    <Compile Include="Brushes\ResourceBrushSetResolver.cs" />
+    <Compile Include="Brushes\SolidBrushDefinition.cs" />
+    <Compile Include="Brushes\StackedBrushDefinition.cs" />
+    <Compile Include="Buildable\BuildableContext.cs" />
+    <Compile Include="Buildable\BuildableMaterial.cs" />
+    <Compile Include="Buildable\BuildableMesh.cs" />
+    <Compile Include="Buildable\BuildableMeshBucket.cs" />
+    <Compile Include="Buildable\BuildableMeshKey.cs" />
+    <Compile Include="Buildable\BuildableMeshKeyComparer.cs" />
+    <Compile Include="Buildable\BuildableGroup.cs" />
+    <Compile Include="Builders\Cone.cs" />
+    <Compile Include="Builders\Cubic.cs" />
+    <Compile Include="Builders\Cylinder.cs" />
+    <Compile Include="Builders\Sphere.cs" />
+    <Compile Include="CellGeometry\GeometricSize.cs" />
+    <Compile Include="CellGeometry\LocationAimMode.cs" />
+    <Compile Include="CellSnap.cs" />
+    <Compile Include="Cells\CellSpaceFaces.cs" />
+    <Compile Include="Cells\CylinderParams.cs" />
+    <Compile Include="Cells\CylinderSpaceFaces.cs" />
+    <Compile Include="Cells\CylinderStyle.cs" />
+    <Compile Include="Cells\ILFrameSpace.cs" />
+    <Compile Include="Cells\IPlusCellSpace.cs" />
+    <Compile Include="Cells\IStairs.cs" />
+    <Compile Include="Cells\IWedgeStruc.cs" />
+    <Compile Include="Cells\SliverSlopeParams.cs" />
+    <Compile Include="Cells\EdgeStruc.cs" />
+    <Compile Include="Cells\WedgeParams.cs" />
+    <Compile Include="BoundarySide.cs" />
+    <Compile Include="Contracts\CellInfo.cs" />
+    <Compile Include="Contracts\CubicInfo.cs" />
+    <Compile Include="Contracts\IVisualizationCallback.cs" />
+    <Compile Include="Contracts\IVisualizationService.cs" />
+    <Compile Include="Contracts\Resources\BitmapImageInfo.cs" />
+    <Compile Include="Contracts\Resources\BrushCollectionInfo.cs" />
+    <Compile Include="Contracts\Resources\IconInfo.cs" />
+    <Compile Include="Contracts\Resources\MetaModel3DInfo.cs" />
+    <Compile Include="Contracts\Resources\MetaModelFragmentInfo.cs" />
+    <Compile Include="Contracts\Resources\Model3DInfo.cs" />
+    <Compile Include="Contracts\Tactical\BackgroundCellGroupInfo.cs" />
+    <Compile Include="Contracts\Tactical\CellEdgeInfo.cs" />
+    <Compile Include="Contracts\Tactical\CellSpaceInfo.cs" />
+    <Compile Include="Contracts\Tactical\CharacterPogAdornment.cs" />
+    <Compile Include="Contracts\Tactical\CornerSpaceInfo.cs" />
+    <Compile Include="Contracts\Tactical\CylinderSpaceInfo.cs" />
+    <Compile Include="Contracts\Tactical\FreshnessTag.cs" />
+    <Compile Include="Cells\ICellEdge.cs" />
+    <Compile Include="Contracts\Tactical\IconPresentationInfo.cs" />
+    <Compile Include="Contracts\Tactical\IconReferenceInfo.cs" />
+    <Compile Include="Contracts\Tactical\IIconReference.cs" />
+    <Compile Include="Contracts\Tactical\LFrameSpaceInfo.cs" />
+    <Compile Include="Contracts\Tactical\LocalCellGroupInfo.cs" />
+    <Compile Include="Contracts\Tactical\ModelAdornment.cs" />
+    <Compile Include="Contracts\Tactical\ModelPresentationInfo.cs" />
+    <Compile Include="Contracts\Tactical\PanelShadingInfo.cs" />
+    <Compile Include="Contracts\Tactical\Panels\BasePanelInfo.cs" />
+    <Compile Include="Contracts\Tactical\Panels\CornerPanelInfo.cs" />
+    <Compile Include="Contracts\Tactical\Panels\DiagonalCompositeInfo.cs" />
+    <Compile Include="Contracts\Tactical\Panels\LFramePanelInfo.cs" />
+    <Compile Include="Contracts\Tactical\Panels\MaterialFillInfo.cs" />
+    <Compile Include="Contracts\Tactical\Panels\NormalPanelInfo.cs" />
+    <Compile Include="Contracts\Tactical\Panels\PanelSpaceInfo.cs" />
+    <Compile Include="Contracts\Tactical\Panels\SlopeCompositeInfo.cs" />
+    <Compile Include="Contracts\Tactical\PointEffect.cs" />
+    <Compile Include="Contracts\Tactical\PresentationInfo.cs" />
+    <Compile Include="Contracts\Tactical\RoomInfo.cs" />
+    <Compile Include="Contracts\Tactical\SensorHostInfo.cs" />
+    <Compile Include="Contracts\Tactical\ShadingInfo.cs" />
+    <Compile Include="Contracts\Tactical\SliverSpaceInfo.cs" />
+    <Compile Include="Contracts\Tactical\SlopeSpaceInfo.cs" />
+    <Compile Include="Contracts\Tactical\SmallCylinderSpaceInfo.cs" />
+    <Compile Include="Contracts\Tactical\SoundAwarenessInfo.cs" />
+    <Compile Include="Contracts\Tactical\SoundInfo.cs" />
+    <Compile Include="Contracts\Tactical\StairSpaceInfo.cs" />
+    <Compile Include="Contracts\Tactical\TacticalPoint.cs" />
+    <Compile Include="Contracts\Tactical\TileSetInfo.cs" />
+    <Compile Include="Contracts\Tactical\Transforms\AxisAngleRotate3DInfo.cs" />
+    <Compile Include="Contracts\Tactical\Transforms\Transform3DInfo.cs" />
+    <Compile Include="Contracts\Tactical\Transforms\Translate3DInfo.cs" />
+    <Compile Include="Contracts\VisualizationKnownTypes.cs" />
+    <Compile Include="Contracts\Visualizers\Transitory\FlyingOrbTransitionInfo.cs" />
+    <Compile Include="Contracts\Visualizers\Transitory\LinearTransitionInfo.cs" />
+    <Compile Include="Contracts\Visualizers\Transitory\MarkerBallInfo.cs" />
+    <Compile Include="Contracts\Visualizers\Transitory\MaterialVisualizerInfo.cs" />
+    <Compile Include="Contracts\Visualizers\Transitory\RayBoltTransitionInfo.cs" />
+    <Compile Include="Contracts\Visualizers\Transitory\RaySurgeTransitionInfo.cs" />
+    <Compile Include="Contracts\Visualizers\Transitory\RayTransitionInfo.cs" />
+    <Compile Include="Contracts\Visualizers\Transitory\TransientDelayInfo.cs" />
+    <Compile Include="Contracts\Visualizers\Transitory\TransientVisualizerInfo.cs" />
+    <Compile Include="Geometry3D\DistantPoint3D.cs" />
+    <Compile Include="Geometry3D\Transform3DExtend.cs" />
+    <Compile Include="Geometry3D\VolumetricMeshMaker.cs" />
+    <Compile Include="Iconography\IconDetailLevel.cs" />
+    <Compile Include="Iconography\IconsResourceReference.cs" />
+    <Compile Include="Iconography\IResolveIcon.cs" />
+    <Compile Include="Iconography\IZoomIcons.cs" />
+    <Compile Include="Iconography\ResourceContent.cs" />
+    <Compile Include="Iconography\ResourceIconResolver.cs" />
+    <Compile Include="MarkupExtensions\ColorBrushVal.cs" />
+    <Compile Include="MarkupExtensions\ColorVal.cs" />
+    <Compile Include="MarkupExtensions\DoubleProduct.cs" />
+    <Compile Include="MarkupExtensions\DoubleReference.cs" />
+    <Compile Include="MarkupExtensions\DoubleSum.cs" />
+    <Compile Include="MarkupExtensions\DoubleVal.cs" />
+    <Compile Include="MarkupExtensions\ExternalVal.cs" />
+    <Compile Include="MarkupExtensions\IntReference.cs" />
+    <Compile Include="MarkupExtensions\IntVal.cs" />
+    <Compile Include="MarkupExtensions\Meshes\EllipticalTubeMesh.cs" />
+    <Compile Include="MarkupExtensions\ParameterReference.cs" />
+    <Compile Include="MetaModels\DoubleReferenceCollection.cs" />
+    <Compile Include="MetaModels\IMetaModelFragmentTransform.cs" />
+    <Compile Include="MetaModels\IntReferenceCollection.cs" />
+    <Compile Include="MetaModels\MetaModelFragmentListItem.cs" />
+    <Compile Include="MetaModels\MetaModelResolutionStack.cs" />
+    <Compile Include="MetaModels\MetaModelRootNode.cs" />
+    <Compile Include="MetaModels\ResourceMetaModelFragmentResolver.cs" />
+    <Compile Include="MetaModels\FragmentsResourceReference.cs" />
+    <Compile Include="Models\Presentations\IconPresentation.cs" />
+    <Compile Include="Models\Presentations\IPresentation.cs" />
+    <Compile Include="Models\Presentable.cs" />
+    <Compile Include="Models\Presentations\Presentation.cs" />
+    <Compile Include="Models\Presentations\VisualEffectValue.cs" />
+    <Compile Include="Packages\BitmapImagePart.cs" />
+    <Compile Include="Packages\BrushCollectionPart.cs" />
+    <Compile Include="Packages\IconPart.cs" />
+    <Compile Include="Packages\IPartResolveBrushCollection.cs" />
+    <Compile Include="Packages\IPartResolveFragment.cs" />
+    <Compile Include="Packages\IPartResolveIcon.cs" />
+    <Compile Include="Packages\IPartResolveImage.cs" />
+    <Compile Include="Packages\IPartResolveMaterial.cs" />
+    <Compile Include="Packages\IPartResolveModel3D.cs" />
+    <Compile Include="Packages\MetaModel.cs" />
+    <Compile Include="Packages\MetaModelFragment.cs" />
+    <Compile Include="Packages\Model3DPart.cs" />
+    <Compile Include="Packages\ModelCacheSelector.cs" />
+    <Compile Include="Packages\ModelPartFactory.cs" />
+    <Compile Include="Packages\References\ReferencedResourceManager.cs" />
+    <Compile Include="Packaging\IconPart.cs" />
+    <Compile Include="Packaging\ICorePartBrushCollectionResolver.cs" />
+    <Compile Include="Packaging\ICorePartIconResolver.cs" />
+    <Compile Include="Packaging\ICorePartMetaModelFragmentResolver.cs" />
+    <Compile Include="Packaging\ICorePartModel3DResolver.cs" />
+    <Compile Include="Images\ImagesResourceReference.cs" />
+    <Compile Include="Models\ModelsResourceReference.cs" />
+    <Compile Include="Packaging\ModelCacheSelector.cs" />
+    <Compile Include="Packages\VisualResourcePackage.cs" />
+    <Compile Include="Packages\VisualResourcePart.cs" />
+    <Compile Include="Packaging\VisualResources.cs" />
+    <Compile Include="Panels\FaceEdge.cs" />
+    <Compile Include="Panels\IBasePanel.cs" />
+    <Compile Include="Cells\ICellSpace.cs" />
+    <Compile Include="Cells\IndexStruct.cs" />
+    <Compile Include="Cells\IWedgeSpace.cs" />
+    <Compile Include="Cells\LFrameSpaceFaces.cs" />
+    <Compile Include="Cells\SliverInverter.cs" />
+    <Compile Include="Cells\SliverSpaceFaces.cs" />
+    <Compile Include="Cells\SlopeInverter.cs" />
+    <Compile Include="Cells\SlopeSpaceFaces.cs" />
+    <Compile Include="Cells\StairSpaceFaces.cs" />
+    <Compile Include="Cells\WedgeSpaceFaces.cs" />
+    <Compile Include="DrawingTools.cs" />
+    <Compile Include="Geometry3D\OrthoRectangularPrism.cs" />
+    <Compile Include="Geometry3D\PlanarPoints.cs" />
+    <Compile Include="Geometry3D\PlanarShell.cs" />
+    <Compile Include="Geometry3D\PlaneListShell.cs" />
+    <Compile Include="CellGeometry\CellPosition.cs" />
+    <Compile Include="CellGeometry\MultiBuilder.cs" />
+    <Compile Include="CellGeometry\IGeometricHelper.cs" />
+    <Compile Include="CellGeometry\ICellLocation.cs" />
+    <Compile Include="CellGeometry\IGeometricRegion.cs" />
+    <Compile Include="CellGeometry\IGeometricSize.cs" />
+    <Compile Include="CellGeometry\IGeometryBuilder.cs" />
+    <Compile Include="CellGeometry\ThreeDimensionalBitArray.cs" />
+    <Compile Include="Geometry3D\PlaneListShellBuilder.cs" />
+    <Compile Include="Geometry3D\Segment3D.cs" />
+    <Compile Include="HedralGenerator.cs" />
+    <Compile Include="IGetImageByEffect.cs" />
+    <Compile Include="Images\BackSenseEffectExtension.cs" />
+    <Compile Include="Images\BottomSenseEffectExtension.cs" />
+    <Compile Include="Images\ResourceBitmapImageResolver.cs" />
+    <Compile Include="Images\FrontSenseEffectExtension.cs" />
+    <Compile Include="Images\IkosaEffectColorBrush.cs" />
+    <Compile Include="Images\IkosaEffectImageSource.cs" />
+    <Compile Include="Images\IkosaImageSource.cs" />
+    <Compile Include="Images\IResolveBitmapImage.cs" />
+    <Compile Include="Images\LeftSenseEffectExtension.cs" />
+    <Compile Include="Images\RightSenseEffectExtension.cs" />
+    <Compile Include="Images\TopSenseEffectExtension.cs" />
+    <Compile Include="MarkupExtensions\Meshes\ConeMesh.cs" />
+    <Compile Include="MarkupExtensions\Meshes\CylinderMesh.cs" />
+    <Compile Include="MarkupExtensions\Meshes\ICacheMeshes.cs" />
+    <Compile Include="MarkupExtensions\Meshes\MeshCache.cs" />
+    <Compile Include="MarkupExtensions\Meshes\MeshExtension.cs" />
+    <Compile Include="MarkupExtensions\Meshes\SphereMesh.cs" />
+    <Compile Include="MarkupExtensions\Point3DVal.cs" />
+    <Compile Include="MarkupExtensions\Vector3DVal.cs" />
+    <Compile Include="MetaModels\BrushCrossRefNode.cs" />
+    <Compile Include="MetaModels\BrushCrossRefNodeCollection.cs" />
+    <Compile Include="MetaModels\FragmentReference.cs" />
+    <Compile Include="MetaModels\IResolveFragment.cs" />
+    <Compile Include="MetaModels\MetaModelFragmentNode.cs" />
+    <Compile Include="MetaModels\MetaModelFragmentNodeCollection.cs" />
+    <Compile Include="Brushes\VisualEffectMaterial.cs" />
+    <Compile Include="MetaModels\MetaModelState.cs" />
+    <Compile Include="Models\Model3DPartListItem.cs" />
+    <Compile Include="Models\ResourceModel3DResolver.cs" />
+    <Compile Include="Models\IModelTransformer.cs" />
+    <Compile Include="Models\IResolveModel3D.cs" />
+    <Compile Include="Models\ModelGenerator.cs" />
+    <Compile Include="Models\OpenableState.cs" />
+    <Compile Include="Models\Presentations\ModelPresentation.cs" />
+    <Compile Include="ConicGenerator.cs" />
+    <Compile Include="Models\RootModel3DResolver.cs" />
+    <Compile Include="Models\ScaleConverter.cs" />
+    <Compile Include="Packaging\BitmapImagePart.cs" />
+    <Compile Include="Packaging\BrushCollectionPart.cs" />
+    <Compile Include="Packaging\MetaModel.cs" />
+    <Compile Include="Packaging\MetaModelFragment.cs" />
+    <Compile Include="Packaging\Model3DPart.cs" />
+    <Compile Include="Packaging\ICorePartImageResolver.cs" />
+    <Compile Include="Packaging\ResourceReference.cs" />
+    <Compile Include="Packaging\ResourceReferenceManager.cs" />
+    <Compile Include="Packaging\VisualizeBasePartFactory.cs" />
+    <Compile Include="OptionalAnchorFace.cs" />
+    <Compile Include="Panels\ICornerPanel.cs" />
+    <Compile Include="Panels\ILFramePanel.cs" />
+    <Compile Include="Panels\INaturalPanel.cs" />
+    <Compile Include="Panels\IPanelCellSpace.cs" />
+    <Compile Include="Panels\ISlopeComposite.cs" />
+    <Compile Include="Panels\PanelFill.cs" />
+    <Compile Include="Panels\PanelInterior.cs" />
+    <Compile Include="Panels\PanelParams.cs" />
+    <Compile Include="Panels\PanelSpaceFaces.cs" />
+    <Compile Include="Panels\PanelType.cs" />
+    <Compile Include="MarkupExtensions\ParameterExtension.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="MarkupExtensions\SenseEffectExtension.cs" />
+    <Compile Include="Shaders\BloomEffect.cs" />
+    <Compile Include="Shaders\DarknessEffect.cs" />
+    <Compile Include="Shaders\EmbossedEffect.cs" />
+    <Compile Include="Shaders\MonochromeEffect.cs" />
+    <Compile Include="Shaders\ShaderHelper.cs" />
+    <Compile Include="SideIndex.cs" />
+    <Compile Include="Contracts\Statics.cs" />
+    <Compile Include="TriangleCorner.cs" />
+    <Compile Include="Geometry3D\Vector3D.cs" />
+    <Compile Include="Verticality.cs" />
+    <Compile Include="VisualEffect.cs" />
+    <Compile Include="Visualizer\IPresentationInputBinder.cs" />
+    <Compile Include="Visualizer\ToolTipHelper.cs" />
+    <Compile Include="Visualizer\Transitory\FlyingOrbTransition.cs" />
+    <Compile Include="Visualizer\Transitory\LinearTransition.cs" />
+    <Compile Include="Visualizer\Transitory\MarkerBall.cs" />
+    <Compile Include="Visualizer\PersistentVisualizer.cs" />
+    <Compile Include="Visualizer\Transitory\ModelProjectileTransition.cs" />
+    <Compile Include="Visualizer\Transitory\RayBoltTransition.cs" />
+    <Compile Include="Visualizer\Transitory\RaySurgeFromTransition.cs" />
+    <Compile Include="Contracts\Visualizers\Transitory\RaySurgeFromTransitionInfo.cs" />
+    <Compile Include="Visualizer\Transitory\RaySurgeToTransition.cs" />
+    <Compile Include="Contracts\Visualizers\Transitory\RaySurgeToTransitionInfo.cs" />
+    <Compile Include="Visualizer\Transitory\RaySurgeTransition.cs" />
+    <Compile Include="Visualizer\Transitory\RayTransition.cs" />
+    <Compile Include="Visualizer\Transitory\TransientDelay.cs" />
+    <Compile Include="Visualizer\Transitory\TransientVisualizer.cs" />
+    <Compile Include="Visualizer\Transitory\MaterialVisualizer.cs" />
+    <Compile Include="Visualizer\Visualization.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\HelixToolkit.Wpf\HelixToolkit.Wpf_NET40.csproj">
+      <Project>{3f3b4548-a9db-4874-86f7-e7c4fec8a351}</Project>
+      <Name>HelixToolkit.Wpf_NET40</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Ikosa.Packaging\Ikosa.Packaging.csproj">
+      <Project>{6e1e9988-6917-4af4-9b58-6f66fd243edd}</Project>
+      <Name>Ikosa.Packaging</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Uzi.Core.Contracts\Uzi.Core.Contracts.csproj">
+      <Project>{A684AC4C-1911-4101-897D-B97DEAD744C2}</Project>
+      <Name>Uzi.Core.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Uzi.Packaging\Uzi.Packaging.csproj">
+      <Project>{63EF7070-3DFA-4D1F-B80C-1415D3C9CA1A}</Project>
+      <Name>Uzi.Packaging</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\NoImage.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Outline.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\NoModel.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Black.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Contracts\Tactical\cdCellSpaces.cd" />
+    <None Include="Contracts\Tactical\cdExtraInfoInfo.cd" />
+    <None Include="Contracts\Tactical\Panels\cdPanelContracts.cd" />
+    <Resource Include="Shaders\Monochrome.ps" />
+    <Resource Include="Shaders\Bloom.ps" />
+    <Resource Include="Shaders\Darkness.ps" />
+    <Resource Include="Shaders\Embossed.ps" />
+    <None Include="Visualizer\cdVisualization.cd" />
+    <None Include="Visualizer\Transitory\cdTransientVisualization.cd" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Shaders\FX\Embossed.fx" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Shaders\FX\Monochrome.fx" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Shaders\FX\Bloom.fx" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Shaders\FX\Darkness.fx" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json">
+      <Version>12.0.3</Version>
+    </PackageReference>
+    <PackageReference Include="System.ValueTuple">
+      <Version>4.5.0</Version>
+    </PackageReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,66 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup Label="Globals">
+    <SccProjectName>%24/Guildsmanship/Uzi.Core/Uzi.Ikosa.Workshop</SccProjectName>
+    <SccProvider>{4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}</SccProvider>
+    <SccAuxPath>https://guildsmanship.visualstudio.com</SccAuxPath>
+    <SccLocalPath>.</SccLocalPath>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net5.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <UseWindowsForms>true</UseWindowsForms>
+    <RootNamespace>Uzi.Ikosa.Workshop</RootNamespace>
+    <AssemblyName>Uzi.Ikosa.Workshop</AssemblyName>
+    <ApplicationIcon>IkosaWorkshop.ico</ApplicationIcon>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+  </PropertyGroup>
+ 
+  <ItemGroup>
+    <ProjectReference Include="..\HelixToolkit.Wpf\HelixToolkit.Wpf_NET40.csproj">
+      <Project>{3f3b4548-a9db-4874-86f7-e7c4fec8a351}</Project>
+      <Name>HelixToolkit.Wpf_NET40</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Uzi.Core.Contracts\Uzi.Core.Contracts.csproj">
+      <Project>{A684AC4C-1911-4101-897D-B97DEAD744C2}</Project>
+      <Name>Uzi.Core.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Uzi.Core\Uzi.Core.csproj">
+      <Project>{93208C4B-9999-44A3-9477-1D034F15EB89}</Project>
+      <Name>Uzi.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Uzi.Ikosa.Contracts\Uzi.Ikosa.Contracts.csproj">
+      <Project>{7DDE27BD-1C99-4054-AF54-321BB387AEF1}</Project>
+      <Name>Uzi.Ikosa.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Uzi.Ikosa.UI\Uzi.Ikosa.UI.csproj">
+      <Project>{2DF21FEC-BDF3-4A08-A8E1-3DE24E73308C}</Project>
+      <Name>Uzi.Ikosa.UI</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Uzi.Ikosa.Visualize\Uzi.Visualize.csproj">
+      <Project>{3ED35492-9CA6-4DC9-8AC7-9DC6FB1BE470}</Project>
+      <Name>Uzi.Visualize</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UZI.Ikosa\UZI.Ikosa.csproj">
+      <Project>{2FD3FB59-9A53-4EFD-9E54-301EFCB0A47D}</Project>
+      <Name>UZI.Ikosa</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Uzi.Packaging\Uzi.Packaging.csproj">
+      <Project>{63EF7070-3DFA-4D1F-B80C-1415D3C9CA1A}</Project>
+      <Name>Uzi.Packaging</Name>
+    </ProjectReference>
+  </ItemGroup>
+ 
+  <ItemGroup>
+    <Resource Include="**\*.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Extended.Wpf.Toolkit" Version="4.0.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="System.ValueTuple">
+      <Version>4.5.0</Version>
+    </PackageReference>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,84 @@
+﻿<UserControl x:Class="Uzi.Ikosa.Client.UI.AdvancementHealthPoints"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Uzi.Ikosa.Client.UI"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <Style TargetType="UniformGrid">
+            <Setter Property="Visibility" Value="Collapsed"/>
+        </Style>
+        <Style TargetType="Button" x:Key="bsSelected">
+            <Setter Property="Focusable" Value="False"/>
+            <Setter Property="Background" Value="Cyan"/>
+            <Setter Property="MinWidth" Value="32"/>
+            <EventSetter Event="Click" Handler="HealthPoint_Click"/>
+        </Style>
+        <Style TargetType="Button" x:Key="bsValue">
+            <Setter Property="Focusable" Value="False"/>
+            <Setter Property="MinWidth" Value="32"/>
+            <EventSetter Event="Click" Handler="HealthPoint_Click"/>
+        </Style>
+    </UserControl.Resources>
+    <StackPanel Orientation="Vertical" MaxWidth="192" HorizontalAlignment="Left">
+        <UniformGrid Columns="4" Rows="3" x:Name="ug12">
+            <Button Style="{StaticResource bsValue}" Content="12"/>
+            <Button Style="{StaticResource bsValue}" Content="11"/>
+            <Button Style="{StaticResource bsValue}" Content="10"/>
+            <Button Style="{StaticResource bsValue}" Content="9"/>
+            <Button Style="{StaticResource bsValue}" Content="8"/>
+            <Button Style="{StaticResource bsValue}" Content="7"/>
+            <Button Style="{StaticResource bsValue}" Content="6"/>
+            <Button Style="{StaticResource bsValue}" Content="5"/>
+            <Button Style="{StaticResource bsValue}" Content="4"/>
+            <Button Style="{StaticResource bsValue}" Content="3"/>
+            <Button Style="{StaticResource bsValue}" Content="2"/>
+            <Button Style="{StaticResource bsValue}" Content="1"/>
+        </UniformGrid>
+        <UniformGrid Columns="5" Rows="2" x:Name="ug10">
+            <Button Style="{StaticResource bsValue}" Content="10"/>
+            <Button Style="{StaticResource bsValue}" Content="9"/>
+            <Button Style="{StaticResource bsValue}" Content="8"/>
+            <Button Style="{StaticResource bsValue}" Content="7"/>
+            <Button Style="{StaticResource bsValue}" Content="6"/>
+            <Button Style="{StaticResource bsValue}" Content="5"/>
+            <Button Style="{StaticResource bsValue}" Content="4"/>
+            <Button Style="{StaticResource bsValue}" Content="3"/>
+            <Button Style="{StaticResource bsValue}" Content="2"/>
+            <Button Style="{StaticResource bsValue}" Content="1"/>
+        </UniformGrid>
+        <UniformGrid Columns="4" Rows="2" x:Name="ug8">
+            <Button Style="{StaticResource bsValue}" Content="8"/>
+            <Button Style="{StaticResource bsValue}" Content="7"/>
+            <Button Style="{StaticResource bsValue}" Content="6"/>
+            <Button Style="{StaticResource bsValue}" Content="5"/>
+            <Button Style="{StaticResource bsValue}" Content="4"/>
+            <Button Style="{StaticResource bsValue}" Content="3"/>
+            <Button Style="{StaticResource bsValue}" Content="2"/>
+            <Button Style="{StaticResource bsValue}" Content="1"/>
+        </UniformGrid>
+        <UniformGrid Columns="3" Rows="2" x:Name="ug6">
+            <Button Style="{StaticResource bsValue}" Content="6"/>
+            <Button Style="{StaticResource bsValue}" Content="5"/>
+            <Button Style="{StaticResource bsValue}" Content="4"/>
+            <Button Style="{StaticResource bsValue}" Content="3"/>
+            <Button Style="{StaticResource bsValue}" Content="2"/>
+            <Button Style="{StaticResource bsValue}" Content="1"/>
+        </UniformGrid>
+        <UniformGrid Columns="4" Rows="1" x:Name="ug4">
+            <Button Style="{StaticResource bsValue}" Content="4"/>
+            <Button Style="{StaticResource bsValue}" Content="3"/>
+            <Button Style="{StaticResource bsValue}" Content="2"/>
+            <Button Style="{StaticResource bsValue}" Content="1"/>
+        </UniformGrid>
+        <UniformGrid Columns="3" Rows="1" x:Name="ug3">
+            <Button Style="{StaticResource bsValue}" Content="3"/>
+            <Button Style="{StaticResource bsValue}" Content="2"/>
+            <Button Style="{StaticResource bsValue}" Content="1"/>
+        </UniformGrid>
+        <Button Content="Roll" Padding="2" Margin="1" x:Name="RollHealth"
+                            MinWidth="48" Click="RollHealth_Click"/>
+    </StackPanel>
+</UserControl>

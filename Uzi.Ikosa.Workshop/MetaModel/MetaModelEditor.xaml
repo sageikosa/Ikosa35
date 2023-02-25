@@ -1,0 +1,491 @@
+﻿<UserControl x:Class="Uzi.Ikosa.Workshop.MetaModelEditor"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:viz="clr-namespace:Uzi.Visualize;assembly=Uzi.Visualize"
+             xmlns:ht="clr-namespace:HelixToolkit.Wpf;assembly=HelixToolkit.Wpf"
+             xmlns:shop="clr-namespace:Uzi.Ikosa.Workshop"
+             xmlns:ui="clr-namespace:Uzi.Ikosa.UI;assembly=Uzi.Ikosa.UI"
+             xmlns:xceed="clr-namespace:Xceed.Wpf.Toolkit;assembly=Xceed.Wpf.Toolkit"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006">
+    <UserControl.CommandBindings>
+        <CommandBinding Command="{x:Static shop:MetaModelEditor.ClearXRef}" x:Name="cbClearXRef" CanExecute="cbClearXRef_CanExecute" Executed="cbClearXRef_Executed"/>
+    </UserControl.CommandBindings>
+    <UserControl.Resources>
+        <ContextMenu x:Key="mnuRootRef">
+            <MenuItem Header="Clear" Command="{x:Static shop:MetaModelEditor.ClearXRef}" CommandParameter="{Binding}" />
+        </ContextMenu>
+        <ContextMenu x:Key="mnuFragmentRef">
+            <MenuItem Tag="{Binding}" Header="Assign" x:Name="ctxFragmentAssign" SubmenuOpened="ctxFragmentAssign_SubmenuOpened"
+                      MenuItem.Click="ctxFragmentAssign_Click">
+                <MenuItem.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Path=Name}"/>
+                    </DataTemplate>
+                </MenuItem.ItemTemplate>
+                <MenuItem/>
+            </MenuItem>
+            <MenuItem Tag="{Binding}" Header="Clone" x:Name="ctxFragmentClone" SubmenuOpened="ctxFragmentClone_SubmenuOpened"
+                      MenuItem.Click="ctxFragmentClone_Click">
+                <MenuItem.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Path=Name}"/>
+                    </DataTemplate>
+                </MenuItem.ItemTemplate>
+                <MenuItem/>
+            </MenuItem>
+            <Separator/>
+            <MenuItem Header="Clear" Command="{x:Static shop:MetaModelEditor.ClearXRef}" CommandParameter="{Binding}" />
+        </ContextMenu>
+        <ContextMenu x:Key="mnuBrushRef">
+            <MenuItem Tag="{Binding}"  Header="Assign" x:Name="ctxBrushAssign" SubmenuOpened="ctxBrushAssign_SubmenuOpened"
+                      MenuItem.Click="ctxBrushAssign_Click">
+                <MenuItem.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel MaxWidth="512"></WrapPanel>
+                    </ItemsPanelTemplate>
+                </MenuItem.ItemsPanel>                
+                <MenuItem.ItemTemplate>
+                    <DataTemplate>
+                        <Border BorderBrush="DarkGray" BorderThickness="1" Margin="2">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <Rectangle Margin="4" Width="48" Height="48" Fill="{Binding Path=Brush}"/>
+                                <TextBlock Grid.Row="1" Text="{Binding Path=BrushKey}"/>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </MenuItem.ItemTemplate>
+                <MenuItem/>
+            </MenuItem>
+            <MenuItem Header="Define Brush">
+                <MenuItem Header="Image..."    Command="{x:Static shop:MetaModelEditor.DefineBrush}" CommandParameter="{Binding}" Tag="Image" />
+                <MenuItem Header="Solid..."    Command="{x:Static shop:MetaModelEditor.DefineBrush}" CommandParameter="{Binding}" Tag="Solid"/>
+                <MenuItem Header="Gradient..." Command="{x:Static shop:MetaModelEditor.DefineBrush}" CommandParameter="{Binding}" Tag="Gradient" />
+            </MenuItem>
+            <Separator/>
+            <MenuItem Header="Clear" Command="{x:Static shop:MetaModelEditor.ClearXRef}" CommandParameter="{Binding}" />
+        </ContextMenu>
+        <Style x:Key="styleRootRefTreeViewItem" TargetType="TreeViewItem" BasedOn="{StaticResource styleTreeViewItem}">
+            <Setter Property="ContextMenu" Value="{StaticResource mnuRootRef}"></Setter>
+            <Setter Property="TreeViewItem.IsExpanded" Value="{Binding Path=IsExpanded, Mode=TwoWay}"/>
+            <Setter Property="TreeViewItem.IsSelected" Value="{Binding Path=IsSelected, Mode=TwoWay}"/>
+        </Style>
+        <Style x:Key="styleFragmentRefTreeViewItem" TargetType="TreeViewItem" BasedOn="{StaticResource styleTreeViewItem}">
+            <Setter Property="ContextMenu" Value="{StaticResource mnuFragmentRef}"></Setter>
+            <Setter Property="TreeViewItem.IsExpanded" Value="{Binding Path=IsExpanded, Mode=TwoWay}"/>
+            <Setter Property="TreeViewItem.IsSelected" Value="{Binding Path=IsSelected, Mode=TwoWay}"/>
+        </Style>
+        <Style x:Key="styleBrushRefTreeViewItem" TargetType="TreeViewItem" BasedOn="{StaticResource styleTreeViewItem}">
+            <Setter Property="ContextMenu" Value="{StaticResource mnuBrushRef}"></Setter>
+            <Setter Property="TreeViewItem.IsExpanded" Value="{Binding Path=IsExpanded, Mode=TwoWay}"/>
+            <Setter Property="TreeViewItem.IsSelected" Value="{Binding Path=IsSelected, Mode=TwoWay}"/>
+        </Style>
+        <Style x:Key="styleNullMenuTreeViewItem" TargetType="TreeViewItem" BasedOn="{StaticResource styleTreeViewItem}">
+            <Setter Property="ContextMenu" Value="{x:Null}"></Setter>
+            <Setter Property="TreeViewItem.IsExpanded" Value="{Binding Path=IsExpanded, Mode=TwoWay}"/>
+            <Setter Property="TreeViewItem.IsSelected" Value="{Binding Path=IsSelected, Mode=TwoWay}"/>
+        </Style>
+    </UserControl.Resources>
+    <DockPanel>
+        <ToolBarTray DockPanel.Dock="Top">
+            <ToolBar>
+                <Button x:Name="btnRefresh" Click="btnRefresh_Click">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="/images/arrow_refresh.png"/>
+                        <TextBlock Text="Refresh"></TextBlock>
+                    </StackPanel>
+                </Button>
+                <Separator/>
+                <Label Content="Model Name" FontWeight="Bold"></Label>
+                <TextBox Text="{Binding Path=BindableName}"/>
+            </ToolBar>
+        </ToolBarTray>
+        <TabControl DockPanel.Dock="Left" DataContext="{Binding Path=State}">
+            <TabItem Header="Contents">
+                <TreeView DockPanel.Dock="Left" Margin="2,1" MinHeight="96" MinWidth="96" x:Name="tvwFolders"
+                          SelectedItemChanged="tvwFolders_SelectedItemChanged"
+                          ItemsSource="{Binding Path=RootList}">
+                    <TreeView.Resources>
+                        <HierarchicalDataTemplate DataType="{x:Type viz:MetaModelFragmentNodeCollection}" ItemsSource="{Binding}">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="/images/folder_wrench.png" Stretch="None" Margin="0,0,4,0"/>
+                                <TextBlock Text="Fragments"/>
+                            </StackPanel>
+                        </HierarchicalDataTemplate>
+                        <HierarchicalDataTemplate DataType="{x:Type viz:MetaModelRootNode}" ItemsSource="{Binding Path=Children}">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="/images/application_side_tree.png" Stretch="None" Margin="0,0,4,0"/>
+                                <TextBlock >
+                                    <Run FontWeight="Bold" Text="Root Node"></Run>
+                                </TextBlock>
+                            </StackPanel>
+                        </HierarchicalDataTemplate>
+                        <HierarchicalDataTemplate DataType="{x:Type viz:MetaModelFragmentNode}" ItemsSource="{Binding Path=Children}">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="/images/plugin_link.png" Stretch="None" Margin="0,0,4,0"/>
+                                <TextBlock >
+                            <Run FontWeight="Bold" Text="{Binding Path=ReferenceKey}"></Run>
+                            <Run Text=":"/>
+                            <Run Text="{Binding Path=FragmentKey}"/>
+                                </TextBlock>
+                            </StackPanel>
+                        </HierarchicalDataTemplate>
+                        <HierarchicalDataTemplate DataType="{x:Type viz:BrushCrossRefNodeCollection}" ItemsSource="{Binding}">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="/images/folder_palette.png" Stretch="None" Margin="0,0,4,0"/>
+                                <TextBlock Text="Brushes"/>
+                            </StackPanel>
+                        </HierarchicalDataTemplate>
+                        <DataTemplate DataType="{x:Type viz:BrushCrossRefNode}">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="/images/paintbrush.png" Stretch="None" Margin="0,0,4,0"/>
+                                <TextBlock >
+                            <Run FontWeight="Bold" Text="{Binding Path=ReferenceKey}"></Run>
+                            <Run Text=":"/>
+                            <Run Text="{Binding Path=BrushKey}"/>
+                                </TextBlock>
+                            </StackPanel>
+                        </DataTemplate>
+                    </TreeView.Resources>
+                </TreeView>
+            </TabItem>
+            <TabItem Header="Brushes">
+                <ListView x:Name="lvwDefaultBrushes" ItemsSource="{Binding Path=DefaultBrushes.Ordered}">
+                    <ListView.ContextMenu>
+                        <ContextMenu x:Name="ctxDefaultBrushes">
+                            <!-- Clear and Define, just like standard BrushDef -->
+                            <MenuItem Header="Assign" x:Name="miDefaultBrush" SubmenuOpened="miDefaultBrush_SubmenuOpened"
+                                      MenuItem.Click="miDefaultBrush_Click">
+                                <MenuItem.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <WrapPanel MaxWidth="512"></WrapPanel>
+                                    </ItemsPanelTemplate>
+                                </MenuItem.ItemsPanel>
+                                <MenuItem.ItemTemplate>
+                                    <DataTemplate>
+                                        <Border BorderBrush="DarkGray" BorderThickness="1" Margin="2">
+                                            <Grid>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition/>
+                                                    <RowDefinition Height="Auto"/>
+                                                </Grid.RowDefinitions>
+                                                <Rectangle Margin="4" Width="48" Height="48" Fill="{Binding Path=Brush}"/>
+                                                <TextBlock Grid.Row="1" Text="{Binding Path=BrushKey}"/>
+                                            </Grid>
+                                        </Border>
+                                    </DataTemplate>
+                                </MenuItem.ItemTemplate>
+                                <MenuItem/>
+                            </MenuItem>
+                            <Separator/>
+                            <MenuItem Header="Clear" Command="{x:Static shop:MetaModelEditor.ClearXRef}" CommandParameter="DefaultBrush" />
+                        </ContextMenu>
+                    </ListView.ContextMenu>
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Reference">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock FontWeight="Bold" Text="{Binding Path=ReferenceKey}"/>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn Header="Brush" DisplayMemberBinding="{Binding Path=BrushKey}"></GridViewColumn>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </TabItem>
+            <TabItem Header="Ints">
+                <ListView x:Name="lvwDefaultInts" ItemsSource="{Binding Path=MasterIntRefs.Ordered}">
+                    <ListView.View>
+                        <GridView>
+                            <GridView.Columns>
+                                <GridViewColumn Header="Key" DisplayMemberBinding="{Binding Path=Key}" />
+                                <GridViewColumn Header="UpDown" >
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <xceed:IntegerUpDown Value="{Binding Path=Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                                                 Increment="1" AllowSpin="True" MouseWheelActiveOnFocus="True"
+                                                                 ValueChanged="IntegerUpDown_ValueChanged" Width="96"
+                                                                 AutoSelectBehavior="OnFocus"/>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                            </GridView.Columns>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </TabItem>
+            <TabItem Header="Doubles">
+                <ListView x:Name="lvwDefaultDoubles" ItemsSource="{Binding Path=MasterDoubleRefs.Ordered}">
+                    <ListView.View>
+                        <GridView>
+                            <GridView.Columns>
+                                <GridViewColumn Header="Key" DisplayMemberBinding="{Binding Path=Key}" />
+                                <GridViewColumn Header="UpDown" >
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <xceed:DoubleUpDown Grid.Column="1" Value="{Binding Path=Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                            Width="96" AllowSpin="True" MouseWheelActiveOnFocus="True"
+                                            FormatString="0.##" Increment="0.01" ValueChanged="DoubleUpDown_ValueChanged"
+                                            AutoSelectBehavior="OnFocus"/>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                            </GridView.Columns>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </TabItem>
+        </TabControl>
+        <TabControl DockPanel.Dock="Top">
+            <TabControl.Resources>
+                <Style TargetType="TextBlock">
+                    <Setter Property="HorizontalAlignment" Value="Right"/>
+                </Style>
+                <Style x:Key="styleSliderOffset" TargetType="Slider">
+                    <Setter Property="Minimum" Value="-5"/>
+                    <Setter Property="Maximum" Value="5"/>
+                    <Setter Property="AutoToolTipPlacement" Value="BottomRight" />
+                    <Setter Property="AutoToolTipPrecision" Value="2"/>
+                    <Setter Property="SmallChange" Value="0.05"/>
+                    <Setter Property="LargeChange" Value="0.25"/>
+                    <Setter Property="TickFrequency" Value="0.05"/>
+                </Style>
+                <Style x:Key="styleDUDOffset" TargetType="xceed:DoubleUpDown">
+                    <Setter Property="Minimum" Value="-5"/>
+                    <Setter Property="Maximum" Value="5"/>
+                    <Setter Property="Increment" Value="0.01"/>
+                    <Setter Property="AllowSpin" Value="True"/>
+                    <Setter Property="MouseWheelActiveOnFocus" Value="True"/>
+                    <Setter Property="AutoSelectBehavior" Value="OnFocus"/>
+                    <Setter Property="FormatString" Value="0.###"/>
+                </Style>
+            </TabControl.Resources>
+            <TabItem Header="Rotations">
+                <Grid x:Name="grdFragRotations" IsEnabled="False">
+                    <Grid.Resources>
+                        <Style x:Key="styleSliderAngular" TargetType="Slider">
+                            <Setter Property="Minimum" Value="-225"/>
+                            <Setter Property="Maximum" Value="225"/>
+                            <Setter Property="AutoToolTipPlacement" Value="BottomRight" />
+                            <Setter Property="AutoToolTipPrecision" Value="0"/>
+                            <Setter Property="SmallChange" Value="5"/>
+                            <Setter Property="LargeChange" Value="45"/>
+                            <Setter Property="TickFrequency" Value="1"/>
+                        </Style>
+                        <Style x:Key="styleDUDAngular" TargetType="xceed:DoubleUpDown">
+                            <Setter Property="Minimum" Value="-225"/>
+                            <Setter Property="Maximum" Value="225"/>
+                            <Setter Property="Increment" Value="5"/>
+                            <Setter Property="AllowSpin" Value="True"/>
+                            <Setter Property="MouseWheelActiveOnFocus" Value="True"/>
+                            <Setter Property="AutoSelectBehavior" Value="OnFocus"/>
+                            <Setter Property="FormatString" Value="0.###"/>
+                        </Style>
+                    </Grid.Resources>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="30,*"/>
+                        <ColumnDefinition Width="10,*"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="30,*"/>
+                        <ColumnDefinition Width="10,*"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="30,*"/>
+                        <ColumnDefinition Width="10,*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    
+                    <TextBlock Grid.Row="0" Grid.Column="0" Text="Roll"/>
+                    <TextBlock Grid.Row="0" Grid.Column="3" Text="Pitch"/>
+                    <TextBlock Grid.Row="0" Grid.Column="6" Text="Yaw"/>
+                    <Slider    Grid.Row="0" Grid.Column="1" Value="{Binding Path=Roll}"  Style="{StaticResource styleSliderAngular}"></Slider>
+                    <Slider    Grid.Row="0" Grid.Column="4" Value="{Binding Path=Pitch}" Style="{StaticResource styleSliderAngular}"></Slider>
+                    <Slider    Grid.Row="0" Grid.Column="7" Value="{Binding Path=Yaw}"   Style="{StaticResource styleSliderAngular}"></Slider>
+                    <xceed:DoubleUpDown Grid.Row="0" Grid.Column="2" Value="{Binding Path=Roll, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  Style="{StaticResource styleDUDAngular}"/>
+                    <xceed:DoubleUpDown Grid.Row="0" Grid.Column="5" Value="{Binding Path=Pitch, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  Style="{StaticResource styleDUDAngular}"/>
+                    <xceed:DoubleUpDown Grid.Row="0" Grid.Column="8" Value="{Binding Path=Yaw, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"   Style="{StaticResource styleDUDAngular}"/>
+                    
+                    <TextBlock Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" TextAlignment="Right" Text="Nose-Up"/>
+                    <CheckBox Grid.Row="1" Grid.Column="2" IsChecked="{Binding Path=NoseUp}"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Origin">
+                <Grid x:Name="grdFragOrigin" IsEnabled="False">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="30,*"/>
+                        <ColumnDefinition Width="10,*"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="30,*"/>
+                        <ColumnDefinition Width="10,*"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="30,*"/>
+                        <ColumnDefinition Width="10,*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Row="0" Grid.Column="0" Text="X Origin"/>
+                    <TextBlock Grid.Row="0" Grid.Column="3" Text="Y Origin"/>
+                    <TextBlock Grid.Row="0" Grid.Column="6" Text="Z Origin"/>
+                    <Slider    Grid.Row="0" Grid.Column="1" Value="{Binding Path=OriginOffsetX}" Style="{StaticResource styleSliderOffset}"></Slider>
+                    <Slider    Grid.Row="0" Grid.Column="4" Value="{Binding Path=OriginOffsetY}" Style="{StaticResource styleSliderOffset}"></Slider>
+                    <Slider    Grid.Row="0" Grid.Column="7" Value="{Binding Path=OriginOffsetZ}" Style="{StaticResource styleSliderOffset}"></Slider>
+                    <xceed:DoubleUpDown Grid.Row="0" Grid.Column="2" Value="{Binding Path=OriginOffsetX, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource styleDUDOffset}"/>
+                    <xceed:DoubleUpDown Grid.Row="0" Grid.Column="5" Value="{Binding Path=OriginOffsetY, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource styleDUDOffset}"/>
+                    <xceed:DoubleUpDown Grid.Row="0" Grid.Column="8" Value="{Binding Path=OriginOffsetZ, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource styleDUDOffset}"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Offset">
+                <Grid x:Name="grdFragOffset" IsEnabled="False">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="30,*"/>
+                        <ColumnDefinition Width="10,*"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="30,*"/>
+                        <ColumnDefinition Width="10,*"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="30,*"/>
+                        <ColumnDefinition Width="10,*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Grid.Row="0" Grid.Column="0" Text="X Offset"/>
+                    <TextBlock Grid.Row="0" Grid.Column="3" Text="Y Offset"/>
+                    <TextBlock Grid.Row="0" Grid.Column="6" Text="Z Offset"/>
+                    <Slider    Grid.Row="0" Grid.Column="1" Value="{Binding Path=OffsetX}" Style="{StaticResource styleSliderOffset}"></Slider>
+                    <Slider    Grid.Row="0" Grid.Column="4" Value="{Binding Path=OffsetY}" Style="{StaticResource styleSliderOffset}"></Slider>
+                    <Slider    Grid.Row="0" Grid.Column="7" Value="{Binding Path=OffsetZ}" Style="{StaticResource styleSliderOffset}"></Slider>
+                    <xceed:DoubleUpDown Grid.Row="0" Grid.Column="2" Value="{Binding Path=OffsetX, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource styleDUDOffset}"/>
+                    <xceed:DoubleUpDown Grid.Row="0" Grid.Column="5" Value="{Binding Path=OffsetY, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource styleDUDOffset}"/>
+                    <xceed:DoubleUpDown Grid.Row="0" Grid.Column="8" Value="{Binding Path=OffsetZ, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource styleDUDOffset}"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Scale">
+                <Grid x:Name="grdFragScale" IsEnabled="False">
+                    <Grid.Resources>
+                        <Style x:Key="styleSliderScale" TargetType="Slider">
+                            <Setter Property="Minimum" Value="0.05"/>
+                            <Setter Property="Maximum" Value="4"/>
+                            <Setter Property="AutoToolTipPlacement" Value="BottomRight" />
+                            <Setter Property="AutoToolTipPrecision" Value="2"/>
+                            <Setter Property="SmallChange" Value="0.05"/>
+                            <Setter Property="LargeChange" Value="0.25"/>
+                            <Setter Property="TickFrequency" Value="0.05"/>
+                        </Style>
+                        <Style x:Key="styleDUDScale" TargetType="xceed:DoubleUpDown">
+                            <Setter Property="Minimum" Value="0.05"/>
+                            <Setter Property="Maximum" Value="4"/>
+                            <Setter Property="Increment" Value="0.01"/>
+                            <Setter Property="AllowSpin" Value="True"/>
+                            <Setter Property="MouseWheelActiveOnFocus" Value="True"/>
+                            <Setter Property="AutoSelectBehavior" Value="OnFocus"/>
+                            <Setter Property="FormatString" Value="0.###"/>
+                        </Style>
+                    </Grid.Resources>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="30,*"/>
+                        <ColumnDefinition Width="10,*"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="30,*"/>
+                        <ColumnDefinition Width="10,*"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="30,*"/>
+                        <ColumnDefinition Width="10,*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Grid.Row="0" Grid.Column="0" Text="X Scale"/>
+                    <TextBlock Grid.Row="0" Grid.Column="3" Text="Y Scale"/>
+                    <TextBlock Grid.Row="0" Grid.Column="6" Text="Z Scale"/>
+                    <Slider    Grid.Row="0" Grid.Column="1" Value="{Binding Path=ScaleX}" Style="{StaticResource styleSliderScale}"></Slider>
+                    <Slider    Grid.Row="0" Grid.Column="4" Value="{Binding Path=ScaleY}" Style="{StaticResource styleSliderScale}"></Slider>
+                    <Slider    Grid.Row="0" Grid.Column="7" Value="{Binding Path=ScaleZ}" Style="{StaticResource styleSliderScale}"></Slider>
+                    <xceed:DoubleUpDown Grid.Row="0" Grid.Column="2" Value="{Binding Path=ScaleX, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource styleDUDScale}"/>
+                    <xceed:DoubleUpDown Grid.Row="0" Grid.Column="5" Value="{Binding Path=ScaleY, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource styleDUDScale}"/>
+                    <xceed:DoubleUpDown Grid.Row="0" Grid.Column="8" Value="{Binding Path=ScaleZ, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource styleDUDScale}"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Integers">
+                <ListView x:Name="lvwIntVals" ItemsSource="{Binding Path=IntRefs.Ordered}">
+                    <ListView.View>
+                        <GridView>
+                            <GridView.Columns>
+                                <GridViewColumn Header="Yield" >
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <CheckBox IsChecked="{Binding Path=UseMaster}" Checked="YieldCheck_Click" Unchecked="YieldCheck_Click"/>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Header="Key" DisplayMemberBinding="{Binding Path=Key}" />
+                                <GridViewColumn Header="UpDown" >
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <xceed:IntegerUpDown Value="{Binding Path=Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                                                 Increment="1" AllowSpin="True" MouseWheelActiveOnFocus="True"
+                                                                 ValueChanged="IntegerUpDown_ValueChanged" Width="96"
+                                                                 AutoSelectBehavior="OnFocus"/>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                            </GridView.Columns>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </TabItem>
+            <TabItem Header="Doubles">
+                <ListView x:Name="lvwDoubleVals" ItemsSource="{Binding Path=DoubleRefs.Ordered}">
+                    <ListView.View>
+                        <GridView>
+                            <GridView.Columns>
+                                <GridViewColumn Header="Yield" >
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <CheckBox IsChecked="{Binding Path=UseMaster}" Checked="YieldCheck_Click" Unchecked="YieldCheck_Click"/>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Header="Key" DisplayMemberBinding="{Binding Path=Key}" />
+                                <GridViewColumn Header="UpDown" >
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <xceed:DoubleUpDown Grid.Column="1" Value="{Binding Path=Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                            Width="96" AllowSpin="True" MouseWheelActiveOnFocus="True"
+                                            FormatString="0.##" Increment="0.01" ValueChanged="DoubleUpDown_ValueChanged"
+                                            AutoSelectBehavior="OnFocus"/>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                            </GridView.Columns>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </TabItem>
+        </TabControl>
+        <ht:HelixViewport3D x:Name="vp3D" ViewCubeBackText="L" ViewCubeFrontText="R" ViewCubeLeftText="B" ViewCubeRightText="F"
+                            ShowCoordinateSystem="True" MouseDown="vp3D_MouseDown">
+            <ht:GridLinesVisual3D Length="10" Width="10" MajorDistance="2.5" MinorDistance="0.5" />
+            <ht:GridLinesVisual3D Length="10" Width="10" MajorDistance="2.5" MinorDistance="0.5" LengthDirection="0,1,0" Normal="1,0,0" />
+            <ht:GridLinesVisual3D Length="10" Width="10" MajorDistance="2.5" MinorDistance="0.5" LengthDirection="1,0,0" Normal="0,1,0"/>
+            <ModelVisual3D>
+                <ModelVisual3D.Content>
+                    <!-- Basic Environment Model -->
+                    <Model3DGroup>
+                        <!-- Model Transforming Group -->
+                        <Model3DGroup x:Name="mdlHolder">
+                        </Model3DGroup>
+                        <!-- ******************************************************************************************* -->
+                        <!-- Workbench Goodies -->
+                        <AmbientLight Color="White"/>
+                    </Model3DGroup>
+                </ModelVisual3D.Content>
+            </ModelVisual3D>
+        </ht:HelixViewport3D>
+    </DockPanel>
+</UserControl>

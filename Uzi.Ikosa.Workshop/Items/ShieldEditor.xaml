@@ -1,0 +1,136 @@
+﻿<UserControl x:Class="Uzi.Ikosa.Workshop.ShieldEditor"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:shop="clr-namespace:Uzi.Ikosa.Workshop"
+             xmlns:ikosa="clr-namespace:Uzi.Ikosa;assembly=Uzi.Ikosa"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Grid>
+        <Grid.Resources>
+            <ResourceDictionary>
+                <ResourceDictionary.MergedDictionaries>
+                    <ResourceDictionary Source="/Uzi.Ikosa.UI;Component/Deltable.xaml"/>
+                </ResourceDictionary.MergedDictionaries>
+                <Style TargetType="Label">
+                    <Setter Property="FontWeight" Value="Bold"/>
+                    <Setter Property="HorizontalAlignment" Value="Right"/>
+                    <Setter Property="FontSize" Value="10"/>
+                </Style>
+                <Style TargetType="TextBlock">
+                    <Setter Property="VerticalAlignment" Value="Center"/>
+                </Style>
+                <Style TargetType="MenuItem">
+                    <Setter Property="VerticalAlignment" Value="Center"/>
+                </Style>
+                <Style TargetType="ContentControl">
+                    <Setter Property="VerticalAlignment" Value="Center"/>
+                </Style>
+                <Style TargetType="ItemsControl">
+                    <Setter Property="VerticalAlignment" Value="Center"/>
+                </Style>
+            </ResourceDictionary>
+        </Grid.Resources>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="25,*"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="25,*"/>
+            <ColumnDefinition Width="50,*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Label Grid.Column="0" Grid.Row="0" Content="Name"/>
+        <Label Grid.Column="0" Grid.Row="1" Content="Original Name"/>
+        <Label Grid.Column="0" Grid.Row="2" Content="Enhancement"/>
+        <Label Grid.Column="0" Grid.Row="3" Content="Size"/>
+        <Label Grid.Column="2" Grid.Row="2" Content="Protection"/>
+        <Label Grid.Column="2" Grid.Row="3" Content="Enhance Value"/>
+        <Label Grid.Column="2" Grid.Row="4" Content="Check Penalty"/>
+        <Label Grid.Column="2" Grid.Row="5" Content="Spell Failure"/>
+        <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding Path=Thing.Name}" Grid.ColumnSpan="3" Margin="1" TextWrapping="Wrap"/>
+        <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding Path=Thing.OriginalName}" Grid.ColumnSpan="3" Margin="1" TextWrapping="Wrap"/>
+        <ComboBox Grid.Column="1" Grid.Row="2" x:Name="cboEnhancement" SelectionChanged="cboEnhancement_SelectionChanged" Margin="1">
+            <ComboBoxItem Content="0"/>
+            <ComboBoxItem Content="Masterwork"/>
+            <ComboBoxItem Content="+1"/>
+            <ComboBoxItem Content="+2"/>
+            <ComboBoxItem Content="+3"/>
+            <ComboBoxItem Content="+4"/>
+            <ComboBoxItem Content="+5"/>
+        </ComboBox>
+        <ComboBox Grid.Column="1" Grid.Row="3" x:Name="cboSize" SelectionChanged="cboSize_SelectionChanged" Margin="1">
+            <ComboBoxItem Content="Fine" Tag="{x:Static ikosa:Size.Fine}"></ComboBoxItem>
+            <ComboBoxItem Content="Miniature" Tag="{x:Static ikosa:Size.Miniature}"></ComboBoxItem>
+            <ComboBoxItem Content="Tiny" Tag="{x:Static ikosa:Size.Tiny}"></ComboBoxItem>
+            <ComboBoxItem Content="Small" Tag="{x:Static ikosa:Size.Small}"></ComboBoxItem>
+            <ComboBoxItem Content="Medium" Tag="{x:Static ikosa:Size.Medium}"></ComboBoxItem>
+            <ComboBoxItem Content="Large" Tag="{x:Static ikosa:Size.Large}"></ComboBoxItem>
+            <ComboBoxItem Content="Huge" Tag="{x:Static ikosa:Size.Huge}"></ComboBoxItem>
+            <ComboBoxItem Content="Gigantic" Tag="{x:Static ikosa:Size.Gigantic}"></ComboBoxItem>
+            <ComboBoxItem Content="Colossal" Tag="{x:Static ikosa:Size.Colossal}"></ComboBoxItem>
+        </ComboBox>
+        <ContentControl Grid.Column="3" Grid.Row="2" Content="{Binding Path=Thing.ProtectionBonus}" ContentTemplate="{StaticResource deltaView}"/>
+        <ContentControl Grid.Column="3" Grid.Row="3" Content="{Binding Path=Thing.TotalEnhancement}" ContentTemplate="{StaticResource deltaView}"/>
+        <ContentControl Grid.Column="3" Grid.Row="4" Content="{Binding Path=Thing.CheckPenalty}" ContentTemplate="{StaticResource deltaView}"/>
+        <ContentControl Grid.Column="3" Grid.Row="5" Content="{Binding Path=Thing.ArcaneSpellFailureChance}" ContentTemplate="{StaticResource deltaView}"/>
+
+        <Label Grid.Column="0" Grid.Row="6" Content="Price"/>
+        <Label Grid.Column="2" Grid.Row="6" Content="Weight"/>
+        <Label Grid.Column="0" Grid.Row="7" Content="Material"/>
+        <Label Grid.Column="2" Grid.Row="7" Content="Hardness"/>
+        <Label Grid.Column="0" Grid.Row="8" Content="Max Structure"/>
+        <Label Grid.Column="2" Grid.Row="8" Content="Structure"/>
+        <TextBlock Grid.Column="1" Grid.Row="6" Text="{Binding Path=Thing.Price.BasePrice}" Margin="1"/>
+        <TextBlock Grid.Column="3" Grid.Row="6" Text="{Binding Path=Thing.Weight}" Margin="1"/>
+        <TextBlock Grid.Column="1" Grid.Row="7" Text="{Binding Path=Thing.ItemMaterial.Name}" Margin="1"/>
+        <ContentControl Grid.Column="3" Grid.Row="7" Content="{Binding Path=Thing.Hardness}" ContentTemplate="{StaticResource deltaView}"/>
+        <ContentControl Grid.Column="1" Grid.Row="8" Content="{Binding Path=Thing.MaxStructurePoints}" ContentTemplate="{StaticResource deltaView}"/>
+        <TextBlock Grid.Column="3" Grid.Row="8" Text="{Binding Path=Thing.StructurePoints}"/>
+        
+        <!-- TODO: add adjuncts and remove adjuncts -->
+        <Menu Grid.Column="4" Grid.Row="1">
+            <Menu.CommandBindings>
+                <CommandBinding x:Name="cmdbndAdjunctRemove" Command="{x:Static shop:ArmorEditor.AdjunctRemove}"
+                                CanExecute="cmdbndAdjunctRemove_CanExecute" Executed="cmdbndAdjunctRemove_Executed"/>
+            </Menu.CommandBindings>
+            <MenuItem x:Name="miAdd">
+                <MenuItem.CommandBindings>
+                    <CommandBinding x:Name="cmdbndAdjunctAdd" Command="{x:Static shop:ArmorEditor.AdjunctAdd}"
+                                    CanExecute="cmdbndAdjunctAdd_CanExecute" Executed="cmdbndAdjunctAdd_Executed"></CommandBinding>
+                </MenuItem.CommandBindings>
+                <MenuItem.Icon>
+                    <Image Source="/images/add.png"/>
+                </MenuItem.Icon>
+                <MenuItem.Header>
+                    <TextBlock Text="Add" VerticalAlignment="Center"></TextBlock>
+                </MenuItem.Header>
+            </MenuItem>
+            <MenuItem x:Name="miRemove" Command="{x:Static shop:ArmorEditor.AdjunctRemove}">
+                <MenuItem.Icon>
+                    <Image Source="/images/delete.png"/>
+                </MenuItem.Icon>
+                <MenuItem.Header>
+                    <TextBlock Text="Remove" VerticalAlignment="Center"></TextBlock>
+                </MenuItem.Header>
+            </MenuItem>
+        </Menu>
+        <ListBox Grid.Column="4" Grid.Row="2" Grid.RowSpan="7" Margin="2" x:Name="lstAdjuncts"
+                 ItemsSource="{Binding Path=Augmentations}"
+                 ItemTemplateSelector="{DynamicResource adjSelector}">
+            <ListBox.Resources>
+                <ResourceDictionary>
+                    <ResourceDictionary.MergedDictionaries>
+                        <ResourceDictionary Source="/Adjuncts/AdjunctItemTemplates.xaml"/>
+                    </ResourceDictionary.MergedDictionaries>
+                </ResourceDictionary>
+            </ListBox.Resources>
+        </ListBox>
+    </Grid>
+</UserControl>

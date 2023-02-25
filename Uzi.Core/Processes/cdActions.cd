@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Uzi.Core.CoreAction">
+    <Position X="2.5" Y="4.75" Width="2" />
+    <Members>
+      <Field Name="_ID" Hidden="true" />
+      <Field Name="_Source" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAgAEAAIAoAAgAREAAAAAAAAAEAIAEAAAAAAAAQEAAA=</HashCode>
+      <FileName>Processes\CoreAction.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Uzi.Core.CoreActivity">
+    <Position X="3.25" Y="0.5" Width="1.5" />
+    <Members>
+      <Field Name="_Action" Hidden="true" />
+      <Field Name="_Actor" Hidden="true" />
+      <Field Name="_Targets" Hidden="true" />
+    </Members>
+    <AssociationLine Name="Action" Type="Uzi.Core.CoreAction">
+      <MemberNameLabel ManuallyPlaced="true" ManuallySized="true">
+        <Position X="-1.024" Y="1.079" Height="0.182" Width="0.858" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>CAAAAAAAAAAggAAIAAEAgAAIAAAAAEAAAAAAAAgAAAQ=</HashCode>
+      <FileName>Processes\CoreActivity.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Actor" />
+      <Property Name="Action" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Uzi.Core.CoreActor">
+    <Position X="6.25" Y="0.5" Width="2.75" />
+    <Members>
+      <Field Name="_Actions" Hidden="true" />
+      <Field Name="_ActivityCtrl" Hidden="true" />
+      <Field Name="_InteractAlterCtrl" Hidden="true" />
+      <Field Name="_ObjLoad" Hidden="true" />
+      <Field Name="_Possess" Hidden="true" />
+    </Members>
+    <AssociationLine Name="Actions" Type="Uzi.Core.ActionRepetoire" FixedFromPoint="true">
+      <Path>
+        <Point X="8.125" Y="3.531" />
+        <Point X="8.125" Y="4.75" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.102" Y="0.329" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AEQAEAAAIAgAQAAAJACAAAgAAAAAAAAgAAAIIAABAAA=</HashCode>
+      <FileName>CoreActor.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Actions" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Uzi.Core.ActionRepetoire">
+    <Position X="5.75" Y="4.75" Width="3.25" />
+    <AssociationLine Name="Actor" Type="Uzi.Core.CoreActor">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-0.648" Y="0.162" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAACAAAAEgAAAAIAAAAAAAAAAAAAAAAABAAAAAAA=</HashCode>
+      <FileName>Processes\ActionRepetoire.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Actor" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="Providers" />
+      <Property Name="Filters" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="Uzi.Core.CoreProcess">
+    <Position X="0.5" Y="0.5" Width="1.75" />
+    <Members>
+      <Field Name="_Completions" Hidden="true" />
+      <Field Name="_IsActive" Hidden="true" />
+      <Field Name="_IsHeld" Hidden="true" />
+      <Field Name="_Manager" Hidden="true" />
+      <Field Name="_Name" Hidden="true" />
+      <Field Name="_Reactives" Hidden="true" />
+      <Field Name="_RootStep" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>CIAAAQEAAAAiAMAAEAEAIAQAICAAiAAAAAABACAACII=</HashCode>
+      <FileName>Processes\CoreProcess.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="Uzi.Core.IActionProvider">
+    <Position X="5.25" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Processes\IActionProvider.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Uzi.Core.IActionFilter">
+    <Position X="7.5" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAA=</HashCode>
+      <FileName>Processes\IActionFilter.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

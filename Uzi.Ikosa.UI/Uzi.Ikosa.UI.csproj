@@ -1,0 +1,436 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{2DF21FEC-BDF3-4A08-A8E1-3DE24E73308C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Uzi.Ikosa.UI</RootNamespace>
+    <AssemblyName>Uzi.Ikosa.UI</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation />
+    <TargetFrameworkProfile />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="PresentationCore">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="PresentationFramework">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="UIAutomationProvider">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AddUser.xaml.cs">
+      <DependentUpon>AddUser.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AdjunctListItemSelector.cs" />
+    <Compile Include="AppraisalEditor.xaml.cs">
+      <DependentUpon>AppraisalEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ColorPicker\ColorPicker.cs" />
+    <Compile Include="ColorPicker\ColorSpace.cs" />
+    <Compile Include="ColorPicker\HSV.cs" />
+    <Compile Include="ColorPicker\SelectedColorEventArgs.cs" />
+    <Compile Include="Converters\OpenStatusConverter.cs" />
+    <Compile Include="DataResource.cs" />
+    <Compile Include="DescriptionVMEditor.xaml.cs">
+      <DependentUpon>DescriptionVMEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DragLabelAdorner.cs" />
+    <Compile Include="EditAbility.xaml.cs">
+      <DependentUpon>EditAbility.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EditFeat.xaml.cs">
+      <DependentUpon>EditFeat.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EditHealthPoints.xaml.cs">
+      <DependentUpon>EditHealthPoints.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EditRequirements.xaml.cs">
+      <DependentUpon>EditRequirements.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EditSkills.xaml.cs">
+      <DependentUpon>EditSkills.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EditUser.xaml.cs">
+      <DependentUpon>EditUser.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EditUsers.xaml.cs">
+      <DependentUpon>EditUsers.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="IconCustomizationEditor.xaml.cs">
+      <DependentUpon>IconCustomizationEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ItemIcon.xaml.cs">
+      <DependentUpon>ItemIcon.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MVVM\AmmoBundleVM.cs" />
+    <Compile Include="MVVM\Modules\ContextBars\AddRemoveCommands.cs" />
+    <Compile Include="MVVM\Modules\ContextBars\AddRemoveEditCommands.cs" />
+    <Compile Include="MVVM\Modules\ContextBars\CancelCommands.cs" />
+    <Compile Include="MVVM\Modules\ContextBars\Commandable.cs" />
+    <Compile Include="MVVM\Modules\ContextBars\DoAddCommands.cs" />
+    <Compile Include="MVVM\Modules\ContextBars\DoEditCommands.cs" />
+    <Compile Include="MVVM\Modules\ContextBars\EditCommands.cs" />
+    <Compile Include="MVVM\Modules\DescriptionVM.cs" />
+    <Compile Include="MVVM\Modules\IndexedDescriptionVM.cs" />
+    <Compile Include="MVVM\Modules\InfoKeys\InfoKeyFolderVM.cs" />
+    <Compile Include="MVVM\Modules\InfoKeys\InfoKeyVM.cs" />
+    <Compile Include="MVVM\Modules\ItemElements\ItemElementFolderVM.cs" />
+    <Compile Include="MVVM\Modules\ItemElements\ItemElementVM.cs" />
+    <Compile Include="MVVM\Modules\ModuleElementVMBase.cs" />
+    <Compile Include="MVVM\Modules\ModuleManagementVMBase.cs" />
+    <Compile Include="MVVM\Modules\NamedKeysPartVM.cs" />
+    <Compile Include="MVVM\Modules\NamedKeyVM.cs" />
+    <Compile Include="MVVM\Modules\StoryStates\InfoKeyValueEnablerVM.cs" />
+    <Compile Include="MVVM\Modules\StoryStates\ItemValueEnablerVM.cs" />
+    <Compile Include="MVVM\Modules\StoryStates\ValueEnablerFolderVM.cs" />
+    <Compile Include="MVVM\Modules\StoryStates\ValueEnablerVM.cs" />
+    <Compile Include="MVVM\Modules\StoryStates\VariableFolderVM.cs" />
+    <Compile Include="MVVM\Modules\StoryStates\VariableValueEnablerVM.cs" />
+    <Compile Include="MVVM\Modules\StoryStates\VariableValueFolderVM.cs" />
+    <Compile Include="MVVM\Modules\StoryStates\VariableValueVM.cs" />
+    <Compile Include="MVVM\Modules\StoryStates\VariableVM.cs" />
+    <Compile Include="MVVM\Modules\TeamGroups\TeamGroupAttitudeVM.cs" />
+    <Compile Include="MVVM\Modules\TeamGroups\TeamGroupSummaryFolderVM.cs" />
+    <Compile Include="MVVM\Modules\TeamGroups\TeamGroupSummaryVM.cs" />
+    <Compile Include="MVVM\PresentableVM\ConveyanceVM.cs" />
+    <Compile Include="MVVM\PresentableVM\Furnish\FlexibleFlatPanelVM.cs" />
+    <Compile Include="MVVM\PresentableVM\Furnish\FurnishingVM.cs" />
+    <Compile Include="MVVM\PresentableVM\Furnish\HollowFurnishingLidVM.cs" />
+    <Compile Include="MVVM\PresentableVM\Furnish\HollowFurnishingVM.cs" />
+    <Compile Include="MVVM\IconCustomizationVM.cs" />
+    <Compile Include="MVVM\Package\IPackageFilesFolder.cs" />
+    <Compile Include="MVVM\Package\IRefreshPackages.cs" />
+    <Compile Include="MVVM\Package\PackageCampaignVM.cs" />
+    <Compile Include="MVVM\Package\PackageFileVM.cs" />
+    <Compile Include="MVVM\Package\PackagePathVM.cs" />
+    <Compile Include="MVVM\Package\PackageSetVM.cs" />
+    <Compile Include="MVVM\PositionedObject.cs" />
+    <Compile Include="MVVM\PresentableVM\Ammo\PresentableAmmunitionBundleVM.cs" />
+    <Compile Include="MVVM\PresentableVM\Ammo\PresentableAmmunitionContainerVM.cs" />
+    <Compile Include="MVVM\PresentableVM\Items\CoinSetVM.cs" />
+    <Compile Include="MVVM\PresentableVM\Items\GemVM.cs" />
+    <Compile Include="MVVM\PresentableVM\Items\ItemVM.cs" />
+    <Compile Include="MVVM\PresentableVM\Items\KeyItemVM.cs" />
+    <Compile Include="MVVM\PresentableVM\Items\KeyRingVM.cs" />
+    <Compile Include="MVVM\PresentableVM\Magic\PotionVM.cs" />
+    <Compile Include="MVVM\PresentableVM\Magic\ScrollVM.cs" />
+    <Compile Include="MVVM\PresentableVM\Magic\SpellBookVM.cs" />
+    <Compile Include="MVVM\PresentableVM\Magic\WandVM.cs" />
+    <Compile Include="MVVM\PresentableVM\FlatObjectSideVM.cs" />
+    <Compile Include="MVVM\PresentableVM\Protectors\ArmorVM.cs" />
+    <Compile Include="MVVM\PresentableVM\Containers\PresentableCloseableContainerVM.cs" />
+    <Compile Include="MVVM\PresentableVM\Containers\PresentableContainerItemVM.cs" />
+    <Compile Include="MVVM\PresentableVM\Containers\PresentableContainerObjectVM.cs" />
+    <Compile Include="MVVM\PresentableVM\PresentableContext.cs" />
+    <Compile Include="MVVM\PresentableVM\PresentableCreatureVM.cs" />
+    <Compile Include="MVVM\PresentableVM\Protectors\ShieldVM.cs" />
+    <Compile Include="MVVM\PresentableVM\Weapons\DoubleMeleeWeaponVM.cs" />
+    <Compile Include="MVVM\PresentableVM\PresentableItemSlotVM.cs" />
+    <Compile Include="MVVM\PresentableVM\PresentableMechanismMountVM.cs" />
+    <Compile Include="MVVM\PresentableVM\Weapons\MeleeWeaponVM.cs" />
+    <Compile Include="MVVM\PresentableVM\Weapons\NaturalWeaponVM.cs" />
+    <Compile Include="MVVM\PresentableVM\PresentablePortalVM.cs" />
+    <Compile Include="MVVM\PresentableVM\Weapons\ProjectileWeaponVM.cs" />
+    <Compile Include="MVVM\PresentableVM\Containers\PresentableSlottedContainerItemVM.cs" />
+    <Compile Include="MVVM\PresentableVM\PresentableThingVM.cs" />
+    <Compile Include="PlaceNamesEditor.xaml.cs">
+      <DependentUpon>PlaceNamesEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="VariableValueEnablerDialog.xaml.cs">
+      <DependentUpon>VariableValueEnablerDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UIVM\FocusExtension.cs" />
+    <Compile Include="UIVM\MenuBaseViewModel.cs" />
+    <Compile Include="UIVM\MenuViewModel.cs" />
+    <Compile Include="UIVM\SeparatorViewModel.cs" />
+    <Compile Include="RelayCommand.cs" />
+    <Compile Include="RenameDialog.xaml.cs">
+      <DependentUpon>RenameDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Converters\IntDoubleConverter.cs" />
+    <Compile Include="IPackageItem.cs" />
+    <Compile Include="ItemPropertyEditor.xaml.cs">
+      <DependentUpon>ItemPropertyEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ObjectIdentityEditor.xaml.cs">
+      <DependentUpon>ObjectIdentityEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ObjectPropertyEditor.xaml.cs">
+      <DependentUpon>ObjectPropertyEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ObjectTacticalEditor.xaml.cs">
+      <DependentUpon>ObjectTacticalEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SkillMenuItem.cs" />
+    <Compile Include="SpellPrep\PreparedSpellSlotLevelModel.cs" />
+    <Compile Include="SpellPrep\PreparedSpellSlotModel.cs" />
+    <Compile Include="SpellPrep\PreparedSpellSlotSetModel.cs" />
+    <Compile Include="SpellPrep\PrepareSpellModel.cs" />
+    <Compile Include="SpellPrep\SpellPrepMenuSelector.cs" />
+    <Compile Include="SpellPrep\SpellSlotLevelModel.cs" />
+    <Compile Include="SpellPrep\SpellSlotModel.cs" />
+    <Compile Include="SpellPrep\SpellSlotSetModel.cs" />
+    <Compile Include="SpellPrep\SpontaneousSpellSlotLevelModel.cs" />
+    <Compile Include="SpellPrep\SpontaneousSpellSlotModel.cs" />
+    <Compile Include="SpellPrep\SpontaneousSpellSlotSetModel.cs" />
+    <Compile Include="UIVM\TabItemVM.cs" />
+    <Compile Include="TemplateItem.cs" />
+    <Compile Include="ViewportEdit.xaml.cs">
+      <DependentUpon>ViewportEdit.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Uzi.Core.Contracts\Uzi.Core.Contracts.csproj">
+      <Project>{A684AC4C-1911-4101-897D-B97DEAD744C2}</Project>
+      <Name>Uzi.Core.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Uzi.Core\Uzi.Core.csproj">
+      <Project>{93208C4B-9999-44A3-9477-1D034F15EB89}</Project>
+      <Name>Uzi.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Uzi.Ikosa.Contracts\Uzi.Ikosa.Contracts.csproj">
+      <Project>{7DDE27BD-1C99-4054-AF54-321BB387AEF1}</Project>
+      <Name>Uzi.Ikosa.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Uzi.Ikosa.Visualize\Uzi.Visualize.csproj">
+      <Project>{3ED35492-9CA6-4DC9-8AC7-9DC6FB1BE470}</Project>
+      <Name>Uzi.Visualize</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UZI.Ikosa\UZI.Ikosa.csproj">
+      <Project>{2FD3FB59-9A53-4EFD-9E54-301EFCB0A47D}</Project>
+      <Name>UZI.Ikosa</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Uzi.Packaging\Uzi.Packaging.csproj">
+      <Project>{63EF7070-3DFA-4D1F-B80C-1415D3C9CA1A}</Project>
+      <Name>Uzi.Packaging</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="AbilityView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="AddUser.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="AppraisalEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Deltable.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="DescriptionVMEditor.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="EditAbility.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EditFeat.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EditHealthPoints.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EditRequirements.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EditSkills.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EditUser.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="EditUsers.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="IconCustomizationEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ItemIcon.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="PlaceNamesEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="VariableValueEnablerDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="RenameDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ItemPropertyEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ObjectIdentityEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ObjectPropertyEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ObjectTacticalEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="themes\generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ViewportEdit.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\user_add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\user_edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\user_delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\box-knob.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\box.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Furnishing\" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Extended.Wpf.Toolkit">
+      <Version>4.0.1</Version>
+    </PackageReference>
+    <PackageReference Include="System.ValueTuple">
+      <Version>4.5.0</Version>
+    </PackageReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

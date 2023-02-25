@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Uzi.Ikosa.AdvancementOption">
+    <Position X="1.75" Y="0.75" Width="2.25" />
+    <Members>
+      <Field Name="_Description" Hidden="true" />
+      <Field Name="_Name" Hidden="true" />
+      <Field Name="_Target" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAQAAgAAAAAAAAICQAAAAAAAAEAAAAAAAAAAA=</HashCode>
+      <FileName>Advancement\Requirements\AdvancementOption.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Uzi.Ikosa.GenericAdvancementOption&lt;OptType&gt;">
+    <Position X="1.25" Y="4.5" Width="3" />
+    <Members>
+      <Field Name="_OptionValue" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AABAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Advancement\Requirements\GenericAdvancementOption.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Uzi.Ikosa.ParameterizedAdvancementOption">
+    <Position X="9" Y="1.5" Width="2.75" />
+    <Members>
+      <Field Name="_ParamList" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAACCAAAAAAAAAAAgggAAAAAAAAAAAAAAAAAAAACIA=</HashCode>
+      <FileName>Advancement\Requirements\ParameterizedAdvancementOption.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="ParameterValue" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="AvailableParameters" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Uzi.Ikosa.GenericTypeAdvancementOption">
+    <Position X="9" Y="5.25" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACIA=</HashCode>
+      <FileName>Advancement\Requirements\GenericTypeAdvancementOption.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="Uzi.Ikosa.IAdvancementOption">
+    <Position X="5.25" Y="2.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAAAAgAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Advancement\Requirements\IAdvancementOption.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

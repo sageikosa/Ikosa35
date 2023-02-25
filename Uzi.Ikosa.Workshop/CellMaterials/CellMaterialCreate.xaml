@@ -1,0 +1,52 @@
+﻿<Window x:Class="Uzi.Ikosa.Workshop.CellMaterialCreate"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:ikosamaterials="clr-namespace:Uzi.Ikosa.Items.Materials;assembly=Uzi.Ikosa"
+        xmlns:ikosauniv="clr-namespace:Uzi.Ikosa.Universal;assembly=Uzi.Ikosa"
+    Title="New Cell Material" WindowStyle="ThreeDBorderWindow" SizeToContent="Height"
+    Width="300" ShowInTaskbar="False" ResizeMode="NoResize" 
+        WindowStartupLocation="CenterOwner" Padding="2">
+    <StackPanel FocusManager.FocusedElement="{Binding ElementName=txtName}">
+        <StackPanel.Resources>
+            <Style TargetType="Label">
+                <Setter Property="Margin" Value="0,4,0,0"/>
+            </Style>
+        </StackPanel.Resources>
+        <Label >Cell Material Name</Label>
+        <TextBox Margin="4,4,4,0" x:Name="txtName" ></TextBox>
+        <Label >Cell Material Type</Label>
+        <ComboBox Margin="4" x:Name="cboCMType" IsEditable="False">
+            <ComboBoxItem Content="Solid" IsSelected="True" x:Name="cbiSolid" ></ComboBoxItem>
+            <ComboBoxItem Content="Liquid" ></ComboBoxItem>
+            <ComboBoxItem Content="Gas"></ComboBoxItem>
+        </ComboBox>
+        <Label>Solid Template</Label>
+        <ComboBox x:Name="cboSolidTemplate" Margin="4" IsEditable="False" IsEnabled="{Binding ElementName=cbiSolid, Path=IsSelected}"                  
+                  DisplayMemberPath="Name">
+            <ComboBox.Items>
+                <ikosamaterials:AdamantineMaterial />
+                <ikosamaterials:BoneMaterial/>
+                <ikosamaterials:ClothMaterial/>
+                <ikosamaterials:ColdIronMaterial/>
+                <ikosamaterials:EarthMaterial/>
+                <ikosamaterials:GlassMaterial/>
+                <ikosamaterials:GoldPlatingMaterial/>
+                <ikosamaterials:HideMaterial/>
+                <ikosamaterials:IceMaterial/>
+                <ikosamaterials:IronMaterial/>
+                <ikosamaterials:LeatherMaterial/>
+                <ikosamaterials:MithralMaterial/>
+                <ikosamaterials:PaperMaterial/>
+                <ikosamaterials:RopeMaterial/>
+                <ikosamaterials:SilverPlatingMaterial/>
+                <ikosamaterials:SteelMaterial/>
+                <ikosamaterials:StoneMaterial/>
+                <ikosamaterials:WoodMaterial/>
+            </ComboBox.Items>
+        </ComboBox>
+        <DockPanel LastChildFill="False" Margin="4,0,4,4">
+            <Button DockPanel.Dock="Right" Margin="4" MinWidth="60" IsCancel="True" x:Name="btnCancel" Click="btnCancel_Click">Cancel</Button>
+            <Button DockPanel.Dock="Right" Margin="4" MinWidth="60" IsDefault="True" x:Name="btnOK" Click="btnOK_Click">OK</Button>
+        </DockPanel>
+    </StackPanel>
+</Window>

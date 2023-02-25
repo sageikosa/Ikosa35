@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Uzi.Visualize.Contracts.Tactical.ExtraInfoInfo">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <Members>
+      <Method Name="ExtraInfoInfo" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewServices\Tactical\ExtraInfoInfo.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Informations" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="Uzi.Core.Info">
+    <Position X="4" Y="0.5" Width="1.5" />
+    <Members>
+      <Method Name="Clone" Hidden="true" />
+      <Method Name="Info" Hidden="true" />
+    </Members>
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Uzi.Visualize.Contracts.Tactical.ExtraInfoMarkerInfo">
+    <Position X="0.5" Y="2.25" Width="1.75" />
+    <Members>
+      <Method Name="ExtraInfoMarkerInfo" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAgAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewServices\Tactical\ExtraInfoMarkerInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Uzi.Core.CoreInfo">
+    <Position X="7" Y="0.5" Width="1.5" />
+    <Members>
+      <Method Name="Clone" Hidden="true" />
+      <Method Name="CoreInfo" Hidden="true" />
+    </Members>
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Uzi.Core.Description">
+    <Position X="3" Y="2.75" Width="1.5" />
+    <Members>
+      <Method Name="Clone" Hidden="true" />
+      <Method Name="Description" Hidden="true" />
+    </Members>
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Uzi.Core.ObservedActivityInfo">
+    <Position X="2.75" Y="5.25" Width="1.75" />
+    <Members>
+      <Method Name="Clone" Hidden="true" />
+      <Method Name="ObservedActivityInfo" Hidden="true" />
+    </Members>
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Uzi.Ikosa.Descriptions.CheckLockedInfo">
+    <Position X="5" Y="2.75" Width="1.5" />
+    <Members>
+      <Method Name="CheckLockedInfo" Hidden="true" />
+      <Method Name="Clone" Hidden="true" />
+    </Members>
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Uzi.Ikosa.Descriptions.RefreshInfo">
+    <Position X="0.75" Y="5.25" Width="1.5" />
+    <Members>
+      <Method Name="Clone" Hidden="true" />
+      <Method Name="RefreshInfo" Hidden="true" />
+    </Members>
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Uzi.Visualize.Contracts.ObjectInfo">
+    <Position X="9.5" Y="0.5" Width="1.5" />
+    <Members>
+      <Method Name="Clone" Hidden="true" />
+      <Method Name="ObjectInfo" Hidden="true" />
+    </Members>
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Uzi.Visualize.Contracts.MagicPowerSourceInfo">
+    <Position X="7" Y="2.75" Width="2" />
+    <Members>
+      <Method Name="Clone" Hidden="true" />
+      <Method Name="MagicPowerSourceInfo" Hidden="true" />
+    </Members>
+    <TypeIdentifier />
+    <ShowAsAssociation>
+      <Property Name="MagicPowerDef" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Uzi.Visualize.Contracts.MagicPowerDefInfo">
+    <Position X="7.25" Y="5.5" Width="1.75" />
+    <Members>
+      <Method Name="Clone" Hidden="true" />
+      <Method Name="MagicPowerDefInfo" Hidden="true" />
+    </Members>
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Uzi.Visualize.Contracts.PowerDefInfo">
+    <Position X="5" Y="5.25" Width="1.5" />
+    <Members>
+      <Method Name="Clone" Hidden="true" />
+      <Method Name="PowerDefInfo" Hidden="true" />
+    </Members>
+    <TypeIdentifier />
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

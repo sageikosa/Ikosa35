@@ -1,0 +1,2070 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{4BA30E20-DD11-454F-BD65-AD842848B356}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Uzi.Ikosa.Workshop</RootNamespace>
+    <AssemblyName>Uzi.Ikosa.Workshop</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation />
+    <TargetFrameworkProfile />
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>IkosaWorkshop.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Controls.Ribbon" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="UIAutomationProvider">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="PresentationCore">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="PresentationFramework">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Page Include="AboutWorkshop.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Adjuncts\AdjunctItemTemplates.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="BrushCollectionPart\BrushCollectionPartControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="BrushCollectionPart\FullRename.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="BrushCollectionPart\LinearGradient.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="BrushCollectionPart\SelectRename.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="BrushCollectionPart\SolidColor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="BrushCollectionPart\StackedBrush.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CellSpaces\CellSpaceEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CellSpaces\CellSpaceEditorTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CellSpaces\CellSpacePalette.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CellSpaces\GripRules.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CellSpaces\NewSpaces\NewSmallCylinder.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CellSpaces\NewSpaces\NewCylinder.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CellSpaces\Params\CylinderParams.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CellSpaces\Params\LFrameParams.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CellSpaces\NewSpaces\NewLFrame.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CellSpaces\NewSpaces\NewPanelSpace.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CellSpaces\NewSpaces\NewSlope.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CellSpaces\NewSpaces\NewStairs.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CellSpaces\PanelSpaceEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CellSpaces\PanelSpaceEditorTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CellSpaces\Params\PanelSpaceParams.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CellSpaces\Params\SliverParams.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CellSpaces\Params\SlopeParams.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CellSpaces\Params\SmallCylinderParams.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CellSpaces\Params\StairsParams.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CellSpaces\Params\WedgeParams.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CellSpaces\SliverEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CellSpaces\SliverEditorTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CellSpaces\SlopeEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CellSpaces\SlopeEditorTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Containers\AmmoContainerContentsList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Containers\CloseableContainerEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Containers\CloseableContainerTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Containers\ContainerContentsList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Containers\ContainerCreate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Containers\ContainerEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Containers\ContainerEditorTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Containers\ContainerInventory.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Containers\ContainerItemBaseTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Containers\KeyRingContents.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Containers\KeyRingTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Containers\SlottedContainerItemBaseTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\UsersTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Creatures\AdditionalCharSheet.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Creatures\CreatureCreate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Creatures\DescriptionEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Creatures\EquipmentSheet.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Creatures\LanguageEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Creatures\MultiRequirementsEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Creatures\NewTeam.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Creatures\QualitiesSheet.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Creatures\Social.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Creatures\SpellSlots.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Creatures\TemplateLocker.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Creatures\Users.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DeltableBaseValue.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Adjuncts\SearchableItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Adjuncts\StuckItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="BackgroundCellGroups\BackgroundCellGroupCreate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="BackgroundCellGroups\BackgroundCellGroupEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CellMaterials\CellMaterialCreate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CellMaterials\CellMaterialEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CellMaterials\TileName.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CharSheet.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Creatures\AdvancementSheet.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Creatures\CharacterSheet.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Creatures\CreateCharacter.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Creatures\CreatureEditor.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Creatures\PossessionsSheet.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Creatures\Start.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Furnishings\ConveyanceEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Furnishings\FlexibleFlatPanelEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Furnishings\FurnishingCreate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Furnishings\FurnishingEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Furnishings\FurnishingEditorWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Furnishings\HollowFurnishingEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Furnishings\HollowFurnishingLidEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="IconParts\IconEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="IconParts\IconFolderPreview.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="IconParts\IconFolderPreviewTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="IconParts\IconViewer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="IconParts\IconViewerTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Items\AmmoBundleEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Items\KeyItemEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Items\KeyRingEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LoadStatus.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Mechanisms\ActivationTargetsEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Mechanisms\LockActivationMechanismEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Mechanisms\MechanismMountEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Mechanisms\MeleeTriggerableAttackEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Mechanisms\MeleeTriggerableEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Mechanisms\OpenableTriggerMechanismEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Mechanisms\OpenCloseTriggerableEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Mechanisms\ProximityTriggerMechanismEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Mechanisms\RangedTriggerableAttackEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Mechanisms\RangedTriggerableEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Mechanisms\SurfaceTriggerMechanismEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Mechanisms\SwitchActivationMechanismEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Mechanisms\TriggerTargetsEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MetaModel\FragmentRename.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ObjectBase\ObjectPalette.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Portals\SecretCornerPivotPortalEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Portals\SecretSlidingPortalEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ResourceReferences\BrushesResourceReferenceControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ResourceReferences\BrushesResourceReferenceTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ResourceReferences\BrushSetsResourceReferenceControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ResourceReferences\BrushSetsResourceReferenceTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ResourceReferences\IconsResourceReferenceTab.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ResourceReferences\IconsResourceReferenceControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ResourceReferences\FragmentsResourceReferenceTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="IkosaFolderRename.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ImageViewer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Items\AmmoContainerEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Items\AmmoEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Items\ArmorEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Items\CoinSetEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Items\ContainerItemBaseEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Items\DoubleWeaponEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Items\GemEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Items\GemName.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Items\ItemListTemplates.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Items\MeleeWeaponEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Items\PotionEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Items\ProjectileWeaponEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Items\ReachWeaponEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Items\ScrollEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Items\ShieldEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Items\AddItemMenu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Items\SlottedContainerItemBaseEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Items\SpellBookEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Items\WandEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="LabelModifiable.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Lights\AmbientLightCreate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Lights\AmbientLightEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Lights\ImportedLightEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Lights\LightCreate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Lights\LocalLinkSetViewer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Lights\StructuralLightEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Locale\Axes.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Locale\ParamEdit.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Locale\Preview.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Locators\LocatorCreate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Locators\LocatorEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Locators\LocatorEditorControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Mechanisms\HaspEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Mechanisms\KeyholeEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Mechanisms\KeySelector.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Mechanisms\LockKnobEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Mechanisms\OpenerCloserEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Mechanisms\RelockingOpenerEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Mechanisms\RenameKey.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Mechanisms\ThrowBoltEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MetaModel\MetaModelEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MetaModel\MetaModelEditorTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ModelViewer.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ObjectBase\ObjectEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ObjectBase\ObjectEditorWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ObjectBase\ObjectTip.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ObjectCreate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PackageExplorer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="PaletteWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Panels\NewCornerPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Panels\NewLFramePanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Panels\NewNormalPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Panels\NewSlopeComposite.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Portals\CornerPivotPortalEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Portals\PortalCreate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Portals\PortalEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Mechanisms\MechanismManager.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Portals\SlidingPortalEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CellSpaces\NewSpaces\NewCellSpace.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ResourceReferences\FragmentsResourceReferenceControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ResourceReferences\ImagesResourceReferenceControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ResourceReferences\ImagesResourceReferenceTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ResourceReferences\ModelsResourceReferenceControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ResourceReferences\ModelsResourceReferenceTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ResourceReferences\NewReference.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ResourceReferences\SelectPart.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Rooms\FillRoom.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Rooms\NewBlock.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Rooms\NewCell.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Rooms\NewLine.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Rooms\NewRoom.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CellSpaces\NewSpaces\NewSliver.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CellSpaces\NewSpaces\NewWedgeCorner.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Rooms\RoomContentControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Rooms\RoomEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Rooms\RoomEditorControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SummaryCard.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="BrushCollectionPart\BrushCollectionPartName.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="BrushCollectionPart\BrushCollectionPartEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Workshop.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="AboutWorkshop.xaml.cs">
+      <DependentUpon>AboutWorkshop.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BrushCollectionPart\BrushCollectionPartControl.xaml.cs">
+      <DependentUpon>BrushCollectionPartControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="BrushCollectionPart\FullRename.xaml.cs">
+      <DependentUpon>FullRename.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="BrushCollectionPart\LinearGradient.xaml.cs">
+      <DependentUpon>LinearGradient.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="BrushCollectionPart\SelectRename.xaml.cs">
+      <DependentUpon>SelectRename.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="BrushCollectionPart\SolidColor.xaml.cs">
+      <DependentUpon>SolidColor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="BrushCollectionPart\StackedBrush.xaml.cs">
+      <DependentUpon>StackedBrush.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CellMaterials\TileSetViewModel.cs" />
+    <Compile Include="CellSpaces\CellSpaceEditor.xaml.cs">
+      <DependentUpon>CellSpaceEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CellSpaces\CellSpaceEditorTab.xaml.cs">
+      <DependentUpon>CellSpaceEditorTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CellSpaces\CellSpacePalette.xaml.cs">
+      <DependentUpon>CellSpacePalette.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CellSpaces\GripRules.xaml.cs">
+      <DependentUpon>GripRules.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CellSpaces\ICellStructureProvider.cs" />
+    <Compile Include="CellSpaces\NewSpaces\NewSmallCylinder.xaml.cs">
+      <DependentUpon>NewSmallCylinder.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CellSpaces\NewSpaces\NewCylinder.xaml.cs">
+      <DependentUpon>NewCylinder.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CellSpaces\Params\CylinderParams.xaml.cs">
+      <DependentUpon>CylinderParams.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CellSpaces\Params\IParamControl.cs" />
+    <Compile Include="CellSpaces\Params\LFrameParams.xaml.cs">
+      <DependentUpon>LFrameParams.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CellSpaces\NewSpaces\NewLFrame.xaml.cs">
+      <DependentUpon>NewLFrame.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CellSpaces\NewSpaces\NewPanelSpace.xaml.cs">
+      <DependentUpon>NewPanelSpace.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CellSpaces\NewSpaces\NewSlope.xaml.cs">
+      <DependentUpon>NewSlope.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CellSpaces\NewSpaces\NewStairs.xaml.cs">
+      <DependentUpon>NewStairs.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CellSpaces\Params\PanelParamsVM.cs" />
+    <Compile Include="CellSpaces\PanelSpaceEditor.xaml.cs">
+      <DependentUpon>PanelSpaceEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CellSpaces\PanelSpaceEditorTab.xaml.cs">
+      <DependentUpon>PanelSpaceEditorTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CellSpaces\Params\PanelSpaceParams.xaml.cs">
+      <DependentUpon>PanelSpaceParams.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CellSpaces\Params\SliverParams.xaml.cs">
+      <DependentUpon>SliverParams.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CellSpaces\Params\SlopeParams.xaml.cs">
+      <DependentUpon>SlopeParams.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CellSpaces\Params\SmallCylinderParams.xaml.cs">
+      <DependentUpon>SmallCylinderParams.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CellSpaces\Params\StairsParams.xaml.cs">
+      <DependentUpon>StairsParams.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CellSpaces\Params\WedgeParams.xaml.cs">
+      <DependentUpon>WedgeParams.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CellSpaces\SliverEditor.xaml.cs">
+      <DependentUpon>SliverEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CellSpaces\SliverEditorTab.xaml.cs">
+      <DependentUpon>SliverEditorTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CellSpaces\SlopeEditor.xaml.cs">
+      <DependentUpon>SlopeEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CellSpaces\SlopeEditorTab.xaml.cs">
+      <DependentUpon>SlopeEditorTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CollectionViewSorter.cs" />
+    <Compile Include="Containers\AmmoContainerContentsList.xaml.cs">
+      <DependentUpon>AmmoContainerContentsList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Containers\CloseableContainerEditor.xaml.cs">
+      <DependentUpon>CloseableContainerEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Containers\CloseableContainerTab.xaml.cs">
+      <DependentUpon>CloseableContainerTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Containers\ContainerContentsList.xaml.cs">
+      <DependentUpon>ContainerContentsList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Containers\ContainerCreate.xaml.cs">
+      <DependentUpon>ContainerCreate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Containers\ContainerEditor.xaml.cs">
+      <DependentUpon>ContainerEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Containers\ContainerEditorTab.xaml.cs">
+      <DependentUpon>ContainerEditorTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Containers\ContainerInventory.xaml.cs">
+      <DependentUpon>ContainerInventory.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Containers\ContainerItemBaseTab.xaml.cs">
+      <DependentUpon>ContainerItemBaseTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Containers\KeyRingContents.xaml.cs">
+      <DependentUpon>KeyRingContents.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Containers\KeyRingTab.xaml.cs">
+      <DependentUpon>KeyRingTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Containers\SlottedContainerItemBaseTab.xaml.cs">
+      <DependentUpon>SlottedContainerItemBaseTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\UsersTab.xaml.cs">
+      <DependentUpon>UsersTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Creatures\AdditionalCharSheet.xaml.cs">
+      <DependentUpon>AdditionalCharSheet.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Creatures\CreatureCreate.xaml.cs">
+      <DependentUpon>CreatureCreate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Creatures\DescriptionEditor.xaml.cs">
+      <DependentUpon>DescriptionEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Creatures\EquipmentSheet.xaml.cs">
+      <DependentUpon>EquipmentSheet.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Creatures\LanguageEditor.xaml.cs">
+      <DependentUpon>LanguageEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Creatures\MultiRequirementsEditor.xaml.cs">
+      <DependentUpon>MultiRequirementsEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Creatures\NewTeam.xaml.cs">
+      <DependentUpon>NewTeam.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Creatures\QualitiesSheet.xaml.cs">
+      <DependentUpon>QualitiesSheet.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Creatures\RequirementEditorSelector.cs" />
+    <Compile Include="Creatures\Social.xaml.cs">
+      <DependentUpon>Social.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Creatures\SpellSlots.xaml.cs">
+      <DependentUpon>SpellSlots.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Creatures\TeamGroupTemplateSelector.cs" />
+    <Compile Include="Creatures\TemplateLocker.xaml.cs">
+      <DependentUpon>TemplateLocker.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Creatures\Users.xaml.cs">
+      <DependentUpon>Users.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DeltableBaseValue.xaml.cs">
+      <DependentUpon>DeltableBaseValue.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Adjuncts\SearchableItem.xaml.cs">
+      <DependentUpon>SearchableItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Adjuncts\StuckItem.xaml.cs">
+      <DependentUpon>StuckItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="BackgroundCellGroups\BackgroundCellGroupCreate.xaml.cs">
+      <DependentUpon>BackgroundCellGroupCreate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="BackgroundCellGroups\BackgroundCellGroupEditor.xaml.cs">
+      <DependentUpon>BackgroundCellGroupEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CellMaterials\CellMaterialCreate.xaml.cs">
+      <DependentUpon>CellMaterialCreate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CellMaterials\CellMaterialEditor.xaml.cs">
+      <DependentUpon>CellMaterialEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CellMaterials\CellMaterialSelector.cs" />
+    <Compile Include="CellMaterials\SampleCellSpace.cs" />
+    <Compile Include="CellMaterials\TileName.xaml.cs">
+      <DependentUpon>TileName.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CharSheet.xaml.cs">
+      <DependentUpon>CharSheet.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Creatures\AdvancementSheet.xaml.cs">
+      <DependentUpon>AdvancementSheet.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Creatures\CharacterSheet.xaml.cs">
+      <DependentUpon>CharacterSheet.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Creatures\CreateCharacter.xaml.cs">
+      <DependentUpon>CreateCharacter.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Creatures\CreatureEditor.xaml.cs">
+      <DependentUpon>CreatureEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Creatures\PossessionsSheet.xaml.cs">
+      <DependentUpon>PossessionsSheet.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Creatures\Start.xaml.cs">
+      <DependentUpon>Start.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Furnishings\ConveyanceEditor.xaml.cs">
+      <DependentUpon>ConveyanceEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Furnishings\FlexibleFlatPanelEditor.xaml.cs">
+      <DependentUpon>FlexibleFlatPanelEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Furnishings\FurnishingCreate.xaml.cs">
+      <DependentUpon>FurnishingCreate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Furnishings\FurnishingEditor.xaml.cs">
+      <DependentUpon>FurnishingEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Furnishings\FurnishingEditorWindow.xaml.cs">
+      <DependentUpon>FurnishingEditorWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Furnishings\HollowFurnishingEditor.xaml.cs">
+      <DependentUpon>HollowFurnishingEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Furnishings\HollowFurnishingLidEditor.xaml.cs">
+      <DependentUpon>HollowFurnishingLidEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="IconParts\IconEditor.xaml.cs">
+      <DependentUpon>IconEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="IconParts\IconFolderPreview.xaml.cs">
+      <DependentUpon>IconFolderPreview.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="IconParts\IconFolderPreviewTab.xaml.cs">
+      <DependentUpon>IconFolderPreviewTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="IconParts\IconViewer.xaml.cs">
+      <DependentUpon>IconViewer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="IconParts\IconViewerTab.xaml.cs">
+      <DependentUpon>IconViewerTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Items\AmmoBundleEditor.xaml.cs">
+      <DependentUpon>AmmoBundleEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Items\KeyItemEditor.xaml.cs">
+      <DependentUpon>KeyItemEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Items\KeyRingEditor.xaml.cs">
+      <DependentUpon>KeyRingEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LoadStatus.xaml.cs">
+      <DependentUpon>LoadStatus.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Locale\RoomAwarenesses.cs" />
+    <Compile Include="Mechanisms\ActivationTargetsEditor.xaml.cs">
+      <DependentUpon>ActivationTargetsEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Mechanisms\LockActivationMechanismEditor.xaml.cs">
+      <DependentUpon>LockActivationMechanismEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Mechanisms\MechanismMountEditor.xaml.cs">
+      <DependentUpon>MechanismMountEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Mechanisms\MeleeTriggerableAttackEditor.xaml.cs">
+      <DependentUpon>MeleeTriggerableAttackEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Mechanisms\MeleeTriggerableEditor.xaml.cs">
+      <DependentUpon>MeleeTriggerableEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Mechanisms\OpenableTriggerMechanismEditor.xaml.cs">
+      <DependentUpon>OpenableTriggerMechanismEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Mechanisms\OpenCloseTriggerableEditor.xaml.cs">
+      <DependentUpon>OpenCloseTriggerableEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Mechanisms\ProximityTriggerMechanismEditor.xaml.cs">
+      <DependentUpon>ProximityTriggerMechanismEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Mechanisms\RangedTriggerableAttackEditor.xaml.cs">
+      <DependentUpon>RangedTriggerableAttackEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Mechanisms\RangedTriggerableEditor.xaml.cs">
+      <DependentUpon>RangedTriggerableEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Mechanisms\SurfaceTriggerMechanismEditor.xaml.cs">
+      <DependentUpon>SurfaceTriggerMechanismEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Mechanisms\SwitchActivationMechanismEditor.xaml.cs">
+      <DependentUpon>SwitchActivationMechanismEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Mechanisms\TriggerTargetsEditor.xaml.cs">
+      <DependentUpon>TriggerTargetsEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MetaModel\FragGeometry.cs" />
+    <Compile Include="MetaModel\FragmentRename.xaml.cs">
+      <DependentUpon>FragmentRename.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ObjectBase\ObjectPalette.xaml.cs">
+      <DependentUpon>ObjectPalette.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Portals\SecretCornerPivotPortalEditor.xaml.cs">
+      <DependentUpon>SecretCornerPivotPortalEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Portals\SecretSlidingPortalEditor.xaml.cs">
+      <DependentUpon>SecretSlidingPortalEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ResourceReferences\BrushesResourceReferenceControl.xaml.cs">
+      <DependentUpon>BrushesResourceReferenceControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ResourceReferences\BrushesResourceReferenceTab.xaml.cs">
+      <DependentUpon>BrushesResourceReferenceTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ResourceReferences\BrushSetsResourceReferenceControl.xaml.cs">
+      <DependentUpon>BrushSetsResourceReferenceControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ResourceReferences\BrushSetsResourceReferenceTab.xaml.cs">
+      <DependentUpon>BrushSetsResourceReferenceTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ResourceReferences\IconsResourceReferenceTab.xaml.cs">
+      <DependentUpon>IconsResourceReferenceTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ResourceReferences\IconsResourceReferenceControl.xaml.cs">
+      <DependentUpon>IconsResourceReferenceControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ResourceReferences\FragmentsResourceReferenceTab.xaml.cs">
+      <DependentUpon>FragmentsResourceReferenceTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="IHostedTabItem.cs" />
+    <Compile Include="IHostTabControl.cs" />
+    <Compile Include="IkosaFolderRename.xaml.cs">
+      <DependentUpon>IkosaFolderRename.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ImageViewer.xaml.cs">
+      <DependentUpon>ImageViewer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Items\AmmoContainerEditor.xaml.cs">
+      <DependentUpon>AmmoContainerEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Items\AmmoEditor.xaml.cs">
+      <DependentUpon>AmmoEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Items\ArmorEditor.xaml.cs">
+      <DependentUpon>ArmorEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Items\CoinSetEditor.xaml.cs">
+      <DependentUpon>CoinSetEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Items\ContainerItemBaseEditor.xaml.cs">
+      <DependentUpon>ContainerItemBaseEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Items\DoubleWeaponEditor.xaml.cs">
+      <DependentUpon>DoubleWeaponEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Items\GemEditor.xaml.cs">
+      <DependentUpon>GemEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Items\GemName.xaml.cs">
+      <DependentUpon>GemName.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Items\MeleeWeaponEditor.xaml.cs">
+      <DependentUpon>MeleeWeaponEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Items\PotionEditor.xaml.cs">
+      <DependentUpon>PotionEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Items\ProjectileWeaponEditor.xaml.cs">
+      <DependentUpon>ProjectileWeaponEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Items\ReachWeaponEditor.xaml.cs">
+      <DependentUpon>ReachWeaponEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Items\ScrollEditor.xaml.cs">
+      <DependentUpon>ScrollEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Items\ShieldEditor.xaml.cs">
+      <DependentUpon>ShieldEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Items\AddItemMenu.xaml.cs">
+      <DependentUpon>AddItemMenu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Items\SlottedContainerItemBaseEditor.xaml.cs">
+      <DependentUpon>SlottedContainerItemBaseEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Items\SpellBookEditor.xaml.cs">
+      <DependentUpon>SpellBookEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Items\WandEditor.xaml.cs">
+      <DependentUpon>WandEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LabelModifiable.xaml.cs">
+      <DependentUpon>LabelModifiable.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Lights\AmbientLightCreate.xaml.cs">
+      <DependentUpon>AmbientLightCreate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Lights\AmbientLightEditor.xaml.cs">
+      <DependentUpon>AmbientLightEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Lights\ImportedLightEditor.xaml.cs">
+      <DependentUpon>ImportedLightEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Lights\LightCreate.xaml.cs">
+      <DependentUpon>LightCreate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Lights\LocalLinkSetViewer.xaml.cs">
+      <DependentUpon>LocalLinkSetViewer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Lights\StructuralLightEditor.xaml.cs">
+      <DependentUpon>StructuralLightEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Locale\Axes.xaml.cs">
+      <DependentUpon>Axes.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Locale\ParamEdit.xaml.cs">
+      <DependentUpon>ParamEdit.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Locale\Preview.xaml.cs">
+      <DependentUpon>Preview.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Locators\LocatorCreate.xaml.cs">
+      <DependentUpon>LocatorCreate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Locators\LocatorEditor.xaml.cs">
+      <DependentUpon>LocatorEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Locators\LocatorEditorControl.xaml.cs">
+      <DependentUpon>LocatorEditorControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Mechanisms\HaspEditor.xaml.cs">
+      <DependentUpon>HaspEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Mechanisms\KeyholeEditor.xaml.cs">
+      <DependentUpon>KeyholeEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Mechanisms\KeySelector.xaml.cs">
+      <DependentUpon>KeySelector.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Mechanisms\LockKnobEditor.xaml.cs">
+      <DependentUpon>LockKnobEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Mechanisms\OpenerCloserEditor.xaml.cs">
+      <DependentUpon>OpenerCloserEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Mechanisms\RelockingOpenerEditor.xaml.cs">
+      <DependentUpon>RelockingOpenerEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Mechanisms\RenameKey.xaml.cs">
+      <DependentUpon>RenameKey.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Mechanisms\ThrowBoltEditor.xaml.cs">
+      <DependentUpon>ThrowBoltEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MetaModel\MetaModelEditor.xaml.cs">
+      <DependentUpon>MetaModelEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MetaModel\MetaModelEditorTab.xaml.cs">
+      <DependentUpon>MetaModelEditorTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MetaModel\MetaModelEditorTreeViewStyleSelector.cs" />
+    <Compile Include="ModelViewer.xaml.cs">
+      <DependentUpon>ModelViewer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ObjectBase\ObjectEditor.xaml.cs">
+      <DependentUpon>ObjectEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ObjectBase\ObjectEditorWindow.xaml.cs">
+      <DependentUpon>ObjectEditorWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ObjectBase\ObjectTip.xaml.cs">
+      <DependentUpon>ObjectTip.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ObjectCreate.xaml.cs">
+      <DependentUpon>ObjectCreate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PackageExplorer.xaml.cs">
+      <DependentUpon>PackageExplorer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PaletteWindow.xaml.cs">
+      <DependentUpon>PaletteWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Panels\NewCornerPanel.xaml.cs">
+      <DependentUpon>NewCornerPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Panels\NewLFramePanel.xaml.cs">
+      <DependentUpon>NewLFramePanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Panels\NewNormalPanel.xaml.cs">
+      <DependentUpon>NewNormalPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Panels\NewSlopeComposite.xaml.cs">
+      <DependentUpon>NewSlopeComposite.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Portals\CornerPivotPortalEditor.xaml.cs">
+      <DependentUpon>CornerPivotPortalEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Portals\PortalCreate.xaml.cs">
+      <DependentUpon>PortalCreate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Portals\PortalEditor.xaml.cs">
+      <DependentUpon>PortalEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Mechanisms\MechanismManager.xaml.cs">
+      <DependentUpon>MechanismManager.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Portals\SlidingPortalEditor.xaml.cs">
+      <DependentUpon>SlidingPortalEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="CellSpaces\NewSpaces\NewCellSpace.xaml.cs">
+      <DependentUpon>NewCellSpace.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ResourceReferences\FragmentsResourceReferenceControl.xaml.cs">
+      <DependentUpon>FragmentsResourceReferenceControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ResourceReferences\ImagesResourceReferenceControl.xaml.cs">
+      <DependentUpon>ImagesResourceReferenceControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ResourceReferences\ImagesResourceReferenceTab.xaml.cs">
+      <DependentUpon>ImagesResourceReferenceTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ResourceReferences\ModelsResourceReferenceControl.xaml.cs">
+      <DependentUpon>ModelsResourceReferenceControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ResourceReferences\ModelsResourceReferenceTab.xaml.cs">
+      <DependentUpon>ModelsResourceReferenceTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ResourceReferences\NewReference.xaml.cs">
+      <DependentUpon>NewReference.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ResourceReferences\SelectPart.xaml.cs">
+      <DependentUpon>SelectPart.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Rooms\FillRoom.xaml.cs">
+      <DependentUpon>FillRoom.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Rooms\NewBlock.xaml.cs">
+      <DependentUpon>NewBlock.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Rooms\NewCell.xaml.cs">
+      <DependentUpon>NewCell.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Rooms\NewLine.xaml.cs">
+      <DependentUpon>NewLine.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Rooms\NewRoom.xaml.cs">
+      <DependentUpon>NewRoom.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CellSpaces\NewSpaces\NewSliver.xaml.cs">
+      <DependentUpon>NewSliver.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CellSpaces\NewSpaces\NewWedgeCorner.xaml.cs">
+      <DependentUpon>NewWedgeCorner.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Rooms\ParamPicker.cs" />
+    <Compile Include="Rooms\RoomContentControl.xaml.cs">
+      <DependentUpon>RoomContentControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Rooms\RoomEditor.xaml.cs">
+      <DependentUpon>RoomEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Rooms\RoomEditorControl.xaml.cs">
+      <DependentUpon>RoomEditorControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="RoutedTemplateSelector.cs" />
+    <Compile Include="SummaryCard.xaml.cs">
+      <DependentUpon>SummaryCard.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="BrushCollectionPart\BrushCollectionPartName.xaml.cs">
+      <DependentUpon>BrushCollectionPartName.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="BrushCollectionPart\BrushCollectionPartEditor.xaml.cs">
+      <DependentUpon>BrushCollectionPartEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Workshop.xaml.cs">
+      <DependentUpon>Workshop.xaml</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <None Include="app.config" />
+    <None Include="Images\Thumbs.db" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\HelixToolkit.Wpf\HelixToolkit.Wpf_NET40.csproj">
+      <Project>{3f3b4548-a9db-4874-86f7-e7c4fec8a351}</Project>
+      <Name>HelixToolkit.Wpf_NET40</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Uzi.Core.Contracts\Uzi.Core.Contracts.csproj">
+      <Project>{A684AC4C-1911-4101-897D-B97DEAD744C2}</Project>
+      <Name>Uzi.Core.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Uzi.Core\Uzi.Core.csproj">
+      <Project>{93208C4B-9999-44A3-9477-1D034F15EB89}</Project>
+      <Name>Uzi.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Uzi.Ikosa.Contracts\Uzi.Ikosa.Contracts.csproj">
+      <Project>{7DDE27BD-1C99-4054-AF54-321BB387AEF1}</Project>
+      <Name>Uzi.Ikosa.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Uzi.Ikosa.UI\Uzi.Ikosa.UI.csproj">
+      <Project>{2DF21FEC-BDF3-4A08-A8E1-3DE24E73308C}</Project>
+      <Name>Uzi.Ikosa.UI</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Uzi.Ikosa.Visualize\Uzi.Visualize.csproj">
+      <Project>{3ED35492-9CA6-4DC9-8AC7-9DC6FB1BE470}</Project>
+      <Name>Uzi.Visualize</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UZI.Ikosa\UZI.Ikosa.csproj">
+      <Project>{2FD3FB59-9A53-4EFD-9E54-301EFCB0A47D}</Project>
+      <Name>UZI.Ikosa</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Uzi.Packaging\Uzi.Packaging.csproj">
+      <Project>{63EF7070-3DFA-4D1F-B80C-1415D3C9CA1A}</Project>
+      <Name>Uzi.Packaging</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Character.png" />
+    <Resource Include="Images\Map.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\brick.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\bricks.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\door.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\folder.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\image.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\images.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\key.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\lock.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\package.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\page_white_text.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\picture.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\pictures.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\plugin.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\plugin_disabled.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\script.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\user.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\color_wheel.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\box.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\layers.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\information.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\shape_square.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\corner.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\sliver.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\shape_group.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Block.png" />
+    <Resource Include="Images\Cell.png" />
+    <Resource Include="Images\line.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\flag_blue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\door_open.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\keyhole.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\throwbolt.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\lockknob.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\arrow_refresh.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\folder_go.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\briefcase.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\coins.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\cog.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\basket_put.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\lightbulb_off.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\lightbulb.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\folder_link.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\weather_sun.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Traps\" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.0">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\tag_blue_edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\magnifier.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\brick_go.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\lframe.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\stairs.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\bullet_minus.png" />
+    <Resource Include="Images\bullet_plus.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\arrow_switch.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\shape_square_add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\shape_square_edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\arrow_inout.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\eye.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\eye_bold.png" />
+    <Resource Include="Images\eye_bw.png" />
+    <Resource Include="Images\eye_rev.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\asterisk_yellow.png" />
+    <Resource Include="Images\cut_red.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images32x32\NoCellSpace.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\NoCellSpace.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images32x32\Cell.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\palette.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\map_extents.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="AboutLogo.png">
+      <SubType>Image</SubType>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="IkosaWorkshop.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <SplashScreen Include="WorkshopSplash.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\link.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\package_link.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\group.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\arrow_turn_left.png" />
+    <Resource Include="Images\arrow_turn_right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\shape_3d.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\folder_wrench.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\wedge.png" />
+    <Resource Include="Images\wrench.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\folder_palette.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\paintbrush.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\plugin_link.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\slope.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\panelCell.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\panelCorner.png" />
+    <Resource Include="Images\panelLFrame.png" />
+    <Resource Include="Images\panelNormal.png" />
+    <Resource Include="Images\panelSlope.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\shape_3d_link.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\image_link.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\brick_link.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\database.png" />
+    <Resource Include="Images\database_link.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\pictures_link.png" />
+    <Resource Include="Images\picture_link.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\photo_link.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\photos.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\photo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\application_side_tree.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\brick_edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\world.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\page_copy.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\page_paste.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\shape_circle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\arrow_down.png" />
+    <Resource Include="Images\arrow_up.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\arrow_rotate_anticlockwise.png" />
+    <Resource Include="Images\arrow_rotate_clockwise.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\box-knob.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\table_refresh.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\small_cylinder.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\shape_square_go.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\cog_add.png" />
+    <Resource Include="Images\cog_edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\switch.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\surface_mech.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\door_go.png" />
+    <Resource Include="Images\door_mech.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\lightning.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\cut.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Extended.Wpf.Toolkit">
+      <Version>4.0.1</Version>
+    </PackageReference>
+    <PackageReference Include="System.ValueTuple">
+      <Version>4.5.0</Version>
+    </PackageReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

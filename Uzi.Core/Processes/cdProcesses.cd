@@ -1,0 +1,150 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Uzi.Core.CoreActivity">
+    <Position X="0.75" Y="0.5" Width="1.75" />
+    <Members>
+      <Field Name="_Action" Hidden="true" />
+      <Field Name="_Actor" Hidden="true" />
+      <Field Name="_Targets" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>CAAAAAAAAAAAgAAIAAEAgAAIAAAAAEAAAAAAAAgAAAQ=</HashCode>
+      <FileName>Actions\CoreActivity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Uzi.Core.CoreStep">
+    <Position X="8.25" Y="0.5" Width="2" />
+    <Members>
+      <Field Name="_Complete" Hidden="true" />
+      <Field Name="_Followers" Hidden="true" />
+      <Field Name="_Process" Hidden="true" />
+      <Field Name="_Status" Hidden="true" />
+    </Members>
+    <AssociationLine Name="Process" Type="Uzi.Core.CoreProcess" FixedFromPoint="true">
+      <Path>
+        <Point X="8.25" Y="1.125" />
+        <Point X="5.75" Y="1.125" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="FollowingSteps" Type="Uzi.Core.CoreStep" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="10.25" Y="1.332" />
+        <Point X="11" Y="1.332" />
+        <Point X="11" Y="1.009" />
+        <Point X="10.25" Y="1.009" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AQAAgAAEABABAAQAAgAAkAAAAAAAAAAAAgAAAAAAAIA=</HashCode>
+      <FileName>Actions\Steps\CoreStep.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Process" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="FollowingSteps" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="Uzi.Core.InfoStep">
+    <Position X="0.75" Y="4.75" Width="2" />
+    <Members>
+      <Field Name="_Infos" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAABAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Actions\Steps\InfoStep.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Uzi.Core.PreReqListStepBase">
+    <Position X="3.75" Y="4.75" Width="3" />
+    <Members>
+      <Field Name="_PreReqs" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAABAAQgAAAAAAAAAAAAAAAAAAAAAAAAABBAA=</HashCode>
+      <FileName>Actions\Steps\PreReqListStepBase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Uzi.Core.InteractionPreReqStep">
+    <Position X="7.5" Y="5.25" Width="2.75" />
+    <Members>
+      <Field Name="_Interaction" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Actions\Steps\InteractionPreReqStep.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Uzi.Core.MultiNextStep">
+    <Position X="4" Y="8" Width="2.25" />
+    <Members>
+      <Field Name="_NextSteps" Hidden="true" />
+    </Members>
+    <InheritanceLine Type="Uzi.Core.PreReqListStepBase" FixedFromPoint="true">
+      <Path>
+        <Point X="5.125" Y="7.204" />
+        <Point X="5.125" Y="8" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAgAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Actions\Steps\MultiNextStep.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Uzi.Core.CoreProcess">
+    <Position X="4" Y="0.5" Width="1.75" />
+    <Members>
+      <Field Name="_Completions" Hidden="true" />
+      <Field Name="_IsActive" Hidden="true" />
+      <Field Name="_Reactives" Hidden="true" />
+      <Field Name="_RootStep" Hidden="true" />
+    </Members>
+    <AssociationLine Name="ReactiveSteps" Type="Uzi.Core.CoreStep" FixedToPoint="true">
+      <Path>
+        <Point X="5.75" Y="1.688" />
+        <Point X="8.25" Y="1.688" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="RootStep" Type="Uzi.Core.CoreStep" FixedFromPoint="true">
+      <Path>
+        <Point X="5.75" Y="2.25" />
+        <Point X="8.25" Y="2.25" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="CompletionSteps" Type="Uzi.Core.CoreStep" FixedToPoint="true">
+      <Path>
+        <Point X="5.75" Y="2.812" />
+        <Point X="8.25" Y="2.812" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>CIAAAAEAAAACAIAAEAEAAAAAIAAAgAAAAAABACAACII=</HashCode>
+      <FileName>Actions\CoreProcess.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="RootStep" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="ReactiveSteps" />
+      <Property Name="CompletionSteps" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="Uzi.Core.RetryInteractionStep">
+    <Position X="8" Y="7.5" Width="1.75" />
+    <Members>
+      <Field Name="_Name" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAABAAAAAAAAIAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Actions\Steps\RetryInteractionStep.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="Uzi.Core.ISplinterableStep">
+    <Position X="2.25" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAA=</HashCode>
+      <FileName>Actions\Steps\ISplinterableStep.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

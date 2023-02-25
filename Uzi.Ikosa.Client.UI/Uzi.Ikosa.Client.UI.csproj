@@ -1,0 +1,477 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{F09768E8-6A81-4553-89A8-465C8C557AB9}</ProjectGuid>
+    <OutputType>library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Uzi.Ikosa.Client.UI</RootNamespace>
+    <AssemblyName>Uzi.Ikosa.Client.UI</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.ValueTuple, Version=4.0.1.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\Uzi.Ikosa.Client\packages\System.ValueTuple.4.3.0\lib\netstandard1.0\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Actions\ActorTurnTrackerPanel.xaml.cs">
+      <DependentUpon>ActorTurnTrackerPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Actions\LocalActionMiniTile.xaml.cs">
+      <DependentUpon>LocalActionMiniTile.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Actions\LocalActionPanel.xaml.cs">
+      <DependentUpon>LocalActionPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Actions\MoveActionPanel.xaml.cs">
+      <DependentUpon>MoveActionPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Actions\TimelineManagerActorTemplateSelector.cs" />
+    <Compile Include="Actions\TurnTrackerPanel.xaml.cs">
+      <DependentUpon>TurnTrackerPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ActivityBuild\ActivityInfoBuildControl.xaml.cs">
+      <DependentUpon>ActivityInfoBuildControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ActivityBuild\AttackTargetingControl.xaml.cs">
+      <DependentUpon>AttackTargetingControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ActivityBuild\AwarenessTargetingControl.xaml.cs">
+      <DependentUpon>AwarenessTargetingControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ActivityBuild\LocationTargetingControl.xaml.cs">
+      <DependentUpon>LocationTargetingControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ActivityBuild\PrepareSpellSlotsTemplateSelector.cs" />
+    <Compile Include="ActivityBuild\PrepareSpellSlotsTargetingControl.xaml.cs">
+      <DependentUpon>PrepareSpellSlotsTargetingControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="BoolColorConverter.cs" />
+    <Compile Include="BooleanInverter.cs" />
+    <Compile Include="BoolVisibilityConverter.cs" />
+    <Compile Include="Character\AdditionalCharInfo.xaml.cs">
+      <DependentUpon>AdditionalCharInfo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Character\AdditionalCharMisc.xaml.cs">
+      <DependentUpon>AdditionalCharMisc.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Character\AdditionalInfo.xaml.cs">
+      <DependentUpon>AdditionalInfo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Character\Advancement.xaml.cs">
+      <DependentUpon>Advancement.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Character\AdvancementHealthPoints.xaml.cs">
+      <DependentUpon>AdvancementHealthPoints.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Character\Awareness.xaml.cs">
+      <DependentUpon>Awareness.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Character\CharacterInfo.xaml.cs">
+      <DependentUpon>CharacterInfo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Character\FeatTemplateSelector.cs" />
+    <Compile Include="Character\SkillSheet.xaml.cs">
+      <DependentUpon>SkillSheet.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Character\SkillSheetActive.xaml.cs">
+      <DependentUpon>SkillSheetActive.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Items\Inventory.xaml.cs">
+      <DependentUpon>Inventory.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Items\ItemListTemplateSelector.cs" />
+    <Compile Include="Items\ItemSlots.xaml.cs">
+      <DependentUpon>ItemSlots.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Locale\AimPointPanel.xaml.cs">
+      <DependentUpon>AimPointPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ImageryIcon.xaml.cs">
+      <DependentUpon>ImageryIcon.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Locale\CellPointer.xaml.cs">
+      <DependentUpon>CellPointer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Locale\FurnishingCommands.xaml.cs">
+      <DependentUpon>FurnishingCommands.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Locale\GeometryPointer.xaml.cs">
+      <DependentUpon>GeometryPointer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Locale\Headings.xaml.cs">
+      <DependentUpon>Headings.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Locale\IntersectPointer.xaml.cs">
+      <DependentUpon>IntersectPointer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Locale\LocaleViewer.xaml.cs">
+      <DependentUpon>LocaleViewer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Locale\ViewPoint\AimPointViewPoint.cs" />
+    <Compile Include="Locale\ViewPoint\BaseViewPoint.cs" />
+    <Compile Include="Locale\ViewPoint\FirstPersonViewPoint.cs" />
+    <Compile Include="Locale\ViewPoint\GameBoardViewPoint.cs" />
+    <Compile Include="Locale\ViewPoint\PerspectiveGameBoardViewPoint.cs" />
+    <Compile Include="Locale\ViewPoint\PerspectiveViewPoint.cs" />
+    <Compile Include="Locale\ViewPoint\ThirdPersonViewPoint.cs" />
+    <Compile Include="Prerequisites\AimTargetPrerequisiteItem.xaml.cs">
+      <DependentUpon>AimTargetPrerequisiteItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Prerequisites\CheckPrerequisiteItem.xaml.cs">
+      <DependentUpon>CheckPrerequisiteItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Prerequisites\ChoicePrerequisiteItem.xaml.cs">
+      <DependentUpon>ChoicePrerequisiteItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Prerequisites\CoreSelectPrerequisiteItem.xaml.cs">
+      <DependentUpon>CoreSelectPrerequisiteItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Prerequisites\MasterPrerequisiteList.xaml.cs">
+      <DependentUpon>MasterPrerequisiteList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Prerequisites\MasterPrerequisitePanel.xaml.cs">
+      <DependentUpon>MasterPrerequisitePanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Prerequisites\OpportunisticPrerequisiteItem.xaml.cs">
+      <DependentUpon>OpportunisticPrerequisiteItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Prerequisites\PreRequisiteDialog.xaml.cs">
+      <DependentUpon>PreRequisiteDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Prerequisites\PrerequisiteItemSelector.cs" />
+    <Compile Include="Prerequisites\PrerequisiteList.xaml.cs">
+      <DependentUpon>PrerequisiteList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Prerequisites\PrerequisitePanel.xaml.cs">
+      <DependentUpon>PrerequisitePanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Prerequisites\PromptTurnTrackerPrerequisiteItem.xaml.cs">
+      <DependentUpon>PromptTurnTrackerPrerequisiteItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Prerequisites\ReactivePrerequisiteItem.xaml.cs">
+      <DependentUpon>ReactivePrerequisiteItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Prerequisites\RollPrerequisiteItem.xaml.cs">
+      <DependentUpon>RollPrerequisiteItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Prerequisites\SavePrerequisiteItem.xaml.cs">
+      <DependentUpon>SavePrerequisiteItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Service\LogItems.xaml.cs">
+      <DependentUpon>LogItems.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Service\LogOutput.xaml.cs">
+      <DependentUpon>LogOutput.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Service\Messages.xaml.cs">
+      <DependentUpon>Messages.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Service\MessageTemplateSelector.cs" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="AbilityView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Actions\ActorTurnTrackerPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Actions\LocalActionMiniTile.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Actions\LocalActionPanel.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Actions\MoveActionPanel.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Actions\TurnTrackerPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ActivityBuild\ActivityInfoBuildControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ActivityBuild\AttackTargetingControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ActivityBuild\AwarenessTargetingControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ActivityBuild\LocationTargetingControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ActivityBuild\PrepareSpellSlotsTargetingControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Character\AdditionalCharInfo.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Character\AdditionalCharMisc.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Character\AdditionalInfo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Character\Advancement.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Character\AdvancementHealthPoints.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Character\Awareness.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Character\CharacterInfo.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Character\SkillSheet.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Character\SkillSheetActive.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Deltable.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ImageryIcon.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Items\Inventory.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Items\ItemListTemplates.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Items\ItemSlots.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Locale\AimPointPanel.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Locale\CellPointer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Locale\FurnishingCommands.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Locale\GeometryPointer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Locale\Headings.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Locale\IntersectPointer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Locale\LocaleViewer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Prerequisites\AimTargetPrerequisiteItem.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Prerequisites\CheckPrerequisiteItem.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Prerequisites\ChoicePrerequisiteItem.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Prerequisites\CoreSelectPrerequisiteItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Prerequisites\MasterPrerequisiteList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Prerequisites\MasterPrerequisitePanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Prerequisites\OpportunisticPrerequisiteItem.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Prerequisites\PreRequisiteDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Prerequisites\PrerequisiteList.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Prerequisites\PrerequisitePanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Prerequisites\PromptTurnTrackerPrerequisiteItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Prerequisites\ReactivePrerequisiteItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Prerequisites\RollPrerequisiteItem.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Prerequisites\SavePrerequisiteItem.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Service\LogItems.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Service\LogOutput.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Service\Messages.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Uzi.Core.Contracts\Uzi.Core.Contracts.csproj">
+      <Project>{A684AC4C-1911-4101-897D-B97DEAD744C2}</Project>
+      <Name>Uzi.Core.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Uzi.Ikosa.Contracts\Uzi.Ikosa.Contracts.csproj">
+      <Project>{7DDE27BD-1C99-4054-AF54-321BB387AEF1}</Project>
+      <Name>Uzi.Ikosa.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Uzi.Ikosa.Proxy\Uzi.Ikosa.Proxy.csproj">
+      <Project>{0495C9D2-BA9D-41F1-B167-825052C6B582}</Project>
+      <Name>Uzi.Ikosa.Proxy</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Uzi.Ikosa.Visualize\Uzi.Visualize.csproj">
+      <Project>{3ED35492-9CA6-4DC9-8AC7-9DC6FB1BE470}</Project>
+      <Name>Uzi.Visualize</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Uzi.Packaging\Uzi.Packaging.csproj">
+      <Project>{63EF7070-3DFA-4D1F-B80C-1415D3C9CA1A}</Project>
+      <Name>Uzi.Packaging</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="images\Pivot-Left.png" />
+    <Resource Include="images\Pivot-Right.png" />
+    <Resource Include="images\Tilt-Pull.png" />
+    <Resource Include="images\Tilt-Push.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

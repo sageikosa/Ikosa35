@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Uzi.Ikosa.Magic.SpellComponent">
+    <Position X="10.75" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAAAAAAAAAAAAKAAAQBAAIAAAIAAAAAAAAAAAA=</HashCode>
+      <FileName>Magic\Spells\SpellComponents\SpellComponent.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Uzi.Ikosa.ActionTime">
+    <Position X="1.25" Y="5.25" Width="2" />
+    <Members>
+      <Field Name="_Roll" Hidden="true" />
+      <Field Name="_Span" Hidden="true" />
+      <Field Name="_Unit" Hidden="true" />
+      <Field Name="ActionTimeType" Hidden="true" />
+    </Members>
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEgACCAgAAGAAAAAAAAQAAAAgAAIA=</HashCode>
+      <FileName>Actions\ActionTime.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Uzi.Core.AimingMode">
+    <Position X="10.5" Y="4" Width="2.25" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Uzi.Ikosa.Actions.Descriptor">
+    <Position X="7.25" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Actions\Descriptor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="Uzi.Ikosa.Magic.ISpellDef">
+    <Position X="7" Y="0.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAmQAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Magic\Spells\ISpellDef.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="DivineComponents" />
+      <Property Name="ArcaneComponents" />
+      <Property Name="SpellModes" />
+    </ShowAsCollectionAssociation>
+  </Interface>
+  <Interface Name="Uzi.Ikosa.Magic.ISpellMode">
+    <Position X="7" Y="3" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AgAAEQAAAAAgAAAEAABAAAAAAAAAAAAAAAAAAAAAgAA=</HashCode>
+      <FileName>Magic\Spells\ISpellMode.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Uzi.Ikosa.Magic.IMagicPowerActionDef">
+    <Position X="3.25" Y="0.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Magic\IMagicPowerActionDef.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Uzi.Ikosa.Magic.IMagicPowerDef">
+    <Position X="4.5" Y="3" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAQAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Magic\IMagicPowerDef.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Uzi.Ikosa.Actions.IPowerActionDef">
+    <Position X="2.75" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Actions\Powers\IPowerActionDef.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="ActionTime" />
+    </ShowAsAssociation>
+  </Interface>
+  <Interface Name="Uzi.Ikosa.Actions.IPowerDef">
+    <Position X="3.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAEAAAAAAgAgQAAAAAIAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Actions\Powers\IPowerDef.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Descriptors" />
+    </ShowAsCollectionAssociation>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

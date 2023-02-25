@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://uzi-icosa.com/campaign"
+            elementFormDefault="qualified" xmlns="http://uzi-icosa.com/campaign" attributeFormDefault="unqualified">
+  <xsd:element name="Campaign">
+    <xsd:complexType>
+      <xsd:choice minOccurs="0" maxOccurs="unbounded">
+        <!-- Merge -->
+        <xsd:element name="Merge">
+          <xsd:complexType>
+            <xsd:attribute name="source" use="required"/>
+          </xsd:complexType>
+        </xsd:element>
+        <!-- Feats -->
+        <xsd:element name="Feats">
+          <xsd:complexType>
+            <xsd:choice minOccurs="0" maxOccurs="unbounded">
+              <xsd:element name="Feat">
+                <xsd:complexType>
+                  <xsd:attributeGroup ref="listItem"/>
+                </xsd:complexType>
+              </xsd:element>
+            </xsd:choice>
+            <xsd:attribute name="name" use="required"/>
+          </xsd:complexType>
+        </xsd:element>
+        <!-- Classes -->
+        <xsd:element name="Classes">
+          <xsd:complexType>
+            <xsd:choice minOccurs="0" maxOccurs="unbounded">
+              <xsd:element name="Class">
+                <xsd:complexType>
+                  <xsd:attributeGroup ref="listItem"/>
+                </xsd:complexType>
+              </xsd:element>
+            </xsd:choice>
+            <xsd:attribute name="name" use="required"/>
+          </xsd:complexType>
+        </xsd:element>
+        <!-- Species -->
+        <xsd:element name="SpeciesList">
+          <xsd:complexType>
+            <xsd:choice minOccurs="0" maxOccurs="unbounded">
+              <xsd:element name="Species">
+                <xsd:complexType>
+                  <xsd:attributeGroup ref="listItem"/>
+                </xsd:complexType>
+              </xsd:element>
+            </xsd:choice>
+            <xsd:attribute name="name" use="required"/>
+          </xsd:complexType>
+        </xsd:element>
+        <!-- Templates -->
+        <xsd:element name="Templates">
+          <xsd:complexType>
+            <xsd:choice minOccurs="0" maxOccurs="unbounded">
+              <xsd:element name="Template">
+                <xsd:complexType>
+                  <xsd:attributeGroup ref="listItem"/>
+                </xsd:complexType>
+              </xsd:element>
+            </xsd:choice>
+          </xsd:complexType>
+        </xsd:element>
+        <!-- Weapon Types -->
+        <xsd:element name="WeaponTypes">
+          <xsd:complexType>
+            <xsd:choice minOccurs="0" maxOccurs="unbounded">
+              <xsd:element name="WeaponType">
+                <xsd:complexType>
+                  <xsd:attributeGroup ref="listItem"/>
+                </xsd:complexType>
+              </xsd:element>
+            </xsd:choice>
+          </xsd:complexType>
+        </xsd:element>
+        <!-- Item Types -->
+        <xsd:element name="ItemTypes">
+          <xsd:complexType>
+            <xsd:choice minOccurs="0" maxOccurs="unbounded">
+              <xsd:element name="ItemType">
+                <xsd:complexType>
+                  <xsd:attributeGroup ref="listItem"/>
+                </xsd:complexType>
+              </xsd:element>
+            </xsd:choice>
+          </xsd:complexType>
+        </xsd:element>
+        <!-- Spell Types -->
+        <xsd:element name="SpellList">
+          <xsd:complexType>
+            <xsd:choice minOccurs="0" maxOccurs="unbounded">
+              <xsd:element name="Spell">
+                <xsd:complexType>
+                  <xsd:attributeGroup ref="listItem"/>                  
+                </xsd:complexType>
+              </xsd:element>
+            </xsd:choice>
+            <xsd:attribute name="class" use="required"/>
+            <xsd:attribute name="level" use="required"/>            
+          </xsd:complexType>
+        </xsd:element>
+      </xsd:choice>
+    </xsd:complexType>
+  </xsd:element>
+
+  <!-- Attributes -->
+  <xsd:attributeGroup name="listItem">
+    <xsd:attribute name="class" use="required"/>
+    <xsd:attribute name="assembly" use="required"/>
+    <xsd:attribute name="description" use="required"/>
+  </xsd:attributeGroup>
+
+</xsd:schema>

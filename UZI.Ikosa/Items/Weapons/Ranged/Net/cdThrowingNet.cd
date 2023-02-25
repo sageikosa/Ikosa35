@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Uzi.Ikosa.Items.Weapons.Ranged.ThrowingNet">
+    <Position X="1.25" Y="1.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAKAAIAQAAEAAAAAAQAAAQAAAAgAAgCBAAAAA=</HashCode>
+      <FileName>Items\Weapons\Ranged\Net\ThrowingNet.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Uzi.Ikosa.Items.Weapons.Ranged.ThrowingNetGroup">
+    <Position X="7.75" Y="4.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAgAACAAAAAAAAAAAAAAAAQAAAA=</HashCode>
+      <FileName>Items\Weapons\Ranged\Net\ThrowingNetGroup.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Target" />
+      <Property Name="TrailingRope" />
+      <Property Name="ThrowingNet" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Uzi.Ikosa.Items.Weapons.Ranged.ThrowingNetEntanglement">
+    <Position X="11" Y="2.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAIAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAABA=</HashCode>
+      <FileName>Items\Weapons\Ranged\Net\ThrowingNetEntanglement.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Uzi.Ikosa.Items.Weapons.Ranged.ThrowingNetTrailer">
+    <Position X="11.5" Y="5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAgAAAAIAAAAAAAAAAAAAAAAABA=</HashCode>
+      <FileName>Items\Weapons\Ranged\Net\ThrowingNetTrailer.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="TrailingRope" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Uzi.Ikosa.Items.Weapons.Ranged.ThrowingNetEntangler">
+    <Position X="4.25" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAAAABAAAAAAAABAEAAAAAAACgAAAAAAAAQAABA=</HashCode>
+      <FileName>Items\Weapons\Ranged\Net\ThrowingNetEntangler.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="ThrowingNet" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Uzi.Ikosa.Items.Weapons.Ranged.ThrowingNetTrailingRope">
+    <Position X="0.75" Y="5.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Items\Weapons\Ranged\Net\ThrowingNetTrailingRope.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Uzi.Ikosa.Items.Weapons.Ranged.ThrowingNetEntangling">
+    <Position X="4.25" Y="3.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAQAABA=</HashCode>
+      <FileName>Items\Weapons\Ranged\Net\ThrowingNetEntangling.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="ThrowingNet" />
+    </ShowAsAssociation>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

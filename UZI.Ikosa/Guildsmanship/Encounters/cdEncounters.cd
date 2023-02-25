@@ -1,0 +1,196 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Uzi.Ikosa.Guildsmanship.EncounterTable">
+    <Position X="7" Y="1" Width="1.75" />
+    <Members>
+      <Field Name="_Entries" Hidden="true" />
+      <Field Name="_Roller" Hidden="true" />
+      <Method Name="Close" Hidden="true" />
+      <Method Name="EncounterTable" Hidden="true" />
+      <Field Name="EncounterTableRelation" Hidden="true" />
+      <Method Name="GetEncounterTable" Hidden="true" />
+      <Method Name="OnDoSave" Hidden="true" />
+      <Method Name="OnRefreshPart" Hidden="true" />
+      <Method Name="OnSetPackagePart" Hidden="true" />
+      <Method Name="Save" Hidden="true" />
+    </Members>
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAABAIAABAAAAiAAAAAABEQAAAAAIBAAAAQwAAKAABE=</HashCode>
+      <FileName>Guildsmanship\Encounters\EncounterTable.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Entries" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="Uzi.Ikosa.Guildsmanship.EncounterEntry">
+    <Position X="3.75" Y="1.25" Width="1.75" />
+    <Members>
+      <Field Name="_HighVal" Hidden="true" />
+      <Field Name="_LowVal" Hidden="true" />
+      <Field Name="_Mutabilities" Hidden="true" />
+      <Method Name="EncounterEntry" Hidden="true" />
+      <Method Name="GenerateCreatures" Hidden="true" />
+    </Members>
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>EAAQAAAAAAAAAAAAFACQAAAAAAAAAAAAAAAAAAAAAQA=</HashCode>
+      <FileName>Guildsmanship\Encounters\EncounterEntry.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Uzi.Ikosa.Guildsmanship.SpeciesEntry">
+    <Position X="3" Y="4.5" Width="1.75" />
+    <Members>
+      <Field Name="_Number" Hidden="true" />
+      <Field Name="_PowerDice" Hidden="true" />
+      <Field Name="_Roller" Hidden="true" />
+      <Field Name="_Species" Hidden="true" />
+      <Method Name="GenerateCreatures" Hidden="true" />
+      <Method Name="SpeciesEntry" Hidden="true" />
+    </Members>
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAUAAAAAAABAQAAAEAEAEAAAAAAAAAAAAAgAAAAgAA=</HashCode>
+      <FileName>Guildsmanship\Encounters\SpeciesEntry.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Uzi.Ikosa.Guildsmanship.TemplateEntry">
+    <Position X="5.5" Y="4.5" Width="1.75" />
+    <Members>
+      <Field Name="_Number" Hidden="true" />
+      <Field Name="_Roller" Hidden="true" />
+      <Field Name="_TemplateID" Hidden="true" />
+      <Method Name="GenerateCreatures" Hidden="true" />
+      <Method Name="TemplateEntry" Hidden="true" />
+    </Members>
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAQAAAAAAAAAAAAAEAEAEAAAAAAAAAAAAAwAAAAAAA=</HashCode>
+      <FileName>Guildsmanship\Encounters\TemplateEntry.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Uzi.Ikosa.Guildsmanship.CreatureEntry">
+    <Position X="8" Y="4.5" Width="1.75" />
+    <Members>
+      <Field Name="_CreatureID" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAA=</HashCode>
+      <FileName>Guildsmanship\Encounters\CreatureEntry.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Uzi.Ikosa.Guildsmanship.ServicesEntry">
+    <Position X="0.5" Y="4.5" Width="1.75" />
+    <Members>
+      <Field Name="_Services" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAQAAAAAAAAAAAAAEAAAAAAAAAAAAAQAAAAAAAAAAA=</HashCode>
+      <FileName>Guildsmanship\Encounters\ServicesEntry.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="NonPlayerServices" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="Uzi.Ikosa.Guildsmanship.NonPlayerService">
+    <Position X="0.5" Y="6.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Guildsmanship\NPCServices\NonPlayerService.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Uzi.Ikosa.Creature" Collapsed="true">
+    <Position X="10.5" Y="7.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>tnVFmXad/T2xUxuWt/EZ+WPxUm5nMvgdH0TC8qP4tWg=</HashCode>
+      <FileName>Creatures\Creature.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="1.2" Collapsed="true" />
+  </Class>
+  <Class Name="Uzi.Ikosa.Guildsmanship.CreatureNode">
+    <Position X="10.5" Y="4.25" Width="1.75" />
+    <Members>
+      <Field Name="_Creature" Hidden="true" />
+      <Method Name="Close" Hidden="true" />
+      <Method Name="CreatureNode" Hidden="true" />
+      <Field Name="CreatureRelation" Hidden="true" />
+      <Method Name="GetCreatureNode" Hidden="true" />
+      <Method Name="OnDoSave" Hidden="true" />
+      <Method Name="OnRefreshPart" Hidden="true" />
+      <Method Name="OnSetPackagePart" Hidden="true" />
+      <Method Name="Save" Hidden="true" />
+    </Members>
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <AssociationLine Name="Creature" Type="Uzi.Ikosa.Creature">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.095" Y="0.005" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAIAABAAAAgAAAAAAAIAgAAAAIBAAAAQQAAOAABE=</HashCode>
+      <FileName>Guildsmanship\CreatureNode.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Creature" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Uzi.Ikosa.Guildsmanship.ModuleElement">
+    <Position X="0.75" Y="0.5" Width="1.75" />
+    <Members>
+      <Field Name="_Description" Hidden="true" />
+      <Field Name="_ID" Hidden="true" />
+      <Method Name="ModuleElement" Hidden="true" />
+    </Members>
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAggAAAAAAAAAAAAAAAAAAEAAAAAAAEAAA=</HashCode>
+      <FileName>Guildsmanship\Modules\ModuleElement.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Uzi.Ikosa.Guildsmanship.ModuleNode">
+    <Position X="10.5" Y="0.5" Width="1.75" />
+    <Members>
+      <Field Name="_NameManager" Hidden="true" />
+      <Field Name="_NodePart" Hidden="true" />
+      <Method Name="CanUseName" Hidden="true" />
+      <Method Name="Close" Hidden="true" />
+      <Method Name="DoPropertyChanged" Hidden="true" />
+      <Method Name="DoSave" Hidden="true" />
+      <Method Name="DoSaveFile" Hidden="true" />
+      <Method Name="DoSaveFolder" Hidden="true" />
+      <Method Name="ModuleNode" Hidden="true" />
+      <Method Name="OnDoSave" Hidden="true" />
+      <Method Name="OnRefreshPart" Hidden="true" />
+      <Method Name="OnSetPackagePart" Hidden="true" />
+      <Event Name="PropertyChanged" Hidden="true" />
+      <Method Name="RefreshPart" Hidden="true" />
+      <Method Name="Rename" Hidden="true" />
+      <Method Name="Save" Hidden="true" />
+      <Method Name="SetPackagePart" Hidden="true" />
+    </Members>
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAgAEIAAZAAAEgAAAAAEAAQAgAQAIBGAgAQQAIKAgBE=</HashCode>
+      <FileName>Guildsmanship\Modules\ModuleNode.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Font Name="Segoe UI" Size="10" />
+</ClassDiagram>

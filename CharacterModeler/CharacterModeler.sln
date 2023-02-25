@@ -1,0 +1,113 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Express 2013 for Windows Desktop
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CharacterModeler", "CharacterModeler\CharacterModeler.csproj", "{EFE9FD28-6E80-4BF9-9890-4EE9E56C6407}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uzi.Packaging", "..\Uzi.Packaging\Uzi.Packaging.csproj", "{63EF7070-3DFA-4D1F-B80C-1415D3C9CA1A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPFShaderEffectLibrary", "..\WPFShaderEffectLibrary\WPFShaderEffectLibrary.csproj", "{967D61A9-C8F0-4C2A-A784-6CDA648ECB19}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uzi.Visualize", "..\Uzi.Ikosa.Visualize\Uzi.Visualize.csproj", "{3ED35492-9CA6-4DC9-8AC7-9DC6FB1BE470}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelixToolkit.Wpf_NET40", "..\HelixToolkit.Wpf\HelixToolkit.Wpf_NET40.csproj", "{3F3B4548-A9DB-4874-86F7-E7C4FEC8A351}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{717B8AC3-C2B9-49DE-981F-58960409B5A9}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 6
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://guildsmanship.visualstudio.com/defaultcollection
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = ..\\Uzi.Packaging\\Uzi.Packaging.csproj
+		SccProjectName1 = ../Uzi.Packaging
+		SccLocalPath1 = ..\\Uzi.Packaging
+		SccProjectUniqueName2 = ..\\WPFShaderEffectLibrary\\WPFShaderEffectLibrary.csproj
+		SccProjectName2 = ../WPFShaderEffectLibrary
+		SccLocalPath2 = ..\\WPFShaderEffectLibrary
+		SccProjectUniqueName3 = ..\\Uzi.Ikosa.Visualize\\Uzi.Visualize.csproj
+		SccProjectName3 = ../Uzi.Ikosa.Visualize
+		SccLocalPath3 = ..\\Uzi.Ikosa.Visualize
+		SccProjectUniqueName4 = ..\\HelixToolkit.Wpf\\HelixToolkit.Wpf_NET40.csproj
+		SccProjectName4 = ../HelixToolkit.Wpf
+		SccLocalPath4 = ..\\HelixToolkit.Wpf
+		SccProjectUniqueName5 = CharacterModeler\\CharacterModeler.csproj
+		SccProjectName5 = CharacterModeler
+		SccLocalPath5 = CharacterModeler
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|Mixed Platforms = Debug|Mixed Platforms
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|Mixed Platforms = Release|Mixed Platforms
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EFE9FD28-6E80-4BF9-9890-4EE9E56C6407}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EFE9FD28-6E80-4BF9-9890-4EE9E56C6407}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EFE9FD28-6E80-4BF9-9890-4EE9E56C6407}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{EFE9FD28-6E80-4BF9-9890-4EE9E56C6407}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{EFE9FD28-6E80-4BF9-9890-4EE9E56C6407}.Debug|x86.ActiveCfg = Debug|x86
+		{EFE9FD28-6E80-4BF9-9890-4EE9E56C6407}.Debug|x86.Build.0 = Debug|x86
+		{EFE9FD28-6E80-4BF9-9890-4EE9E56C6407}.Release|Any CPU.ActiveCfg = Release|x86
+		{EFE9FD28-6E80-4BF9-9890-4EE9E56C6407}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{EFE9FD28-6E80-4BF9-9890-4EE9E56C6407}.Release|Mixed Platforms.Build.0 = Release|x86
+		{EFE9FD28-6E80-4BF9-9890-4EE9E56C6407}.Release|x86.ActiveCfg = Release|x86
+		{EFE9FD28-6E80-4BF9-9890-4EE9E56C6407}.Release|x86.Build.0 = Release|x86
+		{63EF7070-3DFA-4D1F-B80C-1415D3C9CA1A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{63EF7070-3DFA-4D1F-B80C-1415D3C9CA1A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{63EF7070-3DFA-4D1F-B80C-1415D3C9CA1A}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{63EF7070-3DFA-4D1F-B80C-1415D3C9CA1A}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{63EF7070-3DFA-4D1F-B80C-1415D3C9CA1A}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{63EF7070-3DFA-4D1F-B80C-1415D3C9CA1A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{63EF7070-3DFA-4D1F-B80C-1415D3C9CA1A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{63EF7070-3DFA-4D1F-B80C-1415D3C9CA1A}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{63EF7070-3DFA-4D1F-B80C-1415D3C9CA1A}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{63EF7070-3DFA-4D1F-B80C-1415D3C9CA1A}.Release|x86.ActiveCfg = Release|Any CPU
+		{967D61A9-C8F0-4C2A-A784-6CDA648ECB19}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{967D61A9-C8F0-4C2A-A784-6CDA648ECB19}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{967D61A9-C8F0-4C2A-A784-6CDA648ECB19}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{967D61A9-C8F0-4C2A-A784-6CDA648ECB19}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{967D61A9-C8F0-4C2A-A784-6CDA648ECB19}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{967D61A9-C8F0-4C2A-A784-6CDA648ECB19}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{967D61A9-C8F0-4C2A-A784-6CDA648ECB19}.Release|Any CPU.Build.0 = Release|Any CPU
+		{967D61A9-C8F0-4C2A-A784-6CDA648ECB19}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{967D61A9-C8F0-4C2A-A784-6CDA648ECB19}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{967D61A9-C8F0-4C2A-A784-6CDA648ECB19}.Release|x86.ActiveCfg = Release|Any CPU
+		{3ED35492-9CA6-4DC9-8AC7-9DC6FB1BE470}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3ED35492-9CA6-4DC9-8AC7-9DC6FB1BE470}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3ED35492-9CA6-4DC9-8AC7-9DC6FB1BE470}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{3ED35492-9CA6-4DC9-8AC7-9DC6FB1BE470}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{3ED35492-9CA6-4DC9-8AC7-9DC6FB1BE470}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{3ED35492-9CA6-4DC9-8AC7-9DC6FB1BE470}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3ED35492-9CA6-4DC9-8AC7-9DC6FB1BE470}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3ED35492-9CA6-4DC9-8AC7-9DC6FB1BE470}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{3ED35492-9CA6-4DC9-8AC7-9DC6FB1BE470}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{3ED35492-9CA6-4DC9-8AC7-9DC6FB1BE470}.Release|x86.ActiveCfg = Release|Any CPU
+		{3F3B4548-A9DB-4874-86F7-E7C4FEC8A351}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3F3B4548-A9DB-4874-86F7-E7C4FEC8A351}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3F3B4548-A9DB-4874-86F7-E7C4FEC8A351}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{3F3B4548-A9DB-4874-86F7-E7C4FEC8A351}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{3F3B4548-A9DB-4874-86F7-E7C4FEC8A351}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{3F3B4548-A9DB-4874-86F7-E7C4FEC8A351}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3F3B4548-A9DB-4874-86F7-E7C4FEC8A351}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3F3B4548-A9DB-4874-86F7-E7C4FEC8A351}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{3F3B4548-A9DB-4874-86F7-E7C4FEC8A351}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{3F3B4548-A9DB-4874-86F7-E7C4FEC8A351}.Release|x86.ActiveCfg = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(SubversionScc) = preSolution
+		Svn-Managed = True
+		Manager = AnkhSVN - Subversion Support for Visual Studio
+	EndGlobalSection
+EndGlobal

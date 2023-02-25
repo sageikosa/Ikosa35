@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="NameAndType">
+  <Class Name="Uzi.Ikosa.Descriptions.CheckLockedInfo">
+    <Position X="3" Y="0.75" Width="3.75" />
+    <Members>
+      <Field Name="_CheckProps" Hidden="true" />
+      <Field Name="_Info" Hidden="true" />
+    </Members>
+    <InheritanceLine Type="Uzi.Core.Info" FixedToPoint="true">
+      <Path>
+        <Point X="2" Y="1.813" />
+        <Point X="3" Y="1.813" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAAAAAAAgAAAACAAAIAAAAAAAAAAAAAAAAABA=</HashCode>
+      <FileName>Descriptions\CheckLockedInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Uzi.Ikosa.Senses.ExtraInfo">
+    <Position X="6.75" Y="6" Width="1.5" />
+    <Members>
+      <Field Name="_Info" Hidden="true" />
+      <Field Name="_Source" Hidden="true" />
+    </Members>
+    <AssociationLine Name="Informations" Type="Uzi.Core.IInformable" FixedFromPoint="true">
+      <Path>
+        <Point X="6.75" Y="6.562" />
+        <Point X="5.25" Y="6.562" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.112" Y="-0.307" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAAgAAAAAAAAAAAAAIAEAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Senses\ExtraInfo\ExtraInfo.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Informations" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Uzi.Ikosa.Senses.ExtraInfoMarker">
+    <Position X="9.75" Y="5.75" Width="2.25" />
+    <Members>
+      <Field Name="_DirOnly" Hidden="true" />
+      <Field Name="_Geom" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AACAAAAAAAAAAAAAAgAAAAEAAAAAAAAAAAAAAAAAgAA=</HashCode>
+      <FileName>Senses\ExtraInfo\ExtraInfoMarker.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Uzi.Ikosa.Senses.ExtraInfoSet">
+    <Position X="7.75" Y="0.75" Width="4.25" />
+    <Members>
+      <Field Name="_Critter" Hidden="true" />
+      <Field Name="_Sources" Hidden="true" />
+    </Members>
+    <AssociationLine Name="_Markers" Type="Uzi.Ikosa.Senses.ExtraInfo" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="8.875" Y="3.844" />
+        <Point X="8.875" Y="6.438" />
+        <Point X="8.25" Y="6.438" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true" ManuallySized="true">
+        <Position X="0.758" Y="2.026" Height="0.182" Width="2.181" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>CCIAAAAAAAAABBAAAAAABAQgAAAQAAAIAAAAAAAQQAA=</HashCode>
+      <FileName>Senses\ExtraInfo\ExtraInfoSet.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Field Name="_Markers" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Uzi.Core.Description">
+    <Position X="3" Y="3.25" Width="2.75" />
+    <InheritanceLine Type="Uzi.Core.Info" FixedToPoint="true">
+      <Path>
+        <Point X="1.25" Y="2.497" />
+        <Point X="1.25" Y="4.188" />
+        <Point X="3" Y="4.188" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Uzi.Core.Info">
+    <Position X="0.5" Y="0.75" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Interface Name="Uzi.Core.IInformable">
+    <Position X="3" Y="6" Width="2.25" />
+    <TypeIdentifier />
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

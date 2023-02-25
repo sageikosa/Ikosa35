@@ -1,0 +1,128 @@
+﻿<UserControl x:Class="Uzi.Ikosa.Workshop.BrushCollectionPartControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:shop="clr-namespace:Uzi.Ikosa.Workshop"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <Style TargetType="WrapPanel" x:Key="styleWrapMenu">
+            <Setter Property="MaxWidth" Value="768"/>
+        </Style>
+        <DataTemplate x:Key="mtImage">
+            <StackPanel Margin="1" Orientation="Vertical" Width="96">
+                <Image Margin="1" Source="{Binding Path=BitmapImagePart.Image}" Height="64" Width="64" ToolTipService.ShowDuration="10000">
+                    <Image.ToolTip>
+                        <StackPanel>
+                            <Label Content="{Binding Path=BitmapImagePart.Name}"/>
+                            <CheckBox Margin="8,0,8,0" IsEnabled="False" Content="Is Local" IsChecked="{Binding Path=IsLocal}" />
+                        </StackPanel>
+                    </Image.ToolTip>
+                </Image>
+                <TextBlock Text="{Binding Path=BitmapImagePart.Name}" MaxWidth="96" TextTrimming="CharacterEllipsis" />
+            </StackPanel>
+        </DataTemplate>
+        <ContextMenu x:Key="cmModelBound"  >
+            <MenuItem Tag="{Binding Path=Key}" Header="Add Before" ItemTemplate="{StaticResource mtImage}"
+                      SubmenuOpened="ctxBefore_SubmenuOpened" MenuItem.Click="ContextMenu_Click">
+                <MenuItem.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel MaxWidth="768" />
+                    </ItemsPanelTemplate>
+                </MenuItem.ItemsPanel>
+                <MenuItem/>
+            </MenuItem>
+            <MenuItem Tag="{Binding Path=Key}" Header="Add After" ItemTemplate="{StaticResource mtImage}"
+                      SubmenuOpened="ctxAfter_SubmenuOpened" MenuItem.Click="ContextMenu_Click">
+                <MenuItem.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel MaxWidth="768" />
+                    </ItemsPanelTemplate>
+                </MenuItem.ItemsPanel>
+                <MenuItem/>
+            </MenuItem>
+            <Separator/>
+            <MenuItem Tag="{Binding Path=Key}" Header="Delete" Click="cmDelete_Click" />
+            <Separator />
+            <MenuItem Tag="{Binding Path=Key}" Header="Rename" SubmenuOpened="ctxRename_SubmenuOpened"
+                      MenuItem.Click="RenameMenu_Click">
+                <MenuItem></MenuItem>
+            </MenuItem>
+        </ContextMenu>
+        <ContextMenu x:Key="cmGeneral" MenuItem.Click="ContextMenu_Click" >
+            <MenuItem Tag="{Binding Path=Key}" Header="Add Before" ItemTemplate="{StaticResource mtImage}"
+                      SubmenuOpened="ctxBefore_SubmenuOpened">
+                <MenuItem.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel MaxWidth="768" />
+                    </ItemsPanelTemplate>
+                </MenuItem.ItemsPanel>
+                <MenuItem/>
+            </MenuItem>
+            <MenuItem Tag="{Binding Path=Key}" Header="Add After" ItemTemplate="{StaticResource mtImage}"
+                      SubmenuOpened="ctxAfter_SubmenuOpened" >
+                <MenuItem.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel MaxWidth="768" />
+                    </ItemsPanelTemplate>
+                </MenuItem.ItemsPanel>
+                <MenuItem/>
+            </MenuItem>
+            <Separator/>
+            <MenuItem Tag="{Binding Path=Key}" Header="Delete" Click="cmDelete_Click" />
+            <Separator />
+            <MenuItem Tag="{Binding Path=Key}" Header="Rename" Click="cmRename_Click"/>
+        </ContextMenu>
+        <Style TargetType="{x:Type ListBoxItem}" x:Key="styleModelBound">
+            <Setter Property="ContextMenu" Value="{StaticResource cmModelBound}">
+            </Setter>
+        </Style>
+        <Style TargetType="{x:Type ListBoxItem}" x:Key="styleGeneral">
+            <Setter Property="ContextMenu" Value="{StaticResource cmGeneral}">
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+    <DockPanel x:Name="dockImages">
+        <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
+            <Button x:Name="btnAdd" Content="Add Image" Padding="8,2,8,2" Margin="8,0,0,2" Click="btnAdd_Click"></Button>
+            <Button x:Name="btnAddSolid" Content="Add Color" Padding="8,2,8,2" Margin="8,0,0,2" Click="btnAddSolid_Click"/>
+            <Button x:Name="btnAddGradient" Content="Add Gradient" Padding="8,2,8,2" Margin="8,0,0,2" Click="btnAddGradient_Click"/>
+            <Button x:Name="btnAddStacked" Content="Add Stack" Padding="8,2,8,2" Margin="8,0,0,2" Click="btnAddStacked_Click"/>
+        </StackPanel>
+        <ListBox x:Name="itemsMaterials" ItemsSource="{Binding Path=IndexedBrushes}" ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                 MouseDoubleClick="itemsMaterials_MouseDoubleClick" >
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel IsItemsHost="True"
+                               Width="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ScrollContentPresenter}}, Path=ActualWidth}">
+                    </WrapPanel>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Border BorderBrush="DarkGray" BorderThickness="1" Margin="2">
+                        <StackPanel Orientation="Vertical">
+                            <Slider Minimum="0" Maximum="1" SmallChange="0.5" LargeChange="0.2" TickFrequency="0.05"
+                                    AutoToolTipPlacement="BottomRight" IsSnapToTickEnabled="True" 
+                                    AutoToolTipPrecision="2" Value="{Binding Path=Value.Opacity}">
+                            </Slider>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <Rectangle Margin="4,6" Width="144" Height="144" DataContext="{Binding Path=Value}"
+                                       Fill="{Binding Path=Brush}"></Rectangle>
+                                <Label Background="LightCyan" Foreground="Black" VerticalAlignment="Top" 
+                                       HorizontalAlignment="Left" Content="{Binding Path=Key}" ></Label>
+                                <TextBlock Grid.Row="1" Text="{Binding Path=Value.BrushKey}"/>
+                                <!-- TODO: editable name -->
+                            </Grid>
+                        </StackPanel>
+                    </Border>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ListBox>
+    </DockPanel>
+</UserControl>

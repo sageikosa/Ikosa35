@@ -1,0 +1,48 @@
+﻿<UserControl x:Class="Uzi.Ikosa.Client.UI.CoreSelectPrerequisiteItem"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Uzi.Ikosa.Client.UI"
+             xmlns:ccontract="clr-namespace:Uzi.Core.Contracts;assembly=Uzi.Core.Contracts"
+             xmlns:icontract="clr-namespace:Uzi.Ikosa.Contracts;assembly=Uzi.Ikosa.Contracts"
+             xmlns:ui="clr-namespace:Uzi.Ikosa.Client.UI"
+             xmlns:uipvm="clr-namespace:Uzi.Ikosa.Proxy.ViewModel;assembly=Uzi.Ikosa.Proxy"
+             Background="{Binding Path=Background}"
+             mc:Ignorable="d" d:DesignWidth="300">
+    <Grid Margin="2">
+        <Grid.Resources>
+            <DataTemplate DataType="{x:Type uipvm:NoneAwarenessSelection}">
+                <TextBlock Text="-- None --"/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type uipvm:AwarenessSelection}">
+                <StackPanel Orientation="Horizontal" >
+                    <ContentControl DataContext="{Binding Path=Awareness}"
+                                    Content="{Binding Path=Info}"
+                                    ContentTemplateSelector="{DynamicResource slctItemListTemplate}"/>
+                </StackPanel>
+            </DataTemplate>
+        </Grid.Resources>
+        <StackPanel Visibility="{Binding Path=MultipleVisibility}">
+            <TextBlock Text="Choose" Background="LightCyan" />
+            <ComboBox Margin="1" x:Name="cboSelect" Focusable="False" 
+                      ItemsSource="{Binding Path=Infos}"
+                      SelectionChanged="cboSelect_SelectionChanged" >
+            </ComboBox>
+        </StackPanel>
+        <StackPanel Visibility="{Binding Path=SingleVisibility}">
+            <TextBlock Text="Choose" Background="LightCyan" />
+            <ItemsControl x:Name="itmsSelect" ItemsSource="{Binding Path=Infos}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate >
+                        <Button Content="{Binding}" 
+                                Focusable="False" 
+                                Command="{Binding Path=SelectCmd}"
+                                CommandParameter="{Binding}" 
+                                MinHeight="24"/>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </StackPanel>
+    </Grid>
+</UserControl>

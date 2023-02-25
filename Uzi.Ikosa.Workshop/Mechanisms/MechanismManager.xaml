@@ -1,0 +1,104 @@
+﻿<UserControl x:Class="Uzi.Ikosa.Workshop.MechanismManager"
+             xmlns:workshop="clr-namespace:Uzi.Ikosa.Workshop"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:uziobj="clr-namespace:Uzi.Ikosa.Objects;assembly=Uzi.Ikosa"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <DockPanel>
+        <Menu DockPanel.Dock="Top">
+            <Menu.CommandBindings>
+                <CommandBinding x:Name="cmdbndNewOpener" Command="{x:Static workshop:MechanismManager.NewOpener}" CanExecute="cmdbndNew_CanExecute" Executed="cmdbndNewOpener_Executed"></CommandBinding>
+                <CommandBinding x:Name="cmdbndNewRelockingOpener" Command="{x:Static workshop:MechanismManager.NewRelockingOpener}" CanExecute="cmdbndNew_CanExecute" Executed="cmdbndNewRelockingOpener_Executed"></CommandBinding>
+                <CommandBinding x:Name="cmdbndNewLockKnob" Command="{x:Static workshop:MechanismManager.NewLockKnob}" CanExecute="cmdbndNew_CanExecute" Executed="cmdbndNewLockKnob_Executed"></CommandBinding>
+                <CommandBinding x:Name="cmdbndNewKeyhole" Command="{x:Static workshop:MechanismManager.NewKeyhole}" CanExecute="cmdbndNew_CanExecute" Executed="cmdbndNewKeyhole_Executed"></CommandBinding>
+                <CommandBinding x:Name="cmdbndNewBolt" Command="{x:Static workshop:MechanismManager.NewBolt}" CanExecute="cmdbndNew_CanExecute" Executed="cmdbndNewBolt_Executed"></CommandBinding>
+                <CommandBinding x:Name="cmdbndNewHasp" Command="{x:Static workshop:MechanismManager.NewHasp}" CanExecute="cmdbndNew_CanExecute" Executed="cmdbndNewHasp_Executed"></CommandBinding>
+                <CommandBinding x:Name="cmdbndNewOpenTrigger" Command="{x:Static workshop:MechanismManager.NewOpenTrigger}" CanExecute="cmdbndNew_CanExecute" Executed="cmdbndNewOpenTrigger_Executed"></CommandBinding>
+                <CommandBinding x:Name="cmdbndNewOpenCloseTriggerable" Command="{x:Static workshop:MechanismManager.NewOpenCloseTriggerable}" CanExecute="cmdbndNew_CanExecute" Executed="cmdbndNewOpenCloseTriggerable_Executed" ></CommandBinding>
+                <CommandBinding x:Name="cmdbndDelete" Command="Delete" CanExecute="cmdbndDelete_CanExecute" Executed="cmdbndDelete_Executed"></CommandBinding>
+                <CommandBinding x:Name="cmdbndOpen" Command="Open" CanExecute="cmdbndDelete_CanExecute" Executed="cmdbndOpen_Executed"/>
+            </Menu.CommandBindings>
+            <MenuItem Header="Add">
+                <MenuItem Header="Opener/Closer" 
+                          Command="{x:Static workshop:MechanismManager.NewOpener}" 
+                          CommandParameter="{Binding Path=CoreObject}" ></MenuItem>
+                <MenuItem Header="Relocking Opener" 
+                          Command="{x:Static workshop:MechanismManager.NewRelockingOpener}" 
+                          CommandParameter="{Binding Path=CoreObject}"></MenuItem>
+                <Separator/>
+                <MenuItem Header="Lock Knob" 
+                          Command="{x:Static workshop:MechanismManager.NewLockKnob}" 
+                          CommandParameter="{Binding Path=CoreObject}"></MenuItem>
+                <MenuItem Header="Keyhole" 
+                          Command="{x:Static workshop:MechanismManager.NewKeyhole}" 
+                          CommandParameter="{Binding Path=CoreObject}"></MenuItem>
+                <MenuItem Header="Throw Bolt" 
+                          Command="{x:Static workshop:MechanismManager.NewBolt}" 
+                          CommandParameter="{Binding Path=CoreObject}"></MenuItem>
+                <MenuItem Header="Hasp and Padlock" 
+                          Command="{x:Static workshop:MechanismManager.NewHasp}" 
+                          CommandParameter="{Binding Path=CoreObject}"></MenuItem>
+                <Separator/>
+                <MenuItem Header="Open/Close Trigger" 
+                          ToolTip="Make capable of triggering responses based on open/close changes"
+                          Command="{x:Static workshop:MechanismManager.NewOpenTrigger}" 
+                          CommandParameter="{Binding Path=CoreObject}"></MenuItem>
+                <MenuItem Header="Open/Close Trigger Response" 
+                          ToolTip="Respond to trigger by opening/closing"
+                          Command="{x:Static workshop:MechanismManager.NewOpenCloseTriggerable}" 
+                          CommandParameter="{Binding Path=CoreObject}"></MenuItem>
+            </MenuItem>
+            <MenuItem Header="Remove" Command="Delete" CommandParameter="{Binding Path=CoreObject}">
+                <!-- TODO: command bindings -->
+            </MenuItem>
+            <MenuItem Header="Edit..." Command="Open" />
+        </Menu>
+        <ContentControl DockPanel.Dock="Bottom" x:Name="ctrlContent">
+        </ContentControl>
+        <ListBox x:Name="lstMechanism" DataContext="{Binding Path=CoreObject}" ItemsSource="{Binding Path=Anchored}" SelectionChanged="lstMechanism_SelectionChanged">
+            <ListBox.Resources>
+                <DataTemplate DataType="{x:Type uziobj:OpenerCloser}">
+                    <DockPanel>
+                        <Image Source="/images/door_open.png" DockPanel.Dock="Left"></Image>
+                        <Label Content="{Binding Path=Name}"></Label>
+                    </DockPanel>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type uziobj:Hasp}">
+                    <DockPanel>
+                        <Image Source="/images/lock.png" DockPanel.Dock="Left"></Image>
+                        <Label Content="{Binding Path=Name}"></Label>
+                    </DockPanel>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type uziobj:Keyhole}">
+                    <DockPanel>
+                        <Image Source="/images/keyhole.png" DockPanel.Dock="Left"></Image>
+                        <Label Content="{Binding Path=Name}"></Label>
+                    </DockPanel>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type uziobj:ThrowBolt}">
+                    <DockPanel>
+                        <Image Source="/images/throwbolt.png" DockPanel.Dock="Left"></Image>
+                        <Label Content="{Binding Path=Name}"></Label>
+                    </DockPanel>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type uziobj:LockKnob}">
+                    <DockPanel>
+                        <Image Source="/images/lockknob.png" DockPanel.Dock="Left"></Image>
+                        <Label Content="{Binding Path=Name}"></Label>
+                    </DockPanel>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type uziobj:OpenableTriggerMechanism}">
+                    <DockPanel>
+                        <Image Source="/images/door_go.png" DockPanel.Dock="Left"></Image>
+                        <Label Content="{Binding Path=Name}"></Label>
+                    </DockPanel>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type uziobj:OpenCloseTriggerable}">
+                    <DockPanel>
+                        <Image Source="/images/door_mech.png" DockPanel.Dock="Left"></Image>
+                        <Label Content="{Binding Path=Name}"></Label>
+                    </DockPanel>
+                </DataTemplate>
+            </ListBox.Resources>
+        </ListBox>
+    </DockPanel>
+</UserControl>

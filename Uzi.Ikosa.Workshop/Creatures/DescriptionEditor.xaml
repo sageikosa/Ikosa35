@@ -1,0 +1,83 @@
+﻿<Window x:Class="Uzi.Ikosa.Workshop.DescriptionEditor"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:ikosa="clr-namespace:Uzi.Ikosa;assembly=Uzi.Ikosa"
+        WindowStyle="ToolWindow" MinWidth="500" 
+        WindowStartupLocation="CenterOwner"
+        Title="Description" SizeToContent="WidthAndHeight">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Label FontWeight="Bold" Grid.Column="0" Grid.Row="0">Name</Label>
+        <Label FontWeight="Bold" Grid.Column="0" Grid.Row="1">Race</Label>
+        <Label FontWeight="Bold" Grid.Column="0" Grid.Row="2">Gender</Label>
+
+        <Label FontWeight="Bold" Grid.Column="2" Grid.Row="0">Alignment</Label>
+        <Label FontWeight="Bold" Grid.Column="2" Grid.Row="1" VerticalAlignment="Top">Devotion</Label>
+        <Label FontWeight="Bold" Grid.Column="2" Grid.Row="2">Size</Label>
+
+        <Label FontWeight="Bold" Grid.Column="4" Grid.Row="0" VerticalAlignment="Top">Age</Label>
+        <Label FontWeight="Bold" Grid.Column="4" Grid.Row="1">Weight</Label>
+        
+        <Label FontWeight="Bold" Grid.Column="6" Grid.Row="0" VerticalAlignment="Top">Height</Label>
+        <Label FontWeight="Bold" Grid.Column="6" Grid.Row="1" VerticalAlignment="Top">Width</Label>
+        <Label FontWeight="Bold" Grid.Column="6" Grid.Row="2" VerticalAlignment="Top">Length</Label>
+
+        <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding Path=Name}"/>
+        <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Vertical" VerticalAlignment="Top" >
+            <Label Content="{Binding Path=Species.Name}"/>
+            <TextBlock Text="{Binding Path=CreatureType.Name}"/>
+        </StackPanel>
+        <ComboBox Grid.Column="1" Grid.Row="2" VerticalAlignment="Top" SelectedItem="{Binding Path=Gender}">
+            <ikosa:Gender>Genderless</ikosa:Gender>
+            <ikosa:Gender>Male</ikosa:Gender>
+            <ikosa:Gender>Female</ikosa:Gender>
+            <ikosa:Gender>Hermaphroditic</ikosa:Gender>
+        </ComboBox>
+        <ComboBox x:Name="cbAlignment" Grid.Column="3" Grid.Row="0"
+                  SelectionChanged="cbAlignment_SelectionChanged">
+            <x:StaticExtension Member="ikosa:Alignment.LawfulGood"/>
+            <x:StaticExtension Member="ikosa:Alignment.LawfulNeutral"/>
+            <x:StaticExtension Member="ikosa:Alignment.LawfulEvil"/>
+            <x:StaticExtension Member="ikosa:Alignment.NeutralGood"/>
+            <x:StaticExtension Member="ikosa:Alignment.TrueNeutral"/>
+            <x:StaticExtension Member="ikosa:Alignment.NeutralEvil"/>
+            <x:StaticExtension Member="ikosa:Alignment.ChaoticGood"/>
+            <x:StaticExtension Member="ikosa:Alignment.ChaoticNeutral"/>
+            <x:StaticExtension Member="ikosa:Alignment.ChaoticEvil"/>
+        </ComboBox>
+        <ComboBox x:Name="cbDevotion" Grid.Column="3" Grid.Row="1" VerticalAlignment="Top"
+                  SelectionChanged="cbDevotion_SelectionChanged">
+        </ComboBox>
+
+        <Label Grid.Column="3" Grid.Row="2" Content="{Binding Path=BodyDock.Body.Sizer.SizeModifier.Name}"></Label>
+        <TextBox Grid.Column="5" Grid.Row="0" VerticalAlignment="Top" Text="{Binding Path=AgeInYears}" 
+                 TextChanged="txtDouble_TextChanged" MinWidth="48"/>
+        <TextBox Grid.Column="5" Grid.Row="1" Text="{Binding Path=BodyDock.Body.Weight}"
+                 TextChanged="txtDouble_TextChanged" MinWidth="48"></TextBox>
+        
+        <TextBox Grid.Column="7" Grid.Row="0" VerticalAlignment="Top" Text="{Binding Path=BodyDock.Body.Height}"
+                 TextChanged="txtDouble_TextChanged" MinWidth="48"/>
+        <TextBox Grid.Column="7" Grid.Row="1" VerticalAlignment="Top" Text="{Binding Path=BodyDock.Body.Width}"
+                 TextChanged="txtDouble_TextChanged" MinWidth="48"/>
+        <TextBox Grid.Column="7" Grid.Row="2" VerticalAlignment="Top" Text="{Binding Path=BodyDock.Body.Length}"
+                 TextChanged="txtDouble_TextChanged" MinWidth="48"/>
+
+        <Button Grid.Column="8" Grid.Row="2" Margin="4"
+                IsCancel="True" MinWidth="60" x:Name="btnClose" Click="btnClose_Click">Close</Button>
+    </Grid>
+</Window>

@@ -1,0 +1,41 @@
+﻿<UserControl x:Class="Uzi.Ikosa.Workshop.LFrameParams"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:visualize="clr-namespace:Uzi.Visualize;assembly=Uzi.Visualize"
+             mc:Ignorable="d" 
+             d:DesignHeight="150" d:DesignWidth="300">
+    <Grid>
+        <Grid.Resources>
+            <Style TargetType="Label">
+                <Setter Property="Margin" Value="2" />
+            </Style>
+            <Style TargetType="ComboBox">
+                <Setter Property="Margin" Value="2" />
+            </Style>
+        </Grid.Resources>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Label Content="Thick Wall" Grid.Column="0"/>
+        <ComboBox Grid.Column="1" x:Name="cboThickWall" SelectionChanged="cboThickWall_SelectionChanged">
+            <visualize:AnchorFace>ZHigh</visualize:AnchorFace>
+            <visualize:AnchorFace>ZLow</visualize:AnchorFace>
+            <visualize:AnchorFace>YHigh</visualize:AnchorFace>
+            <visualize:AnchorFace>YLow</visualize:AnchorFace>
+            <visualize:AnchorFace>XHigh</visualize:AnchorFace>
+            <visualize:AnchorFace>XLow</visualize:AnchorFace>
+        </ComboBox>
+        <Label Content="Frame Side 1" Grid.Column="0" Grid.Row="1"/>
+        <ComboBox Grid.Column="1" x:Name="cboFrame1" Grid.Row="1" SelectionChanged="cboFrame1_SelectionChanged"/>
+        <Label Content="Frame Side 2" Grid.Column="0" Grid.Row="2"/>
+        <ComboBox Grid.Column="1" x:Name="cboFrame2" Grid.Row="2"/>
+    </Grid>
+</UserControl>

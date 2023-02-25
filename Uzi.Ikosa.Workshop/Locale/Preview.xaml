@@ -1,0 +1,596 @@
+﻿<RibbonWindow x:Class="Uzi.Ikosa.Workshop.Locale.Preview"
+              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+              xmlns:tactical="clr-namespace:Uzi.Ikosa.Tactical;assembly=Uzi.Ikosa"
+              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+              xmlns:locale="clr-namespace:Uzi.Ikosa.Workshop.Locale"
+              Title="Preview" Height="650" Width="880">
+    <Window.Resources>
+        <DataTemplate x:Key="tmplHeader">
+            <TextBlock Background="LightCyan" Margin="2,1" Text="{Binding}" HorizontalAlignment="Stretch"/>
+        </DataTemplate>
+        <Style TargetType="Border">
+            <Setter Property="Margin" Value="2"/>
+            <Setter Property="BorderBrush" Value="DarkGray"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="CornerRadius" Value="4"/>
+        </Style>
+        <Style TargetType="HeaderedContentControl">
+            <Setter Property="Margin" Value="2"/>
+            <Setter Property="HeaderTemplate" Value="{StaticResource tmplHeader}"/>
+        </Style>
+        <Style TargetType="GroupBox">
+            <Setter Property="Margin" Value="2"/>
+            <Setter Property="HeaderTemplate" Value="{StaticResource tmplHeader}"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="MinWidth" Value="144"/>
+        </Style>
+        <Style TargetType="TextBlock">
+            <Setter Property="Margin" Value="2,1"/>
+        </Style>
+        <Style TargetType="TextBlock" x:Key="tbBold">
+            <Setter Property="Margin" Value="2,1"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+        </Style>
+    </Window.Resources>
+    <Window.InputBindings>
+        <KeyBinding Command="{x:Static locale:Preview.CameraMove}" Key="W" CommandParameter="0"></KeyBinding>
+        <KeyBinding Command="{x:Static locale:Preview.CameraMove}" Key="Q" CommandParameter="1"></KeyBinding>
+        <KeyBinding Command="{x:Static locale:Preview.CameraMove}" Key="A" CommandParameter="2"></KeyBinding>
+        <KeyBinding Command="{x:Static locale:Preview.CameraMove}" Key="Z" CommandParameter="3"></KeyBinding>
+        <KeyBinding Command="{x:Static locale:Preview.CameraMove}" Key="X" CommandParameter="4"></KeyBinding>
+        <KeyBinding Command="{x:Static locale:Preview.CameraMove}" Key="C" CommandParameter="5"></KeyBinding>
+        <KeyBinding Command="{x:Static locale:Preview.CameraMove}" Key="D" CommandParameter="6"></KeyBinding>
+        <KeyBinding Command="{x:Static locale:Preview.CameraMove}" Key="E" CommandParameter="7"></KeyBinding>
+
+        <KeyBinding Command="{x:Static locale:Preview.CameraMove}" Key="W" Modifiers="Shift" CommandParameter="0,1"></KeyBinding>
+        <KeyBinding Command="{x:Static locale:Preview.CameraMove}" Key="Q" Modifiers="Shift" CommandParameter="1,1"></KeyBinding>
+        <KeyBinding Command="{x:Static locale:Preview.CameraMove}" Key="A" Modifiers="Shift" CommandParameter="2,1"></KeyBinding>
+        <KeyBinding Command="{x:Static locale:Preview.CameraMove}" Key="Z" Modifiers="Shift" CommandParameter="3,1"></KeyBinding>
+        <KeyBinding Command="{x:Static locale:Preview.CameraMove}" Key="X" Modifiers="Shift" CommandParameter="4,1"></KeyBinding>
+        <KeyBinding Command="{x:Static locale:Preview.CameraMove}" Key="C" Modifiers="Shift" CommandParameter="5,1"></KeyBinding>
+        <KeyBinding Command="{x:Static locale:Preview.CameraMove}" Key="D" Modifiers="Shift" CommandParameter="6,1"></KeyBinding>
+        <KeyBinding Command="{x:Static locale:Preview.CameraMove}" Key="E" Modifiers="Shift" CommandParameter="7,1"></KeyBinding>
+        <KeyBinding Command="{x:Static locale:Preview.CameraUp}" Key="S" Modifiers="Shift"></KeyBinding>
+
+        <KeyBinding Command="{x:Static locale:Preview.CameraMove}" Gesture="Control+W" CommandParameter="0,-1"></KeyBinding>
+        <KeyBinding Command="{x:Static locale:Preview.CameraMove}" Gesture="Control+Q" CommandParameter="1,-1"></KeyBinding>
+        <KeyBinding Command="{x:Static locale:Preview.CameraMove}" Gesture="Control+A" CommandParameter="2,-1"></KeyBinding>
+        <KeyBinding Command="{x:Static locale:Preview.CameraMove}" Gesture="Control+Z" CommandParameter="3,-1"></KeyBinding>
+        <KeyBinding Command="{x:Static locale:Preview.CameraMove}" Gesture="Control+X" CommandParameter="4,-1"></KeyBinding>
+        <KeyBinding Command="{x:Static locale:Preview.CameraMove}" Gesture="Control+C" CommandParameter="5,-1"></KeyBinding>
+        <KeyBinding Command="{x:Static locale:Preview.CameraMove}" Gesture="Control+D" CommandParameter="6,-1"></KeyBinding>
+        <KeyBinding Command="{x:Static locale:Preview.CameraMove}" Gesture="Control+E" CommandParameter="7,-1"></KeyBinding>
+        <KeyBinding Command="{x:Static locale:Preview.CameraDown}" Gesture="Control+S"></KeyBinding>
+        
+        <KeyBinding Command="{x:Static locale:Preview.CameraPivotLeft}" Key="Left"></KeyBinding>
+        <KeyBinding Command="{x:Static locale:Preview.CameraPivotRight}" Key="Right"></KeyBinding>
+        <KeyBinding Command="{x:Static locale:Preview.CameraTiltForward}" Key="Up"></KeyBinding>
+        <KeyBinding Command="{x:Static locale:Preview.CameraTiltBackward}" Key="Down"></KeyBinding>
+        <KeyBinding Command="{x:Static locale:Preview.CameraLevel}" Key="Home"></KeyBinding>
+        <KeyBinding Command="{x:Static locale:Preview.CameraSwingLeft}" Gesture="Control+Left"></KeyBinding>
+        <KeyBinding Command="{x:Static locale:Preview.CameraSwingRight}" Gesture="Control+Right"></KeyBinding>
+        <KeyBinding Command="{x:Static locale:Preview.CameraSwingUpward}" Gesture="Control+Up"></KeyBinding>
+        <KeyBinding Command="{x:Static locale:Preview.CameraSwingDownward}" Gesture="Control+Down"></KeyBinding>
+        
+        <KeyBinding Command="{x:Static locale:Preview.ShowCursor}" Key="Insert"></KeyBinding>
+        <KeyBinding Command="{x:Static locale:Preview.PullCursor}" Gesture="PageDown"></KeyBinding>
+        <KeyBinding Command="{x:Static locale:Preview.PushCursor}" Gesture="PageUp"></KeyBinding>
+        <KeyBinding Command="{x:Static locale:Preview.PullCamera}" Gesture="Control+PageDown"></KeyBinding>
+        <KeyBinding Command="{x:Static locale:Preview.PushCamera}" Gesture="Control+PageUp"></KeyBinding>
+        
+        <KeyBinding Command="{x:Static locale:Preview.EditParams}" Gesture="OemQuestion"></KeyBinding>
+        <KeyBinding Command="{x:Static locale:Preview.TweakRoom}" Gesture="Shift+OemQuestion"></KeyBinding>
+        <KeyBinding Command="{x:Static locale:Preview.TweakLocator}" Gesture="OemPeriod"></KeyBinding>
+        <KeyBinding Command="{x:Static locale:Preview.TweakObjects}" Gesture="OemComma"></KeyBinding>
+        <KeyBinding Command="{x:Static locale:Preview.DrawCell}" Gesture="Control+D1" CommandParameter="1"></KeyBinding>
+        <KeyBinding Command="{x:Static locale:Preview.DrawCell}" Gesture="Control+D2" CommandParameter="2"></KeyBinding>
+        <KeyBinding Command="{x:Static locale:Preview.DrawCell}" Gesture="Control+D3" CommandParameter="3"></KeyBinding>
+        <KeyBinding Command="{x:Static locale:Preview.DrawCell}" Gesture="Control+D4" CommandParameter="4"></KeyBinding>
+        <KeyBinding Command="{x:Static locale:Preview.DrawCell}" Gesture="Control+D5" CommandParameter="5"></KeyBinding>
+        <KeyBinding Command="{x:Static locale:Preview.DrawCell}" Gesture="Control+D6" CommandParameter="6"></KeyBinding>
+        <KeyBinding Command="{x:Static locale:Preview.DrawCell}" Gesture="Control+D7" CommandParameter="7"></KeyBinding>
+        <KeyBinding Command="{x:Static locale:Preview.DrawCell}" Gesture="Control+D8" CommandParameter="8"></KeyBinding>
+        <KeyBinding Command="{x:Static locale:Preview.DrawCell}" Gesture="Control+D9" CommandParameter="9"></KeyBinding>
+        <KeyBinding Command="{x:Static locale:Preview.DrawCell}" Gesture="Control+D0" CommandParameter="0"></KeyBinding>
+        <KeyBinding Command="{x:Static locale:Preview.DrawCell}" Gesture="Control+Shift+D1" CommandParameter="K1"></KeyBinding>
+        <KeyBinding Command="{x:Static locale:Preview.DrawCell}" Gesture="Control+Shift+D2" CommandParameter="K2"></KeyBinding>
+        <KeyBinding Command="{x:Static locale:Preview.DrawCell}" Gesture="Control+Shift+D3" CommandParameter="K3"></KeyBinding>
+        <KeyBinding Command="{x:Static locale:Preview.DrawCell}" Gesture="Control+Shift+D4" CommandParameter="K4"></KeyBinding>
+        <KeyBinding Command="{x:Static locale:Preview.DrawCell}" Gesture="Control+Shift+D5" CommandParameter="K5"></KeyBinding>
+        <KeyBinding Command="{x:Static locale:Preview.DrawCell}" Gesture="Control+Shift+D6" CommandParameter="K6"></KeyBinding>
+        <KeyBinding Command="{x:Static locale:Preview.DrawCell}" Gesture="Control+Shift+D7" CommandParameter="K7"></KeyBinding>
+        <KeyBinding Command="{x:Static locale:Preview.DrawCell}" Gesture="Control+Shift+D8" CommandParameter="K8"></KeyBinding>
+        <KeyBinding Command="{x:Static locale:Preview.DrawCell}" Gesture="Control+Shift+D9" CommandParameter="K9"></KeyBinding>
+        <KeyBinding Command="{x:Static locale:Preview.DrawCell}" Gesture="Control+Shift+D0" CommandParameter="K0"></KeyBinding>
+        <KeyBinding Command="{x:Static locale:Preview.DrawObject}" Gesture="Alt+D1" CommandParameter="1"></KeyBinding>
+        <KeyBinding Command="{x:Static locale:Preview.DrawObject}" Gesture="Alt+D2" CommandParameter="2"></KeyBinding>
+        <KeyBinding Command="{x:Static locale:Preview.DrawObject}" Gesture="Alt+D3" CommandParameter="3"></KeyBinding>
+        <KeyBinding Command="{x:Static locale:Preview.DrawObject}" Gesture="Alt+D4" CommandParameter="4"></KeyBinding>
+        <KeyBinding Command="{x:Static locale:Preview.DrawObject}" Gesture="Alt+D5" CommandParameter="5"></KeyBinding>
+        <KeyBinding Command="{x:Static locale:Preview.DrawObject}" Gesture="Alt+D6" CommandParameter="6"></KeyBinding>
+        <KeyBinding Command="{x:Static locale:Preview.DrawObject}" Gesture="Alt+D7" CommandParameter="7"></KeyBinding>
+        <KeyBinding Command="{x:Static locale:Preview.DrawObject}" Gesture="Alt+D8" CommandParameter="8"></KeyBinding>
+        <KeyBinding Command="{x:Static locale:Preview.DrawObject}" Gesture="Alt+D9" CommandParameter="9"></KeyBinding>
+        <KeyBinding Command="{x:Static locale:Preview.DrawObject}" Gesture="Alt+D0" CommandParameter="0"></KeyBinding>
+    </Window.InputBindings>
+    <Window.CommandBindings>
+        <CommandBinding Command="{x:Static locale:Preview.CameraUp}" x:Name="cbUp" CanExecute="cbCamera_CanExecute"
+                        Executed="cbUp_Executed"/>
+        <CommandBinding Command="{x:Static locale:Preview.CameraDown}" x:Name="cbDown" CanExecute="cbCamera_CanExecute"
+                        Executed="cbDown_Executed"/>
+        <CommandBinding Command="{x:Static locale:Preview.CameraRollUpLeft}" x:Name="cbRollUpLeft" CanExecute="cbCamera_CanExecute"
+                        Executed="cbRollUpLeft_Executed"/>
+        <CommandBinding Command="{x:Static locale:Preview.CameraRollUpRight}" x:Name="cbRollUpRight" CanExecute="cbCamera_CanExecute"
+                        Executed="cbRollUpRight_Executed"/>
+        <CommandBinding Command="{x:Static locale:Preview.CameraPivotLeft}" x:Name="cbPivotLeft" CanExecute="cbCamera_CanExecute"
+                        Executed="cbPivotLeft_Executed"/>
+        <CommandBinding Command="{x:Static locale:Preview.CameraPivotRight}" x:Name="cbPivotRight" CanExecute="cbCamera_CanExecute"
+                        Executed="cbPivotRight_Executed"/>
+        <CommandBinding Command="{x:Static locale:Preview.CameraTiltForward}" x:Name="cbTiltForward" CanExecute="cbCamera_CanExecute"
+                        Executed="cbTiltForward_Executed"/>
+        <CommandBinding Command="{x:Static locale:Preview.CameraTiltBackward}" x:Name="cbTiltBackward" CanExecute="cbCamera_CanExecute"
+                        Executed="cbTiltBackward_Executed"/>
+        <CommandBinding Command="{x:Static locale:Preview.CameraLevel}" x:Name="cbLevel" CanExecute="cbCamera_CanExecute"
+                        Executed="cbLevel_Executed"/>
+        <CommandBinding Command="{x:Static locale:Preview.CameraMove}" x:Name="cbMove" CanExecute="cbCamera_CanExecute"
+                        Executed="cbMove_Executed"/>
+        <CommandBinding Command="{x:Static locale:Preview.ShowCursor}" x:Name="cbCursor" CanExecute="cbCursor_CanExecute" 
+                        Executed="cbCursor_Executed"/>
+        <CommandBinding Command="{x:Static locale:Preview.PullCursor}" x:Name="cbPullCursor" CanExecute="cbPullCursor_CanExecute"
+                        Executed="cbPullCursor_Executed"/>
+        <CommandBinding Command="{x:Static locale:Preview.PushCursor}" x:Name="cbPushCursor" CanExecute="cbPushCursor_CanExecute"
+                        Executed="cbPushCursor_Executed"/>
+        <CommandBinding x:Name="cbCameraSwingLeft" Command="{x:Static locale:Preview.CameraSwingLeft}" 
+                        CanExecute="cbCameraSwingLeft_CanExecute" Executed="cbCameraSwingLeft_Executed" />
+        <CommandBinding x:Name="cbCameraSwingRight" Command="{x:Static locale:Preview.CameraSwingRight}" 
+                        CanExecute="cbCameraSwingRight_CanExecute" Executed="cbCameraSwingRight_Executed" />
+        <CommandBinding x:Name="cbCameraSwingUpward" Command="{x:Static locale:Preview.CameraSwingUpward}" 
+                        CanExecute="cbCameraSwingUpward_CanExecute" Executed="cbCameraSwingUpward_Executed"/>
+        <CommandBinding x:Name="cbCameraSwingDownward" Command="{x:Static locale:Preview.CameraSwingDownward}" 
+                        CanExecute="cbCameraSwingDownward_CanExecute" Executed="cbCameraSwingDownward_Executed"/>
+        <CommandBinding x:Name="cbPullCamera" Command="{x:Static locale:Preview.PullCamera}" 
+                        CanExecute="cbPullCamera_CanExecute" Executed="cbPullCamera_Executed"/>
+        <CommandBinding x:Name="cbPushCamera" Command="{x:Static locale:Preview.PushCamera}" 
+                        CanExecute="cbPushCamera_CanExecute" Executed="cbPushCamera_Executed"/>
+        <CommandBinding x:Name="cbViewportEdit" Command="{x:Static locale:Preview.ViewportEdit}"
+                        CanExecute="cbViewportEdit_CanExecute" Executed="cbViewportEdit_Executed"/>
+        <!-- CELLS -->
+        <CommandBinding x:Name="cbEditParams" Command="{x:Static locale:Preview.EditParams}"
+                        CanExecute="cbEditParams_CanExecute" Executed="cbEditParams_Executed"/>
+        <CommandBinding x:Name="cbDrawCell" Command="{x:Static locale:Preview.DrawCell}"
+                        CanExecute="cbDrawCell_CanExecute" Executed="cbDrawCell_Executed"/>
+        <CommandBinding x:Name="cbFlipCell" Command="{x:Static locale:Preview.FlipCell}"
+                        CanExecute="cbFlipCell_CanExecute" Executed="cbFlipCell_Executed"/>
+        <CommandBinding x:Name="cbSwapCell" Command="{x:Static locale:Preview.SwapCell}"
+                        CanExecute="cbSwapCell_CanExecute" Executed="cbSwapCell_Executed"/>        
+        <!-- MULTI-USE -->
+        <CommandBinding x:Name="cbNew" Command="{x:Static locale:Preview.NewThing}" CanExecute="cbNew_CanExecute" Executed="cbNew_Executed"/>
+        <CommandBinding x:Name="cbDelete" Command="{x:Static locale:Preview.DeleteThing}" CanExecute="cbDelete_CanExecute" Executed="cbDelete_Executed"/>
+        <CommandBinding x:Name="cbDuplicate" Command="{x:Static locale:Preview.DuplicateThing}" CanExecute="cbDuplicate_CanExecute" Executed="cbDuplicate_Executed"/>
+        <CommandBinding x:Name="cbCopy" Command="{x:Static locale:Preview.CopyThing}" CanExecute="cbCopy_CanExecute" Executed="cbCopy_Executed"/>
+        <CommandBinding x:Name="cbPaste" Command="{x:Static locale:Preview.PasteThing}" CanExecute="cbPaste_CanExecute" Executed="cbPaste_Executed"/>
+        <!-- ROOM -->
+        <CommandBinding x:Name="cbTweakRoom" Command="{x:Static locale:Preview.TweakRoom}" CanExecute="MustBeInRoom" Executed="cbTweakRoom_Executed"/>
+        <CommandBinding x:Name="cbBumpRoom" Command="{x:Static locale:Preview.BumpRoom}" CanExecute="cbBumpRoom_CanExecute" Executed="cbBumpRoom_Executed"/>
+        <CommandBinding x:Name="cbSizeRoom" Command="{x:Static locale:Preview.SizeRoom}" CanExecute="cbSizeRoom_CanExecute" Executed="cbSizeRoom_Executed"/>
+        <CommandBinding x:Name="cbFlipRoom" Command="{x:Static locale:Preview.FlipRoom}" CanExecute="cbFlipRoom_CanExecute" Executed="cbFlipRoom_Executed"/>
+        <CommandBinding x:Name="cbSplitRoom" Command="{x:Static locale:Preview.SplitRoom}" CanExecute="cbSplitRoom_CanExecute" Executed="cbSplitRoom_Executed"/>
+        <CommandBinding x:Name="cbSwapRoom" Command="{x:Static locale:Preview.SwapRoom}" CanExecute="cbSwapRoom_CanExecute" Executed="cbSwapRoom_Executed"/>
+        <!-- LOCATOR -->
+        <CommandBinding x:Name="cbBumpLocator" Command="{x:Static locale:Preview.BumpLocator}" CanExecute="cbBumpLocator_CanExecute" Executed="cbBumpLocator_Executed"/>
+        <CommandBinding x:Name="cbTweakLocator" Command="{x:Static locale:Preview.TweakLocator}" CanExecute="cbTweakLocator_CanExecute" Executed="cbTweakLocator_Executed"/>
+        <CommandBinding x:Name="cbTweakObjects" Command="{x:Static locale:Preview.TweakObjects}" CanExecute="cbTweakObjects_CanExecute" Executed="cbTweakObjects_Executed"/>
+        <CommandBinding x:Name="cbZoomIcon" Command="{x:Static locale:Preview.ZoomIcon}" CanExecute="cbZoomIcon_CanExecute" Executed="cbZoomIcon_Executed"/>
+        <CommandBinding x:Name="cbPickModel" Command="{x:Static locale:Preview.PickModel}" CanExecute="cbPickModel_CanExecute" Executed="cbPickModel_Executed"/>
+        <CommandBinding x:Name="cbTurnObject" Command="{x:Static locale:Preview.TurnObject}" CanExecute="cbTurnObject_CanExecute" Executed="cbTurnObject_Executed"/>
+        <CommandBinding x:Name="cbTwistObject" Command="{x:Static locale:Preview.TwistObject}" CanExecute="cbTwistObject_CanExecute" Executed="cbTwistObject_Executed"/>
+        <CommandBinding x:Name="cbTiltObject" Command="{x:Static locale:Preview.TiltObject}" CanExecute="cbTiltObject_CanExecute" Executed="cbTiltObject_Executed"/>
+        <CommandBinding x:Name="cbDrawObject" Command="{x:Static locale:Preview.DrawObject}" CanExecute="cbDrawObject_CanExecute" Executed="cbDrawObject_Executed"/>
+        <CommandBinding x:Name="cbReindex" Command="{x:Static locale:Preview.ReIndex}" CanExecute="cbReindex_CanExecute" Executed="cbReindex_Executed"/>
+
+        <!--Creatures-->
+        <CommandBinding x:Name="cbSkeletonize" Command="{x:Static locale:Preview.Skeletonize}" CanExecute="cbSkeletonize_CanExecute" Executed="cbSkeletonize_Executed"/>
+        <CommandBinding x:Name="cbZombify" Command="{x:Static locale:Preview.Zombify}" CanExecute="cbZombify_CanExecute" Executed="cbZombify_Executed"/>
+        <CommandBinding x:Name="cbGhoulify" Command="{x:Static locale:Preview.Ghoulify}" CanExecute="cbGhoulify_CanExecute" Executed="cbGhoulify_Executed"/>
+        <CommandBinding x:Name="cbCelestial" Command="{x:Static locale:Preview.MakeCelestial}" CanExecute="cbCelestial_CanExecute" Executed="cbCelestial_Executed"/>
+        <CommandBinding x:Name="cbFiendish" Command="{x:Static locale:Preview.MakeFiendish}" CanExecute="cbFiendish_CanExecute" Executed="cbFiendish_Executed"/>
+
+        <!-- Portals -->
+        <CommandBinding x:Name="cbOpenFace" Command="{x:Static locale:Preview.OpenFace}" CanExecute="cbPortal_CanExecute" Executed="cbOpenFace_Executed"/>
+        <CommandBinding x:Name="cbCloseFace" Command="{x:Static locale:Preview.CloseFace}" CanExecute="cbCornerPortalFace_CanExecute" Executed="cbCloseFace_Executed"/>
+        <CommandBinding x:Name="cbSlideAxis" Command="{x:Static locale:Preview.SlideAxis}" CanExecute="cbSlidingPortalFace_CanExecute" Executed="cbSlideAxis_Executed"/>
+        <CommandBinding x:Name="cbPortalOpenState" Command="{x:Static locale:Preview.PortalOpenState}" CanExecute="cbPortal_CanExecute" Executed="cbPortalOpenState_Executed"/>
+    </Window.CommandBindings>
+    <DockPanel LastChildFill="True">
+        <Ribbon DockPanel.Dock="Top">
+            <RibbonTab Header="View" IsSelected="False">
+                <RibbonGroup Header="Vision" >
+                    <RibbonToggleButton SmallImageSource="/Images/eye_bold.png" Name="chkVision" Label="Normal" Checked="chkSense_Checked" Unchecked="chkSense_Checked"/>
+                    <RibbonToggleButton SmallImageSource="/Images/eye.png" Name="chkLowLight" Label="Low Light" Checked="chkSense_Checked" Unchecked="chkSense_Checked"/>
+                </RibbonGroup>
+                <RibbonGroup Header="Dark-Vision">
+                    <RibbonToggleButton SmallImageSource="/Images/eye_rev.png" Name="chkDarkVision" Label="Dark-Vision" Checked="chkSense_Checked" Unchecked="chkSense_Checked"/>
+                    <RibbonComboBox Label="Range" SelectionBoxWidth="40">
+                        <RibbonGallery x:Name="galDVRange" SelectedValue="120" SelectedValuePath="Content" SelectionChanged="galDVRange_SelectionChanged">
+                            <RibbonGalleryCategory>
+                                <RibbonGalleryItem Content="60"></RibbonGalleryItem>
+                                <RibbonGalleryItem Content="90"></RibbonGalleryItem>
+                                <RibbonGalleryItem Content="120"></RibbonGalleryItem>
+                            </RibbonGalleryCategory>
+                        </RibbonGallery>
+                    </RibbonComboBox>
+                </RibbonGroup>
+                <RibbonGroup Header="Blind-Sight">
+                    <RibbonToggleButton SmallImageSource="/Images/eye_bw.png" Name="chkBlindSight" Label="Blind-Sight" Checked="chkSense_Checked" Unchecked="chkSense_Checked"/>
+                    <RibbonComboBox Label="Range" SelectionBoxWidth="40">
+                        <RibbonGallery x:Name="galBSRange" SelectedValue="60" SelectedValuePath="Content" SelectionChanged="galBSRange_SelectionChanged">
+                            <RibbonGalleryCategory>
+                                <RibbonGalleryItem Content="60"></RibbonGalleryItem>
+                                <RibbonGalleryItem Content="90"></RibbonGalleryItem>
+                                <RibbonGalleryItem Content="120"></RibbonGalleryItem>
+                            </RibbonGalleryCategory>
+                        </RibbonGallery>
+                    </RibbonComboBox>
+                </RibbonGroup>
+                <RibbonGroup Header="Render">
+                    <RibbonComboBox Label="Range" SelectionBoxWidth="40">
+                        <RibbonGallery x:Name="galRenderRange" SelectedValue="120" SelectedValuePath="Content" SelectionChanged="galRenderRange_SelectionChanged">
+                            <RibbonGalleryCategory>
+                                <RibbonGalleryItem Content="60"></RibbonGalleryItem>
+                                <RibbonGalleryItem Content="90"></RibbonGalleryItem>
+                                <RibbonGalleryItem Content="120"></RibbonGalleryItem>
+                            </RibbonGalleryCategory>
+                        </RibbonGallery>
+                    </RibbonComboBox>
+                </RibbonGroup>
+                <RibbonGroup Header="Interface">
+                    <RibbonToggleButton SmallImageSource="/Images/cut_red.png" IsChecked="True" Label="Cut-away" x:Name="chkCutAway" Checked="chkCutAway_Checked" Unchecked="chkCutAway_Checked"/>
+                    <RibbonToggleButton SmallImageSource="/Images/asterisk_yellow.png" IsChecked="True" Label="Cursor" x:Name="chkCursor" Checked="chkCursor_Checked" Unchecked="chkCursor_Checked"/>
+                    <RibbonButton Command="{x:Static locale:Preview.ViewportEdit}" SmallImageSource="/Images/map_extents.png" Label="Viewport" />
+                </RibbonGroup>
+            </RibbonTab>
+            <RibbonTab Header="Rooms" IsSelected="False">
+                <RibbonGroup Header="Edit">
+                    <RibbonButton SmallImageSource="/Images/Add.png" Label="New" Command="{x:Static locale:Preview.NewThing}" CommandParameter="{x:Type tactical:Room}"/>
+                    <RibbonButton SmallImageSource="/Images/Delete.png" Label="Delete" Command="{x:Static locale:Preview.DeleteThing}" CommandParameter="{x:Type tactical:Room}"/>
+                    <RibbonSeparator></RibbonSeparator>
+                    <RibbonButton SmallImageSource="/Images/page_copy.png" Label="Copy" Command="{x:Static locale:Preview.CopyThing}" CommandParameter="{x:Type tactical:Room}"/>
+                    <RibbonButton SmallImageSource="/Images/page_paste.png" Label="Paste" Command="{x:Static locale:Preview.PasteThing}" CommandParameter="{x:Type tactical:Room}"/>
+                    <RibbonSeparator></RibbonSeparator>
+                    <RibbonButton SmallImageSource="/Images/Shape_square_add.png" Label="Duplicate" Command="{x:Static locale:Preview.DuplicateThing}" CommandParameter="{x:Type tactical:Room}"/>
+                    <RibbonButton SmallImageSource="/Images/Shape_square_edit.png" Label="Edit" Command="{x:Static locale:Preview.TweakRoom}"/>
+                </RibbonGroup>
+                <RibbonGroup Header="Bump">
+                    <RibbonButton SmallImageSource="/Images/bullet_minus.png" Label="Z" Command="{x:Static locale:Preview.BumpRoom}" CommandParameter="Z-"/>
+                    <RibbonButton SmallImageSource="/Images/bullet_minus.png" Label="Y" Command="{x:Static locale:Preview.BumpRoom}" CommandParameter="Y-"/>
+                    <RibbonButton SmallImageSource="/Images/bullet_minus.png" Label="X" Command="{x:Static locale:Preview.BumpRoom}" CommandParameter="X-"/>
+                    <RibbonButton SmallImageSource="/Images/bullet_plus.png" Label="Z" Command="{x:Static locale:Preview.BumpRoom}" CommandParameter="Z+"/>
+                    <RibbonButton SmallImageSource="/Images/bullet_plus.png" Label="Y" Command="{x:Static locale:Preview.BumpRoom}" CommandParameter="Y+"/>
+                    <RibbonButton SmallImageSource="/Images/bullet_plus.png" Label="X" Command="{x:Static locale:Preview.BumpRoom}" CommandParameter="X+"/>
+                </RibbonGroup>
+                <RibbonGroup Header="Flip">
+                    <RibbonButton SmallImageSource="/Images/arrow_switch.png" Label="Flip Z" Command="{x:Static locale:Preview.FlipRoom}" CommandParameter="Z"/>
+                    <RibbonButton SmallImageSource="/Images/arrow_switch.png" Label="Flip Y" Command="{x:Static locale:Preview.FlipRoom}" CommandParameter="Y"/>
+                    <RibbonButton SmallImageSource="/Images/arrow_switch.png" Label="Flip X" Command="{x:Static locale:Preview.FlipRoom}" CommandParameter="X"/>
+                </RibbonGroup>
+                <RibbonGroup Header="Swap">
+                    <RibbonButton SmallImageSource="/Images/arrow_switch.png" Label="Swap Z,Y" Command="{x:Static locale:Preview.SwapRoom}" CommandParameter="ZY"/>
+                    <RibbonButton SmallImageSource="/Images/arrow_switch.png" Label="Swap Y,X" Command="{x:Static locale:Preview.SwapRoom}" CommandParameter="YX"/>
+                    <RibbonButton SmallImageSource="/Images/arrow_switch.png" Label="Swap X,Z" Command="{x:Static locale:Preview.SwapRoom}" CommandParameter="XZ"/>
+                </RibbonGroup>
+                <RibbonGroup Header="Size">
+                    <RibbonButton SmallImageSource="/Images/bullet_minus.png" Label="Z" Command="{x:Static locale:Preview.SizeRoom}" CommandParameter="Z-"/>
+                    <RibbonButton SmallImageSource="/Images/bullet_minus.png" Label="Y" Command="{x:Static locale:Preview.SizeRoom}" CommandParameter="Y-"/>
+                    <RibbonButton SmallImageSource="/Images/bullet_minus.png" Label="X" Command="{x:Static locale:Preview.SizeRoom}" CommandParameter="X-"/>
+                    <RibbonButton SmallImageSource="/Images/bullet_plus.png" Label="Z"  Command="{x:Static locale:Preview.SizeRoom}" CommandParameter="Z+"/>
+                    <RibbonButton SmallImageSource="/Images/bullet_plus.png" Label="Y"  Command="{x:Static locale:Preview.SizeRoom}" CommandParameter="Y+"/>
+                    <RibbonButton SmallImageSource="/Images/bullet_plus.png" Label="X"  Command="{x:Static locale:Preview.SizeRoom}" CommandParameter="X+"/>
+                </RibbonGroup>
+                <RibbonGroup Header="Split">
+                    <RibbonButton SmallImageSource="/Images/cut.png" Label="Split Z" Command="{x:Static locale:Preview.SplitRoom}" CommandParameter="Z"/>
+                    <RibbonButton SmallImageSource="/Images/cut.png" Label="Split Y" Command="{x:Static locale:Preview.SplitRoom}" CommandParameter="Y"/>
+                    <RibbonButton SmallImageSource="/Images/cut.png" Label="Split X" Command="{x:Static locale:Preview.SplitRoom}" CommandParameter="X"/>
+                </RibbonGroup>
+            </RibbonTab>
+            <RibbonTab Header="Cells">
+                <RibbonGroup Header="Palette">
+                    <RibbonToggleButton SmallImageSource="/Images/palette.png" Label="Cells" Checked="tglPalettes_Checked" Unchecked="tglPalettes_Unchecked" Tag="CellSpace"/>
+                    <RibbonButton SmallImageSource="/Images/brick_edit.png" Label="Edit" Command="{x:Static locale:Preview.EditParams}"/>
+                </RibbonGroup>
+                <RibbonGroup Header="Flip">
+                    <RibbonButton SmallImageSource="/Images/arrow_switch.png" Label="Flip Z" Command="{x:Static locale:Preview.FlipCell}" CommandParameter="Z"/>
+                    <RibbonButton SmallImageSource="/Images/arrow_switch.png" Label="Flip Y" Command="{x:Static locale:Preview.FlipCell}" CommandParameter="Y"/>
+                    <RibbonButton SmallImageSource="/Images/arrow_switch.png" Label="Flip X" Command="{x:Static locale:Preview.FlipCell}" CommandParameter="X"/>
+                </RibbonGroup>
+                <RibbonGroup Header="Swap">
+                    <RibbonButton SmallImageSource="/Images/arrow_switch.png" Label="Swap Z,Y" Command="{x:Static locale:Preview.SwapCell}" CommandParameter="ZY"/>
+                    <RibbonButton SmallImageSource="/Images/arrow_switch.png" Label="Swap Y,X" Command="{x:Static locale:Preview.SwapCell}" CommandParameter="YX"/>
+                    <RibbonButton SmallImageSource="/Images/arrow_switch.png" Label="Swap X,Z" Command="{x:Static locale:Preview.SwapCell}" CommandParameter="XZ"/>
+                </RibbonGroup>
+            </RibbonTab>
+            <RibbonTab Header="Objects" IsSelected="True">
+                <RibbonGroup Header="Edit">
+                    <RibbonButton SmallImageSource="/Images/Add.png" Label="New" Command="{x:Static locale:Preview.NewThing}" CommandParameter="{x:Type tactical:Locator}"/>
+                    <RibbonButton SmallImageSource="/Images/cog_add.png" Label="Mech Mount" Command="{x:Static locale:Preview.NewThing}" CommandParameter="Mechanism Mount"/>
+                    <RibbonButton SmallImageSource="/Images/Delete.png" Label="Delete" Command="{x:Static locale:Preview.DeleteThing}" CommandParameter="{x:Type tactical:Locator}"/>
+                    <RibbonSeparator></RibbonSeparator>
+                    <RibbonButton SmallImageSource="/Images/shape_square_edit.png" Label="Locator" Command="{x:Static locale:Preview.TweakLocator}"/>
+                    <RibbonButton SmallImageSource="/Images/tag_blue_edit.png" Label="Objects" Command="{x:Static locale:Preview.TweakObjects}" />
+                    <RibbonButton SmallImageSource="/Images/table_refresh.png" Label="ReIndex" Command="{x:Static locale:Preview.ReIndex}"/>
+                    <RibbonSeparator></RibbonSeparator>
+                    <RibbonMenuButton SmallImageSource="/Images/user.png" Label="Creature">
+                        <RibbonMenuItem Command="{x:Static locale:Preview.NewThing}" CommandParameter="Creature.Goblin" Header="Goblin" />
+                        <RibbonMenuItem Command="{x:Static locale:Preview.NewThing}" CommandParameter="Creature.Hobgoblin" Header="Hobgoblin" />
+                        <RibbonMenuItem Command="{x:Static locale:Preview.NewThing}" CommandParameter="Creature.Kobold" Header="Kobold" />
+                        <RibbonSeparator></RibbonSeparator>
+                        <RibbonMenuItem Command="{x:Static locale:Preview.NewThing}" CommandParameter="Creature.MonstrousSpider" Header="Monstrous Spider" />
+                        <RibbonMenuItem Command="{x:Static locale:Preview.NewThing}" CommandParameter="Creature.MonstrousCentipede" Header="Monstrous Centipede" />
+                    </RibbonMenuButton>
+                </RibbonGroup>
+                <RibbonGroup Header="Bump">
+                    <RibbonButton SmallImageSource="/Images/bullet_minus.png" Label="Z" Command="{x:Static locale:Preview.BumpLocator}" CommandParameter="Z-"/>
+                    <RibbonButton SmallImageSource="/Images/bullet_minus.png" Label="Y" Command="{x:Static locale:Preview.BumpLocator}" CommandParameter="Y-"/>
+                    <RibbonButton SmallImageSource="/Images/bullet_minus.png" Label="X" Command="{x:Static locale:Preview.BumpLocator}" CommandParameter="X-"/>
+                    <RibbonButton SmallImageSource="/Images/bullet_plus.png" Label="Z"  Command="{x:Static locale:Preview.BumpLocator}" CommandParameter="Z+"/>
+                    <RibbonButton SmallImageSource="/Images/bullet_plus.png" Label="Y"  Command="{x:Static locale:Preview.BumpLocator}" CommandParameter="Y+"/>
+                    <RibbonButton SmallImageSource="/Images/bullet_plus.png" Label="X"  Command="{x:Static locale:Preview.BumpLocator}" CommandParameter="X+"/>
+                </RibbonGroup>
+                <RibbonGroup Header="Heading">
+                    <RibbonButton SmallImageSource="/Images/arrow_turn_left.png" Label="Left" Command="{x:Static locale:Preview.TurnObject}" CommandParameter="1"></RibbonButton>
+                    <RibbonButton SmallImageSource="/Images/arrow_turn_right.png" Label="Right" Command="{x:Static locale:Preview.TurnObject}" CommandParameter="-1"></RibbonButton>
+                </RibbonGroup>
+                <RibbonGroup Header="Adjust">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="/Images/arrow_inout.png" Stretch="None"/>
+                        <Label Content="Fixup" VerticalAlignment="Center"/>
+                    </StackPanel>
+                    <RibbonMenuButton SmallImageSource="/Images/flag_blue.png" Label="Model" x:Name="rmnuModel">
+                    </RibbonMenuButton>
+                </RibbonGroup>
+                <RibbonGroup Header="Templates">
+                    <RibbonButton SmallImageSource="/Images/flag_blue.png" Label="Skeleton" 
+                                             x:Name="rmnuSkeletonize" Command="{x:Static locale:Preview.Skeletonize}">
+                    </RibbonButton>
+                    <RibbonButton SmallImageSource="/Images/flag_blue.png" Label="Zombify" 
+                                             x:Name="rmnuZombify" Command="{x:Static locale:Preview.Zombify}">
+                    </RibbonButton>
+                    <RibbonButton SmallImageSource="/Images/flag_blue.png" Label="Ghoulify" 
+                                             x:Name="rmnuGhoulify" Command="{x:Static locale:Preview.Ghoulify}">
+                    </RibbonButton>
+                    <RibbonButton SmallImageSource="/Images/flag_blue.png" Label="Celestial" 
+                                             x:Name="rmnuCelestial" Command="{x:Static locale:Preview.MakeCelestial}">
+                    </RibbonButton>
+                    <RibbonButton SmallImageSource="/Images/flag_blue.png" Label="Fiendish" 
+                                             x:Name="rmnuFiendish" Command="{x:Static locale:Preview.MakeFiendish}">
+                    </RibbonButton>
+                </RibbonGroup>
+            </RibbonTab>
+            <RibbonTab Header="Furnishings">
+                <RibbonGroup Header="New">
+                    <RibbonButton SmallImageSource="/Images/Add.png" Label="New..." Command="{x:Static locale:Preview.NewThing}" CommandParameter="{x:Type tactical:Locator}"/>
+                    <RibbonMenuButton SmallImageSource="/Images/Add.png" Label="Add">
+                        <RibbonMenuItem Header="Bench" CommandParameter="Bench" Command="{x:Static locale:Preview.NewThing}"></RibbonMenuItem>
+                        <RibbonMenuItem Header="Stool" CommandParameter="Stool" Command="{x:Static locale:Preview.NewThing}"></RibbonMenuItem>
+                        <RibbonMenuItem Header="Table" CommandParameter="Table" Command="{x:Static locale:Preview.NewThing}"></RibbonMenuItem>
+                        <RibbonMenuItem Header="Flat Panel" CommandParameter="FlatPanel" Command="{x:Static locale:Preview.NewThing}"></RibbonMenuItem>
+                        <RibbonMenuItem Header="Flexible Flat Panel" CommandParameter="FlexFlat" Command="{x:Static locale:Preview.NewThing}"></RibbonMenuItem>
+                        <RibbonSeparator></RibbonSeparator>
+                        <RibbonMenuItem Header="Cabinet" CommandParameter="Cabinet" Command="{x:Static locale:Preview.NewThing}"></RibbonMenuItem>
+                        <RibbonMenuItem Header="Drawers" CommandParameter="Drawers" Command="{x:Static locale:Preview.NewThing}"></RibbonMenuItem>
+                        <RibbonMenuItem Header="Shelves" CommandParameter="Shelves" Command="{x:Static locale:Preview.NewThing}"></RibbonMenuItem>
+                        <RibbonSeparator></RibbonSeparator>
+                        <RibbonMenuItem Header="Anvil" CommandParameter="Anvil" Command="{x:Static locale:Preview.NewThing}"></RibbonMenuItem>
+                        <RibbonMenuItem Header="Lectern" CommandParameter="Levtern" Command="{x:Static locale:Preview.NewThing}"></RibbonMenuItem>
+                        <RibbonMenuItem Header="Statue" CommandParameter="Statue" Command="{x:Static locale:Preview.NewThing}"></RibbonMenuItem>
+                        <RibbonSeparator></RibbonSeparator>
+                        <RibbonMenuItem Header="Bed" CommandParameter="Bed" Command="{x:Static locale:Preview.NewThing}"></RibbonMenuItem>
+                        <RibbonMenuItem Header="Chair" CommandParameter="Chair" Command="{x:Static locale:Preview.NewThing}"></RibbonMenuItem>
+                        <RibbonMenuItem Header="Desk" CommandParameter="Desk" Command="{x:Static locale:Preview.NewThing}"></RibbonMenuItem>
+                        <RibbonSeparator></RibbonSeparator>
+                        <RibbonMenuItem Header="Barrel" CommandParameter="Barrel" Command="{x:Static locale:Preview.NewThing}"></RibbonMenuItem>
+                        <RibbonMenuItem Header="Barrel Lid" CommandParameter="Barrel Lid" Command="{x:Static locale:Preview.NewThing}"></RibbonMenuItem>
+                        <RibbonMenuItem Header="Crate" CommandParameter="Crate" Command="{x:Static locale:Preview.NewThing}"></RibbonMenuItem>
+                        <RibbonMenuItem Header="Crate Lid" CommandParameter="Crate Lid" Command="{x:Static locale:Preview.NewThing}"></RibbonMenuItem>
+                        <RibbonSeparator></RibbonSeparator>
+                        <RibbonMenuItem Header="Cart" CommandParameter="Cart" Command="{x:Static locale:Preview.NewThing}"></RibbonMenuItem>
+                    </RibbonMenuButton>
+                    <RibbonToggleButton SmallImageSource="/Images/palette.png" Label="Palette" Checked="tglPalettes_Checked" Unchecked="tglPalettes_Unchecked" Tag="Object"/>
+                </RibbonGroup>
+                <RibbonGroup Header="Edit">
+                    <RibbonButton SmallImageSource="/Images/shape_square_edit.png" Label="Locator" Command="{x:Static locale:Preview.TweakLocator}"/>
+                    <RibbonButton SmallImageSource="/Images/tag_blue_edit.png" Label="Objects" Command="{x:Static locale:Preview.TweakObjects}" />
+                    <RibbonButton SmallImageSource="/Images/Delete.png" Label="Delete" Command="{x:Static locale:Preview.DeleteThing}" CommandParameter="{x:Type tactical:Locator}"/>
+                </RibbonGroup>
+                <RibbonGroup Header="Bump">
+                    <RibbonButton SmallImageSource="/Images/bullet_minus.png" Label="Z" Command="{x:Static locale:Preview.BumpLocator}" CommandParameter="Z-"/>
+                    <RibbonButton SmallImageSource="/Images/bullet_minus.png" Label="Y" Command="{x:Static locale:Preview.BumpLocator}" CommandParameter="Y-"/>
+                    <RibbonButton SmallImageSource="/Images/bullet_minus.png" Label="X" Command="{x:Static locale:Preview.BumpLocator}" CommandParameter="X-"/>
+                    <RibbonButton SmallImageSource="/Images/bullet_plus.png" Label="Z"  Command="{x:Static locale:Preview.BumpLocator}" CommandParameter="Z+"/>
+                    <RibbonButton SmallImageSource="/Images/bullet_plus.png" Label="Y"  Command="{x:Static locale:Preview.BumpLocator}" CommandParameter="Y+"/>
+                    <RibbonButton SmallImageSource="/Images/bullet_plus.png" Label="X"  Command="{x:Static locale:Preview.BumpLocator}" CommandParameter="X+"/>
+                </RibbonGroup>
+                <RibbonGroup Header="Heading">
+                    <RibbonButton SmallImageSource="/Images/arrow_rotate_anticlockwise.png" Label="Left" Command="{x:Static locale:Preview.TurnObject}" CommandParameter="1"></RibbonButton>
+                    <RibbonButton SmallImageSource="/Images/arrow_rotate_clockwise.png" Label="Right" Command="{x:Static locale:Preview.TurnObject}" CommandParameter="-1"></RibbonButton>
+                </RibbonGroup>
+                <RibbonGroup Header="Incline">
+                    <RibbonButton SmallImageSource="/Images/arrow_up.png" Label="Up" Command="{x:Static locale:Preview.TiltObject}" CommandParameter="-1"></RibbonButton>
+                    <RibbonButton SmallImageSource="/Images/arrow_down.png" Label="Down" Command="{x:Static locale:Preview.TiltObject}" CommandParameter="1"></RibbonButton>
+                </RibbonGroup>
+                <RibbonGroup Header="Twist">
+                    <RibbonButton SmallImageSource="/Images/arrow_rotate_anticlockwise.png" Label="Left" Command="{x:Static locale:Preview.TwistObject}" CommandParameter="1"></RibbonButton>
+                    <RibbonButton SmallImageSource="/Images/arrow_rotate_clockwise.png" Label="Right" Command="{x:Static locale:Preview.TwistObject}" CommandParameter="-1"></RibbonButton>
+                </RibbonGroup>
+            </RibbonTab>
+            <RibbonTab Header="Portals">
+                <RibbonGroup Header="Corners">
+                    <RibbonMenuButton Label="Door" SmallImageSource="/Images/Add.png">
+                        <RibbonMenuItem Header="Wood Door" Command="{x:Static locale:Preview.NewThing}" CommandParameter="Wood Door"/>
+                        <RibbonMenuItem Header="Iron Door" Command="{x:Static locale:Preview.NewThing}" CommandParameter="Iron Door"/>
+                        <RibbonMenuItem Header="Stone Door" Command="{x:Static locale:Preview.NewThing}" CommandParameter="Stone Door"/>
+                    </RibbonMenuButton>
+                    <RibbonMenuButton Label="Secret Door" SmallImageSource="/Images/Add.png">
+                        <RibbonMenuItem Header="Secret Wood Door" Command="{x:Static locale:Preview.NewThing}" CommandParameter="Secret Wood"/>
+                        <RibbonMenuItem Header="Secret Iron Door" Command="{x:Static locale:Preview.NewThing}" CommandParameter="Secret Iron"/>
+                        <RibbonMenuItem Header="Secret Stone Door" Command="{x:Static locale:Preview.NewThing}" CommandParameter="Secret Stone"/>
+                    </RibbonMenuButton>
+                    <RibbonButton SmallImageSource="/Images/Add.png" Label="Bars" Command="{x:Static locale:Preview.NewThing}" CommandParameter="Bars"/>
+                </RibbonGroup>
+                <RibbonGroup Header="Sliders">
+                    <RibbonMenuButton Label="Door" SmallImageSource="/Images/Add.png">
+                        <RibbonMenuItem Header="Wood Door" Command="{x:Static locale:Preview.NewThing}" CommandParameter="Wood Slider"/>
+                        <RibbonMenuItem Header="Iron Door" Command="{x:Static locale:Preview.NewThing}" CommandParameter="Iron Slider"/>
+                        <RibbonMenuItem Header="Stone Door" Command="{x:Static locale:Preview.NewThing}" CommandParameter="Stone Slider"/>
+                    </RibbonMenuButton>
+                    <RibbonMenuButton Label="Secret Door" SmallImageSource="/Images/Add.png">
+                        <RibbonMenuItem Header="Secret Wood Door" Command="{x:Static locale:Preview.NewThing}" CommandParameter="Secret Wood Slider"/>
+                        <RibbonMenuItem Header="Secret Iron Door" Command="{x:Static locale:Preview.NewThing}" CommandParameter="Secret Iron Slider"/>
+                        <RibbonMenuItem Header="Secret Stone Door" Command="{x:Static locale:Preview.NewThing}" CommandParameter="Secret Stone Slider"/>
+                    </RibbonMenuButton>
+                    <RibbonButton SmallImageSource="/Images/Add.png" Label="Portcullis" Command="{x:Static locale:Preview.NewThing}" CommandParameter="Bars Slider"/>
+                </RibbonGroup>
+                <RibbonGroup Header="Edit">
+                    <RibbonButton SmallImageSource="/Images/Delete.png" Label="Delete" Command="{x:Static locale:Preview.DeleteThing}" CommandParameter="{x:Type tactical:Locator}"/>
+                    <RibbonButton SmallImageSource="/Images/tag_blue_edit.png" Label="Objects" Command="{x:Static locale:Preview.TweakObjects}" />
+                </RibbonGroup>
+                <RibbonGroup Header="Bump">
+                    <RibbonButton SmallImageSource="/Images/bullet_minus.png" Label="Z" Command="{x:Static locale:Preview.BumpLocator}" CommandParameter="Z-"/>
+                    <RibbonButton SmallImageSource="/Images/bullet_minus.png" Label="Y" Command="{x:Static locale:Preview.BumpLocator}" CommandParameter="Y-"/>
+                    <RibbonButton SmallImageSource="/Images/bullet_minus.png" Label="X" Command="{x:Static locale:Preview.BumpLocator}" CommandParameter="X-"/>
+                    <RibbonButton SmallImageSource="/Images/bullet_plus.png" Label="Z"  Command="{x:Static locale:Preview.BumpLocator}" CommandParameter="Z+"/>
+                    <RibbonButton SmallImageSource="/Images/bullet_plus.png" Label="Y"  Command="{x:Static locale:Preview.BumpLocator}" CommandParameter="Y+"/>
+                    <RibbonButton SmallImageSource="/Images/bullet_plus.png" Label="X"  Command="{x:Static locale:Preview.BumpLocator}" CommandParameter="X+"/>
+                </RibbonGroup>
+                <RibbonGroup Header="Opened">
+                    <RibbonButton SmallImageSource="/Images/bullet_minus.png" Label="Z" Command="{x:Static locale:Preview.OpenFace}" CommandParameter="Z-"/>
+                    <RibbonButton SmallImageSource="/Images/bullet_minus.png" Label="Y" Command="{x:Static locale:Preview.OpenFace}" CommandParameter="Y-"/>
+                    <RibbonButton SmallImageSource="/Images/bullet_minus.png" Label="X" Command="{x:Static locale:Preview.OpenFace}" CommandParameter="X-"/>
+                    <RibbonButton SmallImageSource="/Images/bullet_plus.png" Label="Z"  Command="{x:Static locale:Preview.OpenFace}" CommandParameter="Z+"/>
+                    <RibbonButton SmallImageSource="/Images/bullet_plus.png" Label="Y"  Command="{x:Static locale:Preview.OpenFace}" CommandParameter="Y+"/>
+                    <RibbonButton SmallImageSource="/Images/bullet_plus.png" Label="X"  Command="{x:Static locale:Preview.OpenFace}" CommandParameter="X+"/>
+                </RibbonGroup>
+                <RibbonGroup Header="Closed">
+                    <RibbonButton SmallImageSource="/Images/bullet_minus.png" Label="Z" Command="{x:Static locale:Preview.CloseFace}" CommandParameter="Z-"/>
+                    <RibbonButton SmallImageSource="/Images/bullet_minus.png" Label="Y" Command="{x:Static locale:Preview.CloseFace}" CommandParameter="Y-"/>
+                    <RibbonButton SmallImageSource="/Images/bullet_minus.png" Label="X" Command="{x:Static locale:Preview.CloseFace}" CommandParameter="X-"/>
+                    <RibbonButton SmallImageSource="/Images/bullet_plus.png" Label="Z"  Command="{x:Static locale:Preview.CloseFace}" CommandParameter="Z+"/>
+                    <RibbonButton SmallImageSource="/Images/bullet_plus.png" Label="Y"  Command="{x:Static locale:Preview.CloseFace}" CommandParameter="Y+"/>
+                    <RibbonButton SmallImageSource="/Images/bullet_plus.png" Label="X"  Command="{x:Static locale:Preview.CloseFace}" CommandParameter="X+"/>
+                </RibbonGroup>
+                <RibbonGroup Header="Slide">
+                    <!-- Axis -->
+                    <RibbonButton SmallImageSource="/Images/shape_square_go.png" Label="Z" Command="{x:Static locale:Preview.SlideAxis}" CommandParameter="Z"/>
+                    <RibbonButton SmallImageSource="/Images/shape_square_go.png" Label="Y" Command="{x:Static locale:Preview.SlideAxis}" CommandParameter="Y"/>
+                    <RibbonButton SmallImageSource="/Images/shape_square_go.png" Label="X" Command="{x:Static locale:Preview.SlideAxis}" CommandParameter="X"/>
+                    <!-- Distance -->
+                </RibbonGroup>
+                <RibbonGroup Header="State">
+                    <RibbonButton SmallImageSource="/Images/door_open.png" Command="{x:Static locale:Preview.PortalOpenState}" Label="Open" CommandParameter="Open"/>
+                    <RibbonButton SmallImageSource="/Images/door.png" Command="{x:Static locale:Preview.PortalOpenState}" Label="Close" CommandParameter="Close"/>
+                    <!-- Flip and Inner Hinge -->
+                    <!-- Stuck? -->
+                </RibbonGroup>
+            </RibbonTab>
+        </Ribbon>
+        <Grid Background="DarkSlateGray">
+            <Viewport3D RenderOptions.EdgeMode="Aliased" RenderOptions.BitmapScalingMode="Fant" x:Name="viewport">
+                <Viewport3D.Camera>
+                    <PerspectiveCamera FarPlaneDistance="300" NearPlaneDistance="1" FieldOfView="90" 
+                                       Position="7.5 7.5 7.5" LookDirection="1 1 -1" UpDirection="0 0 1" x:Name="povCamera"/>
+                </Viewport3D.Camera>
+                <ContainerUIElement3D x:Name="grpTokens">
+                </ContainerUIElement3D>
+                <ModelVisual3D>
+                    <ModelVisual3D.Content>
+                        <Model3DGroup>
+                            <Model3DGroup x:Name="grpRooms"></Model3DGroup>
+                            <Model3DGroup x:Name="grpAlphaRooms"></Model3DGroup>
+                            <Model3DGroup x:Name="grpTransients"></Model3DGroup>
+                        </Model3DGroup>
+                    </ModelVisual3D.Content>
+                </ModelVisual3D>
+                <ModelVisual3D>
+                    <ModelVisual3D.Content>
+                        <Model3DGroup>
+                            <Model3DGroup x:Name="grpDrawing"></Model3DGroup>
+                            <Model3DGroup x:Name="grpHelpLights">
+                                <AmbientLight Color="#FFFFFFFF"/>
+                            </Model3DGroup>
+                        </Model3DGroup>
+                    </ModelVisual3D.Content>
+                </ModelVisual3D>
+            </Viewport3D>
+            <Rectangle x:Name="rectInner"></Rectangle>
+            <!-- Coordinates -->
+            <GroupBox Header="Camera" VerticalAlignment="Top" Visibility="Hidden" HorizontalAlignment="Left" Background="#60FFFFFF" x:Name="grpCamera">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Style="{StaticResource tbBold}" Grid.Column="0" Text="Z,Y,X" />
+                    <TextBlock x:Name="txtCoord" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Margin="2,0"/>
+                    
+                    <Rectangle Grid.Row="1" Grid.Column="0" Grid.RowSpan="3" Fill="LightGreen" Opacity="0.6" Grid.ColumnSpan="3"/>
+                    <TextBlock Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Style="{StaticResource tbBold}" Text="Room"/>
+                    <TextBlock Grid.Row="2" Grid.Column="0" Style="{StaticResource tbBold}" Text="Name" />
+                    <TextBlock Grid.Row="2" Grid.Column="1" x:Name="txtRoomName" Grid.ColumnSpan="2" Margin="2,0"/>
+                    <TextBlock Grid.Row="3" Grid.Column="0" Style="{StaticResource tbBold}" Text="Z,Y,X" />
+                    <TextBlock Grid.Row="3" Grid.Column="1" x:Name="txtRoomCoord" Grid.ColumnSpan="2" Margin="2,0"/>
+                </Grid>
+            </GroupBox>
+            
+            <!-- Cursor -->
+            <GroupBox Header="Cursor" VerticalAlignment="Top" HorizontalAlignment="Left" Background="#60FFFFFF" x:Name="grpCursor">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0" Text="Z,Y,X" Style="{StaticResource tbBold}" Grid.Column="0" />
+                    <TextBlock Grid.Row="0" Grid.Column="1" x:Name="txtCursor" Grid.ColumnSpan="2"/>
+                    <Border Grid.Row="1" Grid.RowSpan="5" Grid.Column="0" BorderBrush="Red" Background="LightGoldenrodYellow" BorderThickness="1" Grid.ColumnSpan="3"/>
+                    <TextBlock Grid.Row="1" Style="{StaticResource tbBold}" Grid.Column="0" Grid.ColumnSpan="3" HorizontalAlignment="Center" Text="Room" />
+                    <TextBlock Grid.Row="2" Style="{StaticResource tbBold}" Grid.Column="0" Text="Name" />
+                    <TextBlock Grid.Row="2" Grid.Column="1" x:Name="txtCursorRoomName" Grid.ColumnSpan="2" />
+                    <TextBlock Grid.Row="3" Style="{StaticResource tbBold}" Grid.Column="0" Text="Z,Y,X" />
+                    <TextBlock Grid.Row="3" Grid.Column="1" x:Name="txtCursorRoomCoord" Grid.ColumnSpan="2"/>
+                    
+                    <TextBlock Grid.Row="4" Grid.Column="0" Style="{StaticResource tbBold}" Text="Cell" />
+                    <TextBlock Grid.Row="4" Grid.Column="1" x:Name="txtCellType" Grid.ColumnSpan="2" Margin="2,0"/>
+                    <TextBlock Grid.Row="5" Grid.Column="0" Style="{StaticResource tbBold}" Text="Data" />
+                    <TextBlock Grid.Row="5" Grid.Column="1" x:Name="txtCellParam" Grid.ColumnSpan="2" Margin="2,0"/>
+                    
+                    <Border BorderBrush="Navy" Background="LightGoldenrodYellow" BorderThickness="1" Grid.Row="6" Grid.RowSpan="3" Grid.Column="0" Grid.ColumnSpan="3"/>
+                    <TextBlock Grid.Row="6" Grid.Column="0" Style="{StaticResource tbBold}" Text="Locator" Grid.ColumnSpan="3" />
+                    <TextBlock Grid.Row="7" Grid.Column="0" x:Name="txtCursorLocatorName" Grid.ColumnSpan="3" Margin="3,2" />
+                    <TextBlock Grid.Row="8" Grid.Column="0" x:Name="txtCursorLocatorData" Grid.ColumnSpan="3" Margin="3,2" />
+                </Grid>
+            </GroupBox>
+            
+            <locale:Axes VerticalAlignment="Top" HorizontalAlignment="Right" x:Name="ctrlAxes" Width="128" Height="128" Incline="-1" />
+        </Grid>
+    </DockPanel>
+</RibbonWindow>

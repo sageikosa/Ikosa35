@@ -1,0 +1,1029 @@
+﻿<TabItem x:Class="Uzi.Ikosa.Workshop.PackageExplorer"
+         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+         xmlns:sys="clr-namespace:System;assembly=mscorlib"
+         xmlns:core="clr-namespace:Uzi.Core;assembly=Uzi.Core"
+         xmlns:shop="clr-namespace:Uzi.Ikosa.Workshop"
+         xmlns:pack="clr-namespace:System.IO.Packaging;assembly=WindowsBase"
+         xmlns:tactical="clr-namespace:Uzi.Ikosa.Tactical;assembly=Uzi.Ikosa"
+         xmlns:gms="clr-namespace:Uzi.Ikosa.Guildsmanship;assembly=Uzi.Ikosa"
+         xmlns:uziui="clr-namespace:Uzi.Ikosa.UI;assembly=Uzi.Ikosa.UI"
+         xmlns:uzipack="clr-namespace:Uzi.Packaging;assembly=Uzi.Packaging"
+         xmlns:vispack="clr-namespace:Uzi.Visualize.Packaging;assembly=Uzi.Visualize"
+         xmlns:uzivis="clr-namespace:Uzi.Visualize;assembly=Uzi.Visualize"
+         xmlns:uzi="clr-namespace:Uzi.Ikosa;assembly=Uzi.Ikosa"
+         xmlns:uzisvc="clr-namespace:Uzi.Ikosa.Services;assembly=Uzi.Ikosa"
+         xmlns:uziitem="clr-namespace:Uzi.Ikosa.Items;assembly=Uzi.Ikosa"
+         xmlns:uziobj="clr-namespace:Uzi.Ikosa.Objects;assembly=Uzi.Ikosa">
+    <TabItem.CommandBindings>
+        <CommandBinding x:Name="cbNew" Command="New" CanExecute="cbNew_CanExecute" Executed="cbNew_Executed"/>
+        <CommandBinding x:Name="cbOpen" Command="Open" CanExecute="cbOpen_CanExecute" Executed="cbOpen_Executed" />
+        <CommandBinding x:Name="cbCopy" Command="Copy" CanExecute="cbCopy_CanExecute" Executed="cbCopy_Executed" />
+        <CommandBinding x:Name="cbPaste" Command="Paste" CanExecute="cbPaste_CanExecute" Executed="cbPaste_Executed" />
+        <CommandBinding x:Name="cbDelete" Command="Delete" CanExecute="cbDelete_CanExecute" Executed="cbDelete_Executed" />
+        <!-- New Cell Spaces -->
+        <CommandBinding x:Name="cbNewCellSpace" Command="{x:Static shop:PackageExplorer.NewCellSpace}"
+                        CanExecute="cbNewCellSpace_CanExecute" Executed="cbNewCellSpace_Executed"/>
+        <CommandBinding x:Name="cbNewWedgeSpace" Command="{x:Static shop:PackageExplorer.NewWedgeSpace}"
+                        CanExecute="cbNewCellSpace_CanExecute" Executed="cbNewCellSpace_Executed"/>
+        <CommandBinding x:Name="cbNewCornerSpace" Command="{x:Static shop:PackageExplorer.NewCornerSpace}"
+                        CanExecute="cbNewCellSpace_CanExecute" Executed="cbNewCellSpace_Executed"/>
+        <CommandBinding x:Name="cbNewSliverSpace" Command="{x:Static shop:PackageExplorer.NewSliverSpace}"
+                        CanExecute="cbNewCellSpace_CanExecute" Executed="cbNewCellSpace_Executed"/>
+        <CommandBinding x:Name="cbNewSlopeSpace" Command="{x:Static shop:PackageExplorer.NewSlopeSpace}"
+                        CanExecute="cbNewCellSpace_CanExecute" Executed="cbNewCellSpace_Executed"/>
+        <CommandBinding x:Name="cbNewStairsSpace" Command="{x:Static shop:PackageExplorer.NewStairsSpace}"
+                        CanExecute="cbNewCellSpace_CanExecute" Executed="cbNewCellSpace_Executed"/>
+        <CommandBinding x:Name="cbNewLFrameSpace" Command="{x:Static shop:PackageExplorer.NewLFrameSpace}"
+                        CanExecute="cbNewCellSpace_CanExecute" Executed="cbNewCellSpace_Executed"/>
+        <CommandBinding x:Name="cbNewBorderSpace" Command="{x:Static shop:PackageExplorer.NewBorderSpace}"
+                        CanExecute="cbNewCellSpace_CanExecute" Executed="cbNewCellSpace_Executed"/>
+        <CommandBinding x:Name="cbNewCylinderSpace" Command="{x:Static shop:PackageExplorer.NewCylinderSpace}"
+                        CanExecute="cbNewCellSpace_CanExecute" Executed="cbNewCellSpace_Executed"/>
+        <CommandBinding x:Name="cbNewSmallCylinderSpace" Command="{x:Static shop:PackageExplorer.NewSmallCylinderSpace}"
+                        CanExecute="cbNewCellSpace_CanExecute" Executed="cbNewCellSpace_Executed"/>
+        <!-- New Models and Meta Models -->
+        <CommandBinding x:Name="cbNewFragment" Command="{x:Static shop:PackageExplorer.NewFragment}"
+                        CanExecute="cbNewFragment_CanExecute" Executed="cbNewFragment_Executed"/>
+        <CommandBinding x:Name="cbNewModel" Command="{x:Static shop:PackageExplorer.NewModel}"
+                        CanExecute="cbNewModel_CanExecute" Executed="cbNewModel_Executed"/>
+        <CommandBinding x:Name="cbNewMetaModel" Command="{x:Static shop:PackageExplorer.NewMetaModel}"
+                        CanExecute="cbNewMetaModel_CanExecute" Executed="cbNewMetaModel_Executed"/>
+        <!-- New Panels -->
+        <CommandBinding x:Name="cbNewNormalPanel" Command="{x:Static shop:PackageExplorer.NewNormalPanel}"
+                        CanExecute="cbNewPanelCanExecute" Executed="cbNewPanelExecuted"/>
+        <CommandBinding x:Name="cbNewCornerPanel" Command="{x:Static shop:PackageExplorer.NewCornerPanel}"
+                        CanExecute="cbNewPanelCanExecute" Executed="cbNewPanelExecuted"/>
+        <CommandBinding x:Name="cbNewLFramePanel" Command="{x:Static shop:PackageExplorer.NewLFramePanel}"
+                        CanExecute="cbNewPanelCanExecute" Executed="cbNewPanelExecuted"/>
+        <CommandBinding x:Name="cbNewSlopeComposite" Command="{x:Static shop:PackageExplorer.NewSlopeComposite}"
+                        CanExecute="cbNewPanelCanExecute" Executed="cbNewPanelExecuted"/>
+        
+        <!-- New Resource References -->
+        <CommandBinding x:Name="cbNewImageResourcesBefore" Command="{x:Static shop:PackageExplorer.NewImageResourcesBefore}"
+                        CanExecute="cbNewResources_CanExecute" Executed="cbNewImageResourcesBefore_Executed"/>
+        <CommandBinding x:Name="cbNewImageResourcesAfter"  Command="{x:Static shop:PackageExplorer.NewImageResourcesAfter}"  
+                        CanExecute="cbNewResources_CanExecute" Executed="cbNewImageResourcesAfter_Executed"/>
+        <CommandBinding x:Name="cbNewIconResourcesBefore" Command="{x:Static shop:PackageExplorer.NewIconResourcesBefore}"
+                        CanExecute="cbNewResources_CanExecute" Executed="cbNewIconResourcesBefore_Executed"/>
+        <CommandBinding x:Name="cbNewIconResourcesAfter"  Command="{x:Static shop:PackageExplorer.NewIconResourcesAfter}"  
+                        CanExecute="cbNewResources_CanExecute" Executed="cbNewIconResourcesAfter_Executed"/>
+        <CommandBinding x:Name="cbNewModelResourcesBefore" Command="{x:Static shop:PackageExplorer.NewModelResourcesBefore}" 
+                        CanExecute="cbNewResources_CanExecute" Executed="cbNewModelResourcesBefore_Executed"/>
+        <CommandBinding x:Name="cbNewModelResourcesAfter"  Command="{x:Static shop:PackageExplorer.NewModelResourcesAfter}" 
+                        CanExecute="cbNewResources_CanExecute" Executed="cbNewModelResourcesAfter_Executed"/>
+        <CommandBinding x:Name="cbNewFragmentResourcesBefore" Command="{x:Static shop:PackageExplorer.NewFragmentResourcesBefore}"
+                        CanExecute="cbNewResources_CanExecute" Executed="cbNewFragmentResourcesBefore_Executed"/>
+        <CommandBinding x:Name="cbNewFragmentResourcesAfter" Command="{x:Static shop:PackageExplorer.NewFragmentResourcesAfter}"
+                        CanExecute="cbNewResources_CanExecute" Executed="cbNewFragmentResourcesAfter_Executed"/>
+        <CommandBinding x:Name="cbNewBrushResourcesBefore" Command="{x:Static shop:PackageExplorer.NewBrushResourcesBefore}" 
+                        CanExecute="cbNewResources_CanExecute" Executed="cbNewBrushResourcesBefore_Executed"/>
+        <CommandBinding x:Name="cbNewBrushResourcesAfter"  Command="{x:Static shop:PackageExplorer.NewBrushResourcesAfter}" 
+                        CanExecute="cbNewResources_CanExecute" Executed="cbNewBrushResourcesAfter_Executed"/>
+        <CommandBinding x:Name="cbNewBrushSetResourcesBefore" Command="{x:Static shop:PackageExplorer.NewBrushSetResourcesBefore}"
+                        CanExecute="cbNewResources_CanExecute" Executed="cbNewBrushSetResourcesBefore_Executed"/>
+        <CommandBinding x:Name="cbNewBrushSetResourcesAfter" Command="{x:Static shop:PackageExplorer.NewBrushSetResourcesAfter}"
+                        CanExecute="cbNewResources_CanExecute" Executed="cbNewBrushSetResourcesAfter_Executed"/>
+    </TabItem.CommandBindings>
+    <TabItem.Resources>
+        <shop:CollectionViewSorter x:Key="myViewSorter"/>
+        <ContextMenu x:Key="mnuPassthrough" >
+            <MenuItem Header="New..." Command="New" CommandParameter="{Binding}"></MenuItem>
+            <MenuItem Header="Paste" Command="Paste" CommandParameter="{Binding}"></MenuItem>
+            <Separator/>
+            <MenuItem Header="Open" Command="Open" CommandParameter="{Binding}"></MenuItem>
+            <MenuItem Header="Copy" Command="Copy" CommandParameter="{Binding}"></MenuItem>
+            <Separator/>
+            <MenuItem Header="Delete" Command="Delete" CommandParameter="{Binding}"></MenuItem>
+        </ContextMenu>
+        <ContextMenu x:Key="mnuMetaModel" >
+            <MenuItem Header="New" >
+                <MenuItem Header="Image Resource" Command="New" CommandParameter="{Binding}"/>
+                <MenuItem Header="Fragment Resource" Command="{x:Static shop:PackageExplorer.NewFragment}" CommandParameter="{Binding}"/>
+            </MenuItem>
+            <Separator/>
+            <MenuItem Header="Open" Command="Open" CommandParameter="{Binding}"></MenuItem>
+            <MenuItem Header="Duplicate" Command="Copy" CommandParameter="{Binding}"></MenuItem>
+            <Separator/>
+            <MenuItem Header="Delete" Command="Delete" CommandParameter="{Binding}"></MenuItem>
+        </ContextMenu>
+        <ContextMenu x:Key="mnuPart" >
+            <MenuItem Header="Open" Command="Open" CommandParameter="{Binding}"></MenuItem>
+            <MenuItem Header="Copy" Command="Copy" CommandParameter="{Binding}"></MenuItem>
+            <Separator/>
+            <MenuItem Header="Delete" Command="Delete" CommandParameter="{Binding}"></MenuItem>
+        </ContextMenu>
+        <ContextMenu x:Key="mnuFolder" >
+            <MenuItem Header="New..." Command="New" CommandParameter="{Binding}"></MenuItem>
+            <MenuItem Header="Paste" Command="Paste" CommandParameter="{Binding}"></MenuItem>
+        </ContextMenu>
+        <ContextMenu x:Key="mnuPreviewFolder" >
+            <MenuItem Header="Open" Command="Open" CommandParameter="{Binding}"></MenuItem>
+            <Separator/>
+            <MenuItem Header="New..." Command="New" CommandParameter="{Binding}"></MenuItem>
+            <MenuItem Header="Paste" Command="Paste" CommandParameter="{Binding}"></MenuItem>
+        </ContextMenu>
+        <ContextMenu x:Key="mnuModelFolder" >
+            <MenuItem Header="New Model" Command="{x:Static shop:PackageExplorer.NewModel}" CommandParameter="{Binding}"></MenuItem>
+            <MenuItem Header="New Meta-Model" Command="{x:Static shop:PackageExplorer.NewMetaModel}" CommandParameter="{Binding}"></MenuItem>
+            <!--<MenuItem Header="Paste" Command="Paste" CommandParameter="{Binding}"></MenuItem>-->
+        </ContextMenu>
+        <ContextMenu x:Key="mnuImagesResourceFolder">
+            <MenuItem Header="New First Images Resources..." Command="{x:Static shop:PackageExplorer.NewImageResourcesBefore}" CommandParameter="{Binding}"></MenuItem>
+            <MenuItem Header="New Last Images Resources..." Command="{x:Static shop:PackageExplorer.NewImageResourcesAfter}" CommandParameter="{Binding}"></MenuItem>
+        </ContextMenu>
+        <ContextMenu x:Key="mnuIconsResourceFolder">
+            <MenuItem Header="New First Icons Resources..." Command="{x:Static shop:PackageExplorer.NewIconResourcesBefore}" CommandParameter="{Binding}"></MenuItem>
+            <MenuItem Header="New Last Icons Resources..." Command="{x:Static shop:PackageExplorer.NewIconResourcesAfter}" CommandParameter="{Binding}"></MenuItem>
+        </ContextMenu>
+        <ContextMenu x:Key="mnuModelsResourceFolder">
+            <MenuItem Header="New First Models Resources..." Command="{x:Static shop:PackageExplorer.NewModelResourcesBefore}" CommandParameter="{Binding}"></MenuItem>
+            <MenuItem Header="New Last Models Resources..." Command="{x:Static shop:PackageExplorer.NewModelResourcesAfter}" CommandParameter="{Binding}"></MenuItem>
+        </ContextMenu>
+        <ContextMenu x:Key="mnuFragmentsResourceFolder">
+            <MenuItem Header="New First Fragments Resources..." Command="{x:Static shop:PackageExplorer.NewFragmentResourcesBefore}" CommandParameter="{Binding}"></MenuItem>
+            <MenuItem Header="New Last Fragments Resources..." Command="{x:Static shop:PackageExplorer.NewFragmentResourcesAfter}" CommandParameter="{Binding}"></MenuItem>
+        </ContextMenu>
+        <ContextMenu x:Key="mnuBrushesResourceFolder">
+            <MenuItem Header="New First Brushes Resources..." Command="{x:Static shop:PackageExplorer.NewBrushResourcesBefore}" CommandParameter="{Binding}"></MenuItem>
+            <MenuItem Header="New Last Brushes Resources..." Command="{x:Static shop:PackageExplorer.NewBrushResourcesAfter}" CommandParameter="{Binding}"></MenuItem>
+        </ContextMenu>
+        <ContextMenu x:Key="mnuBrushSetsResourceFolder">
+            <MenuItem Header="New First Brush-Sets Resources..." Command="{x:Static shop:PackageExplorer.NewBrushSetResourcesBefore}" CommandParameter="{Binding}"></MenuItem>
+            <MenuItem Header="New Last Brush-Sets Resources..." Command="{x:Static shop:PackageExplorer.NewBrushSetResourcesAfter}" CommandParameter="{Binding}"></MenuItem>
+        </ContextMenu>
+        <ContextMenu x:Key="mnuImagesResourceReference">
+            <MenuItem Header="Open" Command="Open" CommandParameter="{Binding}"/>
+            <Separator/>
+            <MenuItem Header="Delete" Command="Delete" CommandParameter="{Binding}"></MenuItem>
+            <Separator/>
+            <MenuItem Header="Add Images Resources Before..." Command="{x:Static shop:PackageExplorer.NewImageResourcesBefore}" CommandParameter="{Binding}" />
+            <MenuItem Header="Add Images Resources After..." Command="{x:Static shop:PackageExplorer.NewImageResourcesAfter}" CommandParameter="{Binding}" />
+        </ContextMenu>
+        <ContextMenu x:Key="mnuIconsResourceReference">
+            <MenuItem Header="Open" Command="Open" CommandParameter="{Binding}"/>
+            <Separator/>
+            <MenuItem Header="Delete" Command="Delete" CommandParameter="{Binding}"></MenuItem>
+            <Separator/>
+            <MenuItem Header="Add Icons Resources Before..." Command="{x:Static shop:PackageExplorer.NewIconResourcesBefore}" CommandParameter="{Binding}" />
+            <MenuItem Header="Add Icons Resources After..." Command="{x:Static shop:PackageExplorer.NewIconResourcesAfter}" CommandParameter="{Binding}" />
+        </ContextMenu>
+        <ContextMenu x:Key="mnuModelsResourceReference">
+            <MenuItem Header="Open" Command="Open" CommandParameter="{Binding}"/>
+            <Separator/>
+            <MenuItem Header="Delete" Command="Delete" CommandParameter="{Binding}"></MenuItem>
+            <Separator/>
+            <MenuItem Header="Add Models Resources Before..." Command="{x:Static shop:PackageExplorer.NewModelResourcesBefore}" CommandParameter="{Binding}" />
+            <MenuItem Header="Add Models Resources After..." Command="{x:Static shop:PackageExplorer.NewModelResourcesAfter}" CommandParameter="{Binding}" />
+        </ContextMenu>
+        <ContextMenu x:Key="mnuFragmentsResourceReference">
+            <MenuItem Header="Open" Command="Open" CommandParameter="{Binding}"/>
+            <Separator/>
+            <MenuItem Header="Delete" Command="Delete" CommandParameter="{Binding}"></MenuItem>
+            <Separator/>
+            <MenuItem Header="Add Fragments Resources Before..." Command="{x:Static shop:PackageExplorer.NewFragmentResourcesBefore}" CommandParameter="{Binding}" />
+            <MenuItem Header="Add Fragments Resources After..." Command="{x:Static shop:PackageExplorer.NewFragmentResourcesAfter}" CommandParameter="{Binding}" />
+        </ContextMenu>
+        <ContextMenu x:Key="mnuBrushesResourceReference">
+            <MenuItem Header="Open" Command="Open" CommandParameter="{Binding}"/>
+            <Separator/>
+            <MenuItem Header="Delete" Command="Delete" CommandParameter="{Binding}"></MenuItem>
+            <Separator/>
+            <MenuItem Header="Add Brushes Resources Before..." Command="{x:Static shop:PackageExplorer.NewBrushResourcesBefore}" CommandParameter="{Binding}" />
+            <MenuItem Header="Add Brushes Resources After..." Command="{x:Static shop:PackageExplorer.NewBrushResourcesAfter}" CommandParameter="{Binding}" />
+        </ContextMenu>
+        <ContextMenu x:Key="mnuBrushSetsResourceReference">
+            <MenuItem Header="Open" Command="Open" CommandParameter="{Binding}"/>
+            <Separator/>
+            <MenuItem Header="Delete" Command="Delete" CommandParameter="{Binding}"></MenuItem>
+            <Separator/>
+            <MenuItem Header="Add Brush-Sets Resources Before..." Command="{x:Static shop:PackageExplorer.NewBrushSetResourcesBefore}" CommandParameter="{Binding}" />
+            <MenuItem Header="Add Brush-Sets Resources After..." Command="{x:Static shop:PackageExplorer.NewBrushSetResourcesAfter}" CommandParameter="{Binding}" />
+        </ContextMenu>
+        <ContextMenu x:Key="mnuImage" >
+            <MenuItem Header="Open" Command="Open" CommandParameter="{Binding}"></MenuItem>
+            <Separator/>
+            <MenuItem Header="Export..." CommandParameter="{Binding}"></MenuItem>
+            <MenuItem Header="Copy" Command="Copy" CommandParameter="{Binding}"></MenuItem>
+            <Separator/>
+            <MenuItem Header="Delete" Command="Delete" CommandParameter="{Binding}"></MenuItem>
+        </ContextMenu>
+        <ContextMenu x:Key="mnuMapPart" >
+            <MenuItem Header="Open" Command="Open" CommandParameter="{Binding}"></MenuItem>
+            <MenuItem Header="Delete" Command="Delete" CommandParameter="{Binding}"></MenuItem>
+        </ContextMenu>
+        <ContextMenu x:Key="mnuIkosaFolder">
+            <MenuItem Header="Open" Command="Open" CommandParameter="{Binding}"></MenuItem>
+            <MenuItem Header="New" x:Name="miIkosaFolderNew" Click="miIkosaFolderNew_Click" Tag="{Binding}">
+                <MenuItem Header="Local Map" Tag="LocalMap" ></MenuItem>
+                <MenuItem Header="Package Folder" Tag="Folder"></MenuItem>
+                <MenuItem Header="Resource Manager" Tag="ResourceManager"/>
+                <Separator/>
+                <MenuItem Header="Model 3D" Tag="Model"></MenuItem>
+                <MenuItem Header="Meta Model 3D" Tag="MetaModel"></MenuItem>
+                <MenuItem Header="Fragment" Tag="Fragment"></MenuItem>
+                <Separator/>
+                <MenuItem Header="Image" Tag="Image" ></MenuItem>
+                <MenuItem Header="Icon" Tag="Icon" ></MenuItem>
+                <MenuItem Header="Brush Collection" Tag="MaterialCollection"></MenuItem>
+                <MenuItem Header="Object..." Tag="Object"></MenuItem>
+            </MenuItem>
+            <MenuItem Header="Delete" Command="Delete" CommandParameter="{Binding}"></MenuItem>
+        </ContextMenu>
+        <ContextMenu x:Key="mnuCellSpace">
+            <MenuItem Header="New">
+                <MenuItem Header="Uniform Space" Command="{x:Static shop:PackageExplorer.NewCellSpace}" CommandParameter="{Binding}">
+                    <MenuItem.Icon>
+                        <Image Source="/images/shape_square.png"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="Cylinder Space" Command="{x:Static shop:PackageExplorer.NewCylinderSpace}" CommandParameter="{Binding}">
+                    <MenuItem.Icon>
+                        <Image Source="/images/shape_circle.png"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <Separator/>
+                <MenuItem Header="Sliver Space" Command="{x:Static shop:PackageExplorer.NewSliverSpace}" CommandParameter="{Binding}">
+                    <MenuItem.Icon>
+                        <Image Source="/images/sliver.png"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="Slope Space" Command="{x:Static shop:PackageExplorer.NewSlopeSpace}" CommandParameter="{Binding}">
+                    <MenuItem.Icon>
+                        <Image Source="/images/slope.png"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="Stairs Space" Command="{x:Static shop:PackageExplorer.NewStairsSpace}" CommandParameter="{Binding}">
+                    <MenuItem.Icon>
+                        <Image Source="/images/stairs.png"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <Separator/>
+                <MenuItem Header="Wedge Space" Command="{x:Static shop:PackageExplorer.NewWedgeSpace}" CommandParameter="{Binding}">
+                    <MenuItem.Icon>
+                        <Image Source="/images/wedge.png"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="Corner Space" Command="{x:Static shop:PackageExplorer.NewCornerSpace}" CommandParameter="{Binding}">
+                    <MenuItem.Icon>
+                        <Image Source="/images/corner.png"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="Small Cylinder Space" Command="{x:Static shop:PackageExplorer.NewSmallCylinderSpace}" CommandParameter="{Binding}">
+                    <MenuItem.Icon>
+                        <Image Source="/images/small_cylinder.png"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="LFrame Space" Command="{x:Static shop:PackageExplorer.NewLFrameSpace}" CommandParameter="{Binding}">
+                    <MenuItem.Icon>
+                        <Image Source="/images/lframe.png"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <Separator/>
+                <MenuItem Header="Panel Space" Command="{x:Static shop:PackageExplorer.NewBorderSpace}" CommandParameter="{Binding}">
+                    <MenuItem.Icon>
+                        <Image Source="/images/panelCell.png"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+            </MenuItem>
+            <MenuItem Header="Paste" Command="Paste" CommandParameter="{Binding}"></MenuItem>
+        </ContextMenu>
+        <ContextMenu x:Key="mnuCellPanel">
+            <MenuItem Header="New">
+                <MenuItem Header="Normal Panel" Command="{x:Static shop:PackageExplorer.NewNormalPanel}" CommandParameter="{Binding}">
+                    <MenuItem.Icon>
+                        <Image Source="/images/panelNormal.png"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="Corner Panel" Command="{x:Static shop:PackageExplorer.NewCornerPanel}" CommandParameter="{Binding}">
+                    <MenuItem.Icon>
+                        <Image Source="/images/panelCorner.png"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="L-Frame Panel" Command="{x:Static shop:PackageExplorer.NewLFramePanel}" CommandParameter="{Binding}">
+                    <MenuItem.Icon>
+                        <Image Source="/images/panelLFrame.png"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="Slope Composite" Command="{x:Static shop:PackageExplorer.NewSlopeComposite}" CommandParameter="{Binding}">
+                    <MenuItem.Icon>
+                        <Image Source="/images/panelSlope.png"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+            </MenuItem>
+            <MenuItem Header="Paste" Command="Paste" CommandParameter="{Binding}"></MenuItem>
+        </ContextMenu>
+        <!-- Composite Cell Space Menu -->
+        <ContextMenu x:Key="ctxmnuCompositeSpace">
+            <MenuItem Header="Clone Space" Command="{x:Static shop:RoomEditorControl.Clone}" CommandParameter="{Binding}"/>
+            <Separator/>
+            <MenuItem Header="Delete" Command="Delete" CommandParameter="{Binding}"/>
+        </ContextMenu>
+        <ContextMenu x:Key="mnuOpen" >
+            <MenuItem Header="Open" Command="Open" CommandParameter="{Binding}"></MenuItem>
+        </ContextMenu>
+        <Style x:Key="styleCompositeSpace" TargetType="TreeViewItem" BasedOn="{StaticResource styleTreeViewItem}">
+            <Setter Property="ContextMenu" Value="{StaticResource ctxmnuCompositeSpace}"></Setter>
+        </Style>
+        <Style x:Key="styleMetaModel" TargetType="TreeViewItem" BasedOn="{StaticResource styleTreeViewItem}">
+            <Setter Property="ContextMenu" Value="{StaticResource mnuMetaModel}"/>
+        </Style>
+        <Style x:Key="stylePassthrough" TargetType="{x:Type TreeViewItem}" BasedOn="{StaticResource styleTreeViewItem}">
+            <Setter Property="ContextMenu" Value="{StaticResource mnuPassthrough}"></Setter>
+        </Style>
+        <Style x:Key="stylePart" TargetType="{x:Type TreeViewItem}" BasedOn="{StaticResource styleTreeViewItem}">
+            <Setter Property="ContextMenu" Value="{StaticResource mnuPart}"></Setter>
+        </Style>
+        <Style x:Key="styleFolder" TargetType="{x:Type TreeViewItem}" BasedOn="{StaticResource styleTreeViewItem}">
+            <Setter Property="ContextMenu" Value="{StaticResource mnuFolder}"></Setter>
+        </Style>
+        <Style x:Key="stylePreviewFolder" TargetType="{x:Type TreeViewItem}" BasedOn="{StaticResource styleTreeViewItem}">
+            <Setter Property="ContextMenu" Value="{StaticResource mnuPreviewFolder}"></Setter>
+        </Style>
+        <Style x:Key="styleModelFolder" TargetType="{x:Type TreeViewItem}" BasedOn="{StaticResource styleTreeViewItem}">
+            <Setter Property="ContextMenu" Value="{StaticResource mnuModelFolder}"></Setter>
+        </Style>
+        <Style x:Key="styleImage" TargetType="{x:Type TreeViewItem}" BasedOn="{StaticResource styleTreeViewItem}">
+            <Setter Property="ContextMenu" Value="{StaticResource mnuImage}"></Setter>
+        </Style>
+        <Style x:Key="styleOpen" TargetType="{x:Type TreeViewItem}" BasedOn="{StaticResource styleTreeViewItem}">
+            <Setter Property="ContextMenu" Value="{StaticResource mnuMapPart}"></Setter>
+        </Style>
+        <Style x:Key="styleIkosaFolder" TargetType="TreeViewItem" BasedOn="{StaticResource styleTreeViewItem}">
+            <Setter Property="ContextMenu" Value="{StaticResource mnuIkosaFolder}"></Setter>
+        </Style>
+        <Style x:Key="styleCellSpaceFolder" TargetType="TreeViewItem" BasedOn="{StaticResource styleTreeViewItem}">
+            <Setter Property="ContextMenu" Value="{StaticResource mnuCellSpace}"></Setter>
+        </Style>
+        <Style x:Key="styleCellPanelFolder" TargetType="TreeViewItem" BasedOn="{StaticResource styleTreeViewItem}">
+            <Setter Property="ContextMenu" Value="{StaticResource mnuCellPanel}"></Setter>
+        </Style>
+        <Style x:Key="styleImagesResourceFolder" TargetType="TreeViewItem" BasedOn="{StaticResource styleTreeViewItem}">
+            <Setter Property="ContextMenu" Value="{StaticResource mnuImagesResourceFolder}"></Setter>
+        </Style>
+        <Style x:Key="styleIconsResourceFolder" TargetType="TreeViewItem" BasedOn="{StaticResource styleTreeViewItem}">
+            <Setter Property="ContextMenu" Value="{StaticResource mnuIconsResourceFolder}"></Setter>
+        </Style>
+        <Style x:Key="styleModelsResourceFolder" TargetType="TreeViewItem" BasedOn="{StaticResource styleTreeViewItem}">
+            <Setter Property="ContextMenu" Value="{StaticResource mnuModelsResourceFolder}"></Setter>
+        </Style>
+        <Style x:Key="styleFragmentsResourceFolder" TargetType="TreeViewItem" BasedOn="{StaticResource styleTreeViewItem}">
+            <Setter Property="ContextMenu" Value="{StaticResource mnuFragmentsResourceFolder}"></Setter>
+        </Style>
+        <Style x:Key="styleBrushesResourceFolder" TargetType="TreeViewItem" BasedOn="{StaticResource styleTreeViewItem}">
+            <Setter Property="ContextMenu" Value="{StaticResource mnuBrushesResourceFolder}"></Setter>
+        </Style>
+        <Style x:Key="styleBrushSetsResourceFolder" TargetType="TreeViewItem" BasedOn="{StaticResource styleTreeViewItem}">
+            <Setter Property="ContextMenu" Value="{StaticResource mnuBrushSetsResourceFolder}"></Setter>
+        </Style>
+        <Style x:Key="styleImagesResourceReference" TargetType="TreeViewItem" BasedOn="{StaticResource styleTreeViewItem}">
+            <Setter Property="ContextMenu" Value="{StaticResource mnuImagesResourceReference}"></Setter>
+        </Style>
+        <Style x:Key="styleIconsResourceReference" TargetType="TreeViewItem" BasedOn="{StaticResource styleTreeViewItem}">
+            <Setter Property="ContextMenu" Value="{StaticResource mnuIconsResourceReference}"></Setter>
+        </Style>
+        <Style x:Key="styleModelsResourceReference" TargetType="TreeViewItem" BasedOn="{StaticResource styleTreeViewItem}">
+            <Setter Property="ContextMenu" Value="{StaticResource mnuModelsResourceReference}"></Setter>
+        </Style>
+        <Style x:Key="styleFragmentsResourceReference" TargetType="TreeViewItem" BasedOn="{StaticResource styleTreeViewItem}">
+            <Setter Property="ContextMenu" Value="{StaticResource mnuFragmentsResourceReference}"></Setter>
+        </Style>
+        <Style x:Key="styleBrushesResourceReference" TargetType="TreeViewItem" BasedOn="{StaticResource styleTreeViewItem}">
+            <Setter Property="ContextMenu" Value="{StaticResource mnuBrushesResourceReference}"></Setter>
+        </Style>
+        <Style x:Key="styleBrushSetsResourceReference" TargetType="TreeViewItem" BasedOn="{StaticResource styleTreeViewItem}">
+            <Setter Property="ContextMenu" Value="{StaticResource mnuBrushSetsResourceReference}"></Setter>
+        </Style>
+        <Style x:Key="styleNone" TargetType="TreeViewItem" BasedOn="{StaticResource styleTreeViewItem}">
+            <Setter Property="ContextMenu" Value="{StaticResource mnuOpen}"></Setter>
+        </Style>
+    </TabItem.Resources>
+    <!-- Tab Header -->
+    <TabItem.Header>
+        <StackPanel Orientation="Horizontal" ToolTip="{Binding Path=CorePackage.FileName}">
+            <Image Source="/Images/Package.png" Stretch="None" Margin="0,0,4,0"/>
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="{Binding Path=CorePackage.Name}" FontSize="14"/>
+                <TextBlock FontStyle="Italic" Text="{Binding Path=Folder.PackagePathEntry.Name}" FontSize="12"/>
+            </StackPanel>
+            <Button DockPanel.Dock="Right" Margin="4,0,0,0" Focusable="False" BorderBrush="DarkGray" BorderThickness="1"
+                    Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="btnClose_Click" VerticalAlignment="Center">
+                <Canvas Width="8" Height="8">
+                    <Line X1="0" Y1="0" X2="8" Y2="8" Stroke="Red" />
+                    <Line X1="0" Y1="8" X2="8" Y2="0" Stroke="Red" />
+                </Canvas>
+            </Button>
+        </StackPanel>
+    </TabItem.Header>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="25,*"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="75,*"/>
+        </Grid.ColumnDefinitions>
+        <ToolBar Grid.ColumnSpan="3">
+            <Button Content="Save" x:Name="btnSavePackage" Click="btnSavePackage_Click"></Button>
+            <Button Content="Save as..." x:Name="btnSavePackageAs" Click="btnSavePackageAs_Click"></Button>
+            <Separator/>
+            <Menu>
+                <MenuItem Header="New" x:Name="mnuItemNew" Click="mnuItemNew_Click" >
+                    <MenuItem Header="Module" Tag="Module"></MenuItem>
+                    <MenuItem Header="Local Map" Tag="LocalMap"></MenuItem>
+                    <MenuItem Header="Resource Manager" Tag="ResourceManager"/>
+                    <MenuItem Header="Package Folder" Tag="Folder"></MenuItem>
+                    <Separator/>
+                    <MenuItem Header="Model 3D" Tag="Model"></MenuItem>
+                    <MenuItem Header="Meta Model 3D" Tag="MetaModel"></MenuItem>
+                    <Separator/>
+                    <MenuItem Header="Image" Tag="Image"></MenuItem>
+                    <MenuItem Header="Icon" Tag="Icon"></MenuItem>
+                    <MenuItem Header="Brush Collection" Tag="MaterialCollection"></MenuItem>
+                    <MenuItem Header="Object..." Tag="Object"></MenuItem>
+                </MenuItem>
+            </Menu>
+            <Separator/>
+            <Button Content="Refresh" x:Name="btnRefreshPackage" Click="btnRefreshPackage_Click"></Button>
+        </ToolBar>
+        <TreeView Grid.Column="0" Grid.Row="1" x:Name="tvwPackageParts" Padding="0,0,2,0" 
+                  MouseRightButtonDown="tvwPackageParts_MouseRightButtonDown" 
+                  ItemsSource="{Binding Path=CorePackage.Relationships}">
+            <TreeView.Resources>
+                <HierarchicalDataTemplate DataType="{x:Type uzipack:CorePackage}" ItemsSource="{Binding Path=Relationships}">
+                    <StackPanel Orientation="Horizontal" >
+                        <StackPanel.Resources>
+                            <uziui:DataResource x:Key="myParameter" BindingTarget="{Binding}"/>
+                        </StackPanel.Resources>
+                        <StackPanel.InputBindings>
+                            <MouseBinding Command="Open" Gesture="LeftDoubleClick">
+                                <MouseBinding.CommandParameter>
+                                    <uziui:DataResourceBinding DataResource="{StaticResource myParameter}"/>
+                                </MouseBinding.CommandParameter>
+                            </MouseBinding>
+                        </StackPanel.InputBindings>
+                        <Image Source="/Images/package.png" Margin="0,0,2,0"/>
+                        <TextBlock Text="{Binding Path=Name}" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </HierarchicalDataTemplate>
+                <HierarchicalDataTemplate DataType="{x:Type vispack:MetaModel}" ItemsSource="{Binding Path=Relationships}">
+                    <StackPanel Orientation="Horizontal" >
+                        <StackPanel.Resources>
+                            <uziui:DataResource x:Key="myParameter" BindingTarget="{Binding}"/>
+                        </StackPanel.Resources>
+                        <StackPanel.InputBindings>
+                            <MouseBinding Command="Open" Gesture="LeftDoubleClick">
+                                <MouseBinding.CommandParameter>
+                                    <uziui:DataResourceBinding DataResource="{StaticResource myParameter}"/>
+                                </MouseBinding.CommandParameter>
+                            </MouseBinding>
+                        </StackPanel.InputBindings>
+                        <Image Source="/Images/bricks.png" Margin="0,0,2,0"/>
+                        <TextBlock Text="{Binding Path=Name}" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </HierarchicalDataTemplate>
+                <HierarchicalDataTemplate DataType="{x:Type vispack:Model3DPart}" ItemsSource="{Binding Path=Relationships}">
+                    <StackPanel Orientation="Horizontal" >
+                        <StackPanel.Resources>
+                            <uziui:DataResource x:Key="myParameter" BindingTarget="{Binding}"/>
+                        </StackPanel.Resources>
+                        <StackPanel.InputBindings> 
+                            <MouseBinding Command="Open" Gesture="LeftDoubleClick">
+                                <MouseBinding.CommandParameter>
+                                    <uziui:DataResourceBinding DataResource="{StaticResource myParameter}"/>
+                                </MouseBinding.CommandParameter>
+                            </MouseBinding>
+                        </StackPanel.InputBindings>
+                        <Image Source="/Images/shape_3d.png" Margin="0,0,2,0"/>
+                        <TextBlock Text="{Binding Path=Name}" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </HierarchicalDataTemplate>
+                <DataTemplate DataType="{x:Type vispack:MetaModelFragment}">
+                    <StackPanel Orientation="Horizontal">
+                        <StackPanel.Resources>
+                            <uziui:DataResource x:Key="myParameter" BindingTarget="{Binding}"/>
+                        </StackPanel.Resources>
+                        <StackPanel.InputBindings>
+                            <MouseBinding Command="Open" Gesture="LeftDoubleClick">
+                                <MouseBinding.CommandParameter>
+                                    <uziui:DataResourceBinding DataResource="{StaticResource myParameter}"/>
+                                </MouseBinding.CommandParameter>
+                            </MouseBinding>
+                        </StackPanel.InputBindings>
+                        <Image Source="/Images/plugin.png" Margin="0,0,2,0"/>
+                        <TextBlock Text="{Binding Path=Name}" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </DataTemplate>
+                <HierarchicalDataTemplate DataType="{x:Type vispack:BitmapImagePart}" ItemsSource="{Binding Path=Relationships}">
+                    <StackPanel Orientation="Horizontal">
+                        <StackPanel.Resources>
+                            <uziui:DataResource x:Key="myParameter" BindingTarget="{Binding}"/>
+                        </StackPanel.Resources>
+                        <StackPanel.InputBindings>
+                            <MouseBinding Command="Open" Gesture="LeftDoubleClick">
+                                <MouseBinding.CommandParameter>
+                                    <uziui:DataResourceBinding DataResource="{StaticResource myParameter}"/>
+                                </MouseBinding.CommandParameter>
+                            </MouseBinding>
+                        </StackPanel.InputBindings>
+                        <Image Source="/Images/picture.png" Margin="0,0,2,0"/>
+                        <TextBlock Text="{Binding Path=Name}" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </HierarchicalDataTemplate>
+                <HierarchicalDataTemplate DataType="{x:Type vispack:IconPart}" ItemsSource="{Binding Path=Relationships}">
+                    <StackPanel Orientation="Horizontal">
+                        <StackPanel.Resources>
+                            <uziui:DataResource x:Key="myParameter" BindingTarget="{Binding}"/>
+                        </StackPanel.Resources>
+                        <StackPanel.InputBindings>
+                            <MouseBinding Command="Open" Gesture="LeftDoubleClick">
+                                <MouseBinding.CommandParameter>
+                                    <uziui:DataResourceBinding DataResource="{StaticResource myParameter}"/>
+                                </MouseBinding.CommandParameter>
+                            </MouseBinding>
+                        </StackPanel.InputBindings>
+                        <Image Source="/Images/photo.png" Margin="0,0,2,0"/>
+                        <TextBlock Text="{Binding Path=Name}" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </HierarchicalDataTemplate>
+                <HierarchicalDataTemplate DataType="{x:Type vispack:BrushCollectionPart}" ItemsSource="{Binding Path=Relationships}">
+                        <StackPanel Orientation="Horizontal">
+                        <StackPanel.Resources>
+                            <uziui:DataResource x:Key="myParameter" BindingTarget="{Binding}"/>
+                        </StackPanel.Resources>
+                        <StackPanel.InputBindings>
+                            <MouseBinding Command="Open" Gesture="LeftDoubleClick">
+                                <MouseBinding.CommandParameter>
+                                    <uziui:DataResourceBinding DataResource="{StaticResource myParameter}"/>
+                                </MouseBinding.CommandParameter>
+                            </MouseBinding>
+                        </StackPanel.InputBindings>
+                        <Image Source="/Images/pictures.png" Margin="0,0,2,0"/>
+                            <TextBlock Text="{Binding Path=Name}" VerticalAlignment="Center"/>
+                        </StackPanel>
+                </HierarchicalDataTemplate>
+                <HierarchicalDataTemplate DataType="{x:Type vispack:VisualResources}" ItemsSource="{Binding Path=Relationships}">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="/Images/database.png" Margin="0,0,2,0"/>
+                        <TextBlock Text="{Binding Path=Name}" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </HierarchicalDataTemplate>
+                <HierarchicalDataTemplate DataType="{x:Type vispack:ResourceReferenceManager}" ItemsSource="{Binding Path=Relationships}">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="/Images/database_link.png" Margin="0,0,2,0"/>
+                        <TextBlock Text="{Binding Path=Name}" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </HierarchicalDataTemplate>
+                <DataTemplate DataType="{x:Type uzivis:ImagesResourceReference}">
+                    <StackPanel Orientation="Horizontal">
+                        <StackPanel.Resources>
+                            <uziui:DataResource x:Key="myParameter" BindingTarget="{Binding}"/>
+                        </StackPanel.Resources>
+                        <StackPanel.InputBindings>
+                            <MouseBinding Command="Open" Gesture="LeftDoubleClick">
+                                <MouseBinding.CommandParameter>
+                                    <uziui:DataResourceBinding DataResource="{StaticResource myParameter}"/>
+                                </MouseBinding.CommandParameter>
+                            </MouseBinding>
+                        </StackPanel.InputBindings>
+                        <Image Source="/Images/image_link.png" Margin="0,0,2,0"/>
+                        <TextBlock Text="{Binding Path=Name}" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type uzivis:IconsResourceReference}">
+                    <StackPanel Orientation="Horizontal">
+                        <StackPanel.Resources>
+                            <uziui:DataResource x:Key="myParameter" BindingTarget="{Binding}"/>
+                        </StackPanel.Resources>
+                        <StackPanel.InputBindings>
+                            <MouseBinding Command="Open" Gesture="LeftDoubleClick">
+                                <MouseBinding.CommandParameter>
+                                    <uziui:DataResourceBinding DataResource="{StaticResource myParameter}"/>
+                                </MouseBinding.CommandParameter>
+                            </MouseBinding>
+                        </StackPanel.InputBindings>
+                        <Image Source="/Images/photo_link.png" Margin="0,0,2,0"/>
+                        <TextBlock Text="{Binding Path=Name}" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type uzivis:ModelsResourceReference}">
+                    <StackPanel Orientation="Horizontal">
+                        <StackPanel.Resources>
+                            <uziui:DataResource x:Key="myParameter" BindingTarget="{Binding}"/>
+                        </StackPanel.Resources>
+                        <StackPanel.InputBindings>
+                            <MouseBinding Command="Open" Gesture="LeftDoubleClick">
+                                <MouseBinding.CommandParameter>
+                                    <uziui:DataResourceBinding DataResource="{StaticResource myParameter}"/>
+                                </MouseBinding.CommandParameter>
+                            </MouseBinding>
+                        </StackPanel.InputBindings>
+                        <Image Source="/Images/shape_3d_link.png" Margin="0,0,2,0"/>
+                        <TextBlock Text="{Binding Path=Name}" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type uzivis:FragmentsResourceReference}">
+                    <StackPanel Orientation="Horizontal">
+                        <StackPanel.Resources>
+                            <uziui:DataResource x:Key="myParameter" BindingTarget="{Binding}"/>
+                        </StackPanel.Resources>
+                        <StackPanel.InputBindings>
+                            <MouseBinding Command="Open" Gesture="LeftDoubleClick">
+                                <MouseBinding.CommandParameter>
+                                    <uziui:DataResourceBinding DataResource="{StaticResource myParameter}"/>
+                                </MouseBinding.CommandParameter>
+                            </MouseBinding>
+                        </StackPanel.InputBindings>
+                        <Image Source="/Images/plugin_link.png" Margin="0,0,2,0"/>
+                        <TextBlock Text="{Binding Path=Name}" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type uzivis:BrushesResourceReference}">
+                    <StackPanel Orientation="Horizontal">
+                        <StackPanel.Resources>
+                            <uziui:DataResource x:Key="myParameter" BindingTarget="{Binding}"/>
+                        </StackPanel.Resources>
+                        <StackPanel.InputBindings>
+                            <MouseBinding Command="Open" Gesture="LeftDoubleClick">
+                                <MouseBinding.CommandParameter>
+                                    <uziui:DataResourceBinding DataResource="{StaticResource myParameter}"/>
+                                </MouseBinding.CommandParameter>
+                            </MouseBinding>
+                        </StackPanel.InputBindings>
+                        <Image Source="/Images/picture_link.png" Margin="0,0,2,0"/>
+                        <TextBlock Text="{Binding Path=Name}" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type uzivis:BrushSetsResourceReference}">
+                    <StackPanel Orientation="Horizontal">
+                        <StackPanel.Resources>
+                            <uziui:DataResource x:Key="myParameter" BindingTarget="{Binding}"/>
+                        </StackPanel.Resources>
+                        <StackPanel.InputBindings>
+                            <MouseBinding Command="Open" Gesture="LeftDoubleClick">
+                                <MouseBinding.CommandParameter>
+                                    <uziui:DataResourceBinding DataResource="{StaticResource myParameter}"/>
+                                </MouseBinding.CommandParameter>
+                            </MouseBinding>
+                        </StackPanel.InputBindings>
+                        <Image Source="/Images/pictures_link.png" Margin="0,0,2,0"/>
+                        <TextBlock Text="{Binding Path=Name}" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </DataTemplate>
+                <HierarchicalDataTemplate DataType="{x:Type tactical:LocalMap}" ItemsSource="{Binding Path=Relationships}">
+                    <StackPanel Orientation="Horizontal" >
+                        <StackPanel.Resources>
+                            <uziui:DataResource x:Key="myParameter" BindingTarget="{Binding}"/>
+                        </StackPanel.Resources>
+                        <StackPanel.InputBindings>
+                            <MouseBinding Command="Open" Gesture="LeftDoubleClick">
+                                <MouseBinding.CommandParameter>
+                                    <uziui:DataResourceBinding DataResource="{StaticResource myParameter}"/>
+                                </MouseBinding.CommandParameter>
+                            </MouseBinding>
+                        </StackPanel.InputBindings>
+                        <Image Source="/Images/world.png"  Margin="0,0,2,0"/>
+                        <TextBlock Text="{Binding Path=Name}" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </HierarchicalDataTemplate>
+                <HierarchicalDataTemplate DataType="{x:Type gms:ModuleResources}" ItemsSource="{Binding Path=Relationships}">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="/Images/database.png" Margin="0,0,2,0"/>
+                        <TextBlock Text="{Binding Path=Name}" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </HierarchicalDataTemplate>
+                <HierarchicalDataTemplate DataType="{x:Type gms:ModuleImports}" ItemsSource="{Binding Path=Relationships}">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="/Images/database_link.png" Margin="0,0,2,0"/>
+                        <TextBlock Text="{Binding Path=Name}" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </HierarchicalDataTemplate>
+                <HierarchicalDataTemplate DataType="{x:Type gms:Module}" ItemsSource="{Binding Path=Relationships}">
+                    <StackPanel Orientation="Horizontal" >
+                        <StackPanel.Resources>
+                            <uziui:DataResource x:Key="myParameter" BindingTarget="{Binding}"/>
+                        </StackPanel.Resources>
+                        <StackPanel.InputBindings>
+                            <MouseBinding Command="Open" Gesture="LeftDoubleClick">
+                                <MouseBinding.CommandParameter>
+                                    <uziui:DataResourceBinding DataResource="{StaticResource myParameter}"/>
+                                </MouseBinding.CommandParameter>
+                            </MouseBinding>
+                        </StackPanel.InputBindings>
+                        <Image Source="/Images/world.png"  Margin="0,0,2,0"/>
+                        <TextBlock Text="{Binding Path=Name}" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </HierarchicalDataTemplate>
+                <DataTemplate DataType="{x:Type gms:NamedKeysPart}">
+                    <StackPanel Orientation="Horizontal">
+                        <StackPanel.Resources>
+                            <uziui:DataResource x:Key="myParameter" BindingTarget="{Binding}"/>
+                        </StackPanel.Resources>
+                        <StackPanel.InputBindings>
+                            <MouseBinding Command="Open" Gesture="LeftDoubleClick">
+                                <MouseBinding.CommandParameter>
+                                    <uziui:DataResourceBinding DataResource="{StaticResource myParameter}"/>
+                                </MouseBinding.CommandParameter>
+                            </MouseBinding>
+                        </StackPanel.InputBindings>
+                        <Image Source="/Images/folder.png" Margin="0,0,2,0"/>
+                        <TextBlock Text="{Binding Path=Name}" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </DataTemplate>
+                <HierarchicalDataTemplate DataType="{x:Type uzipack:PartsFolder}" ItemsSource="{Binding Path=Relationships}">
+                    <StackPanel Orientation="Horizontal">
+                        <StackPanel.Resources>
+                            <uziui:DataResource x:Key="myParameter" BindingTarget="{Binding}"/>
+                        </StackPanel.Resources>
+                        <StackPanel.InputBindings>
+                            <MouseBinding Command="Open" Gesture="LeftDoubleClick">
+                                <MouseBinding.CommandParameter>
+                                    <uziui:DataResourceBinding DataResource="{StaticResource myParameter}"/>
+                                </MouseBinding.CommandParameter>
+                            </MouseBinding>
+                        </StackPanel.InputBindings>
+                        <Image Source="/Images/folder.png" Margin="0,0,2,0"/>
+                        <TextBlock Text="{Binding Path=Name}" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </HierarchicalDataTemplate>
+                <HierarchicalDataTemplate DataType="{x:Type tactical:RoomSet}" ItemsSource="{Binding Converter={StaticResource myViewSorter}, ConverterParameter='Name'}">
+                    <StackPanel Orientation="Horizontal">
+                        <StackPanel.Resources>
+                            <uziui:DataResource x:Key="myParameter" BindingTarget="{Binding}"/>
+                        </StackPanel.Resources>
+                        <StackPanel.InputBindings>
+                            <MouseBinding Command="Open" Gesture="LeftDoubleClick">
+                                <MouseBinding.CommandParameter>
+                                    <uziui:DataResourceBinding DataResource="{StaticResource myParameter}"/>
+                                </MouseBinding.CommandParameter>
+                            </MouseBinding>
+                        </StackPanel.InputBindings>
+                        <Image Source="/Images/folder.png" Margin="0,0,2,0"/>
+                        <TextBlock Text="{Binding Path=Name}" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </HierarchicalDataTemplate>
+                <HierarchicalDataTemplate DataType="{x:Type tactical:BackgroundCellGroupSet}" ItemsSource="{Binding}">
+                    <StackPanel Orientation="Horizontal">
+                        <StackPanel.Resources>
+                            <uziui:DataResource x:Key="myParameter" BindingTarget="{Binding}"/>
+                        </StackPanel.Resources>
+                        <StackPanel.InputBindings>
+                            <MouseBinding Command="Open" Gesture="LeftDoubleClick">
+                                <MouseBinding.CommandParameter>
+                                    <uziui:DataResourceBinding DataResource="{StaticResource myParameter}"/>
+                                </MouseBinding.CommandParameter>
+                            </MouseBinding>
+                        </StackPanel.InputBindings>
+                        <Image Source="/Images/folder.png" Margin="0,0,2,0"/>
+                        <TextBlock Text="{Binding Path=Name}" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </HierarchicalDataTemplate>
+                <HierarchicalDataTemplate DataType="{x:Type tactical:MapContext}" ItemsSource="{Binding Relationships}">
+                    <StackPanel Orientation="Horizontal">
+                        <StackPanel.Resources>
+                            <uziui:DataResource x:Key="myParameter" BindingTarget="{Binding}"/>
+                        </StackPanel.Resources>
+                        <StackPanel.InputBindings>
+                            <MouseBinding Command="Open" Gesture="LeftDoubleClick">
+                                <MouseBinding.CommandParameter>
+                                    <uziui:DataResourceBinding DataResource="{StaticResource myParameter}"/>
+                                </MouseBinding.CommandParameter>
+                            </MouseBinding>
+                        </StackPanel.InputBindings>
+                        <Image Source="/Images/folder.png" Margin="0,0,2,0"/>
+                        <TextBlock Text="{Binding Path=Name}" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </HierarchicalDataTemplate>
+                <HierarchicalDataTemplate DataType="{x:Type tactical:CellMaterial}" ItemsSource="{Binding Path=Relationships}">
+                    <StackPanel Orientation="Horizontal">
+                        <StackPanel.Resources>
+                            <uziui:DataResource x:Key="myParameter" BindingTarget="{Binding}"/>
+                        </StackPanel.Resources>
+                        <StackPanel.InputBindings>
+                            <MouseBinding Command="Open" Gesture="LeftDoubleClick">
+                                <MouseBinding.CommandParameter>
+                                    <uziui:DataResourceBinding DataResource="{StaticResource myParameter}"/>
+                                </MouseBinding.CommandParameter>
+                            </MouseBinding>
+                        </StackPanel.InputBindings>
+                        <Image Source="/Images/color_wheel.png"  Margin="0,0,2,0"/>
+                        <TextBlock Text="{Binding Path=Name}" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </HierarchicalDataTemplate>
+                <!-- Room -->
+                <HierarchicalDataTemplate DataType="{x:Type tactical:Room}" ItemsSource="{Binding Path=Relationships}">
+                    <StackPanel Orientation="Horizontal">
+                        <StackPanel.Resources>
+                            <uziui:DataResource x:Key="myParameter" BindingTarget="{Binding}"/>
+                        </StackPanel.Resources>
+                        <StackPanel.InputBindings>
+                            <MouseBinding Command="Open" Gesture="LeftDoubleClick">
+                                <MouseBinding.CommandParameter>
+                                    <uziui:DataResourceBinding DataResource="{StaticResource myParameter}"/>
+                                </MouseBinding.CommandParameter>
+                            </MouseBinding>
+                        </StackPanel.InputBindings>
+                        <Image Source="/Images/box.png"  Margin="0,0,2,0"/>
+                        <TextBlock Text="{Binding Path=Name}" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </HierarchicalDataTemplate>
+                <HierarchicalDataTemplate DataType="{x:Type tactical:BackgroundCellGroup}" ItemsSource="{Binding Path=Relationships}">
+                    <StackPanel Orientation="Horizontal">
+                        <StackPanel.Resources>
+                            <uziui:DataResource x:Key="myParameter" BindingTarget="{Binding}"/>
+                        </StackPanel.Resources>
+                        <StackPanel.InputBindings>
+                            <MouseBinding Command="Open" Gesture="LeftDoubleClick">
+                                <MouseBinding.CommandParameter>
+                                    <uziui:DataResourceBinding DataResource="{StaticResource myParameter}"/>
+                                </MouseBinding.CommandParameter>
+                            </MouseBinding>
+                        </StackPanel.InputBindings>
+                        <Image Source="/Images/layers.png"  Margin="0,0,2,0"/>
+                        <TextBlock Text="{Binding Path=Name}" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </HierarchicalDataTemplate>
+                <HierarchicalDataTemplate DataType="{x:Type tactical:Locator}" ItemsSource="{Binding Path=Relationships}">
+                    <StackPanel Orientation="Horizontal">
+                        <StackPanel.Resources>
+                            <uziui:DataResource x:Key="myParameter" BindingTarget="{Binding}"/>
+                        </StackPanel.Resources>
+                        <StackPanel.InputBindings>
+                            <MouseBinding Command="Open" Gesture="LeftDoubleClick">
+                                <MouseBinding.CommandParameter>
+                                    <uziui:DataResourceBinding DataResource="{StaticResource myParameter}"/>
+                                </MouseBinding.CommandParameter>
+                            </MouseBinding>
+                        </StackPanel.InputBindings>
+                        <Image Source="/Images/flag_blue.png"  Margin="0,0,2,0"/>
+                        <TextBlock Text="{Binding Path=Name}" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </HierarchicalDataTemplate>
+                <DataTemplate DataType="{x:Type tactical:LocalLinkSet}">
+                    <StackPanel Orientation="Horizontal">
+                        <StackPanel.Resources>
+                            <uziui:DataResource x:Key="myParameter" BindingTarget="{Binding}"/>
+                        </StackPanel.Resources>
+                        <StackPanel.InputBindings>
+                            <MouseBinding Command="Open" Gesture="LeftDoubleClick">
+                                <MouseBinding.CommandParameter>
+                                    <uziui:DataResourceBinding DataResource="{StaticResource myParameter}"/>
+                                </MouseBinding.CommandParameter>
+                            </MouseBinding>
+                        </StackPanel.InputBindings>
+                        <Image Source="/Images/link.png"  Margin="0,0,2,0"/>
+                        <TextBlock Text="{Binding Path=Name}" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type uzi:Creature}">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="/Images/user.png"  Margin="0,0,2,0"/>
+                        <TextBlock Text="{Binding Path=Name}" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type uziobj:PortalBase}">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="/Images/door.png"  Margin="0,0,2,0"/>
+                        <TextBlock Text="{Binding Path=Name}" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type uziobj:ContainerObject}">
+                    <StackPanel Orientation="Horizontal">
+                        <StackPanel.Resources>
+                            <uziui:DataResource x:Key="myParameter" BindingTarget="{Binding}"/>
+                        </StackPanel.Resources>
+                        <StackPanel.InputBindings>
+                            <MouseBinding Command="Open" Gesture="LeftDoubleClick">
+                                <MouseBinding.CommandParameter>
+                                    <uziui:DataResourceBinding DataResource="{StaticResource myParameter}"/>
+                                </MouseBinding.CommandParameter>
+                            </MouseBinding>
+                        </StackPanel.InputBindings>
+                        <Image Source="/Images/box.png"  Margin="0,0,2,0"/>
+                        <TextBlock Text="{Binding Path=Name}" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type uziobj:CloseableContainerObject}">
+                    <StackPanel Orientation="Horizontal">
+                        <StackPanel.Resources>
+                            <uziui:DataResource x:Key="myParameter" BindingTarget="{Binding}"/>
+                        </StackPanel.Resources>
+                        <StackPanel.InputBindings>
+                            <MouseBinding Command="Open" Gesture="LeftDoubleClick">
+                                <MouseBinding.CommandParameter>
+                                    <uziui:DataResourceBinding DataResource="{StaticResource myParameter}"/>
+                                </MouseBinding.CommandParameter>
+                            </MouseBinding>
+                        </StackPanel.InputBindings>
+                        <Image Source="/Images/box-knob.png"  Margin="0,0,2,0"/>
+                        <TextBlock Text="{Binding Path=Name}" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type uziobj:ImportedLight}">
+                    <StackPanel Orientation="Horizontal">
+                        <StackPanel.Resources>
+                            <uziui:DataResource x:Key="myParameter" BindingTarget="{Binding}"/>
+                        </StackPanel.Resources>
+                        <StackPanel.InputBindings>
+                            <MouseBinding Command="Open" Gesture="LeftDoubleClick">
+                                <MouseBinding.CommandParameter>
+                                    <uziui:DataResourceBinding DataResource="{StaticResource myParameter}"/>
+                                </MouseBinding.CommandParameter>
+                            </MouseBinding>
+                        </StackPanel.InputBindings>
+                        <Image Source="/Images/lightbulb_off.png"  Margin="0,0,2,0"/>
+                        <TextBlock Text="{Binding Path=Name}" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type uziobj:StructuralLight}">
+                    <StackPanel Orientation="Horizontal">
+                        <StackPanel.Resources>
+                            <uziui:DataResource x:Key="myParameter" BindingTarget="{Binding}"/>
+                        </StackPanel.Resources>
+                        <StackPanel.InputBindings>
+                            <MouseBinding Command="Open" Gesture="LeftDoubleClick">
+                                <MouseBinding.CommandParameter>
+                                    <uziui:DataResourceBinding DataResource="{StaticResource myParameter}"/>
+                                </MouseBinding.CommandParameter>
+                            </MouseBinding>
+                        </StackPanel.InputBindings>
+                        <Image Source="/Images/lightbulb.png"  Margin="0,0,2,0"/>
+                        <TextBlock Text="{Binding Path=Name}" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type tactical:AmbientLight}">
+                    <StackPanel Orientation="Horizontal">
+                        <StackPanel.Resources>
+                            <uziui:DataResource x:Key="myParameter" BindingTarget="{Binding}"/>
+                        </StackPanel.Resources>
+                        <StackPanel.InputBindings>
+                            <MouseBinding Command="Open" Gesture="LeftDoubleClick">
+                                <MouseBinding.CommandParameter>
+                                    <uziui:DataResourceBinding DataResource="{StaticResource myParameter}"/>
+                                </MouseBinding.CommandParameter>
+                            </MouseBinding>
+                        </StackPanel.InputBindings>
+                        <Image Source="/Images/weather_sun.png"  Margin="0,0,2,0"/>
+                        <TextBlock Text="{Binding Path=Name}" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type tactical:StrikeCapture}">
+                    <StackPanel Orientation="Horizontal" DataContext="{Binding ZoneLink.StrikeZoneMaster}">
+                        <TextBlock Text="{Binding Path=Weapon.MainHead.Name}" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type uziitem:ItemBase}">
+                    <StackPanel Orientation="Horizontal">
+                        <StackPanel.Resources>
+                            <uziui:DataResource x:Key="myParameter" BindingTarget="{Binding}"/>
+                        </StackPanel.Resources>
+                        <StackPanel.InputBindings>
+                            <MouseBinding Command="Open" Gesture="LeftDoubleClick">
+                                <MouseBinding.CommandParameter>
+                                    <uziui:DataResourceBinding DataResource="{StaticResource myParameter}"/>
+                                </MouseBinding.CommandParameter>
+                            </MouseBinding>
+                        </StackPanel.InputBindings>
+                        <Image Source="/Images/cog.png"  Margin="0,0,2,0"/>
+                        <TextBlock Text="{Binding Path=Name}" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </DataTemplate>
+                <HierarchicalDataTemplate DataType="{x:Type uzipack:CorePackagePartsFolder}" ItemsSource="{Binding Path=Relationships}">
+                    <StackPanel Orientation="Horizontal">
+                        <StackPanel.Resources>
+                            <uziui:DataResource x:Key="myParameter" BindingTarget="{Binding}"/>
+                        </StackPanel.Resources>
+                        <StackPanel.InputBindings>
+                            <MouseBinding Command="Open" Gesture="LeftDoubleClick">
+                                <MouseBinding.CommandParameter>
+                                    <uziui:DataResourceBinding DataResource="{StaticResource myParameter}"/>
+                                </MouseBinding.CommandParameter>
+                            </MouseBinding>
+                        </StackPanel.InputBindings>
+                        <Image Source="/Images/folder_go.png" Margin="0,0,2,0"/>
+                        <TextBlock Text="{Binding Path=Name}" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </HierarchicalDataTemplate>
+                <DataTemplate DataType="{x:Type uzisvc:UserDefinitionsPart}">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="/Images/group.png" Margin="0,0,2,0"/>
+                        <TextBlock Text="{Binding Path=Name}" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type core:CoreProcessPart}">
+                    <TextBlock Text="{Binding Path=WrappedPart.Description}"/>
+                </DataTemplate>
+            </TreeView.Resources>
+        </TreeView>
+        <GridSplitter ResizeDirection="Columns" ResizeBehavior="PreviousAndNext" Grid.Row="1" Grid.Column="1" Width="3" 
+                      VerticalAlignment="Stretch" HorizontalAlignment="Right"/>
+        <TabControl Grid.Row="1" Grid.Column="2" x:Name="trayItems" >
+            <TabControl.CommandBindings>
+                <CommandBinding Command="{x:Static shop:PackageExplorer.OpenItem}" x:Name="cmdbndOpenItem"
+                                CanExecute="cbOpen_CanExecute" Executed="cbOpen_Executed"></CommandBinding>
+            </TabControl.CommandBindings>
+        </TabControl>
+    </Grid>
+</TabItem>

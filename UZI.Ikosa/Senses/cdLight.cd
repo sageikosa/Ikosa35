@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Uzi.Ikosa.Interactions.Illuminate">
+    <Position X="3.5" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgCAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interactions\Illuminate.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="Illuminator" />
+      <Field Name="LightTarget" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Uzi.Ikosa.Interactions.IlluminateResult">
+    <Position X="3.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAIAAAAAAABAAAAAAAAAAA=</HashCode>
+      <FileName>Interactions\Illuminate.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="LightSource" />
+    </ShowAsAssociation>
+  </Class>
+  <Interface Name="Uzi.Ikosa.Senses.IIllumination">
+    <Position X="0.5" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAgAAAAAAAAAAAAAgAAEQAAAgAAABAAAAgAA=</HashCode>
+      <FileName>Senses\IIllumination.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Uzi.Ikosa.Tactical.ILightTarget">
+    <Position X="6.75" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>gAABGAAABAAAAAAAAAAABgAAAAAAAAAAAAAAAICAgAA=</HashCode>
+      <FileName>Tactical\ILightTarget.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="CurrentIlluminator" />
+    </ShowAsAssociation>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

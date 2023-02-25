@@ -1,0 +1,127 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Uzi.Ikosa.Items.Weapons.WeaponBase">
+    <Position X="7" Y="0.75" Width="3.25" />
+    <Members>
+      <Field Name="_WieldTemplate" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AACABAAAABAAAAAAEAAQIAAQAABAAAAAAACACCAgAAQ=</HashCode>
+      <FileName>Items\Weapons\WeaponBase.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Uzi.Ikosa.Items.Weapons.DoubleMeleeWeaponBase">
+    <Position X="4.75" Y="8.75" Width="3" />
+    <Members>
+      <Field Name="_DominantHead" Hidden="true" />
+      <Field Name="_Finessable" Hidden="true" />
+      <Field Name="_UseAsTwoHanded" Hidden="true" />
+      <Field Name="_WeaponHeads" Hidden="true" />
+    </Members>
+    <InheritanceLine Type="Uzi.Ikosa.Items.Weapons.WeaponBase" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="7.312" Y="4.55" />
+        <Point X="7.312" Y="8.75" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>CAGA4EAAoAAggYJBGAAAAEAQAAAABSgAAEIKCCgIAAA=</HashCode>
+      <FileName>Items\Weapons\DoubleMeleeWeaponBase.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Uzi.Ikosa.Items.Weapons.MeleeWeaponBase">
+    <Position X="3.25" Y="2" Width="2.5" />
+    <Members>
+      <Field Name="_Finessable" Hidden="true" />
+      <Field Name="_MainHead" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAGA4EAAIAAggQIBEAAAAAAQAAAABSAAgEIACCgIAAA=</HashCode>
+      <FileName>Items\Weapons\MeleeWeaponBase.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Uzi.Ikosa.Items.Weapons.Natural.NaturalWeapon">
+    <Position X="0.5" Y="0.75" Width="2.25" />
+    <Members>
+      <Field Name="_AlwaysOn" Hidden="true" />
+      <Field Name="_DamageRollers" Hidden="true" />
+      <Field Name="_Finessable" Hidden="true" />
+      <Field Name="_MainHead" Hidden="true" />
+      <Field Name="_SlotSub" Hidden="true" />
+      <Field Name="_Sole" Hidden="true" />
+      <Field Name="_Term" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>ISGB4EAAIBQghQIBEAgQAoAQABIBBSAAgFIACCkIABE=</HashCode>
+      <FileName>Items\Weapons\Natural\NaturalWeapon.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Uzi.Ikosa.Items.Weapons.Ranged.BowBase">
+    <Position X="14.75" Y="7.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAKAAAAQAAEABBAAAAAQAAAAAAAAAAiCAAAAA=</HashCode>
+      <FileName>Items\Weapons\Ranged\BowBase.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Uzi.Ikosa.Items.Weapons.Ranged.CrossbowBase">
+    <Position X="14.75" Y="1.5" Width="2.25" />
+    <Members>
+      <Field Name="_Ammo" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAACAACAKAAAAQQIEAAAAAAEAQAAAAAAAAAAiCAAAAA=</HashCode>
+      <FileName>Items\Weapons\Ranged\CrossbowBase.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Uzi.Ikosa.Items.Weapons.Ranged.Sling">
+    <Position X="8.25" Y="5.75" Width="2.25" />
+    <Members>
+      <Field Name="_Ammo" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAACAACAKAAAAQQIUAAIAAAEAQAAQAAAAAAAiCIAAAA=</HashCode>
+      <FileName>Items\Weapons\Ranged\Sling.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Uzi.Ikosa.Items.Weapons.Ranged.ProjectileWeaponBase">
+    <Position X="11.25" Y="0.75" Width="2.75" />
+    <Members>
+      <Field Name="_ProxyHead" Hidden="true" />
+      <Field Name="_RangeIncrement" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>IEEAAEABKJQIgAADBCAAAAAQAQAwRwAAAGCIwAqIIQA=</HashCode>
+      <FileName>Items\Weapons\Ranged\ProjectileWeaponBase.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Interface Name="Uzi.Ikosa.Items.Weapons.IThrowableWeapon" Collapsed="true">
+    <Position X="0.75" Y="11" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Items\Weapons\IThrowableWeapon.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Uzi.Ikosa.Items.Weapons.IReachWeapon">
+    <Position X="3" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Items\Weapons\IReachWeapon.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Uzi.Ikosa.Actions.IRangedSource">
+    <Position X="0.75" Y="12.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAIAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Actions\IRangedSource.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

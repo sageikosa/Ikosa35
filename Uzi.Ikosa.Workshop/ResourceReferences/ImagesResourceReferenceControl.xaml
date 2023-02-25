@@ -1,0 +1,59 @@
+﻿<UserControl x:Class="Uzi.Ikosa.Workshop.ImagesResourceReferenceControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:shop="clr-namespace:Uzi.Ikosa.Workshop"
+             mc:Ignorable="d" d:DesignHeight="192">
+    <UserControl.CommandBindings>
+        <CommandBinding x:Name="cbSelectCmd" Command="{x:Static shop:ImagesResourceReferenceControl.SelectCmd}"
+                        CanExecute="cbSelectCmd_CanExecute" Executed="cbSelectCmd_Executed"/>
+    </UserControl.CommandBindings>
+    <UserControl.Resources>
+        <Style TargetType="Label">
+            <Setter Property="HorizontalAlignment" Value="Right"/>
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="Margin" Value="1"/>
+            <Setter Property="IsReadOnly" Value="True"/>
+            <Setter Property="Grid.Column" Value="1"/>
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="Margin" Value="1"/>
+            <Setter Property="Grid.Column" Value="2"/>
+        </Style>
+    </UserControl.Resources>
+    <DockPanel DataContext="{Binding Path=Reference}">
+        <Grid DockPanel.Dock="Top">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="100,*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Label Grid.Row="0" Content="Package"></Label>
+            <TextBlock Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" >
+                <Run Text="{Binding Path=PackageSet}"></Run>
+                <Run Text="/"></Run>
+                <Run Text="{Binding Path=PackageID}" FontWeight="Bold"></Run>
+            </TextBlock>
+            <Button Grid.Row="0" Content="Browse..." Click="btnBrowse_Click" />
+            <Label Grid.Row="1" Content="Part"></Label>
+            <TextBox Grid.Row="1" Text="{Binding Path=InternalPath}" ></TextBox>
+            <Button Grid.Row="1" Content="Part..." Command="{x:Static shop:ImagesResourceReferenceControl.SelectCmd}"/>
+            <Label Grid.Row="2" Content="Is Valid"></Label>
+            <CheckBox Grid.Row="2" Grid.Column="1" IsEnabled="False" x:Name="chkValid" VerticalAlignment="Center" Margin="1" />
+        </Grid>
+        <ListBox Margin="1" DataContext="{Binding Path=Resolver}" ItemsSource="{Binding Path=ResolvableImages}">
+            <ListBox.ItemTemplate>
+                <DataTemplate >
+                    <TextBlock DataContext="{Binding Path=BitmapImagePart}" Text="{Binding Path=Name}"/>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+    </DockPanel>
+</UserControl>

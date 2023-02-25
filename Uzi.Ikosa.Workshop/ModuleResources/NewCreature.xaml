@@ -1,0 +1,53 @@
+﻿<Window x:Class="Uzi.Ikosa.Workshop.NewCreature"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:shop="clr-namespace:Uzi.Ikosa.Workshop"
+        mc:Ignorable="d" WindowStyle="ToolWindow" WindowStartupLocation="CenterOwner" 
+        Title="New Creature" ShowInTaskbar="False" 
+        ResizeMode="NoResize" SizeToContent="WidthAndHeight">
+    <DockPanel FocusManager.FocusedElement="{Binding ElementName=txtName}">
+        <DockPanel.Resources>
+            <Style TargetType="ComboBox">
+                <Setter Property="Margin" Value="2"/>
+            </Style>
+            <Style TargetType="TextBox">
+                <Setter Property="Margin" Value="2"/>
+                <Setter Property="MinWidth" Value="24"/>
+            </Style>
+            <Style TargetType="Label">
+                <Setter Property="FontWeight" Value="Bold"/>
+                <Setter Property="HorizontalAlignment" Value="Right"/>
+            </Style>
+            <Style TargetType="Button">
+                <Setter Property="VerticalAlignment" Value="Top"/>
+                <Setter Property="Margin" Value="2,1"/>
+                <Setter Property="Padding" Value="8,0"/>
+                <Setter Property="MinWidth" Value="56"/>
+            </Style>
+        </DockPanel.Resources>
+        <Grid DockPanel.Dock="Top">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Label Content="Name" Grid.Column="0" Grid.Row="0"/>
+            <Label Content="Model Key" Grid.Column="0" Grid.Row="1"/>
+            <TextBox Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="8" x:Name="txtName"/>
+            <ComboBox x:Name="cboModelKey" Grid.Column="4" Grid.Row="1" Grid.ColumnSpan="3"
+                          ItemsSource="{Binding Path=Visuals.ResolvableModels}" DisplayMemberPath="Model3DPart.Name" 
+                          SelectedValuePath="Model3DPart.Name">
+            </ComboBox>
+        </Grid>
+        <DockPanel DockPanel.Dock="Bottom" LastChildFill="False">
+            <Button DockPanel.Dock="Right" Content="Cancel" Click="btnCancel_Click" IsCancel="True"/>
+            <Button DockPanel.Dock="Right" Tag="Portal" Content="OK" x:Name="btnOK" IsDefault="True"/>
+        </DockPanel>
+        <shop:CreatureCreate x:Name="createCreature"/>
+    </DockPanel>
+</Window>
