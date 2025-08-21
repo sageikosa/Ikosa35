@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -29,7 +29,7 @@ namespace Uzi.Ikosa.Creatures.BodyType
             _Sizer.AddChangeMonitor(this);
             NaturalArmor = new NaturalArmorDelta(this);
             _UseExtraCarryingFactor = useExtraCarry;
-            NaturalWeapons = new NaturalWeaponSet();
+            NaturalWeapons = [];
             _Dock = new BiDiPtr<BodyDock, Body>(this);
             _BodyMaterial = bodyMaterial;
             _Reach = new Deltable(reach);
@@ -43,8 +43,8 @@ namespace Uzi.Ikosa.Creatures.BodyType
             _BaseWidth = 0;
             _ID = Guid.NewGuid();
             _PCtrl = new ChangeController<Physical>(this, new Physical(Physical.PhysicalType.Weight, 0));
-            _Features = new Collection<BodyFeature>();
-            _Movements = new Collection<MovementBase>();
+            _Features = [];
+            _Movements = [];
             _Stability = groundStability ? new GroundStability(this) : null;
         }
         #endregion
@@ -275,7 +275,9 @@ namespace Uzi.Ikosa.Creatures.BodyType
         {
             // movements
             foreach (var _mv in Movements)
+            {
                 Creature.Movements.Add(_mv);
+            }
 
             // add actions and weight monitoring
             Creature.Actions.Providers.Add(this, this);
@@ -310,7 +312,9 @@ namespace Uzi.Ikosa.Creatures.BodyType
 
             // movements
             foreach (var _mv in Movements)
+            {
                 Creature.Movements.Remove(_mv);
+            }
 
             // remove actions and weight monitoring
             RemoveChangeMonitor(Creature);
@@ -372,7 +376,7 @@ namespace Uzi.Ikosa.Creatures.BodyType
 
             yield return new IgnoreFriendlyOpportunities(Creature);
 
-            // pretty much just holding slots (�for now?)
+            // pretty much just holding slots (¿for now?)
             foreach (var _action in from _ap in _ItemSlots.AllSlots.OfType<IActionProvider>()
                                     from _act in _ap.GetActions(budget)
                                     select _act)
@@ -511,7 +515,9 @@ namespace Uzi.Ikosa.Creatures.BodyType
 
             // features
             foreach (var _bFeat in Features)
+            {
                 _body.Features.Add(_bFeat);
+            }
 
             // physical
             _body.BaseHeight = BaseHeight;

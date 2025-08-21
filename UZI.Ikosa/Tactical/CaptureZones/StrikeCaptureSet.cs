@@ -14,7 +14,7 @@ namespace Uzi.Ikosa.Tactical
     {
         public StrikeCaptureSet()
         {
-            _Zones = new Collection<StrikeCapture>();
+            _Zones = [];
         }
 
         private Collection<StrikeCapture> _Zones;

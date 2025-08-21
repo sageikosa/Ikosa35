@@ -27,7 +27,10 @@ namespace Uzi.Ikosa.Interactions
             if (Attacker is Creature _critter)
             {
                 foreach (var _delta in _critter.OpposedDeltable.QualifiedDeltas(qualify, this, @"Opposed"))
+                {
                     yield return _delta;
+                }
+
                 if (Action is AttackActionBase _attack
                     // TODO: if grappling, no wield template deltas
                     && _attack.Weapon is IWeapon _weapon)

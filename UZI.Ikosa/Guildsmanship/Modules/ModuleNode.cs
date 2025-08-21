@@ -69,7 +69,10 @@ namespace Uzi.Ikosa.Guildsmanship
             set
             {
                 if (value == null)
+                {
                     return;
+                }
+
                 if (!(_NameManager?.CanUseName(value, GetType()) ?? false))
                 {
                     return;

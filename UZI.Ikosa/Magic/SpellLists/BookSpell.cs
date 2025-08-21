@@ -14,7 +14,7 @@ namespace Uzi.Ikosa.Magic
         public BookSpell(int level, SpellDef spellDef, Guid bookOwner)
             : base(level, spellDef)
         {
-            _Deciphered = new Collection<Guid>();
+            _Deciphered = [];
             _Owner = bookOwner;
             _Deciphered.Add(bookOwner);
         }
@@ -31,13 +31,17 @@ namespace Uzi.Ikosa.Magic
         public void Decipher(ICasterClass caster)
         {
             if (!HasDecipheredOrScribed(caster))
+            {
                 _Deciphered.Add(caster.OwnerID);
+            }
         }
 
         public void Decipher(Guid guid)
         {
             if (!HasDecipheredOrScribed(guid))
+            {
                 _Deciphered.Add(guid);
+            }
         }
         #endregion
 

@@ -59,7 +59,9 @@ namespace Uzi.Ikosa.Objects
                 {
                     // NOTE: once all the members are ejected, the group auto-ejects the master SurfaceContainer
                     foreach (var _member in _surface.Surface.Contained.ToList())
+                    {
                         _member.Eject();
+                    }
                 }
             }
         }
@@ -99,7 +101,9 @@ namespace Uzi.Ikosa.Objects
             {
                 twist %= 4;
                 if (twist < 0)
+                {
                     twist += 4;
+                }
 
                 // twist only allows a single face to be the new front
                 _newTop = (_Twist != twist)
@@ -122,7 +126,9 @@ namespace Uzi.Ikosa.Objects
                 // new value
                 _Heading = heading.Value % 8;
                 if (_Heading < 0)
+                {
                     _Heading += 8;
+                }
             }
             #endregion
 
@@ -151,17 +157,27 @@ namespace Uzi.Ikosa.Objects
 
                     // relocate if size changed
                     if (!_origSize.SameSize(_fitCube))
+                    {
                         _loc.Relocate(_fitCube, _loc.PlanarPresence);
+                    }
                 }
             }
 
             // notify
             if (_origHeading != Heading)
+            {
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Heading)));
+            }
+
             if (_origUpright != Upright)
+            {
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Upright)));
+            }
+
             if (_origTwist != Twist)
+            {
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Twist)));
+            }
         }
         #endregion
 
@@ -177,7 +193,9 @@ namespace Uzi.Ikosa.Objects
         {
             // must not be diagonal
             if (Heading % 2 == 1)
+            {
                 return false;
+            }
 
             const double _precision = 0.041666;
             bool _close(double val)
@@ -336,7 +354,10 @@ namespace Uzi.Ikosa.Objects
             {
                 var _rgn = Conveyance?.GetLocated()?.Locator.GeometricRegion;
                 if (_rgn != null)
+                {
                     return new GeometricSize(_rgn);
+                }
+
                 return null;
             }
         }
@@ -429,14 +450,18 @@ namespace Uzi.Ikosa.Objects
                 // rotate around Z
                 var _pivot = GetModelPivot();// + 90d;
                 if (_pivot != 0)
+                {
                     _group.Children.Add(new RotateTransform3D(new AxisAngleRotation3D(new Vector3D(0, 0, 1), _pivot)));
+                }
                 #endregion
 
                 #region Displacement
                 // intra model offset
                 var _offset = Displacement;
                 if (_offset.Length > 0)
+                {
                     _group.Children.Add(new TranslateTransform3D(_offset));
+                }
                 #endregion
 
                 #region Location and Base Face
@@ -455,7 +480,9 @@ namespace Uzi.Ikosa.Objects
                     // base face
                     var _baseTx = ModelGenerator.GetBaseFaceTransform(GravityFace, _rgn.GetPoint3D());
                     if (_baseTx != null)
+                    {
                         _group.Children.Add(_baseTx);
+                    }
                 }
                 #endregion
 

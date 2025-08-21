@@ -45,7 +45,7 @@ namespace Uzi.Ikosa.Magic
         private static List<MetaMagicInfo> GetMetaMagicList(this ISpellDef self, List<MetaMagicInfo> appendTo = null)
         {
             // ensure appentTo is initialized
-            appendTo = appendTo ?? new List<MetaMagicInfo>();
+            appendTo = appendTo ?? [];
 
             if (self is MetaMagicSpellDef _meta)
             {

@@ -44,11 +44,15 @@ namespace Uzi.Ikosa.Adjuncts
 
             // add all controlled adjuncts
             if (EjectingAdjuncts != null)
+            {
                 foreach (var _adj in EjectingAdjuncts)
                 {
                     if (!Anchor.Adjuncts.Contains(_adj))
+                    {
                         Anchor.AddAdjunct(_adj);
+                    }
                 }
+            }
         }
 
         protected override void OnDeactivate(object source)

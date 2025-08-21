@@ -88,18 +88,24 @@ namespace Uzi.Ikosa.Workshop
                 if (weapon.MainHead.IsEnhanced())
                 {
                     if (cboEnhancement.SelectedIndex != weapon.MainHead.ListedEnhancement + 1)
+                    {
                         cboEnhancement.SelectedIndex = weapon.MainHead.ListedEnhancement + 1;
+                    }
                 }
                 else
                 {
                     if (cboEnhancement.SelectedIndex != 1)
+                    {
                         cboEnhancement.SelectedIndex = 1;
+                    }
                 }
             }
             else
             {
                 if (cboEnhancement.SelectedIndex != 0)
+                {
                     cboEnhancement.SelectedIndex = 0;
+                }
             }
             MeleeWeapon.DoAugmentationsChanged();
         }
@@ -170,7 +176,9 @@ namespace Uzi.Ikosa.Workshop
 
                             // remove all old ones
                             foreach (var _a in _exist)
+                            {
                                 Weapon.MainHead.RemoveAdjunct(_a);
+                            }
                         }
                     }
                     else
@@ -192,7 +200,10 @@ namespace Uzi.Ikosa.Workshop
 
             // remove
             foreach (var _a in _list)
+            {
                 Weapon.MainHead.RemoveAdjunct(_a);
+            }
+
             MeleeWeapon.DoAugmentationsChanged();
         }
 
@@ -208,7 +219,9 @@ namespace Uzi.Ikosa.Workshop
                     .Any(_a => (_a.Augmentation.GetType().Equals(_aType))))
                 {
                     if (_augment.CanAnchor(Weapon.MainHead))
+                    {
                         e.CanExecute = true;
+                    }
                 }
             }
             e.Handled = true;
@@ -231,7 +244,9 @@ namespace Uzi.Ikosa.Workshop
             {
                 var _adjunct = lstAdjuncts.SelectedItem as Adjunct;
                 if (_adjunct.CanUnAnchor())
+                {
                     e.CanExecute = true;
+                }
             }
             e.Handled = true;
         }

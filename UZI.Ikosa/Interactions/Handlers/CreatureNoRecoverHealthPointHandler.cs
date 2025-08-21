@@ -24,9 +24,13 @@ namespace Uzi.Ikosa.Interactions
                         if (!_recover.NonLethalOnly)
                         {
                             if (_critter.HealthPoints.CurrentValue + _recover.Amount.EffectiveValue < _critter.HealthPoints.TotalValue)
+                            {
                                 _critter.HealthPoints.CurrentValue += _recover.Amount.EffectiveValue;
+                            }
                             else
+                            {
                                 _critter.HealthPoints.CurrentValue = _critter.HealthPoints.TotalValue;
+                            }
                         }
                     }
                 }
@@ -48,7 +52,10 @@ namespace Uzi.Ikosa.Interactions
         {
             // this should be before the standard creature recover handler
             if (existingHandler is CreatureRecoverHealthPointHandler)
+            {
                 return true;
+            }
+
             return false;
         }
         #endregion

@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using Uzi.Core;
@@ -99,7 +99,9 @@ namespace Uzi.Ikosa.Creatures.Types
                 {
                     if (_critter.SubTypes
                         .Any(_st => _st is CreatureSpeciesSubType<Goblin> || _st is CreatureSpeciesSubType<Orc>))
+                    {
                         yield return _Delta;
+                    }
                 }
 
                 // TODO: item attended by orc of goblinoid
@@ -149,7 +151,10 @@ namespace Uzi.Ikosa.Creatures.Types
             {
                 // TODO: spell-like...
                 if ((qualify?.Source is Poison) || (qualify?.Source is SpellSource))
+                {
                     yield return _Delta;
+                }
+
                 yield break;
             }
 
@@ -205,7 +210,9 @@ namespace Uzi.Ikosa.Creatures.Types
                     {
                         // opponent is a giant
                         if ((qualify.Source as Creature)?.CreatureType is GiantType)
+                        {
                             yield return _Delta;
+                        }
                     }
                 }
                 yield break;

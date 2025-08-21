@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Linq;
 using Uzi.Core;
 using Uzi.Ikosa.Creatures.BodyType;
@@ -386,7 +386,9 @@ namespace Uzi.Ikosa
         public void ValueChanged(object sender, ChangeValueEventArgs<Physical> args)
         {
             if (args.NewValue.PropertyType == Physical.PhysicalType.Weight)
+            {
                 DoValueChanged();
+            }
         }
         #endregion
 

@@ -40,7 +40,9 @@ namespace Uzi.Ikosa.Tactical
             {
                 // time tickable (by schedule)
                 if (!DispensedPrerequisites.OfType<TimeTickablePrerequisite>().Any())
+                {
                     return new TimeTickablePrerequisite(Tracker);
+                }
             }
             return null;
         }

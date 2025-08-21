@@ -131,7 +131,7 @@ namespace Uzi.Ikosa.Magic.Spells
         public DelayPoisonEffect(object source)
             : base(source)
         {
-            _Poisons = new List<Poisoned>();
+            _Poisons = [];
         }
 
         #region data
@@ -229,7 +229,10 @@ namespace Uzi.Ikosa.Magic.Spells
         {
             // blockers only block, so they might keep poisoned from even getting here
             if (interactType.Equals(typeof(MultiAdjunctBlocker)))
+            {
                 return false;
+            }
+
             return true;
         }
     }

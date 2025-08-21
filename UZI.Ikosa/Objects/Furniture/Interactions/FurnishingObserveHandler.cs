@@ -24,17 +24,34 @@ namespace Uzi.Ikosa.Objects
                 var _cube = new Cubic(rgn.LowerZ, rgn.LowerY, rgn.LowerX, rgn.UpperZ, rgn.UpperY, rgn.UpperX);
 
                 if (furnishing.Orientation.IsFaceSnapped(AnchorFace.ZLow, _extents))
+                {
                     yield return _cube.EdgeCubic(AnchorFace.ZLow).OffsetCubic(AnchorFace.ZLow);
+                }
+
                 if (furnishing.Orientation.IsFaceSnapped(AnchorFace.ZHigh, _extents))
+                {
                     yield return _cube.EdgeCubic(AnchorFace.ZHigh).OffsetCubic(AnchorFace.ZHigh);
+                }
+
                 if (furnishing.Orientation.IsFaceSnapped(AnchorFace.YLow, _extents))
+                {
                     yield return _cube.EdgeCubic(AnchorFace.YLow).OffsetCubic(AnchorFace.YLow);
+                }
+
                 if (furnishing.Orientation.IsFaceSnapped(AnchorFace.YHigh, _extents))
+                {
                     yield return _cube.EdgeCubic(AnchorFace.YHigh).OffsetCubic(AnchorFace.YHigh);
+                }
+
                 if (furnishing.Orientation.IsFaceSnapped(AnchorFace.XLow, _extents))
+                {
                     yield return _cube.EdgeCubic(AnchorFace.XLow).OffsetCubic(AnchorFace.XLow);
+                }
+
                 if (furnishing.Orientation.IsFaceSnapped(AnchorFace.XHigh, _extents))
+                {
                     yield return _cube.EdgeCubic(AnchorFace.XHigh).OffsetCubic(AnchorFace.XHigh);
+                }
             }
             yield break;
         }
@@ -48,7 +65,9 @@ namespace Uzi.Ikosa.Objects
             // TODO: should probably re-visit with portal semantics in mind
             var _default = base.ProcessAllLinesOfEffect(workSet, observerLocator, targetLocator, senses, target, sensors);
             if (_default ?? false)
+            {
                 return true;
+            }
 
             // try special furnishing code
             var _darkVisible = false;
@@ -76,9 +95,14 @@ namespace Uzi.Ikosa.Objects
                                 // TODO: line of effect needs to be blocked by target!
                                 var _check = CheckSenses(workSet, _lSet, senses, target, _range, _presence);
                                 if (_check ?? false)
+                                {
                                     return true;
+                                }
+
                                 if (_check == null)
+                                {
                                     _darkVisible = true;
+                                }
                             }
                         }
                     }

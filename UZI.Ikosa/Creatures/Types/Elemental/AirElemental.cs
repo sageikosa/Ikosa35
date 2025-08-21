@@ -47,13 +47,13 @@ namespace Uzi.Ikosa.Creatures.Types
                 @"", @"", @"", @"1d4", @"1d6", @"2d6", @"2d8", @"", @"");
 
             // TODO: size boosts for abilities and armor (varies by elemental)
-            _SizeRanges = new List<SizeRange>
-            {
+            _SizeRanges =
+            [
                 new CustomSizeRange(1, 3, Size.Small, 1, 1, 0, 0, 0, 0),
                 new CustomSizeRange(4, 7, Size.Medium, 1, 1, 0, 0, 0, 0),
                 new CustomSizeRange(8, 15, Size.Large, 2, 2, 0, 0, 0, 0),
                 new CustomSizeRange(16, 48, Size.Huge, 3, 3, 0, 0, 0, 0)
-            };
+            ];
         }
         #endregion
 

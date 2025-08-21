@@ -28,7 +28,7 @@ namespace Uzi.Ikosa.Objects
             _SoundDiff = new Deltable(0);
             _Sizer = new ObjectSizer(Size.Medium, this);
             _Orient = new FurnishingOrientation(this);
-            _Connected = new List<ICoreObject>();
+            _Connected = [];
             _COCtrl = new ChangeController<ICoreObject>(this, null);
         }
 
@@ -109,7 +109,9 @@ namespace Uzi.Ikosa.Objects
 
                         // relocate if size changed
                         if (!origSize.SameSize(_fitCube))
+                        {
                             _loc.Relocate(_fitCube, _loc.PlanarPresence);
+                        }
                     }
                 }
             }
@@ -200,7 +202,9 @@ namespace Uzi.Ikosa.Objects
 
             // if we don't have a cubic, make a cubic from the region
             if (!(region is Cubic))
+            {
                 region = region.ContainingCube(region);
+            }
 
             var (_fitCube, _fitOffset) = _vol.GetCubicFit(region as Cubic, _size,
                 Orientation.ZHighSnap, Orientation.YHighSnap, Orientation.XHighSnap,
@@ -215,12 +219,36 @@ namespace Uzi.Ikosa.Objects
                     {
                         var _off = locator.IntraModelOffset;
                         var _faces = AnchorFaceList.None;
-                        if (_off.Z < -3.5) _faces = _faces.Add(AnchorFace.ZLow);
-                        if (_off.Y < -3.5) _faces = _faces.Add(AnchorFace.YLow);
-                        if (_off.X < -3.5) _faces = _faces.Add(AnchorFace.XLow);
-                        if (_off.Z > 3.5) _faces = _faces.Add(AnchorFace.ZHigh);
-                        if (_off.Y > 3.5) _faces = _faces.Add(AnchorFace.YHigh);
-                        if (_off.X > 3.5) _faces = _faces.Add(AnchorFace.XHigh);
+                        if (_off.Z < -3.5)
+                        {
+                            _faces = _faces.Add(AnchorFace.ZLow);
+                        }
+
+                        if (_off.Y < -3.5)
+                        {
+                            _faces = _faces.Add(AnchorFace.YLow);
+                        }
+
+                        if (_off.X < -3.5)
+                        {
+                            _faces = _faces.Add(AnchorFace.XLow);
+                        }
+
+                        if (_off.Z > 3.5)
+                        {
+                            _faces = _faces.Add(AnchorFace.ZHigh);
+                        }
+
+                        if (_off.Y > 3.5)
+                        {
+                            _faces = _faces.Add(AnchorFace.YHigh);
+                        }
+
+                        if (_off.X > 3.5)
+                        {
+                            _faces = _faces.Add(AnchorFace.XHigh);
+                        }
+
                         var _newCube = (region as Cubic).OffsetCubic(_faces.ToAnchorFaces().ToArray());
                         (_fitCube, _fitOffset) = _vol.GetCubicFit(_newCube, _size,
                             Orientation.ZHighSnap, Orientation.YHighSnap, Orientation.XHighSnap,
@@ -251,7 +279,9 @@ namespace Uzi.Ikosa.Objects
         {
             var _principalRgn = principalLoc?.GeometricRegion;
             if (_principalRgn == null)
+            {
                 return false;
+            }
 
             // TODO: may want to check actor movement...
 
@@ -411,7 +441,9 @@ namespace Uzi.Ikosa.Objects
         public void ValueChanged(object sender, ChangeValueEventArgs<Physical> args)
         {
             if (args.NewValue.PropertyType == Physical.PhysicalType.Weight)
+            {
                 RecalcWeight();
+            }
         }
 
         #endregion
@@ -439,7 +471,9 @@ namespace Uzi.Ikosa.Objects
                     else
                     {
                         foreach (var _act in _grabbed.GetActions(budget))
+                        {
                             yield return _act;
+                        }
                     }
                 }
             }
@@ -462,7 +496,9 @@ namespace Uzi.Ikosa.Objects
             foreach (var _pp in Orientation.GetPlanarPoints(GetPlanarFaces()))
             {
                 if (_pp.SegmentIntersection(tacticalInfo.SourcePoint, tacticalInfo.TargetPoint).HasValue)
+                {
                     return true;
+                }
             }
             return false;
         }
@@ -530,8 +566,9 @@ namespace Uzi.Ikosa.Objects
                                             && ApplyOpening(occupyCell, testObj, _af.GetAxis())
                                             from _mo in AnchorFaceOpenings(_af, occupyCell, _rgn, false)
                                             select _mo)
+                    {
                         yield return _mvOpen;
-
+                    }
                 }
             }
             yield break;
@@ -568,7 +605,10 @@ namespace Uzi.Ikosa.Objects
                 var _ext = Orientation.CoverageExtents;
                 if (moveTactical.TransitFaces
                     .Any(_f => !Orientation.IsFaceSnapped(_f, _ext)))
+                {
                     return 0;
+                }
+
                 return GetCoverage(moveTactical);
             }
             return 0d;
@@ -594,8 +634,12 @@ namespace Uzi.Ikosa.Objects
                     {
                         // connecting line go through a surface?
                         foreach (var _corners in _surfaces)
+                        {
                             if (_corners.SegmentIntersection(_source.GetPoint(), _target.GetPoint()).HasValue)
+                            {
                                 return false;
+                            }
+                        }
                     }
 
                     // draw down the cell
@@ -664,9 +708,13 @@ namespace Uzi.Ikosa.Objects
             set
             {
                 if (_StrucPts <= _MaxStrucPts)
+                {
                     _StrucPts = value;
+                }
                 else
+                {
                     _StrucPts = _MaxStrucPts;
+                }
 
                 DoPropertyChanged(nameof(StructurePoints));
 
@@ -819,7 +867,10 @@ namespace Uzi.Ikosa.Objects
             var _region = ObjectPresenter?.GeometricRegion;
             var _face = moveTactical.TransitFaces.FirstOrDefault();
             if (Orientation.IsFaceSnapped(_face) && IsCoveredFace(_face))
+            {
                 return GetCoverage(moveTactical.SourceCell, _face.GetAxis());
+            }
+
             return 0d;
         }
         #endregion
@@ -843,7 +894,9 @@ namespace Uzi.Ikosa.Objects
                 var _coverage = GetCoverage(sourceCell, face.GetAxis());
                 yield return new MovementOpening(face, 5d - _cellExtent, _coverage);
                 if (useReverse)
+                {
                     yield return new MovementOpening(face.ReverseFace(), _cellExtent, _coverage);
+                }
             }
             yield break;
         }
@@ -905,7 +958,9 @@ namespace Uzi.Ikosa.Objects
         public virtual BestSoftQualifiedDelta GetBestSoftSave(SavingThrowData saveData)
         {
             if (AlwaysFailsSave)
+            {
                 return null;
+            }
 
             // potential save values
             var _deltables = new List<ConstDeltable>();
@@ -916,7 +971,9 @@ namespace Uzi.Ikosa.Objects
                                 orderby _msaa.CasterLevel descending
                                 select new ConstDeltable(Math.Max(_msaa.CasterLevel / 2, 1))).FirstOrDefault();
             if (_casterLevel != null)
+            {
                 _deltables.Add(_casterLevel);
+            }
 
             // may be multiple attendees?
             ConstDeltable _save(Creature critter)
@@ -931,9 +988,15 @@ namespace Uzi.Ikosa.Objects
             foreach (var _attendee in (from _a in Adjuncts.OfType<Attended>()
                                        where _a.IsActive
                                        select _save(_a.Creature)))
+            {
                 _deltables.Add(_attendee);
+            }
+
             if (_deltables.Any())
+            {
                 return new BestSoftQualifiedDelta(_deltables.ToArray());
+            }
+
             return null;
         }
         #endregion

@@ -30,7 +30,7 @@ namespace Uzi.Ikosa.Tactical
             _DeepShadows = deepShadows;
             _Links = new LocalLinkSet(this);
             _Fresh = new FreshnessTime();
-            _Locators = new List<Locator>();
+            _Locators = [];
             _ID = Guid.NewGuid();
         }
 
@@ -102,7 +102,10 @@ namespace Uzi.Ikosa.Tactical
             get
             {
                 if (_ID == Guid.Empty)
+                {
                     _ID = Guid.NewGuid();
+                }
+
                 return _ID;
             }
         }
@@ -119,7 +122,9 @@ namespace Uzi.Ikosa.Tactical
         internal void AddLocator(Locator locator)
         {
             if (!_Locators.Contains(locator))
+            {
                 _Locators.Add(locator);
+            }
         }
         #endregion
 
@@ -260,7 +265,9 @@ namespace Uzi.Ikosa.Tactical
             // update background shading
             var _bgGroup = _updaters.OfType<BackgroundCellGroup>().FirstOrDefault();
             if (_bgGroup != null)
+            {
                 _bgGroup.RefreshTerrainShading();
+            }
 
             // report sensors that need to be notified
             return _updaters.SelectMany(_u => _u.GetSensorKeys()).Distinct().ToList();
@@ -370,7 +377,9 @@ namespace Uzi.Ikosa.Tactical
                                        from _lnk in _lcg.Links.All
                                        from _l in _lnk.GetLights(_lcg, linking)
                                        select _l)
+                {
                     yield return _light;
+                }
             }
             yield break;
         }
@@ -393,8 +402,7 @@ namespace Uzi.Ikosa.Tactical
         {
             get
             {
-                if (_AwareSensors == null)
-                    _AwareSensors = new ConcurrentDictionary<Guid, Guid>();
+                _AwareSensors ??= new ConcurrentDictionary<Guid, Guid>();
                 return _AwareSensors;
             }
         }

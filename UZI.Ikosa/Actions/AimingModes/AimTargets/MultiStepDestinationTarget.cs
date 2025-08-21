@@ -18,12 +18,16 @@ namespace Uzi.Ikosa.Actions
             : base(key)
         {
             _Offset = new CellPosition(offset);
-            _Steps = new List<AnchorFaceList>();
+            _Steps = [];
 
             // iterations
             var _count = StepCount;
             var _dCount = (decimal)_count;
-            for (var _sx = 0; _sx < _count; _sx++) _Steps.Add(AnchorFaceList.None);
+            for (var _sx = 0; _sx < _count; _sx++)
+            {
+                _Steps.Add(AnchorFaceList.None);
+            }
+
             if (_count > 0)
             {
                 // how many of each step
@@ -43,12 +47,35 @@ namespace Uzi.Ikosa.Actions
                 var _xhStep = (_xhCount > 0) ? _dCount / _xhCount : 0m;
 
                 int _index(int sx, decimal step) => Convert.ToInt32(Round(sx * step));
-                for (var _sx = 0; _sx < _zlCount; _sx++) _Steps[_index(_sx, _zlStep)] |= AnchorFaceList.ZLow;
-                for (var _sx = 0; _sx < _ylCount; _sx++) _Steps[_index(_sx, _ylStep)] |= AnchorFaceList.YLow;
-                for (var _sx = 0; _sx < _xlCount; _sx++) _Steps[_index(_sx, _xlStep)] |= AnchorFaceList.XLow;
-                for (var _sx = 0; _sx < _zhCount; _sx++) _Steps[_index(_sx, _zhStep)] |= AnchorFaceList.ZHigh;
-                for (var _sx = 0; _sx < _yhCount; _sx++) _Steps[_index(_sx, _yhStep)] |= AnchorFaceList.YHigh;
-                for (var _sx = 0; _sx < _xhCount; _sx++) _Steps[_index(_sx, _xhStep)] |= AnchorFaceList.XHigh;
+                for (var _sx = 0; _sx < _zlCount; _sx++)
+                {
+                    _Steps[_index(_sx, _zlStep)] |= AnchorFaceList.ZLow;
+                }
+
+                for (var _sx = 0; _sx < _ylCount; _sx++)
+                {
+                    _Steps[_index(_sx, _ylStep)] |= AnchorFaceList.YLow;
+                }
+
+                for (var _sx = 0; _sx < _xlCount; _sx++)
+                {
+                    _Steps[_index(_sx, _xlStep)] |= AnchorFaceList.XLow;
+                }
+
+                for (var _sx = 0; _sx < _zhCount; _sx++)
+                {
+                    _Steps[_index(_sx, _zhStep)] |= AnchorFaceList.ZHigh;
+                }
+
+                for (var _sx = 0; _sx < _yhCount; _sx++)
+                {
+                    _Steps[_index(_sx, _yhStep)] |= AnchorFaceList.YHigh;
+                }
+
+                for (var _sx = 0; _sx < _xhCount; _sx++)
+                {
+                    _Steps[_index(_sx, _xhStep)] |= AnchorFaceList.XHigh;
+                }
             }
             // TODO: need path bias, (eg, source cell exit and longest offset ordinate)
             // TODO: for when their are alternate valid paths
@@ -82,23 +109,38 @@ namespace Uzi.Ikosa.Actions
                 if (_step.Contains(front))
                 {
                     if (_step.Contains(left))
+                    {
                         return 1;
+                    }
                     else if (_step.Contains(left.ReverseFace()))
+                    {
                         return 7;
+                    }
+
                     return 0;
                 }
                 else if (_step.Contains(front.ReverseFace()))
                 {
                     if (_step.Contains(left))
+                    {
                         return 3;
+                    }
                     else if (_step.Contains(left.ReverseFace()))
+                    {
                         return 5;
+                    }
+
                     return 4;
                 }
                 if (_step.Contains(left))
+                {
                     return 2;
+                }
                 else if (_step.Contains(left.ReverseFace()))
+                {
                     return 6;
+                }
+
                 return 8;
             };
             #endregion

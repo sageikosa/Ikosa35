@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections;
@@ -173,7 +173,9 @@ namespace Uzi.Core
             // prevent non-changing modifications from cascading
             var _lVal = _LastVal;
             if (_lVal != EffectiveValue)
+            {
                 DoValueChanged();
+            }
         }
 
         void IMonitorChange<DeltaValue>.PreTestChange(object sender, AbortableChangeEventArgs<DeltaValue> args)

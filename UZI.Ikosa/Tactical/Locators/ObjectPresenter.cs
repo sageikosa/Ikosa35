@@ -84,7 +84,9 @@ namespace Uzi.Ikosa.Tactical
             {
                 _Twist = value;
                 if (_TwistAxis != null)
+                {
                     _TwistAxis.Angle = _Twist;
+                }
             }
         }
         #endregion
@@ -97,7 +99,9 @@ namespace Uzi.Ikosa.Tactical
             {
                 _Pivot = value;
                 if (_PivotAxis != null)
+                {
                     _PivotAxis.Angle = _Pivot;
+                }
             }
         }
         #endregion
@@ -113,7 +117,9 @@ namespace Uzi.Ikosa.Tactical
             {
                 _Tilt = value;
                 if (_TiltAxis != null)
+                {
                     _TiltAxis.Angle = _Tilt;
+                }
             }
         }
         #endregion
@@ -216,7 +222,9 @@ namespace Uzi.Ikosa.Tactical
             {
                 var _modelKey = _default.ModelKey;
                 if (CanResolve(_modelKey, resolver))
+                {
                     return _modelKey;
+                }
             }
 
             if (entity is CloseableContainerObject)

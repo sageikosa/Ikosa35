@@ -54,7 +54,9 @@ namespace Uzi.Ikosa.Items
 
             // start watching new slot
             if (SlottedItem != null)
+            {
                 SlottedItem.AddChangeMonitor(this);
+            }
         }
         #endregion
 
@@ -100,13 +102,17 @@ namespace Uzi.Ikosa.Items
             {
                 // check if active when slotted
                 if (IsActive)
+                {
                     OnSlottedActivate();
+                }
             }
             else
             {
                 // check if active when unslotted
                 if (IsActive)
+                {
                     OnSlottedDeActivate();
+                }
             }
         }
         #endregion

@@ -1,4 +1,4 @@
-using Uzi.Core.Contracts;
+﻿using Uzi.Core.Contracts;
 using System;
 using System.Collections.Generic;
 using Uzi.Core;
@@ -26,7 +26,9 @@ namespace Uzi.Ikosa.Feats
         public override bool MeetsPreRequisite(Creature creature)
         {
             if (IgnorePreRequisite)
+            {
                 return true;
+            }
 
             return (!creature.Feats.Contains(GetType()) &&
                 (creature.Proficiencies.IsProficientWith<CBow>(PowerLevel)));

@@ -34,7 +34,10 @@ namespace Uzi.Ikosa.Adjuncts
         {
             _Used -= number;
             if (_Used < 0)
+            {
                 _Used = 0;
+            }
+
             DoChargeChange();
         }
 

@@ -143,7 +143,9 @@ namespace Uzi.Ikosa.Magic.Spells
                     // make sure target can understand the language
                     _lang = (_langTarg.Option as OptionAimValue<Language>).Value;
                     if (_critter.Languages.CanUnderstandLanguage(_lang.GetType()))
+                    {
                         SpellDef.DeliverDurable(deliver, deliver.TargetingProcess.Targets[0], 0);
+                    }
                 }
             }
         }
@@ -210,9 +212,14 @@ namespace Uzi.Ikosa.Magic.Spells
             : base(source)
         {
             if (source.AllTargets.Where(_t => _t.Key.Equals(@"Command")).FirstOrDefault() is OptionTarget _option)
+            {
                 _Cmd = _option.Key;
+            }
             else
+            {
                 _Cmd = Command.Halt;
+            }
+
             _Complete = false;
         }
         #endregion

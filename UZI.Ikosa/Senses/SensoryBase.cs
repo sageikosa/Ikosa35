@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Linq;
 using Uzi.Core;
 using Uzi.Ikosa.Tactical;
@@ -40,9 +40,13 @@ namespace Uzi.Ikosa.Senses
             get
             {
                 if (Range < double.MaxValue)
+                {
                     return string.Format(@"{0} {1} feet", GetType().Name, Range);
+                }
                 else
+                {
                     return string.Format(@"{0}", GetType().Name);
+                }
             }
         }
         #endregion
@@ -68,7 +72,9 @@ namespace Uzi.Ikosa.Senses
                         _ActCtrl.DoValueChanged(_newAct);
                         PropertyChanged?.Invoke(this, new System.ComponentModel.PropertyChangedEventArgs(@"Active"));
                         if (Creature != null)
+                        {
                             Creature.Senses.ApplySenses();
+                        }
                     }
                 }
             }
@@ -116,11 +122,20 @@ namespace Uzi.Ikosa.Senses
         public bool WorksInLightLevel(LightRange level)
         {
             if (!UsesSight || !UsesLight)
+            {
                 return true;
+            }
+
             if (level < LightRange.FarShadow)
+            {
                 return false;
+            }
+
             if (level < LightRange.NearShadow)
+            {
                 return LowLight;
+            }
+
             return true;
         }
         #endregion
@@ -186,7 +201,9 @@ namespace Uzi.Ikosa.Senses
             var _factory = new SegmentSetFactory(map, start, end, exclusions, SegmentSetProcess.Geometry);
             var _zones = map.MapContext.GetInteractionTransitZones(_senseSet).ToList();
             if (!_zones.Any())
+            {
                 return true;
+            }
 
             // NOTE: centroid + all corners
             foreach (var _iSect in end.GetPoint3D().ToEnumerable().Concat(end.AllCorners()))

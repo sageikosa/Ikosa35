@@ -36,9 +36,13 @@ namespace Uzi.Ikosa.Advancement.MonsterClasses
         public override int NaturalReach(bool isLong)
         {
             if (isLong)
+            {
                 return _LongReach;
+            }
             else
+            {
                 return base.NaturalReach(false);
+            }
         }
     }
 }

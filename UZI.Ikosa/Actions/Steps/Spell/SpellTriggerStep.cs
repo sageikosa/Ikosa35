@@ -17,7 +17,9 @@ namespace Uzi.Ikosa.Actions.Steps
 
             // enqueue a prerequisite if needed
             if (TriggerSpell == null)
+            {
                 return;
+            }
 
             var _critter = Activity.Actor as Creature;
             if (!TriggerSpell.SpellTrigger.UseDirectly(_critter))

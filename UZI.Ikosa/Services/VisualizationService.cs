@@ -149,7 +149,9 @@ namespace Uzi.Ikosa.Services
                     });
             }
             else
+            {
                 throw new FaultException<SecurityFault>(new SecurityFault(), @"User not authorized to access these creatures");
+            }
         }
         #endregion
 
@@ -178,7 +180,9 @@ namespace Uzi.Ikosa.Services
             finally
             {
                 if (Map.Synchronizer.IsReadLockHeld)
+                {
                     Map.Synchronizer.ExitReadLock();
+                }
             }
         }
         #endregion
@@ -202,7 +206,9 @@ namespace Uzi.Ikosa.Services
             finally
             {
                 if (Map.Synchronizer.IsReadLockHeld)
+                {
                     Map.Synchronizer.ExitReadLock();
+                }
             }
         }
         #endregion
@@ -219,9 +225,13 @@ namespace Uzi.Ikosa.Services
                 if (_model3D != null)
                 {
                     if (_model3D is MetaModel)
+                    {
                         return new MetaModel3DInfo(_model3D as MetaModel);
+                    }
                     else
+                    {
                         return new Model3DInfo(_model3D);
+                    }
                 }
                 return null;
 
@@ -229,7 +239,9 @@ namespace Uzi.Ikosa.Services
             finally
             {
                 if (Map.Synchronizer.IsReadLockHeld)
+                {
                     Map.Synchronizer.ExitReadLock();
+                }
             }
         }
         #endregion
@@ -247,7 +259,9 @@ namespace Uzi.Ikosa.Services
                     if (_item.Model3DPart is MetaModel _metaModel)
                     {
                         if (_metaModel.Fragments.Any(_f => _f.Key.Equals(fragmentName, StringComparison.OrdinalIgnoreCase)))
+                        {
                             return new MetaModelFragmentInfo(_metaModel.Fragments.FirstOrDefault(_f => _f.Key.Equals(fragmentName, StringComparison.OrdinalIgnoreCase)).Value);
+                        }
                     }
                 }
                 return null;
@@ -256,7 +270,9 @@ namespace Uzi.Ikosa.Services
             finally
             {
                 if (Map.Synchronizer.IsReadLockHeld)
+                {
                     Map.Synchronizer.ExitReadLock();
+                }
             }
         }
         #endregion
@@ -272,7 +288,9 @@ namespace Uzi.Ikosa.Services
             finally
             {
                 if (Map.Synchronizer.IsReadLockHeld)
+                {
                     Map.Synchronizer.ExitReadLock();
+                }
             }
         }
         #endregion
@@ -295,7 +313,9 @@ namespace Uzi.Ikosa.Services
             finally
             {
                 if (Map.Synchronizer.IsReadLockHeld)
+                {
                     Map.Synchronizer.ExitReadLock();
+                }
             }
         }
         #endregion
@@ -311,7 +331,9 @@ namespace Uzi.Ikosa.Services
             finally
             {
                 if (Map.Synchronizer.IsReadLockHeld)
+                {
                     Map.Synchronizer.ExitReadLock();
+                }
             }
         }
         #endregion
@@ -334,7 +356,9 @@ namespace Uzi.Ikosa.Services
             finally
             {
                 if (Map.Synchronizer.IsReadLockHeld)
+                {
                     Map.Synchronizer.ExitReadLock();
+                }
             }
         }
         #endregion
@@ -364,7 +388,9 @@ namespace Uzi.Ikosa.Services
             finally
             {
                 if (Map.Synchronizer.IsReadLockHeld)
+                {
                     Map.Synchronizer.ExitReadLock();
+                }
             }
         }
         #endregion
@@ -390,7 +416,9 @@ namespace Uzi.Ikosa.Services
             finally
             {
                 if (Map.Synchronizer.IsReadLockHeld)
+                {
                     Map.Synchronizer.ExitReadLock();
+                }
             }
         }
         #endregion
@@ -419,7 +447,9 @@ namespace Uzi.Ikosa.Services
             finally
             {
                 if (Map.Synchronizer.IsReadLockHeld)
+                {
                     Map.Synchronizer.ExitReadLock();
+                }
             }
         }
         #endregion
@@ -441,7 +471,9 @@ namespace Uzi.Ikosa.Services
             finally
             {
                 if (Map.Synchronizer.IsReadLockHeld)
+                {
                     Map.Synchronizer.ExitReadLock();
+                }
             }
         }
         #endregion
@@ -460,7 +492,9 @@ namespace Uzi.Ikosa.Services
             finally
             {
                 if (Map.Synchronizer.IsReadLockHeld)
+                {
                     Map.Synchronizer.ExitReadLock();
+                }
             }
         }
         #endregion
@@ -476,7 +510,9 @@ namespace Uzi.Ikosa.Services
             finally
             {
                 if (Map.Synchronizer.IsReadLockHeld)
+                {
                     Map.Synchronizer.ExitReadLock();
+                }
             }
         }
         #endregion
@@ -492,7 +528,9 @@ namespace Uzi.Ikosa.Services
             finally
             {
                 if (Map.Synchronizer.IsReadLockHeld)
+                {
                     Map.Synchronizer.ExitReadLock();
+                }
             }
         }
         #endregion
@@ -515,7 +553,9 @@ namespace Uzi.Ikosa.Services
             finally
             {
                 if (Map.Synchronizer.IsReadLockHeld)
+                {
                     Map.Synchronizer.ExitReadLock();
+                }
             }
         }
         #endregion
@@ -544,11 +584,15 @@ namespace Uzi.Ikosa.Services
                 finally
                 {
                     if (Map.Synchronizer.IsReadLockHeld)
+                    {
                         Map.Synchronizer.ExitReadLock();
+                    }
                 }
             }
             else
+            {
                 throw new FaultException<SecurityFault>(new SecurityFault(), @"User not authorized to access this creature");
+            }
         }
         #endregion
 
@@ -566,20 +610,27 @@ namespace Uzi.Ikosa.Services
                     // find sensors
                     var _sensors = GetSensorHost(sensorHostID, _critterID);
                     if (_sensors?.RoomAwarenesses?.IsSweptRoom(_roomID) ?? false)
+                    {
                         return Map.Rooms
                             .Where(_r => _r.ID == _roomID)
                             .Select(_r => _r.ToRoomInfo())
                             .FirstOrDefault();
+                    }
+
                     return null;
                 }
                 finally
                 {
                     if (Map.Synchronizer.IsReadLockHeld)
+                    {
                         Map.Synchronizer.ExitReadLock();
+                    }
                 }
             }
             else
+            {
                 throw new FaultException<SecurityFault>(new SecurityFault(), @"User not authorized to access this creature");
+            }
         }
         #endregion
 
@@ -600,7 +651,9 @@ namespace Uzi.Ikosa.Services
                 finally
                 {
                     if (Map.Synchronizer.IsReadLockHeld)
+                    {
                         Map.Synchronizer.ExitReadLock();
+                    }
                 }
             }
             else
@@ -630,11 +683,15 @@ namespace Uzi.Ikosa.Services
                 finally
                 {
                     if (Map.Synchronizer.IsReadLockHeld)
+                    {
                         Map.Synchronizer.ExitReadLock();
+                    }
                 }
             }
             else
+            {
                 throw new FaultException<SecurityFault>(new SecurityFault(), @"User not authorized to access this creature");
+            }
         }
         #endregion
 
@@ -671,7 +728,9 @@ namespace Uzi.Ikosa.Services
                 finally
                 {
                     if (Map.Synchronizer.IsReadLockHeld)
+                    {
                         Map.Synchronizer.ExitReadLock();
+                    }
                 }
             }
             else
@@ -767,12 +826,19 @@ namespace Uzi.Ikosa.Services
                         PresentationInfo _convert(Presentation presentation, IEnumerable<Guid> guids)
                         {
                             if (presentation is IconPresentation)
+                            {
                                 return new IconPresentationInfo(presentation as IconPresentation, guids);
+                            }
                             else if (presentation is ModelPresentation)
+                            {
                                 return new ModelPresentationInfo(presentation as ModelPresentation, guids);
+                            }
                             else
+                            {
                                 return new PresentationInfo(presentation, guids);
-                        };
+                            }
+                        }
+                        ;
                         #endregion
 
                         // TODO: review use of _critter/actor in these calls
@@ -787,7 +853,9 @@ namespace Uzi.Ikosa.Services
                 finally
                 {
                     if (Map.Synchronizer.IsReadLockHeld)
+                    {
                         Map.Synchronizer.ExitReadLock();
+                    }
                 }
             }
             else
@@ -814,13 +882,18 @@ namespace Uzi.Ikosa.Services
                     // get locator for sensor host
                     var _loc = _sensors.GetLocated();
                     if (_loc != null)
+                    {
                         _loc.Locator.AdjustAimPoint(_sensors, zOff, yOff, xOff);
+                    }
+
                     return _sensors.ToSensorHostInfo();
                 }
                 finally
                 {
                     if (Map.Synchronizer.IsReadLockHeld)
+                    {
                         Map.Synchronizer.ExitReadLock();
+                    }
                 }
             }
             else
@@ -865,7 +938,9 @@ namespace Uzi.Ikosa.Services
                 finally
                 {
                     if (Map.Synchronizer.IsReadLockHeld)
+                    {
                         Map.Synchronizer.ExitReadLock();
+                    }
                 }
             }
             else
@@ -905,7 +980,9 @@ namespace Uzi.Ikosa.Services
                 finally
                 {
                     if (Map.Synchronizer.IsReadLockHeld)
+                    {
                         Map.Synchronizer.ExitReadLock();
+                    }
                 }
             }
             else
@@ -944,7 +1021,9 @@ namespace Uzi.Ikosa.Services
                 finally
                 {
                     if (Map.Synchronizer.IsReadLockHeld)
+                    {
                         Map.Synchronizer.ExitReadLock();
+                    }
                 }
             }
             else
@@ -982,7 +1061,9 @@ namespace Uzi.Ikosa.Services
                 finally
                 {
                     if (Map.Synchronizer.IsReadLockHeld)
+                    {
                         Map.Synchronizer.ExitReadLock();
+                    }
                 }
             }
             else

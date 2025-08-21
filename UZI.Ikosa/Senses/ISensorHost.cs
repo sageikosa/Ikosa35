@@ -181,7 +181,9 @@ namespace Uzi.Ikosa.Senses
                 var _xExt = (double)(_rgn.UpperX - _rgn.LowerX + 1) * 5d;
                 var _max = 0.5d * Math.Sqrt((_zExt * _zExt) + (_yExt * _yExt) + (_xExt * _xExt));
                 if (_max > 0)
+                {
                     _info.AimPointRelDistance = sensorHost.AimPointDistance / _max;
+                }
 
                 // get stuff to build PointEffects
                 var _map = _locator.Map;

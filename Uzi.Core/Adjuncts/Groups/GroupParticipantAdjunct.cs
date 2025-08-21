@@ -25,7 +25,9 @@ namespace Uzi.Core
         {
             // last one out turns the lights off
             if (!ParticipantGroup.Members.Any(_m => _m != this))
+            {
                 oldSetting?.ContextSet.AdjunctGroups.Remove(ParticipantGroup);
+            }
 
             // ensures group is established in context
             if (Anchor?.Setting != null)
@@ -69,7 +71,9 @@ namespace Uzi.Core
         {
             // last one out turns the lights off
             if (!ParticipantGroup.Members.Any())
+            {
                 Anchor?.Setting?.ContextSet.AdjunctGroups.Remove(ParticipantGroup);
+            }
         }
 
         #endregion

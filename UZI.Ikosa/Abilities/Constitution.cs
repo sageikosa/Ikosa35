@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using Uzi.Ikosa.Deltas;
 using System.Linq;
 
@@ -26,7 +26,9 @@ namespace Uzi.Ikosa.Abilities
         public int AdvancementHealthPointModifier(int powerLevel)
         {
             if (IsNonAbility)
+            {
                 return 0;
+            }
 
             int _eff = this.ValueAtPowerLevel(powerLevel, null);
             _eff -= this.Deltas.Where(_del => ((_del.Source as Type) == typeof(Enhancement)) && _del.Enabled).Sum(_del => _del.Value);

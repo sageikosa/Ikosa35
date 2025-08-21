@@ -39,7 +39,9 @@ namespace Uzi.Ikosa.Actions.Steps
         protected override StepPrerequisite OnNextPrerequisite()
         {
             if (!IsDispensingPrerequisites)
+            {
                 return null;
+            }
 
             var _willCounter = CounterAttemptChoice;
             if (_willCounter == null)

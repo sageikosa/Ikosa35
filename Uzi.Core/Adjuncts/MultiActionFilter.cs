@@ -30,13 +30,18 @@ namespace Uzi.Core
         {
             base.OnActivate(source);
             if (source == this)
+            {
                 (Anchor as CoreActor)?.Actions.Filters.Add(this, this);
+            }
         }
 
         protected override void OnDeactivate(object source)
         {
             if (source == this)
+            {
                 (Anchor as CoreActor)?.Actions.Filters.Remove(this);
+            }
+
             base.OnDeactivate(source);
         }
 

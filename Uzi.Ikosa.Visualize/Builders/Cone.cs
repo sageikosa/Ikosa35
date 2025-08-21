@@ -1,6 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System;
 using System.Windows.Media.Media3D;
 
 namespace Uzi.Visualize
@@ -24,13 +22,20 @@ namespace Uzi.Visualize
             // find angles to 8 bordering cells
             var _minAngle = 180d;
             for (var _z = _Origin.Z - 1; _z <= _Origin.Z; _z++)
+            {
                 for (var _y = _Origin.Y - 1; _y <= _Origin.Y; _y++)
+                {
                     for (var _x = _Origin.X - 1; _x <= _Origin.X; _x++)
                     {
                         var _currAngle = Angle(_z, _y, _x, _ScaleOrigin, _CenterLine);
                         if (_currAngle < _minAngle)
+                        {
                             _minAngle = _currAngle;
+                        }
                     }
+                }
+            }
+
             if (_minAngle > 45)
             {
                 // if none within 45 degrees, back up along the vector 2.5 units and use that as the angular vector origin
@@ -68,15 +73,21 @@ namespace Uzi.Visualize
         {
             // not even in the ballpark
             if (!CellInCube(location))
+            {
                 return false;
+            }
 
             // ensure mid point of cell is within angular deviation from center line
             var _midPoint = new Point3D(location.X * 5d + 2.5d, location.Y * 5d + 2.5d, location.Z * 5d + 2.5d);
             Vector3D _midVector;
             if (!_UseAltOrigin)
+            {
                 _midVector = _midPoint - _ScaleOrigin;
+            }
             else
+            {
                 _midVector = _midPoint - _AltOrigin;
+            }
 
             if (Vector3D.AngleBetween(_midVector, _CenterLine) <= _Tolerance)
             {

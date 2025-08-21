@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using Uzi.Core;
 using Uzi.Ikosa.Actions;
@@ -101,7 +101,10 @@ namespace Uzi.Ikosa.Items.Weapons
             {
                 case WieldTemplate.Light:
                     if (_diff < 0)
+                    {
                         return WieldTemplate.TooSmall;
+                    }
+
                     switch (_diff)
                     {
                         case 0:
@@ -116,7 +119,10 @@ namespace Uzi.Ikosa.Items.Weapons
 
                 case WieldTemplate.OneHanded:
                     if (_diff < -1)
+                    {
                         return WieldTemplate.TooSmall;
+                    }
+
                     switch (_diff)
                     {
                         case -1:
@@ -131,7 +137,10 @@ namespace Uzi.Ikosa.Items.Weapons
 
                 case WieldTemplate.TwoHanded:
                     if (_diff < -2)
+                    {
                         return WieldTemplate.TooSmall;
+                    }
+
                     switch (_diff)
                     {
                         case -2:
@@ -147,7 +156,10 @@ namespace Uzi.Ikosa.Items.Weapons
                 case WieldTemplate.Double:
                 default:
                     if (_diff < -1)
+                    {
                         return WieldTemplate.TooSmall;
+                    }
+
                     switch (_diff)
                     {
                         case -1:

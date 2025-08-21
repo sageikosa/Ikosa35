@@ -17,14 +17,16 @@ namespace Uzi.Ikosa.Guildsmanship
         /// </summary>
         public Mutabilities()
         {
-            _Mutabilities = new HashSet<Guid>();
+            _Mutabilities = [];
         }
 
         /// <summary>Add variable to local exposure list</summary>
         public void Add(Guid variableID)
         {
             if (!_Mutabilities.Contains(variableID))
+            {
                 _Mutabilities.Add(variableID);
+            }
         }
 
         /// <summary>Remove variable from local exposure list</summary>

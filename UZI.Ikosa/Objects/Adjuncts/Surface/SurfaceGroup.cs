@@ -25,7 +25,10 @@ namespace Uzi.Ikosa.Objects
         {
             // not removing the container, no contained, but still have a container
             if ((member != Container) && !Contained.Any() && (Container != null))
+            {
                 Container.Eject();
+            }
+
             base.OnMemberRemoved(member);
         }
 

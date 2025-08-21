@@ -27,15 +27,23 @@ namespace Uzi.Ikosa.Workshop
                 var _item = TileSet.Map.Resources.ResolvableBrushCollections
                     .FirstOrDefault(_bcp => _bcp.BrushCollectionPart.Name.Equals(TileSet.BrushCollectionKey, StringComparison.OrdinalIgnoreCase));
                 if (_item != null)
+                {
                     return _item.BrushCollectionPart;
+                }
+
                 return null;
             }
             set
             {
                 if (value != null)
+                {
                     TileSet.BrushCollectionKey = value.Name;
+                }
                 else
+                {
                     TileSet.BrushCollectionKey = string.Empty;
+                }
+
                 DoPropertyChanged(@"BrushCollectionPart");
             }
         }
@@ -43,7 +51,9 @@ namespace Uzi.Ikosa.Workshop
         private void DoPropertyChanged(string propName)
         {
             if (PropertyChanged != null)
+            {
                 PropertyChanged(this, new PropertyChangedEventArgs(propName));
+            }
         }
 
         #region INotifyPropertyChanged Members

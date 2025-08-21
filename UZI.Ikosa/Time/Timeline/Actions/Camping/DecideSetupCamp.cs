@@ -28,10 +28,15 @@ namespace Uzi.Ikosa.Time
         {
             // if already deciding, cannot vote on another
             if (activity.Actor?.HasAdjunct<DecideCampMember>() ?? true)
+            {
                 return new ActivityResponse(false);
+            }
             // if already in a camp, cannot vote on another
             if (activity.Actor?.HasAdjunct<CampMember>() ?? true)
+            {
                 return new ActivityResponse(false);
+            }
+
             return base.OnCanPerformActivity(activity);
         }
 

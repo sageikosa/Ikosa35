@@ -79,7 +79,10 @@ namespace Uzi.Ikosa
                     // cancel old cost factor of item...
                     var _item = _Core as IItemBase;
                     if (!_item.Price.IsTradeGood)
+                    {
                         _item.Price.SizePriceFactor /= ExpectedCreatureSize.ItemCostFactor;
+                    }
+
                     var _strucBase = Math.Max(1d, _item.MaxStructurePoints.BaseDoubleValue / NaturalSize.ItemWeightFactor);
 
                     // adjust creature expectations
@@ -116,7 +119,10 @@ namespace Uzi.Ikosa
 
                     // factor in new cost factor of item...
                     if (!_item.Price.IsTradeGood)
+                    {
                         _item.Price.SizePriceFactor *= ExpectedCreatureSize.ItemCostFactor;
+                    }
+
                     _item.MaxStructurePoints.BaseDoubleValue = Math.Max(1d, _strucBase * NaturalSize.ItemWeightFactor);
 
                     DoPropertyChanged(@"ExpectedCreatureSize");

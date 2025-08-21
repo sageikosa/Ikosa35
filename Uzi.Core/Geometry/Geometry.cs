@@ -17,12 +17,16 @@ namespace Uzi.Core
             _Builder = builder;
             _Supplier = supplier;
             if (!snapshot)
+            {
                 _Supplier.AddChangeMonitor(this);
+            }
 
             // variants (but not under our control
             _Region = _Builder.BuildGeometry(supplier.LocationAimMode, supplier.Location);
             if (!snapshot)
+            {
                 _RCtrl = new ChangeController<IGeometricRegion>(this, _Region);
+            }
         }
         #endregion
 

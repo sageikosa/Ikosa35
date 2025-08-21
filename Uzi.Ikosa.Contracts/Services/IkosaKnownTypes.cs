@@ -10,7 +10,9 @@ namespace Uzi.Ikosa.Contracts
         private static IEnumerable<Type> KnownTypes(ICustomAttributeProvider provider)
         {
             foreach (var _type in IkosaServiceInfos.InfoTypes())
+            {
                 yield return _type;
+            }
 
             // deltables
             yield return typeof(AbilityInfo);

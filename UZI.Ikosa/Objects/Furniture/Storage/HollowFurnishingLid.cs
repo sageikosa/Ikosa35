@@ -62,8 +62,12 @@ namespace Uzi.Ikosa.Objects
 
                     // base actions: no independent grab when lidded
                     foreach (var _act in base.GetTacticalActions(budget))
+                    {
                         if (!(_act is GrabObject))
+                        {
                             yield return _act;
+                        }
+                    }
                 }
                 else
                 {
@@ -71,7 +75,9 @@ namespace Uzi.Ikosa.Objects
 
                     // base actions
                     foreach (var _act in base.GetTacticalActions(budget))
+                    {
                         yield return _act;
+                    }
                 }
             }
             yield break;
@@ -111,7 +117,9 @@ namespace Uzi.Ikosa.Objects
                     foreach (var _target in _cells.Skip(1))
                     {
                         if (_corners.SegmentIntersection(_source.GetPoint(), _target.GetPoint()).HasValue)
+                        {
                             return false;
+                        }
                     }
                     _cells.Remove(_source);
                 }
@@ -131,7 +139,9 @@ namespace Uzi.Ikosa.Objects
                 var _ext = Orientation.CoverageExtents;
                 if (moveTactical.TransitFaces
                     .Any(_f => !Orientation.IsFaceSnapped(_f, _ext)))
+                {
                     return 0;
+                }
 
                 var _bottom = Orientation.GravityFace;
                 switch (Orientation.Upright)
@@ -139,20 +149,29 @@ namespace Uzi.Ikosa.Objects
                     case Verticality.Upright:
                         // movement must be same as bottom face
                         if (moveTactical.TransitFaces.Any(_f => !_f.IsOppositeTo(_bottom)))
+                        {
                             return 0d;
+                        }
+
                         break;
 
                     case Verticality.Inverted:
                         // movement must be opposite to bottom face
                         if (moveTactical.TransitFaces.Any(_f => _f != _bottom))
+                        {
                             return 0d;
+                        }
+
                         break;
 
                     default:
                         // movement be opposite to appropriate heading-calculated face
                         var _surfFace = _bottom.FrontFace(Orientation.Heading * 2) ?? AnchorFace.XHigh;
                         if (moveTactical.TransitFaces.Any(_f => _f != _surfFace))
+                        {
                             return 0d;
+                        }
+
                         break;
                 }
                 return GetCoverage(moveTactical);
@@ -173,7 +192,10 @@ namespace Uzi.Ikosa.Objects
                 {
                     var _pts = GetDimensionalCorners(face);
                     if (_trans.Children.Any())
+                    {
                         _trans.Transform(_pts);
+                    }
+
                     _sides.Add(new PlanarPoints(_pts));
                 };
                 _addFace(AnchorFace.ZHigh);
@@ -184,7 +206,9 @@ namespace Uzi.Ikosa.Objects
                      let _i = _s.SegmentIntersection(_srcPt, _c).HasValue
                      where _i
                      select _i).Any())
+                {
                     return true;
+                }
             }
             return false;
         }

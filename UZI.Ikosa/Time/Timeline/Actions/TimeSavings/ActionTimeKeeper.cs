@@ -28,7 +28,9 @@ namespace Uzi.Ikosa.Time
         public void TrackTime(double timeVal, TimeValTransition direction)
         {
             if (direction == TimeValTransition.Entering)
+            {
                 _Rounds++;
+            }
         }
 
         // TODO: spend kept time for budget use...

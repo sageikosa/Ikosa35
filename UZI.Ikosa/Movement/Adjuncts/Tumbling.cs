@@ -45,7 +45,9 @@ namespace Uzi.Ikosa.Movement
             {
                 // remove all tumbles that are not this
                 foreach (var _tumble in Creature.Adjuncts.OfType<Tumbling>().Where(_c => this != _c).ToList())
+                {
                     _tumble.Eject();
+                }
             }
             base.OnActivate(source);
         }

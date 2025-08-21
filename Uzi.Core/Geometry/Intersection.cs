@@ -1,4 +1,4 @@
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using System;
 using System.Windows.Media.Media3D;
 using Uzi.Visualize;
@@ -84,7 +84,10 @@ namespace Uzi.Core
         {
             var _i = obj as Intersection;
             if (_i != null)
+            {
                 return Equals(_i);
+            }
+
             return false;
         }
 

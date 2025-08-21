@@ -48,7 +48,10 @@ namespace Uzi.Ikosa.Interactions
             // NOTE: Improved Evasion must link after this, and add an alteration to prevent multiply sourced improved evasion from
             //       further reducing damage
             if (existingHandler.GetType() == typeof(EnergyResistanceHandler))
+            {
                 return true;
+            }
+
             return false;
         }
         #endregion

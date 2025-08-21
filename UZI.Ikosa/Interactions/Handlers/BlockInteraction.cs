@@ -13,7 +13,9 @@ namespace Uzi.Ikosa.Interactions
         public void HandleInteraction(Interaction workSet)
         {
             if (workSet.InteractData is Interact)
+            {
                 workSet.Feedback.Add(new UnderstoodFeedback(this));
+            }
         }
 
         public IEnumerable<Type> GetInteractionTypes()

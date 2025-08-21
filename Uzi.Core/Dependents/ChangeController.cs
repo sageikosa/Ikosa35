@@ -1,4 +1,4 @@
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -30,20 +30,31 @@ namespace Uzi.Core
         public IEnumerable<IMonitorChange<ChangeType>> AllMonitors()
         {
             if (_Mons != null)
+            {
                 foreach (IMonitorChange<ChangeType> _monitor in _Mons.ToList())
+                {
                     yield return _monitor;
+                }
+            }
+
             if (_Ctrls != null)
+            {
                 foreach (ChangeController<ChangeType> _ctrl in _Ctrls.ToList())
+                {
                     foreach (IMonitorChange<ChangeType> _monitor in _ctrl.AllMonitors())
+                    {
                         yield return _monitor;
+                    }
+                }
+            }
+
             yield break;
         }
 
         /// <summary>Chain an existing change controller to this one</summary>
         public void AddChangeController(ChangeController<ChangeType> controller)
         {
-            if (_Ctrls == null)
-                _Ctrls = new List<ChangeController<ChangeType>>();
+            _Ctrls ??= [];
             _Ctrls.Add(controller);
         }
 
@@ -54,7 +65,9 @@ namespace Uzi.Core
             {
                 _Ctrls.Remove(controller);
                 if (_Ctrls.Count == 0)
+                {
                     _Ctrls = null;
+                }
             }
         }
 
@@ -64,8 +77,7 @@ namespace Uzi.Core
         #region public void AddChangeMonitor(IMonitorChange<ChangeType> monitor)
         public void AddChangeMonitor(IMonitorChange<ChangeType> monitor)
         {
-            if (_Mons == null)
-                _Mons = new List<IMonitorChange<ChangeType>>();
+            _Mons ??= [];
             if (!_Mons.Contains(monitor))
             {
                 _Mons.Add(monitor);
@@ -77,12 +89,16 @@ namespace Uzi.Core
         public void RemoveChangeMonitor(IMonitorChange<ChangeType> monitor)
         {
             if (_Mons != null)
+            {
                 if (_Mons.Contains(monitor))
                 {
                     _Mons.Remove(monitor);
                     if (_Mons.Count == 0)
+                    {
                         _Mons = null;
+                    }
                 }
+            }
         }
         #endregion
 

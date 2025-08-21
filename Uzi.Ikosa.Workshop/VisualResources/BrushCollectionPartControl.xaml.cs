@@ -183,7 +183,7 @@ namespace Uzi.Ikosa.Workshop
         #region private void btnAddStacked_Click(object sender, RoutedEventArgs e)
         private void btnAddStacked_Click(object sender, RoutedEventArgs e)
         {
-            var _dlg = new StackedBrush(Collection.BrushDefinitions, string.Empty, false, new BrushCollection())
+            var _dlg = new StackedBrush(Collection.BrushDefinitions, string.Empty, false, [])
             {
                 Owner = Window.GetWindow(this)
             };
@@ -316,7 +316,9 @@ namespace Uzi.Ikosa.Workshop
                 if ((Collection.IResolveBitmapImageParent is Model3DPart _mdl) && !(_mdl is MetaModel))
                 {
                     foreach (var _key in _mdl.VisualEffectMaterialKeys)
+                    {
                         _ctx.Items.Add(_key);
+                    }
                 }
             }
         }

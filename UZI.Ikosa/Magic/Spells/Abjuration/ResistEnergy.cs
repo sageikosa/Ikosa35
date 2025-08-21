@@ -141,9 +141,14 @@ namespace Uzi.Ikosa.Magic.Spells
                 // determine amount
                 var _amount = ((_spellEffect.MagicPowerActionSource.CasterLevel + 1) / 4) * 10;
                 if (_amount > 30)
+                {
                     _amount = 30;
+                }
+
                 if (_amount < 10)
+                {
                     _amount = 10;
+                }
 
                 // build delta
                 var _energy = ((_spellEffect.FirstTarget(@"Energy") as OptionTarget).Option) as OptionAimValue<EnergyType>;

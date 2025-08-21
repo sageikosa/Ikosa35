@@ -24,7 +24,10 @@ namespace Uzi.Ikosa.Objects
         {
             // tear down conveyor if last passenger leaves
             if ((member != Conveyor) && !Passengers.Any() && (Conveyor != null))
+            {
                 Conveyor.Eject();
+            }
+
             base.OnMemberRemoved(member);
         }
 

@@ -22,11 +22,15 @@ namespace Uzi.Ikosa.Tactical
         public override bool BlockedAt(PanelParams param, AnchorFace panelFace, MovementBase movement, List<AnchorFace> faces)
         {
             if (movement.CanMoveThrough(Material))
+            {
                 return false;
+            }
 
             // must have some connection to the panel face
             if (!faces.Contains(panelFace))
+            {
                 return false;
+            }
 
             if ((param.IsFaceDiagonalBinder(panelFace) || param.IsFaceBendableSource(panelFace)))
             {
@@ -52,13 +56,20 @@ namespace Uzi.Ikosa.Tactical
         public override HedralGrip HedralGripping(PanelParams param, AnchorFace panelFace, MovementBase movement, IEnumerable<BasePanel> transitPanels)
         {
             if (movement.CanMoveThrough(Material))
+            {
                 return new HedralGrip(false);
+            }
             else if (param.IsFaceDiagonalBinder(panelFace) || param.IsFaceBendableSource(panelFace))
+            {
                 // just like a normal panel
                 return new HedralGrip(true);
+            }
             else if (param.IsFaceDiagonalSide(panelFace) || param.IsFaceTriangularSink(panelFace))
+            {
                 // diagonal fill is in force, blocks half
                 return new HedralGrip();
+            }
+
             return new HedralGrip(false);
         }
 
@@ -85,9 +96,13 @@ namespace Uzi.Ikosa.Tactical
                 else
                 {
                     if (inverse)
+                    {
                         _shell.Add(PlaneListShellBuilder.GetTriangularPrism(_offset, param.SourceFace.ReverseFace(), param.SinkFace.ReverseFace()));
+                    }
                     else
+                    {
                         _shell.Add(PlaneListShellBuilder.GetTriangularPrism(_offset, param.SourceFace, param.SinkFace));
+                    }
                 }
             }
             else if (param.BendControls != AnchorFaceList.None)
@@ -129,12 +144,16 @@ namespace Uzi.Ikosa.Tactical
                     {
                         // take out material fill section
                         if (_mSegment.Value.Vector.LengthSquared < _segment.Value.Vector.LengthSquared)
+                        {
                             return _segment.Value.Vector.Length - _mSegment.Value.Vector.Length;
+                        }
                     }
                 }
                 else
+                {
                     // no negative segment
                     return _segment.Value.Vector.Length;
+                }
             }
 
             // no segment

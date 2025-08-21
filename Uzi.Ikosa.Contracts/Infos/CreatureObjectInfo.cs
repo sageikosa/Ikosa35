@@ -51,8 +51,12 @@ namespace Uzi.Ikosa.Contracts
             if (ItemSlots?.Any() ?? false)
             {
                 foreach (var _slot in ItemSlots)
+                {
                     if (_slot?.ItemInfo != null)
+                    {
                         _slot.ItemInfo.IconResolver = resolver;
+                    }
+                }
             }
         }
     }

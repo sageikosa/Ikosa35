@@ -37,13 +37,17 @@ namespace Uzi.Ikosa.Feats
                 {
                     var _atk = (args.NewValue as TargetUnawareAlteration).InteractData as AttackData;
                     if (!(_atk is RangedAttackData))
+                    {
                         args.DoAbort(@"Blind-Fight", this);
+                    }
                 }
                 else if ((args.NewValue as MaxDexterityToARAlteration)?.UnawarenessLoss ?? false)
                 {
                     var _atk = (args.NewValue as MaxDexterityToARAlteration).InteractData as AttackData;
                     if (!(_atk is RangedAttackData))
+                    {
                         args.DoAbort(@"Blind-Fight", this);
+                    }
                 }
             }
         }

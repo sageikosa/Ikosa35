@@ -61,7 +61,9 @@ namespace Uzi.Ikosa.Magic.Spells
         {
             if ((deliver.TargetingProcess.Targets[0].Target is Creature _critter) 
                 && typeof(HumanoidType).IsAssignableFrom(_critter.CreatureType.GetType()))
+            {
                 SpellDef.DeliverDurable(deliver, deliver.TargetingProcess.Targets[0], 0);
+            }
         }
 
         public void ApplySpell(PowerApplyStep<SpellSource> apply)
@@ -90,7 +92,9 @@ namespace Uzi.Ikosa.Magic.Spells
         public void Deactivate(IAdjunctTracker source, IAdjunctable target, int subMode, object deactivateSource)
         {
             if (source.ActiveAdjunctObject is ReduceEffect _enlarge)
+            {
                 target.RemoveAdjunct(_enlarge);
+            }
         }
 
         public bool IsDismissable(int subMode) { return true; }
@@ -134,7 +138,7 @@ namespace Uzi.Ikosa.Magic.Spells
             _Str = null;
             _Reach = null;
             _Dex = new Delta(2, typeof(Uzi.Ikosa.Deltas.Size));
-            _Adjustable = new Collection<Guid>();
+            _Adjustable = [];
         }
         #endregion
 
@@ -253,9 +257,14 @@ namespace Uzi.Ikosa.Magic.Spells
             // terminate size deltas
             _Dex.DoTerminate();
             if (_Str != null)
+            {
                 _Str.DoTerminate();
+            }
+
             if (_Reach != null)
+            {
                 _Reach.DoTerminate();
+            }
 
             // not adjusted...
             base.OnDeactivate(source);
@@ -282,7 +291,9 @@ namespace Uzi.Ikosa.Magic.Spells
 
                 // an adjustable object that leaves the object load is removed from the adjustable list
                 if (_Adjustable.Contains(args.NewValue.ID))
+                {
                     _Adjustable.Remove(args.NewValue.ID);
+                }
             }
         }
         #endregion

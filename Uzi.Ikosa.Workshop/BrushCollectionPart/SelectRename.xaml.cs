@@ -28,7 +28,10 @@ namespace Uzi.Ikosa.Workshop
         public string GetName()
         {
             if ((lstKeys != null) && (lstKeys.SelectedItem != null))
+            {
                 return lstKeys.SelectedItem.ToString();
+            }
+
             return txtCurrent.Text;
         }
 

@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Windows.Media.Imaging;
 using Uzi.Visualize.Packaging;
 
@@ -12,9 +10,13 @@ namespace Uzi.Visualize
         public ResourceBitmapImageResolver(IEnumerable<IResolveBitmapImage> resolvers)
         {
             if (resolvers != null)
+            {
                 _Resolvers = resolvers.ToList();
+            }
             else
-                _Resolvers = new List<IResolveBitmapImage>();
+            {
+                _Resolvers = [];
+            }
         }
 
         private List<IResolveBitmapImage> _Resolvers;
@@ -28,7 +30,9 @@ namespace Uzi.Visualize
             {
                 var _img = _resource.GetImage(key, effect);
                 if (_img != null)
+                {
                     return _img;
+                }
             }
             return null;
         }
@@ -39,7 +43,9 @@ namespace Uzi.Visualize
             {
                 var _getter = _resource.GetIGetImageByEffect(key);
                 if (_getter != null)
+                {
                     return _getter;
+                }
             }
             return null;
         }

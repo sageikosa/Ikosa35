@@ -130,6 +130,7 @@ namespace Uzi.Ikosa.Creatures.Types
         protected IEnumerable<Language> GenerateLanguageCopies(Creature source)
         {
             if (source != null)
+            {
                 foreach (var _lang in source.Languages)
                 {
                     if (_lang.Source is Species)
@@ -145,6 +146,8 @@ namespace Uzi.Ikosa.Creatures.Types
                         yield return _lang.GetCopy(Creature.Skills.Skill<LanguageSkill>());
                     }
                 }
+            }
+
             yield break;
         }
         #endregion
@@ -166,7 +169,9 @@ namespace Uzi.Ikosa.Creatures.Types
             var _critterType = GenerateCreatureType();
             _critterType.BindTo(Creature);
             foreach (var _sub in GenerateSubTypes())
+            {
                 Creature.SubTypes.Add(_sub);
+            }
 
             // body
             var _body = GenerateBody();
@@ -174,11 +179,15 @@ namespace Uzi.Ikosa.Creatures.Types
             {
                 // movements
                 foreach (var _move in GenerateMovements())
+                {
                     _body.Movements.Add(_move);
+                }
 
                 // features
                 foreach (var _feature in GenerateBodyFeatures())
+                {
                     _body.Features.Add(_feature);
+                }
 
                 // armor and finishing
                 _body.NaturalArmor.BaseValue = GenerateNaturalArmor();
@@ -205,11 +214,15 @@ namespace Uzi.Ikosa.Creatures.Types
 
             // languages
             foreach (var _lang in GenerateAutomaticLanguages())
+            {
                 Creature.Languages.Add(_lang);
+            }
 
             // senses
             foreach (var _sense in GenerateSenses())
+            {
                 Creature.Senses.Add(_sense);
+            }
 
             // skill boosts
             foreach (var _skillBoost in GenerateSkillDeltas())
@@ -261,15 +274,21 @@ namespace Uzi.Ikosa.Creatures.Types
             foreach (var _trait in (from _t in Creature.Traits
                                     where _t.Source == this
                                     select _t).ToList())
+            {
                 _trait.Eject();
+            }
 
             // senses
             foreach (var _sense in Creature.Senses.AllSenses.Where(_s => _s.Source == this).ToList())
+            {
                 Creature.Senses.Remove(_sense);
+            }
 
             // languages
             foreach (var _lang in Creature.Languages.Where(_l => _l.Source == this).ToList())
+            {
                 Creature.Languages.Remove(_lang);
+            }
 
             // remove abilities
             foreach (var _delta in (from _ability in Creature.Abilities.AllAbilities
@@ -296,7 +315,9 @@ namespace Uzi.Ikosa.Creatures.Types
 
             // subtypes
             foreach (var _sub in Creature.SubTypes.Where(_s => _s.Source == this).ToList())
+            {
                 Creature.SubTypes.Remove(_sub);
+            }
 
             // critter type
             Creature.CreatureType.UnbindFromCreature();

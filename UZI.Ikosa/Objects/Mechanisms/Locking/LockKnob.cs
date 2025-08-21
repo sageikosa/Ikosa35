@@ -120,9 +120,14 @@ namespace Uzi.Ikosa.Objects
 
                     // perform fastener behavior
                     if (_oldClosed && !value.IsClosed)
+                    {
                         OnOpen();
+                    }
+
                     if (!_oldClosed && value.IsClosed)
+                    {
                         OnClose();
+                    }
                 }
             }
         }

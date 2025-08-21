@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.ComponentModel;
@@ -20,7 +20,7 @@ namespace Uzi.Core
             : base()
         {
             _Anchor = owner;
-            _Adjuncts = new List<Adjunct>();
+            _Adjuncts = [];
         }
         #endregion
 
@@ -42,7 +42,9 @@ namespace Uzi.Core
                                      select e as IActionProvider)
             {
                 foreach (var _baseAct in _actProv.GetActions(budget))
+                {
                     yield return _baseAct;
+                }
             }
             yield break;
         }
@@ -97,20 +99,27 @@ namespace Uzi.Core
         public void EjectAll<T>() where T : Adjunct
         {
             foreach (var _a in this.OfType<T>().ToList())
+            {
                 _a.Eject();
+            }
         }
 
         public void EjectAll<T>(T except) where T : Adjunct
         {
             foreach (var _a in this.OfType<T>().Where(_t => _t != except).ToList())
+            {
                 _a.Eject();
+            }
         }
 
         #region IEnumerable<Adjunct> Members
         public IEnumerator<Adjunct> GetEnumerator()
         {
             foreach (Adjunct _adj in _Adjuncts)
+            {
                 yield return _adj;
+            }
+
             yield break;
         }
         #endregion
@@ -119,7 +128,10 @@ namespace Uzi.Core
         System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
         {
             foreach (Adjunct _adj in _Adjuncts)
+            {
                 yield return _adj;
+            }
+
             yield break;
         }
         #endregion

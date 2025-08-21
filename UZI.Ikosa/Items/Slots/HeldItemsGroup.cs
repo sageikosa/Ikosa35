@@ -16,7 +16,7 @@ namespace Uzi.Ikosa.Items
         /// <param name="creature"></param>
         internal HeldItemsGroup(Creature creature)
         {
-            _HeldItems = new Collection<HeldItem>();
+            _HeldItems = [];
             _MainItem = null;
             Creature = creature;
 
@@ -32,17 +32,25 @@ namespace Uzi.Ikosa.Items
                     {
                         // using a secondary slow, so see if its a double weapon
                         if (_sItem is DoubleMeleeWeaponBase)
+                        {
                             _HeldItems.Add(new HeldItem(_sItem, ((DoubleMeleeWeaponBase)_sItem).MainHeadIndex, _sItem.MainSlot.SubType, _sItem.SecondarySlot.SubType));
+                        }
                         else
+                        {
                             _HeldItems.Add(new HeldItem(_sItem, _sItem.MainSlot.SubType, _sItem.SecondarySlot.SubType));
+                        }
                     }
                     else
                     {
                         // not using a secondary slot, but still see if its a double weapon
                         if (_sItem is DoubleMeleeWeaponBase)
+                        {
                             _HeldItems.Add(new HeldItem(_sItem, ((DoubleMeleeWeaponBase)_sItem).MainHeadIndex, _sItem.MainSlot.SubType));
+                        }
                         else
+                        {
                             _HeldItems.Add(new HeldItem(_sItem, _sItem.MainSlot.SubType));
+                        }
                     }
                 }
             }
@@ -156,7 +164,9 @@ namespace Uzi.Ikosa.Items
                 foreach (HeldItem _held in _HeldItems)
                 {
                     if (!Creature.Possessions.Contains(_held.ItemID))
+                    {
                         return false;
+                    }
                 }
                 return true;
             }

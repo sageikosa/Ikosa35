@@ -152,7 +152,10 @@ namespace Uzi.Ikosa.Advancement
 
             // just in case stuff gets added later
             foreach (var _req in base.Requirements(level))
+            {
                 yield return _req;
+            }
+
             yield break;
         }
         #endregion
@@ -163,9 +166,13 @@ namespace Uzi.Ikosa.Advancement
             if ((level == 1) && IsFractional)
             {
                 if (IsSmallestFractional)
+                {
                     yield return new Feature($@"Fractional: {SmallestFraction}", @"Counts as partial power die, and has fewer health points");
+                }
                 else
+                {
                     yield return new Feature($@"Fractional: {OptionalFraction}", @"Counts as partial power die, and has fewer health points");
+                }
             }
 
             if ((level == 1) && _FlexAspect)
@@ -177,7 +184,10 @@ namespace Uzi.Ikosa.Advancement
 
             // just in case base has some stuff
             foreach (var _feature in base.Features(level))
+            {
                 yield return _feature;
+            }
+
             yield break;
         }
         #endregion
@@ -186,7 +196,10 @@ namespace Uzi.Ikosa.Advancement
         private IEnumerable<IAdvancementOption> FractionalSupplier(IResolveRequirement target, RequirementKey key)
         {
             if (SmallestFraction < OptionalFraction)
+            {
                 yield return new AdvancementParameter<byte>(target, @"Smallest", @"Smallest Power Die", 2);
+            }
+
             yield return new AdvancementParameter<byte>(target, @"Fractional", @"Partial Power Die", 1);
             yield return new AdvancementParameter<byte>(target, @"Complete", @"Full Power Die", 0);
             yield break;
@@ -346,7 +359,9 @@ namespace Uzi.Ikosa.Advancement
         {
             // shut down optional fraction on first power die
             if (IsFractional)
+            {
                 Creature.AdvancementLog[this, CurrentLevel].PowerDie.IsFractional = false;
+            }
 
             _ValueCtrl.DoPreValueChanged(CurrentLevel + 1);
             base.OnIncreaseLevel();

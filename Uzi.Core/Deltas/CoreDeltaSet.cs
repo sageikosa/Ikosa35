@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Linq;
 using System.Collections.Generic;
 using System.Collections;
@@ -15,7 +15,7 @@ namespace Uzi.Core
         {
             _TCtrl = new TerminateController(this);
             _CCtrl = new ChangeController<DeltaValue>(this, new DeltaValue(0));
-            _Mods = new List<IDelta>();
+            _Mods = [];
             _Src = source;
             _Isolate = isolate;
         }
@@ -48,7 +48,9 @@ namespace Uzi.Core
             {
                 IDelta _item = _Mods[_ix];
                 if (_item.Value >= val)
+                {
                     return _ix;
+                }
             }
             return -1;
         }

@@ -104,18 +104,24 @@ namespace Uzi.Ikosa.Workshop
                 if (_armor.IsEnhanced())
                 {
                     if (cboEnhancement.SelectedIndex != _armor.ListedEnhancement + 1)
+                    {
                         cboEnhancement.SelectedIndex = _armor.ListedEnhancement + 1;
+                    }
                 }
                 else
                 {
                     if (cboEnhancement.SelectedIndex != 1)
+                    {
                         cboEnhancement.SelectedIndex = 1;
+                    }
                 }
             }
             else
             {
                 if (cboEnhancement.SelectedIndex != 0)
+                {
                     cboEnhancement.SelectedIndex = 0;
+                }
             }
             ArmorVM?.DoAugmentationsChanged();
         }
@@ -146,7 +152,9 @@ namespace Uzi.Ikosa.Workshop
                     {
                         var _mw = Armor.Adjuncts.Where(_a => _a is Masterwork).ToList();
                         foreach (var _i in _mw)
+                        {
                             Armor.RemoveAdjunct(_i);
+                        }
                     }
                     RefreshEnhance(Armor);
                 }
@@ -184,7 +192,9 @@ namespace Uzi.Ikosa.Workshop
 
                             // remove all old ones
                             foreach (var _a in _exist)
+                            {
                                 Armor.RemoveAdjunct(_a);
+                            }
                         }
                     }
                     else
@@ -206,7 +216,10 @@ namespace Uzi.Ikosa.Workshop
 
             // remove
             foreach (var _a in _list)
+            {
                 Armor.RemoveAdjunct(_a);
+            }
+
             ArmorVM?.DoAugmentationsChanged();
         }
 
@@ -222,7 +235,9 @@ namespace Uzi.Ikosa.Workshop
                     .Any(_a => (_a.Augmentation.GetType().Equals(_aType))))
                 {
                     if (_augment.CanAnchor(Armor))
+                    {
                         e.CanExecute = true;
+                    }
                 }
             }
             e.Handled = true;
@@ -245,7 +260,9 @@ namespace Uzi.Ikosa.Workshop
             {
                 var _adjunct = lstAdjuncts.SelectedItem as Adjunct;
                 if (_adjunct.CanUnAnchor())
+                {
                     e.CanExecute = true;
+                }
             }
             e.Handled = true;
         }

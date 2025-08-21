@@ -24,7 +24,9 @@ namespace Uzi.Ikosa.Services
             }
 
             if (!evaluationContext.Properties.TryGetValue(@"Identities", out var _idProperty))
+            {
                 return false;
+            }
 
             // ensure we have at least one IIdentity
             if ((_idProperty is IList<IIdentity> _identities)
@@ -37,7 +39,9 @@ namespace Uzi.Ikosa.Services
                 return true;
             }
             else
+            {
                 return false;
+            }
         }
 
         public ClaimSet Issuer { get { return ClaimSet.System; } }

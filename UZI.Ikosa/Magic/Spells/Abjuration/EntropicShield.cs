@@ -109,7 +109,10 @@ namespace Uzi.Ikosa.Magic.Spells
         {
             // put just before the attack handler (so it is processes feedback before the transit attack handler)
             if (typeof(CreatureAttackHandler) == existingHandler.GetType())
+            {
                 return true;
+            }
+
             return false;
         }
         #endregion
@@ -120,7 +123,9 @@ namespace Uzi.Ikosa.Magic.Spells
             // if we didn't hit, there's no need to check miss chance
             var _feedback = workSet.Feedback.OfType<AttackFeedback>().FirstOrDefault();
             if (!(_feedback?.Hit ?? false))
+            {
                 return;
+            }
 
             // roll miss chance
             var _score = DieRoller.RollDie(workSet.Target.ID, 100, DisplayName, @"Miss Chance");

@@ -42,7 +42,9 @@ namespace Uzi.Ikosa.Workshop
                 {
                     cboOpenable.Items.Add(_open);
                     if (_open.CoreObject == OpenerCloser.Openable)
+                    {
                         cboOpenable.SelectedItem = _open;
+                    }
                 }
             }
             base.OnPropertyChanged(e);
@@ -126,7 +128,9 @@ namespace Uzi.Ikosa.Workshop
         private void cboOpenable_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if ((cboOpenable.SelectedItem != null) && (OpenerCloser?.Openable != ((PositionedObject)(cboOpenable.SelectedItem)).CoreObject))
+            {
                 OpenerCloser.Openable = ((PositionedObject)(cboOpenable.SelectedItem)).CoreObject as IOpenable;
+            }
         }
     }
 }

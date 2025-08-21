@@ -79,9 +79,14 @@ namespace Uzi.Ikosa.Fidelity
                     // compute offset
                     var _maxOffSet = Convert.ToInt32(Math.Floor((_checkVal - 10d) / 3d));
                     if (_maxOffSet < -4)
+                    {
                         _maxOffSet = -4;
+                    }
+
                     if (_maxOffSet > 4)
+                    {
                         _maxOffSet = 4;
+                    }
 
                     // compute and store final max
                     var _finalMax = _infLevel + _maxOffSet;
@@ -168,7 +173,10 @@ namespace Uzi.Ikosa.Fidelity
         public IEnumerable<Locator> ProcessOrder(BurstCapture burst, IEnumerable<Locator> selection)
         {
             if (burst is PowerBurstCapture<SuperNaturalPowerActionSource> _burst)
+            {
                 return BurstCapture.OrderClosest(selection, burst.Origin.GetPoint3D());
+            }
+
             return selection;
         }
         #endregion
@@ -194,7 +202,9 @@ namespace Uzi.Ikosa.Fidelity
                 {
                     // add check values to magic effects (for Activation)
                     foreach (var _durable in _transit.MagicPowerEffects.OfType<DurableMagicEffect>())
+                    {
                         _durable.AllTargets.Add(_checkRoll);
+                    }
                 }
                 else
                 {

@@ -12,7 +12,7 @@ namespace Uzi.Ikosa
     {
         public FoundSet()
         {
-            _Guids = new Dictionary<Guid, Guid>();
+            _Guids = [];
         }
 
         /// <summary>Reset FoundSet</summary>
@@ -48,7 +48,10 @@ namespace Uzi.Ikosa
         public IEnumerator<Guid> GetEnumerator()
         {
             foreach (Guid _g in _Guids.Select(s => s.Key))
+            {
                 yield return _g;
+            }
+
             yield break;
         }
         #endregion
@@ -57,7 +60,10 @@ namespace Uzi.Ikosa
         System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
         {
             foreach (Guid _g in _Guids.Select(s => s.Key))
+            {
                 yield return _g;
+            }
+
             yield break;
         }
         #endregion

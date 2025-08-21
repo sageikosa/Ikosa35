@@ -16,10 +16,13 @@ namespace Uzi.Ikosa.Descriptions
         {
             CoreObject _core = coreObject as CoreObject;
             if (_core != null)
+            {
                 foreach (Adjunct _adj in _core.Adjuncts.Where(_a => _a is IDecipherable))
                 {
                     yield return _adj as IDecipherable;
                 }
+            }
+
             yield break;
         }
         #endregion

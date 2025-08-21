@@ -30,8 +30,8 @@ namespace Uzi.Ikosa.Tactical
             _SetType = setType;
             _LocPlanes = locPlanes;
 
-            _Concealers = new List<ITacticalInquiry>();
-            _TotalConcealers = new List<ITacticalInquiry>();
+            _Concealers = [];
+            _TotalConcealers = [];
 
             _DetectBlocked = -1;
         }
@@ -71,7 +71,9 @@ namespace Uzi.Ikosa.Tactical
         public CoverLevel SuppliesCover()
         {
             if (!IsLineOfEffect)
+            {
                 return CoverLevel.Hard;
+            }
 
             var _maxLevel = CoverLevel.None;
 
@@ -84,19 +86,27 @@ namespace Uzi.Ikosa.Tactical
                 {
                     // ... supplying cover
                     if ((_tactical != null) && !_Exclusions.Contains(_tactical))
+                    {
                         switch (_tactical.SuppliesCover(in _tInfo))
                         {
                             case CoverLevel.Improved:
                                 return CoverLevel.Improved;
                             case CoverLevel.Hard:
                                 if (_maxLevel < CoverLevel.Hard)
+                                {
                                     _maxLevel = CoverLevel.Hard;
+                                }
+
                                 break;
                             case CoverLevel.Soft:
                                 if (_maxLevel < CoverLevel.Soft)
+                                {
                                     _maxLevel = CoverLevel.Soft;
+                                }
+
                                 break;
                         }
+                    }
                 }
             }
 
@@ -109,7 +119,10 @@ namespace Uzi.Ikosa.Tactical
         public CoverConcealmentResult SuppliesConcealment()
         {
             if (!IsLineOfEffect)
+            {
                 return CoverConcealmentResult.None;
+            }
+
             if (_TotalConcealers.Except(_Exclusions).Any())
             {
                 return CoverConcealmentResult.Total;
@@ -233,13 +246,12 @@ namespace Uzi.Ikosa.Tactical
                     #region Observation Line
                     // if the line ceases to be an effect line, concealment is irrelevant
                     if (!IsLineOfEffect)
+                    {
                         return;
+                    }
 
                     // look for objects and geom-effects that block the path
-                    if (_tacticals == null)
-                    {
-                        _tacticals = _tacticalQuery.ToList();
-                    }
+                    _tacticals ??= _tacticalQuery.ToList();
                     if (_tacticals.Count > 0)
                     {
                         var _tInfo = TacticalCell(in cellRef);
@@ -274,10 +286,7 @@ namespace Uzi.Ikosa.Tactical
                         else
                         {
                             // look for objects and geom-effects that block the path
-                            if (_tacticals == null)
-                            {
-                                _tacticals = _tacticalQuery.ToList();
-                            }
+                            _tacticals ??= _tacticalQuery.ToList();
                             if (_tacticals.Count > 0)
                             {
                                 var _tInfo = TacticalCell(in cellRef);

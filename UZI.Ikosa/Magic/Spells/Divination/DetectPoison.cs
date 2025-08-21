@@ -109,9 +109,14 @@ namespace Uzi.Ikosa.Magic.Spells
                                         select _eff)
                 {
                     if (_effect is Poisoned)
+                    {
                         _poison = (_effect as Poisoned).Poison;
+                    }
                     else
+                    {
                         _poison = (_effect as Poisonous).Poison;
+                    }
+
                     AddCheck(_critter, _descriptions, _poison, _wisCheck, _alcCheck);
                 }
 
@@ -134,9 +139,14 @@ namespace Uzi.Ikosa.Magic.Spells
                                             select _eff)
                     {
                         if (_effect is Poisoned)
+                        {
                             _poison = (_effect as Poisoned).Poison;
+                        }
                         else
+                        {
                             _poison = (_effect as Poisonous).Poison;
+                        }
+
                         AddCheck(_critter, _descriptions, _poison, _wisCheck, _alcCheck);
                     }
                 }
@@ -198,7 +208,10 @@ namespace Uzi.Ikosa.Magic.Spells
             {
                 var _check = apply.TargetingProcess.GetFirstTarget<ValueTarget<int>>(key);
                 if (_check != null)
+                {
                     return _check.Value;
+                }
+
                 return 10;
             }
             var _wisCheck = _checkVal(@"Wisdom");

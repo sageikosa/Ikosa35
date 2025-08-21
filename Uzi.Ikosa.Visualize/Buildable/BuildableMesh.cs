@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Windows.Media.Media3D;
 using System.Windows;
 
@@ -12,10 +10,10 @@ namespace Uzi.Visualize
         public BuildableMesh(BuildableMaterial material)
         {
             _Material = material;
-            _Buckets = new List<BuildableMeshBucket>
-            {
+            _Buckets =
+            [
                 new BuildableMeshBucket()
-            };
+            ];
         }
 
         #region private data
@@ -74,7 +72,9 @@ namespace Uzi.Visualize
         public void AddRectangularMesh(Rect rect, Vector textureSize, bool anchorTexture, AnchorFace face, bool forInner, params Vector3D[] bump)
         {
             if ((textureSize.X == 0) || (textureSize.Y == 0))
+            {
                 return;
+            }
 
             var _current = GetBucket();
             _current.AddRectangularMesh(rect, textureSize, anchorTexture, face, forInner, bump);

@@ -1,13 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows;
 using System.Collections.ObjectModel;
-using System.IO.Packaging;
-using Uzi.Visualize.Packages;
 
 namespace Uzi.Visualize
 {
@@ -17,36 +12,13 @@ namespace Uzi.Visualize
     public class IkosaImageSource : BitmapSource
     {
         [ThreadStatic]
-        private static Collection<IResolveBitmapImage> _Resolvers = new();
-
-        [ThreadStatic]
-        private static Collection<IPartResolveImage> _PartResolvers = new();
-
-        public static Collection<IPartResolveImage> PartResolvers
-        {
-            get
-            {
-                if (_PartResolvers == null)
-                    _PartResolvers = new Collection<IPartResolveImage>();
-                return _PartResolvers;
-            }
-        }
-
-        public static void PushResolver(IPartResolveImage resolver)
-        {
-            if ((resolver != null) && (!PartResolvers.Contains(resolver)))
-                PartResolvers.Insert(0, resolver);
-        }
-
-        public static void PullResolver(IPartResolveImage resolver)
-            => _ = PartResolvers.Remove(resolver);
+        private static Collection<IResolveBitmapImage> _Resolvers = [];
 
         public static Collection<IResolveBitmapImage> Resolvers
         {
             get
             {
-                if (_Resolvers == null)
-                    _Resolvers = new Collection<IResolveBitmapImage>();
+                _Resolvers ??= [];
                 return _Resolvers;
             }
         }
@@ -54,7 +26,9 @@ namespace Uzi.Visualize
         public static void PushResolver(IResolveBitmapImage resolver)
         {
             if ((resolver != null) && (!Resolvers.Contains(resolver)))
+            {
                 Resolvers.Insert(0, resolver);
+            }
         }
 
         public static void PullResolver(IResolveBitmapImage resolver)
@@ -94,32 +68,8 @@ namespace Uzi.Visualize
                     };
                 }
 
-                if (_Image == null)
-                {
-                    var _pTrack = new Collection<IPartResolveImage>();
-                    foreach (var _res in PartResolvers)
-                    {
-                        var _rez = _res;
-                        while ((_rez != null) && !_pTrack.Contains(_rez))
-                        {
-                            // prevent re-entrant fallback
-                            _pTrack.Add(_rez);
-                            var _img = _rez.GetImage(_ImageKey, VisualEffect.Normal);
-                            if (_img != null)
-                            {
-                                _Image = _img;
-                                break;
-                            }
-                            _rez = _rez.IPartResolveImageParent;
-                        };
-                    }
-                }
-
                 // ensure something
-                if (_Image == null)
-                {
-                    _Image = new BitmapImage(new Uri(@"pack://application:,,,/Uzi.Visualize;component/Images/NoImage.png"));
-                }
+                _Image ??= new BitmapImage(new Uri(@"pack://application:,,,/Uzi.Visualize;component/Images/NoImage.png"));
             }
         }
         #endregion

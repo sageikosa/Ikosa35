@@ -43,7 +43,9 @@ namespace Uzi.Ikosa.Actions
                 // creature natural reach (at least 0)
                 _critterReach = _critter.Body.ReachSquares.EffectiveValue;
                 if (_critterReach < 0)
+                {
                     _critterReach = 0;
+                }
             }
             var _maxReach = _critterReach;
 
@@ -55,13 +57,19 @@ namespace Uzi.Ikosa.Actions
 
                 // reach weapons usually cannot target within natural reach (unless target adjacent)
                 if (!_reach.TargetAdjacent)
+                {
                     _minReach = _critterReach + 1;
+                }
 
                 // new max reach (reach weapon at least 1, otherwise add max reach again, then extra reach)
                 if (_maxReach == 0)
+                {
                     _maxReach = 1; // NOTE: extra reach does not apply if natural reach is 0
+                }
                 else
+                {
                     _maxReach += _maxReach + _reach.ExtraReach;
+                }
             }
             _info.MaximumReach = _maxReach;
             _info.MinimumReach = _minReach;

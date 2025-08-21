@@ -87,7 +87,10 @@ namespace Uzi.Ikosa.Workshop
         public static uint ParamData(ContentControl ccParams)
         {
             if (ccParams.Content is IParamControl)
+            {
                 return ((IParamControl)ccParams.Content).ParamData;
+            }
+
             return 0;
         }
     }

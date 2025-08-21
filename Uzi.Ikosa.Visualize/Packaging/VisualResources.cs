@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using Uzi.Packaging;
 using System.IO.Packaging;
 using System.Windows.Media.Imaging;
@@ -11,7 +10,6 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Runtime.Serialization;
 using System.Windows.Media;
 using Uzi.Visualize.Contracts.Tactical;
-using System.IO.Compression;
 
 namespace Uzi.Visualize.Packaging
 {
@@ -241,15 +239,25 @@ namespace Uzi.Visualize.Packaging
         public bool CanUseName(string name, Type partType)
         {
             if (typeof(BitmapImagePart).IsAssignableFrom(partType))
+            {
                 return _Images.CanUseName(name, partType);
+            }
             else if (typeof(IconPart).IsAssignableFrom(partType))
+            {
                 return _Icons.CanUseName(name, partType);
+            }
             else if (typeof(BrushCollectionPart).IsAssignableFrom(partType))
+            {
                 return _Brushes.CanUseName(name, partType);
+            }
             else if (typeof(MetaModelFragment).IsAssignableFrom(partType))
+            {
                 return _Fragments.CanUseName(name, partType);
+            }
             else if (typeof(Model3DPart).IsAssignableFrom(partType))
+            {
                 return _Models.CanUseName(name, partType);
+            }
 
             // unknown type
             return false;

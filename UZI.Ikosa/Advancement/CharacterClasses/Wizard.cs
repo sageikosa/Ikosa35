@@ -521,7 +521,10 @@ namespace Uzi.Ikosa.Advancement.CharacterClasses
         {
             var _feat = BonusFeat(level);
             if (Requirements(level).Any(_req => !_req.IsSet))
+            {
                 return false;
+            }
+
             return base.CanLockLevel(level);
         }
         #endregion
@@ -570,7 +573,9 @@ namespace Uzi.Ikosa.Advancement.CharacterClasses
                                    where (_k.LearnedLevel == level) && (_k.LearnedIndex >= 0)
                                    orderby _k.LearnedIndex
                                    select _k)
+            {
                 yield return _known;
+            }
 
             yield break;
         }
@@ -731,7 +736,9 @@ namespace Uzi.Ikosa.Advancement.CharacterClasses
                         _feat.UnbindFromCreature();
                     }
                     else
+                    {
                         return false;
+                    }
                 }
 
                 if (bonusFeat.CanAdd(Creature))
@@ -746,7 +753,9 @@ namespace Uzi.Ikosa.Advancement.CharacterClasses
                 }
             }
             else
+            {
                 return false;
+            }
         }
         #endregion
 
@@ -800,7 +809,9 @@ namespace Uzi.Ikosa.Advancement.CharacterClasses
             {
                 var _feat = BonusFeat(CurrentLevel + 1);
                 if (_feat != null)
+                {
                     _feat.UnbindFromCreature();
+                }
             }
             foreach (var _known in KnownSpells.LearnedAtPowerLevel(CurrentLevel + 1).ToList())
             {
@@ -894,21 +905,45 @@ namespace Uzi.Ikosa.Advancement.CharacterClasses
                 => ProhibitedStyles.Any(_ps => _t.IsAssignableFrom(_ps.GetType()));
 
             if (!(_Specialization is Evocation) && !_exist(typeof(Evocation)))
+            {
                 yield return new AdvancementParameter<MagicStyle>(target, @"Evocation", @"Evocation", new Evocation());
+            }
+
             if (!(_Specialization is Conjuration) && !_exist(typeof(Conjuration)))
+            {
                 yield return new AdvancementParameter<MagicStyle>(target, @"Conjuration", @"Conjuration", new Conjuration(Conjuration.SubConjure.Summoning));
+            }
+
             if (!(_Specialization is Enchantment) && !_exist(typeof(Enchantment)))
+            {
                 yield return new AdvancementParameter<MagicStyle>(target, @"Enchantment", @"Enchantment", new Enchantment(Enchantment.SubEnchantment.Charm));
+            }
+
             if (!(_Specialization is Illusion) && !_exist(typeof(Illusion)))
+            {
                 yield return new AdvancementParameter<MagicStyle>(target, @"Illusion", @"Illusion", new Illusion(Illusion.SubIllusion.Figment));
+            }
+
             if (!(_Specialization is Necromancy) && !_exist(typeof(Necromancy)))
+            {
                 yield return new AdvancementParameter<MagicStyle>(target, @"Necromancy", @"Necromancy", new Necromancy());
+            }
+
             if (!(_Specialization is Divination) && !_exist(typeof(Divination)))
+            {
                 yield return new AdvancementParameter<MagicStyle>(target, @"Divination", @"Divination", new Divination(Divination.SubDivination.Lore));
+            }
+
             if (!(_Specialization is Transformation) && !_exist(typeof(Transformation)))
+            {
                 yield return new AdvancementParameter<MagicStyle>(target, @"Transformation", @"Transformation", new Transformation());
+            }
+
             if (!(_Specialization is Abjuration) && !_exist(typeof(Abjuration)))
+            {
                 yield return new AdvancementParameter<MagicStyle>(target, @"Abjuration", @"Abjuration", new Abjuration());
+            }
+
             yield break;
         }
         #endregion
@@ -923,11 +958,17 @@ namespace Uzi.Ikosa.Advancement.CharacterClasses
             {
                 case 1:
                     if (_Prohibition.ContainsKey(2) && _Prohibition[2].GetType().Equals(_msOption.ParameterValue.GetType()))
+                    {
                         return false;
+                    }
+
                     break;
                 case 2:
                     if (_Prohibition.ContainsKey(1) && _Prohibition[1].GetType().Equals(_msOption.ParameterValue.GetType()))
+                    {
                         return false;
+                    }
+
                     break;
             }
             _Prohibition[_index] = _msOption.ParameterValue;
@@ -1009,12 +1050,9 @@ namespace Uzi.Ikosa.Advancement.CharacterClasses
                          where _bk.Possessor.Equals(Creature)
                          && _bk.CanHoldSpell(_classSpell.Level)
                          select _bk).FirstOrDefault();
-            if (_book == null)
-            {
-                _book = (from _bk in Creature.Possessions.OfType<SpellBook>()
+            _book ??= (from _bk in Creature.Possessions.OfType<SpellBook>()
                          where _bk.CanHoldSpell(_classSpell.Level)
                          select _bk).FirstOrDefault();
-            }
             if (_book != null)
             {
                 _book.Add(new BookSpell(_classSpell.Level, _classSpell.SpellDef, OwnerID));
@@ -1111,7 +1149,9 @@ namespace Uzi.Ikosa.Advancement.CharacterClasses
         {
             // influence spells do not get bonus slots, so just the levels
             if ((setIndex > 0) && (Specialization != null))
+            {
                 return BaseSpellsPerDayAtLevel(setIndex, level);
+            }
 
             // regular spells
             return base.SpellsPerDayAtLevel(setIndex, level);

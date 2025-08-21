@@ -19,7 +19,10 @@ namespace Uzi.Ikosa.Magic.Spells
         protected override DetectUndeadEffect NewEffect(MagicPowerEffect source, IAdjunctable target)
         {
             foreach (var _range in source.CapabilityRoot.GetCapability<IRegionCapable>().Dimensions(null, source.CasterLevel))
+            {
                 return new DetectUndeadEffect(source.MagicPowerActionSource, _range);
+            }
+
             return new DetectUndeadEffect(source.MagicPowerActionSource, 60);
         }
 
@@ -48,21 +51,30 @@ namespace Uzi.Ikosa.Magic.Spells
         protected override IEnumerable<ActionBase> PrimeActions(LocalActionBudget budget)
         {
             if (budget.CanPerformRegular)
+            {
                 yield return new DetectPresenceAction<DetectUndeadEffect>(@"Detect.Undead.1", @"Detect Undead Presence", this, @"101");
+            }
+
             yield break;
         }
 
         protected override IEnumerable<ActionBase> SecondActions(LocalActionBudget budget)
         {
             if (budget.CanPerformRegular)
+            {
                 yield return new DetectNumberAuraAction<DetectUndeadEffect>(@"Detect.Undead.2", @"Detect Number of Undead Auras", this, @"102");
+            }
+
             yield break;
         }
 
         protected override IEnumerable<ActionBase> ThirdActions(LocalActionBudget budget)
         {
             if (budget.CanPerformRegular)
+            {
                 yield return new DetectDivinationAction<DetectUndeadEffect>(@"Detect.Undead.3", @"Detect Location and Strength of Undead Auras", this, @"103");
+            }
+
             yield break;
         }
         #endregion
@@ -121,7 +133,9 @@ namespace Uzi.Ikosa.Magic.Spells
 
                         // far enough
                         if (_aura.Strength == AuraStrength.Overwhelming)
+                        {
                             return _aura;
+                        }
                     }
                 }
             }

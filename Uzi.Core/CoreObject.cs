@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
@@ -20,7 +20,7 @@ namespace Uzi.Core
             Name = name;
             _Adjuncts = new AdjunctSet(this);
             _PhysCtrl = new ChangeController<Physical>(this, new Physical(Physical.PhysicalType.Weight, 0d));
-            _InteractionHandlers = new Dictionary<Type, LinkedList<IInteractHandler>>();
+            _InteractionHandlers = [];
             InitInteractionHandlers();
         }
         #endregion
@@ -53,8 +53,7 @@ namespace Uzi.Core
         public IEnumerable<ICoreObject> AllConnected(HashSet<Guid> listed)
         {
             // this is for recursive loop detection, since no hierarchical integrity is enforced
-            if (listed == null)
-                listed = new HashSet<Guid>();
+            listed ??= [];
 
             // all direct objects
             foreach (var _obj in Connected)
@@ -83,8 +82,7 @@ namespace Uzi.Core
         public IEnumerable<ICoreObject> AllAccessible(HashSet<Guid> listed, ICoreObject principal)
         {
             // this is for recursive loop detection, since no hierarchical integrity is enforced
-            if (listed == null)
-                listed = new HashSet<Guid>();
+            listed ??= [];
 
             // all direct objects
             foreach (var _obj in Accessible(principal))
@@ -111,13 +109,18 @@ namespace Uzi.Core
         {
             // all effects on object
             foreach (var _effect in Adjuncts.OfType<EffectType>())
+            {
                 yield return _effect;
+            }
 
             // all effects on connected objects
             foreach (var _effect in from _o in AllConnected(null)
                                     from _et in _o.GetAllConnectedAdjuncts<EffectType>()
                                     select _et)
+            {
                 yield return _effect;
+            }
+
             yield break;
         }
         #endregion
@@ -132,7 +135,10 @@ namespace Uzi.Core
             HandleInteraction(_add);
             var _boolBack = _add.Feedback.OfType<ValueFeedback<bool>>().FirstOrDefault();
             if (_boolBack != null)
+            {
                 return _boolBack.Value;
+            }
+
             return false;
         }
 
@@ -141,7 +147,9 @@ namespace Uzi.Core
         {
             // if adjunct is protected, quit
             if (adjunct.IsProtected)
+            {
                 return false;
+            }
 
             var _rmv = new RemoveAdjunctData(null, adjunct);
             var _interact = new Interaction(null, adjunct.Source, this, _rmv, true);
@@ -238,7 +246,9 @@ namespace Uzi.Core
                     {
                         // if collection is empty, mark for deletion
                         if (_list.Count == 0)
+                        {
                             _toRemove.Add(_type);
+                        }
                     }
                 }
             }
@@ -267,11 +277,15 @@ namespace Uzi.Core
         protected bool DoHandleInteraction(Interaction interact, IInteractHandler handler, Stack<IProcessFeedback> postHandlers)
         {
             if (handler == null)
+            {
                 return false;
+            }
 
             // see if the handler will do post-processing
             if (handler is IProcessFeedback _feedHandler)
+            {
                 postHandlers.Push(_feedHandler);
+            }
 
             handler.HandleInteraction(interact);
 
@@ -302,7 +316,9 @@ namespace Uzi.Core
                 foreach (var _handler in _chain)
                 {
                     if (DoHandleInteraction(interact, _handler, _postHandlers))
+                    {
                         return;
+                    }
                 }
             }
 
@@ -316,13 +332,17 @@ namespace Uzi.Core
                     foreach (var _handler in _chain)
                     {
                         if (DoHandleInteraction(interact, _handler, _postHandlers))
+                        {
                             return;
+                        }
                     }
                 }
             }
 
             if (DoHandleInteraction(interact, PostChainHandler(interact), _postHandlers))
+            {
                 return;
+            }
 
             // interaction default handlers
             if (!interact.Feedback.Any())
@@ -330,7 +350,9 @@ namespace Uzi.Core
                 foreach (var _h in interact.DefaultHandlers)
                 {
                     if (DoHandleInteraction(interact, _h, _postHandlers))
+                    {
                         return;
+                    }
                 }
             }
 
@@ -452,7 +474,9 @@ namespace Uzi.Core
             {
                 // provide any overrides
                 foreach (var _iKey in IconKeyAdjunct.GetIconKeys(this))
+                {
                     yield return _iKey;
+                }
 
                 // ... and then the class key
                 yield return ClassIconKey;
@@ -481,7 +505,10 @@ namespace Uzi.Core
             get
             {
                 if (_IScale == 0)
+                {
                     _IScale = 1;
+                }
+
                 return _IScale;
             }
             set

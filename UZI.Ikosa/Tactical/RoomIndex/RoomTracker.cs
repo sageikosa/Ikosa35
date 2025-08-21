@@ -21,9 +21,11 @@ namespace Uzi.Ikosa.Tactical
 
         public void Rebuild()
         {
-            _Tracker = new Dictionary<RoomTrackerKey, Dictionary<Guid, Room>>();
+            _Tracker = [];
             foreach (var _room in _Map.Rooms)
+            {
                 Add(_room);
+            }
         }
 
         public void ReIndex(Room room)
@@ -58,7 +60,9 @@ namespace Uzi.Ikosa.Tactical
                 {
                     _rooms.Remove(room.ID);
                     if (!_rooms.Any())
+                    {
                         _Tracker.Remove(_key);
+                    }
                 }
             }
         }

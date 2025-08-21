@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using Uzi.Core;
 using Uzi.Ikosa.Items;
@@ -36,7 +36,9 @@ namespace Uzi.Ikosa.Feats
             {
                 var _item = _slot.SlottedItem;
                 if (_item != null)
+                {
                     _item.ClearSlots();
+                }
             }
         }
 

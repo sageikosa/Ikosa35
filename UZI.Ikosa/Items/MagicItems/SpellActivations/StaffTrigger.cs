@@ -80,7 +80,9 @@ namespace Uzi.Ikosa.Items
 
                     // adjust caster level
                     if (_self.ClassPowerLevel.QualifiedValue(_iAct) > _useLevel.QualifiedValue(_iAct))
+                    {
                         _useLevel = _self.ClassPowerLevel;
+                    }
 
                     // get caster difficulty (this should drag spell focus along with it...)
                     _difficulty = _self.SpellDifficultyBase;
@@ -108,9 +110,13 @@ namespace Uzi.Ikosa.Items
                         {
                             // or Intelligence if accessible via intelligence and intelligence is higher...
                             if (_critter.Abilities.Charisma.EffectiveValue > _critter.Abilities.Intelligence.EffectiveValue)
+                            {
                                 _difficulty.Deltas.Add(new SoftQualifiedDelta(_critter.Abilities.Charisma));
+                            }
                             else
+                            {
                                 _difficulty.Deltas.Add(new SoftQualifiedDelta(_critter.Abilities.Intelligence));
+                            }
                         }
                     }
                 }

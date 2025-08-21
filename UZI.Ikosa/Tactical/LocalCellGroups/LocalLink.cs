@@ -23,9 +23,14 @@ namespace Uzi.Ikosa.Tactical
         {
             _AnchorFaceA = anchorFaceA;
             if (groupA != null)
+            {
                 _GroupA = groupA;
+            }
+
             if (groupB != null)
+            {
                 _GroupB = groupB;
+            }
 
             _Cubic = anchorFaceA switch
             {
@@ -70,7 +75,9 @@ namespace Uzi.Ikosa.Tactical
                     _ChannelsB = _fetch(@"_SoundChannelsB");
                 }
                 if ((_ChannelsA != null) && (_ChannelsB != null))
+                {
                     break;
+                }
             }
             _ChannelsA ??= new();
             _ChannelsB ??= new();
@@ -181,7 +188,9 @@ namespace Uzi.Ikosa.Tactical
                     if (!linking)
                     {
                         foreach (var _rl in LightA.ReferencedLights)
+                        {
                             yield return _rl;
+                        }
                     }
                 }
             }
@@ -193,7 +202,9 @@ namespace Uzi.Ikosa.Tactical
                     if (!linking)
                     {
                         foreach (var _rl in LightB.ReferencedLights)
+                        {
                             yield return _rl;
+                        }
                     }
                 }
             }
@@ -241,12 +252,16 @@ namespace Uzi.Ikosa.Tactical
             if (homeGroup == GroupA)
             {
                 if (LightB.NotifyLights(sourceLights))
+                {
                     return GroupB;
+                }
             }
             else if (homeGroup == GroupB)
             {
                 if (LightA.NotifyLights(sourceLights))
+                {
                     return GroupA;
+                }
             }
             return null;
         }

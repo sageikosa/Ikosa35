@@ -56,13 +56,21 @@ namespace Uzi.Ikosa.Workshop
             {
                 // TODO: defaultModelKey
                 if (tiCreature.IsSelected)
+                {
                     e.CanExecute = createCreature.CanCreate;
+                }
                 else if (tiPortal.IsSelected)
+                {
                     e.CanExecute = createPortal.CanCreate;
+                }
                 else if (tiContainer.IsSelected)
+                {
                     e.CanExecute = createContainer.CanCreate;
+                }
                 else if (tiLight.IsSelected)
+                {
                     e.CanExecute = createLight.CanCreate;
+                }
             }
             e.Handled = true;
         }
@@ -70,13 +78,21 @@ namespace Uzi.Ikosa.Workshop
         private void cbOKCommand_Executed(object sender, ExecutedRoutedEventArgs e)
         {
             if (tiCreature.IsSelected)
+            {
                 _TagString = @"Creature";
+            }
             else if (tiPortal.IsSelected)
+            {
                 _TagString = @"Portal";
+            }
             else if (tiContainer.IsSelected)
+            {
                 _TagString = @"Container";
+            }
             else if (tiLight.IsSelected)
+            {
                 _TagString = @"Light";
+            }
 
             // all of the above
             DialogResult = true;

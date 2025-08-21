@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using Uzi.Core;
 using Uzi.Ikosa.Languages;
@@ -105,7 +105,9 @@ namespace Uzi.Ikosa.Creatures.Types
                     _Feat.UnbindFromCreature();
                 }
                 else
+                {
                     return false;
+                }
             }
 
             if (bonusFeat.CanAdd(Creature))
@@ -167,7 +169,10 @@ namespace Uzi.Ikosa.Creatures.Types
         protected override void OnDisconnectSpecies()
         {
             if (_Feat != null)
+            {
                 _Feat.UnbindFromCreature();
+            }
+
             base.OnDisconnectSpecies();
         }
         #endregion

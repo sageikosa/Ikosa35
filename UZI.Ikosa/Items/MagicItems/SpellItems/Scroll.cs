@@ -109,10 +109,14 @@ namespace Uzi.Ikosa.Items
 
             // last feedback processor
             if (typeof(AddAdjunctData).Equals(interactType))
+            {
                 return true;
+            }
 
             if (typeof(RemoveAdjunctData).Equals(interactType))
+            {
                 return true;
+            }
 
             return false;
         }

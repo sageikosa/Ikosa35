@@ -20,9 +20,14 @@ namespace Uzi.Ikosa.Objects
         {
             _Faces = AnchorFaceList.ZHigh.Union(AnchorFaceList.YHigh).Union(AnchorFaceList.YLow);
             if (backBlock)
+            {
                 _Faces = _Faces.Union(AnchorFaceList.XLow);
+            }
+
             if (bottomBlock)
+            {
                 _Faces = _Faces.Union(AnchorFaceList.ZLow);
+            }
             // TODO: multiple surface containers...
         }
 
@@ -104,7 +109,9 @@ namespace Uzi.Ikosa.Objects
             foreach (var _pp in Orientation.GetPlanarPoints(GetPlanarFaces())) // TODO: shelves
             {
                 if (_pp.SegmentIntersection(tacticalInfo.SourcePoint, tacticalInfo.TargetPoint).HasValue)
+                {
                     return true;
+                }
             }
             return false;
         }
@@ -230,7 +237,10 @@ namespace Uzi.Ikosa.Objects
                 var _ext = Orientation.CoverageExtents;
                 if (moveTactical.TransitFaces
                     .Any(_f => !Orientation.IsFaceSnapped(_f, _ext)))
+                {
                     return 0;
+                }
+
                 return GetCoverage(moveTactical);
             }
             return 0d;
@@ -261,7 +271,9 @@ namespace Uzi.Ikosa.Objects
             {
                 // provide any overrides
                 foreach (var _iKey in IconKeyAdjunct.GetIconKeys(this))
+                {
                     yield return _iKey;
+                }
 
                 // material class combination
                 yield return $@"{ObjectMaterial?.Name}_{ClassIconKey}_3";

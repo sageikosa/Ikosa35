@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Windows.Media.Animation;
 using System.Windows;
 using System.Windows.Media.Media3D;
@@ -39,8 +38,7 @@ namespace Uzi.Visualize
         {
             get
             {
-                if (_Material == null)
-                    _Material = VisualEffectMaterial.ResolveMaterial(MaterialKey, VisualEffect.Normal);
+                _Material ??= VisualEffectMaterial.ResolveMaterial(MaterialKey, VisualEffect.Normal);
                 return _Material;
             }
         }
@@ -75,7 +73,10 @@ namespace Uzi.Visualize
                 var _visible = new ParallelTimeline(TimeSpan.FromTicks(0), Duration);
                 _visible.Children.Add(GetMaterialOnAnimation());
                 foreach (var _a in _anim)
+                {
                     _visible.Children.Add(_a);
+                }
+
                 return _visible;
             }
             else

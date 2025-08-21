@@ -50,7 +50,9 @@ namespace Uzi.Ikosa.Objects
             {
                 // if base blocks, then blocking
                 if (base.BlocksTransit(moveTactical))
+                {
                     return true;
+                }
 
                 // surface orthogonal axis
                 var _axis = Orientation.GetAnchorFaceForSideIndex(SideIndex.Top).GetAxis();
@@ -93,7 +95,10 @@ namespace Uzi.Ikosa.Objects
                 var _ext = Orientation.CoverageExtents;
                 if (moveTactical.TransitFaces
                     .Any(_f => !Orientation.IsFaceSnapped(_f, _ext)))
+                {
                     return 0;
+                }
+
                 return GetCoverage(moveTactical);
             }
             return 0d;
@@ -170,7 +175,9 @@ namespace Uzi.Ikosa.Objects
             foreach (var _pp in Orientation.GetPlanarPoints(AnchorFaceList.All)) // TODO: ???
             {
                 if (_pp.SegmentIntersection(tacticalInfo.SourcePoint, tacticalInfo.TargetPoint).HasValue)
+                {
                     return true;
+                }
             }
             return false;
         }

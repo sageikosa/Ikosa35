@@ -25,13 +25,18 @@ namespace Uzi.Ikosa.Adjuncts
         {
             base.OnActivate(source);
             if (Anchor is Creature _critter)
+            {
                 _Feat.BindTo(_critter);
+            }
         }
 
         protected override void OnDeactivate(object source)
         {
             if (Anchor is Creature _critter)
+            {
                 _Feat.UnbindFromCreature();
+            }
+
             base.OnDeactivate(source);
         }
 

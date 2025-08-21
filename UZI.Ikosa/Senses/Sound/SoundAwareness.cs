@@ -19,13 +19,13 @@ namespace Uzi.Ikosa.Senses
             _Roll = rollValue;
 
             // impacts
-            _Impacts = new List<SoundImpact>();
+            _Impacts = [];
             _Magnitude = null;
             _Vector = null;
             _LastPoint = null;
             _Exceed = 0;
             _SrcRange = 0;
-            _Stream = new List<ExpirableDescription>();
+            _Stream = [];
 
             // times
             _CheckRemove = null;
@@ -130,7 +130,9 @@ namespace Uzi.Ikosa.Senses
         public bool IsRemoveable(double time)
         {
             if (IsActive)
+            {
                 return false;
+            }
 
             // if not active, should have CheckRemove
             if (!HasNoticed)
@@ -259,7 +261,9 @@ namespace Uzi.Ikosa.Senses
 
                 // cap range to 5 if moved too much
                 if (_range > 5)
+                {
                     _range = 5;
+                }
             }
             else if (MoveFade >= 5)
             {

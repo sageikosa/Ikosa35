@@ -23,7 +23,9 @@ namespace Uzi.Ikosa.Magic
                 .Any(_h =>
                 {
                     if (_h.SlottedItem == null)
+                    {
                         return true;
+                    }
 
                     if (_h.SlottedItem is IMeleeWeapon _melee)
                     {
@@ -100,7 +102,9 @@ namespace Uzi.Ikosa.Magic
             if (!_HoldSlots.Any(_h =>
                 {
                     if (_h.SlottedItem == null)
+                    {
                         return true;
+                    }
 
                     if (_h.SlottedItem is IMeleeWeapon _melee)
                     {

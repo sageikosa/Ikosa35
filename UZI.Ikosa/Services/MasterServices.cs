@@ -126,11 +126,15 @@ namespace Uzi.Ikosa.Services
                     // get and edit user
                     var _user = UserValidator.UserDefinitions.GetUser(user);
                     if (_user != null)
+                    {
                         _user.IsDisabled = isDisabled;
+                    }
 
                     // kick if disabled now
                     if (isDisabled)
+                    {
                         LoginService.Logout(user);
+                    }
                 }
                 else
                 {
@@ -216,7 +220,7 @@ namespace Uzi.Ikosa.Services
                                  where _critters.ContainsKey(_p.Anchor.ID)
                                  select _critters[_p.Anchor.ID]).ToList()
                 })
-                .ToList() ?? new List<StandDownGroupInfo>();
+                .ToList() ?? [];
         }
         #endregion
 
@@ -277,7 +281,10 @@ namespace Uzi.Ikosa.Services
         public static FlowState GetFlowState()
         {
             if (HasCoreStep<AdvancementStep>())
+            {
                 return FlowState.Advancement;
+            }
+
             return FlowState.Normal;
         }
 
@@ -432,11 +439,8 @@ namespace Uzi.Ikosa.Services
                     || ((standDowngroupID == Guid.Empty) && !string.IsNullOrWhiteSpace(groupName)))
                 {
                     var _serial = GetUpdateSerialState();
-                    if (_group == null)
-                    {
-                        // new group
-                        _group = new StandDownGroup(groupName);
-                    }
+                    // new group
+                    _group ??= new StandDownGroup(groupName);
 
                     foreach (var _c in creatures)
                     {
@@ -580,9 +584,11 @@ namespace Uzi.Ikosa.Services
                     for (var _tx = 0; _tx < _current.Count; _tx++)
                     {
                         if (_current[_tx] != _testOrder[_tx])
+                        {
                             throw new FaultException<InvalidArgumentFault>(
                                 new InvalidArgumentFault(nameof(creatures)),
                                 $@"Invalid sequence of creatures (@[{_tx}]: {_current[_tx]} != {_testOrder[_tx]})");
+                        }
                     }
 
                     // group candidates into add groups...

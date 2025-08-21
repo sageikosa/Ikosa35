@@ -58,7 +58,10 @@ namespace Uzi.Ikosa.Objects
             }
 
             foreach (var _act in BaseMechanismActions(budget))
+            {
                 yield return _act;
+            }
+
             yield break;
         }
         #endregion
@@ -167,7 +170,9 @@ namespace Uzi.Ikosa.Objects
         public void PreTestChange(object sender, AbortableChangeEventArgs<OpenStatus> args)
         {
             if ((sender == Openable) && (args.NewValue.Source == Openable))
+            {
                 args.DoAbort(@"Cannot open directly");
+            }
         }
 
         public void PreValueChanged(object sender, ChangeValueEventArgs<OpenStatus> args)

@@ -18,7 +18,9 @@ namespace Uzi.Ikosa.Tactical
             foreach (CoreObject _base in locator.AllConnectedOf<CoreObject>())
             {
                 if (_base.GetAlignment().DetectsAs(Alignment))
+                {
                     return true;
+                }
             }
             return false;
         }

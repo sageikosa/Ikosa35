@@ -119,7 +119,9 @@ namespace SilverlightContrib.Controls
         private void rectSampleMonitor_MouseMove(object sender, MouseEventArgs e)
         {
             if(!m_sampleMouseCaptured)
+            {
                 return;
+            }
 
             Point pos = e.GetPosition((UIElement)sender);
             DragSliders(pos.X, pos.Y);
@@ -138,7 +140,9 @@ namespace SilverlightContrib.Controls
         private void UpdateSatValSelection()
         {
             if (m_colorSample == null)
+            {
                 return;
+            }
 
             m_sampleSelector.SetValue(Canvas.LeftProperty, m_sampleX - (m_sampleSelector.Height / 2));
             m_sampleSelector.SetValue(Canvas.TopProperty, m_sampleY - (m_sampleSelector.Height / 2));
@@ -153,7 +157,10 @@ namespace SilverlightContrib.Controls
         private void UpdateHueSelection()
         {
             if (m_hueMonitor == null)
+            {
                 return;
+            }
+
             double huePos = m_huePos / m_hueMonitor.Height * 255;
             Color c = m_colorSpace.GetColorFromPosition(huePos);
             m_colorSample.Fill = new SolidColorBrush(c);
@@ -171,7 +178,9 @@ namespace SilverlightContrib.Controls
         private void UpdateVisuals()
         {
             if (m_hueMonitor == null)
+            {
                 return;
+            }
 
             Color c = this.SelectedColor;
             ColorSpace cs = new ColorSpace();
@@ -181,7 +190,10 @@ namespace SilverlightContrib.Controls
             m_sampleY = -1*(hsv.Value-1)*m_colorSample.Height;
             m_sampleX = hsv.Saturation*m_colorSample.Width;
             if(!double.IsNaN(m_huePos))
+            {
                 UpdateHueSelection();
+            }
+
             UpdateSatValSelection();
         }
 
@@ -190,28 +202,47 @@ namespace SilverlightContrib.Controls
             if(m_hueMonitorMouseCaptured)
             {
                 if (y < 0)
+                {
                     m_huePos = 0;
+                }
                 else if (y > m_hueMonitor.Height)
+                {
                     m_huePos = m_hueMonitor.Height;
+                }
                 else
+                {
                     m_huePos = y;
+                }
+
                 UpdateHueSelection();
             }
             else if(m_sampleMouseCaptured)
             {
                 if (x < 0)
+                {
                     m_sampleX = 0;
+                }
                 else if (x > m_colorSample.Width)
+                {
                     m_sampleX = m_colorSample.Width;
+                }
                 else
+                {
                     m_sampleX = x;
+                }
 
                 if (y < 0)
+                {
                     m_sampleY = 0;
+                }
                 else if (y > m_colorSample.Height)
+                {
                     m_sampleY = m_colorSample.Height;
+                }
                 else
+                {
                     m_sampleY = y;
+                }
 
                 UpdateSatValSelection();                
             }

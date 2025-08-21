@@ -50,7 +50,9 @@ namespace Uzi.Ikosa.Workshop
                         && (ccWIS != null) && ((ccWIS.Content is int) || (ccWIS.Content is AbilityBase))
                         && (ccCHA != null) && ((ccCHA.Content is int) || (ccCHA.Content is AbilityBase))
                         )
+                    {
                         return true;
+                    }
                 }
                 return false;
             }
@@ -228,7 +230,10 @@ namespace Uzi.Ikosa.Workshop
                         {
                             var _roll = DiceRoller.RollDie(Guid.Empty, 6, @"Abilities", @"4d6 (best 3)");
                             if (_roll < _low)
+                            {
                                 _low = _roll;
+                            }
+
                             _val += _roll;
                         }
                         _val -= _low;
@@ -304,10 +309,15 @@ namespace Uzi.Ikosa.Workshop
             if (e.Parameter.ToString().Equals(@"Species"))
             {
                 if (cboSpecies != null)
+                {
                     e.CanExecute = cboSpecies.SelectedItem != null;
+                }
             }
             else
+            {
                 e.CanExecute = true;
+            }
+
             e.Handled = true;
         }
         #endregion

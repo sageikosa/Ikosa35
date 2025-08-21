@@ -25,7 +25,7 @@ namespace Uzi.Ikosa.Objects
             : base(name, material, disableDifficulty, target, anchorage, false)
         {
             // setup capacity to hold fasteners
-            _Connected = new Collection<ICoreObject>();
+            _Connected = [];
             _COCtrl = new ChangeController<ICoreObject>(this, null);
         }
         #endregion
@@ -146,7 +146,9 @@ namespace Uzi.Ikosa.Objects
         public void ValueChanged(object sender, ChangeValueEventArgs<Physical> args)
         {
             if (args.NewValue.PropertyType == Physical.PhysicalType.Weight)
+            {
                 RecalcWeight();
+            }
         }
 
         #endregion

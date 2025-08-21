@@ -1,4 +1,4 @@
-using Uzi.Core.Contracts;
+﻿using Uzi.Core.Contracts;
 using System;
 using System.Collections.Generic;
 using Uzi.Core;
@@ -30,7 +30,9 @@ namespace Uzi.Ikosa.Actions
                 Improved = true;
             }
             else
+            {
                 Improved = false;
+            }
         }
         #endregion
 

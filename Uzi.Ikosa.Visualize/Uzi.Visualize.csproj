@@ -202,21 +202,6 @@
     <Compile Include="Models\Presentable.cs" />
     <Compile Include="Models\Presentations\Presentation.cs" />
     <Compile Include="Models\Presentations\VisualEffectValue.cs" />
-    <Compile Include="Packages\BitmapImagePart.cs" />
-    <Compile Include="Packages\BrushCollectionPart.cs" />
-    <Compile Include="Packages\IconPart.cs" />
-    <Compile Include="Packages\IPartResolveBrushCollection.cs" />
-    <Compile Include="Packages\IPartResolveFragment.cs" />
-    <Compile Include="Packages\IPartResolveIcon.cs" />
-    <Compile Include="Packages\IPartResolveImage.cs" />
-    <Compile Include="Packages\IPartResolveMaterial.cs" />
-    <Compile Include="Packages\IPartResolveModel3D.cs" />
-    <Compile Include="Packages\MetaModel.cs" />
-    <Compile Include="Packages\MetaModelFragment.cs" />
-    <Compile Include="Packages\Model3DPart.cs" />
-    <Compile Include="Packages\ModelCacheSelector.cs" />
-    <Compile Include="Packages\ModelPartFactory.cs" />
-    <Compile Include="Packages\References\ReferencedResourceManager.cs" />
     <Compile Include="Packaging\IconPart.cs" />
     <Compile Include="Packaging\ICorePartBrushCollectionResolver.cs" />
     <Compile Include="Packaging\ICorePartIconResolver.cs" />
@@ -225,8 +210,6 @@
     <Compile Include="Images\ImagesResourceReference.cs" />
     <Compile Include="Models\ModelsResourceReference.cs" />
     <Compile Include="Packaging\ModelCacheSelector.cs" />
-    <Compile Include="Packages\VisualResourcePackage.cs" />
-    <Compile Include="Packages\VisualResourcePart.cs" />
     <Compile Include="Packaging\VisualResources.cs" />
     <Compile Include="Panels\FaceEdge.cs" />
     <Compile Include="Panels\IBasePanel.cs" />
@@ -351,10 +334,6 @@
     <ProjectReference Include="..\HelixToolkit.Wpf\HelixToolkit.Wpf_NET40.csproj">
       <Project>{3f3b4548-a9db-4874-86f7-e7c4fec8a351}</Project>
       <Name>HelixToolkit.Wpf_NET40</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Ikosa.Packaging\Ikosa.Packaging.csproj">
-      <Project>{6e1e9988-6917-4af4-9b58-6f66fd243edd}</Project>
-      <Name>Ikosa.Packaging</Name>
     </ProjectReference>
     <ProjectReference Include="..\Uzi.Core.Contracts\Uzi.Core.Contracts.csproj">
       <Project>{A684AC4C-1911-4101-897D-B97DEAD744C2}</Project>

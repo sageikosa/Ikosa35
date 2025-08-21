@@ -14,7 +14,7 @@ namespace Uzi.Ikosa.Adjuncts
         public DeafenedEffect(object source, double endTime, double resolution)
             : base(source)
         {
-            _Senses = new Collection<SensoryBase>();
+            _Senses = [];
             _EndTime = endTime;
             _TimeRes = resolution;
         }
@@ -84,7 +84,9 @@ namespace Uzi.Ikosa.Adjuncts
         public void PreTestChange(object sender, AbortableChangeEventArgs<Activation> args)
         {
             if (args.NewValue.IsActive)
+            {
                 args.DoAbort();
+            }
         }
 
         public void PreValueChanged(object sender, ChangeValueEventArgs<Activation> args)

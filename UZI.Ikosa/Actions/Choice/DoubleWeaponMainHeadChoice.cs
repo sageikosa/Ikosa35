@@ -68,6 +68,7 @@ namespace Uzi.Ikosa.Actions
             {
                 var _head = Weapon.Head[_hx];
                 if (_hx != Weapon.MainHeadIndex)
+                {
                     yield return new OptionAimValue<int>
                     {
                         Key = _hx.ToString(),
@@ -79,6 +80,7 @@ namespace Uzi.Ikosa.Actions
                         Value = _hx
                         // TODO: Magical/extra-damages/other-adjuncts
                     };
+                }
             }
             yield break;
         }

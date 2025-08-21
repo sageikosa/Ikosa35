@@ -116,7 +116,9 @@ namespace Uzi.Ikosa.Magic.Spells
             ShakenEffect _shaken = source.ActiveAdjunctObject as ShakenEffect;
             Creature _critter = target as Creature;
             if ((_shaken != null) && (_critter != null))
+            {
                 _critter.RemoveAdjunct(_shaken);
+            }
         }
 
         public bool IsDismissable(int subMode) { return false; }

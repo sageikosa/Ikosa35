@@ -1,4 +1,4 @@
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -13,7 +13,7 @@ namespace Uzi.Core
 
         public WatchableSet()
         {
-            _Items = new Collection<ItemType>();
+            _Items = [];
         }
 
         public S Item<S>() where S : class, ItemType

@@ -63,7 +63,9 @@ namespace Uzi.Ikosa.Magic.Spells
         public void Deactivate(IAdjunctTracker source, IAdjunctable target, int subMode, object deactivateSource)
         {
             if (source.ActiveAdjunctObject is EtherealEffect _ethereal)
+            {
                 target.RemoveAdjunct(_ethereal);
+            }
         }
 
         public bool IsDismissable(int subMode) => true;

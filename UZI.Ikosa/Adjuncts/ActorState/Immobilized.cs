@@ -62,7 +62,9 @@ namespace Uzi.Ikosa.Adjuncts
                 _critter.Actions.Filters.Remove(this);
                 var _un = _critter.Adjuncts.OfType<UnpreparedForOpportunities>().FirstOrDefault(_u => _u.Source == this);
                 if (_un != null)
+                {
                     _critter.RemoveAdjunct(_un);
+                }
 
                 // notify
                 NotifyStateChange(true, true, true);

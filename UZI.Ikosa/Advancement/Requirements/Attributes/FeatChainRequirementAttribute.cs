@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using Uzi.Ikosa.Feats;
 using Uzi.Core;
 
@@ -13,7 +13,10 @@ namespace Uzi.Ikosa.Advancement
             {
                 FeatType = featType;
             }
-            else throw new ArgumentOutOfRangeException("featType", "Must derive from FeatBase");
+            else
+            {
+                throw new ArgumentOutOfRangeException("featType", "Must derive from FeatBase");
+            }
         }
 
         public readonly Type FeatType;

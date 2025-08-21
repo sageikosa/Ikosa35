@@ -19,7 +19,7 @@ namespace Uzi.Ikosa.Guildsmanship
         {
             _ID = Guid.NewGuid();
             _Description = new Description(teamName);
-            _Attitudes = new Dictionary<Guid, TeamAttitude?>();
+            _Attitudes = [];
         }
 
         /// <summary>Define a team from an existing team group</summary>
@@ -27,7 +27,7 @@ namespace Uzi.Ikosa.Guildsmanship
         {
             _ID = teamGroup.ID;
             _Description = new Description(teamGroup.Name);
-            _Attitudes = new Dictionary<Guid, TeamAttitude>();
+            _Attitudes = [];
         }
 
         public Guid ID => _ID;

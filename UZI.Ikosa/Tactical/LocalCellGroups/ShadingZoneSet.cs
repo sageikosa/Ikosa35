@@ -18,7 +18,7 @@ namespace Uzi.Ikosa.Tactical
         public ShadingZoneSet(LocalMap map)
         {
             _Map = map;
-            _Zones = new Collection<ShadingZone>();
+            _Zones = [];
         }
 
         #region private data
@@ -240,7 +240,9 @@ namespace Uzi.Ikosa.Tactical
                                             }
                                         }
                                         if (_currentRange >= _max)
+                                        {
                                             break;
+                                        }
                                     }
                                     #endregion
 
@@ -494,7 +496,9 @@ namespace Uzi.Ikosa.Tactical
 
                             // NOTE: this is a failsafe, shouldn't have more cells than effects
                             if (_z >= _shadeZone.Cube.ZHeight)
+                            {
                                 break;
+                            }
                         }
                     }
                     #endregion
@@ -506,7 +510,10 @@ namespace Uzi.Ikosa.Tactical
                 {
                     var _final = new Model3DGroup();
                     foreach (var _m in _globalContext.GetModel3D(alpha))
+                    {
                         _final.Children.Add(_m);
+                    }
+
                     if (gathered.Children.Count > 0)
                     {
                         gathered.Transform = _move;
@@ -605,7 +612,9 @@ namespace Uzi.Ikosa.Tactical
 
                         // NOTE: this is a failsafe, shouldn't have more cells than effects
                         if (_z >= shadeZone.Cube.ZHeight)
+                        {
                             break;
+                        }
                     }
                 }
                 #endregion
@@ -617,7 +626,10 @@ namespace Uzi.Ikosa.Tactical
             {
                 var _final = new Model3DGroup();
                 foreach (var _m in _globalContext.GetModel3D(alpha))
+                {
                     _final.Children.Add(_m);
+                }
+
                 if (gathered.Children.Count > 0)
                 {
                     gathered.Transform = _move;
@@ -666,9 +678,13 @@ namespace Uzi.Ikosa.Tactical
                     if ((_useTrans != null)
                         && ((_noTrans == null) || (_noTrans.Range < _useTrans.Range))
                         && _useTrans.CarrySenseInteraction(Map, location, _cLoc, ITacticalInquiryHelper.EmptyArray))
+                    {
                         _effect = VisualEffectProcessor.GetFormOnlyLevel(_distance, _useTrans.Range);
+                    }
                     else if (_noTrans != null)
+                    {
                         _effect = VisualEffectProcessor.GetFormOnlyLevel(_distance, _noTrans.Range);
+                    }
                     #endregion
                 }
                 else
@@ -700,7 +716,9 @@ namespace Uzi.Ikosa.Tactical
                                     {
                                         var _eff = VisualEffectProcessor.GetFormOnlyLevel(_distance, _magicDarkPiercing.Range);
                                         if (_eff > _effect)
+                                        {
                                             _effect = _eff;
+                                        }
                                     }
                                 }
                             }
@@ -727,13 +745,19 @@ namespace Uzi.Ikosa.Tactical
                                 if (_sight.Any(_ir => _ir.UsesLight))
                                 {
                                     if (_level >= LightRange.VeryBright)
+                                    {
                                         _effect = VisualEffect.Brighter;
+                                    }
                                     else
+                                    {
                                         _effect = VisualEffect.Normal;
+                                    }
                                 }
                                 else
+                                {
                                     // dark vision (and true seeing...)
                                     _effect = VisualEffectProcessor.GetMonochromeLevel(_distance, _sight.Where(_ir => !_ir.UsesLight).Max(_ir => _ir.Range));
+                                }
                                 #endregion
                             }
                             else if (_level >= LightRange.NearShadow)
@@ -760,9 +784,13 @@ namespace Uzi.Ikosa.Tactical
                                 else
                                 {
                                     if (_level == LightRange.NearBoost)
+                                    {
                                         _effect = VisualEffect.DimTo75;
+                                    }
                                     else
+                                    {
                                         _effect = VisualEffect.DimTo50;
+                                    }
                                 }
                                 #endregion
                             }
@@ -776,15 +804,21 @@ namespace Uzi.Ikosa.Tactical
                                 {
                                     // low light vision is all that's left if we haven't found darkvision
                                     if (_level == LightRange.FarBoost)
+                                    {
                                         _effect = VisualEffect.DimTo75;
+                                    }
                                     else
+                                    {
                                         _effect = VisualEffect.DimTo50;
+                                    }
                                 }
                                 else
                                 {
                                     // far shade but on fringe for near shade
                                     if (_level == LightRange.FarBoost)
+                                    {
                                         _effect = VisualEffect.DimTo25;
+                                    }
                                 }
                             }
                             else
@@ -792,7 +826,9 @@ namespace Uzi.Ikosa.Tactical
                                 // beyond far shade
                                 if ((_level == LightRange.ExtentBoost)
                                     && _sight.Any(_ir => _ir.UsesLight && _ir.LowLight))
+                                {
                                     _effect = VisualEffect.DimTo25;
+                                }
                             }
                         }
 
@@ -810,7 +846,9 @@ namespace Uzi.Ikosa.Tactical
                                 {
                                     var _eff = VisualEffectProcessor.GetFormOnlyLevel(_distance, _formSense.Range);
                                     if (_eff > _effect)
+                                    {
                                         _effect = _eff;
+                                    }
                                 }
                             }
                         }
@@ -833,11 +871,15 @@ namespace Uzi.Ikosa.Tactical
             bool alphaChannel, TerrainVisualizer visualizer)
         {
             for (var _z = 0; _z < zone.Cube.ZHeight; _z++)
+            {
                 for (var _y = 0; _y < zone.Cube.YLength; _y++)
+                {
                     for (var _x = 0; _x < zone.Cube.XLength; _x++)
                     {
                         yield return CellEffect(location, zone.Cube.Z + _z, zone.Cube.Y + _y, zone.Cube.X + _x, visualizer);
                     }
+                }
+            }
 
             // done yielding
             yield break;

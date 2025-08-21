@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading;
 
 namespace Uzi.Visualize
 {
@@ -20,11 +18,7 @@ namespace Uzi.Visualize
         {
             get
             {
-                if (_ResolveStack == null)
-                {
-                    _ResolveStack = new Stack<MetaModelFragmentNode>();
-
-                }
+                _ResolveStack ??= new Stack<MetaModelFragmentNode>();
                 return _ResolveStack;
             }
         }

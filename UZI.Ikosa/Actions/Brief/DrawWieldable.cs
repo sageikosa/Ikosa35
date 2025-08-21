@@ -1,4 +1,4 @@
-using Uzi.Core.Contracts;
+﻿using Uzi.Core.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,7 +27,10 @@ namespace Uzi.Ikosa.Actions
         {
             // if drawing as a free action, do not interrupt stacked activities
             if (TimeCost.ActionTimeType == TimeType.Free)
+            {
                 return false;
+            }
+
             return base.WillClearStack(budget, activity);
         }
 
@@ -61,9 +64,13 @@ namespace Uzi.Ikosa.Actions
 
                 // wield in holding slot(s)
                 if (_slots.Count == 2)
+                {
                     _wieldable.SetItemSlot(_slots[0], _slots[1]);
+                }
                 else
+                {
                     _wieldable.SetItemSlot(_slots[0]);
+                }
 
                 // feedback
                 var _info = GetInfoData.GetInfoFeedback(_wieldable, MountSlot.Creature);

@@ -13,7 +13,9 @@ namespace Uzi.Ikosa
             foreach (KeyValuePair<string, ItemTypeListItem> _kvp in WeaponTypeLister.ProficientWeapons(creature, powerDie))
             {
                 if (typeof(BaseWeapon).IsAssignableFrom(_kvp.Value.ItemType))
+                {
                     yield return new FeatParameter(target, _kvp.Value.ItemType, _kvp.Value.Info.Name, _kvp.Value.Info.Description, powerDie);
+                }
             }
             yield break;
         }

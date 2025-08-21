@@ -32,15 +32,26 @@ namespace Uzi.Ikosa.Adjuncts
             get
             {
                 if (!IsActive)
+                {
                     return AuraStrength.None;
+                }
 
                 int _powerLevel = PowerLevel;
                 if (_powerLevel < 2)
+                {
                     return AuraStrength.Faint;
+                }
+
                 if (_powerLevel < 5)
+                {
                     return AuraStrength.Moderate;
+                }
+
                 if (_powerLevel < 11)
+                {
                     return AuraStrength.Strong;
+                }
+
                 return AuraStrength.Overwhelming;
             }
         }

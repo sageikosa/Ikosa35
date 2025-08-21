@@ -23,7 +23,9 @@ namespace Uzi.Ikosa.Fidelity
             {
                 // see if battery is source by the right type of driving
                 if ((_ability.MagicBattery as ISourcedObject)?.Source is Source)
+                {
                     yield return this;
+                }
             }
             yield break;
         }

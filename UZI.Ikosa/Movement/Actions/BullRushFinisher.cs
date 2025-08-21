@@ -21,7 +21,9 @@ namespace Uzi.Ikosa.Movement
                 _Improved = true;
             }
             else
+            {
                 _Improved = false;
+            }
 
             // TODO: +4 push back on improved
         }

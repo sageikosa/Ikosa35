@@ -29,9 +29,13 @@ namespace Uzi.Ikosa.Contracts
         public bool HasID(Guid id)
         {
             if (ID == id)
+            {
                 return true;
+            }
             else if (ItemInfo?.ID == id)
+            {
                 return true;
+            }
             else if (ItemInfo is DoubleMeleeWeaponInfo _dbl)
             {
                 return _dbl.WeaponHeads.Any(_wh => _wh.ID == id);

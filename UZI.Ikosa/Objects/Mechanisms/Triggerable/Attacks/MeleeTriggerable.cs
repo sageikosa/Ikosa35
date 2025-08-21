@@ -38,7 +38,7 @@ namespace Uzi.Ikosa.Objects
                     _loc.Map.ContextSet.ProcessManager.StartProcess(
                         new CoreTargetingProcess(new TriggeredMeleeAttackStep(this), this, @"Melee Trap",
                             IsDirect
-                            ? new List<AimTarget> { new ValueTarget<List<Locator>>(@"Direct", locators.ToList()) }
+                            ? [new ValueTarget<List<Locator>>(@"Direct", locators.ToList())]
                             : null));
                 }
             }

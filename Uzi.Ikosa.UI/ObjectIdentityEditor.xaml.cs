@@ -153,11 +153,20 @@ namespace Uzi.Ikosa.UI
         public override DataTemplate SelectTemplate(object item, DependencyObject container)
         {
             if (item is ListableList<Info>)
+            {
                 return InfoFolder;
+            }
+
             if (item is ListableList<Adjunct>)
+            {
                 return AdjunctFolder;
+            }
+
             if (item is ListableList<KeyValuePair<Guid, string>>)
+            {
                 return CreatureFolder;
+            }
+
             return null;
         }
     }

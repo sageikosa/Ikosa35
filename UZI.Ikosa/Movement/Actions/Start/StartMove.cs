@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using Uzi.Core;
 using Uzi.Ikosa.Contracts;
@@ -43,7 +43,9 @@ namespace Uzi.Ikosa.Movement
         public override IEnumerable<AimingMode> AimingMode(CoreActivity activity)
         {
             foreach (var _mode in base.AimingMode(activity))
+            {
                 yield return _mode;
+            }
 
             yield return new OptionAim(@"Double", @"Allow Double", true, FixedRange.One, FixedRange.One, DoubleOptions());
             yield break;

@@ -26,10 +26,15 @@ namespace Uzi.Ikosa.Interactions
                 void _addFace(int src, int trg, AnchorFace face)
                 {
                     if (src > trg)
+                    {
                         _faces.Add(face);
+                    }
                     else if (src < trg)
+                    {
                         _faces.Add(face.ReverseFace());
-                };
+                    }
+                }
+                ;
                 if (workSet.InteractData is GetMeleeSourcePoints _msp)
                 {
                     #region melee source points
@@ -79,12 +84,16 @@ namespace Uzi.Ikosa.Interactions
                                     {
                                         _added = _sideCol.Adding(_corner);
                                         if (_added)
+                                        {
                                             break;
+                                        }
                                     }
 
                                     // must add a new column
                                     if (!_added)
+                                    {
                                         _columns.Add(new SideColumn(_corner, _grav));
+                                    }
                                 }
                             }
 
@@ -165,7 +174,9 @@ namespace Uzi.Ikosa.Interactions
                                 {
                                     // keeping under edge, not specifically two faces, or has keeper face
                                     if (_keepUnderEdge || (_matchFaces.Count != 2) || _matchFaces.Contains(_keepFace))
+                                    {
                                         _outPoints.Add(WarpPoint(_corner.Point3D) + _offset);
+                                    }
                                 }
                             }
 
@@ -234,7 +245,7 @@ namespace Uzi.Ikosa.Interactions
                             foreach (var _cell in _region.AllCellLocations())
                             {
                                 // axis/face selection (inversion of melee source points)
-                                _faces = new List<AnchorFace>();
+                                _faces = [];
                                 _addFace(_rtp.SourceCell.X, _cell.X, AnchorFace.XHigh);
                                 _addFace(_rtp.SourceCell.Y, _cell.Y, AnchorFace.YHigh);
                                 _addFace(_rtp.SourceCell.Z, _cell.Z, AnchorFace.ZHigh);
@@ -264,12 +275,16 @@ namespace Uzi.Ikosa.Interactions
                                             {
                                                 _added = _sideCol.Adding(_corner);
                                                 if (_added)
+                                                {
                                                     break;
+                                                }
                                             }
 
                                             // must add a new column
                                             if (!_added)
+                                            {
                                                 _columns.Add(new SideColumn(_corner, _grav));
+                                            }
                                         }
                                     }
 
@@ -282,7 +297,9 @@ namespace Uzi.Ikosa.Interactions
                                         {
                                             // ... and not already contained in output set
                                             if (!_outPoints.Contains(_pt))
+                                            {
                                                 _outPoints.Add(_pt);
+                                            }
                                         }
                                     }
                                     else
@@ -294,7 +311,9 @@ namespace Uzi.Ikosa.Interactions
                                         {
                                             // ... and not already contained in output set
                                             if (!_outPoints.Contains(_pt))
+                                            {
                                                 _outPoints.Add(_pt);
+                                            }
                                         }
                                     }
                                 }
@@ -345,9 +364,13 @@ namespace Uzi.Ikosa.Interactions
             {
                 Gravity = gravity;
                 if (createWith.Faces.Contains(gravity))
+                {
                     Bottom = createWith;
+                }
                 else
+                {
                     Top = createWith;
+                }
             }
 
             public AnchorFace Gravity { get; private set; }
@@ -369,9 +392,14 @@ namespace Uzi.Ikosa.Interactions
                     {
                         // add as bottom or top
                         if (test.Faces.Contains(Gravity))
+                        {
                             Bottom = test;
+                        }
                         else
+                        {
                             Top = test;
+                        }
+
                         return true;
                     }
                 }
@@ -383,9 +411,14 @@ namespace Uzi.Ikosa.Interactions
             public IEnumerable<Point3D> FinalCorners()
             {
                 if (Bottom != null)
+                {
                     yield return WarpPoint(Bottom.Point3D);
+                }
+
                 if (Top != null)
+                {
                     yield return WarpPoint(Top.Point3D);
+                }
             }
             #endregion
 
@@ -413,7 +446,10 @@ namespace Uzi.Ikosa.Interactions
                 {
                     // if we have a top, adjust vector and emit point
                     if (Bottom != null)
+                    {
                         _vect = (Top.Point3D - Bottom.Point3D);
+                    }
+
                     yield return WarpPoint(Top.Point3D);
                 }
                 if (Bottom != null)

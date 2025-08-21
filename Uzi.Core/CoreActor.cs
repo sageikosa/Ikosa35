@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using Uzi.Core.Contracts;
@@ -89,12 +89,16 @@ namespace Uzi.Core
                 // provide any imagery
                 foreach (var _iKey in Adjuncts.OfType<ImageKeyAdjunct>()
                     .OrderByDescending(_ik => _ik.Order))
+                {
                     yield return _iKey.Key;
+                }
 
                 // default
                 var _default = DefaultImage;
                 if (!string.IsNullOrEmpty(_default))
+                {
                     yield return _default;
+                }
 
                 yield break;
             }

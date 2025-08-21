@@ -31,11 +31,20 @@ namespace Uzi.Ikosa.Adjuncts
                 }
 
                 if (MagicPowerActionSource.PowerLevel < 4)
+                {
                     return AuraStrength.Faint;
+                }
+
                 if (MagicPowerActionSource.PowerLevel < 7)
+                {
                     return AuraStrength.Moderate;
+                }
+
                 if (MagicPowerActionSource.PowerLevel < 10)
+                {
                     return AuraStrength.Strong;
+                }
+
                 return AuraStrength.Overwhelming;
             }
         }
@@ -75,11 +84,20 @@ namespace Uzi.Ikosa.Adjuncts
             {
                 var _casterLevel = MagicPowerActionSource.CasterLevel;
                 if (_casterLevel <= 2)
+                {
                     return AuraStrength.Faint;
+                }
+
                 if (_casterLevel <= 8)
+                {
                     return AuraStrength.Moderate;
+                }
+
                 if (_casterLevel <= 20)
+                {
                     return AuraStrength.Strong;
+                }
+
                 return AuraStrength.Overwhelming;
             }
         }

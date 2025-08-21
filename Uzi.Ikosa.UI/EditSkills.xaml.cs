@@ -65,7 +65,9 @@ namespace Uzi.Ikosa.UI
                 // clear all
                 _pd.RollbackSkillPoints();
                 if (_SkillGridMenu != null)
+                {
                     _SkillGridMenu.ItemsSource = _pd.SkillsAssigned;
+                }
             }
             else
             {
@@ -74,7 +76,9 @@ namespace Uzi.Ikosa.UI
                 {
                     _pd.AssignSkillPoints(_skill.SkillBase, _pd.CurrentSkillPointAssignment(_skill.SkillBase) + 1);
                     if (_SkillGridMenu != null)
+                    {
                         _SkillGridMenu.ItemsSource = _pd.SkillsAssigned;
+                    }
                 }
             }
             e.Handled = true;
@@ -84,7 +88,9 @@ namespace Uzi.Ikosa.UI
         private void popSkillEditor_Closed(object sender, EventArgs e)
         {
             if (AdvancementLogItemsControl != null)
+            {
                 AdvancementLogItemsControl.Items.Refresh();
+            }
         }
 
         #region private void mnuSkillHeaderOpening(object sender, ContextMenuEventArgs e)

@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
@@ -17,12 +17,14 @@ namespace Uzi.Ikosa.Adjuncts
             : base(species)
         {
             Amount = amount;
-            _Exceptions = new Collection<DRException>();
+            _Exceptions = [];
             if (drTypes?.Any() ?? false)
+            {
                 foreach (var _drType in drTypes)
                 {
                     _Exceptions.Add(_drType);
                 }
+            }
         }
 
         protected Collection<DRException> _Exceptions;
@@ -55,7 +57,9 @@ namespace Uzi.Ikosa.Adjuncts
             foreach (var _drType in _Exceptions)
             {
                 if (_drType.DoesWeaponIgnoreReduction(weaponHead))
+                {
                     return true;
+                }
             }
             return false;
         }

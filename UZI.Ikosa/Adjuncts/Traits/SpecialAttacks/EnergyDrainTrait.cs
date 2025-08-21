@@ -66,9 +66,15 @@ namespace Uzi.Ikosa.Adjuncts
         public virtual bool HasPlanarCompatibility(PlanarPresence source, PlanarPresence target)
         {
             if (source.HasOverlappingPresence(target))
+            {
                 return true;
+            }
+
             if (source.HasMaterialPresence() && target.HasEtherealPresence() && Descriptors.OfType<Force>().Any())
+            {
                 return true;
+            }
+
             return false;
         }
 
@@ -106,8 +112,9 @@ namespace Uzi.Ikosa.Adjuncts
             {
                 _PendingPreRequisites.Enqueue(new RollPrerequisite(this, @"Levels", @"Level Damage", _levels, false));
                 if (critical)
+                {
                     _PendingPreRequisites.Enqueue(new RollPrerequisite(this, @"Levels.Critical", @"Critical Level Damage", _levels, false));
-
+                }
             }
         }
         #endregion
@@ -125,7 +132,9 @@ namespace Uzi.Ikosa.Adjuncts
         protected override bool OnDoStep()
         {
             if (IsComplete)
+            {
                 return true;
+            }
 
             var _rolls = AllPrerequisites<RollPrerequisite>().ToList();
 
@@ -134,16 +143,22 @@ namespace Uzi.Ikosa.Adjuncts
             if (_rolls.Any())
             {
                 if (_rolls.All(_r => _r.IsReady))
+                {
                     _levels = _rolls.Sum(_r => _r.RollValue);
+                }
                 else
+                {
                     return false;
+                }
             }
             else
             {
                 // check for constant roller...
                 var _units = EnergyDrainProvider.Levels;
                 if (_units is ConstantRoller)
+                {
                     _levels = _units.RollValue(Guid.Empty, @"Drain", @"Levels") * (IsCritical ? 2 : 1);
+                }
             }
 
             // drainer creature and riser type

@@ -1,4 +1,4 @@
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
@@ -17,7 +17,7 @@ namespace Uzi.Core
         protected ObjectLoad(CoreActor owner)
         {
             _Owner = owner;
-            _Objects = new Dictionary<Guid, ICoreObject>();
+            _Objects = [];
             _WCtrl = new ChangeController<Physical>(this, new Physical(Physical.PhysicalType.Weight, 0d));
             _ICOCtrl = new ChangeController<ICoreObject>(this, null);
         }
@@ -88,7 +88,9 @@ namespace Uzi.Core
 
                 // weight will be changing, since we weren't already accounting for it
                 if (!_nested)
+                {
                     _WCtrl.DoPreValueChanged(_val);
+                }
 
                 _Objects.Add(obj.ID, obj);
 
@@ -115,7 +117,9 @@ namespace Uzi.Core
                     {
                         // signal add of all loaded objects in container
                         foreach (var _iCore in _loaded.AllLoadedObjects())
+                        {
                             _ICOCtrl.DoValueChanged(_iCore, @"Add");
+                        }
                     }
                 }
             }
@@ -139,7 +143,9 @@ namespace Uzi.Core
                 // signal the decrease in weight
                 var _val = new Physical(Physical.PhysicalType.Weight, _Weight);
                 if (!_nested)
+                {
                     _WCtrl.DoPreValueChanged(_val, @"Remove");
+                }
 
                 _Objects.Remove(obj.ID);
 
@@ -166,7 +172,9 @@ namespace Uzi.Core
                     {
                         // remove all loaded objects in container
                         foreach (var _iCore in _loaded.AllLoadedObjects())
+                        {
                             _ICOCtrl.DoValueChanged(_iCore, @"Remove");
+                        }
                     }
                 }
             }
@@ -260,7 +268,10 @@ namespace Uzi.Core
         public IEnumerable<ICoreObject> AllLoadedObjects()
         {
             foreach (KeyValuePair<Guid, ICoreObject> _kvp in _Objects)
+            {
                 yield return _kvp.Value;
+            }
+
             foreach (ICoreObject _iCore in from _kvp in _Objects
                                            let _loader = _kvp.Value as ILoadedObjects
                                            where _loader != null
@@ -294,7 +305,9 @@ namespace Uzi.Core
                     {
                         // signal remove of all loaded objects in container
                         foreach (var _iCore in _loaded.AllLoadedObjects())
+                        {
                             _ICOCtrl.DoValueChanged(_iCore, @"Remove");
+                        }
                     }
                 }
             }
@@ -306,7 +319,9 @@ namespace Uzi.Core
                 {
                     // signal add of all loaded objects in container
                     foreach (var _iCore in _loaded.AllLoadedObjects())
+                    {
                         _ICOCtrl.DoValueChanged(_iCore, @"Add");
+                    }
                 }
             }
         }

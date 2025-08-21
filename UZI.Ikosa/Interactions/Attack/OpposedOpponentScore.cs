@@ -59,7 +59,9 @@ namespace Uzi.Ikosa.Interactions
         public IEnumerable<IDelta> QualifiedDeltas(Qualifier qualify)
         {
             foreach (var _delta in _Critter.OpposedDeltable.QualifiedDeltas(qualify, this, @"Opposed"))
+            {
                 yield return _delta;
+            }
 
             var _holdDelta = GetHoldingDelta();
             if (_holdDelta != 0)

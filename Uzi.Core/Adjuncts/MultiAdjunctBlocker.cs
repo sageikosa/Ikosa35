@@ -52,7 +52,9 @@ namespace Uzi.Core
             {
                 // cannot add
                 if (_Blocked.Any(_b => _b.IsAssignableFrom(_data.Adjunct.GetType())))
+                {
                     workSet.Feedback.Add(new ValueFeedback<bool>(this, false));
+                }
             }
         }
 

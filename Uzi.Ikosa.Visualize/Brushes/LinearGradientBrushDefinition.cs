@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Windows.Media;
 using System.Windows;
 
@@ -24,7 +22,7 @@ namespace Uzi.Visualize
         }
 
         #region private data
-        private GradientStopCollection _Stops = new GradientStopCollection();
+        private GradientStopCollection _Stops = [];
         private ColorInterpolationMode _Interpolation;
         private GradientSpreadMethod _Spread;
         private double _Angle = 0d;

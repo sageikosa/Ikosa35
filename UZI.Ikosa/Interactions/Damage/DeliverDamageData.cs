@@ -21,7 +21,7 @@ namespace Uzi.Ikosa.Interactions
             this.EnsureMinimum();
             IsContinuous = isContinuous;
             IsCriticalHit = isCriticalHit;
-            Secondaries = new List<ISecondaryAttackResult>();
+            Secondaries = [];
         }
 
         public List<DamageData> Damages { get; private set; }

@@ -110,8 +110,11 @@ namespace Uzi.Ikosa.Magic.Spells
             yield return new DamageRule(@"SearingLight.Damage",
                 new DiceRange(@"SearingLight", DisplayName, _max, new DieRoller(_die), _step), false, @"Searing Light Damage");
             if (isCriticalHit)
+            {
                 yield return new DamageRule(@"SearingLight.Damage.Critical",
                     new DiceRange(@"SearingLight (Critical)", DisplayName, _max, new DieRoller(_die), _step), false, @"Searing Light Damage (Critical)");
+            }
+
             yield break;
         }
 

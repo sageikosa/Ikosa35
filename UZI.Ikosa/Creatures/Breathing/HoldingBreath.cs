@@ -40,9 +40,13 @@ namespace Uzi.Ikosa.Creatures
             {
                 var _time = CurrentTime;
                 if (_time < (double.MaxValue - Round.UnitFactor))
+                {
                     _NextCheck = _time + Round.UnitFactor;
+                }
                 else
+                {
                     _NextCheck = _time;
+                }
 
                 if (Anchor is Creature _critter)
                 {
@@ -99,7 +103,9 @@ namespace Uzi.Ikosa.Creatures
             if ((timeVal >= _NextCheck) && (direction == TimeValTransition.Entering))
             {
                 if (_NextCheck < (double.MaxValue - Round.UnitFactor))
+                {
                     _NextCheck += Round.UnitFactor;
+                }
 
                 var _critter = Anchor as Creature;
                 if (IsUnconscious)

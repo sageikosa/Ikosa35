@@ -16,9 +16,14 @@ namespace Uzi.Core
         public BestSoftQualifiedDelta(params ConstDeltable[] deltas)
         {
             if (deltas?.Any() ?? false)
+            {
                 _Deltas = deltas.ToList();
+            }
             else
-                _Deltas = new List<ConstDeltable>();
+            {
+                _Deltas = [];
+            }
+
             _Term = new TerminateController(this);
         }
 
@@ -39,7 +44,9 @@ namespace Uzi.Core
             {
                 // all deltas for this deltable
                 foreach (var _q in _supply.QualifiedDeltas(qualify, this, @"base"))
-                    yield return _q; 
+                {
+                    yield return _q;
+                }
             }
             yield break;
         }

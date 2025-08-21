@@ -52,7 +52,9 @@ namespace Uzi.Ikosa.Adjuncts
 
             // and drop if coverSource still has structure
             if ((_critter != null) && ((_coverSource?.StructurePoints ?? 0) > 0))
+            {
                 Drop.DoDropEject(_critter, _coverSource);
+            }
 
             base.OnDeactivate(source);
         }

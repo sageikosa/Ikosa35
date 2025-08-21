@@ -82,7 +82,9 @@ namespace Uzi.Ikosa.Workshop
                     }
                 }
                 if (cboAddClass.Items.Count == 1)
+                {
                     cboAddClass.SelectedIndex = 0;
+                }
             }
         }
         #endregion
@@ -110,7 +112,9 @@ namespace Uzi.Ikosa.Workshop
                             });
                         }
                         if (cboAddLevels.Items.Count > 0)
+                        {
                             cboAddLevels.SelectedIndex = 0;
+                        }
                     }
                     #endregion
                 }
@@ -135,7 +139,9 @@ namespace Uzi.Ikosa.Workshop
                             }
                         }
                         if (cboAddLevels.Items.Count > 0)
+                        {
                             cboAddLevels.SelectedIndex = 0;
+                        }
                     }
                     else
                     {
@@ -153,7 +159,9 @@ namespace Uzi.Ikosa.Workshop
                             }
                         }
                         if (cboAddLevels.Items.Count > 0)
+                        {
                             cboAddLevels.SelectedIndex = 0;
+                        }
                     }
                     #endregion
                 }

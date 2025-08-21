@@ -51,9 +51,15 @@ namespace Uzi.Packaging
             set
             {
                 if (value == null)
+                {
                     return;
+                }
+
                 if (!(NameManager?.CanUseName(value, GetType()) ?? false))
+                {
                     return;
+                }
+
                 var _oldVal = _Name;
                 _Name = value.ToSafeString();
                 OnBindableNameChange(_oldVal);

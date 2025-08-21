@@ -1,4 +1,4 @@
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using System;
 
 namespace Uzi.Core
@@ -94,14 +94,18 @@ namespace Uzi.Core
             {
                 // test if old value will release
                 if (_LinkDock.WillAbortChange(default))
+                {
                     return true;
+                }
             }
 
             if (newVal != null)
             {
                 // test if new value will allow
                 if (newVal.WillAbortChange(_Owner))
+                {
                     return true;
+                }
             }
 
             // see if anything has registered to test for an abort

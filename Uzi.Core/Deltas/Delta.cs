@@ -1,4 +1,4 @@
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using System;
 
 namespace Uzi.Core
@@ -93,10 +93,7 @@ namespace Uzi.Core
         #region IControlValue<DeltaValue> Members
         protected ChangeController<DeltaValue> ValueCtrlr()
         {
-            if (_DCtrl == null)
-            {
-                _DCtrl = new ChangeController<DeltaValue>(this, new DeltaValue(_Val));
-            }
+            _DCtrl ??= new ChangeController<DeltaValue>(this, new DeltaValue(_Val));
             return _DCtrl;
         }
 

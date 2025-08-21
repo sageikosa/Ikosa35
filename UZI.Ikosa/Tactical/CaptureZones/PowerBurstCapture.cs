@@ -15,7 +15,7 @@ namespace Uzi.Ikosa.Tactical
             : base(mapContext, activation.PowerUse.PowerActionSource, geometry, origin, burstBack, planar)
         {
             _Activation = activation;
-            _Context = new Collection<AimTarget>();
+            _Context = [];
         }
 
         #region state

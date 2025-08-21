@@ -18,7 +18,7 @@ namespace Uzi.Ikosa.Guildsmanship
             : base(description)
         {
             _OverRegion = new OverRegion(description.Clone() as Description);
-            _Networks = new List<SitePathGraphLink>();
+            _Networks = [];
             _StoryInfo = new StoryInformation();
         }
 

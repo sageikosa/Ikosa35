@@ -40,7 +40,9 @@ namespace Uzi.Ikosa.Actions.Steps
             #endregion
 
             foreach (var _pre in attackSource.AttackResultPrerequisites(attack))
+            {
                 _PendingPreRequisites.Enqueue(_pre);
+            }
 
             _Source = attackSource;
         }

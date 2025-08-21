@@ -82,7 +82,10 @@ namespace Uzi.Ikosa.Magic.Spells
         {
             // enable anchored aid
             if (source.AnchoredAdjunctObject is AidSpellEffect _aid)
+            {
                 _aid.IsActive = true;
+            }
+
             return null;
         }
 
@@ -90,7 +93,9 @@ namespace Uzi.Ikosa.Magic.Spells
         {
             // disable anchored aid
             if (source.AnchoredAdjunctObject is AidSpellEffect _aid)
+            {
                 _aid.IsActive = false;
+            }
         }
 
         public bool IsDismissable(int subMode) => false;

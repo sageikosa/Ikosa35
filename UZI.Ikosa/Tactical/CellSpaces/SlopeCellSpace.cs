@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Media.Media3D;
@@ -51,14 +51,18 @@ namespace Uzi.Ikosa.Tactical
             if (UpperMaterial(_param).BlocksEffect)
             {
                 if (AnyUpperVector(_param, z, y, x, pt1, pt2))
+                {
                     return true;
+                }
             }
 
             // lower vector and material
             if (LowerMaterial(_param).BlocksEffect)
             {
                 if (AnyLowerVector(_param, z, y, x, pt1, pt2))
+                {
                     return true;
+                }
             }
 
             // nothing blocking the effect
@@ -94,7 +98,9 @@ namespace Uzi.Ikosa.Tactical
 
             // see if any need to flip
             if (_param.Axis == flipAxis)
+            {
                 _param.Flip = !_param.Flip;
+            }
 
             if (_param.SlopeAxis == flipAxis)
             {
@@ -184,9 +190,13 @@ namespace Uzi.Ikosa.Tactical
             {
                 // trying to cross in the same axis as the sliver
                 if (surfaceFace.IsLowFace())
+                {
                     return new HedralGrip(!movement.CanMoveThrough(_lower));
+                }
                 else
+                {
                     return new HedralGrip(!movement.CanMoveThrough(_upper));
+                }
             }
             else if (IsShell)
             {
@@ -277,14 +287,18 @@ namespace Uzi.Ikosa.Tactical
                         // lo blocked (so the difference is the amount of empty space)
                         yield return _orthopening(_ortho.GetHighFace(), 5d - _mOffset);
                         if (_ortho != baseFace.GetAxis())
+                        {
                             yield return _slopening((_loOff < _hiOff) ? _slope.GetLowFace() : _slope.GetHighFace(), 2.5d, _mOffset);
+                        }
                     }
                     else
                     {
                         // hi blocked (so the offset is the amount of empty space)
                         yield return _orthopening(_ortho.GetLowFace(), _mOffset);
                         if (_ortho != baseFace.GetAxis())
+                        {
                             yield return _slopening((_loOff > _hiOff) ? _slope.GetLowFace() : _slope.GetHighFace(), 2.5d, 5d - _mOffset);
+                        }
                     }
                 }
             }
@@ -563,7 +577,9 @@ namespace Uzi.Ikosa.Tactical
             {
                 // same as base
                 foreach (var _pt in base.TacticalPoints(param, movement))
+                {
                     yield return _pt;
+                }
             }
             else
             {
@@ -574,7 +590,9 @@ namespace Uzi.Ikosa.Tactical
                 var _slope = _param.SlopeAxis;
 
                 foreach (var _pt in GetTacticalPoints(_loBlock, _ortho, _slope, _loOffset, _hiOffset))
+                {
                     yield return _pt;
+                }
             }
             yield break;
         }
@@ -843,7 +861,9 @@ namespace Uzi.Ikosa.Tactical
             {
                 // same as base
                 foreach (var _pt in base.TargetCorners(param, movement))
+                {
                     yield return _pt;
+                }
             }
             else
             {
@@ -853,7 +873,9 @@ namespace Uzi.Ikosa.Tactical
                 var _ortho = _param.Axis;
                 var _slope = _param.SlopeAxis;
                 foreach (var _corner in GetTargetCorners(_ortho, _slope, _loBlock, _loOffset, _hiOffset))
+                {
                     yield return _corner;
+                }
             }
             yield break;
         }
@@ -897,7 +919,7 @@ namespace Uzi.Ikosa.Tactical
                 }
                 else if (_gAxis == _ortho)
                 {
-                    // either dangling or standing on a slope between 0°-45°
+                    // either dangling or standing on a slope between 0Â°-45Â°
                     var _gravityLow = gravity.IsLowFace();
                     if ((_loBlocked && !_gravityLow) || (_hiBlocked && _gravityLow))
                     {
@@ -939,7 +961,7 @@ namespace Uzi.Ikosa.Tactical
                 }
                 else if (_gAxis == _slope)
                 {
-                    // gravity is slope axis...45°-90°
+                    // gravity is slope axis...45Â°-90Â°
                     var _gravLow = gravity.IsLowFace();
 
                     // slope is exposed to movement direction?

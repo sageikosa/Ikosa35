@@ -149,7 +149,9 @@ namespace Uzi.Ikosa.Guildsmanship
         public bool CanUseName(string name, Type partType)
         {
             if (typeof(ModuleNode).IsAssignableFrom(partType))
+            {
                 return _Components.CanUseName(name, partType);
+            }
 
             // unknown type
             return false;

@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -151,7 +151,10 @@ namespace Uzi.Ikosa.Workshop
                         {
                             var _roll = DiceRoller.RollDie(Guid.Empty, 6, @"Abilities", @"4d6 (best 3)");
                             if (_roll < _low)
+                            {
                                 _low = _roll;
+                            }
+
                             _val += _roll;
                         }
                         _val -= _low;
@@ -232,7 +235,9 @@ namespace Uzi.Ikosa.Workshop
                     else
                     {
                         if (_val > 3)
+                        {
                             _val--;
+                        }
                     }
                     _parent.Content = _val.ToString();
                 }

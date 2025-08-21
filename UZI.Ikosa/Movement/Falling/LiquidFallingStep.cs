@@ -162,8 +162,11 @@ namespace Uzi.Ikosa.Movement
                     {
                         // start sinking
                         if (_critter != null)
+                        {
                             EnqueueNotify(new BadNewsNotify(_critter.ID, @"Movement", new Description(@"Liquid Falling", @"going to sink")),
                                 _critter.ID);
+                        }
+
                         AppendFollowing(new SinkingStartStep(Process, Locator, 5));
                     }
                 }
@@ -176,8 +179,11 @@ namespace Uzi.Ikosa.Movement
                     {
                         // start falling again
                         if (_critter != null)
+                        {
                             EnqueueNotify(new BadNewsNotify(_critter.ID, @"Movement", new Description(@"Liquid Falling", @"fell out of liquid")),
                                 _critter.ID);
+                        }
+
                         new FallingStartStep(this, Locator, 500, 0, 1);
                     }
                     else

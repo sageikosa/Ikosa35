@@ -59,7 +59,9 @@ namespace Uzi.Ikosa.Actions
 
                     // add any circumstance...
                     if (_delta != null)
+                    {
                         _check.CheckRoll.Deltas.Add(_delta);
+                    }
                 }
                 SecureLock.UnsecureLock(activity.Actor, activity, _check.Success);
             }

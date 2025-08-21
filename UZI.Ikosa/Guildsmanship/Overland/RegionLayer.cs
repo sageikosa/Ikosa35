@@ -108,7 +108,9 @@ namespace Uzi.Ikosa.Guildsmanship.Overland
                     if (_Validator(_rx, _cx, newIdx))
                     {
                         if (_Cells[_rx][_cx] == oldIdx)
+                        {
                             _Cells[_rx][_cx] = newIdx;
+                        }
                     }
                 }
             }

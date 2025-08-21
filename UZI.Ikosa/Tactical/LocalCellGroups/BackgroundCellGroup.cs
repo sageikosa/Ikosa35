@@ -55,7 +55,10 @@ namespace Uzi.Ikosa.Tactical
         public override ref readonly CellStructure GetCellSpace(int z, int y, int x)
         {
             if (ContainsCell(z, y, x))
+            {
                 return ref _TemplateCell;
+            }
+
             return ref CellStructure.Default;
         }
         #endregion

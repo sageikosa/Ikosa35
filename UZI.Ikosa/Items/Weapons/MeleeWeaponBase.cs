@@ -1,4 +1,4 @@
-using Uzi.Core.Contracts;
+﻿using Uzi.Core.Contracts;
 using System;
 using System.Collections.Generic;
 using Uzi.Core;
@@ -126,12 +126,21 @@ namespace Uzi.Ikosa.Items.Weapons
         {
             yield return new MeleeStrike(MainHead, Contracts.AttackImpact.Penetrating, @"101");
             if (this.IsThrowable())
+            {
                 yield return new ThrowStrike(MainHead, this.GetThrowable(), AttackImpact.Penetrating, @"102");
+            }
+
             yield return new Disarm(MainHead, @"103");
             if (MainHead.DamageTypes.Any(_dt => _dt != DamageType.Piercing))
+            {
                 yield return new SunderWieldedItem(MainHead, @"104");
+            }
+
             if (this.IsTrippingWeapon())
+            {
                 yield return new Trip(MainHead, @"105");
+            }
+
             yield break;
         }
 
@@ -147,7 +156,9 @@ namespace Uzi.Ikosa.Items.Weapons
                 if (_budget.CanPerformRegular)
                 {
                     foreach (var _strike in WeaponStrikes())
+                    {
                         yield return new RegularAttack(_strike);
+                    }
 
                     // probe
                     yield return new Probe(MainHead, new ActionTime(TimeType.Regular), @"901");

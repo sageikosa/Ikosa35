@@ -81,7 +81,9 @@ namespace Uzi.Ikosa.Items.Weapons.Ranged
         public void MergeIdentityCreatures(AmmunitionBoundBase<RangedType> ammoType)
         {
             if (!IsSameAmmunition(ammoType))
+            {
                 return;
+            }
 
             // same IDs (must be identified as the same)
             Dictionary<Guid, Identity> _getMerges(AmmunitionBoundBase<RangedType> ammo)

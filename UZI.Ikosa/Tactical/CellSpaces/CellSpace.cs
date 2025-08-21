@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Windows.Media.Media3D;
 using System.Linq;
@@ -34,7 +34,9 @@ namespace Uzi.Ikosa.Tactical
                 _Rules = new GripRules();
             }
             else
+            {
                 throw new ArgumentException(@"TileSet must be an available tiling of the CellMaterial");
+            }
         }
         #endregion
 
@@ -166,7 +168,10 @@ namespace Uzi.Ikosa.Tactical
             {
                 var _final = new Model3DGroup();
                 foreach (var _m in _context.GetModel3D(alpha))
+                {
                     _final.Children.Add(_m);
+                }
+
                 if (gathered.Children.Count > 0)
                 {
                     gathered.Transform = _move;
@@ -277,20 +282,32 @@ namespace Uzi.Ikosa.Tactical
         public BuildableMaterial GetOrthoFaceMaterial(Axis axis, bool isPlus, VisualEffect effect)
         {
             if (Tiling == null)
+            {
                 return new BuildableMaterial { Material = null, IsAlpha = false };
+            }
+
             switch (axis)
             {
                 case Axis.Z:
                     if (isPlus)
+                    {
                         return new BuildableMaterial { Material = Tiling.ZPlusMaterial(effect), IsAlpha = Tiling.GetAnchorFaceAlpha(AnchorFace.ZHigh) };
+                    }
+
                     return new BuildableMaterial { Material = Tiling.ZMinusMaterial(effect), IsAlpha = Tiling.GetAnchorFaceAlpha(AnchorFace.ZLow) };
                 case Axis.Y:
                     if (isPlus)
+                    {
                         return new BuildableMaterial { Material = Tiling.YPlusMaterial(effect), IsAlpha = Tiling.GetAnchorFaceAlpha(AnchorFace.YHigh) };
+                    }
+
                     return new BuildableMaterial { Material = Tiling.YMinusMaterial(effect), IsAlpha = Tiling.GetAnchorFaceAlpha(AnchorFace.YLow) };
                 default:
                     if (isPlus)
+                    {
                         return new BuildableMaterial { Material = Tiling.XPlusMaterial(effect), IsAlpha = Tiling.GetAnchorFaceAlpha(AnchorFace.XHigh) };
+                    }
+
                     return new BuildableMaterial { Material = Tiling.XMinusMaterial(effect), IsAlpha = Tiling.GetAnchorFaceAlpha(AnchorFace.XLow) };
             }
         }
@@ -413,7 +430,9 @@ namespace Uzi.Ikosa.Tactical
             if (movement.CanMoveThrough(CellMaterial))
             {
                 foreach (var _pt in RawTacticalPoints)
+                {
                     yield return _pt;
+                }
             }
             yield break;
         }

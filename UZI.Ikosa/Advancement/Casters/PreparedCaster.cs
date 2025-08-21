@@ -56,9 +56,11 @@ namespace Uzi.Ikosa.Advancement
                         {
                             // some spells have multiple modes, so include them all
                             foreach (var _spellMode in _spellSlot.PreparedSpell.SpellDef.SpellModes)
+                            {
                                 yield return new CastSpell(_spellSlot.PreparedSpell, _spellMode,
                                     _spellSlot.PreparedSpell.SpellDef.ActionTime, _spellSlot,
                                     _spellSlot.PreparedSpell.SpellDef.DisplayName);
+                            }
                         }
                     }
                 }
@@ -92,7 +94,10 @@ namespace Uzi.Ikosa.Advancement
         public virtual IEnumerable<CoreAction> GetActions(CoreActionBudget budget)
         {
             foreach (var _act in BaseActions(budget))
+            {
                 yield return _act;
+            }
+
             yield break;
         }
 

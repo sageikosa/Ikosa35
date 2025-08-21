@@ -13,7 +13,7 @@ namespace Uzi.Ikosa.Interactions
         public PreRelocateFeedback(object source)
             : base(source)
         {
-            _ReactiveSteps = new List<CoreStep>();
+            _ReactiveSteps = [];
         }
 
         #region data

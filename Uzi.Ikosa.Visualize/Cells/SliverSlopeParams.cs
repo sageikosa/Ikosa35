@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
-using System.Linq;
 
 namespace Uzi.Visualize
 {
@@ -84,7 +83,9 @@ namespace Uzi.Visualize
             set
             {
                 if ((value <= 60) && (value >= 0))
+                {
                     _Vector[_Offset] = value;
+                }
             }
         }
 
@@ -94,7 +95,9 @@ namespace Uzi.Visualize
             set
             {
                 if ((value <= 5d) && (value >= 0d))
+                {
                     OffsetUnits = (int)(value * 60d / 5d);
+                }
             }
         }
 
@@ -111,7 +114,9 @@ namespace Uzi.Visualize
             set
             {
                 if ((value <= 60) && (value >= 0))
+                {
                     _Vector[_Offset2] = value;
+                }
             }
         }
 
@@ -121,7 +126,9 @@ namespace Uzi.Visualize
             set
             {
                 if ((value <= 5d) && (value >= 0d))
+                {
                     HiOffsetUnits = (int)(value * 60d / 5d);
+                }
             }
         }
 
@@ -173,20 +180,66 @@ namespace Uzi.Visualize
             var _param = this;
             double _offCalc(AnchorFace face) => (face == _offFace) ? _param.Offset : 0d;
 
-            if (ZLoYLo) yield return new EdgeStruc(edge, AnchorFaceList.ZLow | AnchorFaceList.YLow, _offCalc(AnchorFace.YLow), _offCalc(AnchorFace.ZLow));
-            if (ZLoYHi) yield return new EdgeStruc(edge, AnchorFaceList.ZLow | AnchorFaceList.YHigh, _offCalc(AnchorFace.YHigh), _offCalc(AnchorFace.ZLow));
-            if (ZLoXLo) yield return new EdgeStruc(edge, AnchorFaceList.ZLow | AnchorFaceList.XLow, _offCalc(AnchorFace.ZLow), _offCalc(AnchorFace.XLow));
-            if (ZLoXHi) yield return new EdgeStruc(edge, AnchorFaceList.ZLow | AnchorFaceList.XHigh, _offCalc(AnchorFace.ZLow), _offCalc(AnchorFace.XHigh));
+            if (ZLoYLo)
+            {
+                yield return new EdgeStruc(edge, AnchorFaceList.ZLow | AnchorFaceList.YLow, _offCalc(AnchorFace.YLow), _offCalc(AnchorFace.ZLow));
+            }
 
-            if (ZHiYLo) yield return new EdgeStruc(edge, AnchorFaceList.ZHigh | AnchorFaceList.YLow, _offCalc(AnchorFace.YLow), _offCalc(AnchorFace.ZHigh));
-            if (ZHiYHi) yield return new EdgeStruc(edge, AnchorFaceList.ZHigh | AnchorFaceList.YHigh, _offCalc(AnchorFace.YHigh), _offCalc(AnchorFace.ZHigh));
-            if (ZHiXLo) yield return new EdgeStruc(edge, AnchorFaceList.ZHigh | AnchorFaceList.XLow, _offCalc(AnchorFace.ZHigh), _offCalc(AnchorFace.XLow));
-            if (ZHiXHi) yield return new EdgeStruc(edge, AnchorFaceList.ZHigh | AnchorFaceList.XHigh, _offCalc(AnchorFace.ZHigh), _offCalc(AnchorFace.XHigh));
+            if (ZLoYHi)
+            {
+                yield return new EdgeStruc(edge, AnchorFaceList.ZLow | AnchorFaceList.YHigh, _offCalc(AnchorFace.YHigh), _offCalc(AnchorFace.ZLow));
+            }
 
-            if (YLoXLo) yield return new EdgeStruc(edge, AnchorFaceList.YLow | AnchorFaceList.XLow, _offCalc(AnchorFace.XLow), _offCalc(AnchorFace.YLow));
-            if (YLoXHi) yield return new EdgeStruc(edge, AnchorFaceList.YLow | AnchorFaceList.XHigh, _offCalc(AnchorFace.XHigh), _offCalc(AnchorFace.YLow));
-            if (YHiXLo) yield return new EdgeStruc(edge, AnchorFaceList.YHigh | AnchorFaceList.XLow, _offCalc(AnchorFace.XLow), _offCalc(AnchorFace.YHigh));
-            if (YHiXHi) yield return new EdgeStruc(edge, AnchorFaceList.YHigh | AnchorFaceList.XHigh, _offCalc(AnchorFace.XHigh), _offCalc(AnchorFace.YHigh));
+            if (ZLoXLo)
+            {
+                yield return new EdgeStruc(edge, AnchorFaceList.ZLow | AnchorFaceList.XLow, _offCalc(AnchorFace.ZLow), _offCalc(AnchorFace.XLow));
+            }
+
+            if (ZLoXHi)
+            {
+                yield return new EdgeStruc(edge, AnchorFaceList.ZLow | AnchorFaceList.XHigh, _offCalc(AnchorFace.ZLow), _offCalc(AnchorFace.XHigh));
+            }
+
+            if (ZHiYLo)
+            {
+                yield return new EdgeStruc(edge, AnchorFaceList.ZHigh | AnchorFaceList.YLow, _offCalc(AnchorFace.YLow), _offCalc(AnchorFace.ZHigh));
+            }
+
+            if (ZHiYHi)
+            {
+                yield return new EdgeStruc(edge, AnchorFaceList.ZHigh | AnchorFaceList.YHigh, _offCalc(AnchorFace.YHigh), _offCalc(AnchorFace.ZHigh));
+            }
+
+            if (ZHiXLo)
+            {
+                yield return new EdgeStruc(edge, AnchorFaceList.ZHigh | AnchorFaceList.XLow, _offCalc(AnchorFace.ZHigh), _offCalc(AnchorFace.XLow));
+            }
+
+            if (ZHiXHi)
+            {
+                yield return new EdgeStruc(edge, AnchorFaceList.ZHigh | AnchorFaceList.XHigh, _offCalc(AnchorFace.ZHigh), _offCalc(AnchorFace.XHigh));
+            }
+
+            if (YLoXLo)
+            {
+                yield return new EdgeStruc(edge, AnchorFaceList.YLow | AnchorFaceList.XLow, _offCalc(AnchorFace.XLow), _offCalc(AnchorFace.YLow));
+            }
+
+            if (YLoXHi)
+            {
+                yield return new EdgeStruc(edge, AnchorFaceList.YLow | AnchorFaceList.XHigh, _offCalc(AnchorFace.XHigh), _offCalc(AnchorFace.YLow));
+            }
+
+            if (YHiXLo)
+            {
+                yield return new EdgeStruc(edge, AnchorFaceList.YHigh | AnchorFaceList.XLow, _offCalc(AnchorFace.XLow), _offCalc(AnchorFace.YHigh));
+            }
+
+            if (YHiXHi)
+            {
+                yield return new EdgeStruc(edge, AnchorFaceList.YHigh | AnchorFaceList.XHigh, _offCalc(AnchorFace.XHigh), _offCalc(AnchorFace.YHigh));
+            }
+
             yield break;
         }
         #endregion
@@ -203,20 +256,66 @@ namespace Uzi.Visualize
                     : Math.Max(_param.Offset, _param.HiOffset))
                 : 0d;
 
-            if (ZLoYLo) yield return new EdgeStruc(edge, AnchorFaceList.ZLow | AnchorFaceList.YLow, _offCalc(AnchorFace.YLow, AnchorFace.ZLow), _offCalc(AnchorFace.ZLow, AnchorFace.YLow));
-            if (ZLoYHi) yield return new EdgeStruc(edge, AnchorFaceList.ZLow | AnchorFaceList.YHigh, _offCalc(AnchorFace.YHigh, AnchorFace.ZLow), _offCalc(AnchorFace.ZLow, AnchorFace.YHigh));
-            if (ZLoXLo) yield return new EdgeStruc(edge, AnchorFaceList.ZLow | AnchorFaceList.XLow, _offCalc(AnchorFace.ZLow, AnchorFace.XLow), _offCalc(AnchorFace.XLow, AnchorFace.ZLow));
-            if (ZLoXHi) yield return new EdgeStruc(edge, AnchorFaceList.ZLow | AnchorFaceList.XHigh, _offCalc(AnchorFace.ZLow, AnchorFace.XHigh), _offCalc(AnchorFace.XHigh, AnchorFace.ZLow));
+            if (ZLoYLo)
+            {
+                yield return new EdgeStruc(edge, AnchorFaceList.ZLow | AnchorFaceList.YLow, _offCalc(AnchorFace.YLow, AnchorFace.ZLow), _offCalc(AnchorFace.ZLow, AnchorFace.YLow));
+            }
 
-            if (ZHiYLo) yield return new EdgeStruc(edge, AnchorFaceList.ZHigh | AnchorFaceList.YLow, _offCalc(AnchorFace.YLow, AnchorFace.ZHigh), _offCalc(AnchorFace.ZHigh, AnchorFace.YLow));
-            if (ZHiYHi) yield return new EdgeStruc(edge, AnchorFaceList.ZHigh | AnchorFaceList.YHigh, _offCalc(AnchorFace.YHigh, AnchorFace.ZHigh), _offCalc(AnchorFace.ZHigh, AnchorFace.YHigh));
-            if (ZHiXLo) yield return new EdgeStruc(edge, AnchorFaceList.ZHigh | AnchorFaceList.XLow, _offCalc(AnchorFace.ZHigh, AnchorFace.XLow), _offCalc(AnchorFace.XLow, AnchorFace.ZHigh));
-            if (ZHiXHi) yield return new EdgeStruc(edge, AnchorFaceList.ZHigh | AnchorFaceList.XHigh, _offCalc(AnchorFace.ZHigh, AnchorFace.XHigh), _offCalc(AnchorFace.XHigh, AnchorFace.ZHigh));
+            if (ZLoYHi)
+            {
+                yield return new EdgeStruc(edge, AnchorFaceList.ZLow | AnchorFaceList.YHigh, _offCalc(AnchorFace.YHigh, AnchorFace.ZLow), _offCalc(AnchorFace.ZLow, AnchorFace.YHigh));
+            }
 
-            if (YLoXLo) yield return new EdgeStruc(edge, AnchorFaceList.YLow | AnchorFaceList.XLow, _offCalc(AnchorFace.XLow, AnchorFace.YLow), _offCalc(AnchorFace.YLow, AnchorFace.XLow));
-            if (YLoXHi) yield return new EdgeStruc(edge, AnchorFaceList.YLow | AnchorFaceList.XHigh, _offCalc(AnchorFace.XHigh, AnchorFace.YLow), _offCalc(AnchorFace.YLow, AnchorFace.XHigh));
-            if (YHiXLo) yield return new EdgeStruc(edge, AnchorFaceList.YHigh | AnchorFaceList.XLow, _offCalc(AnchorFace.XLow, AnchorFace.YHigh), _offCalc(AnchorFace.YHigh, AnchorFace.XLow));
-            if (YHiXHi) yield return new EdgeStruc(edge, AnchorFaceList.YHigh | AnchorFaceList.XHigh, _offCalc(AnchorFace.XHigh, AnchorFace.YHigh), _offCalc(AnchorFace.YHigh, AnchorFace.XHigh));
+            if (ZLoXLo)
+            {
+                yield return new EdgeStruc(edge, AnchorFaceList.ZLow | AnchorFaceList.XLow, _offCalc(AnchorFace.ZLow, AnchorFace.XLow), _offCalc(AnchorFace.XLow, AnchorFace.ZLow));
+            }
+
+            if (ZLoXHi)
+            {
+                yield return new EdgeStruc(edge, AnchorFaceList.ZLow | AnchorFaceList.XHigh, _offCalc(AnchorFace.ZLow, AnchorFace.XHigh), _offCalc(AnchorFace.XHigh, AnchorFace.ZLow));
+            }
+
+            if (ZHiYLo)
+            {
+                yield return new EdgeStruc(edge, AnchorFaceList.ZHigh | AnchorFaceList.YLow, _offCalc(AnchorFace.YLow, AnchorFace.ZHigh), _offCalc(AnchorFace.ZHigh, AnchorFace.YLow));
+            }
+
+            if (ZHiYHi)
+            {
+                yield return new EdgeStruc(edge, AnchorFaceList.ZHigh | AnchorFaceList.YHigh, _offCalc(AnchorFace.YHigh, AnchorFace.ZHigh), _offCalc(AnchorFace.ZHigh, AnchorFace.YHigh));
+            }
+
+            if (ZHiXLo)
+            {
+                yield return new EdgeStruc(edge, AnchorFaceList.ZHigh | AnchorFaceList.XLow, _offCalc(AnchorFace.ZHigh, AnchorFace.XLow), _offCalc(AnchorFace.XLow, AnchorFace.ZHigh));
+            }
+
+            if (ZHiXHi)
+            {
+                yield return new EdgeStruc(edge, AnchorFaceList.ZHigh | AnchorFaceList.XHigh, _offCalc(AnchorFace.ZHigh, AnchorFace.XHigh), _offCalc(AnchorFace.XHigh, AnchorFace.ZHigh));
+            }
+
+            if (YLoXLo)
+            {
+                yield return new EdgeStruc(edge, AnchorFaceList.YLow | AnchorFaceList.XLow, _offCalc(AnchorFace.XLow, AnchorFace.YLow), _offCalc(AnchorFace.YLow, AnchorFace.XLow));
+            }
+
+            if (YLoXHi)
+            {
+                yield return new EdgeStruc(edge, AnchorFaceList.YLow | AnchorFaceList.XHigh, _offCalc(AnchorFace.XHigh, AnchorFace.YLow), _offCalc(AnchorFace.YLow, AnchorFace.XHigh));
+            }
+
+            if (YHiXLo)
+            {
+                yield return new EdgeStruc(edge, AnchorFaceList.YHigh | AnchorFaceList.XLow, _offCalc(AnchorFace.XLow, AnchorFace.YHigh), _offCalc(AnchorFace.YHigh, AnchorFace.XLow));
+            }
+
+            if (YHiXHi)
+            {
+                yield return new EdgeStruc(edge, AnchorFaceList.YHigh | AnchorFaceList.XHigh, _offCalc(AnchorFace.XHigh, AnchorFace.YHigh), _offCalc(AnchorFace.YHigh, AnchorFace.XHigh));
+            }
+
             yield break;
         }
         #endregion

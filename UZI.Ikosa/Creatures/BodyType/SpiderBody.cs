@@ -72,13 +72,21 @@ namespace Uzi.Ikosa.Creatures.BodyType
         {
             // remove any deltas
             if (_Deltas != null)
+            {
                 foreach (var _d in _Deltas)
+                {
                     _d.DoTerminate();
+                }
+            }
 
             // remove any IQualifyDeltas
             if (_Qualifies != null)
+            {
                 foreach (var _q in _Qualifies)
+                {
                     _q.DoTerminate();
+                }
+            }
 
             base.OnDisconnectBody();
         }
@@ -111,9 +119,13 @@ namespace Uzi.Ikosa.Creatures.BodyType
             foreach (var _move in Movements)
             {
                 if (_move is LandMovement)
+                {
                     _move.BaseValue = BaseLandSpeed(newValue);
+                }
                 else
+                {
                     _move.BaseValue = BaseClimbSpeed(newValue);
+                }
             }
             base.OnSizeChanged(oldValue, newValue);
         }

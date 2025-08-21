@@ -14,7 +14,7 @@ namespace Uzi.Ikosa.Tactical
     {
         public BackgroundCellGroupSet(LocalMap map)
         {
-            _Groups = new Collection<BackgroundCellGroup>();
+            _Groups = [];
             _Map = map;
         }
 
@@ -29,20 +29,30 @@ namespace Uzi.Ikosa.Tactical
         {
             _Groups.Add(item);
             if (_Map.ContextSet.Count > 0)
+            {
                 _Map.MapContext.CacheLocatorGroups();
+            }
+
             _Map.RelightMap();
             if (CollectionChanged != null)
+            {
                 CollectionChanged(this, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Add, item, _Groups.IndexOf(item)));
+            }
         }
 
         public void AddOverlay(BackgroundCellGroup overlay, int targetIndex)
         {
             _Groups.Insert(targetIndex, overlay);
             if (_Map.ContextSet.Count > 0)
+            {
                 _Map.MapContext.CacheLocatorGroups();
+            }
+
             _Map.RelightMap();
             if (CollectionChanged != null)
+            {
                 CollectionChanged(this, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Add, overlay, targetIndex));
+            }
         }
 
         public void Remove(BackgroundCellGroup item)
@@ -52,10 +62,15 @@ namespace Uzi.Ikosa.Tactical
             {
                 _Groups.Remove(item);
                 if (_Map.ContextSet.Count > 0)
+                {
                     _Map.MapContext.CacheLocatorGroups();
+                }
+
                 _Map.RelightMap();
                 if (CollectionChanged != null)
+                {
                     CollectionChanged(this, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Remove, item, _index));
+                }
             }
         }
 
@@ -69,7 +84,9 @@ namespace Uzi.Ikosa.Tactical
             foreach (var _set in _Groups)
             {
                 if (_set.ContainsCell(location))
+                {
                     return _set;
+                }
             }
             return null;
         }
@@ -97,7 +114,10 @@ namespace Uzi.Ikosa.Tactical
         public IEnumerator<BackgroundCellGroup> GetEnumerator()
         {
             foreach (var _bcg in All())
+            {
                 yield return _bcg;
+            }
+
             yield break;
         }
 
@@ -108,7 +128,10 @@ namespace Uzi.Ikosa.Tactical
         System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
         {
             foreach (var _bcg in All())
+            {
                 yield return _bcg;
+            }
+
             yield break;
         }
 

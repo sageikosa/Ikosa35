@@ -31,7 +31,10 @@ namespace Uzi.Ikosa.Actions
         public static GraspProbeBudget GetBudget(CoreActionBudget budget)
         {
             if (budget.BudgetItems.ContainsKey(typeof(GraspProbeBudget)))
+            {
                 return budget.BudgetItems[typeof(GraspProbeBudget)] as GraspProbeBudget;
+            }
+
             return null;
         }
 
@@ -79,9 +82,13 @@ namespace Uzi.Ikosa.Actions
             {
                 var _origin = _budget.TopActivity?.Action;
                 if (_origin is Grasp)
+                {
                     yield return new Grasp(_origin.ActionSource, new ActionTime(TimeType.SubAction), @"901");
+                }
                 else if (_origin is Probe)
+                {
                     yield return new Probe((_origin as Probe).WeaponHead, new ActionTime(TimeType.SubAction), @"901");
+                }
             }
             yield break;
         }

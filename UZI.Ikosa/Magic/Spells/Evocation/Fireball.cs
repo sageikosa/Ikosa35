@@ -141,7 +141,9 @@ namespace Uzi.Ikosa.Magic.Spells
                 foreach (var _step in DeliverDirectFromBurst(_spellBurst, locator,
                     delegate (Locator loc, ICore core) { return true; },
                     delegate (CoreStep step) { return true; }, 0))
+                {
                     yield return _step;
+                }
             }
         }
 

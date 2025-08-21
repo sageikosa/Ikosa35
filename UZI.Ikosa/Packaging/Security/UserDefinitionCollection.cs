@@ -25,7 +25,9 @@ namespace Uzi.Ikosa.Services
             finally
             {
                 if (_Lock.IsWriteLockHeld)
+                {
                     _Lock.ExitWriteLock();
+                }
             }
         }
         #endregion
@@ -41,7 +43,9 @@ namespace Uzi.Ikosa.Services
             finally
             {
                 if (_Lock.IsWriteLockHeld)
+                {
                     _Lock.ExitWriteLock();
+                }
             }
         }
         #endregion
@@ -57,7 +61,9 @@ namespace Uzi.Ikosa.Services
             finally
             {
                 if (_Lock.IsReadLockHeld)
+                {
                     _Lock.ExitReadLock();
+                }
             }
         }
         #endregion
@@ -73,7 +79,9 @@ namespace Uzi.Ikosa.Services
             finally
             {
                 if (_Lock.IsReadLockHeld)
+                {
                     _Lock.ExitReadLock();
+                }
             }
         }
         #endregion
@@ -89,7 +97,9 @@ namespace Uzi.Ikosa.Services
             finally
             {
                 if (_Lock.IsReadLockHeld)
+                {
                     _Lock.ExitReadLock();
+                }
             }
         }
         #endregion
@@ -105,7 +115,9 @@ namespace Uzi.Ikosa.Services
             finally
             {
                 if (_Lock.IsReadLockHeld)
+                {
                     _Lock.ExitReadLock();
+                }
             }
         }
         #endregion

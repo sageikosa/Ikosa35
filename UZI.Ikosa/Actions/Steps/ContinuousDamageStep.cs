@@ -17,7 +17,9 @@ namespace Uzi.Ikosa.Actions.Steps
         {
             _Source = damageSource;
             foreach (var _pre in GetDamagePrerequisites())
+            {
                 _PendingPreRequisites.Enqueue(_pre);
+            }
         }
 
         #region data

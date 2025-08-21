@@ -42,9 +42,9 @@ namespace Uzi.Ikosa.Guildsmanship
         public Settlement(Description description)
             : base(description)
         {
-            _Services = new List<NonPlayerService>();
-            _Names = new List<PlaceName>();
-            _SubDivisions = new List<SettlementSubDivision>();
+            _Services = [];
+            _Names = [];
+            _SubDivisions = [];
         }
 
         public static Settlement GetSettlement(PackagePart part)

@@ -50,7 +50,9 @@ namespace Uzi.Ikosa.Actions.Steps
         protected override StepPrerequisite OnNextPrerequisite()
         {
             if (!IsDispensingPrerequisites)
+            {
                 return null;
+            }
 
             var _willCounter = CounterAttemptChoice;
             if (_willCounter == null)
@@ -65,11 +67,16 @@ namespace Uzi.Ikosa.Actions.Steps
             {
                 // make the attack roll as a pre-requisite
                 if (AttackerCheck == null)
+                {
                     return new RollPrerequisite(this, null, _Actor, @"CounterDisarm.AttackRoll", @"Counter Disarm Attack",
                         new DieRoller(20), false);
+                }
+
                 if (DefenderCheck == null)
+                {
                     return new RollPrerequisite(this, null, _Opponent, @"CounterDisarm.Opposed", @"Opposed Disarm",
                         new DieRoller(20), false);
+                }
             }
 
             // done

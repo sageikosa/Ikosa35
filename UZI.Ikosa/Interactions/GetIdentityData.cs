@@ -30,7 +30,9 @@ namespace Uzi.Ikosa.Interactions
         public static List<Identity> GetIdentities(ICoreObject obj, CoreActor actor)
         {
             if (!(obj?.HasAdjunct<Identity>() ?? false))
-                return new List<Identity>();
+            {
+                return [];
+            }
 
             var _idInteract = new Interaction(actor, typeof(GetIdentityData), obj, new GetIdentityData(actor));
             if (obj != null)
@@ -38,7 +40,7 @@ namespace Uzi.Ikosa.Interactions
                 obj.HandleInteraction(_idInteract);
             }
             return _idInteract.Feedback.OfType<GetIdentityDataFeedback>().FirstOrDefault()?.Identities
-                ?? new List<Identity>();
+                ?? [];
         }
 
         /// <summary>Provides info about an object as known by the actor</summary>
@@ -57,7 +59,7 @@ namespace Uzi.Ikosa.Interactions
                     ObjectInfo = _i.Infos.FirstOrDefault() as ObjectInfo
                 })
                 .ToList()
-                ?? new List<IdentityInfo>();
+                ?? [];
         }
 
         private static GetIdentityDataHandler _Static = new GetIdentityDataHandler();
@@ -80,7 +82,7 @@ namespace Uzi.Ikosa.Interactions
         public GetIdentityDataFeedback(object source)
             : base(source)
         {
-            _Identities = new List<Identity>();
+            _Identities = [];
         }
 
         private List<Identity> _Identities;

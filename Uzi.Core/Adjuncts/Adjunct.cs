@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Linq;
 using System.Collections.Generic;
 using Newtonsoft.Json;
@@ -137,19 +137,31 @@ namespace Uzi.Core
                     if (_Active != value.IsActive)
                     {
                         if (_ActCtrlr.WillAbortChange(value))
+                        {
                             return;
+                        }
+
                         if (value.IsActive && !OnPreActivate(value.Source))
+                        {
                             return;
+                        }
                         else if (!value.IsActive && !OnPreDeactivate(value.Source))
+                        {
                             return;
+                        }
 
                         // do pre-value changed
                         _ActCtrlr.DoPreValueChanged(value);
                         _Active = value.IsActive;
                         if (_Active)
+                        {
                             OnActivate(value.Source);
+                        }
                         else
+                        {
                             OnDeactivate(value.Source);
+                        }
+
                         PropertyChanged?.Invoke(this, new System.ComponentModel.PropertyChangedEventArgs(@"IsActive"));
                     }
 

@@ -66,7 +66,9 @@ namespace Uzi.Ikosa.Time
         {
             base.BindToSetting();
             if (Anchor?.Setting?.ID != MapID)
+            {
                 Eject();
+            }
         }
 
         public double Resolution => Hour.UnitFactor;

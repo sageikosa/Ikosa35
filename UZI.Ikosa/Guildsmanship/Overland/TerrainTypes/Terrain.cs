@@ -14,7 +14,7 @@ namespace Uzi.Ikosa.Guildsmanship.Overland
 
         protected Terrain()
         {
-            _Tiles = new Dictionary<byte, TileRef>();
+            _Tiles = [];
         }
 
         public abstract string Name { get; }

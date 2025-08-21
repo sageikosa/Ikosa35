@@ -27,7 +27,9 @@ namespace Uzi.Ikosa.Movement
         public void HandleInteraction(Interaction workSet)
         {
             if (workSet.InteractData is ObjectGrabbedPivotData _ogpd)
+            {
                 workSet.Feedback.Add(new ValueFeedback<int>(this, Allowance));
+            }
         }
 
         public IEnumerable<Type> GetInteractionTypes()

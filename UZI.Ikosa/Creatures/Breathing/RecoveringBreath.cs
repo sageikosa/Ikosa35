@@ -37,7 +37,9 @@ namespace Uzi.Ikosa.Creatures
                 // didn't have a holding breath, possibly had a drowning
                 var _drowning = Anchor.Adjuncts.OfType<Drowning>().FirstOrDefault();
                 if (_drowning != null)
+                {
                     _holding = _drowning.HoldingBreath;
+                }
             }
 
             if (_holding != null)
@@ -63,9 +65,13 @@ namespace Uzi.Ikosa.Creatures
 
             var _time = CurrentTime;
             if (_time < (double.MaxValue - Round.UnitFactor))
+            {
                 _NextCheck = _time + Round.UnitFactor;
+            }
             else
+            {
                 _NextCheck = _time;
+            }
 
             if (Anchor is Creature _critter)
             {
@@ -96,13 +102,18 @@ namespace Uzi.Ikosa.Creatures
             if ((timeVal >= _NextCheck) && (direction == TimeValTransition.Entering))
             {
                 if (_NextCheck < (double.MaxValue - Round.UnitFactor))
+                {
                     _NextCheck += Round.UnitFactor;
+                }
 
                 // decrease counter until 0, eject when done...
                 BreathlessCounter.HeldCount -= 2;
                 BreathlessCounter.ContinueDifficulty--;
                 if (BreathlessCounter.HeldCount <= 0)
+                {
                     Eject();
+                }
+
                 if (Anchor is Creature _critter)
                 {
                     _critter.SendSysNotify(new GoodNewsNotify(_critter.ID, @"Breathing",

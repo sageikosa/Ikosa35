@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Markup;
 
 namespace Uzi.Visualize
@@ -10,14 +8,13 @@ namespace Uzi.Visualize
     public class ExternalVal : ParameterExtension<int>
     {
         [ThreadStatic]
-        private static Dictionary<string, int> _Values = new Dictionary<string, int>();
+        private static Dictionary<string, int> _Values = [];
 
         public static Dictionary<string, int> Values
         {
             get
             {
-                if (_Values == null)
-                    _Values = new Dictionary<string, int>();
+                _Values ??= [];
                 return _Values;
             }
         }
@@ -33,7 +30,9 @@ namespace Uzi.Visualize
         public override object ProvideValue(IServiceProvider serviceProvider)
         {
             if (_KeyReferenced != null)
+            {
                 _KeyReferenced(this);
+            }
 
             return Values.ContainsKey(Key)
                 ? Values[Key]

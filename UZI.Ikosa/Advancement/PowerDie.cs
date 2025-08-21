@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using Uzi.Ikosa.Feats;
 using Uzi.Core.Dice;
@@ -32,13 +32,16 @@ namespace Uzi.Ikosa.Advancement
             // skill setup
             _SkillPointsLeft = AdvancementClass.SkillPointsPerLevel + Creature.Abilities.Intelligence.AdvancementSkillPointModifier(level);
             if (_SkillPointsLeft < 1)
+            {
                 _SkillPointsLeft = 1;
+            }
+
             if (Creature.AdvancementLog.NumberPowerDice == 0)
             {
                 // first power die
                 _SkillPointsLeft *= 4;
             }
-            _SkillAssignments = new Dictionary<SkillBase, SkillBuy>();
+            _SkillAssignments = [];
 
             IsLocked = false;
 
@@ -106,7 +109,10 @@ namespace Uzi.Ikosa.Advancement
         internal void Lock()
         {
             if (!IsLockable)
+            {
                 return;
+            }
+
             IsLocked = true;
         }
         #endregion
@@ -193,7 +199,9 @@ namespace Uzi.Ikosa.Advancement
             else
             {
                 if ((Level % 2) == 0)
+                {
                     _hp++;
+                }
             }
             EnsureOneHealthPoint(_hp);
         }
@@ -249,14 +257,19 @@ namespace Uzi.Ikosa.Advancement
             get
             {
                 if (Creature.Abilities.Intelligence.IsNonAbility)
+                {
                     return 0;
+                }
+
                 return _SkillPointsLeft;
             }
             set
             {
                 // only let it change if there is something left (if all allocated, then no more can be added)
                 if (!IsLocked)
+                {
                     _SkillPointsLeft = value;
+                }
             }
         }
         #endregion
@@ -269,7 +282,9 @@ namespace Uzi.Ikosa.Advancement
                 return _SkillAssignments[skill].PointsUsed;
             }
             else
+            {
                 return 0;
+            }
         }
         #endregion
 
@@ -281,7 +296,10 @@ namespace Uzi.Ikosa.Advancement
         public void AssignSkillPoints(SkillBase skill, int points)
         {
             if (IsLocked)
+            {
                 return;
+            }
+
             if (skill.Creature == Creature)
             {
                 if (points <= 0)
@@ -337,9 +355,13 @@ namespace Uzi.Ikosa.Advancement
         public double SkillRanks(SkillBase skill)
         {
             if (_SkillAssignments.ContainsKey(skill))
+            {
                 return _SkillAssignments[skill].RanksAccumulated;
+            }
             else
+            {
                 return 0d;
+            }
         }
         #endregion
 
@@ -368,7 +390,10 @@ namespace Uzi.Ikosa.Advancement
             get
             {
                 if (Creature.Abilities.Intelligence.IsNonAbility)
+                {
                     return false;
+                }
+
                 return (((Level % 3) == 0) || (Level == 1));
             }
         }
@@ -399,7 +424,9 @@ namespace Uzi.Ikosa.Advancement
                                 _Feat = null;
                             }
                             else
+                            {
                                 throw new InvalidOperationException($@"Cannot unbind feat {_Feat.Name} on PowerDie {Level}");
+                            }
                         }
 
                         // if not set, allow it to be set
@@ -449,7 +476,9 @@ namespace Uzi.Ikosa.Advancement
                 if (IsAbilityBoostPowerDie)
                 {
                     if (string.Compare(value, _AbilityBoostMnemonic, true) == 0)
+                    {
                         return;
+                    }
 
                     // try to clear any existing value
                     if (!IsLocked && !string.IsNullOrWhiteSpace(_AbilityBoostMnemonic))
@@ -491,9 +520,13 @@ namespace Uzi.Ikosa.Advancement
             get
             {
                 if (!AbilityBoostMnemonic.Equals(string.Empty, StringComparison.OrdinalIgnoreCase))
+                {
                     return Creature.Abilities[AbilityBoostMnemonic];
+                }
                 else
+                {
                     return null;
+                }
             }
             set
             {

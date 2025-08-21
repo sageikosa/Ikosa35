@@ -12,7 +12,7 @@ namespace Uzi.Ikosa.Tactical
     {
         public IndexLayer()
         {
-            _Strips = new Dictionary<int, IndexStrip>();
+            _Strips = [];
         }
 
         private const int THICK = 20;
@@ -61,7 +61,9 @@ namespace Uzi.Ikosa.Tactical
                 _strip.Remove(room);
             }
             foreach (var _n in _Strips.Where(_kvp => _kvp.Value.IsEmpty).Select(_kvp => _kvp.Key).ToList())
+            {
                 _Strips.Remove(_n);
+            }
         }
 
         public Room GetRoom(ICellLocation location)

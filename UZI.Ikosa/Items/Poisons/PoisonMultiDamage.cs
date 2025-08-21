@@ -25,7 +25,9 @@ namespace Uzi.Ikosa.Items
             foreach (var _dmg in Damages)
             {
                 foreach (var _info in _dmg.ApplyDamage(source, step, critter))
+                {
                     yield return _info;
+                }
             }
             yield break;
         }
@@ -36,7 +38,9 @@ namespace Uzi.Ikosa.Items
             for (var _px = 0; _px < Damages.Length; _px++)
             {
                 foreach (var _info in Damages[_px].ApplyDamage(source, step, critter, new int[] { rollValue[_px] }))
+                {
                     yield return _info;
+                }
             }
             yield break;
         }

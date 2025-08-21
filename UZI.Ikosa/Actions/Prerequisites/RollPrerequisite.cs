@@ -82,7 +82,9 @@ namespace Uzi.Ikosa.Actions
                 // dice, but only one
                 var _dice = Roller as DiceRoller;
                 if (_dice.Number == 1)
+                {
                     _info.SingletonSides = _dice.Sides;
+                }
             }
             else if (Roller is DieRoller)
             {
@@ -102,7 +104,9 @@ namespace Uzi.Ikosa.Actions
             if (info is RollPrerequisiteInfo _rollInfo)
             {
                 if (_rollInfo.Value.HasValue)
+                {
                     RollValue = _rollInfo.Value.Value;
+                }
             }
         }
     }

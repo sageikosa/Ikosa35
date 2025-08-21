@@ -40,7 +40,10 @@ namespace Uzi.Ikosa.Interactions
         {
             // land above ObjectDamageHandler
             if (existingHandler.GetType() == typeof(ObjectDamageHandler))
+            {
                 return true;
+            }
+
             return false;
         }
     }

@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
@@ -17,7 +17,7 @@ namespace Uzi.Ikosa.Advancement
         public AdvancementClassSet(Creature creature)
         {
             _Creature = creature;
-            _Classes = new Collection<IAdvancementClass>();
+            _Classes = [];
             _AdvClassCtrlr = new ChangeController<IAdvancementClass>(this, null);
         }
         #endregion
@@ -73,7 +73,9 @@ namespace Uzi.Ikosa.Advancement
         {
             // check if the class is already present in some form
             if (Contains(advClass.GetType()))
+            {
                 return false;
+            }
 
             // see if anything is going to object to the class
             return !_AdvClassCtrlr.WillAbortChange(advClass, @"PreAdd");

@@ -33,10 +33,7 @@ namespace Uzi.Ikosa.Movement
                         .OfType<ValueTarget<MovementLocatorTarget>>()
                         .FirstOrDefault(_mlt => _mlt?.Value.Locator.ICore == Activity.Actor)
                         ?.Value.Locator;
-                    if (_locator == null)
-                    {
-                        _locator = _activity.Actor.GetLocated()?.Locator;
-                    }
+                    _locator ??= _activity.Actor.GetLocated()?.Locator;
 
                     // see if range is available
                     // diagonal if heading on an odd value, or not solely moving in the up/down direction
@@ -49,7 +46,10 @@ namespace Uzi.Ikosa.Movement
                         _activity.SetFirstTarget(new ValueTarget<bool>(MovementTargets.Move_Diagonal, _diagonal));
                         _activity.SetFirstTarget(new ValueTarget<double>(MovementTargets.Move_Cost, _finalCost));
                         foreach (var _step in RemoteMoveAction.DoMoveCostCheck(this, _finalCost))
+                        {
                             AppendFollowing(_step);
+                        }
+
                         return true;
                     }
                     else

@@ -40,7 +40,9 @@ namespace Uzi.Ikosa.Items
         {
             // pass handle interaction onto the mounted item
             if (MountedObject != null)
+            {
                 MountedObject.HandleInteraction(interact);
+            }
         }
 
         public override Info GetInfo(CoreActor actor, bool baseValues)
@@ -94,7 +96,9 @@ namespace Uzi.Ikosa.Items
                 {
                     // provide mounted object
                     foreach (var _iKey in MountedObject.IconKeys)
+                    {
                         yield return _iKey;
+                    }
                 }
 
                 yield break;

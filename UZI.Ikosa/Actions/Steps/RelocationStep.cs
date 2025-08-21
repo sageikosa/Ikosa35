@@ -87,7 +87,10 @@ namespace Uzi.Ikosa.Actions.Steps
 
             // track some useful things about the locator
             if (Movement != null)
+            {
                 Locator.ActiveMovement = Movement;      // useful when taking damage while climbing/balancing
+            }
+
             Locator.MovementCrossings = Direction;      // used in climbing cell snap determination
             Locator.IntraModelOffset = OffsetVector;    // terrain hugging
 

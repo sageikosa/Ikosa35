@@ -48,7 +48,9 @@ namespace Uzi.Ikosa.Items.Weapons
                 if (_DamageRollers != null)
                 {
                     foreach (var _kvp in _DamageRollers)
+                    {
                         yield return _kvp;
+                    }
                 }
                 yield break;
             }

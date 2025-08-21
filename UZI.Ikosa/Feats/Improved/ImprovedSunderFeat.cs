@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Linq;
 using Uzi.Ikosa.Advancement;
 using Uzi.Core;
@@ -66,7 +66,9 @@ namespace Uzi.Ikosa.Feats
                         if (qualify.Target is IAdjunctable _target)
                         {
                             if (_target.HasAdjunct<Attended>())
+                            {
                                 yield return new QualifyingDelta(4, typeof(ImprovedSunderFeat), @"Improved Sunder");
+                            }
                         }
                     }
                 }
@@ -81,7 +83,9 @@ namespace Uzi.Ikosa.Feats
         public void DoTerminate()
         {
             if (!IsActive)
+            {
                 _Term.DoTerminate();
+            }
         }
 
         public void AddTerminateDependent(IDependOnTerminate subscriber)

@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
-using System.Text;
 using System.Windows.Media.Media3D;
 
 namespace Uzi.Visualize
@@ -179,6 +178,7 @@ namespace Uzi.Visualize
             {
                 // X has longest strips
                 for (var _z = _Z; _z <= _HiZ; _z++)
+                {
                     for (var _y = _Y; _y <= _HiY; _y++)
                     {
                         var _list = new List<CellPosition>();
@@ -186,15 +186,19 @@ namespace Uzi.Visualize
                         {
                             var _cLoc = new CellPosition(_z, _y, _x);
                             if (ContainsCell(_cLoc))
+                            {
                                 _list.Add(_cLoc);
+                            }
                         }
                         yield return _list;
                     }
+                }
             }
             else if (_YExt >= _ZExt)
             {
                 // Y has longest strips
                 for (var _z = _Z; _z <= _HiZ; _z++)
+                {
                     for (var _x = _X; _x <= _HiX; _x++)
                     {
                         var _list = new List<CellPosition>();
@@ -202,15 +206,19 @@ namespace Uzi.Visualize
                         {
                             var _cLoc = new CellPosition(_z, _y, _x);
                             if (ContainsCell(_cLoc))
+                            {
                                 _list.Add(_cLoc);
+                            }
                         }
                         yield return _list;
                     }
+                }
             }
             else
             {
                 // Z has longest strips
                 for (var _y = _Y; _y <= _HiY; _y++)
+                {
                     for (var _x = _X; _x <= _HiX; _x++)
                     {
                         var _list = new List<CellPosition>();
@@ -218,10 +226,13 @@ namespace Uzi.Visualize
                         {
                             var _cLoc = new CellPosition(_z, _y, _x);
                             if (ContainsCell(_cLoc))
+                            {
                                 _list.Add(_cLoc);
+                            }
                         }
                         yield return _list;
                     }
+                }
             }
             yield break;
         }
@@ -231,13 +242,20 @@ namespace Uzi.Visualize
         public virtual IEnumerable<ICellLocation> AllCellLocations()
         {
             for (var _z = _Z; _z <= _HiZ; _z++)
+            {
                 for (var _y = _Y; _y <= _HiY; _y++)
+                {
                     for (var _x = _X; _x <= _HiX; _x++)
                     {
                         var _cLoc = new CellPosition(_z, _y, _x);
                         if (ContainsCell(_cLoc))
+                        {
                             yield return _cLoc;
+                        }
                     }
+                }
+            }
+
             yield break;
         }
         #endregion
@@ -250,6 +268,7 @@ namespace Uzi.Visualize
             {
                 // X has longest strips
                 for (var _z = _Z; _z <= _HiZ + 1; _z++)
+                {
                     for (var _y = _Y; _y <= _HiY + 1; _y++)
                     {
                         var _list = new List<CellPosition>();
@@ -259,11 +278,13 @@ namespace Uzi.Visualize
                         }
                         yield return _list;
                     }
+                }
             }
             else if (_YExt >= _ZExt)
             {
                 // Y has longest strips
                 for (var _z = _Z; _z <= _HiZ + 1; _z++)
+                {
                     for (var _x = _X; _x <= _HiX + 1; _x++)
                     {
                         var _list = new List<CellPosition>();
@@ -273,11 +294,13 @@ namespace Uzi.Visualize
                         }
                         yield return _list;
                     }
+                }
             }
             else
             {
                 // Z has longest strips
                 for (var _y = _Y; _y <= _HiY + 1; _y++)
+                {
                     for (var _x = _X; _x <= _HiX + 1; _x++)
                     {
                         var _list = new List<CellPosition>();
@@ -287,6 +310,7 @@ namespace Uzi.Visualize
                         }
                         yield return _list;
                     }
+                }
             }
             yield break;
         }
@@ -296,11 +320,16 @@ namespace Uzi.Visualize
         public virtual IEnumerable<CellPosition> AllIntersections()
         {
             for (var _z = _Z; _z <= _HiZ + 1; _z++)
+            {
                 for (var _y = _Y; _y <= _HiY + 1; _y++)
+                {
                     for (var _x = _X; _x <= _HiX + 1; _x++)
                     {
                         yield return new CellPosition(_z, _y, _x);
                     }
+                }
+            }
+
             yield break;
         }
         #endregion

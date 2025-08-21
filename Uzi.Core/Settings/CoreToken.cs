@@ -40,7 +40,9 @@ namespace Uzi.Core
                 var _iCoreObj = _ICore as ICoreObject;
                 foreach (var _obj in from _o in _iCoreObj.AllConnected(null)
                                      select _o)
+                {
                     yield return _obj;
+                }
             }
             yield break;
         }
@@ -56,7 +58,9 @@ namespace Uzi.Core
                 var _iCoreObj = _ICore as ICoreObject;
                 foreach (var _obj in from _o in _iCoreObj.AllAccessible(null, actor)
                                      select _o)
+                {
                     yield return _obj;
+                }
             }
             yield break;
         }
@@ -73,7 +77,10 @@ namespace Uzi.Core
         public IEnumerable<IType> ICoreAs<IType>() where IType : ICore
         {
             if (_ICore is IType)
+            {
                 yield return (IType)_ICore;
+            }
+
             yield break;
         }
 

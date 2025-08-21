@@ -45,7 +45,7 @@ namespace Uzi.Ikosa.Actions.Steps
             _RollKey = rollKey;
             _RollName = rollName;
             _Roller = roller;
-            _PossibleSteps = new Dictionary<int, CoreStep>();
+            _PossibleSteps = [];
         }
 
         private void InitializePrerequisite()

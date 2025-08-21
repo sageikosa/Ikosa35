@@ -83,7 +83,10 @@ namespace Uzi.Ikosa.Magic.Spells
         {
             yield return new EnergyDamageRule(@"Acid.Damage", new DiceRange(@"Acid", DisplayName, new DieRoller(3)), @"Acid Damage", EnergyType.Acid);
             if (isCriticalHit)
+            {
                 yield return new EnergyDamageRule(@"Acid.Damage.Critical", new DiceRange(@"Acid (Critical)", DisplayName, new DieRoller(3)), @"Acid Damage (Critical)", EnergyType.Acid);
+            }
+
             yield break;
         }
 

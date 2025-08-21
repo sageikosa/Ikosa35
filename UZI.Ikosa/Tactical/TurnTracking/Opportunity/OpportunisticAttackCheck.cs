@@ -114,23 +114,31 @@ namespace Uzi.Ikosa.Tactical
 
                 // can still try to negate?
                 if (_NegateChecks.Any())
+                {
                     return true;
+                }
 
                 // have a negate in the hopper?
                 if (_CurrNegate != null)
                 {
                     // not ready, so we don't know what's next
                     if (!_CurrNegate.IsReady)
+                    {
                         return true;
+                    }
 
                     // it will negate, so we're done
                     if (_CurrNegate.Success)
+                    {
                         return false;
+                    }
                 }
 
                 // haven't asked whether an opportunity attack will be made yet
                 if (_AttackerCheck == null)
+                {
                     return true;
+                }
 
                 // no more prerequisites to give
                 return false;

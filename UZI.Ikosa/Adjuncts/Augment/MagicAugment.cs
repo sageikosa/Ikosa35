@@ -30,7 +30,9 @@ namespace Uzi.Ikosa.Adjuncts
         public override bool CanAnchor(IAdjunctable newAnchor)
         {
             if (!Augmentation.CanAnchor(newAnchor))
+            {
                 return false;
+            }
 
             if (Augmentation is IRequiresEnhancement)
             {
@@ -70,7 +72,9 @@ namespace Uzi.Ikosa.Adjuncts
             {
                 // if no explicit requirements, assume masterwork needed
                 if ((Augmentation as IItemRequirements)?.RequiresMasterwork ?? true)
+                {
                     return _iItem.IsMasterwork();
+                }
 
                 // didn't require masterwork, so good to go!
                 return true;

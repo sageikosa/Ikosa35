@@ -44,7 +44,9 @@ namespace Uzi.Ikosa.Workshop
                 {
                     cboOpenable.Items.Add(_open);
                     if (_open.CoreObject == RelockingOpener.Openable)
+                    {
                         cboOpenable.SelectedItem = _open;
+                    }
                 }
             }
             base.OnPropertyChanged(e);
@@ -161,7 +163,10 @@ namespace Uzi.Ikosa.Workshop
         private void cboOpenable_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if ((cboOpenable.SelectedItem != null) && (RelockingOpener.Openable != ((PositionedObject)(cboOpenable.SelectedItem)).CoreObject))
+            {
                 RelockingOpener.Openable = ((PositionedObject)(cboOpenable.SelectedItem)).CoreObject as IOpenable;
+            }
+
             cboLock.Items.Clear();
             foreach (var _lock in AvailableLocks)
             {
@@ -169,7 +174,9 @@ namespace Uzi.Ikosa.Workshop
                 {
                     cboLock.Items.Add(_lock);
                     if (_lock == RelockingOpener.LockGroup)
+                    {
                         cboLock.SelectedItem = _lock;
+                    }
                 }
             }
         }

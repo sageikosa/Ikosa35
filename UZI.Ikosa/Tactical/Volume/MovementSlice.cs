@@ -5,7 +5,7 @@ namespace Uzi.Ikosa.Tactical
 {
     public class MovementSlice
     {
-        private List<MovementStrip> _Strips = new List<MovementStrip>();
+        private List<MovementStrip> _Strips = [];
 
         /// <summary>Strip-Axial Offset of slice from base</summary>
         public int SliceOffset { get; set; }

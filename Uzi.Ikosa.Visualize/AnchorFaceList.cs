@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Windows.Media.Media3D;
 
 namespace Uzi.Visualize
 {
@@ -35,7 +33,10 @@ namespace Uzi.Visualize
         {
             var _list = AnchorFaceList.None;
             foreach (var _f in faces)
+            {
                 _list = _list.Add(_f);
+            }
+
             return _list;
         }
 
@@ -44,7 +45,10 @@ namespace Uzi.Visualize
         {
             var _list = AnchorFaceList.None;
             foreach (var _f in faces)
+            {
                 _list = _list.Add(_f);
+            }
+
             return _list;
         }
 
@@ -146,22 +150,37 @@ namespace Uzi.Visualize
             {
                 case Axis.X:
                     if (self.Contains(AnchorFace.XHigh))
+                    {
                         return AxisSnap.High;
+                    }
                     else if (self.Contains(AnchorFace.XLow))
+                    {
                         return AxisSnap.Low;
+                    }
+
                     return AxisSnap.None;
                 case Axis.Y:
                     if (self.Contains(AnchorFace.YHigh))
+                    {
                         return AxisSnap.High;
+                    }
                     else if (self.Contains(AnchorFace.YLow))
+                    {
                         return AxisSnap.Low;
+                    }
+
                     return AxisSnap.None;
                 case Axis.Z:
                 default:
                     if (self.Contains(AnchorFace.ZHigh))
+                    {
                         return AxisSnap.High;
+                    }
                     else if (self.Contains(AnchorFace.ZLow))
+                    {
                         return AxisSnap.Low;
+                    }
+
                     return AxisSnap.None;
             }
         }

@@ -47,7 +47,9 @@ namespace Uzi.Ikosa.Fidelity
                         {
                             // add check values to magic effects (for Activation)
                             foreach (var _durable in _transit.MagicPowerEffects.OfType<DurableMagicEffect>())
+                            {
                                 _durable.AllTargets.Add(_deltaVal);
+                            }
                         }
                     }
                     return _step;
@@ -128,7 +130,10 @@ namespace Uzi.Ikosa.Fidelity
         {
             // when checking against a creature driving interaction, provide the boost
             if (!(qualify is Interaction _iAct))
+            {
                 yield break;
+            }
+
             if (_iAct.InteractData is DriveCreatureData)
             {
                 yield return _Boost;

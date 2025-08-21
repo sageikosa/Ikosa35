@@ -223,7 +223,9 @@ namespace Uzi.Ikosa.Objects
                 if (OpenState.Value == 0)
                 {
                     if (tacticalInfo.CrossesFace(AnchorFace))
+                    {
                         return (PortalledObjectA.DoesSupplyCover > PortalledObjectB.DoesSupplyCover ? PortalledObjectA.DoesSupplyCover : PortalledObjectB.DoesSupplyCover);
+                    }
                 }
                 else if (OpenState.Value < 0.75)
                 {
@@ -245,11 +247,16 @@ namespace Uzi.Ikosa.Objects
         public bool SuppliesConcealment(in TacticalInfo tacticalInfo)
         {
             if (AnchorCell(tacticalInfo.TacticalCellRef))
+            {
                 if (OpenState.Value < 0.1)
                 {
                     if (tacticalInfo.CrossesFace(AnchorFace))
+                    {
                         return PortalledObjectA.DoesSupplyConcealment || PortalledObjectB.DoesSupplyConcealment;
+                    }
                 }
+            }
+
             return false;
         }
         #endregion
@@ -258,11 +265,16 @@ namespace Uzi.Ikosa.Objects
         public bool SuppliesTotalConcealment(in TacticalInfo tacticalInfo)
         {
             if (AnchorCell(tacticalInfo.TacticalCellRef))
+            {
                 if (OpenState.Value < 0.1)
                 {
                     if (tacticalInfo.CrossesFace(AnchorFace))
+                    {
                         return PortalledObjectA.DoesSupplyTotalConcealment || PortalledObjectB.DoesSupplyTotalConcealment;
+                    }
                 }
+            }
+
             return false;
         }
         #endregion
@@ -273,7 +285,9 @@ namespace Uzi.Ikosa.Objects
             if ((OpenState.Value == 0) && AnchorCell(tacticalInfo.TacticalCellRef))
             {
                 if (tacticalInfo.CrossesFace(AnchorFace))
+                {
                     return PortalledObjectA.DoesBlocksLineOfEffect || PortalledObjectB.DoesBlocksLineOfEffect;
+                }
             }
             return false;
         }
@@ -285,7 +299,9 @@ namespace Uzi.Ikosa.Objects
             if ((OpenState.Value == 0) && AnchorCell(tacticalInfo.TacticalCellRef))
             {
                 if (tacticalInfo.CrossesFace(AnchorFace))
+                {
                     return PortalledObjectA.DoesBlocksLineOfDetect || PortalledObjectB.DoesBlocksLineOfDetect;
+                }
             }
             return false;
         }
@@ -298,13 +314,18 @@ namespace Uzi.Ikosa.Objects
             if (moveTactical.Movement.CoreObject is Creature _critter)
             {
                 if (_critter.Sizer.Size.Order < 0)
+                {
                     _threshold = _critter.Sizer.Size.CubeSize().XExtent / 2;
+                }
             }
             if ((moveTactical.TransitFaces.Contains(AnchorFace))
                 && OpenState.Value.CloseEnough(0, _threshold)
                 && this.InLocator(moveTactical))
+            {
                 return ((IMoveAlterer)PortalledObjectA).BlocksTransit(moveTactical)
                     || ((IMoveAlterer)PortalledObjectB).BlocksTransit(moveTactical);
+            }
+
             return false;
         }
         #endregion
@@ -316,13 +337,18 @@ namespace Uzi.Ikosa.Objects
             if (moveTactical.Movement.CoreObject is Creature _critter)
             {
                 if (_critter.Sizer.Size.Order < 0)
+                {
                     _threshold = _critter.Sizer.Size.CubeSize().XExtent / 4;
+                }
             }
             if ((moveTactical.TransitFaces.Contains(AnchorFace))
                 && !OpenState.Value.CloseEnough(1, _threshold)
                 && this.InLocator(moveTactical))
+            {
                 return ((IMoveAlterer)PortalledObjectA).HindersTransit(moveTactical.Movement, new CellLocation(moveTactical.SourceCell))
                     || ((IMoveAlterer)PortalledObjectB).HindersTransit(moveTactical.Movement, new CellLocation(moveTactical.SourceCell));
+            }
+
             return false;
         }
         #endregion
@@ -353,11 +379,15 @@ namespace Uzi.Ikosa.Objects
             // if the material is immaterial to the movement, can-occupy
             if (movement.CanMoveThrough(PortalledObjectA.ObjectMaterial)
                     && movement.CanMoveThrough(PortalledObjectB.ObjectMaterial))
+            {
                 return true;
+            }
 
             // don't really touch this cell?
             if (!this.InLocator(region))
+            {
                 return true;
+            }
 
             var _rgn = this.GetLocated()?.Locator.GeometricRegion;
             return (OpenState.Value >= 0.875)
@@ -603,9 +633,13 @@ namespace Uzi.Ikosa.Objects
 
             // when light is in a deep shadows room, reduce it through the link (indicating less reflecting glow)
             if (this.GetLocated().Locator.GetLocalCellGroups().FirstOrDefault().DeepShadows)
+            {
                 return (1 - _block) * 0.8d;
+            }
             else
+            {
                 return (1 - _block);
+            }
         }
 
         public int GetExtraSoundDifficulty(LocalLink link)

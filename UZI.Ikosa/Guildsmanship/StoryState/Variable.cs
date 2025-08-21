@@ -19,7 +19,7 @@ namespace Uzi.Ikosa.Guildsmanship
         public Variable(Description description)
             : base(description)
         {
-            _Choices = new Dictionary<Guid, VariableValue>();
+            _Choices = [];
         }
 
         public VariableValue Add(Description description)

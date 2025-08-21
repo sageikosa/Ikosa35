@@ -45,7 +45,10 @@ namespace Uzi.Ikosa.Magic.Spells
         protected override DetectDyingAdjunct NewEffect(MagicPowerEffect source, IAdjunctable target)
         {
             foreach (var _range in source.CapabilityRoot.GetCapability<IRegionCapable>().Dimensions(null, source.CasterLevel))
+            {
                 return new DetectDyingAdjunct(source.MagicPowerActionSource, _range);
+            }
+
             return new DetectDyingAdjunct(source.MagicPowerActionSource, 30);
         }
     }
@@ -72,7 +75,10 @@ namespace Uzi.Ikosa.Magic.Spells
             var _budget = budget as LocalActionBudget;
             var _counter = CounterBudgetItem.GetCounter(budget, typeof(DetectDyingAction), 1);
             if (_counter.CanUse)
+            {
                 yield return new DetectDyingAction(this, @"101");
+            }
+
             yield break;
         }
 

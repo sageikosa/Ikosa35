@@ -10,7 +10,7 @@ namespace Uzi.Ikosa.Tactical
     {
         public PanelSet()
         {
-            _Panels = new Dictionary<AnchorFace, PType>();
+            _Panels = [];
         }
 
         private Dictionary<AnchorFace, PType> _Panels;
@@ -31,7 +31,10 @@ namespace Uzi.Ikosa.Tactical
             get
             {
                 if (_Panels.ContainsKey(face))
+                {
                     return _Panels[face];
+                }
+
                 return null;
             }
             set

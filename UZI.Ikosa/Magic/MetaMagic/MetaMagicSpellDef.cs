@@ -40,7 +40,9 @@ namespace Uzi.Ikosa.Magic
         {
             // if this wrapper is the correct type, return true
             if (GetType() == typeof(MetaWrap))
+            {
                 return true;
+            }
 
             // if this is wrapping a metamagic wrapper itself, dig further in
             return (_Wrapped as MetaMagicSpellDef)?.HasWrapper<MetaWrap>() ?? false;
@@ -76,9 +78,13 @@ namespace Uzi.Ikosa.Magic
                 if (_IsSpontaneous)
                 {
                     if (SeedSpellDef.ActionTime.ActionTimeType != TimeType.Span)
+                    {
                         return new ActionTime(Round.UnitFactor);
+                    }
                     else
+                    {
                         return new ActionTime(SeedSpellDef.SeedSpellDef.ActionTime.SpanLength + 1);
+                    }
                 }
                 return _Wrapped.ActionTime;
             }

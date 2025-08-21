@@ -92,9 +92,12 @@ namespace Uzi.Ikosa.Items.Weapons.Ranged
 
             // creature-based damage bonuses
             if (CreaturePossessor != null)
+            {
                 yield return new DamageRollPrerequisite(typeof(Creature), workSet, $@"{keyFix}Creature", @"Creature",
                     new ConstantRoller(CreaturePossessor.ExtraWeaponDamage.QualifiedValue(workSet)),
                     false, _nonLethal, @"Creature", minGroup);
+            }
+
             yield break;
         }
         #endregion

@@ -36,12 +36,15 @@ namespace Uzi.Visualize
             {
                 var _vector = new Vector3D(0, 0, 0);
                 foreach (var _face in MovementFaces(face, heading, 0))
+                {
                     _vector += _face.GetNormalVector();
+                }
+
                 return _vector;
             };
 
             // fill heading vector cache
-            _HeadingVectors = new Dictionary<AnchorFace, Dictionary<int, Vector3D>>();
+            _HeadingVectors = [];
             foreach (var _face in AnchorFaceHelper.GetAllFaces())
             {
                 // build heading reference dictionary
@@ -56,7 +59,7 @@ namespace Uzi.Visualize
             }
 
             // fill heading face list cache
-            _HeadingFaces = new Dictionary<AnchorFace, List<(int Heading, AnchorFaceList Crossings)>>();
+            _HeadingFaces = [];
             foreach (var _face in AnchorFaceHelper.GetAllFaces())
             {
                 // build set
@@ -109,9 +112,15 @@ namespace Uzi.Visualize
         public static bool IsOrthogonalTo(this AnchorFace self, Axis test)
         {
             if (test == Axis.Z)
+            {
                 return (self == AnchorFace.ZLow) || (self == AnchorFace.ZHigh);
+            }
+
             if (test == Axis.Y)
+            {
                 return (self == AnchorFace.YLow) || (self == AnchorFace.YHigh);
+            }
+
             return (self == AnchorFace.XLow) || (self == AnchorFace.XHigh);
         }
         #endregion
@@ -401,10 +410,14 @@ namespace Uzi.Visualize
         public static AnchorFace? FrontFace(this AnchorFace self, int heading)
         {
             if ((heading % 2) == 1)
+            {
                 return null;
+            }
 
             if (!self.IsLowFace())
+            {
                 return self.ReverseFace().FrontFace(heading).Value.ReverseFace();
+            }
 
             switch (self)
             {
@@ -456,7 +469,10 @@ namespace Uzi.Visualize
         {
             var _front = self.FrontFace(heading);
             if (!_front.HasValue)
+            {
                 return null;
+            }
+
             return _front.Value.ReverseFace();
         }
         #endregion
@@ -466,11 +482,15 @@ namespace Uzi.Visualize
         public static AnchorFace? LeftFace(this AnchorFace self, int heading)
         {
             if ((heading % 2) == 1)
+            {
                 return null;
+            }
 
             // high-left-faces are reverse of low-left-faces
             if (!self.IsLowFace())
+            {
                 return self.ReverseFace().LeftFace(heading).Value.ReverseFace();
+            }
 
             return self switch
             {
@@ -506,7 +526,10 @@ namespace Uzi.Visualize
         {
             var _left = self.LeftFace(heading);
             if (!_left.HasValue)
+            {
                 return null;
+            }
+
             return _left.Value.ReverseFace();
         }
         #endregion

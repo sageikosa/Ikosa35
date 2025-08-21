@@ -45,7 +45,10 @@ namespace Uzi.Ikosa.Tactical
         public override void AddOuterSurface(uint param, BuildableGroup buildable, int z, int y, int x, AnchorFace face, VisualEffect effect, Vector3D bump, Cubic currentGroup)
         {
             if (!IsPlusInvisible)
+            {
                 CellSpaceFaces.AddPlusOuterSurface(param, this, buildable, z, y, x, face, effect, bump);
+            }
+
             CylinderSpaceFaces.AddSmallCylinderCap(param, this, buildable, z, y, x, face, effect, bump);
         }
 

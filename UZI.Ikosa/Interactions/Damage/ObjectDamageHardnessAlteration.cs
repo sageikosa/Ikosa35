@@ -41,9 +41,14 @@ namespace Uzi.Ikosa.Interactions
             if (!_EnergyTypes.Any() || _EnergyTypes.Contains(energyType))
             {
                 if (_Factor == 0)
+                {
                     return 0;
+                }
                 else if (_Factor != 1)
+                {
                     return (int)(hardness * _Factor);
+                }
+
                 return hardness + _Delta;
             }
             return null;
@@ -54,11 +59,18 @@ namespace Uzi.Ikosa.Interactions
             get
             {
                 if (_Factor == 0)
+                {
                     yield return new Info { Message = @"Hardness Bypass" };
+                }
                 else if (_Factor != 1)
+                {
                     yield return new Info { Message = $@"Hardness Factor {_Factor}" };
+                }
                 else
+                {
                     yield return new Info { Message = $@"Hardness Delta {_Delta}" };
+                }
+
                 yield break;
             }
         }

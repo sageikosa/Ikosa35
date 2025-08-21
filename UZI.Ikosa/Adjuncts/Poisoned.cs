@@ -109,7 +109,9 @@ namespace Uzi.Ikosa.Adjuncts
 
                 // successful secondary simply ejects the poison
                 if (!IsPrimary)
+                {
                     Poisoned.Eject();
+                }
             }
             else
             {
@@ -143,10 +145,12 @@ namespace Uzi.Ikosa.Adjuncts
                                    null, _roll.Key, _roll.Name, _roll.Roller, false)).ToList();
             }
             if (_rollPrereq != null)
+            {
                 foreach (var _rPrereq in _rollPrereq)
                 {
                     _PendingPreRequisites.Enqueue(_rPrereq);
                 }
+            }
         }
         #endregion
 
@@ -161,7 +165,9 @@ namespace Uzi.Ikosa.Adjuncts
         protected override bool OnDoStep()
         {
             if (IsComplete)
+            {
                 return true;
+            }
 
             var _id = Poisoned.Anchor.ID;
             if (PoisonSaveStep.IsPrimary)

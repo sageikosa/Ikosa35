@@ -77,15 +77,23 @@ namespace Uzi.Ikosa.Workshop
                     if (_light.NearShadow <= 0)
                     {
                         if (_light.FarShadow <= 0)
+                        {
                             _light.AmbientLevel = Tactical.LightRange.OutOfRange;
+                        }
                         else
+                        {
                             _light.AmbientLevel = Tactical.LightRange.FarShadow;
+                        }
                     }
                     else
+                    {
                         _light.AmbientLevel = Tactical.LightRange.NearShadow;
+                    }
                 }
                 else
+                {
                     _light.AmbientLevel = Tactical.LightRange.Bright;
+                }
             }
             else
             {

@@ -146,7 +146,9 @@ namespace Uzi.Ikosa.Tactical
             else if (!_cellBlock && !_plusBlock)
             {
                 foreach (var _pt in base.TacticalPoints(param, movement))
+                {
                     yield return _pt;
+                }
             }
             else
             {
@@ -193,48 +195,72 @@ namespace Uzi.Ikosa.Tactical
                     _zEdge = 5;
                     _zAntiEdge = 0;
                     if (_frame1Face == AnchorFace.ZLow)
+                    {
                         _zNotch = Width1;
+                    }
                     else
+                    {
                         _zNotch = Width2;
+                    }
                 }
                 else if (_frameFaces.Contains(AnchorFace.ZHigh))
                 {
                     if (_frame1Face == AnchorFace.ZHigh)
+                    {
                         _zNotch = 5 - Width1;
+                    }
                     else
+                    {
                         _zNotch = 5 - Width2;
+                    }
                 }
                 if (_frameFaces.Contains(AnchorFace.YLow))
                 {
                     _yEdge = 5;
                     _yAntiEdge = 0;
                     if (_frame1Face == AnchorFace.YLow)
+                    {
                         _yNotch = Width1;
+                    }
                     else
+                    {
                         _yNotch = Width2;
+                    }
                 }
                 else if (_frameFaces.Contains(AnchorFace.YHigh))
                 {
                     if (_frame1Face == AnchorFace.YHigh)
+                    {
                         _yNotch = 5 - Width1;
+                    }
                     else
+                    {
                         _yNotch = 5 - Width2;
+                    }
                 }
                 if (_frameFaces.Contains(AnchorFace.XLow))
                 {
                     _xEdge = 5;
                     _xAntiEdge = 0;
                     if (_frame1Face == AnchorFace.XLow)
+                    {
                         _xNotch = Width1;
+                    }
                     else
+                    {
                         _xNotch = Width2;
+                    }
                 }
                 else if (_frameFaces.Contains(AnchorFace.XHigh))
                 {
                     if (_frame1Face == AnchorFace.XHigh)
+                    {
                         _xNotch = 5 - Width1;
+                    }
                     else
+                    {
                         _xNotch = 5 - Width2;
+                    }
                 }
                 #endregion
 
@@ -292,12 +318,35 @@ namespace Uzi.Ikosa.Tactical
 
                     #region regular outer face
                     // NOTE: only openFace is an outer regular face
-                    if (_openFace == AnchorFace.ZLow) yield return new Point3D(2.5, 2.5, 0);
-                    if (_openFace == AnchorFace.ZHigh) yield return new Point3D(2.5, 2.5, 5);
-                    if (_openFace == AnchorFace.YLow) yield return new Point3D(2.5, 0, 2.5);
-                    if (_openFace == AnchorFace.YHigh) yield return new Point3D(2.5, 5, 2.5);
-                    if (_openFace == AnchorFace.XLow) yield return new Point3D(0, 2.5, 2.5);
-                    if (_openFace == AnchorFace.XHigh) yield return new Point3D(5, 2.5, 2.5);
+                    if (_openFace == AnchorFace.ZLow)
+                    {
+                        yield return new Point3D(2.5, 2.5, 0);
+                    }
+
+                    if (_openFace == AnchorFace.ZHigh)
+                    {
+                        yield return new Point3D(2.5, 2.5, 5);
+                    }
+
+                    if (_openFace == AnchorFace.YLow)
+                    {
+                        yield return new Point3D(2.5, 0, 2.5);
+                    }
+
+                    if (_openFace == AnchorFace.YHigh)
+                    {
+                        yield return new Point3D(2.5, 5, 2.5);
+                    }
+
+                    if (_openFace == AnchorFace.XLow)
+                    {
+                        yield return new Point3D(0, 2.5, 2.5);
+                    }
+
+                    if (_openFace == AnchorFace.XHigh)
+                    {
+                        yield return new Point3D(5, 2.5, 2.5);
+                    }
                     #endregion
 
                     switch (_thickFace)
@@ -320,10 +369,25 @@ namespace Uzi.Ikosa.Tactical
                                 yield return new Point3D(_xNotch, _yNotch, _inner);
 
                                 // 3 pts @ inner at frameFace edges
-                                if (!_outerCorner(Faces(AnchorFace.XLow, AnchorFace.YLow, _thickFace))) yield return new Point3D(0, 0, _inner);
-                                if (!_outerCorner(Faces(AnchorFace.XHigh, AnchorFace.YLow, _thickFace))) yield return new Point3D(5, 0, _inner);
-                                if (!_outerCorner(Faces(AnchorFace.XLow, AnchorFace.YHigh, _thickFace))) yield return new Point3D(0, 5, _inner);
-                                if (!_outerCorner(Faces(AnchorFace.XHigh, AnchorFace.YHigh, _thickFace))) yield return new Point3D(5, 5, _inner);
+                                if (!_outerCorner(Faces(AnchorFace.XLow, AnchorFace.YLow, _thickFace)))
+                                {
+                                    yield return new Point3D(0, 0, _inner);
+                                }
+
+                                if (!_outerCorner(Faces(AnchorFace.XHigh, AnchorFace.YLow, _thickFace)))
+                                {
+                                    yield return new Point3D(5, 0, _inner);
+                                }
+
+                                if (!_outerCorner(Faces(AnchorFace.XLow, AnchorFace.YHigh, _thickFace)))
+                                {
+                                    yield return new Point3D(0, 5, _inner);
+                                }
+
+                                if (!_outerCorner(Faces(AnchorFace.XHigh, AnchorFace.YHigh, _thickFace)))
+                                {
+                                    yield return new Point3D(5, 5, _inner);
+                                }
 
                                 // 3 edges of XNotch
                                 if (Math.Abs(_xNotch - _xEdge) >= 2.5)
@@ -363,15 +427,35 @@ namespace Uzi.Ikosa.Tactical
 
                                 // 2 edges @ inner (reverse FrameFace, FrameOffset)
                                 if (Math.Abs(_xNotch - _xEdge) <= 2.5)
+                                {
                                     yield return new Point3D((_xNotch + _xAntiEdge) / 2, _yEdge, _inner);
+                                }
+
                                 if (Math.Abs(_yNotch - _yEdge) <= 2.5)
+                                {
                                     yield return new Point3D(_xEdge, (_yNotch + _yAntiEdge) / 2, _inner);
+                                }
 
                                 // 2 edges @ inner (FrameFace)
-                                if (_frameFaces.Contains(AnchorFace.XLow)) yield return new Point3D(0, 2.5, _inner);
-                                if (_frameFaces.Contains(AnchorFace.XHigh)) yield return new Point3D(5, 2.5, _inner);
-                                if (_frameFaces.Contains(AnchorFace.YLow)) yield return new Point3D(2.5, 0, _inner);
-                                if (_frameFaces.Contains(AnchorFace.YHigh)) yield return new Point3D(2.5, 5, _inner);
+                                if (_frameFaces.Contains(AnchorFace.XLow))
+                                {
+                                    yield return new Point3D(0, 2.5, _inner);
+                                }
+
+                                if (_frameFaces.Contains(AnchorFace.XHigh))
+                                {
+                                    yield return new Point3D(5, 2.5, _inner);
+                                }
+
+                                if (_frameFaces.Contains(AnchorFace.YLow))
+                                {
+                                    yield return new Point3D(2.5, 0, _inner);
+                                }
+
+                                if (_frameFaces.Contains(AnchorFace.YHigh))
+                                {
+                                    yield return new Point3D(2.5, 5, _inner);
+                                }
 
                                 // 4 irregular side face points
                                 if (_zOff >= 2.5)
@@ -403,10 +487,25 @@ namespace Uzi.Ikosa.Tactical
                                 yield return new Point3D(_xNotch, _inner, _zNotch);
 
                                 // 3 pts @ lowZ at frameFace edges
-                                if (!_outerCorner(Faces(AnchorFace.XLow, _thickFace, AnchorFace.ZLow))) yield return new Point3D(0, _inner, 0);
-                                if (!_outerCorner(Faces(AnchorFace.XHigh, _thickFace, AnchorFace.ZLow))) yield return new Point3D(5, _inner, 0);
-                                if (!_outerCorner(Faces(AnchorFace.XLow, _thickFace, AnchorFace.ZHigh))) yield return new Point3D(0, _inner, 5);
-                                if (!_outerCorner(Faces(AnchorFace.XHigh, _thickFace, AnchorFace.ZHigh))) yield return new Point3D(5, _inner, 5);
+                                if (!_outerCorner(Faces(AnchorFace.XLow, _thickFace, AnchorFace.ZLow)))
+                                {
+                                    yield return new Point3D(0, _inner, 0);
+                                }
+
+                                if (!_outerCorner(Faces(AnchorFace.XHigh, _thickFace, AnchorFace.ZLow)))
+                                {
+                                    yield return new Point3D(5, _inner, 0);
+                                }
+
+                                if (!_outerCorner(Faces(AnchorFace.XLow, _thickFace, AnchorFace.ZHigh)))
+                                {
+                                    yield return new Point3D(0, _inner, 5);
+                                }
+
+                                if (!_outerCorner(Faces(AnchorFace.XHigh, _thickFace, AnchorFace.ZHigh)))
+                                {
+                                    yield return new Point3D(5, _inner, 5);
+                                }
 
                                 // 3 edges of ZNotch
                                 if (Math.Abs(_zNotch - _zEdge) >= 2.5)
@@ -446,15 +545,35 @@ namespace Uzi.Ikosa.Tactical
 
                                 // 2 edges @ inner (reverse FrameFace, FrameOffset)
                                 if (Math.Abs(_xNotch - _xEdge) <= 2.5)
+                                {
                                     yield return new Point3D((_xNotch + _xAntiEdge) / 2, _inner, _zEdge);
+                                }
+
                                 if (Math.Abs(_zNotch - _zEdge) <= 2.5)
+                                {
                                     yield return new Point3D(_xEdge, _inner, (_zNotch + _zAntiEdge) / 2);
+                                }
 
                                 // 2 edges @ inner (FrameFace)
-                                if (_frameFaces.Contains(AnchorFace.XLow)) yield return new Point3D(0, _inner, 2.5);
-                                if (_frameFaces.Contains(AnchorFace.XHigh)) yield return new Point3D(5, _inner, 2.5);
-                                if (_frameFaces.Contains(AnchorFace.ZLow)) yield return new Point3D(2.5, _inner, 0);
-                                if (_frameFaces.Contains(AnchorFace.ZHigh)) yield return new Point3D(2.5, _inner, 5);
+                                if (_frameFaces.Contains(AnchorFace.XLow))
+                                {
+                                    yield return new Point3D(0, _inner, 2.5);
+                                }
+
+                                if (_frameFaces.Contains(AnchorFace.XHigh))
+                                {
+                                    yield return new Point3D(5, _inner, 2.5);
+                                }
+
+                                if (_frameFaces.Contains(AnchorFace.ZLow))
+                                {
+                                    yield return new Point3D(2.5, _inner, 0);
+                                }
+
+                                if (_frameFaces.Contains(AnchorFace.ZHigh))
+                                {
+                                    yield return new Point3D(2.5, _inner, 5);
+                                }
 
                                 // 4 irregular side face points
                                 if (_yOff >= 2.5)
@@ -486,10 +605,25 @@ namespace Uzi.Ikosa.Tactical
                                 yield return new Point3D(_inner, _yNotch, _zNotch);
 
                                 // 3 pts @ inner at frameFace edges
-                                if (!_outerCorner(Faces(_thickFace, AnchorFace.YLow, AnchorFace.ZLow))) yield return new Point3D(_inner, 0, 0);
-                                if (!_outerCorner(Faces(_thickFace, AnchorFace.YHigh, AnchorFace.ZLow))) yield return new Point3D(_inner, 5, 0);
-                                if (!_outerCorner(Faces(_thickFace, AnchorFace.YLow, AnchorFace.ZHigh))) yield return new Point3D(_inner, 0, 5);
-                                if (!_outerCorner(Faces(_thickFace, AnchorFace.YHigh, AnchorFace.ZHigh))) yield return new Point3D(_inner, 5, 5);
+                                if (!_outerCorner(Faces(_thickFace, AnchorFace.YLow, AnchorFace.ZLow)))
+                                {
+                                    yield return new Point3D(_inner, 0, 0);
+                                }
+
+                                if (!_outerCorner(Faces(_thickFace, AnchorFace.YHigh, AnchorFace.ZLow)))
+                                {
+                                    yield return new Point3D(_inner, 5, 0);
+                                }
+
+                                if (!_outerCorner(Faces(_thickFace, AnchorFace.YLow, AnchorFace.ZHigh)))
+                                {
+                                    yield return new Point3D(_inner, 0, 5);
+                                }
+
+                                if (!_outerCorner(Faces(_thickFace, AnchorFace.YHigh, AnchorFace.ZHigh)))
+                                {
+                                    yield return new Point3D(_inner, 5, 5);
+                                }
 
                                 // 3 edges of ZNotch
                                 if (Math.Abs(_zNotch - _zEdge) >= 2.5)
@@ -529,15 +663,35 @@ namespace Uzi.Ikosa.Tactical
 
                                 // 2 edges @ inner (reverse FrameFace, FrameOffset)
                                 if (Math.Abs(_yNotch - _yEdge) <= 2.5)
+                                {
                                     yield return new Point3D(_inner, (_yNotch + _yAntiEdge) / 2, _zEdge);
+                                }
+
                                 if (Math.Abs(_zNotch - _zEdge) <= 2.5)
+                                {
                                     yield return new Point3D(_inner, _yEdge, (_zNotch + _zAntiEdge) / 2);
+                                }
 
                                 // 2 edges @ inner (FrameFace)
-                                if (_frameFaces.Contains(AnchorFace.YLow)) yield return new Point3D(_inner, 0, 2.5);
-                                if (_frameFaces.Contains(AnchorFace.YHigh)) yield return new Point3D(_inner, 5, 2.5);
-                                if (_frameFaces.Contains(AnchorFace.ZLow)) yield return new Point3D(_inner, 2.5, 0);
-                                if (_frameFaces.Contains(AnchorFace.ZHigh)) yield return new Point3D(_inner, 2.5, 5);
+                                if (_frameFaces.Contains(AnchorFace.YLow))
+                                {
+                                    yield return new Point3D(_inner, 0, 2.5);
+                                }
+
+                                if (_frameFaces.Contains(AnchorFace.YHigh))
+                                {
+                                    yield return new Point3D(_inner, 5, 2.5);
+                                }
+
+                                if (_frameFaces.Contains(AnchorFace.ZLow))
+                                {
+                                    yield return new Point3D(_inner, 2.5, 0);
+                                }
+
+                                if (_frameFaces.Contains(AnchorFace.ZHigh))
+                                {
+                                    yield return new Point3D(_inner, 2.5, 5);
+                                }
 
                                 // 4 irregular side face points
                                 if (_xOff >= 2.5)
@@ -614,10 +768,25 @@ namespace Uzi.Ikosa.Tactical
                                 var _inner = (_thickFace == AnchorFace.ZLow) ? _highZ : _lowZ;
 
                                 // 3 pts @ inner at frameFace edges
-                                if (!_outerCorner(Faces(AnchorFace.XLow, AnchorFace.YLow, _thickFace))) yield return new Point3D(0, 0, _inner);
-                                if (!_outerCorner(Faces(AnchorFace.XHigh, AnchorFace.YLow, _thickFace))) yield return new Point3D(5, 0, _inner);
-                                if (!_outerCorner(Faces(AnchorFace.XLow, AnchorFace.YHigh, _thickFace))) yield return new Point3D(0, 5, _inner);
-                                if (!_outerCorner(Faces(AnchorFace.XHigh, AnchorFace.YHigh, _thickFace))) yield return new Point3D(5, 5, _inner);
+                                if (!_outerCorner(Faces(AnchorFace.XLow, AnchorFace.YLow, _thickFace)))
+                                {
+                                    yield return new Point3D(0, 0, _inner);
+                                }
+
+                                if (!_outerCorner(Faces(AnchorFace.XHigh, AnchorFace.YLow, _thickFace)))
+                                {
+                                    yield return new Point3D(5, 0, _inner);
+                                }
+
+                                if (!_outerCorner(Faces(AnchorFace.XLow, AnchorFace.YHigh, _thickFace)))
+                                {
+                                    yield return new Point3D(0, 5, _inner);
+                                }
+
+                                if (!_outerCorner(Faces(AnchorFace.XHigh, AnchorFace.YHigh, _thickFace)))
+                                {
+                                    yield return new Point3D(5, 5, _inner);
+                                }
 
                                 // 3 pts @ outer with FrameOffsets
                                 yield return new Point3D(_xEdge, _yNotch, _outer);
@@ -629,18 +798,48 @@ namespace Uzi.Ikosa.Tactical
                                 yield return new Point3D(_xNotch, _yEdge, _inner);
 
                                 // 2 edges @ inner (on frameface)
-                                if (_frameFaces.Contains(AnchorFace.XLow)) yield return new Point3D(0, 2.5, _inner);
-                                if (_frameFaces.Contains(AnchorFace.XHigh)) yield return new Point3D(5, 2.5, _inner);
-                                if (_frameFaces.Contains(AnchorFace.YLow)) yield return new Point3D(2.5, 0, _inner);
-                                if (_frameFaces.Contains(AnchorFace.YHigh)) yield return new Point3D(2.5, 5, _inner);
+                                if (_frameFaces.Contains(AnchorFace.XLow))
+                                {
+                                    yield return new Point3D(0, 2.5, _inner);
+                                }
+
+                                if (_frameFaces.Contains(AnchorFace.XHigh))
+                                {
+                                    yield return new Point3D(5, 2.5, _inner);
+                                }
+
+                                if (_frameFaces.Contains(AnchorFace.YLow))
+                                {
+                                    yield return new Point3D(2.5, 0, _inner);
+                                }
+
+                                if (_frameFaces.Contains(AnchorFace.YHigh))
+                                {
+                                    yield return new Point3D(2.5, 5, _inner);
+                                }
 
                                 if (_zOff >= 2.5)
                                 {
                                     // 2 faces on frameface
-                                    if (_frameFaces.Contains(AnchorFace.XLow)) yield return new Point3D(0, 2.5, _midZ);
-                                    if (_frameFaces.Contains(AnchorFace.XHigh)) yield return new Point3D(5, 2.5, _midZ);
-                                    if (_frameFaces.Contains(AnchorFace.YLow)) yield return new Point3D(2.5, 0, _midZ);
-                                    if (_frameFaces.Contains(AnchorFace.YHigh)) yield return new Point3D(2.5, 5, _midZ);
+                                    if (_frameFaces.Contains(AnchorFace.XLow))
+                                    {
+                                        yield return new Point3D(0, 2.5, _midZ);
+                                    }
+
+                                    if (_frameFaces.Contains(AnchorFace.XHigh))
+                                    {
+                                        yield return new Point3D(5, 2.5, _midZ);
+                                    }
+
+                                    if (_frameFaces.Contains(AnchorFace.YLow))
+                                    {
+                                        yield return new Point3D(2.5, 0, _midZ);
+                                    }
+
+                                    if (_frameFaces.Contains(AnchorFace.YHigh))
+                                    {
+                                        yield return new Point3D(2.5, 5, _midZ);
+                                    }
 
                                     // xNotch edge point
                                     yield return new Point3D(_xNotch, _yEdge, _midZ);
@@ -651,11 +850,15 @@ namespace Uzi.Ikosa.Tactical
 
                                 // mid xNotch (1) @ Outer
                                 if (Math.Abs(_xNotch - _xEdge) >= 2.5)
+                                {
                                     yield return new Point3D((_xNotch + _xEdge) / 2, _yNotch, _outer);
+                                }
 
                                 // mid yNotch (1) @ Outer
                                 if (Math.Abs(_yNotch - _yEdge) >= 2.5)
+                                {
                                     yield return new Point3D(_xNotch, (_yNotch + _yEdge) / 2, _outer);
+                                }
 
                                 // mid anti-xNotch edges and face (2 edges, 1 face)
                                 if (Math.Abs(_xNotch - _xEdge) <= 2.5)
@@ -692,10 +895,25 @@ namespace Uzi.Ikosa.Tactical
                                 var _inner = (_thickFace == AnchorFace.YLow) ? _highY : _lowY;
 
                                 // 3 pts @ inner at frameFace edges
-                                if (!_outerCorner(Faces(AnchorFace.XLow, AnchorFace.ZLow, _thickFace))) yield return new Point3D(0, _inner, 0);
-                                if (!_outerCorner(Faces(AnchorFace.XHigh, AnchorFace.ZLow, _thickFace))) yield return new Point3D(5, _inner, 0);
-                                if (!_outerCorner(Faces(AnchorFace.XLow, AnchorFace.ZHigh, _thickFace))) yield return new Point3D(0, _inner, 5);
-                                if (!_outerCorner(Faces(AnchorFace.XHigh, AnchorFace.ZHigh, _thickFace))) yield return new Point3D(5, _inner, 5);
+                                if (!_outerCorner(Faces(AnchorFace.XLow, AnchorFace.ZLow, _thickFace)))
+                                {
+                                    yield return new Point3D(0, _inner, 0);
+                                }
+
+                                if (!_outerCorner(Faces(AnchorFace.XHigh, AnchorFace.ZLow, _thickFace)))
+                                {
+                                    yield return new Point3D(5, _inner, 0);
+                                }
+
+                                if (!_outerCorner(Faces(AnchorFace.XLow, AnchorFace.ZHigh, _thickFace)))
+                                {
+                                    yield return new Point3D(0, _inner, 5);
+                                }
+
+                                if (!_outerCorner(Faces(AnchorFace.XHigh, AnchorFace.ZHigh, _thickFace)))
+                                {
+                                    yield return new Point3D(5, _inner, 5);
+                                }
 
                                 // 3 pts @ outer with FrameOffsets
                                 yield return new Point3D(_xEdge, _outer, _zNotch);
@@ -707,18 +925,48 @@ namespace Uzi.Ikosa.Tactical
                                 yield return new Point3D(_xNotch, _inner, _zEdge);
 
                                 // 2 edges @ inner (on frameface)
-                                if (_frameFaces.Contains(AnchorFace.XLow)) yield return new Point3D(0, _inner, 2.5);
-                                if (_frameFaces.Contains(AnchorFace.XHigh)) yield return new Point3D(5, _inner, 2.5);
-                                if (_frameFaces.Contains(AnchorFace.ZLow)) yield return new Point3D(2.5, _inner, 0);
-                                if (_frameFaces.Contains(AnchorFace.ZHigh)) yield return new Point3D(2.5, _inner, 5);
+                                if (_frameFaces.Contains(AnchorFace.XLow))
+                                {
+                                    yield return new Point3D(0, _inner, 2.5);
+                                }
+
+                                if (_frameFaces.Contains(AnchorFace.XHigh))
+                                {
+                                    yield return new Point3D(5, _inner, 2.5);
+                                }
+
+                                if (_frameFaces.Contains(AnchorFace.ZLow))
+                                {
+                                    yield return new Point3D(2.5, _inner, 0);
+                                }
+
+                                if (_frameFaces.Contains(AnchorFace.ZHigh))
+                                {
+                                    yield return new Point3D(2.5, _inner, 5);
+                                }
 
                                 if (_yOff >= 2.5)
                                 {
                                     // 2 faces on frameface
-                                    if (_frameFaces.Contains(AnchorFace.XLow)) yield return new Point3D(0, _midY, 2.5);
-                                    if (_frameFaces.Contains(AnchorFace.XHigh)) yield return new Point3D(5, _midY, 2.5);
-                                    if (_frameFaces.Contains(AnchorFace.ZLow)) yield return new Point3D(2.5, _midY, 0);
-                                    if (_frameFaces.Contains(AnchorFace.ZHigh)) yield return new Point3D(2.5, _midY, 5);
+                                    if (_frameFaces.Contains(AnchorFace.XLow))
+                                    {
+                                        yield return new Point3D(0, _midY, 2.5);
+                                    }
+
+                                    if (_frameFaces.Contains(AnchorFace.XHigh))
+                                    {
+                                        yield return new Point3D(5, _midY, 2.5);
+                                    }
+
+                                    if (_frameFaces.Contains(AnchorFace.ZLow))
+                                    {
+                                        yield return new Point3D(2.5, _midY, 0);
+                                    }
+
+                                    if (_frameFaces.Contains(AnchorFace.ZHigh))
+                                    {
+                                        yield return new Point3D(2.5, _midY, 5);
+                                    }
 
                                     // xNotch edge point
                                     yield return new Point3D(_xNotch, _midY, _zEdge);
@@ -729,11 +977,15 @@ namespace Uzi.Ikosa.Tactical
 
                                 // mid xNotch (1) @ Outer
                                 if (Math.Abs(_xNotch - _xEdge) >= 2.5)
+                                {
                                     yield return new Point3D((_xNotch + _xEdge) / 2, _outer, _zNotch);
+                                }
 
                                 // mid yNotch (1) @ Outer
                                 if (Math.Abs(_zNotch - _zEdge) >= 2.5)
+                                {
                                     yield return new Point3D(_xNotch, _outer, (_zNotch + _zEdge) / 2);
+                                }
 
                                 // mid anti-xNotch edges and face (2 edges, 1 face)
                                 if (Math.Abs(_xNotch - _xEdge) <= 2.5)
@@ -770,10 +1022,25 @@ namespace Uzi.Ikosa.Tactical
                                 var _inner = (_thickFace == AnchorFace.ZLow) ? _highX : _lowX;
 
                                 // 3 pts @ inner at frameFace edges
-                                if (!_outerCorner(Faces(AnchorFace.YLow, AnchorFace.ZLow, _thickFace))) yield return new Point3D(_inner, 0, 0);
-                                if (!_outerCorner(Faces(AnchorFace.YHigh, AnchorFace.ZLow, _thickFace))) yield return new Point3D(_inner, 5, 0);
-                                if (!_outerCorner(Faces(AnchorFace.YLow, AnchorFace.ZHigh, _thickFace))) yield return new Point3D(_inner, 0, 5);
-                                if (!_outerCorner(Faces(AnchorFace.YHigh, AnchorFace.ZHigh, _thickFace))) yield return new Point3D(_inner, 5, 5);
+                                if (!_outerCorner(Faces(AnchorFace.YLow, AnchorFace.ZLow, _thickFace)))
+                                {
+                                    yield return new Point3D(_inner, 0, 0);
+                                }
+
+                                if (!_outerCorner(Faces(AnchorFace.YHigh, AnchorFace.ZLow, _thickFace)))
+                                {
+                                    yield return new Point3D(_inner, 5, 0);
+                                }
+
+                                if (!_outerCorner(Faces(AnchorFace.YLow, AnchorFace.ZHigh, _thickFace)))
+                                {
+                                    yield return new Point3D(_inner, 0, 5);
+                                }
+
+                                if (!_outerCorner(Faces(AnchorFace.YHigh, AnchorFace.ZHigh, _thickFace)))
+                                {
+                                    yield return new Point3D(_inner, 5, 5);
+                                }
 
                                 // 3 pts @ outer with FrameOffsets
                                 yield return new Point3D(_outer, _yNotch, _zEdge);
@@ -785,18 +1052,48 @@ namespace Uzi.Ikosa.Tactical
                                 yield return new Point3D(_inner, _yEdge, _zNotch);
 
                                 // 2 edges @ inner (on frameface)
-                                if (_frameFaces.Contains(AnchorFace.YLow)) yield return new Point3D(_inner, 0, 2.5);
-                                if (_frameFaces.Contains(AnchorFace.YHigh)) yield return new Point3D(_inner, 5, 2.5);
-                                if (_frameFaces.Contains(AnchorFace.ZLow)) yield return new Point3D(_inner, 2.5, 0);
-                                if (_frameFaces.Contains(AnchorFace.ZHigh)) yield return new Point3D(_inner, 2.5, 5);
+                                if (_frameFaces.Contains(AnchorFace.YLow))
+                                {
+                                    yield return new Point3D(_inner, 0, 2.5);
+                                }
+
+                                if (_frameFaces.Contains(AnchorFace.YHigh))
+                                {
+                                    yield return new Point3D(_inner, 5, 2.5);
+                                }
+
+                                if (_frameFaces.Contains(AnchorFace.ZLow))
+                                {
+                                    yield return new Point3D(_inner, 2.5, 0);
+                                }
+
+                                if (_frameFaces.Contains(AnchorFace.ZHigh))
+                                {
+                                    yield return new Point3D(_inner, 2.5, 5);
+                                }
 
                                 if (_xOff >= 2.5)
                                 {
                                     // 2 faces on frameface
-                                    if (_frameFaces.Contains(AnchorFace.YLow)) yield return new Point3D(_midX, 0, 2.5);
-                                    if (_frameFaces.Contains(AnchorFace.YHigh)) yield return new Point3D(_midX, 5, 2.5);
-                                    if (_frameFaces.Contains(AnchorFace.ZLow)) yield return new Point3D(_midX, 2.5, 0);
-                                    if (_frameFaces.Contains(AnchorFace.ZHigh)) yield return new Point3D(_midX, 2.5, 5);
+                                    if (_frameFaces.Contains(AnchorFace.YLow))
+                                    {
+                                        yield return new Point3D(_midX, 0, 2.5);
+                                    }
+
+                                    if (_frameFaces.Contains(AnchorFace.YHigh))
+                                    {
+                                        yield return new Point3D(_midX, 5, 2.5);
+                                    }
+
+                                    if (_frameFaces.Contains(AnchorFace.ZLow))
+                                    {
+                                        yield return new Point3D(_midX, 2.5, 0);
+                                    }
+
+                                    if (_frameFaces.Contains(AnchorFace.ZHigh))
+                                    {
+                                        yield return new Point3D(_midX, 2.5, 5);
+                                    }
 
                                     // zNotch edge point
                                     yield return new Point3D(_midX, _yEdge, _zNotch);
@@ -807,11 +1104,15 @@ namespace Uzi.Ikosa.Tactical
 
                                 // mid xNotch (1) @ Outer
                                 if (Math.Abs(_zNotch - _zEdge) >= 2.5)
+                                {
                                     yield return new Point3D(_outer, _yNotch, (_zNotch + _zEdge) / 2);
+                                }
 
                                 // mid yNotch (1) @ Outer
                                 if (Math.Abs(_yNotch - _yEdge) >= 2.5)
+                                {
                                     yield return new Point3D(_outer, (_yNotch + _yEdge) / 2, _zNotch);
+                                }
 
                                 // mid anti-zNotch edges and face (2 edges, 1 face)
                                 if (Math.Abs(_zNotch - _zEdge) <= 2.5)
@@ -844,30 +1145,108 @@ namespace Uzi.Ikosa.Tactical
 
                 #region outer corners
                 // regular outer corners
-                if (_outerCorner(Faces(AnchorFace.XLow, AnchorFace.YLow, AnchorFace.ZLow))) yield return new Point3D(0, 0, 0);
-                if (_outerCorner(Faces(AnchorFace.XHigh, AnchorFace.YLow, AnchorFace.ZLow))) yield return new Point3D(5, 0, 0);
-                if (_outerCorner(Faces(AnchorFace.XLow, AnchorFace.YHigh, AnchorFace.ZLow))) yield return new Point3D(0, 5, 0);
-                if (_outerCorner(Faces(AnchorFace.XHigh, AnchorFace.YHigh, AnchorFace.ZLow))) yield return new Point3D(5, 5, 0);
-                if (_outerCorner(Faces(AnchorFace.XLow, AnchorFace.YLow, AnchorFace.ZHigh))) yield return new Point3D(0, 0, 5);
-                if (_outerCorner(Faces(AnchorFace.XHigh, AnchorFace.YLow, AnchorFace.ZHigh))) yield return new Point3D(5, 0, 5);
-                if (_outerCorner(Faces(AnchorFace.XLow, AnchorFace.YHigh, AnchorFace.ZHigh))) yield return new Point3D(0, 5, 5);
-                if (_outerCorner(Faces(AnchorFace.XHigh, AnchorFace.YHigh, AnchorFace.ZHigh))) yield return new Point3D(5, 5, 5);
+                if (_outerCorner(Faces(AnchorFace.XLow, AnchorFace.YLow, AnchorFace.ZLow)))
+                {
+                    yield return new Point3D(0, 0, 0);
+                }
+
+                if (_outerCorner(Faces(AnchorFace.XHigh, AnchorFace.YLow, AnchorFace.ZLow)))
+                {
+                    yield return new Point3D(5, 0, 0);
+                }
+
+                if (_outerCorner(Faces(AnchorFace.XLow, AnchorFace.YHigh, AnchorFace.ZLow)))
+                {
+                    yield return new Point3D(0, 5, 0);
+                }
+
+                if (_outerCorner(Faces(AnchorFace.XHigh, AnchorFace.YHigh, AnchorFace.ZLow)))
+                {
+                    yield return new Point3D(5, 5, 0);
+                }
+
+                if (_outerCorner(Faces(AnchorFace.XLow, AnchorFace.YLow, AnchorFace.ZHigh)))
+                {
+                    yield return new Point3D(0, 0, 5);
+                }
+
+                if (_outerCorner(Faces(AnchorFace.XHigh, AnchorFace.YLow, AnchorFace.ZHigh)))
+                {
+                    yield return new Point3D(5, 0, 5);
+                }
+
+                if (_outerCorner(Faces(AnchorFace.XLow, AnchorFace.YHigh, AnchorFace.ZHigh)))
+                {
+                    yield return new Point3D(0, 5, 5);
+                }
+
+                if (_outerCorner(Faces(AnchorFace.XHigh, AnchorFace.YHigh, AnchorFace.ZHigh)))
+                {
+                    yield return new Point3D(5, 5, 5);
+                }
                 #endregion
 
                 #region regular edges
                 // regular outer edges
-                if (_regularEdge(Faces(AnchorFace.XLow, AnchorFace.ZLow))) yield return new Point3D(0, 2.5, 0);
-                if (_regularEdge(Faces(AnchorFace.XHigh, AnchorFace.ZLow))) yield return new Point3D(5, 2.5, 0);
-                if (_regularEdge(Faces(AnchorFace.YLow, AnchorFace.ZLow))) yield return new Point3D(2.5, 0, 0);
-                if (_regularEdge(Faces(AnchorFace.YHigh, AnchorFace.ZLow))) yield return new Point3D(2.5, 5, 0);
-                if (_regularEdge(Faces(AnchorFace.XLow, AnchorFace.YLow))) yield return new Point3D(0, 0, 2.5);
-                if (_regularEdge(Faces(AnchorFace.XHigh, AnchorFace.YLow))) yield return new Point3D(5, 0, 2.5);
-                if (_regularEdge(Faces(AnchorFace.XLow, AnchorFace.YHigh))) yield return new Point3D(0, 5, 2.5);
-                if (_regularEdge(Faces(AnchorFace.XHigh, AnchorFace.YHigh))) yield return new Point3D(5, 5, 2.5);
-                if (_regularEdge(Faces(AnchorFace.XLow, AnchorFace.ZHigh))) yield return new Point3D(0, 2.5, 5);
-                if (_regularEdge(Faces(AnchorFace.XHigh, AnchorFace.ZHigh))) yield return new Point3D(5, 2.5, 5);
-                if (_regularEdge(Faces(AnchorFace.YLow, AnchorFace.ZHigh))) yield return new Point3D(2.5, 0, 5);
-                if (_regularEdge(Faces(AnchorFace.YHigh, AnchorFace.ZHigh))) yield return new Point3D(2.5, 5, 5);
+                if (_regularEdge(Faces(AnchorFace.XLow, AnchorFace.ZLow)))
+                {
+                    yield return new Point3D(0, 2.5, 0);
+                }
+
+                if (_regularEdge(Faces(AnchorFace.XHigh, AnchorFace.ZLow)))
+                {
+                    yield return new Point3D(5, 2.5, 0);
+                }
+
+                if (_regularEdge(Faces(AnchorFace.YLow, AnchorFace.ZLow)))
+                {
+                    yield return new Point3D(2.5, 0, 0);
+                }
+
+                if (_regularEdge(Faces(AnchorFace.YHigh, AnchorFace.ZLow)))
+                {
+                    yield return new Point3D(2.5, 5, 0);
+                }
+
+                if (_regularEdge(Faces(AnchorFace.XLow, AnchorFace.YLow)))
+                {
+                    yield return new Point3D(0, 0, 2.5);
+                }
+
+                if (_regularEdge(Faces(AnchorFace.XHigh, AnchorFace.YLow)))
+                {
+                    yield return new Point3D(5, 0, 2.5);
+                }
+
+                if (_regularEdge(Faces(AnchorFace.XLow, AnchorFace.YHigh)))
+                {
+                    yield return new Point3D(0, 5, 2.5);
+                }
+
+                if (_regularEdge(Faces(AnchorFace.XHigh, AnchorFace.YHigh)))
+                {
+                    yield return new Point3D(5, 5, 2.5);
+                }
+
+                if (_regularEdge(Faces(AnchorFace.XLow, AnchorFace.ZHigh)))
+                {
+                    yield return new Point3D(0, 2.5, 5);
+                }
+
+                if (_regularEdge(Faces(AnchorFace.XHigh, AnchorFace.ZHigh)))
+                {
+                    yield return new Point3D(5, 2.5, 5);
+                }
+
+                if (_regularEdge(Faces(AnchorFace.YLow, AnchorFace.ZHigh)))
+                {
+                    yield return new Point3D(2.5, 0, 5);
+                }
+
+                if (_regularEdge(Faces(AnchorFace.YHigh, AnchorFace.ZHigh)))
+                {
+                    yield return new Point3D(2.5, 5, 5);
+                }
                 #endregion
 
                 bool _irrOuterEdge(IEnumerable<AnchorFace> faces, double offset)
@@ -877,18 +1256,65 @@ namespace Uzi.Ikosa.Tactical
                 }
 
                 #region irregular outer edges
-                if (_irrOuterEdge(Faces(AnchorFace.XLow, AnchorFace.ZLow), _yOff)) yield return new Point3D(0, _midY, 0);
-                if (_irrOuterEdge(Faces(AnchorFace.XHigh, AnchorFace.ZLow), _yOff)) yield return new Point3D(5, _midY, 0);
-                if (_irrOuterEdge(Faces(AnchorFace.YLow, AnchorFace.ZLow), _xOff)) yield return new Point3D(_midX, 0, 0);
-                if (_irrOuterEdge(Faces(AnchorFace.YHigh, AnchorFace.ZLow), _xOff)) yield return new Point3D(_midX, 5, 0);
-                if (_irrOuterEdge(Faces(AnchorFace.XLow, AnchorFace.YLow), _zOff)) yield return new Point3D(0, 0, _midZ);
-                if (_irrOuterEdge(Faces(AnchorFace.XHigh, AnchorFace.YLow), _zOff)) yield return new Point3D(5, 0, _midZ);
-                if (_irrOuterEdge(Faces(AnchorFace.XLow, AnchorFace.YHigh), _zOff)) yield return new Point3D(0, 5, _midZ);
-                if (_irrOuterEdge(Faces(AnchorFace.XHigh, AnchorFace.YHigh), _zOff)) yield return new Point3D(5, 5, _midZ);
-                if (_irrOuterEdge(Faces(AnchorFace.XLow, AnchorFace.ZHigh), _yOff)) yield return new Point3D(0, _midY, 5);
-                if (_irrOuterEdge(Faces(AnchorFace.XHigh, AnchorFace.ZHigh), _yOff)) yield return new Point3D(5, _midY, 5);
-                if (_irrOuterEdge(Faces(AnchorFace.YLow, AnchorFace.ZHigh), _xOff)) yield return new Point3D(_midX, 0, 5);
-                if (_irrOuterEdge(Faces(AnchorFace.YHigh, AnchorFace.ZHigh), _xOff)) yield return new Point3D(_midX, 5, 5);
+                if (_irrOuterEdge(Faces(AnchorFace.XLow, AnchorFace.ZLow), _yOff))
+                {
+                    yield return new Point3D(0, _midY, 0);
+                }
+
+                if (_irrOuterEdge(Faces(AnchorFace.XHigh, AnchorFace.ZLow), _yOff))
+                {
+                    yield return new Point3D(5, _midY, 0);
+                }
+
+                if (_irrOuterEdge(Faces(AnchorFace.YLow, AnchorFace.ZLow), _xOff))
+                {
+                    yield return new Point3D(_midX, 0, 0);
+                }
+
+                if (_irrOuterEdge(Faces(AnchorFace.YHigh, AnchorFace.ZLow), _xOff))
+                {
+                    yield return new Point3D(_midX, 5, 0);
+                }
+
+                if (_irrOuterEdge(Faces(AnchorFace.XLow, AnchorFace.YLow), _zOff))
+                {
+                    yield return new Point3D(0, 0, _midZ);
+                }
+
+                if (_irrOuterEdge(Faces(AnchorFace.XHigh, AnchorFace.YLow), _zOff))
+                {
+                    yield return new Point3D(5, 0, _midZ);
+                }
+
+                if (_irrOuterEdge(Faces(AnchorFace.XLow, AnchorFace.YHigh), _zOff))
+                {
+                    yield return new Point3D(0, 5, _midZ);
+                }
+
+                if (_irrOuterEdge(Faces(AnchorFace.XHigh, AnchorFace.YHigh), _zOff))
+                {
+                    yield return new Point3D(5, 5, _midZ);
+                }
+
+                if (_irrOuterEdge(Faces(AnchorFace.XLow, AnchorFace.ZHigh), _yOff))
+                {
+                    yield return new Point3D(0, _midY, 5);
+                }
+
+                if (_irrOuterEdge(Faces(AnchorFace.XHigh, AnchorFace.ZHigh), _yOff))
+                {
+                    yield return new Point3D(5, _midY, 5);
+                }
+
+                if (_irrOuterEdge(Faces(AnchorFace.YLow, AnchorFace.ZHigh), _xOff))
+                {
+                    yield return new Point3D(_midX, 0, 5);
+                }
+
+                if (_irrOuterEdge(Faces(AnchorFace.YHigh, AnchorFace.ZHigh), _xOff))
+                {
+                    yield return new Point3D(_midX, 5, 5);
+                }
                 #endregion
 
             }
@@ -1007,7 +1433,9 @@ namespace Uzi.Ikosa.Tactical
             else if (!_cellBlock && !_plusBlock)
             {
                 foreach (var _pt in base.TargetCorners(param, movement))
+                {
                     yield return _pt;
+                }
             }
             else
             {
@@ -1061,44 +1489,68 @@ namespace Uzi.Ikosa.Tactical
                     if (_frameFaces.Contains(AnchorFace.ZLow))
                     {
                         if (_frame1Face == AnchorFace.ZLow)
+                        {
                             _lowZ = Width1;
+                        }
                         else
+                        {
                             _lowZ = Width2;
+                        }
                     }
                     else if (_frameFaces.Contains(AnchorFace.ZHigh))
                     {
                         if (_frame1Face == AnchorFace.ZHigh)
+                        {
                             _highZ -= Width1;
+                        }
                         else
+                        {
                             _highZ -= Width2;
+                        }
                     }
                     if (_frameFaces.Contains(AnchorFace.YLow))
                     {
                         if (_frame1Face == AnchorFace.YLow)
+                        {
                             _lowY = Width1;
+                        }
                         else
+                        {
                             _lowY = Width2;
+                        }
                     }
                     else if (_frameFaces.Contains(AnchorFace.YHigh))
                     {
                         if (_frame1Face == AnchorFace.YHigh)
+                        {
                             _highY -= Width1;
+                        }
                         else
+                        {
                             _highY -= Width2;
+                        }
                     }
                     if (_frameFaces.Contains(AnchorFace.XLow))
                     {
                         if (_frame1Face == AnchorFace.XLow)
+                        {
                             _lowX = Width1;
+                        }
                         else
+                        {
                             _lowX = Width2;
+                        }
                     }
                     else if (_frameFaces.Contains(AnchorFace.XHigh))
                     {
                         if (_frame1Face == AnchorFace.XHigh)
+                        {
                             _highX -= Width1;
+                        }
                         else
+                        {
                             _highX -= Width2;
+                        }
                     }
                     #endregion
 
@@ -1121,21 +1573,45 @@ namespace Uzi.Ikosa.Tactical
                         var _all = new List<TargetCorner>();
                         // regular outer corners
                         if (_outerCorner(Faces(AnchorFace.XLow, AnchorFace.YLow, AnchorFace.ZLow)))
+                        {
                             _all.Add(new TargetCorner(new Point3D(0, 0, 0), AnchorFace.XLow, AnchorFace.YLow, AnchorFace.ZLow));
+                        }
+
                         if (_outerCorner(Faces(AnchorFace.XHigh, AnchorFace.YLow, AnchorFace.ZLow)))
+                        {
                             _all.Add(new TargetCorner(new Point3D(5, 0, 0), AnchorFace.XHigh, AnchorFace.YLow, AnchorFace.ZLow));
+                        }
+
                         if (_outerCorner(Faces(AnchorFace.XLow, AnchorFace.YHigh, AnchorFace.ZLow)))
+                        {
                             _all.Add(new TargetCorner(new Point3D(0, 5, 0), AnchorFace.XLow, AnchorFace.YHigh, AnchorFace.ZLow));
+                        }
+
                         if (_outerCorner(Faces(AnchorFace.XHigh, AnchorFace.YHigh, AnchorFace.ZLow)))
+                        {
                             _all.Add(new TargetCorner(new Point3D(5, 5, 0), AnchorFace.XHigh, AnchorFace.YHigh, AnchorFace.ZLow));
+                        }
+
                         if (_outerCorner(Faces(AnchorFace.XLow, AnchorFace.YLow, AnchorFace.ZHigh)))
+                        {
                             _all.Add(new TargetCorner(new Point3D(0, 0, 5), AnchorFace.XLow, AnchorFace.YLow, AnchorFace.ZHigh));
+                        }
+
                         if (_outerCorner(Faces(AnchorFace.XHigh, AnchorFace.YLow, AnchorFace.ZHigh)))
+                        {
                             _all.Add(new TargetCorner(new Point3D(5, 0, 5), AnchorFace.XHigh, AnchorFace.YLow, AnchorFace.ZHigh));
+                        }
+
                         if (_outerCorner(Faces(AnchorFace.XLow, AnchorFace.YHigh, AnchorFace.ZHigh)))
+                        {
                             _all.Add(new TargetCorner(new Point3D(0, 5, 5), AnchorFace.XLow, AnchorFace.YHigh, AnchorFace.ZHigh));
+                        }
+
                         if (_outerCorner(Faces(AnchorFace.XHigh, AnchorFace.YHigh, AnchorFace.ZHigh)))
+                        {
                             _all.Add(new TargetCorner(new Point3D(5, 5, 5), AnchorFace.XHigh, AnchorFace.YHigh, AnchorFace.ZHigh));
+                        }
+
                         return _all;
                     }
                     #endregion
@@ -1166,20 +1642,33 @@ namespace Uzi.Ikosa.Tactical
 
                                     // 3 pts @ inner at frameFace edges
                                     if (!_outerCorner(Faces(AnchorFace.XLow, AnchorFace.YLow, _thickFace)))
+                                    {
                                         yield return new TargetCorner(new Point3D(0, 0, _inner),
                                             AnchorFace.XLow, AnchorFace.YLow, _thickFace);
+                                    }
+
                                     if (!_outerCorner(Faces(AnchorFace.XHigh, AnchorFace.YLow, _thickFace)))
+                                    {
                                         yield return new TargetCorner(new Point3D(5, 0, _inner),
                                             AnchorFace.XHigh, AnchorFace.YLow, _thickFace);
+                                    }
+
                                     if (!_outerCorner(Faces(AnchorFace.XLow, AnchorFace.YHigh, _thickFace)))
+                                    {
                                         yield return new TargetCorner(new Point3D(0, 5, _inner),
                                             AnchorFace.XLow, AnchorFace.YHigh, _thickFace);
+                                    }
+
                                     if (!_outerCorner(Faces(AnchorFace.XHigh, AnchorFace.YHigh, _thickFace)))
+                                    {
                                         yield return new TargetCorner(new Point3D(5, 5, _inner),
                                             AnchorFace.XHigh, AnchorFace.YHigh, _thickFace);
+                                    }
 
                                     foreach (var _c in _allOuterCorners())
+                                    {
                                         yield return _c;
+                                    }
                                     #endregion
                                 }
                             }
@@ -1209,20 +1698,33 @@ namespace Uzi.Ikosa.Tactical
 
                                     // 3 pts @ lowZ at frameFace edges
                                     if (!_outerCorner(Faces(AnchorFace.XLow, _thickFace, AnchorFace.ZLow)))
+                                    {
                                         yield return new TargetCorner(new Point3D(0, _inner, 0),
                                             AnchorFace.XLow, _thickFace, AnchorFace.ZLow);
+                                    }
+
                                     if (!_outerCorner(Faces(AnchorFace.XHigh, _thickFace, AnchorFace.ZLow)))
+                                    {
                                         yield return new TargetCorner(new Point3D(5, _inner, 0),
                                             AnchorFace.XHigh, _thickFace, AnchorFace.ZLow);
+                                    }
+
                                     if (!_outerCorner(Faces(AnchorFace.XLow, _thickFace, AnchorFace.ZHigh)))
+                                    {
                                         yield return new TargetCorner(new Point3D(0, _inner, 5),
                                             AnchorFace.XLow, _thickFace, AnchorFace.ZHigh);
+                                    }
+
                                     if (!_outerCorner(Faces(AnchorFace.XHigh, _thickFace, AnchorFace.ZHigh)))
+                                    {
                                         yield return new TargetCorner(new Point3D(5, _inner, 5),
                                             AnchorFace.XHigh, _thickFace, AnchorFace.ZHigh);
+                                    }
 
                                     foreach (var _c in _allOuterCorners())
+                                    {
                                         yield return _c;
+                                    }
                                     #endregion
                                 }
                             }
@@ -1252,20 +1754,33 @@ namespace Uzi.Ikosa.Tactical
 
                                     // 3 pts @ inner at frameFace edges
                                     if (!_outerCorner(Faces(_thickFace, AnchorFace.YLow, AnchorFace.ZLow)))
+                                    {
                                         yield return new TargetCorner(new Point3D(_inner, 0, 0),
                                             _thickFace, AnchorFace.YLow, AnchorFace.ZLow);
+                                    }
+
                                     if (!_outerCorner(Faces(_thickFace, AnchorFace.YHigh, AnchorFace.ZLow)))
+                                    {
                                         yield return new TargetCorner(new Point3D(_inner, 5, 0),
                                             _thickFace, AnchorFace.YHigh, AnchorFace.ZLow);
+                                    }
+
                                     if (!_outerCorner(Faces(_thickFace, AnchorFace.YLow, AnchorFace.ZHigh)))
+                                    {
                                         yield return new TargetCorner(new Point3D(_inner, 0, 5),
                                             _thickFace, AnchorFace.YLow, AnchorFace.ZHigh);
+                                    }
+
                                     if (!_outerCorner(Faces(_thickFace, AnchorFace.YHigh, AnchorFace.ZHigh)))
+                                    {
                                         yield return new TargetCorner(new Point3D(_inner, 5, 5),
                                             _thickFace, AnchorFace.YHigh, AnchorFace.ZHigh);
+                                    }
 
                                     foreach (var _c in _allOuterCorners())
+                                    {
                                         yield return _c;
+                                    }
                                     #endregion
                                 }
                             }
@@ -1306,44 +1821,68 @@ namespace Uzi.Ikosa.Tactical
                     if (_frameFaces.Contains(AnchorFace.ZLow))
                     {
                         if (_frame1Face == AnchorFace.ZLow)
+                        {
                             _highZ = Width1;
+                        }
                         else
+                        {
                             _highZ = Width2;
+                        }
                     }
                     else if (_frameFaces.Contains(AnchorFace.ZHigh))
                     {
                         if (_frame1Face == AnchorFace.ZHigh)
+                        {
                             _lowZ = 5 - Width1;
+                        }
                         else
+                        {
                             _lowZ = 5 - Width2;
+                        }
                     }
                     if (_frameFaces.Contains(AnchorFace.YLow))
                     {
                         if (_frame1Face == AnchorFace.YLow)
+                        {
                             _highY = Width1;
+                        }
                         else
+                        {
                             _highY = Width2;
+                        }
                     }
                     else if (_frameFaces.Contains(AnchorFace.YHigh))
                     {
                         if (_frame1Face == AnchorFace.YHigh)
+                        {
                             _lowY = 5 - Width1;
+                        }
                         else
+                        {
                             _lowY = 5 - Width2;
+                        }
                     }
                     if (_frameFaces.Contains(AnchorFace.XLow))
                     {
                         if (_frame1Face == AnchorFace.XLow)
+                        {
                             _highX = Width1;
+                        }
                         else
+                        {
                             _highX = Width2;
+                        }
                     }
                     else if (_frameFaces.Contains(AnchorFace.XHigh))
                     {
                         if (_frame1Face == AnchorFace.XHigh)
+                        {
                             _lowX = 5 - Width1;
+                        }
                         else
+                        {
                             _lowX = 5 - Width2;
+                        }
                     }
                     #endregion
 
@@ -1630,11 +2169,15 @@ namespace Uzi.Ikosa.Tactical
             {
                 var _cellBlock = !movement.CanMoveThrough(CellMaterial);
                 if (_cellBlock && _plusBlock)
+                {
                     // both block
                     return new HedralGrip(true);
+                }
                 else if (!_cellBlock && !_plusBlock)
+                {
                     // neither block
                     return new HedralGrip(false);
+                }
                 else
                 {
                     var _frame1Face = LFrameSpaceFaces.GetFrame1Face(param);
@@ -1658,8 +2201,10 @@ namespace Uzi.Ikosa.Tactical
                 }
             }
             else
+            {
                 // base blocking (plus fills out volume)
                 return new HedralGrip(_plusBlock);
+            }
         }
         #endregion
 
@@ -1795,7 +2340,10 @@ namespace Uzi.Ikosa.Tactical
             {
                 // dangling...
                 if (_disposition == GripDisposition.Full)
+                {
                     return GripRules.GetOuterDangling(true);
+                }
+
                 return GripRules.GetOuterDangling(_disposition);
             }
 

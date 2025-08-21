@@ -20,8 +20,13 @@ namespace Uzi.Ikosa.Magic
             get
             {
                 foreach (var _comp in Wrapped.ArcaneComponents)
+                {
                     if (!typeof(SomaticComponent).IsAssignableFrom(_comp.GetType()))
+                    {
                         yield return _comp;
+                    }
+                }
+
                 yield break;
             }
         }
@@ -31,8 +36,13 @@ namespace Uzi.Ikosa.Magic
             get
             {
                 foreach (var _comp in Wrapped.DivineComponents)
+                {
                     if (!typeof(SomaticComponent).IsAssignableFrom(_comp.GetType()))
+                    {
                         yield return _comp;
+                    }
+                }
+
                 yield break;
             }
         }

@@ -80,7 +80,10 @@ namespace Uzi.Ikosa.Tactical
             foreach (var _opening in YieldBoundaries((from _c in Components(param)
                                                       from _b in _c.OpensTowards(movement, baseFace)
                                                       select _b).ToList()))
+            {
                 yield return _opening;
+            }
+
             yield break;
         }
         #endregion
@@ -98,27 +101,51 @@ namespace Uzi.Ikosa.Tactical
             {
                 // ZBoundaries
                 if (source.Any(_k => _k.Face == AnchorFace.ZHigh))
+                {
                     foreach (var _k in source.Where(_k => _k.Face == AnchorFace.ZHigh))
+                    {
                         yield return _k;
+                    }
+                }
                 else if (source.Any(_k => _k.Face == AnchorFace.ZLow))
+                {
                     foreach (var _k in source.Where(_k => _k.Face == AnchorFace.ZLow))
+                    {
                         yield return _k;
+                    }
+                }
 
                 // YBoundaries
                 if (source.Any(_k => _k.Face == AnchorFace.YHigh))
+                {
                     foreach (var _k in source.Where(_k => _k.Face == AnchorFace.YHigh))
+                    {
                         yield return _k;
+                    }
+                }
                 else if (source.Any(_k => _k.Face == AnchorFace.YLow))
+                {
                     foreach (var _k in source.Where(_k => _k.Face == AnchorFace.YLow))
+                    {
                         yield return _k;
+                    }
+                }
 
                 // XBoundaries
                 if (source.Any(_k => _k.Face == AnchorFace.XHigh))
+                {
                     foreach (var _k in source.Where(_k => _k.Face == AnchorFace.XHigh))
+                    {
                         yield return _k;
+                    }
+                }
                 else if (source.Any(_k => _k.Face == AnchorFace.XLow))
+                {
                     foreach (var _k in source.Where(_k => _k.Face == AnchorFace.XLow))
+                    {
                         yield return _k;
+                    }
+                }
             }
             yield break;
         }
@@ -164,7 +191,10 @@ namespace Uzi.Ikosa.Tactical
         {
             var _grip = new HedralGrip(false);
             foreach (var _c in Components(param))
+            {
                 _grip = _grip.Union(_c.HedralGripping(movement, surfaceFace));
+            }
+
             return _grip;
         }
 
@@ -178,20 +208,32 @@ namespace Uzi.Ikosa.Tactical
         public BuildableMaterial GetPlusOrthoFaceMaterial(Axis axis, bool isPlus, VisualEffect effect)
         {
             if (PlusTiling == null)
+            {
                 return new BuildableMaterial { Material = null, IsAlpha = false };
+            }
+
             switch (axis)
             {
                 case Axis.Z:
                     if (isPlus)
+                    {
                         return new BuildableMaterial { Material = PlusTiling.ZPlusMaterial(effect), IsAlpha = PlusTiling.GetAnchorFaceAlpha(AnchorFace.ZHigh) };
+                    }
+
                     return new BuildableMaterial { Material = PlusTiling.ZMinusMaterial(effect), IsAlpha = PlusTiling.GetAnchorFaceAlpha(AnchorFace.ZLow) };
                 case Axis.Y:
                     if (isPlus)
+                    {
                         return new BuildableMaterial { Material = PlusTiling.YPlusMaterial(effect), IsAlpha = PlusTiling.GetAnchorFaceAlpha(AnchorFace.YHigh) };
+                    }
+
                     return new BuildableMaterial { Material = PlusTiling.YMinusMaterial(effect), IsAlpha = PlusTiling.GetAnchorFaceAlpha(AnchorFace.YLow) };
                 default:
                     if (isPlus)
+                    {
                         return new BuildableMaterial { Material = PlusTiling.XPlusMaterial(effect), IsAlpha = PlusTiling.GetAnchorFaceAlpha(AnchorFace.XHigh) };
+                    }
+
                     return new BuildableMaterial { Material = PlusTiling.XMinusMaterial(effect), IsAlpha = PlusTiling.GetAnchorFaceAlpha(AnchorFace.XLow) };
             }
         }

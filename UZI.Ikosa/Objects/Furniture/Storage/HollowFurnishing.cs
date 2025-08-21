@@ -99,7 +99,9 @@ namespace Uzi.Ikosa.Objects
                 // suppress removal of last native container ...
                 // ... unless the furnishing is destroyed
                 if (Anchored.OfType<ContainerObject>().Count() == 1)
+                {
                     return StructurePoints <= 0;
+                }
             }
 
             // default
@@ -118,7 +120,9 @@ namespace Uzi.Ikosa.Objects
                 {
                     // since it was a lid, it must be our normal lid...
                     if (!this.HasAdjunct<OverrideModelKey>())
+                    {
                         AddAdjunct(new OverrideModelKey(this, _LiddedModel.ModelKey));
+                    }
 
                     // prevent it from being picked up when acting as a lid
                     _lid.AddAdjunct(new Interactor<BlockInteraction<PickUp>>(this));

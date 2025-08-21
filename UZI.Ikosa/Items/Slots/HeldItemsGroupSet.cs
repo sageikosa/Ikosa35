@@ -10,7 +10,7 @@ namespace Uzi.Ikosa.Items
         internal HeldItemsGroupSet(Creature creature)
         {
             Creature = creature;
-            _Groups = new Dictionary<string, HeldItemsGroup>();
+            _Groups = [];
         }
         #endregion
 
@@ -39,14 +39,19 @@ namespace Uzi.Ikosa.Items
         public void Remove(string index)
         {
             if (_Groups.ContainsKey(index))
+            {
                 _Groups.Remove(index);
+            }
         }
         #endregion
 
         public IEnumerable<KeyValuePair<string, HeldItemsGroup>> GetGroups()
         {
             foreach (var _kvp in _Groups)
+            {
                 yield return _kvp;
+            }
+
             yield break;
         }
     }

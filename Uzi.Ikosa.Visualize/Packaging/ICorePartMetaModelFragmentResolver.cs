@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using Uzi.Packaging;
 using System.Windows.Media.Media3D;
 
@@ -34,14 +32,21 @@ namespace Uzi.Visualize.Packaging
 
                 // collect and end resolve of fragment
                 if (_mdl != null)
+                {
                     _group.Children.Add(fragRef.ApplyTransforms(node, _mdl));
+                }
             }
 
             // return smallest possible grouping
             if (_group.Children.Count == 1)
+            {
                 return _group.Children.First();
+            }
             else if (_group.Children.Any())
+            {
                 return _group;
+            }
+
             return null;
         }
 
@@ -52,12 +57,14 @@ namespace Uzi.Visualize.Packaging
             get
             {
                 if (_Part != null)
+                {
                     return _Part.Relationships.OfType<MetaModelFragment>()
                         .Select(_mmf => new MetaModelFragmentListItem
                         {
                             MetaModelFragment = _mmf,
                             IsLocal = true
                         });
+                }
 
                 // empty list
                 return new MetaModelFragmentListItem[] { };

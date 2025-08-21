@@ -37,7 +37,9 @@ namespace Uzi.Ikosa.Services
         public void Dispose()
         {
             if (Synchronizer.IsWriteLockHeld)
+            {
                 Synchronizer.ExitWriteLock();
+            }
         }
     }
 }

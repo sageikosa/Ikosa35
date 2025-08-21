@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Media.Media3D;
@@ -136,14 +136,36 @@ namespace Uzi.Ikosa.Tactical
             }
 
             // x planes
-            if (facingPt.X < _xL) yield return new PlanarPoints(_XLN, new Point3D(_xL, _yL, _zL), new Point3D(_xL, _yL, _zH), new Point3D(_xL, _yH, _zH), new Point3D(_xL, _yH, _zL));
-            if (facingPt.X > _xH) yield return new PlanarPoints(_XHN, new Point3D(_xH, _yL, _zL), new Point3D(_xH, _yL, _zH), new Point3D(_xH, _yH, _zH), new Point3D(_xH, _yH, _zL));
+            if (facingPt.X < _xL)
+            {
+                yield return new PlanarPoints(_XLN, new Point3D(_xL, _yL, _zL), new Point3D(_xL, _yL, _zH), new Point3D(_xL, _yH, _zH), new Point3D(_xL, _yH, _zL));
+            }
+
+            if (facingPt.X > _xH)
+            {
+                yield return new PlanarPoints(_XHN, new Point3D(_xH, _yL, _zL), new Point3D(_xH, _yL, _zH), new Point3D(_xH, _yH, _zH), new Point3D(_xH, _yH, _zL));
+            }
             // y planes
-            if (facingPt.Y < _yL) yield return new PlanarPoints(_YLN, new Point3D(_xL, _yL, _zL), new Point3D(_xH, _yL, _zL), new Point3D(_xH, _yL, _zH), new Point3D(_xL, _yL, _zH));
-            if (facingPt.Y > _yH) yield return new PlanarPoints(_YHN, new Point3D(_xL, _yH, _zL), new Point3D(_xH, _yH, _zL), new Point3D(_xH, _yH, _zH), new Point3D(_xL, _yH, _zH));
+            if (facingPt.Y < _yL)
+            {
+                yield return new PlanarPoints(_YLN, new Point3D(_xL, _yL, _zL), new Point3D(_xH, _yL, _zL), new Point3D(_xH, _yL, _zH), new Point3D(_xL, _yL, _zH));
+            }
+
+            if (facingPt.Y > _yH)
+            {
+                yield return new PlanarPoints(_YHN, new Point3D(_xL, _yH, _zL), new Point3D(_xH, _yH, _zL), new Point3D(_xH, _yH, _zH), new Point3D(_xL, _yH, _zH));
+            }
             // z planes
-            if (facingPt.Z < _zL) yield return new PlanarPoints(_ZLN, new Point3D(_xL, _yL, _zL), new Point3D(_xH, _yL, _zL), new Point3D(_xH, _yH, _zL), new Point3D(_xL, _yH, _zL));
-            if (facingPt.Z > _zH) yield return new PlanarPoints(_ZHN, new Point3D(_xL, _yL, _zH), new Point3D(_xH, _yL, _zH), new Point3D(_xH, _yH, _zH), new Point3D(_xL, _yH, _zH));
+            if (facingPt.Z < _zL)
+            {
+                yield return new PlanarPoints(_ZLN, new Point3D(_xL, _yL, _zL), new Point3D(_xH, _yL, _zL), new Point3D(_xH, _yH, _zL), new Point3D(_xL, _yH, _zL));
+            }
+
+            if (facingPt.Z > _zH)
+            {
+                yield return new PlanarPoints(_ZHN, new Point3D(_xL, _yL, _zH), new Point3D(_xH, _yL, _zH), new Point3D(_xH, _yH, _zH), new Point3D(_xL, _yH, _zH));
+            }
+
             yield break;
         }
         #endregion
@@ -190,14 +212,36 @@ namespace Uzi.Ikosa.Tactical
             }
 
             // x planes
-            if (facingPt.X < _xL) yield return new PlanarPoints(_XLN, new Point3D(_xL, _yL, _zL), new Point3D(_xL, _yL, _zH), new Point3D(_xL, _yH, _zH), new Point3D(_xL, _yH, _zL));
-            if (facingPt.X > _xH) yield return new PlanarPoints(_XHN, new Point3D(_xH, _yL, _zL), new Point3D(_xH, _yL, _zH), new Point3D(_xH, _yH, _zH), new Point3D(_xH, _yH, _zL));
+            if (facingPt.X < _xL)
+            {
+                yield return new PlanarPoints(_XLN, new Point3D(_xL, _yL, _zL), new Point3D(_xL, _yL, _zH), new Point3D(_xL, _yH, _zH), new Point3D(_xL, _yH, _zL));
+            }
+
+            if (facingPt.X > _xH)
+            {
+                yield return new PlanarPoints(_XHN, new Point3D(_xH, _yL, _zL), new Point3D(_xH, _yL, _zH), new Point3D(_xH, _yH, _zH), new Point3D(_xH, _yH, _zL));
+            }
             // y planes
-            if (facingPt.Y < _yL) yield return new PlanarPoints(_YLN, new Point3D(_xL, _yL, _zL), new Point3D(_xH, _yL, _zL), new Point3D(_xH, _yL, _zH), new Point3D(_xL, _yL, _zH));
-            if (facingPt.Y > _yH) yield return new PlanarPoints(_YHN, new Point3D(_xL, _yH, _zL), new Point3D(_xH, _yH, _zL), new Point3D(_xH, _yH, _zH), new Point3D(_xL, _yH, _zH));
+            if (facingPt.Y < _yL)
+            {
+                yield return new PlanarPoints(_YLN, new Point3D(_xL, _yL, _zL), new Point3D(_xH, _yL, _zL), new Point3D(_xH, _yL, _zH), new Point3D(_xL, _yL, _zH));
+            }
+
+            if (facingPt.Y > _yH)
+            {
+                yield return new PlanarPoints(_YHN, new Point3D(_xL, _yH, _zL), new Point3D(_xH, _yH, _zL), new Point3D(_xH, _yH, _zH), new Point3D(_xL, _yH, _zH));
+            }
             // z planes
-            if (facingPt.Z < _zL) yield return new PlanarPoints(_ZLN, new Point3D(_xL, _yL, _zL), new Point3D(_xH, _yL, _zL), new Point3D(_xH, _yH, _zL), new Point3D(_xL, _yH, _zL));
-            if (facingPt.Z > _zH) yield return new PlanarPoints(_ZHN, new Point3D(_xL, _yL, _zH), new Point3D(_xH, _yL, _zH), new Point3D(_xH, _yH, _zH), new Point3D(_xL, _yH, _zH));
+            if (facingPt.Z < _zL)
+            {
+                yield return new PlanarPoints(_ZLN, new Point3D(_xL, _yL, _zL), new Point3D(_xH, _yL, _zL), new Point3D(_xH, _yH, _zL), new Point3D(_xL, _yH, _zL));
+            }
+
+            if (facingPt.Z > _zH)
+            {
+                yield return new PlanarPoints(_ZHN, new Point3D(_xL, _yL, _zH), new Point3D(_xH, _yL, _zH), new Point3D(_xH, _yH, _zH), new Point3D(_xL, _yH, _zH));
+            }
+
             yield break;
         }
         #endregion
@@ -260,7 +304,9 @@ namespace Uzi.Ikosa.Tactical
 
             // see if any need to flip
             if (_param.Axis == flipAxis)
+            {
                 _param.Flip = !_param.Flip;
+            }
 
             // recompose to uint parameter
             return _param.Value;
@@ -299,7 +345,9 @@ namespace Uzi.Ikosa.Tactical
                 if (_upVector.HasValue)
                 {
                     if (_upVector.Value.Length >= _upper.DetectBlockingThickness)
+                    {
                         return true;
+                    }
                 }
             }
 
@@ -311,7 +359,9 @@ namespace Uzi.Ikosa.Tactical
                 if (_lowVector.HasValue)
                 {
                     if (_lowVector.Value.Length >= _lower.DetectBlockingThickness)
+                    {
                         return true;
+                    }
                 }
             }
 
@@ -357,7 +407,9 @@ namespace Uzi.Ikosa.Tactical
                         break;
                 }
                 if (_inMaterial(pt1) || _inMaterial(pt2))
+                {
                     return (_min != _max);
+                }
             }
 
             // lower vector and material
@@ -382,7 +434,9 @@ namespace Uzi.Ikosa.Tactical
                         break;
                 }
                 if (_inMaterial(pt1) || _inMaterial(pt2))
+                {
                     return (_min != _max);
+                }
             }
 
             // nothing blocking the effect
@@ -406,9 +460,13 @@ namespace Uzi.Ikosa.Tactical
             {
                 // trying to cross in the same axis as the sliver
                 if (surfaceFace.IsLowFace())
+                {
                     return new Tactical.HedralGrip(!movement.CanMoveThrough(_lower));
+                }
                 else
+                {
                     return new Tactical.HedralGrip(!movement.CanMoveThrough(_upper));
+                }
             }
             else if (IsShell)
             {
@@ -467,23 +525,38 @@ namespace Uzi.Ikosa.Tactical
                     {
                         case Axis.Z:
                             if (_lowBlocked)
+                            {
                                 yield return _opening(AnchorFace.ZHigh, 5d - _fOffset);
+                            }
                             else
+                            {
                                 yield return _opening(AnchorFace.ZLow, _fOffset);
+                            }
+
                             break;
 
                         case Axis.Y:
                             if (_lowBlocked)
+                            {
                                 yield return _opening(AnchorFace.YHigh, 5d - _fOffset);
+                            }
                             else
+                            {
                                 yield return _opening(AnchorFace.YLow, _fOffset);
+                            }
+
                             break;
 
                         default:
                             if (_lowBlocked)
+                            {
                                 yield return _opening(AnchorFace.XHigh, 5d - _fOffset);
+                            }
                             else
+                            {
                                 yield return _opening(AnchorFace.XLow, _fOffset);
+                            }
+
                             break;
                     }
                 }
@@ -514,12 +587,14 @@ namespace Uzi.Ikosa.Tactical
                     if (upDirection.IsLowFace())
                     {
                         if (_highBlocked)
+                        {
                             yield return new SlopeSegment
                             {
                                 Low = 5d - _fOffset + baseElev,
                                 High = 5d - _fOffset + baseElev,
                                 Run = 5
                             };
+                        }
                     }
                     else if (_lowBlocked)
                     {
@@ -654,7 +729,9 @@ namespace Uzi.Ikosa.Tactical
             {
                 // same as base
                 foreach (var _pt in base.TacticalPoints(param, movement))
+                {
                     yield return _pt;
+                }
             }
             else
             {
@@ -712,28 +789,45 @@ namespace Uzi.Ikosa.Tactical
                 if ((_xOff >= 2.5) && (_yOff >= 2.5))
                 {
                     if (_loZ == 0)
+                    {
                         yield return new Point3D(_midX, _midY, _loZ);
+                    }
+
                     if (_hiZ == 5)
+                    {
                         yield return new Point3D(_midX, _midY, _hiZ);
+                    }
                 }
                 if ((_xOff >= 2.5) && (_zOff >= 2.5))
                 {
                     if (_loY == 0)
+                    {
                         yield return new Point3D(_midX, _loY, _midZ);
+                    }
+
                     if (_hiY == 5)
+                    {
                         yield return new Point3D(_midX, _hiY, _midZ);
+                    }
                 }
                 if ((_yOff >= 2.5) && (_zOff >= 2.5))
                 {
                     if (_loX == 0)
+                    {
                         yield return new Point3D(_loX, _midY, _midZ);
+                    }
+
                     if (_hiX == 5)
+                    {
                         yield return new Point3D(_loY, _midY, _midZ);
+                    }
                 }
 
                 // center
                 if ((_xOff >= 2.5) && (_yOff >= 2.5) && (_zOff >= 2.5))
+                {
                     yield return new Point3D(_midX, _midY, _midZ);
+                }
             }
             yield break;
         }
@@ -756,7 +850,9 @@ namespace Uzi.Ikosa.Tactical
             {
                 // same as base
                 foreach (var _pt in base.TargetCorners(param, movement))
+                {
                     yield return _pt;
+                }
             }
             else
             {
@@ -802,20 +898,32 @@ namespace Uzi.Ikosa.Tactical
         public BuildableMaterial GetPlusOrthoFaceMaterial(Axis axis, bool isPlus, VisualEffect effect)
         {
             if (PlusTiling == null)
+            {
                 return new BuildableMaterial { Material = null, IsAlpha = false };
+            }
+
             switch (axis)
             {
                 case Axis.Z:
                     if (isPlus)
+                    {
                         return new BuildableMaterial { Material = PlusTiling.ZPlusMaterial(effect), IsAlpha = PlusTiling.GetAnchorFaceAlpha(AnchorFace.ZHigh) };
+                    }
+
                     return new BuildableMaterial { Material = PlusTiling.ZMinusMaterial(effect), IsAlpha = PlusTiling.GetAnchorFaceAlpha(AnchorFace.ZLow) };
                 case Axis.Y:
                     if (isPlus)
+                    {
                         return new BuildableMaterial { Material = PlusTiling.YPlusMaterial(effect), IsAlpha = PlusTiling.GetAnchorFaceAlpha(AnchorFace.YHigh) };
+                    }
+
                     return new BuildableMaterial { Material = PlusTiling.YMinusMaterial(effect), IsAlpha = PlusTiling.GetAnchorFaceAlpha(AnchorFace.YLow) };
                 default:
                     if (isPlus)
+                    {
                         return new BuildableMaterial { Material = PlusTiling.XPlusMaterial(effect), IsAlpha = PlusTiling.GetAnchorFaceAlpha(AnchorFace.XHigh) };
+                    }
+
                     return new BuildableMaterial { Material = PlusTiling.XMinusMaterial(effect), IsAlpha = PlusTiling.GetAnchorFaceAlpha(AnchorFace.XLow) };
             }
         }
@@ -939,7 +1047,9 @@ namespace Uzi.Ikosa.Tactical
             var _usable = _grip.Intersect(_mask);
             var _count = _usable.GripCount();
             if (_count <= 3)
+            {
                 return null;
+            }
 
             // disposition
             var _disposition = GetGripDisposition(_param, gripFace, _axis);

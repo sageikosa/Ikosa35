@@ -264,13 +264,19 @@ namespace Uzi.Ikosa.Creatures.Types
                 TraitCategory.Quality, new AdjunctTrait(this, _aligned));
 
             foreach (var _trait in UndeadType.UndeadPowerImmunities(this))
+            {
                 yield return _trait;
+            }
 
             foreach (var _trait in UndeadType.UndeadEffectImmunities(this))
+            {
                 yield return _trait;
+            }
 
             foreach (var _trait in UndeadType.UndeadUnhealth(this))
+            {
                 yield return _trait;
+            }
 
             // ghoul needs item slots for secondary natural attacks
             yield return new ExtraordinaryTrait(this, @"Mouth Slot", @"Natural Weapon Slot", TraitCategory.CombatHelper,

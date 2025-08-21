@@ -474,7 +474,9 @@ namespace Uzi.Ikosa.Advancement.CharacterClasses
         {
             // base requirements
             foreach (var _req in BaseRequirements(level))
+            {
                 yield return _req;
+            }
 
             // TODO: list replaceable spells with new spell (options=selectable spells)
             yield break;
@@ -491,7 +493,10 @@ namespace Uzi.Ikosa.Advancement.CharacterClasses
 
             // base features
             foreach (var _feature in BaseFeatures(level))
+            {
                 yield return _feature;
+            }
+
             yield break;
         }
         #endregion

@@ -43,7 +43,10 @@ namespace Uzi.Ikosa.Objects
                         {
                             var _out = rel % 8;
                             if (_out < 0)
+                            {
                                 _out += 8;
+                            }
+
                             return _out;
                         };
                         var _rel = _getRel(_fHeading - _orient.Heading);

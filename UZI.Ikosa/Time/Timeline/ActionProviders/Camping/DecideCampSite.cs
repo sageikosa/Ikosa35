@@ -25,7 +25,10 @@ namespace Uzi.Ikosa.Time
         {
             // if a camp hasn't been setup, abandon the site, the decision failed
             if (!CampSiteFocus.HasAdjunct<CampSite>())
+            {
                 CampSiteFocus.Abandon();
+            }
+
             base.OnDeactivate(source);
         }
     }

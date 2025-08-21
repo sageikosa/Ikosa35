@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using Uzi.Core;
 using Uzi.Ikosa.Senses;
@@ -71,7 +71,9 @@ namespace Uzi.Ikosa.Interactions
                             return;
                         }
                         if (_process ?? true)
+                        {
                             return;
+                        }
                     }
                     //else
                     //{
@@ -128,7 +130,9 @@ namespace Uzi.Ikosa.Interactions
                             return true;
                         }
                         if (_check == null)
+                        {
                             _darkVisible = true;
+                        }
                     }
                 }
             }

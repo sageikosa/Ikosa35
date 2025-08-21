@@ -40,7 +40,9 @@ namespace Uzi.Ikosa.Actions
         {
             // bundle must be able to hold something
             if ((TypedBundle?.Capacity ?? int.MaxValue) <= (TypedBundle?.Count ?? int.MaxValue))
+            {
                 return new ActivityResponse(false);
+            }
 
             return base.OnCanPerformActivity(activity);
         }

@@ -35,7 +35,10 @@ namespace Uzi.Ikosa.Fidelity
             get
             {
                 foreach (var _cmdCritter in Members.OfType<CommandedCreature>())
+                {
                     yield return _cmdCritter.Creature;
+                }
+
                 yield break;
             }
         }

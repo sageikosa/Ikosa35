@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using Uzi.Core;
@@ -95,7 +95,9 @@ namespace Uzi.Ikosa.Advancement
                 foreach (var _skillProvider in Creature.Adjuncts.OfType<IClassSkills>())
                 {
                     if (_skillProvider.IsClassSkill(this, skill))
+                    {
                         return true;
+                    }
                 }
 
             }
@@ -182,11 +184,19 @@ namespace Uzi.Ikosa.Advancement
 
             // proficiencies
             if (this is IArmorProficiency)
+            {
                 Creature.Proficiencies.Add((IArmorProficiency)this);
+            }
+
             if (this is IWeaponProficiency)
+            {
                 Creature.Proficiencies.Add((IWeaponProficiency)this);
+            }
+
             if (this is IShieldProficiency)
+            {
                 Creature.Proficiencies.Add((IShieldProficiency)this);
+            }
 
             if (!UsesNoPowerDice)
             {
@@ -221,11 +231,19 @@ namespace Uzi.Ikosa.Advancement
 
             // proficiencies
             if (this is IArmorProficiency)
+            {
                 Creature.Proficiencies.Remove((IArmorProficiency)this);
+            }
+
             if (this is IWeaponProficiency)
+            {
                 Creature.Proficiencies.Remove((IWeaponProficiency)this);
+            }
+
             if (this is IShieldProficiency)
+            {
                 Creature.Proficiencies.Remove((IShieldProficiency)this);
+            }
 
             Creature.Classes.Remove(this);
         }
@@ -309,7 +327,7 @@ namespace Uzi.Ikosa.Advancement
         /// <summary>Indicates the highest taken level locked into the creature</summary>
         public int LockedLevel => _Locked;
 
-        /// <summary>Effective locked level (may be adjusted by locking other class levels, a l� mystic theurge)</summary>
+        /// <summary>Effective locked level (may be adjusted by locking other class levels, a lá mystic theurge)</summary>
         public IVolatileValue EffectiveLevel => _EffLvl;
 
         #region Level Lock/Unlock

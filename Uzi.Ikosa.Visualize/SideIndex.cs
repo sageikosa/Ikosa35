@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace Uzi.Visualize
+﻿namespace Uzi.Visualize
 {
     /// <summary>
     /// Top = 0 | Bottom = 1 | Front = 2 | Back = 3 | Left = 4 | Right = 5

@@ -17,7 +17,7 @@ namespace Uzi.Ikosa.Tactical
             _CoreObj = coreObj;
             _Movement = movement;
             _Map = map;
-            _Spaces = new List<(CellStructure Structure, CellLocation Location)>();
+            _Spaces = [];
             _RunAxis = runAxis;
             _BaseFace = baseFace;
             _Height = height;
@@ -92,7 +92,9 @@ namespace Uzi.Ikosa.Tactical
                     // get openings
                     var _openings = _s.Structure.OpensTowards(_Movement, _BaseFace).ToList();
                     if (_openings.Any())
+                    {
                         _usableHeight += AddOpenings(openFace, planeCrossingAxis, crossOpenHigh, crossOpenLow, _amount, _s, _openings);
+                    }
                 }
             }
 
@@ -109,8 +111,10 @@ namespace Uzi.Ikosa.Tactical
                         {
                             var _openings = _ima.OpensTowards(_Movement, _s.Location, _BaseFace, _CoreObj).ToList();
                             if (_openings.Any())
+                            {
                                 // ??? AddOpenings(openFace, planeCrossingAxis, crossOpenHigh, crossOpenLow, _amount, _s, _openings);
                                 _usableHeight += AddOpenings(openFace, planeCrossingAxis, crossOpenHigh, crossOpenLow, _amount, _s, _openings);
+                            }
                         }
                     }
                 }
@@ -118,7 +122,10 @@ namespace Uzi.Ikosa.Tactical
 
             // return minimum opening allowance
             if (_usableHeight < _Height)
+            {
                 return 0d;
+            }
+
             return _amount.Any() ? _amount.Min() : 0;
         }
         #endregion

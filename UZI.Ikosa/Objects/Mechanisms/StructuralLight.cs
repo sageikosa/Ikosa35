@@ -21,7 +21,7 @@ namespace Uzi.Ikosa.Objects
         {
             _ACtrl = new ChangeController<Activation>(this, new Activation(this, active));
             _Difficulty = new Deltable(seedDifficulty);
-            _Disablers = new Collection<Guid>();
+            _Disablers = [];
             _DFCtrl = new ChangeController<DisableFail>(this, new DisableFail());
 
             // adjunct

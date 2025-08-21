@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Collections;
+﻿using System.Collections;
 
 namespace Uzi.Visualize
 {
@@ -70,13 +66,18 @@ namespace Uzi.Visualize
             get
             {
                 if (InBounds(z, y, x))
+                {
                     return _Bits.Get(CalcIndex(z, y, x));
+                }
+
                 return false;
             }
             set
             {
                 if (InBounds(z, y, x))
+                {
                     _Bits.Set(CalcIndex(z, y, x), value);
+                }
             }
         }
     }

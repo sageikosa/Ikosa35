@@ -391,7 +391,9 @@ namespace Uzi.Ikosa.Workshop.Locale
         {
             _Incline--;
             if (_Incline < -2)
+            {
                 _Incline = -2;
+            }
             else
             {
                 SetLook();
@@ -402,7 +404,9 @@ namespace Uzi.Ikosa.Workshop.Locale
         {
             _Incline++;
             if (_Incline > 2)
+            {
                 _Incline = 2;
+            }
             else
             {
                 SetLook();
@@ -571,25 +575,36 @@ namespace Uzi.Ikosa.Workshop.Locale
             var _offset = AnchorFaceHelper.MovementFaces(AnchorFace.ZLow, _Heading, _Incline)
                     .ToArray().GetAnchorOffset();
             for (var _step = 0; _step < _CursorStep; _step++)
+            {
                 _CursorLoc = _CursorLoc.Add(_offset);
+            }
+
             _CursorPosition = new CellPosition(_CursorLoc);
 
             // try to rebind to last locator selected
             if ((CursorLocator != null) && (_Map != null))
+            {
                 _CursorLocator = _Map.MapContext.LocatorsInCell(_CursorLoc, PlanarPresence.Both).FirstOrDefault(_l => _l == _CursorLocator);
+            }
 
             // if not, get first locator
             if ((CursorLocator == null) && (_Map != null))
+            {
                 _CursorLocator = _Map.MapContext.LocatorsInCell(_CursorLoc, PlanarPresence.Both).FirstOrDefault();
+            }
 
             // last room selected still contains cell?
             // if not, get new room
             if (!(_CursorRoom?.ContainsCell(_CursorLoc) ?? false))
+            {
                 _CursorRoom = _Map?.RoomIndex.GetRoom(_CursorLoc);
+            }
 
             // show coordinates
             if (txtCursor != null)
+            {
                 txtCursor.Text = $@"{_CursorLoc.Z}, {_CursorLoc.Y}, {_CursorLoc.X}";
+            }
         }
         #endregion
 
@@ -601,7 +616,9 @@ namespace Uzi.Ikosa.Workshop.Locale
                 if (_CursorLocator != null)
                 {
                     if ((_Map == null) || !_Map.MapContext.AllTokensOf<Locator>().Contains(_CursorLocator))
+                    {
                         _CursorLocator = null;
+                    }
                 }
                 return _CursorLocator;
             }
@@ -616,7 +633,9 @@ namespace Uzi.Ikosa.Workshop.Locale
                 if (_CursorRoom != null)
                 {
                     if ((_Map == null) || (_Map.Rooms.IndexOf(_CursorRoom) < 0))
+                    {
                         _CursorRoom = null;
+                    }
                 }
                 return _CursorRoom;
             }
@@ -776,6 +795,7 @@ namespace Uzi.Ikosa.Workshop.Locale
         {
             rmnuModel.Items.Clear();
             foreach (var _resolvable in resolveModel3D.ResolvableModels.OrderBy(_m => _m.Model3DPart.Name))
+            {
                 rmnuModel.Items.Add(new RibbonMenuItem
                 {
                     IsChecked = false,
@@ -785,6 +805,7 @@ namespace Uzi.Ikosa.Workshop.Locale
                     VerticalContentAlignment = VerticalAlignment.Top,
                     HorizontalContentAlignment = HorizontalAlignment.Left
                 });
+            }
         }
         #endregion
 
@@ -813,7 +834,9 @@ namespace Uzi.Ikosa.Workshop.Locale
         {
             _CursorStep--;
             if (!(chkCursor.IsChecked ?? false))
+            {
                 chkCursor.IsChecked = true;
+            }
             else
             {
                 SetCursorLocation();
@@ -834,7 +857,9 @@ namespace Uzi.Ikosa.Workshop.Locale
         {
             _CursorStep++;
             if (!(chkCursor.IsChecked ?? false))
+            {
                 chkCursor.IsChecked = true;
+            }
             else
             {
                 SetCursorLocation();
@@ -856,16 +881,25 @@ namespace Uzi.Ikosa.Workshop.Locale
             if ((_Heading % 2) == 0)
             {
                 if (Math.Abs(_Incline) != 2)
+                {
                     for (var _step = 0; _step < _CursorStep; _step++)
+                    {
                         cbMove.Command.Execute(@"2");
+                    }
+                }
+
                 cbPivotRight.Command.Execute(null);
             }
             else
             {
                 cbPivotRight.Command.Execute(null);
                 if (Math.Abs(_Incline) != 2)
+                {
                     for (var _step = 0; _step < _CursorStep; _step++)
+                    {
                         cbMove.Command.Execute(@"2");
+                    }
+                }
             }
 
             e.Handled = true;
@@ -884,16 +918,25 @@ namespace Uzi.Ikosa.Workshop.Locale
             if ((_Heading % 2) == 0)
             {
                 if (Math.Abs(_Incline) != 2)
+                {
                     for (var _step = 0; _step < _CursorStep; _step++)
+                    {
                         cbMove.Command.Execute(@"6");
+                    }
+                }
+
                 cbPivotLeft.Command.Execute(null);
             }
             else
             {
                 cbPivotLeft.Command.Execute(null);
                 if (Math.Abs(_Incline) != 2)
+                {
                     for (var _step = 0; _step < _CursorStep; _step++)
+                    {
                         cbMove.Command.Execute(@"6");
+                    }
+                }
             }
             e.Handled = true;
         }
@@ -912,18 +955,27 @@ namespace Uzi.Ikosa.Workshop.Locale
             {
                 case 2:
                     for (var _step = 0; _step < _CursorStep; _step++)
+                    {
                         cbMove.Command.Execute(@"4");
+                    }
+
                     cbTiltForward.Command.Execute(null);
                     break;
                 case 1:
                 case 0:
                     for (var _step = 0; _step < _CursorStep; _step++)
+                    {
                         cbUp.Command.Execute(null);
+                    }
+
                     cbTiltForward.Command.Execute(null);
                     break;
                 case -1:
                     for (var _step = 0; _step < _CursorStep; _step++)
+                    {
                         cbMove.Command.Execute(@"0");
+                    }
+
                     cbTiltForward.Command.Execute(null);
                     break;
             }
@@ -944,18 +996,27 @@ namespace Uzi.Ikosa.Workshop.Locale
             {
                 case -2:
                     for (var _step = 0; _step < _CursorStep; _step++)
+                    {
                         cbMove.Command.Execute(@"4");
+                    }
+
                     cbTiltBackward.Command.Execute(null);
                     break;
                 case -1:
                 case 0:
                     for (var _step = 0; _step < _CursorStep; _step++)
+                    {
                         cbDown.Command.Execute(null);
+                    }
+
                     cbTiltBackward.Command.Execute(null);
                     break;
                 case 1:
                     for (var _step = 0; _step < _CursorStep; _step++)
+                    {
                         cbMove.Command.Execute(@"0");
+                    }
+
                     cbTiltBackward.Command.Execute(null);
                     break;
             }
@@ -1042,7 +1103,9 @@ namespace Uzi.Ikosa.Workshop.Locale
                 {
                     // must have a cell space with param capability
                     if (!((_Map[_CursorLoc].CellSpace)?.GetType().Equals(typeof(CellSpace)) ?? true))
+                    {
                         e.CanExecute = true;
+                    }
                 }
             }
             e.Handled = true;
@@ -1088,7 +1151,10 @@ namespace Uzi.Ikosa.Workshop.Locale
                 {
                     var _keep = _str[0] == 'K';
                     if (_keep)
+                    {
                         _str = _str.Substring(1);
+                    }
+
                     if (_CellPalette != null)
                     {
                         var _csp = _CellPalette.gridPlaceHolder.Children[0] as CellSpacePalette;
@@ -1178,9 +1244,14 @@ namespace Uzi.Ikosa.Workshop.Locale
 
             // must be in a room
             if (e.Parameter is Room)
+            {
                 _room = e.Parameter as Room;
+            }
             else
+            {
                 _room = CursorRoom;
+            }
+
             if (_room != null)
             {
                 // show dialog
@@ -1417,7 +1488,9 @@ namespace Uzi.Ikosa.Workshop.Locale
 
                                 var _slide = _param.EndsWith(@"Slider");
                                 if (_slide)
+                                {
                                     _height = 10d;
+                                }
 
                                 _pObjA.Width = _width;
                                 _pObjA.Height = _height;
@@ -1800,9 +1873,14 @@ namespace Uzi.Ikosa.Workshop.Locale
                             }
                             var _index = _Map.Rooms.IndexOf(_room);
                             if (_index >= 0)
+                            {
                                 _Map.Rooms.Insert(_index, _newRoom);
+                            }
                             else
+                            {
                                 _Map.Rooms.Add(_newRoom);
+                            }
+
                             _newRoom.ReLink(true);
                         }
                     }
@@ -2211,13 +2289,17 @@ namespace Uzi.Ikosa.Workshop.Locale
         private void galBSRange_SelectionChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
             if (chkBlindSight.IsChecked ?? false)
+            {
                 RedrawAll();
+            }
         }
 
         private void galDVRange_SelectionChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
             if (chkDarkVision.IsChecked ?? false)
+            {
                 RedrawAll();
+            }
         }
 
         private void galRenderRange_SelectionChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
@@ -2286,9 +2368,14 @@ namespace Uzi.Ikosa.Workshop.Locale
         private void cbTweakLocator_CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
             if (e.Parameter is Locator)
+            {
                 e.CanExecute = true;
+            }
             else
+            {
                 MustHaveLocator(sender, e);
+            }
+
             e.Handled = true;
         }
 
@@ -2297,9 +2384,14 @@ namespace Uzi.Ikosa.Workshop.Locale
             // must be in a room
             Locator _locator;
             if (e.Parameter is Locator)
+            {
                 _locator = e.Parameter as Locator;
+            }
             else
+            {
                 _locator = CursorLocator;
+            }
+
             if (_locator != null)
             {
                 // show dialog
@@ -2319,9 +2411,14 @@ namespace Uzi.Ikosa.Workshop.Locale
         private void cbTweakObjects_CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
             if (e.Parameter is Locator)
+            {
                 e.CanExecute = true;
+            }
             else
+            {
                 MustHaveLocator(sender, e);
+            }
+
             e.Handled = true;
         }
 
@@ -2329,9 +2426,14 @@ namespace Uzi.Ikosa.Workshop.Locale
         {
             Locator _loc;
             if (e.Parameter is Locator)
+            {
                 _loc = e.Parameter as Locator;
+            }
             else
+            {
                 _loc = CursorLocator;
+            }
+
             if (_loc != null)
             {
                 var _obj = _loc.ICoreAs<CoreObject>().FirstOrDefault();
@@ -2415,9 +2517,15 @@ namespace Uzi.Ikosa.Workshop.Locale
         private void chkCursor_Checked(object sender, RoutedEventArgs e)
         {
             if (grpCursor != null)
+            {
                 grpCursor.Visibility = chkCursor.IsChecked ?? false ? Visibility.Visible : Visibility.Hidden;
+            }
+
             if (grpCamera != null)
+            {
                 grpCamera.Visibility = !(chkCursor.IsChecked ?? false) ? Visibility.Visible : Visibility.Hidden;
+            }
+
             SetCursorLocation();
             DrawCursors();
             e.Handled = true;
@@ -2517,9 +2625,14 @@ namespace Uzi.Ikosa.Workshop.Locale
         private void cbZoomIcon_CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
             if (e.Parameter is Locator)
+            {
                 e.CanExecute = true;
+            }
             else
+            {
                 MustHaveLocator(sender, e);
+            }
+
             e.Handled = true;
         }
 
@@ -2527,15 +2640,24 @@ namespace Uzi.Ikosa.Workshop.Locale
         {
             ObjectPresenter _presenter;
             if (e.Parameter is ObjectPresenter)
+            {
                 _presenter = e.Parameter as ObjectPresenter;
+            }
             else
+            {
                 _presenter = CursorLocator as ObjectPresenter;
+            }
+
             if (_presenter != null)
             {
                 if (ZoomedIcon == _presenter.ICore.ID)
+                {
                     ZoomedIcon = Guid.Empty;
+                }
                 else
+                {
                     ZoomedIcon = _presenter.ICore.ID;
+                }
             }
             var _senses = FilteredSenses();
             RedrawLocators(_senses);
@@ -2549,16 +2671,25 @@ namespace Uzi.Ikosa.Workshop.Locale
             get
             {
                 if (_Zoom <= 0d)
+                {
                     _Zoom = 1d;
+                }
+
                 return _Zoom;
             }
             set
             {
                 // boundary
                 if (_Zoom < 0.3d)
+                {
                     _Zoom = 0.3d;
+                }
+
                 if (_Zoom > 1d)
+                {
                     _Zoom = 1d;
+                }
+
                 _Zoom = value;
             }
         }
@@ -2569,16 +2700,25 @@ namespace Uzi.Ikosa.Workshop.Locale
             {
                 // default
                 if (_UnZoom <= 0.1d)
+                {
                     _UnZoom = 0.3d;
+                }
+
                 return _UnZoom;
             }
             set
             {
                 // boundary
                 if (_UnZoom < 0.1d)
+                {
                     _UnZoom = 0.1d;
+                }
+
                 if (_UnZoom > 1d)
+                {
                     _UnZoom = 1d;
+                }
+
                 _UnZoom = value;
             }
         }
@@ -2631,9 +2771,13 @@ namespace Uzi.Ikosa.Workshop.Locale
         {
             ObjectPresenter _presenter;
             if (e.Parameter is ObjectPresenter)
+            {
                 _presenter = e.Parameter as ObjectPresenter;
+            }
             else
+            {
                 _presenter = CursorLocator as ObjectPresenter;
+            }
 
             // make skeleton
             var _skeleton = new Skeleton(_presenter.Chief as Creature);
@@ -2669,9 +2813,13 @@ namespace Uzi.Ikosa.Workshop.Locale
         {
             ObjectPresenter _presenter;
             if (e.Parameter is ObjectPresenter)
+            {
                 _presenter = e.Parameter as ObjectPresenter;
+            }
             else
+            {
                 _presenter = CursorLocator as ObjectPresenter;
+            }
 
             // make zombie
             var _zombie = new Zombie(_presenter.Chief as Creature);
@@ -2707,9 +2855,13 @@ namespace Uzi.Ikosa.Workshop.Locale
         {
             ObjectPresenter _presenter;
             if (e.Parameter is ObjectPresenter)
+            {
                 _presenter = e.Parameter as ObjectPresenter;
+            }
             else
+            {
                 _presenter = CursorLocator as ObjectPresenter;
+            }
 
             // make ghoul
             var _ghoul = new Ghoul(_presenter.Chief as Creature);
@@ -2762,9 +2914,13 @@ namespace Uzi.Ikosa.Workshop.Locale
         {
             ObjectPresenter _presenter;
             if (e.Parameter is ObjectPresenter)
+            {
                 _presenter = e.Parameter as ObjectPresenter;
+            }
             else
+            {
                 _presenter = CursorLocator as ObjectPresenter;
+            }
 
             // make celestial
             var _celestial = new Celestial();
@@ -2794,9 +2950,13 @@ namespace Uzi.Ikosa.Workshop.Locale
         {
             ObjectPresenter _presenter;
             if (e.Parameter is ObjectPresenter)
+            {
                 _presenter = e.Parameter as ObjectPresenter;
+            }
             else
+            {
                 _presenter = CursorLocator as ObjectPresenter;
+            }
 
             // make celestial
             var _fiendish = new Fiendish();
@@ -2972,8 +3132,16 @@ namespace Uzi.Ikosa.Workshop.Locale
 
                 // double step incline/decline if on diagonal heading
                 _upright += Convert.ToInt32(e.Parameter) * 2;
-                if (_upright > Verticality.OnSideBottomOut) _upright = Verticality.Upright;
-                if (_upright < Verticality.Upright) _upright = Verticality.OnSideBottomOut;
+                if (_upright > Verticality.OnSideBottomOut)
+                {
+                    _upright = Verticality.Upright;
+                }
+
+                if (_upright < Verticality.Upright)
+                {
+                    _upright = Verticality.OnSideBottomOut;
+                }
+
                 _furnish.Orientation.SetOrientation(_upright, null, null);
                 RedrawLocators(FilteredSenses());
             }

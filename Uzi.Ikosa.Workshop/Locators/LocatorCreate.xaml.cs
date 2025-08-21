@@ -209,35 +209,62 @@ namespace Uzi.Ikosa.Workshop
                 && (new TextBox[] {
                             txtZ, txtY, txtX, txtZHeight, txtYLength, txtXLength
                         }).All(_txt => _txt.Tag == null))
+            {
                 if (tiCreature.IsSelected)
+                {
                     e.CanExecute = createCreature.CanCreate;
+                }
                 else if (tiPortal.IsSelected)
+                {
                     e.CanExecute = createPortal.CanCreate;
+                }
                 else if (tiFurnishing.IsSelected)
+                {
                     e.CanExecute = createFurnishing.CanCreate;
+                }
                 else if (tiContainer.IsSelected)
+                {
                     e.CanExecute = createContainer.CanCreate;
+                }
                 else if (tiLight.IsSelected)
+                {
                     e.CanExecute = createLight.CanCreate;
+                }
                 else if (tiItem.IsSelected)
+                {
                     e.CanExecute = true;
+                }
+            }
+
             e.Handled = true;
         }
 
         private void cbOKCommand_Executed(object sender, ExecutedRoutedEventArgs e)
         {
             if (tiCreature.IsSelected)
+            {
                 _TagString = @"Creature";
+            }
             else if (tiPortal.IsSelected)
+            {
                 _TagString = @"Portal";
+            }
             else if (tiFurnishing.IsSelected)
+            {
                 _TagString = @"Furnishing";
+            }
             else if (tiContainer.IsSelected)
+            {
                 _TagString = @"Container";
+            }
             else if (tiLight.IsSelected)
+            {
                 _TagString = @"Light";
+            }
             else if (tiItem.IsSelected)
+            {
                 _TagString = @"Item";
+            }
 
             // all of the above
             DialogResult = true;

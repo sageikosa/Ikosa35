@@ -15,7 +15,7 @@ namespace Uzi.Ikosa.Movement
         public MovementSet(Creature critter)
         {
             _Critter = critter;
-            _Movements = new Collection<MovementBase>();
+            _Movements = [];
             _MCtrl = new ChangeController<MovementBase>(this, null);
         }
 

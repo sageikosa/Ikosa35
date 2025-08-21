@@ -190,7 +190,9 @@ namespace Uzi.Ikosa.Objects
                 }
 
                 if (!_attackRoll.IsReady)
+                {
                     return null;
+                }
 
                 if (_attackRoll.RollValue == 1)
                 {
@@ -298,7 +300,9 @@ namespace Uzi.Ikosa.Objects
                 // build and notify
                 var _deliverDamage = new DeliverDamageData(null, _damages, false, _Critical);
                 if (_secondaries.Any())
+                {
                     _deliverDamage.Secondaries.AddRange(_secondaries);
+                }
 
                 // interact
                 var _dmgInteract = new StepInteraction(this, null, this, _target, _deliverDamage);

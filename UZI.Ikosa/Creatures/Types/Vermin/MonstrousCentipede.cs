@@ -35,8 +35,8 @@ namespace Uzi.Ikosa.Creatures.Types
         static MonstrousCentipede()
         {
             // non-standard size range adjustments for spiders
-            _SizeRanges = new List<SizeRange>
-            {
+            _SizeRanges =
+            [
                 new CustomSizeRange(-1, -1, Size.Tiny, 0, 0, 0, 0, 0, 0),
                 new CustomSizeRange(0, 0, Size.Small, 1, 1, 0, 4, 0, 1),
                 new CustomSizeRange(1, 2, Size.Medium, 1, 1, 0, 4, 0, 1),
@@ -44,7 +44,7 @@ namespace Uzi.Ikosa.Creatures.Types
                 new CustomSizeRange(6, 11, Size.Huge, 2, 2, 0, 4, 2, 3),
                 new CustomSizeRange(12, 23, Size.Gigantic, 3, 3, 0, 6, 0, 4),
                 new CustomSizeRange(24, 48, Size.Colossal, 4, 4, -2, 4, 0, 6)
-            };
+            ];
 
             // non-standard bite progression
             _BiteRollers = WeaponDamageRollers.BuildRollerProgression(

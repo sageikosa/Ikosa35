@@ -72,7 +72,10 @@ namespace Uzi.Ikosa.Contracts
                     if (_low)
                     {
                         if (_mult)
+                        {
                             return $@" ({CriticalLow}-20/X{CriticalDamageFactor.BaseValue})";
+                        }
+
                         return $@" ({CriticalLow}-20)";
                     }
                     else if (_mult)
@@ -87,7 +90,10 @@ namespace Uzi.Ikosa.Contracts
                     if (DamageTypes.Any())
                     {
                         if (DamageTypes.Count == 1)
+                        {
                             return DamageTypes.First().ToString();
+                        }
+
                         return string.Join(" | ", DamageTypes.Select(_d => _d.ToString()));
                     }
                     return string.Empty;

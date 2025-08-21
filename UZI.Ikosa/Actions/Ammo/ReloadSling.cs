@@ -67,7 +67,9 @@ namespace Uzi.Ikosa.Actions
                     // get ammunition already loaded
                     SlingAmmo[] _replacement = null;
                     if (Sling.IsLoaded)
+                    {
                         _replacement = Sling.Ammunition;
+                    }
 
                     // tactically accessible containers?
                     var _selector = (from _container in _critter.GetReachable<IAmmunitionTypedBundle<SlingAmmo, Sling>>()
@@ -94,7 +96,9 @@ namespace Uzi.Ikosa.Actions
                                 var _store = _rep.ToAmmunitionBundle(_rep.OriginalName) as AmmunitionBundle<SlingAmmo, Sling>;
                                 var _remainder = _selector.Container.Merge(_store);
                                 if (_remainder.Count > 0)
+                                {
                                     Drop.DoDrop(_critter, _remainder, this, true);
+                                }
                             }
                         }
                     }

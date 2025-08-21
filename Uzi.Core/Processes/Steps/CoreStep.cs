@@ -26,7 +26,7 @@ namespace Uzi.Core
             _Process = process;
             _Followers = new Queue<CoreStep>();
             _Complete = false;
-            _Dispensed = new Collection<StepPrerequisite>();
+            _Dispensed = [];
             _ID = Guid.NewGuid();
         }
         #endregion
@@ -49,7 +49,9 @@ namespace Uzi.Core
                 {
                     _Process = value;
                     foreach (var _step in _Followers)
+                    {
                         _step.Process = _Process;
+                    }
                 }
             }
         }
@@ -224,7 +226,9 @@ namespace Uzi.Core
         internal void DoStep()
         {
             if (CanDoStep)
+            {
                 _Complete = OnDoStep();
+            }
         }
 
         /// <summary>Override to perform step</summary>

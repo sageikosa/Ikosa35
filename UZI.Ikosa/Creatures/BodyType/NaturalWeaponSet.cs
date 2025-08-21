@@ -18,7 +18,7 @@ namespace Uzi.Ikosa.Creatures.BodyType
         public NaturalWeaponSet()
         {
             _Critter = null;
-            _Weapons = new List<NaturalWeapon>();
+            _Weapons = [];
         }
 
         #region private data
@@ -40,7 +40,10 @@ namespace Uzi.Ikosa.Creatures.BodyType
         public IEnumerator<NaturalWeapon> GetEnumerator()
         {
             foreach (var _nw in _Weapons)
+            {
                 yield return _nw;
+            }
+
             yield break;
         }
 
@@ -51,7 +54,10 @@ namespace Uzi.Ikosa.Creatures.BodyType
         System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
         {
             foreach (var _nw in _Weapons)
+            {
                 yield return _nw;
+            }
+
             yield break;
         }
 
@@ -82,14 +88,18 @@ namespace Uzi.Ikosa.Creatures.BodyType
                 UnbindWeapon(weapon);
             }
             if (!_Weapons.Any() && (Creature != null))
+            {
                 Creature.Proficiencies.Remove(this);
+            }
         }
         #endregion
 
         public void RemoveAll()
         {
             foreach (var _wpn in _Weapons.ToList())
+            {
                 Remove(_wpn);
+            }
         }
 
         #region private void BindWeapon(NaturalWeapon weapon)

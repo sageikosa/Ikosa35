@@ -204,9 +204,13 @@ namespace Uzi.Ikosa.Tactical
             DoPropertyChanged($@"Upper{axis}");
             DoPropertyChanged($@"{axis}Extent");
             if (axis == @"Z")
+            {
                 DoPropertyChanged(@"BindableZHeight");
+            }
             else
+            {
                 DoPropertyChanged($@"Bindable{axis}Length");
+            }
         }
 
         #region public void SetCellStructure(int z, int y, int x, in CellStructure structure)
@@ -231,7 +235,10 @@ namespace Uzi.Ikosa.Tactical
         public override ref readonly CellStructure GetCellSpace(int z, int y, int x)
         {
             if ((z >= _Z) && (z <= _HiZ) && (y >= _Y) && (y <= _HiY) && (x >= _X) && (x <= _HiX))
+            {
                 return ref _Strucs[z - _Z][y - _Y][x - _X];
+            }
+
             return ref CellStructure.Default;
         }
         #endregion
@@ -357,6 +364,7 @@ namespace Uzi.Ikosa.Tactical
 
                 // ZMinus and ZPlus Faces
                 for (var _y = Y; _y <= UpperY; _y++)
+                {
                     for (var _x = X; _x <= UpperX; _x++)
                     {
                         // Z
@@ -368,9 +376,11 @@ namespace Uzi.Ikosa.Tactical
                         _outRoom = new CellLocation(UpperZ + 1, _y, _x);
                         TryCreateLink(_inRoom, _outRoom, Axis.Z, true);
                     }
+                }
 
                 // YMinus and YPlus Faces
                 for (var _z = Z; _z <= UpperZ; _z++)
+                {
                     for (var _x = X; _x <= UpperX; _x++)
                     {
                         // Y
@@ -382,9 +392,11 @@ namespace Uzi.Ikosa.Tactical
                         _outRoom = new CellLocation(_z, UpperY + 1, _x);
                         TryCreateLink(_inRoom, _outRoom, Axis.Y, true);
                     }
+                }
 
                 // XMinus and XPlus Faces
                 for (var _z = Z; _z <= UpperZ; _z++)
+                {
                     for (var _y = Y; _y <= UpperY; _y++)
                     {
                         // X
@@ -396,6 +408,8 @@ namespace Uzi.Ikosa.Tactical
                         _outRoom = new CellLocation(_z, _y, UpperX + 1);
                         TryCreateLink(_inRoom, _outRoom, Axis.X, true);
                     }
+                }
+
                 return _count != Links.Count;
             }
             return false;
@@ -413,11 +427,15 @@ namespace Uzi.Ikosa.Tactical
                 {
                     var _deRoom = _link.Groups.ToList();
                     foreach (var _rm in _deRoom)
+                    {
                         _rm.Links.Remove(_link);
+                    }
                 }
 
                 foreach (var _grp in _clean.SelectMany(_l => _l.Groups).Distinct())
+                {
                     yield return _grp;
+                }
             }
             yield break;
         }
@@ -435,11 +453,15 @@ namespace Uzi.Ikosa.Tactical
                     _clean.Add(_link);
                     var _deRoom = _link.Groups.ToList();
                     foreach (var _rm in _deRoom)
+                    {
                         _rm.Links.Remove(_link);
+                    }
                 }
 
                 foreach (var _grp in _clean.SelectMany(_l => _l.Groups).Distinct())
+                {
                     yield return _grp;
+                }
             }
             yield break;
         }
@@ -470,22 +492,22 @@ namespace Uzi.Ikosa.Tactical
 
         #region EDITOR USE DIMENSIONS
         /// <summary>Intended for editor use</summary>
-        public int BindableZ { get { return Z; } set { if (value != Z) Move(value, Y, X); } }
+        public int BindableZ { get { return Z; } set { if (value != Z) { Move(value, Y, X); } } }
 
         /// <summary>Intended for editor use</summary>
-        public int BindableY { get { return Y; } set { if (value != Y) Move(Z, value, X); } }
+        public int BindableY { get { return Y; } set { if (value != Y) { Move(Z, value, X); } } }
 
         /// <summary>Intended for editor use</summary>
-        public int BindableX { get { return X; } set { if (value != X) Move(Z, Y, value); } }
+        public int BindableX { get { return X; } set { if (value != X) { Move(Z, Y, value); } } }
 
         /// <summary>Intended for editor use</summary>
-        public long BindableZHeight { get { return ZHeight; } set { if (value != ZHeight) Resize(value, YLength, XLength); } }
+        public long BindableZHeight { get { return ZHeight; } set { if (value != ZHeight) { Resize(value, YLength, XLength); } } }
 
         /// <summary>Intended for editor use</summary>
-        public long BindableYLength { get { return YLength; } set { if (value != YLength) Resize(ZHeight, value, XLength); } }
+        public long BindableYLength { get { return YLength; } set { if (value != YLength) { Resize(ZHeight, value, XLength); } } }
 
         /// <summary>Intended for editor use</summary>
-        public long BindableXLength { get { return XLength; } set { if (value != XLength) Resize(ZHeight, YLength, value); } }
+        public long BindableXLength { get { return XLength; } set { if (value != XLength) { Resize(ZHeight, YLength, value); } } }
         #endregion
 
         #region public void Move(int z, int y, int x)
@@ -524,11 +546,20 @@ namespace Uzi.Ikosa.Tactical
 
             // lots of stuff changed
             if (_zD != 0)
+            {
                 DoSetAxis(nameof(Z));
+            }
+
             if (_yD != 0)
+            {
                 DoSetAxis(nameof(Y));
+            }
+
             if (_xD != 0)
+            {
                 DoSetAxis(nameof(X));
+            }
+
             DoPropertyChanged(nameof(CenterPoint));
 
             // relink room to map
@@ -584,11 +615,20 @@ namespace Uzi.Ikosa.Tactical
 
                     // stuff changed
                     if (_zD)
+                    {
                         DoSetAxisExtent(nameof(Z));
+                    }
+
                     if (_yD)
+                    {
                         DoSetAxisExtent(nameof(Y));
+                    }
+
                     if (_xD)
+                    {
                         DoSetAxisExtent(nameof(X));
+                    }
+
                     DoPropertyChanged(nameof(CenterPoint));
 
                     ReLink();
@@ -646,11 +686,20 @@ namespace Uzi.Ikosa.Tactical
 
                 // stuff changed
                 if (_zD)
+                {
                     DoSetAxisExtent(nameof(Z));
+                }
+
                 if (_yD)
+                {
                     DoSetAxisExtent(nameof(Y));
+                }
+
                 if (_xD)
+                {
                     DoSetAxisExtent(nameof(X));
+                }
+
                 DoPropertyChanged(nameof(CenterPoint));
 
                 ReLink();
@@ -709,11 +758,20 @@ namespace Uzi.Ikosa.Tactical
 
                     // stuff changed
                     if (_zD)
+                    {
                         DoSetAxisExtent(nameof(Z));
+                    }
+
                     if (_yD)
+                    {
                         DoSetAxisExtent(nameof(Y));
+                    }
+
                     if (_xD)
+                    {
                         DoSetAxisExtent(nameof(X));
+                    }
+
                     DoPropertyChanged(nameof(CenterPoint));
 
                     ReLink();
@@ -730,11 +788,15 @@ namespace Uzi.Ikosa.Tactical
             long _yIdx(long refVal) => flipAxis == Axis.Y ? (YLength - 1) - refVal : refVal;
             long _xIdx(long refVal) => flipAxis == Axis.X ? (XLength - 1) - refVal : refVal;
             for (long _z = 0; _z < ZHeight; _z++)
+            {
                 for (long _y = 0; _y < YLength; _y++)
+                {
                     for (long _x = 0; _x < XLength; _x++)
                     {
                         _newCells[_z][_y][_x] = _Strucs[_zIdx(_z)][_yIdx(_y)][_xIdx(_x)].FlipAxis(flipAxis);
                     }
+                }
+            }
 
             // new cells
             _Strucs = _newCells;
@@ -760,10 +822,17 @@ namespace Uzi.Ikosa.Tactical
             void _doLoop(Action<long, long, long> swap)
             {
                 for (long _z = 0; _z < ZHeight; _z++)
+                {
                     for (long _y = 0; _y < YLength; _y++)
+                    {
                         for (long _x = 0; _x < XLength; _x++)
+                        {
                             swap(_z, _y, _x);
-            };
+                        }
+                    }
+                }
+            }
+            ;
 
             CellStructure[][][] _newCells = null;
             LightShadeLevel[][][] _newLevels = null;
@@ -825,13 +894,16 @@ namespace Uzi.Ikosa.Tactical
         public bool CanSplit(Axis axis, int clipAt)
         {
             // bounds checks
-            if (clipAt < 0) return false;
+            if (clipAt < 0)
+            {
+                return false;
+            }
 
             switch (axis)
             {
-                case Axis.X: if (clipAt > (XLength - 2)) return false; break;
-                case Axis.Y: if (clipAt > (YLength - 2)) return false; break;
-                case Axis.Z: if (clipAt > (ZHeight - 2)) return false; break;
+                case Axis.X: if (clipAt > (XLength - 2)) { return false; } break;
+                case Axis.Y: if (clipAt > (YLength - 2)) { return false; } break;
+                case Axis.Z: if (clipAt > (ZHeight - 2)) { return false; } break;
             }
             return true;
         }
@@ -842,13 +914,15 @@ namespace Uzi.Ikosa.Tactical
         {
             // bounds checks
             if (clipAt < 0)
+            {
                 return;
+            }
 
             switch (axis)
             {
-                case Axis.X: if (clipAt > (XLength - 2)) return; break;
-                case Axis.Y: if (clipAt > (YLength - 2)) return; break;
-                case Axis.Z: if (clipAt > (ZHeight - 2)) return; break;
+                case Axis.X: if (clipAt > (XLength - 2)) { return; } break;
+                case Axis.Y: if (clipAt > (YLength - 2)) { return; } break;
+                case Axis.Z: if (clipAt > (ZHeight - 2)) { return; } break;
             }
 
             // offsets based on axis
@@ -919,7 +993,9 @@ namespace Uzi.Ikosa.Tactical
             {
                 // shared sounds
                 foreach (var _sound in base.GetSoundRefs(target, soundFilter))
+                {
                     yield return _sound;
+                }
             }
             yield break;
         }
@@ -953,7 +1029,9 @@ namespace Uzi.Ikosa.Tactical
             {
                 // shared sounds
                 foreach (var _sound in base.GetSoundGroups(soundFilter))
+                {
                     yield return _sound;
+                }
             }
             yield break;
         }
@@ -984,7 +1062,9 @@ namespace Uzi.Ikosa.Tactical
             {
                 // shared lighting
                 foreach (var _light in base.GetIlluminators(linking))
+                {
                     yield return _light;
+                }
             }
             yield break;
         }
@@ -1100,7 +1180,9 @@ namespace Uzi.Ikosa.Tactical
                                 }
                             }
                             if (_currentRange >= _max)
+                            {
                                 break;
+                            }
                         }
 
                         // flag as processed to minimize overlap processing
@@ -1199,9 +1281,13 @@ namespace Uzi.Ikosa.Tactical
                 if ((_useTrans != null)
                     && ((_noTrans == null) || (_noTrans.Range < _useTrans.Range))
                     && _useTrans.CarrySenseInteraction(Map, location, _cLoc, ITacticalInquiryHelper.EmptyArray))
+                {
                     _effect = VisualEffectProcessor.GetFormOnlyLevel(_distance, _useTrans.Range);
+                }
                 else if (_noTrans != null)
+                {
                     _effect = VisualEffectProcessor.GetFormOnlyLevel(_distance, _noTrans.Range);
+                }
                 #endregion
 
                 // no need to test out-of-room line of effect, as sense was already carried
@@ -1265,13 +1351,19 @@ namespace Uzi.Ikosa.Tactical
                             if (_sight.Any(_ir => _ir.UsesLight))
                             {
                                 if (_level == LightShadeLevel.VeryBright)
+                                {
                                     _effect = VisualEffect.Brighter;
+                                }
                                 else
+                                {
                                     _effect = VisualEffect.Normal;
+                                }
                             }
                             else
+                            {
                                 // dark vision (and true seeing...)
                                 _effect = VisualEffectProcessor.GetMonochromeLevel(_distance, _sight.Where(_ir => !_ir.UsesLight).Max(_ir => _ir.Range));
+                            }
                             #endregion
                         }
                         else if ((_level == LightShadeLevel.NearShadow) || (_level == LightShadeLevel.NearBoost))
@@ -1298,9 +1390,13 @@ namespace Uzi.Ikosa.Tactical
                             else
                             {
                                 if (_level == LightShadeLevel.NearBoost)
+                                {
                                     _effect = VisualEffect.DimTo75;
+                                }
                                 else
+                                {
                                     _effect = VisualEffect.DimTo50;
+                                }
                             }
                             #endregion
                         }
@@ -1315,22 +1411,30 @@ namespace Uzi.Ikosa.Tactical
                             {
                                 // low light vision is all that's left if we haven't found darkvision
                                 if (_level == LightShadeLevel.FarBoost)
+                                {
                                     _effect = VisualEffect.DimTo75;
+                                }
                                 else
+                                {
                                     _effect = VisualEffect.DimTo50;
+                                }
                             }
                             else
                             {
                                 // far shade but on fringe for near shade
                                 if (_level == LightShadeLevel.FarBoost)
+                                {
                                     _effect = VisualEffect.DimTo25;
+                                }
                             }
                         }
                         else
                         {
                             // beyond far shade
                             if ((_level == LightShadeLevel.ExtentBoost) && _sight.Any(_ir => _ir.UsesLight && _ir.LowLight))
+                            {
                                 _effect = VisualEffect.DimTo25;
+                            }
                         }
                     }
 
@@ -1347,7 +1451,9 @@ namespace Uzi.Ikosa.Tactical
                             {
                                 var _eff = VisualEffectProcessor.GetFormOnlyLevel(_distance, _formSense.Range);
                                 if (_eff > _effect)
+                                {
                                     _effect = _eff;
+                                }
                             }
                         }
                     }
@@ -1372,11 +1478,15 @@ namespace Uzi.Ikosa.Tactical
 
                 // render per observer point (include: special senses; darkvision/darkvision magic darkness/blind-sight)
                 for (var _z = LowerZ; _z <= UpperZ; _z++)
+                {
                     for (var _y = LowerY; _y <= UpperY; _y++)
+                    {
                         for (var _x = LowerX; _x <= UpperX; _x++)
                         {
                             yield return CellEffect(location, _z, _y, _x, visualizer);
                         }
+                    }
+                }
             }
 
             // done yielding
@@ -1473,7 +1583,9 @@ namespace Uzi.Ikosa.Tactical
 
                         // NOTE: this is a failsafe, shouldn't have more cells than effects
                         if (_z >= ZHeight)
+                        {
                             break;
+                        }
                     }
                 }
                 #endregion
@@ -1485,7 +1597,10 @@ namespace Uzi.Ikosa.Tactical
             {
                 var _final = new Model3DGroup();
                 foreach (var _m in _globalContext.GetModel3D(alpha))
+                {
                     _final.Children.Add(_m);
+                }
+
                 if (gathered.Children.Count > 0)
                 {
                     gathered.Transform = _move;
@@ -1537,9 +1652,16 @@ namespace Uzi.Ikosa.Tactical
             get
             {
                 for (var _z = 0; _z < ZHeight; _z++)
+                {
                     for (var _y = 0; _y < YLength; _y++)
+                    {
                         for (var _x = 0; _x < XLength; _x++)
+                        {
                             yield return _Strucs[_z][_y][_x].ID;
+                        }
+                    }
+                }
+
                 yield break;
             }
         }

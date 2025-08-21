@@ -45,7 +45,10 @@ namespace Uzi.Ikosa.Actions
         {
             // must have at least one empty hand
             if ((activity.Actor as Creature)?.Body.ItemSlots[ItemSlot.HoldingSlot, true] != null)
+            {
                 return base.OnCanPerformActivity(activity);
+            }
+
             return new ActivityResponse(false);
         }
 

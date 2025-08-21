@@ -21,7 +21,7 @@ namespace Uzi.Ikosa.Objects
             : base(name, objectMaterial)
         {
             _Orient = new ConveyanceOrientation(this);
-            _Connected = new List<ICoreObject>();
+            _Connected = [];
             _COCtrl = new ChangeController<ICoreObject>(this, null);
         }
 
@@ -99,7 +99,9 @@ namespace Uzi.Ikosa.Objects
 
             // if we don't have a cubic, make a cubic from the region
             if (!(region is Cubic))
+            {
                 region = region.ContainingCube(region);
+            }
 
             var _fit = _vol.GetCubicFit(region as Cubic, _size);
             if (_fit.Cube == null)
@@ -112,12 +114,36 @@ namespace Uzi.Ikosa.Objects
                     {
                         var _off = locator.IntraModelOffset;
                         var _faces = AnchorFaceList.None;
-                        if (_off.Z < -3.5) _faces = _faces.Add(AnchorFace.ZLow);
-                        if (_off.Y < -3.5) _faces = _faces.Add(AnchorFace.YLow);
-                        if (_off.X < -3.5) _faces = _faces.Add(AnchorFace.XLow);
-                        if (_off.Z > 3.5) _faces = _faces.Add(AnchorFace.ZHigh);
-                        if (_off.Y > 3.5) _faces = _faces.Add(AnchorFace.YHigh);
-                        if (_off.X > 3.5) _faces = _faces.Add(AnchorFace.XHigh);
+                        if (_off.Z < -3.5)
+                        {
+                            _faces = _faces.Add(AnchorFace.ZLow);
+                        }
+
+                        if (_off.Y < -3.5)
+                        {
+                            _faces = _faces.Add(AnchorFace.YLow);
+                        }
+
+                        if (_off.X < -3.5)
+                        {
+                            _faces = _faces.Add(AnchorFace.XLow);
+                        }
+
+                        if (_off.Z > 3.5)
+                        {
+                            _faces = _faces.Add(AnchorFace.ZHigh);
+                        }
+
+                        if (_off.Y > 3.5)
+                        {
+                            _faces = _faces.Add(AnchorFace.YHigh);
+                        }
+
+                        if (_off.X > 3.5)
+                        {
+                            _faces = _faces.Add(AnchorFace.XHigh);
+                        }
+
                         var _newCube = (region as Cubic).OffsetCubic(_faces.ToAnchorFaces().ToArray());
                         _fit = _vol.GetCubicFit(_newCube, _size);
                     }
@@ -227,7 +253,9 @@ namespace Uzi.Ikosa.Objects
         public void ValueChanged(object sender, ChangeValueEventArgs<Physical> args)
         {
             if (args.NewValue.PropertyType == Physical.PhysicalType.Weight)
+            {
                 RecalcWeight();
+            }
         }
 
         #endregion
@@ -255,7 +283,9 @@ namespace Uzi.Ikosa.Objects
                     else
                     {
                         foreach (var _act in _grabbed.GetActions(budget))
+                        {
                             yield return _act;
+                        }
                     }
                 }
             }

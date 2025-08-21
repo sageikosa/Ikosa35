@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Uzi.Core.Dice;
 
 namespace Uzi.Ikosa.Items.Weapons
@@ -104,7 +104,7 @@ namespace Uzi.Ikosa.Items.Weapons
             return _newSet;
         }
 
-        private static Dictionary<string, Roller> _SharedRollers = new Dictionary<string, Roller>();
+        private static Dictionary<string, Roller> _SharedRollers = [];
 
         public readonly static Dictionary<string, Dictionary<int, Roller>> DiceLookup;
     }

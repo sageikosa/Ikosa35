@@ -88,7 +88,9 @@ namespace Uzi.Ikosa.Magic.Spells
                 foreach (var _step in SpellDef.DeliverDurableDirectFromBurst(_spellBurst, locator,
                     (Locator loc, ICore core) => (core is Creature) && _actor.IsFriendly(core.ID),
                     (CoreStep step) => true, 0))
+                {
                     yield return _step;
+                }
             }
             yield break;
         }

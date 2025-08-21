@@ -16,7 +16,7 @@ namespace Uzi.Ikosa.Guildsmanship
 
         public ModuleImports()
         {
-            _Modules = new List<ModuleImportReference>();
+            _Modules = [];
             _Preferences = new VariableAssociationSet();
             PackageManager.Manager.AddPackagePartReferenceLister(this);
         }

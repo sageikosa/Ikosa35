@@ -101,9 +101,13 @@ namespace Uzi.Ikosa.Creatures.BodyType
             foreach (var _move in Movements)
             {
                 if (_move is LandMovement)
+                {
                     _move.BaseValue = BaseLandSpeed(newValue);
+                }
                 else
+                {
                     _move.BaseValue = HalfSpeed(newValue);
+                }
             }
             base.OnSizeChanged(oldValue, newValue);
         }

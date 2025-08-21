@@ -16,7 +16,7 @@ namespace Uzi.Ikosa.Guildsmanship
             : base(description)
         {
             _State = state;
-            _Enablers = new List<ValueEnabler>();
+            _Enablers = [];
             _Validation = VariableValueEnablerValidation.Any;
         }
 

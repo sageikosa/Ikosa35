@@ -73,7 +73,10 @@ namespace Uzi.Ikosa.Items
 
             // assign slot
             if (_slot.SlottedItem == null)
+            {
                 SetItemSlot(_slot);
+            }
+
             return _slot;
         }
         #endregion
@@ -83,7 +86,10 @@ namespace Uzi.Ikosa.Items
         {
             // can only fill the attachment slot with this attachment wrapper
             if ((slot is CoveringSlot _covSlot) && (_covSlot.Source == this))
+            {
                 return base.FinalSlotCheck(slot);
+            }
+
             return false;
         }
         #endregion

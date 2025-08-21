@@ -39,7 +39,10 @@ namespace Uzi.Ikosa.Contracts
         public AwarenessInfo FindAwareness(Guid id)
         {
             if (id == ID)
+            {
                 return this;
+            }
+
             return (from _i in Items
                     let _f = _i.FindAwareness(id)
                     where _f != null
@@ -136,14 +139,20 @@ namespace Uzi.Ikosa.Contracts
         {
             // set icon resolver
             if (Info is IIconInfo _iconInfo)
+            {
                 _iconInfo.IconResolver = resolver;
+            }
 
             if (Info is CreatureObjectInfo _critter)
+            {
                 _critter.SetIconResolver(resolver);
+            }
 
             // items
             foreach (var _item in Items)
+            {
                 _item.SetIconResolver(resolver);
+            }
         }
         #endregion
 
@@ -157,19 +166,27 @@ namespace Uzi.Ikosa.Contracts
             if (selection.Contains(ID))
             {
                 if (!IsInSelection)
+                {
                     _redraw = true;
+                }
+
                 IsInSelection = true;
             }
             else
             {
                 if (IsInSelection)
+                {
                     _redraw = true;
+                }
+
                 IsInSelection = false;
             }
 
             // items
             foreach (var _item in Items)
+            {
                 _redraw |= _item.ApplySelection(selection);
+            }
 
             return _redraw;
         }
@@ -185,13 +202,17 @@ namespace Uzi.Ikosa.Contracts
             {
                 // self
                 if (IsInSelection)
+                {
                     yield return ID;
+                }
 
                 // items
                 foreach (var _id in from _i in Items
                                     from _si in _i.SelectedIDs
                                     select _si)
+                {
                     yield return _id;
+                }
 
                 yield break;
             }
@@ -208,13 +229,17 @@ namespace Uzi.Ikosa.Contracts
             {
                 // self
                 if (IsInSelection)
+                {
                     yield return this;
+                }
 
                 // items
                 foreach (var _ai in from _i in Items
                                     from _si in _i.SelectedItems
                                     select _si)
+                {
                     yield return _ai;
+                }
 
                 yield break;
             }
@@ -226,7 +251,10 @@ namespace Uzi.Ikosa.Contracts
             get
             {
                 if (IsInSelection)
+                {
                     return true;
+                }
+
                 return Items.Any(_i => _i.HasAnySelected);
             }
         }

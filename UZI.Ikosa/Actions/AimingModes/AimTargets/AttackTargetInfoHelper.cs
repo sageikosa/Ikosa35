@@ -14,7 +14,10 @@ namespace Uzi.Ikosa.Actions
         public static ICellLocation GetTargetCell(this AttackTargetInfo self, ISensorHost sensors, IInteract target)
         {
             if (self.TargetZ.HasValue && self.TargetY.HasValue && self.TargetX.HasValue)
+            {
                 return new CellPosition(self.TargetZ.Value, self.TargetY.Value, self.TargetX.Value);
+            }
+
             return sensors.GetTargetCell(target: target);
         }
 

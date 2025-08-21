@@ -51,7 +51,9 @@ namespace Uzi.Ikosa.Tactical
             // _absNew will always be beyond current scheduled _NextTime
             var _absNew = _NextTime.AddMilliseconds(absMilliSeconds);
             if (_absNew <= _MaxTime)
+            {
                 _NextTime = _absNew;
+            }
         }
 
         /// <summary>Pushed, or time can tick and Now is the time</summary>

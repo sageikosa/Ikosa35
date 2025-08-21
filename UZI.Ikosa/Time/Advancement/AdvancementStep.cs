@@ -26,7 +26,9 @@ namespace Uzi.Ikosa.Time
             {
                 // rip back until we do not find unlocked log-items
                 while (_critter.AdvancementLog.FirstUnlockedAdvancementLogItem() != null)
+                {
                     _critter.AdvancementLog.RemoveLast();
+                }
             }
             DispensedPrerequisites.OfType<AdvancementValid>().FirstOrDefault()?
                 .MergeFrom(new WaitReleasePrerequisiteInfo());

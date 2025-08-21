@@ -80,7 +80,9 @@ namespace Uzi.Ikosa.Items
         public void TrackTime(double timeVal, TimeValTransition direction)
         {
             if (timeVal >= EndTime)
+            {
                 Eject();
+            }
         }
 
         public IEnumerable<IDelta> QualifiedDeltas(Qualifier qualify)
@@ -88,7 +90,10 @@ namespace Uzi.Ikosa.Items
             // just in case a poison is in effect to which this immunity applied, boost saves
             if ((qualify?.Source is Poison _poison)
                 && ((SourceID ?? _poison.SourceID) == _poison.SourceID))
+            {
                 yield return _Delta;
+            }
+
             yield break;
         }
 

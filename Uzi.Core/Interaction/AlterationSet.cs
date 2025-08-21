@@ -18,7 +18,7 @@ namespace Uzi.Core
         /// </summary>
         public AlterationSet(CoreActor actor)
         {
-            _Alterations = new List<InteractionAlteration>();
+            _Alterations = [];
             _ChangeCtrl = new ChangeController<InteractionAlteration>(this, null);
             if (actor != null)
             {

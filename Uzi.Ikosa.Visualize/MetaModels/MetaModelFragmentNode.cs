@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Media.Media3D;
 using System.ComponentModel;
@@ -15,10 +14,10 @@ namespace Uzi.Visualize
         #region ctor()
         public MetaModelFragmentNode()
         {
-            Components = new MetaModelFragmentNodeCollection();
-            Brushes = new BrushCrossRefNodeCollection();
-            IntRefs = new IntReferenceCollection();
-            DoubleRefs = new DoubleReferenceCollection();
+            Components = [];
+            Brushes = [];
+            IntRefs = [];
+            DoubleRefs = [];
         }
 
         public MetaModelFragmentNode(MetaModelFragmentNode source)
@@ -32,9 +31,11 @@ namespace Uzi.Visualize
                 source.DoubleRefs.Select(_dr => new DoubleReference(_dr)).ToList());
 
             // clone fragments
-            Components = new MetaModelFragmentNodeCollection();
+            Components = [];
             foreach (var _c in source.Components.ToList())
+            {
                 Components.Add(new MetaModelFragmentNode(_c));
+            }
 
             // clone parameters
             ReferenceKey = source.ReferenceKey;
@@ -97,19 +98,27 @@ namespace Uzi.Visualize
 
             // prepare components
             foreach (var _node in Components)
+            {
                 _node.PrepareGather();
+            }
 
             // prepare brushes
             foreach (var _xRef in Brushes)
+            {
                 _xRef.IsActive = false;
+            }
 
             // prepare intVals
             foreach (var _iVal in IntRefs)
+            {
                 _iVal.IsActive = false;
+            }
 
             // prepare doubleVals
             foreach (var _dVal in DoubleRefs)
+            {
                 _dVal.IsActive = false;
+            }
         }
         #endregion
 
@@ -120,26 +129,36 @@ namespace Uzi.Visualize
             // remove dead components
             var _pruneNodes = Components.Where(_c => !_c.IsActive).ToList();
             foreach (var _node in _pruneNodes)
+            {
                 Components.Remove(_node);
+            }
 
             // tell live components to prune
             foreach (var _node in Components)
+            {
                 _node.PruneAfterGather();
+            }
 
             // remove dead brushes
             var _pruneXRefs = Brushes.Where(_b => !_b.IsActive).ToList();
             foreach (var _xRef in _pruneXRefs)
+            {
                 Brushes.Remove(_xRef);
+            }
 
             // remove dead intVals
             var _pruneIVals = IntRefs.Where(_i => !_i.IsActive).ToList();
             foreach (var _val in _pruneIVals)
+            {
                 IntRefs.Remove(_val);
+            }
 
             // remove dead doubleVals
             var _pruneDVals = DoubleRefs.Where(_d => !_d.IsActive).ToList();
             foreach (var _val in _pruneDVals)
+            {
                 DoubleRefs.Remove(_val);
+            }
 
             FlushCache();
         }
@@ -161,7 +180,9 @@ namespace Uzi.Visualize
         {
             IsSelected = false;
             foreach (var _c in Components)
+            {
                 _c.UnSelect();
+            }
         }
 
         [DataMember]
@@ -292,8 +313,7 @@ namespace Uzi.Visualize
         {
             get
             {
-                if (_Meshes == null)
-                    _Meshes = new Dictionary<int, MeshGeometry3D>();
+                _Meshes ??= [];
                 return _Meshes;
             }
         }

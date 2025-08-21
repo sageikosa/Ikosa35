@@ -1,4 +1,4 @@
-using System.Linq;
+﻿using System.Linq;
 using System.Collections.Generic;
 using Uzi.Ikosa.Items;
 using Uzi.Ikosa.Magic;
@@ -39,7 +39,10 @@ namespace Uzi.Ikosa.Actions
                 .Where(_c => _c is VerbalComponent || _c is SomaticComponent)
                 .ToList();
             if (_components.All(_c => _c.CanStartActivity(budget.Actor as Creature)) || !_components.Any())
+            {
                 return BaseCanPerformNow(budget);
+            }
+
             return new ActivityResponse(false);
         }
 

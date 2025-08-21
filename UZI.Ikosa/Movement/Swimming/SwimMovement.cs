@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using Uzi.Ikosa.Skills;
 using Uzi.Ikosa.Adjuncts;
 using Uzi.Core;
@@ -60,7 +60,9 @@ namespace Uzi.Ikosa.Movement
                 if (_locator != null)
                 {
                     if (!_locator.PlanarPresence.HasMaterialPresence())
+                    {
                         return false;
+                    }
 
                     var _map = _locator.Map;
                     return (from _cell in _locator.GeometricRegion.AllCellLocations()
@@ -89,11 +91,15 @@ namespace Uzi.Ikosa.Movement
 
                 // see if can occupy
                 if (!locator.Map.CanOccupy(_locCore, _next, this, exclusions, _planar))
+                {
                     return null;
+                }
 
                 // see if can transit
                 if (!TransitFitness(process, _crossings, leadCell, locator.Map, locator.ActiveMovement, _planar, exclusions) ?? false)
+                {
                     return null;
+                }
 
                 var _difficulty = locator.Map.SwimDifficulty(leadCell, _next, this);
                 if (_difficulty == null)

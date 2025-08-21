@@ -48,10 +48,17 @@ namespace Uzi.Ikosa.Workshop
         {
             var _param = ParamData;
             for (var _zc = _Z; _zc < (_Z + _ZH); _zc++)
+            {
                 for (var _yc = _Y; _yc < (_Y + _YL); _yc++)
+                {
                     for (var _xc = _X; _xc < (_X + _XL); _xc++)
+                    {
                         _Room.SetCellStructure(_zc, _yc, _xc,
                             new CellStructure(_Space, _param));
+                    }
+                }
+            }
+
             _Room.ReLink(true);
         }
 

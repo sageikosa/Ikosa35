@@ -19,7 +19,7 @@ namespace Uzi.Ikosa
         public ConditionSet(Creature critter)
         {
             _Critter = critter;
-            _Conditions = new Collection<Condition>();
+            _Conditions = [];
             _ChangeCtrl = new ChangeController<Condition>(this, null);
         }
         #endregion

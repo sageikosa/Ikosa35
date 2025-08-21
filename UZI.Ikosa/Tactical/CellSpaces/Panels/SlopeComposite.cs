@@ -48,7 +48,9 @@ namespace Uzi.Ikosa.Tactical
         public override bool BlockedAt(PanelParams param, AnchorFace panelFace, MovementBase movement, List<AnchorFace> faces)
         {
             if (movement.CanMoveThrough(Material))
+            {
                 return false;
+            }
 
             if (param.IsTrueSlope)
             {
@@ -64,7 +66,9 @@ namespace Uzi.Ikosa.Tactical
         public override HedralGrip HedralGripping(PanelParams param, AnchorFace panelFace, MovementBase movement, IEnumerable<BasePanel> transitPanels)
         {
             if (movement.CanMoveThrough(Material))
+            {
                 return new HedralGrip(false);
+            }
 
             if (param.IsTrueSlope)
             {
@@ -111,7 +115,9 @@ namespace Uzi.Ikosa.Tactical
             // use inverse for material fill that needs to close the interior gaps
             var _isUpper = !_source.IsLowFace();
             if (inverse)
+            {
                 _isUpper = !_isUpper;
+            }
 
             // sink
             var _sink = param.SinkFace;
@@ -128,7 +134,10 @@ namespace Uzi.Ikosa.Tactical
             // shell
             var _shell = new PlaneListShell();
             foreach (var _plane in SlopeSpaceFaces.GeneratePlanes(z, y, x, _isUpper, _ortho, _slope, _loOffset, _hiOffset))
+            {
                 _shell.Add(_plane);
+            }
+
             return _shell;
         }
         #endregion

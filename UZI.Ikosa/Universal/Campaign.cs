@@ -61,7 +61,9 @@ namespace Uzi.Ikosa.Universal
             {
                 var _dict = ClassLists[category];
                 if (_dict.ContainsKey(fullName))
+                {
                     return _dict[fullName];
+                }
             }
             return null;
         }
@@ -77,15 +79,15 @@ namespace Uzi.Ikosa.Universal
             FeatLists.Add(@"General", _list);
 
             // get classes
-            _list = new Dictionary<string, TypeListItem>();
+            _list = [];
             ProcessAssembly(Assembly.GetAssembly(typeof(AdvancementClass)), _list, typeof(AdvancementClass));
             ClassLists.Add(@"All", _list);
-            _list = new Dictionary<string, TypeListItem>();
+            _list = [];
             ProcessAssembly(Assembly.GetAssembly(typeof(CharacterClass)), _list, typeof(CharacterClass));
             ClassLists.Add(@"Character", _list);
 
             // get species
-            _list = new Dictionary<string, TypeListItem>();
+            _list = [];
             ProcessAssembly(Assembly.GetAssembly(typeof(Species)), _list, typeof(Species), (type) =>
             {
                 return type.GetConstructors().Where(_t => !_t.GetParameters().Any() && _t.IsPublic).Any();
@@ -93,7 +95,7 @@ namespace Uzi.Ikosa.Universal
             SpeciesLists.Add(@"All", _list);
 
             // get templates
-            _list = new Dictionary<string, TypeListItem>();
+            _list = [];
             //ProcessAssembly(Assembly.GetAssembly(typeof(TemplateBase)), _list, typeof(TemplateBase));
             TemplateLists.Add(@"All", _list);
 
@@ -120,7 +122,9 @@ namespace Uzi.Ikosa.Universal
                 {
                     var _info = ItemBase.GetInfo(_type);
                     if (!ArmorTypes.ContainsKey(_info.Name))
+                    {
                         ArmorTypes.Add(_info.Name, new ItemTypeListItem(_type, _info));
+                    }
                 }
             }
 
@@ -132,7 +136,9 @@ namespace Uzi.Ikosa.Universal
                 {
                     var _info = ItemBase.GetInfo(_type);
                     if (!ShieldTypes.ContainsKey(_info.Name))
+                    {
                         ShieldTypes.Add(_info.Name, new ItemTypeListItem(_type, _info));
+                    }
                 }
             }
 
@@ -183,19 +189,19 @@ namespace Uzi.Ikosa.Universal
 
         private void Initialize()
         {
-            FeatLists = new Dictionary<string, Dictionary<string, TypeListItem>>();
-            ClassLists = new Dictionary<string, Dictionary<string, TypeListItem>>();
-            SpeciesLists = new Dictionary<string, Dictionary<string, TypeListItem>>();
-            TemplateLists = new Dictionary<string, Dictionary<string, TypeListItem>>();
-            SpellLists = new Dictionary<string, ClassSpellList>();
-            SimpleWeapons = new SortedDictionary<string, ItemTypeListItem>();
-            MartialWeapons = new SortedDictionary<string, ItemTypeListItem>();
-            ExoticWeapons = new SortedDictionary<string, ItemTypeListItem>();
-            AmmunitionTypes = new SortedDictionary<string, ItemTypeListItem>();
-            ArmorTypes = new SortedDictionary<string, ItemTypeListItem>();
-            ShieldTypes = new SortedDictionary<string, ItemTypeListItem>();
-            Devotions = new Dictionary<string, DevotionalDefinition>();
-            Languages = new Dictionary<string, TypeListItem>();
+            FeatLists = [];
+            ClassLists = [];
+            SpeciesLists = [];
+            TemplateLists = [];
+            SpellLists = [];
+            SimpleWeapons = [];
+            MartialWeapons = [];
+            ExoticWeapons = [];
+            AmmunitionTypes = [];
+            ArmorTypes = [];
+            ShieldTypes = [];
+            Devotions = [];
+            Languages = [];
         }
         #endregion
 
@@ -215,7 +221,9 @@ namespace Uzi.Ikosa.Universal
             foreach (Assembly _asm in AppDomain.CurrentDomain.GetAssemblies())
             {
                 if (_asm.FullName.Equals(assemblyName, StringComparison.OrdinalIgnoreCase))
+                {
                     return _asm;
+                }
             }
             return Assembly.Load(assemblyName);
         }
@@ -230,7 +238,9 @@ namespace Uzi.Ikosa.Universal
                     && !_probeType.IsAbstract && _probeType.IsPublic)
                 {
                     if (!targetList.ContainsKey(_probeType.FullName))
+                    {
                         targetList.Add(_probeType.FullName, new TypeListItem(_probeType, _probeType.Name));
+                    }
                 }
             }
         }
@@ -245,7 +255,9 @@ namespace Uzi.Ikosa.Universal
                     && !_probeType.IsAbstract && _probeType.IsPublic)
                 {
                     if (!targetList.ContainsKey(_probeType.FullName) && validator(_probeType))
+                    {
                         targetList.Add(_probeType.FullName, new TypeListItem(_probeType, _probeType.Name));
+                    }
                 }
             }
         }
@@ -259,7 +271,7 @@ namespace Uzi.Ikosa.Universal
             Dictionary<string, TypeListItem> _loading;
             if (!masterDictionary.ContainsKey(_listName))
             {
-                _loading = new Dictionary<string, TypeListItem>();
+                _loading = [];
                 masterDictionary.Add(_listName, _loading);
             }
             else
@@ -283,7 +295,9 @@ namespace Uzi.Ikosa.Universal
                     if (_newType.IsSubclassOf(compareType) && !_newType.IsAbstract && _newType.IsPublic)
                     {
                         if (!_loading.ContainsKey(_class))
+                        {
                             _loading.Add(_class, new TypeListItem(_newType, _description));
+                        }
                     }
                 }
             }
@@ -301,19 +315,25 @@ namespace Uzi.Ikosa.Universal
                 {
                     // exotic
                     if (!ExoticWeapons.ContainsKey(_info.Name))
+                    {
                         ExoticWeapons.Add(_info.Name, new ItemTypeListItem(type, _info));
+                    }
                 }
                 else if (typeof(IMartialWeapon).IsAssignableFrom(type))
                 {
                     // martial
                     if (!MartialWeapons.ContainsKey(_info.Name))
+                    {
                         MartialWeapons.Add(_info.Name, new ItemTypeListItem(type, _info));
+                    }
                 }
                 else
                 {
                     // simple
                     if (!SimpleWeapons.ContainsKey(_info.Name))
+                    {
                         SimpleWeapons.Add(_info.Name, new ItemTypeListItem(type, _info));
+                    }
                 }
             }
         }
@@ -338,7 +358,7 @@ namespace Uzi.Ikosa.Universal
             ClassSpellList _classSpells = null;
             if (!SpellLists.ContainsKey(_casterClass))
             {
-                _classSpells = new ClassSpellList();
+                _classSpells = [];
                 SpellLists.Add(_casterClass, _classSpells);
             }
             else
@@ -548,7 +568,10 @@ namespace Uzi.Ikosa.Universal
         {
             var _infColl = new Collection<TypeListItem>();
             foreach (var _inf in influences)
+            {
                 _infColl.Add(_inf);
+            }
+
             return new DevotionalDefinition
             {
                 Alignment = align,

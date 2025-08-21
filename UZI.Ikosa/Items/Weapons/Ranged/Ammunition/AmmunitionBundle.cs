@@ -29,7 +29,7 @@ namespace Uzi.Ikosa.Items.Weapons.Ranged
             : base(name, naturalSize)
         {
             _CCtrl = new ChangeController<int>(this, 0);
-            _AmmoSets = new Dictionary<Guid, AmmoSet<AmmoType, ProjectileWeapon>>();
+            _AmmoSets = [];
         }
         #endregion
 
@@ -229,7 +229,9 @@ namespace Uzi.Ikosa.Items.Weapons.Ranged
             {
                 var _extract = Extract(_ammo);
                 if (_extract != null)
+                {
                     return (_extract.Ammunition, _extract.Count);
+                }
             }
             return (null, 0);
         }

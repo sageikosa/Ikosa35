@@ -19,7 +19,7 @@ namespace Uzi.Ikosa.Items
         public KeyRing(string name)
             : base(name, Size.Miniature)
         {
-            _Keys = new List<IKeyRingMountable>();
+            _Keys = [];
             _KeyCtrl = new ChangeController<ICoreObject>(this, null);
             ItemMaterial = MetalMaterial.CommonStatic;
             BaseWeight = 1d / 16d;
@@ -142,7 +142,10 @@ namespace Uzi.Ikosa.Items
 
                 // untrack weight
                 if (ContentsAddToLoad)
+                {
                     item.RemoveChangeMonitor(this);
+                }
+
                 Weight = 0d;
 
                 _KeyCtrl.DoValueChanged(item, @"Remove");
@@ -159,11 +162,17 @@ namespace Uzi.Ikosa.Items
         public IEnumerable<ICoreObject> AllLoadedObjects()
         {
             foreach (var _key in _Keys)
+            {
                 yield return _key;
+            }
+
             foreach (var _loaded in from _contain in _Keys.OfType<ILoadedObjects>()
                                     from _iC in _contain.AllLoadedObjects()
                                     select _iC)
+            {
                 yield return _loaded;
+            }
+
             yield break;
         }
         #endregion
@@ -180,10 +189,14 @@ namespace Uzi.Ikosa.Items
                 if ((budget as LocalActionBudget)?.CanPerformTotal ?? false)
                 {
                     if (StoreObject.CanStore(this, _critter))
+                    {
                         yield return new StoreObject(this, @"201") { TimeCost = new ActionTime(Contracts.TimeType.Total) };
+                    }
 
                     if (RetrieveObject.CanRetrieve(this, _critter))
+                    {
                         yield return new LoadObject(this, @"211") { TimeCost = new ActionTime(Contracts.TimeType.Total) };
+                    }
 
                     if ((Count > 0) && RetrieveObject.CanRetrieve(this, _critter))
                     {
@@ -196,7 +209,9 @@ namespace Uzi.Ikosa.Items
             foreach (var _key in _Keys.OfType<KeyItem>())
             {
                 foreach (var _act in _key.GetActions(budget))
+                {
                     yield return _act;
+                }
             }
             yield break;
         }

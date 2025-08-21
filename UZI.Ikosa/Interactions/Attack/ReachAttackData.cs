@@ -41,7 +41,9 @@ namespace Uzi.Ikosa.Interactions
             if (Attacker is Creature _critter)
             {
                 foreach (var _delta in _critter.RangedDeltable.QualifiedDeltas(qualify, this, @"Reach"))
+                {
                     yield return _delta;
+                }
             }
             else
             {

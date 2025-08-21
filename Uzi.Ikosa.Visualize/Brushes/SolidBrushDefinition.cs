@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Windows.Media;
-using System.Windows.Media.Media3D;
 
 namespace Uzi.Visualize
 {
@@ -109,9 +105,15 @@ namespace Uzi.Visualize
                     {
                         var _brush = new SolidColorBrush(Mono());
                         if (!IsAlphaChannel)
+                        {
                             _brush.Opacity = Opacity;
+                        }
+
                         if (_brush.CanFreeze)
+                        {
                             _brush.Freeze();
+                        }
+
                         return _brush;
                     }
 
@@ -119,9 +121,15 @@ namespace Uzi.Visualize
                     {
                         var _brush = new SolidColorBrush(Mono(Colors.Magenta));
                         if (!IsAlphaChannel)
+                        {
                             _brush.Opacity = Opacity;
+                        }
+
                         if (_brush.CanFreeze)
+                        {
                             _brush.Freeze();
+                        }
+
                         return _brush;
                     }
 
@@ -131,9 +139,15 @@ namespace Uzi.Visualize
                             ? new SolidColorBrush(Dim(0.875f))
                             : new SolidColorBrush(Dim(0.5f));
                         if (!IsAlphaChannel)
+                        {
                             _brush.Opacity = 1d - (Opacity * 0.75d);
+                        }
+
                         if (_brush.CanFreeze)
+                        {
                             _brush.Freeze();
+                        }
+
                         return _brush;
                     }
 
@@ -143,9 +157,15 @@ namespace Uzi.Visualize
                             ? new SolidColorBrush(Dim(0.75f))
                             : new SolidColorBrush(Dim(0.2f));
                         if (!IsAlphaChannel)
+                        {
                             _brush.Opacity = 1d - (Opacity * 0.5d);
+                        }
+
                         if (_brush.CanFreeze)
+                        {
                             _brush.Freeze();
+                        }
+
                         return _brush;
                     }
 
@@ -155,9 +175,15 @@ namespace Uzi.Visualize
                             ? new SolidColorBrush(Dim(0.5f))
                             : new SolidColorBrush(Dim(0.1f));
                         if (!IsAlphaChannel)
+                        {
                             _brush.Opacity = 1d - (Opacity * 0.25d);
+                        }
+
                         if (_brush.CanFreeze)
+                        {
                             _brush.Freeze();
+                        }
+
                         return _brush;
                     }
 
@@ -170,7 +196,10 @@ namespace Uzi.Visualize
                             _brush.Opacity = Opacity;
                         }
                         if (_brush.CanFreeze)
+                        {
                             _brush.Freeze();
+                        }
+
                         return _brush;
                     }
 
@@ -183,9 +212,15 @@ namespace Uzi.Visualize
                     {
                         var _brush = new SolidColorBrush(Average(1.35f));
                         if (!IsAlphaChannel)
+                        {
                             _brush.Opacity = Opacity;
+                        }
+
                         if (_brush.CanFreeze)
+                        {
                             _brush.Freeze();
+                        }
+
                         return _brush;
                     }
 
@@ -193,15 +228,24 @@ namespace Uzi.Visualize
                     {
                         var _brush = new SolidColorBrush(Dim(1.3f));
                         if (!IsAlphaChannel)
+                        {
                             _brush.Opacity = Opacity;
+                        }
+
                         if (_brush.CanFreeze)
+                        {
                             _brush.Freeze();
+                        }
+
                         return _brush;
                     }
             }
             var _ret = new SolidColorBrush(Color);
             if (!IsAlphaChannel)
+            {
                 _ret.Opacity = Opacity;
+            }
+
             _ret.Freeze();
             return _ret;
         }

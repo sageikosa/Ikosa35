@@ -32,7 +32,9 @@ namespace Uzi.Ikosa.Movement
         {
             if ((workSet.InteractData is ObjectGrabbedCostData _ogcd)
                 && _Movements.Contains(workSet.Source.GetType()))
+            {
                 workSet.Feedback.Add(new ValueFeedback<double>(this, Factor));
+            }
         }
 
         public IEnumerable<Type> GetInteractionTypes()

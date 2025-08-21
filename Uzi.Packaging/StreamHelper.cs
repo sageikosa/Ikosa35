@@ -16,7 +16,10 @@ namespace Uzi.Packaging
             {
                 int read = input.Read(buffer, 0, buffer.Length);
                 if (read <= 0)
+                {
                     break;
+                }
+
                 output.Write(buffer, 0, read);
             }
             input.Position = TempPos;

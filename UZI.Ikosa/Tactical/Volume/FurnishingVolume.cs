@@ -101,9 +101,14 @@ namespace Uzi.Ikosa.Tactical
                     if (highSnap)
                     {
                         if (currExt < newExt)
+                        {
                             return ord - 1;
+                        }
+
                         if (currExt > newExt)
+                        {
                             return ord + 1;
+                        }
                     }
                     return ord;
                 };
@@ -154,17 +159,28 @@ namespace Uzi.Ikosa.Tactical
                         // adjust position of cubic if offset away from high faces
                         var _adjFaces = AnchorFaceList.None;
                         if (Furnishing.Orientation.ZHighSnap && (_offSize.ZHeight != _size.ZHeight))
+                        {
                             _adjFaces = _adjFaces.Add(AnchorFace.ZLow);
+                        }
+
                         if (Furnishing.Orientation.YHighSnap && (_offSize.YLength != _size.YLength))
+                        {
                             _adjFaces = _adjFaces.Add(AnchorFace.YLow);
+                        }
+
                         if (Furnishing.Orientation.XHighSnap && (_offSize.XLength != _size.XLength))
+                        {
                             _adjFaces = _adjFaces.Add(AnchorFace.XLow);
+                        }
+
                         _candidate = new Cubic(_cube.Add(_adjFaces), _offSize);
                     }
 
                     // check occupation of fixed up candidate
                     if (!CanOccupy(_map, _candidate, _planar))
+                    {
                         return (null, default);
+                    }
 
                     // offsets from the far side...
                     var _zReverse = (Furnishing.Orientation.ZHighSnap)
@@ -184,7 +200,9 @@ namespace Uzi.Ikosa.Tactical
                     if (((_offExtents.Z + _zReverse) > (_candidate.ZHeight * 5d))
                         || ((_offExtents.Y + _yReverse) > (_candidate.YLength * 5d))
                         || ((_offExtents.X + _xReverse) > (_candidate.XLength * 5d)))
+                    {
                         return (null, default);
+                    }
 
                     // _candidate*5 - (_reverse + Abs(_offset))
                     return (_candidate, new Vector3D(_xOffset, _yOffset, _zOffset));

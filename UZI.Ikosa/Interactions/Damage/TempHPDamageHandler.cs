@@ -51,7 +51,10 @@ namespace Uzi.Ikosa.Interactions
         {
             // put temp HP before regular HP when applying damage
             if (typeof(CreatureNonLivingDamageHandler).IsAssignableFrom(existingHandler.GetType()))
+            {
                 return true;
+            }
+
             return false;
         }
         #endregion

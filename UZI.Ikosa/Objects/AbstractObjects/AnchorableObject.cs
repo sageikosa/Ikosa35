@@ -15,7 +15,7 @@ namespace Uzi.Ikosa.Objects
             : base(name, material)
         {
             StructurePoints = MaxStructurePoints;
-            _Connected = new List<ICoreObject>();
+            _Connected = [];
             _COCtrl = new ChangeController<ICoreObject>(this, null);
         }
 
@@ -35,9 +35,13 @@ namespace Uzi.Ikosa.Objects
             set
             {
                 if (_StrucPts <= _MaxStrucPts)
+                {
                     _StrucPts = value;
+                }
                 else
+                {
                     _StrucPts = _MaxStrucPts;
+                }
 
                 DoPropertyChanged(nameof(StructurePoints));
 
@@ -147,7 +151,9 @@ namespace Uzi.Ikosa.Objects
         public virtual void ValueChanged(object sender, ChangeValueEventArgs<Physical> args)
         {
             if (args.NewValue.PropertyType == Physical.PhysicalType.Weight)
+            {
                 RecalcWeight();
+            }
         }
 
         // etc ...
@@ -161,7 +167,9 @@ namespace Uzi.Ikosa.Objects
             {
                 // provide any overrides
                 foreach (var _iKey in IconKeyAdjunct.GetIconKeys(this))
+                {
                     yield return _iKey;
+                }
 
                 // material class combination
                 yield return $@"{ObjectMaterial?.Name}_{ClassIconKey}";

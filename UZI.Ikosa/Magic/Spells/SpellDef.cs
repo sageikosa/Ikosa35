@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using Uzi.Core;
@@ -79,7 +79,10 @@ namespace Uzi.Ikosa.Magic
 
             // spell effect
             if (durableModes.Length == 0)
+            {
                 durableModes = _durable.DurableSubModes.FirstOrDefault().ToEnumerable().ToArray();
+            }
+
             var _effects = (from _subMode in durableModes
                             let _dr = _durable.DurationRule(_subMode)
                             select _getMagicEffect(_dr, _subMode)).ToArray();
@@ -142,7 +145,10 @@ namespace Uzi.Ikosa.Magic
 
             // spell effect
             if (durableModes.Length == 0)
+            {
                 durableModes = _durable.DurableSubModes.FirstOrDefault().ToEnumerable().ToArray();
+            }
+
             var _effects = (from _subMode in durableModes
                             let _dr = _durable.DurationRule(_subMode)
                             select _getMagicEffect(_dr, _subMode)).ToArray();
@@ -191,7 +197,10 @@ namespace Uzi.Ikosa.Magic
 
             // spell effect
             if (durableModes.Length == 0)
+            {
                 durableModes = _durable.DurableSubModes.FirstOrDefault().ToEnumerable().ToArray();
+            }
+
             var _effects = (from _subMode in durableModes
                             let _dr = _durable.DurationRule(_subMode)
                             select _getMagicEffect(_dr, _subMode)).ToArray();
@@ -268,7 +277,9 @@ namespace Uzi.Ikosa.Magic
                     _activation.PowerUse, _activation.TargetingProcess.Targets,
                     _target, true, durableModes);
                 if ((_step != null) && applyAllow(_step))
+                {
                     yield return _step;
+                }
             }
             yield break;
         }
@@ -318,7 +329,9 @@ namespace Uzi.Ikosa.Magic
 
                 // increase sequence
                 if (sequential)
+                {
                     _sequence++;
+                }
             }
         }
         #endregion
@@ -790,11 +803,31 @@ namespace Uzi.Ikosa.Magic
 
         protected IEnumerable<SpellComponent> YieldComponents(bool verbal, bool somatic, bool material, bool focus, bool divineFocus)
         {
-            if (verbal) yield return new VerbalComponent();
-            if (somatic) yield return new SomaticComponent();
-            if (material) yield return new MaterialComponent();
-            if (focus) yield return new FocusComponent();
-            if (divineFocus) yield return new DivineFocusComponent();
+            if (verbal)
+            {
+                yield return new VerbalComponent();
+            }
+
+            if (somatic)
+            {
+                yield return new SomaticComponent();
+            }
+
+            if (material)
+            {
+                yield return new MaterialComponent();
+            }
+
+            if (focus)
+            {
+                yield return new FocusComponent();
+            }
+
+            if (divineFocus)
+            {
+                yield return new DivineFocusComponent();
+            }
+
             yield break;
         }
     }

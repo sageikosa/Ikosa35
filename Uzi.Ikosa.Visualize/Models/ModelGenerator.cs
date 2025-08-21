@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Windows.Media.Media3D;
 using System.Reflection;
 using System.Windows;
 using System.Windows.Media;
 using HelixToolkit.Wpf;
-using System.Diagnostics;
 using Uzi.Visualize.Contracts.Tactical;
 
 namespace Uzi.Visualize
@@ -92,7 +90,10 @@ namespace Uzi.Visualize
                     break;
             }
             if (_transform != null)
+            {
                 _transform.Freeze();
+            }
+
             return _transform;
         }
         #endregion
@@ -158,18 +159,25 @@ namespace Uzi.Visualize
 
             // 5: custom (whee!!!)
             if (transform.CustomTransforms.Children.Count > 0)
+            {
                 _transGroup.Children.Add(transform.CustomTransforms);
+            }
 
             // 6: global position (must sit somewhere in the "world")
             if (transform.IsAdjustingPosition)
+            {
                 // since the model is adjusting its own position, position from center
                 expressedLocation = new TranslateTransform3D(transform.X * 5d, transform.Y * 5d, transform.Z * 5d);
+            }
             else
+            {
                 // ...otherwise, position from base of model
                 expressedLocation = new TranslateTransform3D(
                     ((double)transform.X + ((double)transform.XLength / 2d)) * 5d,
                     ((double)transform.Y + ((double)transform.YLength / 2d)) * 5d,
                     transform.IsFullOrigin ? ((double)transform.Z + ((double)transform.ZHeight / 2d)) * 5d : transform.Z * 5d);
+            }
+
             _transGroup.Children.Add(expressedLocation);
 
             // 7: base face binding (no bias for ZLow as "down")

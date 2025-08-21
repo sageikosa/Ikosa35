@@ -38,7 +38,10 @@ namespace Uzi.Ikosa.Workshop
 
                 // Masterwork and Enhancement
                 if (_weapon.IsMasterwork())
+                {
                     chkMasterwork.IsChecked = true;
+                }
+
                 RefreshEnhance(_weapon.Head[0], cboEnhancement0);
                 RefreshEnhance(_weapon.Head[1], cboEnhancement1);
 
@@ -95,12 +98,16 @@ namespace Uzi.Ikosa.Workshop
             if (head.IsEnhanced())
             {
                 if (combo.SelectedIndex != head.ListedEnhancement)
+                {
                     combo.SelectedIndex = head.ListedEnhancement;
+                }
             }
             else
             {
                 if (combo.SelectedIndex != 0)
+                {
                     combo.SelectedIndex = 0;
+                }
             }
             DoubleMeleeWeapon.DoAugmentationsChanged();
         }
@@ -164,7 +171,9 @@ namespace Uzi.Ikosa.Workshop
 
                             // remove all old ones
                             foreach (var _a in _exist)
+                            {
                                 _head.RemoveAdjunct(_a);
+                            }
                         }
                     }
                     else
@@ -186,7 +195,10 @@ namespace Uzi.Ikosa.Workshop
 
             // remove
             foreach (var _a in _list)
+            {
                 _a.Anchor.RemoveAdjunct(_a);
+            }
+
             DoubleMeleeWeapon.DoAugmentationsChanged();
         }
 
@@ -238,7 +250,9 @@ namespace Uzi.Ikosa.Workshop
                     .Any(_a => (_a.Augmentation.GetType().Equals(_aType))))
                 {
                     if (_augment.CanAnchor(_head))
+                    {
                         e.CanExecute = true;
+                    }
                 }
             }
             e.Handled = true;
@@ -265,7 +279,9 @@ namespace Uzi.Ikosa.Workshop
                 {
                     var _adjunct = _list.SelectedItem as Adjunct;
                     if (_adjunct.CanUnAnchor())
+                    {
                         e.CanExecute = true;
+                    }
                 }
                 e.Handled = true;
             }

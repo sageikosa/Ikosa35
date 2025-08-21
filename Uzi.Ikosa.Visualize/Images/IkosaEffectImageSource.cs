@@ -1,15 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Windows.Media.Imaging;
 using System.Collections.ObjectModel;
 using System.Windows.Media;
-using System.Diagnostics;
 using System.Windows;
-using System.Windows.Media.Effects;
-using System.Windows.Controls;
-using Uzi.Visualize;
 
 namespace Uzi.Visualize
 {
@@ -75,7 +69,7 @@ namespace Uzi.Visualize
             set
             {
                 // prevent re-entrant fallback
-                Collection<IResolveBitmapImage> _track = new Collection<IResolveBitmapImage>();
+                Collection<IResolveBitmapImage> _track = [];
                 _ImageKey = value;
                 _Image = null;
                 foreach (var _res in IkosaImageSource.Resolvers.ToList())

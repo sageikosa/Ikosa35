@@ -27,9 +27,9 @@ namespace Uzi.Ikosa.Guildsmanship
         /// <summary>Defined info keys</summary>
         private readonly Dictionary<Guid, InfoKey> _InfoKeys;
 
-        private readonly Dictionary<Guid, string> _NamedKeys = new();
+        private readonly Dictionary<Guid, string> _NamedKeys = [];
 
-        private Dictionary<Guid, ItemElement> _ItemElements = new();
+        private Dictionary<Guid, ItemElement> _ItemElements = [];
 
         private Dictionary<Guid, TeamGroupSummary> _Teams;
         #endregion
@@ -75,11 +75,11 @@ namespace Uzi.Ikosa.Guildsmanship
             _ModuleID = moduleID;
             _Description = description;
 
-            _Variables = new Dictionary<Guid, Variable>();
-            _InfoKeys = new Dictionary<Guid, InfoKey>();
-            _ItemElements = new Dictionary<Guid, ItemElement>();
-            _NamedKeys = new Dictionary<Guid, string>();
-            _Teams = new Dictionary<Guid, TeamGroupSummary>();
+            _Variables = [];
+            _InfoKeys = [];
+            _ItemElements = [];
+            _NamedKeys = [];
+            _Teams = [];
 
             _VariableFolder = new PartsFolder(this, @"Variables", _Variables.Values.OfType<Variable>(), typeof(Variable)) { HideTree = true };
             _InfoKeyFolder = new PartsFolder(this, @"Info Keys", _InfoKeys.Values.OfType<InfoKey>(), typeof(InfoKey)) { HideTree = true };
@@ -115,14 +115,14 @@ namespace Uzi.Ikosa.Guildsmanship
             _Visuals = null;
 
             // fixup late-add to schema
-            _ItemElements ??= new Dictionary<Guid, ItemElement>();
+            _ItemElements ??= [];
 
             // establish
             _VariableFolder = new PartsFolder(this, @"Variables", _Variables.Values.OfType<Variable>(), typeof(Variable)) { HideTree = true };
             _InfoKeyFolder = new PartsFolder(this, @"Info Keys", _InfoKeys.Values.OfType<InfoKey>(), typeof(InfoKey)) { HideTree = true };
             _ItemsFolder = new PartsFolder(this, @"Items", _ItemElements.Values.OfType<ItemElement>(), typeof(ItemElement)) { HideTree = true };
             _NamedKeysPart = new NamedKeysPart(this);
-            _Teams ??= new Dictionary<Guid, TeamGroupSummary>();
+            _Teams ??= [];
             _TeamGroupFolder = new PartsFolder(this, @"Team Groups", Teams.Values.OfType<TeamGroupSummary>(), typeof(TeamGroupSummary)) { HideTree = true };
         }
 
@@ -140,7 +140,7 @@ namespace Uzi.Ikosa.Guildsmanship
             if (CurrentUse == ModuleUse.Referenced)
             {
                 // parts
-                var _parts = _ModulePart?.GetRelationships().RelatedBaseParts(this).ToList() ?? new List<IBasePart>();
+                var _parts = _ModulePart?.GetRelationships().RelatedBaseParts(this).ToList() ?? [];
 
                 // after this, CurrentUse will be Open
                 _Resources
@@ -183,7 +183,10 @@ namespace Uzi.Ikosa.Guildsmanship
             set
             {
                 if (value == null)
+                {
                     return;
+                }
+
                 if (!(_NameManager?.CanUseName(value, typeof(Module)) ?? false))
                 {
                     return;
@@ -292,12 +295,16 @@ namespace Uzi.Ikosa.Guildsmanship
                 // module resources
                 var _modResources = _parts.FirstOrDefault(_p => _p.RelationshipType == ModuleResources.ModuleResourcesRelation);
                 if (_modResources != null)
+                {
                     _Resources.RefreshPart(_modResources.Part);
+                }
 
                 // visual resources
                 var _visResources = _parts.FirstOrDefault(_p => _p.RelationshipType == VisualResources.VisualResourcesRelation);
                 if (_visResources != null)
+                {
                     _Visuals.RefreshPart(_visResources.Part);
+                }
             }
         }
         #endregion

@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using Uzi.Core;
@@ -133,7 +133,9 @@ namespace Uzi.Ikosa.Items.Shields
                                 {
                                     // and there are no other empty slots besides this hand
                                     if (Buckler.CreaturePossessor.Body.ItemSlots.GetFreeHand(Buckler.FreeHand) == null)
+                                    {
                                         yield return _Delta;
+                                    }
                                 }
                             }
                         }

@@ -39,10 +39,18 @@ namespace Uzi.Ikosa.Workshop
             var _param = ParamData;
             var _entire = IsFillEntire;
             for (var _zc = 0; _zc < _Room.ZHeight; _zc++)
+            {
                 for (var _yc = 0; _yc < _Room.YLength; _yc++)
+                {
                     for (var _xc = 0; _xc < _Room.XLength; _xc++)
+                    {
                         if (IsFillEntire || (_Room[_zc, _yc, _xc].CellSpace == null))
+                        {
                             _Room.SetCellStructure(_zc, _yc, _xc, new CellStructure(_Space,_param));
+                        }
+                    }
+                }
+            }
 
             // one relink when done instead of inside the loop
             _Room.ReLink(true);

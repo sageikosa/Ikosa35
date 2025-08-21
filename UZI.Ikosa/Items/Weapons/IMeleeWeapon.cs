@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using Uzi.Ikosa.Tactical;
@@ -70,14 +70,19 @@ namespace Uzi.Ikosa.Items.Weapons
             var _critter = self.Possessor as Creature;
             var _loc = Locator.FindFirstLocator(_critter);
             if (_loc == null)
+            {
                 return null;
+            }
 
             var _expectEven = _loc.LocationAimMode == LocationAimMode.Intersection;
 
             // creature natural reach (at least 0)
             var _critterReach = _critter.Body.ReachSquares.EffectiveValue;
             if (_critterReach < 0)
+            {
                 _critterReach = 0;
+            }
+
             var _maxReach = _critterReach;
 
             // natural reach geometry
@@ -95,9 +100,13 @@ namespace Uzi.Ikosa.Items.Weapons
             {
                 // new max reach (reach weapon at least 1, otherwise add max reach again, then extra reach)
                 if (_maxReach == 0)
+                {
                     _maxReach = 1; // NOTE: extra reach does not apply if natural reach is 0
+                }
                 else
+                {
                     _maxReach += _maxReach + _reach.ExtraReach;
+                }
 
                 // weapon reach geometry (critter size + maxreach twice over)
                 var _reachSize = new GeometricSize(

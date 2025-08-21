@@ -82,7 +82,10 @@ namespace Uzi.Ikosa.Magic.Spells
             {
                 var _bonus = 2 + (_spellEffect.MagicPowerActionSource.CasterLevel / 6);
                 if (_bonus > 5)
+                {
                     _bonus = 5;
+                }
+
                 var _deflect = new Delta(_bonus, typeof(Uzi.Ikosa.Deltas.Deflection));
                 if (target is Creature _critter)
                 {

@@ -10,7 +10,7 @@ namespace Uzi.Ikosa.Tactical
     {
         public GripRules()
         {
-            _Rules = new List<GripRule>();
+            _Rules = [];
         }
 
         private List<GripRule> _Rules;

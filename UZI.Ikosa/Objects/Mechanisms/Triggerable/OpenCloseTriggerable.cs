@@ -78,7 +78,10 @@ namespace Uzi.Ikosa.Objects
             get
             {
                 if (OpenableTarget is IActivatable _act)
+                {
                     yield return _act;
+                }
+
                 yield break;
             }
         }
@@ -155,7 +158,10 @@ namespace Uzi.Ikosa.Objects
 
                 case PostTriggerState.Disable:
                     if (!this.HasAdjunct<DisabledObject>())
+                    {
                         AddAdjunct(new DisabledObject());
+                    }
+
                     break;
 
                 case PostTriggerState.DeActivate:

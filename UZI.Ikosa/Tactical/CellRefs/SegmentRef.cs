@@ -97,11 +97,20 @@ namespace Uzi.Ikosa.Tactical
             var _nx = X;
             var _current = this.Point3D();
             if (pt.Z > _current.Z + 2.5)
+            {
                 _nz++;
+            }
+
             if (pt.Y > _current.Y + 2.5)
+            {
                 _ny++;
+            }
+
             if (pt.X > _current.X + 2.5)
+            {
                 _nx++;
+            }
+
             return new Intersection(_nz, _ny, _nx);
         }
         #endregion
@@ -118,12 +127,36 @@ namespace Uzi.Ikosa.Tactical
             get
             {
                 var _faces = AnchorFaceList.None;
-                if (EntryPoint.X.CloseEnough(X * 5d, 0.01d)) _faces = _faces.Add(AnchorFace.XLow);
-                if (EntryPoint.Y.CloseEnough(Y * 5d, 0.01d)) _faces = _faces.Add(AnchorFace.YLow);
-                if (EntryPoint.Z.CloseEnough(Z * 5d, 0.01d)) _faces = _faces.Add(AnchorFace.ZLow);
-                if (EntryPoint.X.CloseEnough((X + 1) * 5d, 0.01d)) _faces = _faces.Add(AnchorFace.XHigh);
-                if (EntryPoint.Y.CloseEnough((Y + 1) * 5d, 0.01d)) _faces = _faces.Add(AnchorFace.YHigh);
-                if (EntryPoint.Z.CloseEnough((Z + 1) * 5d, 0.01d)) _faces = _faces.Add(AnchorFace.ZHigh);
+                if (EntryPoint.X.CloseEnough(X * 5d, 0.01d))
+                {
+                    _faces = _faces.Add(AnchorFace.XLow);
+                }
+
+                if (EntryPoint.Y.CloseEnough(Y * 5d, 0.01d))
+                {
+                    _faces = _faces.Add(AnchorFace.YLow);
+                }
+
+                if (EntryPoint.Z.CloseEnough(Z * 5d, 0.01d))
+                {
+                    _faces = _faces.Add(AnchorFace.ZLow);
+                }
+
+                if (EntryPoint.X.CloseEnough((X + 1) * 5d, 0.01d))
+                {
+                    _faces = _faces.Add(AnchorFace.XHigh);
+                }
+
+                if (EntryPoint.Y.CloseEnough((Y + 1) * 5d, 0.01d))
+                {
+                    _faces = _faces.Add(AnchorFace.YHigh);
+                }
+
+                if (EntryPoint.Z.CloseEnough((Z + 1) * 5d, 0.01d))
+                {
+                    _faces = _faces.Add(AnchorFace.ZHigh);
+                }
+
                 return _faces;
             }
         }
@@ -135,12 +168,36 @@ namespace Uzi.Ikosa.Tactical
             get
             {
                 var _faces = AnchorFaceList.None;
-                if (ExitPoint.X.CloseEnough(X * 5d, 0.01d)) _faces = _faces.Add(AnchorFace.XLow);
-                if (ExitPoint.Y.CloseEnough(Y * 5d, 0.01d)) _faces = _faces.Add(AnchorFace.YLow);
-                if (ExitPoint.Z.CloseEnough(Z * 5d, 0.01d)) _faces = _faces.Add(AnchorFace.ZLow);
-                if (ExitPoint.X.CloseEnough((X + 1) * 5d, 0.01d)) _faces = _faces.Add(AnchorFace.XHigh);
-                if (ExitPoint.Y.CloseEnough((Y + 1) * 5d, 0.01d)) _faces = _faces.Add(AnchorFace.YHigh);
-                if (ExitPoint.Z.CloseEnough((Z + 1) * 5d, 0.01d)) _faces = _faces.Add(AnchorFace.ZHigh);
+                if (ExitPoint.X.CloseEnough(X * 5d, 0.01d))
+                {
+                    _faces = _faces.Add(AnchorFace.XLow);
+                }
+
+                if (ExitPoint.Y.CloseEnough(Y * 5d, 0.01d))
+                {
+                    _faces = _faces.Add(AnchorFace.YLow);
+                }
+
+                if (ExitPoint.Z.CloseEnough(Z * 5d, 0.01d))
+                {
+                    _faces = _faces.Add(AnchorFace.ZLow);
+                }
+
+                if (ExitPoint.X.CloseEnough((X + 1) * 5d, 0.01d))
+                {
+                    _faces = _faces.Add(AnchorFace.XHigh);
+                }
+
+                if (ExitPoint.Y.CloseEnough((Y + 1) * 5d, 0.01d))
+                {
+                    _faces = _faces.Add(AnchorFace.YHigh);
+                }
+
+                if (ExitPoint.Z.CloseEnough((Z + 1) * 5d, 0.01d))
+                {
+                    _faces = _faces.Add(AnchorFace.ZHigh);
+                }
+
                 return _faces;
             }
         }

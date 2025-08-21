@@ -99,7 +99,9 @@ namespace Uzi.Ikosa.Objects
                     {
                         // if successfully removed, open drawer
                         if (workSet.Feedback.OfType<ValueFeedback<bool>>().Any(_fb => _fb.Value))
+                        {
                             OpenState = this.GetOpenStatus(null, this, 1);
+                        }
                     }
                     break;
 
@@ -108,7 +110,9 @@ namespace Uzi.Ikosa.Objects
                     {
                         // if successfully added, close drawer
                         if (workSet.Feedback.OfType<ValueFeedback<bool>>().Any(_fb => _fb.Value))
+                        {
                             OpenState = this.GetOpenStatus(null, this, 0);
+                        }
                     }
                     break;
             }

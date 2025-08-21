@@ -36,15 +36,19 @@ namespace Uzi.Ikosa.Items
             _Extra = extra;
             _Mode = mode;
             AddAdjunct(new MagicSourceAuraAdjunct(source));
-            _Fails = new Collection<Guid>();
+            _Fails = [];
             _OptionsSet = options;
             var _timeFactor = (source.SpellDef.ActionTime > new ActionTime(TimeType.Regular))
                 ? 5m
                 : 1m;
             if (source.SlotLevel == 0)
+            {
                 Price.BaseItemExtraPrice = 25 * source.CasterLevel * _timeFactor;
+            }
             else
+            {
                 Price.BaseItemExtraPrice = 50 * source.SlotLevel * source.CasterLevel * _timeFactor;
+            }
 
             // NOTE: these stats are for the vial holding the potion
             ItemMaterial = GlassMaterial.Static;
@@ -77,7 +81,9 @@ namespace Uzi.Ikosa.Items
             {
                 // all adjunct overrides
                 foreach (var _ik in base.IconKeys.Where(_ik => _ik != ClassIconKey))
+                {
                     yield return _ik;
+                }
 
                 // standard class Icon
                 yield return ClassIconKey;
@@ -131,13 +137,17 @@ namespace Uzi.Ikosa.Items
         public void FailCheck(Guid guid)
         {
             if (!_Fails.Contains(guid))
+            {
                 _Fails.Add(guid);
+            }
         }
 
         public void ClearFailCheck(Guid guid)
         {
             if (_Fails.Contains(guid))
+            {
                 _Fails.Remove(guid);
+            }
         }
 
         public bool HasFailedCheck(Guid guid)
@@ -162,7 +172,10 @@ namespace Uzi.Ikosa.Items
                 yield return new ConsumeSpellItem(this, SpellSource, SpellMode, @"101");
             }
             if (_budget.CanPerformTotal)
+            {
                 yield return new FeedSpellItem(this, SpellSource, SpellMode, @"201");
+            }
+
             yield break;
         }
 
@@ -178,7 +191,10 @@ namespace Uzi.Ikosa.Items
             {
                 var _sourceInfo = SpellSource.ToSpellSourceInfo();
                 if (!string.IsNullOrWhiteSpace(_Extra))
+                {
                     _sourceInfo.Message = $@"{_sourceInfo.Message} ({Extra})";
+                }
+
                 _objInfo.AdjunctInfos =
                     _objInfo.AdjunctInfos.Union(_sourceInfo.ToEnumerable()).ToArray();
             }

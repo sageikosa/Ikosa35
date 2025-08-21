@@ -49,9 +49,13 @@ namespace Uzi.Ikosa
         private void SyncSize()
         {
             if (_SizeOffset.EffectiveValue == 0)
+            {
                 Size = _NaturalSize;
+            }
             else
+            {
                 Size = _NaturalSize.OffsetSize(_SizeOffset.EffectiveValue);
+            }
         }
 
         /// <summary>Effective current expressed size (same as natural size of SizeOffset=0)</summary>
@@ -99,7 +103,9 @@ namespace Uzi.Ikosa
         protected void DoPropertyChanged(string propName)
         {
             if (PropertyChanged != null)
+            {
                 PropertyChanged(this, new PropertyChangedEventArgs(propName));
+            }
         }
 
         [field:NonSerialized, JsonIgnore]

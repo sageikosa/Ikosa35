@@ -25,7 +25,7 @@ namespace Uzi.Ikosa.Fidelity
         {
             _PowerLevel = new DeltableQualifiedDelta(0, @"Drive Undead Power Level", this);
             _DriveBattery = new FullResetBattery(this, 3, Day.UnitFactor, 0);
-            _Sources = new Collection<IPowerClass>();
+            _Sources = [];
             _IsPositive = positive;
         }
         #endregion
@@ -71,7 +71,9 @@ namespace Uzi.Ikosa.Fidelity
 
                 // empty? eject!
                 if (_drive._Sources.Count == 0)
+                {
                     _drive.Eject();
+                }
             }
         }
         #endregion

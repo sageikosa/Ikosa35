@@ -31,8 +31,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		Performance12.psess = Performance12.psess
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ikosa.Packaging", "Ikosa.Packaging\Ikosa.Packaging.csproj", "{6E1E9988-6917-4AF4-9B58-6F66FD243EDD}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -143,18 +141,6 @@ Global
 		{7DDE27BD-1C99-4054-AF54-321BB387AEF1}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{7DDE27BD-1C99-4054-AF54-321BB387AEF1}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{7DDE27BD-1C99-4054-AF54-321BB387AEF1}.Release|x86.ActiveCfg = Release|Any CPU
-		{6E1E9988-6917-4AF4-9B58-6F66FD243EDD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6E1E9988-6917-4AF4-9B58-6F66FD243EDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6E1E9988-6917-4AF4-9B58-6F66FD243EDD}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{6E1E9988-6917-4AF4-9B58-6F66FD243EDD}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{6E1E9988-6917-4AF4-9B58-6F66FD243EDD}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{6E1E9988-6917-4AF4-9B58-6F66FD243EDD}.Debug|x86.Build.0 = Debug|Any CPU
-		{6E1E9988-6917-4AF4-9B58-6F66FD243EDD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6E1E9988-6917-4AF4-9B58-6F66FD243EDD}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6E1E9988-6917-4AF4-9B58-6F66FD243EDD}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{6E1E9988-6917-4AF4-9B58-6F66FD243EDD}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{6E1E9988-6917-4AF4-9B58-6F66FD243EDD}.Release|x86.ActiveCfg = Release|Any CPU
-		{6E1E9988-6917-4AF4-9B58-6F66FD243EDD}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

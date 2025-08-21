@@ -13,7 +13,7 @@ namespace Uzi.Ikosa.Actions
         public PrepareSpellSlotsTarget(string key, IInteract target) 
             : base(key, target)
         {
-            _Sets = new List<SpellSlotSetInfo>();
+            _Sets = [];
         }
 
         private List<SpellSlotSetInfo> _Sets;

@@ -48,7 +48,9 @@ namespace Uzi.Ikosa.Tactical
             foreach (var _nugget in GetLists(locator))
             {
                 if (!_nugget.Value.Contains(locator))
+                {
                     _nugget.Value.Add(locator);
+                }
             }
         }
 
@@ -61,14 +63,17 @@ namespace Uzi.Ikosa.Tactical
                 _cell.Value.Remove(locator);
                 if (_cell.Value.Count == 0)
                 {
-                    if (_empty == null)
-                        _empty = new List<int>();
+                    _empty ??= [];
                     _empty.Add(_cell.Key);
                 }
             }
             if (_empty?.Any() ?? false)
+            {
                 foreach (var _e in _empty)
+                {
                     _Cells.Remove(_e);
+                }
+            }
         }
 
         public IEnumerable<Locator> GetLocators(ICellLocation location, PlanarPresence locPlanes)

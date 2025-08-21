@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace Uzi.Visualize.Packaging
 {
@@ -9,7 +8,7 @@ namespace Uzi.Visualize.Packaging
     {
         public ModelCacheSelector(List<VisualEffect> effects, Dictionary<string, int> externalValues)
         {
-            _Effects = effects ?? new List<VisualEffect>();
+            _Effects = effects ?? [];
             _ExternalValues = externalValues;
         }
 
@@ -33,7 +32,9 @@ namespace Uzi.Visualize.Packaging
                     {
                         if (!other.ExternalValues.ContainsKey(_kvp.Key)
                             || (other.ExternalValues[_kvp.Key] != _kvp.Value))
+                        {
                             return false;
+                        }
                     }
                     return true;
                 }

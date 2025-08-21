@@ -174,7 +174,10 @@ namespace Uzi.Ikosa.Tactical
                         // good slice
                         _slices.Add(_current);
                         if (Math.Abs(_current.SliceOffset) > Math.Abs(_rankingSliceOffset))
+                        {
                             _rankingSliceOffset = _current.SliceOffset;
+                        }
+
                         _done = true;
                     }
                     else
@@ -339,7 +342,10 @@ namespace Uzi.Ikosa.Tactical
                     {
                         // must compare
                         if ((_list.GetPoint3D() - test.GetPoint3D()).LengthSquared < _length2)
+                        {
                             return _list;
+                        }
+
                         return _list2;
                     }
                     else

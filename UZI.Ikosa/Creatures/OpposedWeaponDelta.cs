@@ -64,7 +64,10 @@ namespace Uzi.Ikosa
                                     case WieldTemplate.OneHanded:
                                     case WieldTemplate.Double:
                                         if (_nonMelee != 0)
+                                        {
                                             yield return new QualifyingDelta(_nonMelee, typeof(OpposedWeaponDelta), @"Non-melee weapon");
+                                        }
+
                                         break;
 
                                     default: // light/unarmed
@@ -86,8 +89,9 @@ namespace Uzi.Ikosa
                                         yield return new QualifyingDelta(4 + _nonMelee, typeof(OpposedWeaponDelta), @"Two Hand Holding");
                                     }
                                     else if (_nonMelee != 0)
+                                    {
                                         yield return new QualifyingDelta(_nonMelee, typeof(OpposedWeaponDelta), @"Non-melee weapon");
-
+                                    }
                                 }
                                 else
                                 {
@@ -101,7 +105,9 @@ namespace Uzi.Ikosa
                                     {
                                         // but, if the weapon is not a melee weapon, take a penalty
                                         if (_nonMelee != 0)
+                                        {
                                             yield return new QualifyingDelta(_nonMelee, typeof(OpposedWeaponDelta), @"Non-melee weapon");
+                                        }
                                     }
                                 }
                                 #endregion

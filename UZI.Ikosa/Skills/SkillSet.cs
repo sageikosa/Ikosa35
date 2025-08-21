@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 using Uzi.Core;
@@ -10,7 +10,7 @@ namespace Uzi.Ikosa.Skills
     [Serializable]
     public class SkillSet : ICreatureBound, IEnumerable<SkillBase>
     {
-        protected Dictionary<Type, SkillBase> _Skillset = new Dictionary<Type, SkillBase>();
+        protected Dictionary<Type, SkillBase> _Skillset = [];
         protected Creature _Creature;
 
         #region public SkillSet(Creature skillUser)
@@ -101,16 +101,22 @@ namespace Uzi.Ikosa.Skills
         {
             _Skillset.Add(skill.GetType(), skill);
             if ((skill is IActionProvider _provider) && !Creature.Actions.Providers.ContainsKey(skill))
+            {
                 Creature.Actions.Providers.Add(skill, _provider);
+            }
         }
 
         #region public S Skill<S>() where S : SkillBase
         public S Skill<S>() where S : SkillBase
         {
             if (_Skillset.ContainsKey(typeof(S)))
+            {
                 return (S)(_Skillset[typeof(S)]);
+            }
             else
+            {
                 return null;
+            }
         }
         #endregion
 
@@ -120,9 +126,13 @@ namespace Uzi.Ikosa.Skills
             get
             {
                 if (_Skillset.ContainsKey(skillType))
+                {
                     return _Skillset[skillType];
+                }
                 else
+                {
                     return null;
+                }
             }
         }
         #endregion
@@ -136,7 +146,9 @@ namespace Uzi.Ikosa.Skills
                 foreach (SkillBase _skill in this)
                 {
                     if (!_skill.GetType().IsGenericType)
+                    {
                         yield return _skill;
+                    }
                 }
                 yield break;
             }
@@ -152,7 +164,9 @@ namespace Uzi.Ikosa.Skills
                 foreach (SkillBase _skill in this)
                 {
                     if (_skill.GetType().IsGenericType)
+                    {
                         yield return _skill;
+                    }
                 }
                 yield break;
             }

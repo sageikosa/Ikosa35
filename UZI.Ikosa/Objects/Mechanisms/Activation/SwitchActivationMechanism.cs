@@ -121,7 +121,10 @@ namespace Uzi.Ikosa.Objects
             }
 
             foreach (var _act in BaseMechanismActions(budget))
+            {
                 yield return _act;
+            }
+
             yield break;
         }
 

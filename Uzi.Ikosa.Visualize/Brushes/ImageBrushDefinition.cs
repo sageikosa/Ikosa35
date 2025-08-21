@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Windows.Media.Imaging;
 using System.Windows.Media;
-using System.Windows.Media.Media3D;
 using Uzi.Visualize.Packaging;
 
 namespace Uzi.Visualize
@@ -20,11 +16,6 @@ namespace Uzi.Visualize
             : base(source)
         {
             _ImageKey = source.ImageKey;
-        }
-
-        public ImageBrushDefinition(Packages.BrushCollectionPart partOwner)
-        {
-            PartOwner = partOwner;
         }
 
         public ImageBrushDefinition(BrushCollectionPart owner)
@@ -72,7 +63,6 @@ namespace Uzi.Visualize
             {
                 try
                 {
-                    IkosaImageSource.PushResolver(PartOwner);
                     IkosaImageSource.PushResolver(Owner);
 
                     // prevent re-entrant fallback
@@ -95,15 +85,11 @@ namespace Uzi.Visualize
                     }
 
                     // ensure everything
-                    if (_Image == null)
-                    {
-                        _Image = new MissingProvider();
-                    }
+                    _Image ??= new MissingProvider();
                 }
                 finally
                 {
                     IkosaImageSource.PullResolver(Owner);
-                    IkosaImageSource.PullResolver(PartOwner);
                 }
             }
         }

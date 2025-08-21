@@ -27,7 +27,7 @@ namespace Uzi.Ikosa.Items
         {
             _OpenState = this.GetOpenStatus(null, this, 0);
             _OCtrl = new ChangeController<OpenStatus>(this, _OpenState);
-            _Connected = new Collection<ICoreObject>();
+            _Connected = [];
             _COCtrl = new ChangeController<ICoreObject>(this, null);
 
             // anchor container to this...
@@ -85,15 +85,19 @@ namespace Uzi.Ikosa.Items
                 {
                     // only the anchored things on the surface (exclude anchored container)
                     foreach (var _obj in Anchored)
+                    {
                         // the direct object itself
                         yield return _obj;
+                    }
                 }
             }
             else
             {
                 // everything inside and out if it is open (all connected stuff and recursive contents)
                 foreach (var _core in base.Accessible(principal))
+                {
                     yield return _core;
+                }
             }
         }
         #endregion
@@ -247,7 +251,10 @@ namespace Uzi.Ikosa.Items
         {
             // anchored objects are part of load, the container's contents and the container itself
             foreach (var _core in _Connected.AsEnumerable().Union(_Container.AllLoadedObjects()))
+            {
                 yield return _core;
+            }
+
             yield return Container;
             yield break;
         }
@@ -263,7 +270,10 @@ namespace Uzi.Ikosa.Items
             {
                 base.Weight = 0;
                 if (ContentsAddToLoad)
+                {
                     CoreSetWeight(base.Weight + LoadWeight);
+                }
+
                 DoPropertyChanged(nameof(Weight));
             }
         }
@@ -316,7 +326,9 @@ namespace Uzi.Ikosa.Items
         public void ValueChanged(object sender, ChangeValueEventArgs<Physical> args)
         {
             if (args.NewValue.PropertyType == Physical.PhysicalType.Weight)
+            {
                 Weight = 0;
+            }
         }
 
         #endregion
@@ -329,7 +341,10 @@ namespace Uzi.Ikosa.Items
 
             // openable
             if (_budget.CanPerformBrief)
+            {
                 yield return new OpenCloseAction(this, this, @"101");
+            }
+
             yield break;
         }
 

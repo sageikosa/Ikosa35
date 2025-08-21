@@ -63,9 +63,12 @@ namespace Uzi.Ikosa.Tactical
         public static int? OuterCornerGripDifficulty(this ICellSpaceTacticalMovement self, uint param, AnchorFaceList edgeFaces, AnchorFace gravity, MovementBase movement, CellStructure sourceStruc)
         {
             if (self.BlockedAt(param, movement, new CellSnap(edgeFaces)))
+            {
                 return (from _f in edgeFaces.ToAnchorFaces()
                         let _diff = self.OuterGripDifficulty(param, _f, gravity, movement, sourceStruc)
                         select _diff).Min();
+            }
+
             return null;
         }
     }

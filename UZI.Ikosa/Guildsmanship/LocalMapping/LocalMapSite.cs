@@ -26,8 +26,8 @@ namespace Uzi.Ikosa.Guildsmanship
         public LocalMapSite(Description description)
             : base(description)
         {
-            _Names = new List<PlaceName>();
-            _LocalPlaces = new List<LocalPlace>();
+            _Names = [];
+            _LocalPlaces = [];
             _Map = new LocalMap
             {
                 BindableName = @"Map"

@@ -20,7 +20,9 @@ namespace Uzi.Ikosa.Movement
         public void HandleInteraction(Interaction workSet)
         {
             if (workSet.InteractData is ObjectGrabbedCostData _ogcd)
+            {
                 workSet.Feedback.Add(new ValueFeedback<double>(this, 1.5d));
+            }
         }
 
         public bool LinkBefore(Type interactType, IInteractHandler existingHandler)

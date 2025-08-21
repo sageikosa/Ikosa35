@@ -37,7 +37,9 @@ namespace Uzi.Ikosa.Interactions
 
                         // add the object to the trove (before generating impact sound)
                         if (_trove != null)
+                        {
                             _trove.Add(_obj);
+                        }
 
                         if (_fallLoc != null)
                         {

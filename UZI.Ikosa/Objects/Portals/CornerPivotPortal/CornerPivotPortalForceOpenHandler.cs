@@ -45,7 +45,9 @@ namespace Uzi.Ikosa.Objects
                             {
                                 // unstick
                                 foreach (var _s in _stuck)
+                                {
                                     _s.Eject();
+                                }
                             }
 
                             // blocked!

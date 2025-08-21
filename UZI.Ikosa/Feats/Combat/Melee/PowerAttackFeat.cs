@@ -1,4 +1,4 @@
-using Uzi.Core.Contracts;
+﻿using Uzi.Core.Contracts;
 using System;
 using System.Collections.Generic;
 using Uzi.Ikosa.Advancement;
@@ -138,13 +138,17 @@ namespace Uzi.Ikosa.Feats
             {
                 // only weapon heads can meet qualification
                 if (!(source is IWeaponHead _wpnHead))
+                {
                     return null;
+                }
 
                 if (_wpnHead.ContainingWeapon is IMeleeWeapon _meleeWpn)
                 {
                     // natural weapons do not get the two-hand delta
                     if (_meleeWpn is NaturalWeapon)
+                    {
                         return null;
+                    }
 
                     switch (_meleeWpn.GetWieldTemplate())
                     {
@@ -159,13 +163,19 @@ namespace Uzi.Ikosa.Feats
                             var _dblWpn = _meleeWpn as DoubleMeleeWeaponBase;
                             // double being treated as two-handed means this delta applies
                             if (!_dblWpn.UseAsTwoHanded)
+                            {
                                 return null;
+                            }
+
                             break;
 
                         default:
                             // two-handed, or one handed wielding two handedly
                             if (_meleeWpn.SecondarySlot == null)
+                            {
                                 return null;
+                            }
+
                             break;
                     }
                 }
@@ -220,7 +230,9 @@ namespace Uzi.Ikosa.Feats
             {
                 // only weapon heads can meet qualifications
                 if (!(source is IWeaponHead _wpnHead))
+                {
                     return null;
+                }
 
                 if (_wpnHead.ContainingWeapon is IMeleeWeapon _meleeWpn)
                 {
@@ -230,7 +242,9 @@ namespace Uzi.Ikosa.Feats
                         if (!_natrl.IsPrimary)
                         {
                             if (!_natrl.TreatAsSoleWeapon)
+                            {
                                 return null;
+                            }
                         }
                     }
                     else
@@ -248,17 +262,25 @@ namespace Uzi.Ikosa.Feats
                                 var _dblWpn = _meleeWpn as DoubleMeleeWeaponBase;
                                 // the two-handed delta will pick this up
                                 if (_dblWpn.UseAsTwoHanded)
+                                {
                                     return null;
+                                }
 
                                 // only apply power attack to main head damage
                                 if (_dblWpn.MainHead != _wpnHead)
+                                {
                                     return null;
+                                }
+
                                 break;
 
                             default:
                                 // one handed, or two-handed wielding one handed (when possible)
                                 if (_meleeWpn.SecondarySlot != null)
+                                {
                                     return null;
+                                }
+
                                 break;
                         }
                     }
@@ -348,7 +370,10 @@ namespace Uzi.Ikosa.Feats
 
                 // set the dial
                 if ((_newVal >= 0) && (_newVal <= PowerAttack.Creature.BaseAttack.EffectiveValue))
+                {
                     PowerAttack.Dial = _newVal;
+                }
+
                 _Budget.Choices[Key] = new ChoiceBinder(this, _Budget.Actor, false, _switch);
 
                 // status step

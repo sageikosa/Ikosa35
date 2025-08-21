@@ -157,7 +157,9 @@ namespace Uzi.Ikosa.Advancement.CharacterClasses
 
             // remove all influences associated with the cleric
             foreach (var _inf in Influences.ToList())
+            {
                 _inf.Eject();
+            }
 
             base.OnRemove();
         }
@@ -173,7 +175,9 @@ namespace Uzi.Ikosa.Advancement.CharacterClasses
 
                 // base actions
                 foreach (var _act in BaseActions(budget))
+                {
                     yield return _act;
+                }
 
                 if (budget is LocalActionBudget _budget)
                 {
@@ -296,7 +300,9 @@ namespace Uzi.Ikosa.Advancement.CharacterClasses
             if (level == 1)
             {
                 if (Influences.Count() < 2)
+                {
                     return false;
+                }
             }
             return base.CanLockLevel(level);
         }
@@ -489,8 +495,13 @@ namespace Uzi.Ikosa.Advancement.CharacterClasses
             get
             {
                 if (Creature != null)
+                {
                     foreach (var _inf in Creature.Adjuncts.OfType<Influence>().Where(_i => _i.InfluenceClass == this))
+                    {
                         yield return _inf;
+                    }
+                }
+
                 yield break;
             }
         }
@@ -520,7 +531,10 @@ namespace Uzi.Ikosa.Advancement.CharacterClasses
                         {
                             if (!Creature.Adjuncts.OfType<PowerClassSuppress>().Any(_pcs => _pcs.Source.Equals(this)
                                 && _pcs.PowerClass.Equals(this)))
+                            {
                                 Creature.AddAdjunct(new PowerClassSuppress(this, this));
+                            }
+
                             return;
                         }
                     }
@@ -545,7 +559,10 @@ namespace Uzi.Ikosa.Advancement.CharacterClasses
                             // too far away already
                             if (!Creature.Adjuncts.OfType<PowerClassSuppress>().Any(_pcs => _pcs.Source.Equals(this)
                                 && _pcs.PowerClass.Equals(this)))
+                            {
                                 Creature.AddAdjunct(new PowerClassSuppress(this, this));
+                            }
+
                             return;
                         }
                         switch (_critterAlign.Orderliness)
@@ -565,7 +582,10 @@ namespace Uzi.Ikosa.Advancement.CharacterClasses
                             // too far away
                             if (!Creature.Adjuncts.OfType<PowerClassSuppress>().Any(_pcs => _pcs.Source.Equals(this)
                                 && _pcs.PowerClass.Equals(this)))
+                            {
                                 Creature.AddAdjunct(new PowerClassSuppress(this, this));
+                            }
+
                             return;
                         }
                     }
@@ -577,7 +597,10 @@ namespace Uzi.Ikosa.Advancement.CharacterClasses
                         {
                             if (!Creature.Adjuncts.OfType<PowerClassSuppress>().Any(_pcs => _pcs.Source.Equals(this)
                                 && _pcs.PowerClass.Equals(this)))
+                            {
                                 Creature.AddAdjunct(new PowerClassSuppress(this, this));
+                            }
+
                             return;
                         }
                     }
@@ -611,11 +634,15 @@ namespace Uzi.Ikosa.Advancement.CharacterClasses
         {
             // last feedback processor
             if (typeof(AddAdjunctData).Equals(interactType))
+            {
                 return true;
+            }
 
             // last feedback processor
             if (typeof(RemoveAdjunctData).Equals(interactType))
+            {
                 return true;
+            }
 
             return false;
         }
@@ -924,7 +951,9 @@ namespace Uzi.Ikosa.Advancement.CharacterClasses
         {
             // influence spells do not get bonus slots, so just the levels
             if (setIndex > 0)
+            {
                 return BaseSpellsPerDayAtLevel(setIndex, level);
+            }
 
             // regular spells
             return base.SpellsPerDayAtLevel(setIndex, level);

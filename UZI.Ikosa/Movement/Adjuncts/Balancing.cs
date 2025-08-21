@@ -57,7 +57,9 @@ namespace Uzi.Ikosa.Movement
             {
                 // remove all Balancings that are not this
                 foreach (var _balancing in Creature.Adjuncts.OfType<Balancing>().Where(_b => this != _b).ToList())
+                {
                     _balancing.Eject();
+                }
 
                 var _balance = Creature.Skills.Skill<BalanceSkill>();
 
@@ -113,7 +115,10 @@ namespace Uzi.Ikosa.Movement
         public bool LinkBefore(Type interactType, IInteractHandler existingHandler)
         {
             if (existingHandler is TempHPDamageHandler)
+            {
                 return true;
+            }
+
             return false;
         }
 

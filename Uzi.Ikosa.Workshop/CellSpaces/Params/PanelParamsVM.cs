@@ -76,32 +76,80 @@ namespace Uzi.Ikosa.Workshop
         public object PanelParamDataZLow
         {
             get { return ((PanelTypeZLow == PanelType.Corner) || (PanelTypeZLow == PanelType.MaskedCorner)) ? (object)EdgeZLow : CornerZLow; }
-            set { if ((PanelTypeZLow != PanelType.Corner) && (PanelTypeZLow != PanelType.MaskedCorner)) CornerZLow = (TriangleCorner)value; else EdgeZLow = (FaceEdge)value; }
+            set { if ((PanelTypeZLow != PanelType.Corner) && (PanelTypeZLow != PanelType.MaskedCorner))
+                {
+                    CornerZLow = (TriangleCorner)value;
+                }
+                else
+                {
+                    EdgeZLow = (FaceEdge)value;
+                }
+            }
         }
         public object PanelParamDataYLow
         {
             get { return ((PanelTypeYLow == PanelType.Corner) || (PanelTypeYLow == PanelType.MaskedCorner)) ? (object)EdgeYLow : CornerYLow; }
-            set { if ((PanelTypeYLow != PanelType.Corner) && (PanelTypeYLow != PanelType.MaskedCorner)) CornerYLow = (TriangleCorner)value; else EdgeYLow = (FaceEdge)value; }
+            set { if ((PanelTypeYLow != PanelType.Corner) && (PanelTypeYLow != PanelType.MaskedCorner))
+                {
+                    CornerYLow = (TriangleCorner)value;
+                }
+                else
+                {
+                    EdgeYLow = (FaceEdge)value;
+                }
+            }
         }
         public object PanelParamDataXLow
         {
             get { return ((PanelTypeXLow == PanelType.Corner) || (PanelTypeXLow == PanelType.MaskedCorner)) ? (object)EdgeXLow : CornerXLow; }
-            set { if ((PanelTypeXLow != PanelType.Corner) && (PanelTypeXLow != PanelType.MaskedCorner)) CornerXLow = (TriangleCorner)value; else EdgeXLow = (FaceEdge)value; }
+            set { if ((PanelTypeXLow != PanelType.Corner) && (PanelTypeXLow != PanelType.MaskedCorner))
+                {
+                    CornerXLow = (TriangleCorner)value;
+                }
+                else
+                {
+                    EdgeXLow = (FaceEdge)value;
+                }
+            }
         }
         public object PanelParamDataZHigh
         {
             get { return ((PanelTypeZHigh == PanelType.Corner) || (PanelTypeZHigh == PanelType.MaskedCorner)) ? (object)EdgeZHigh : CornerZHigh; }
-            set { if ((PanelTypeZHigh != PanelType.Corner) && (PanelTypeZHigh != PanelType.MaskedCorner)) CornerZHigh = (TriangleCorner)value; else EdgeZHigh = (FaceEdge)value; }
+            set { if ((PanelTypeZHigh != PanelType.Corner) && (PanelTypeZHigh != PanelType.MaskedCorner))
+                {
+                    CornerZHigh = (TriangleCorner)value;
+                }
+                else
+                {
+                    EdgeZHigh = (FaceEdge)value;
+                }
+            }
         }
         public object PanelParamDataYHigh
         {
             get { return ((PanelTypeYHigh == PanelType.Corner) || (PanelTypeYHigh == PanelType.MaskedCorner)) ? (object)EdgeYHigh : CornerYHigh; }
-            set { if ((PanelTypeYHigh != PanelType.Corner) && (PanelTypeYHigh != PanelType.MaskedCorner)) CornerYHigh = (TriangleCorner)value; else EdgeYHigh = (FaceEdge)value; }
+            set { if ((PanelTypeYHigh != PanelType.Corner) && (PanelTypeYHigh != PanelType.MaskedCorner))
+                {
+                    CornerYHigh = (TriangleCorner)value;
+                }
+                else
+                {
+                    EdgeYHigh = (FaceEdge)value;
+                }
+            }
         }
         public object PanelParamDataXHigh
         {
             get { return ((PanelTypeXHigh == PanelType.Corner) || (PanelTypeXHigh == PanelType.MaskedCorner)) ? (object)EdgeXHigh : CornerXHigh; }
-            set { if ((PanelTypeXHigh != PanelType.Corner) && (PanelTypeXHigh != PanelType.MaskedCorner)) CornerXHigh = (TriangleCorner)value; else EdgeXHigh = (FaceEdge)value; }
+            set { if ((PanelTypeXHigh != PanelType.Corner) && (PanelTypeXHigh != PanelType.MaskedCorner))
+                {
+                    CornerXHigh = (TriangleCorner)value;
+                }
+                else
+                {
+                    EdgeXHigh = (FaceEdge)value;
+                }
+            }
         }
 
         public IEnumerable<object> PanelParamDataItemsZLow { get { return ((PanelTypeZLow == PanelType.Corner) || (PanelTypeZLow == PanelType.MaskedCorner)) ? _FaceEdges : _TriangleCorners; } }
@@ -155,7 +203,10 @@ namespace Uzi.Ikosa.Workshop
             {
                 yield return OptionalAnchorFace.None;
                 foreach (var _f in PanelCellSpace.AllFaces)
+                {
                     yield return _f.ToOptionalAnchorFace();
+                }
+
                 yield break;
             }
         }

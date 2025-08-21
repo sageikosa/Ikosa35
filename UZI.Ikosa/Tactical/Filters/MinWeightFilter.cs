@@ -19,7 +19,9 @@ namespace Uzi.Ikosa.Tactical
             foreach (CoreObject _base in locator.AllConnectedOf<CoreObject>())
             {
                 if (_base.Weight >= MinWeight)
+                {
                     return true;
+                }
             }
             return false;
         }

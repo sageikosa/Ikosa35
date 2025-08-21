@@ -22,13 +22,19 @@ namespace Uzi.Ikosa.Objects
         {
             var _cube = new Cubic(rgn.LowerZ, rgn.LowerY, rgn.LowerX, rgn.UpperZ, rgn.UpperY, rgn.UpperX);
             if (portal.OpenState.Value < 1)
+            {
                 yield return _cube
                     .EdgeCubic(portal.AnchorClose)
                     .OffsetCubic(portal.AnchorClose);
+            }
+
             if (!portal.OpenState.IsClosed)
+            {
                 yield return _cube
                     .EdgeCubic(portal.AnchorOpen)
                     .OffsetCubic(portal.AnchorOpen);
+            }
+
             yield break;
         }
 
@@ -70,7 +76,9 @@ namespace Uzi.Ikosa.Objects
 
                             // null means dark visible
                             if (_check == null)
+                            {
                                 _darkVisible = true;
+                            }
                         }
                     }
                 }
@@ -90,7 +98,9 @@ namespace Uzi.Ikosa.Objects
                 {
                     // open or closed, if alt cube is closer
                     if (observerLocator.GeometricRegion.NearDistance(_rgn) > observerLocator.GeometricRegion.NearDistance(_altCube))
+                    {
                         return _offset(_altCube);
+                    }
                 }
             }
             return _default();

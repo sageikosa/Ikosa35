@@ -131,7 +131,9 @@ namespace Uzi.Ikosa.Objects
 
                 // block if a side is blocked
                 if (HedralTransitBlocking(moveTactical) > 0.4)
+                {
                     return true;
+                }
             }
             return false;
         }
@@ -180,7 +182,9 @@ namespace Uzi.Ikosa.Objects
                                                     && ApplyOpening(occupyCell, testObj, _af.GetAxis())
                                                     from _mo in AnchorFaceOpenings(_af, occupyCell, _rgn, false)
                                                     select _mo)
+                            {
                                 yield return _mvOpen;
+                            }
                         }
                     }
                 }
@@ -210,20 +214,29 @@ namespace Uzi.Ikosa.Objects
                     case Verticality.Upright:
                         // movement must be opposite to bottom face
                         if (moveTactical.TransitFaces.Any(_f => !_f.IsOppositeTo(_bottom)))
+                        {
                             return 0d;
+                        }
+
                         break;
 
                     case Verticality.Inverted:
                         // movement must be same as bottom face
                         if (moveTactical.TransitFaces.Any(_f => _f != _bottom))
+                        {
                             return 0d;
+                        }
+
                         break;
 
                     default:
                         // movement be opposite to appropriate heading-calculated face
                         var _surfFace = _bottom.FrontFace(Orientation.Heading * 2) ?? AnchorFace.XHigh;
                         if (moveTactical.TransitFaces.Any(_f => _f != _surfFace))
+                        {
                             return 0d;
+                        }
+
                         break;
                 }
                 return GetCoverage(moveTactical);
@@ -244,18 +257,27 @@ namespace Uzi.Ikosa.Objects
                 {
                     case Verticality.Upright:
                         if (Orientation.IsFaceSnapped(_bottom.ReverseFace(), _ext))
+                        {
                             return false;
+                        }
+
                         break;
 
                     case Verticality.Inverted:
                         if (Orientation.IsFaceSnapped(_bottom, _ext))
+                        {
                             return false;
+                        }
+
                         break;
 
                     default:
                         var _surfFace = _bottom.FrontFace(Orientation.Heading * 2) ?? AnchorFace.XHigh;
                         if (Orientation.IsFaceSnapped(_surfFace, _ext))
+                        {
                             return false;
+                        }
+
                         break;
                 }
 

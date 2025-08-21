@@ -38,7 +38,9 @@ namespace Uzi.Ikosa.Adjuncts
             {
                 // before using these charges, track when they will be usable again
                 for (var _nx = 0; _nx < number; _nx++)
+                {
                     _NextRecharge.Enqueue(_loc.Locator.Map.CurrentTime + RechargeTime);
+                }
             }
             base.UseCharges(number);
         }
@@ -51,12 +53,16 @@ namespace Uzi.Ikosa.Adjuncts
             // recovers if the recharge time has expired
             if ((direction == TimeValTransition.Entering)
                 && (_NextRecharge.Count > 0))
+            {
                 while (_NextRecharge.Peek() <= timeVal)
                 {
                     var _val = _NextRecharge.Dequeue();
                     if (UsedCharges > 0)
+                    {
                         AddCharges(1);
+                    }
                 }
+            }
         }
 
         public double Resolution => Minute.UnitFactor;

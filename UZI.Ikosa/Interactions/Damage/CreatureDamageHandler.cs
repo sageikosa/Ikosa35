@@ -129,7 +129,9 @@ namespace Uzi.Ikosa.Interactions
                 foreach (var _secondary in _damage.Secondaries)
                 {
                     if (_secondary.IsDamageSufficient(_stepSet))
+                    {
                         _secondary.AttackResult(_stepSet);
+                    }
                 }
             }
         }

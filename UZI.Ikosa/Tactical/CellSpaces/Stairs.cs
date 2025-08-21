@@ -107,9 +107,14 @@ namespace Uzi.Ikosa.Tactical
             var _climbOpen = StairSpaceFaces.GetClimbOpening(param);
             var _travelOpen = StairSpaceFaces.GetTravelOpening(param);
             if ((surfaceFace == _climbOpen) || (surfaceFace == _travelOpen))
+            {
                 return new HedralGrip(!movement.CanMoveThrough(PlusMaterial));
+            }
+
             if ((surfaceFace == _climbOpen.ReverseFace()) || (surfaceFace == _travelOpen.ReverseFace()))
+            {
                 return new HedralGrip(!movement.CanMoveThrough(CellMaterial));
+            }
 
             var _cellBlock = !movement.CanMoveThrough(CellMaterial);
             var _plusBlock = !movement.CanMoveThrough(PlusMaterial);
@@ -132,14 +137,25 @@ namespace Uzi.Ikosa.Tactical
                     HedralGrip _grip(AnchorFace leftFace, AnchorFace lowerFace)
                     {
                         if (_unblocked(leftFace))
+                        {
                             if (_unblocked(lowerFace))
+                            {
                                 return new HedralGrip(TriangleCorner.LowerLeft);
+                            }
                             else
+                            {
                                 return new HedralGrip(TriangleCorner.UpperLeft);
+                            }
+                        }
+
                         if (_unblocked(lowerFace))
+                        {
                             return new HedralGrip(TriangleCorner.LowerRight);
+                        }
                         else
+                        {
                             return new HedralGrip(TriangleCorner.UpperRight);
+                        }
                     }
 
                     // only cell blocks
@@ -164,14 +180,25 @@ namespace Uzi.Ikosa.Tactical
                     HedralGrip _grip2(AnchorFace leftFace, AnchorFace lowerFace)
                     {
                         if (_unblocked2(leftFace))
+                        {
                             if (_unblocked2(lowerFace))
+                            {
                                 return new HedralGrip(TriangleCorner.LowerLeft);
+                            }
                             else
+                            {
                                 return new HedralGrip(TriangleCorner.UpperLeft);
+                            }
+                        }
+
                         if (_unblocked2(lowerFace))
+                        {
                             return new HedralGrip(TriangleCorner.LowerRight);
+                        }
                         else
+                        {
                             return new HedralGrip(TriangleCorner.UpperRight);
+                        }
                     }
 
                     // only plus blocks
@@ -294,25 +321,61 @@ namespace Uzi.Ikosa.Tactical
             {
                 if (_cellBlock)
                 {
-                    if (_open.Intersects(AnchorFaceList.XHigh)) _vec += new Vector3D(1.25, 0, 0);
-                    else if (_open.Intersects(AnchorFaceList.XLow)) _vec -= new Vector3D(1.25, 0, 0);
+                    if (_open.Intersects(AnchorFaceList.XHigh))
+                    {
+                        _vec += new Vector3D(1.25, 0, 0);
+                    }
+                    else if (_open.Intersects(AnchorFaceList.XLow))
+                    {
+                        _vec -= new Vector3D(1.25, 0, 0);
+                    }
 
-                    if (_open.Intersects(AnchorFaceList.YHigh)) _vec += new Vector3D(0, 1.25, 0);
-                    else if (_open.Intersects(AnchorFaceList.YLow)) _vec -= new Vector3D(0, 1.25, 0);
+                    if (_open.Intersects(AnchorFaceList.YHigh))
+                    {
+                        _vec += new Vector3D(0, 1.25, 0);
+                    }
+                    else if (_open.Intersects(AnchorFaceList.YLow))
+                    {
+                        _vec -= new Vector3D(0, 1.25, 0);
+                    }
 
-                    if (_open.Intersects(AnchorFaceList.ZHigh)) _vec += new Vector3D(0, 0, 1.25);
-                    else if (_open.Intersects(AnchorFaceList.ZLow)) _vec -= new Vector3D(0, 0, 1.25);
+                    if (_open.Intersects(AnchorFaceList.ZHigh))
+                    {
+                        _vec += new Vector3D(0, 0, 1.25);
+                    }
+                    else if (_open.Intersects(AnchorFaceList.ZLow))
+                    {
+                        _vec -= new Vector3D(0, 0, 1.25);
+                    }
                 }
                 else
                 {
-                    if (_open.Intersects(AnchorFaceList.XHigh)) _vec -= new Vector3D(1.25, 0, 0);
-                    else if (_open.Intersects(AnchorFaceList.XLow)) _vec += new Vector3D(1.25, 0, 0);
+                    if (_open.Intersects(AnchorFaceList.XHigh))
+                    {
+                        _vec -= new Vector3D(1.25, 0, 0);
+                    }
+                    else if (_open.Intersects(AnchorFaceList.XLow))
+                    {
+                        _vec += new Vector3D(1.25, 0, 0);
+                    }
 
-                    if (_open.Intersects(AnchorFaceList.YHigh)) _vec -= new Vector3D(0, 1.25, 0);
-                    else if (_open.Intersects(AnchorFaceList.YLow)) _vec += new Vector3D(0, 1.25, 0);
+                    if (_open.Intersects(AnchorFaceList.YHigh))
+                    {
+                        _vec -= new Vector3D(0, 1.25, 0);
+                    }
+                    else if (_open.Intersects(AnchorFaceList.YLow))
+                    {
+                        _vec += new Vector3D(0, 1.25, 0);
+                    }
 
-                    if (_open.Intersects(AnchorFaceList.ZHigh)) _vec -= new Vector3D(0, 0, 1.25);
-                    else if (_open.Intersects(AnchorFaceList.ZLow)) _vec += new Vector3D(0, 0, 1.25);
+                    if (_open.Intersects(AnchorFaceList.ZHigh))
+                    {
+                        _vec -= new Vector3D(0, 0, 1.25);
+                    }
+                    else if (_open.Intersects(AnchorFaceList.ZLow))
+                    {
+                        _vec += new Vector3D(0, 0, 1.25);
+                    }
                 }
             }
             return _vec;
@@ -335,7 +398,9 @@ namespace Uzi.Ikosa.Tactical
             else if (!_cellBlock && !_plusBlock)
             {
                 foreach (var _pt in base.TacticalPoints(param, movement))
+                {
                     yield return _pt;
+                }
             }
             else
             {
@@ -358,38 +423,137 @@ namespace Uzi.Ikosa.Tactical
                 }
 
                 // corners (x8)
-                if (AnchorFaceList.LowMask.Intersects(_goodFaces)) yield return new Point3D(0, 0, 0);
-                if ((AnchorFaceList.XHigh | AnchorFaceList.YLow | AnchorFaceList.ZLow).Intersects(_goodFaces)) yield return new Point3D(5, 0, 0);
-                if ((AnchorFaceList.XLow | AnchorFaceList.YHigh | AnchorFaceList.ZLow).Intersects(_goodFaces)) yield return new Point3D(0, 5, 0);
-                if ((AnchorFaceList.XHigh | AnchorFaceList.YHigh | AnchorFaceList.ZLow).Intersects(_goodFaces)) yield return new Point3D(5, 5, 0);
-                if ((AnchorFaceList.XLow | AnchorFaceList.YLow | AnchorFaceList.ZHigh).Intersects(_goodFaces)) yield return new Point3D(0, 0, 5);
-                if ((AnchorFaceList.XHigh | AnchorFaceList.YLow | AnchorFaceList.ZHigh).Intersects(_goodFaces)) yield return new Point3D(5, 0, 5);
-                if ((AnchorFaceList.XLow | AnchorFaceList.YHigh | AnchorFaceList.ZHigh).Intersects(_goodFaces)) yield return new Point3D(0, 5, 5);
-                if (AnchorFaceList.HighMask.Intersects(_goodFaces)) yield return new Point3D(5, 5, 5);
+                if (AnchorFaceList.LowMask.Intersects(_goodFaces))
+                {
+                    yield return new Point3D(0, 0, 0);
+                }
+
+                if ((AnchorFaceList.XHigh | AnchorFaceList.YLow | AnchorFaceList.ZLow).Intersects(_goodFaces))
+                {
+                    yield return new Point3D(5, 0, 0);
+                }
+
+                if ((AnchorFaceList.XLow | AnchorFaceList.YHigh | AnchorFaceList.ZLow).Intersects(_goodFaces))
+                {
+                    yield return new Point3D(0, 5, 0);
+                }
+
+                if ((AnchorFaceList.XHigh | AnchorFaceList.YHigh | AnchorFaceList.ZLow).Intersects(_goodFaces))
+                {
+                    yield return new Point3D(5, 5, 0);
+                }
+
+                if ((AnchorFaceList.XLow | AnchorFaceList.YLow | AnchorFaceList.ZHigh).Intersects(_goodFaces))
+                {
+                    yield return new Point3D(0, 0, 5);
+                }
+
+                if ((AnchorFaceList.XHigh | AnchorFaceList.YLow | AnchorFaceList.ZHigh).Intersects(_goodFaces))
+                {
+                    yield return new Point3D(5, 0, 5);
+                }
+
+                if ((AnchorFaceList.XLow | AnchorFaceList.YHigh | AnchorFaceList.ZHigh).Intersects(_goodFaces))
+                {
+                    yield return new Point3D(0, 5, 5);
+                }
+
+                if (AnchorFaceList.HighMask.Intersects(_goodFaces))
+                {
+                    yield return new Point3D(5, 5, 5);
+                }
 
                 // edges (x12)
-                if ((AnchorFaceList.XLow | AnchorFaceList.ZLow).Intersects(_goodFaces)) yield return new Point3D(0, 2.5, 0);
-                if ((AnchorFaceList.XHigh | AnchorFaceList.ZLow).Intersects(_goodFaces)) yield return new Point3D(5, 2.5, 0);
-                if ((AnchorFaceList.YLow | AnchorFaceList.ZLow).Intersects(_goodFaces)) yield return new Point3D(2.5, 0, 0);
-                if ((AnchorFaceList.YHigh | AnchorFaceList.ZLow).Intersects(_goodFaces)) yield return new Point3D(2.5, 5, 0);
+                if ((AnchorFaceList.XLow | AnchorFaceList.ZLow).Intersects(_goodFaces))
+                {
+                    yield return new Point3D(0, 2.5, 0);
+                }
 
-                if ((AnchorFaceList.XLow | AnchorFaceList.YLow).Intersects(_goodFaces)) yield return new Point3D(0, 0, 2.5);
-                if ((AnchorFaceList.XHigh | AnchorFaceList.YLow).Intersects(_goodFaces)) yield return new Point3D(5, 0, 2.5);
-                if ((AnchorFaceList.XLow | AnchorFaceList.YHigh).Intersects(_goodFaces)) yield return new Point3D(0, 5, 2.5);
-                if ((AnchorFaceList.XHigh | AnchorFaceList.YHigh).Intersects(_goodFaces)) yield return new Point3D(5, 5, 2.5);
+                if ((AnchorFaceList.XHigh | AnchorFaceList.ZLow).Intersects(_goodFaces))
+                {
+                    yield return new Point3D(5, 2.5, 0);
+                }
 
-                if ((AnchorFaceList.XLow | AnchorFaceList.ZHigh).Intersects(_goodFaces)) yield return new Point3D(0, 2.5, 5);
-                if ((AnchorFaceList.XHigh | AnchorFaceList.ZHigh).Intersects(_goodFaces)) yield return new Point3D(5, 2.5, 5);
-                if ((AnchorFaceList.YLow | AnchorFaceList.ZHigh).Intersects(_goodFaces)) yield return new Point3D(2.5, 0, 5);
-                if ((AnchorFaceList.YHigh | AnchorFaceList.ZHigh).Intersects(_goodFaces)) yield return new Point3D(2.5, 5, 5);
+                if ((AnchorFaceList.YLow | AnchorFaceList.ZLow).Intersects(_goodFaces))
+                {
+                    yield return new Point3D(2.5, 0, 0);
+                }
+
+                if ((AnchorFaceList.YHigh | AnchorFaceList.ZLow).Intersects(_goodFaces))
+                {
+                    yield return new Point3D(2.5, 5, 0);
+                }
+
+                if ((AnchorFaceList.XLow | AnchorFaceList.YLow).Intersects(_goodFaces))
+                {
+                    yield return new Point3D(0, 0, 2.5);
+                }
+
+                if ((AnchorFaceList.XHigh | AnchorFaceList.YLow).Intersects(_goodFaces))
+                {
+                    yield return new Point3D(5, 0, 2.5);
+                }
+
+                if ((AnchorFaceList.XLow | AnchorFaceList.YHigh).Intersects(_goodFaces))
+                {
+                    yield return new Point3D(0, 5, 2.5);
+                }
+
+                if ((AnchorFaceList.XHigh | AnchorFaceList.YHigh).Intersects(_goodFaces))
+                {
+                    yield return new Point3D(5, 5, 2.5);
+                }
+
+                if ((AnchorFaceList.XLow | AnchorFaceList.ZHigh).Intersects(_goodFaces))
+                {
+                    yield return new Point3D(0, 2.5, 5);
+                }
+
+                if ((AnchorFaceList.XHigh | AnchorFaceList.ZHigh).Intersects(_goodFaces))
+                {
+                    yield return new Point3D(5, 2.5, 5);
+                }
+
+                if ((AnchorFaceList.YLow | AnchorFaceList.ZHigh).Intersects(_goodFaces))
+                {
+                    yield return new Point3D(2.5, 0, 5);
+                }
+
+                if ((AnchorFaceList.YHigh | AnchorFaceList.ZHigh).Intersects(_goodFaces))
+                {
+                    yield return new Point3D(2.5, 5, 5);
+                }
 
                 // faces (x6)
-                if ((_badFaces & AnchorFaceList.ZLow) == AnchorFaceList.None) yield return new Point3D(2.5, 2.5, 0);
-                if ((_badFaces & AnchorFaceList.ZHigh) == AnchorFaceList.None) yield return new Point3D(2.5, 2.5, 5);
-                if ((_badFaces & AnchorFaceList.YLow) == AnchorFaceList.None) yield return new Point3D(2.5, 0, 2.5);
-                if ((_badFaces & AnchorFaceList.YHigh) == AnchorFaceList.None) yield return new Point3D(2.5, 5, 2.5);
-                if ((_badFaces & AnchorFaceList.XLow) == AnchorFaceList.None) yield return new Point3D(0, 2.5, 2.5);
-                if ((_badFaces & AnchorFaceList.XHigh) == AnchorFaceList.None) yield return new Point3D(5, 2.5, 2.5);
+                if ((_badFaces & AnchorFaceList.ZLow) == AnchorFaceList.None)
+                {
+                    yield return new Point3D(2.5, 2.5, 0);
+                }
+
+                if ((_badFaces & AnchorFaceList.ZHigh) == AnchorFaceList.None)
+                {
+                    yield return new Point3D(2.5, 2.5, 5);
+                }
+
+                if ((_badFaces & AnchorFaceList.YLow) == AnchorFaceList.None)
+                {
+                    yield return new Point3D(2.5, 0, 2.5);
+                }
+
+                if ((_badFaces & AnchorFaceList.YHigh) == AnchorFaceList.None)
+                {
+                    yield return new Point3D(2.5, 5, 2.5);
+                }
+
+                if ((_badFaces & AnchorFaceList.XLow) == AnchorFaceList.None)
+                {
+                    yield return new Point3D(0, 2.5, 2.5);
+                }
+
+                if ((_badFaces & AnchorFaceList.XHigh) == AnchorFaceList.None)
+                {
+                    yield return new Point3D(5, 2.5, 2.5);
+                }
             }
             yield break;
         }
@@ -411,7 +575,9 @@ namespace Uzi.Ikosa.Tactical
             else if (!_cellBlock && !_plusBlock)
             {
                 foreach (var _pt in base.TargetCorners(param, movement))
+                {
                     yield return _pt;
+                }
             }
             else
             {
@@ -434,46 +600,91 @@ namespace Uzi.Ikosa.Tactical
                 }
 
                 // corners (x6)
-                if ((AnchorFaceList.XLow | AnchorFaceList.YLow | AnchorFaceList.ZLow).Intersects(_goodFaces)) yield return new TargetCorner(new Point3D(0, 0, 0), AnchorFace.XLow, AnchorFace.YLow, AnchorFace.ZLow);
-                if ((AnchorFaceList.XHigh | AnchorFaceList.YLow | AnchorFaceList.ZLow).Intersects(_goodFaces)) yield return new TargetCorner(new Point3D(5, 0, 0), AnchorFace.XHigh, AnchorFace.YLow, AnchorFace.ZLow);
-                if ((AnchorFaceList.XLow | AnchorFaceList.YHigh | AnchorFaceList.ZLow).Intersects(_goodFaces)) yield return new TargetCorner(new Point3D(0, 5, 0), AnchorFace.XLow, AnchorFace.YHigh, AnchorFace.ZLow);
-                if ((AnchorFaceList.XHigh | AnchorFaceList.YHigh | AnchorFaceList.ZLow).Intersects(_goodFaces)) yield return new TargetCorner(new Point3D(5, 5, 0), AnchorFace.XHigh, AnchorFace.YHigh, AnchorFace.ZLow);
+                if ((AnchorFaceList.XLow | AnchorFaceList.YLow | AnchorFaceList.ZLow).Intersects(_goodFaces))
+                {
+                    yield return new TargetCorner(new Point3D(0, 0, 0), AnchorFace.XLow, AnchorFace.YLow, AnchorFace.ZLow);
+                }
 
-                if ((AnchorFaceList.XLow | AnchorFaceList.YLow | AnchorFaceList.ZHigh).Intersects(_goodFaces)) yield return new TargetCorner(new Point3D(0, 0, 5), AnchorFace.XLow, AnchorFace.YLow, AnchorFace.ZHigh);
-                if ((AnchorFaceList.XHigh | AnchorFaceList.YLow | AnchorFaceList.ZHigh).Intersects(_goodFaces)) yield return new TargetCorner(new Point3D(5, 0, 5), AnchorFace.XHigh, AnchorFace.YLow, AnchorFace.ZHigh);
-                if ((AnchorFaceList.XLow | AnchorFaceList.YHigh | AnchorFaceList.ZHigh).Intersects(_goodFaces)) yield return new TargetCorner(new Point3D(0, 5, 5), AnchorFace.XLow, AnchorFace.YHigh, AnchorFace.ZHigh);
-                if ((AnchorFaceList.XHigh | AnchorFaceList.YHigh | AnchorFaceList.ZHigh).Intersects(_goodFaces)) yield return new TargetCorner(new Point3D(5, 5, 5), AnchorFace.XHigh, AnchorFace.YHigh, AnchorFace.ZHigh);
+                if ((AnchorFaceList.XHigh | AnchorFaceList.YLow | AnchorFaceList.ZLow).Intersects(_goodFaces))
+                {
+                    yield return new TargetCorner(new Point3D(5, 0, 0), AnchorFace.XHigh, AnchorFace.YLow, AnchorFace.ZLow);
+                }
+
+                if ((AnchorFaceList.XLow | AnchorFaceList.YHigh | AnchorFaceList.ZLow).Intersects(_goodFaces))
+                {
+                    yield return new TargetCorner(new Point3D(0, 5, 0), AnchorFace.XLow, AnchorFace.YHigh, AnchorFace.ZLow);
+                }
+
+                if ((AnchorFaceList.XHigh | AnchorFaceList.YHigh | AnchorFaceList.ZLow).Intersects(_goodFaces))
+                {
+                    yield return new TargetCorner(new Point3D(5, 5, 0), AnchorFace.XHigh, AnchorFace.YHigh, AnchorFace.ZLow);
+                }
+
+                if ((AnchorFaceList.XLow | AnchorFaceList.YLow | AnchorFaceList.ZHigh).Intersects(_goodFaces))
+                {
+                    yield return new TargetCorner(new Point3D(0, 0, 5), AnchorFace.XLow, AnchorFace.YLow, AnchorFace.ZHigh);
+                }
+
+                if ((AnchorFaceList.XHigh | AnchorFaceList.YLow | AnchorFaceList.ZHigh).Intersects(_goodFaces))
+                {
+                    yield return new TargetCorner(new Point3D(5, 0, 5), AnchorFace.XHigh, AnchorFace.YLow, AnchorFace.ZHigh);
+                }
+
+                if ((AnchorFaceList.XLow | AnchorFaceList.YHigh | AnchorFaceList.ZHigh).Intersects(_goodFaces))
+                {
+                    yield return new TargetCorner(new Point3D(0, 5, 5), AnchorFace.XLow, AnchorFace.YHigh, AnchorFace.ZHigh);
+                }
+
+                if ((AnchorFaceList.XHigh | AnchorFaceList.YHigh | AnchorFaceList.ZHigh).Intersects(_goodFaces))
+                {
+                    yield return new TargetCorner(new Point3D(5, 5, 5), AnchorFace.XHigh, AnchorFace.YHigh, AnchorFace.ZHigh);
+                }
 
                 // side face mid points (x2)
                 var _gxl = _goodFaces.Contains(AnchorFace.XLow);
                 var _gyl = _goodFaces.Contains(AnchorFace.YLow);
                 var _gzl = _goodFaces.Contains(AnchorFace.ZLow);
                 if (!_badFaces.Contains(AnchorFace.ZLow) && !_gzl)
+                {
                     yield return new TargetCorner(new Point3D(2.5, 2.5, 0), AnchorFace.ZLow,
                         _gxl ? AnchorFace.XLow : AnchorFace.XHigh,
                         _gyl ? AnchorFace.YLow : AnchorFace.YHigh);
+                }
+
                 if (!_badFaces.Contains(AnchorFace.ZHigh) && !_goodFaces.Contains(AnchorFace.ZHigh))
+                {
                     yield return new TargetCorner(new Point3D(2.5, 2.5, 5), AnchorFace.ZHigh,
                         _gxl ? AnchorFace.XLow : AnchorFace.XHigh,
                         _gyl ? AnchorFace.YLow : AnchorFace.YHigh);
+                }
 
                 if (!_badFaces.Contains(AnchorFace.YLow) && !_gyl)
+                {
                     yield return new TargetCorner(new Point3D(2.5, 0, 2.5), AnchorFace.YLow,
                         _gxl ? AnchorFace.XLow : AnchorFace.XHigh,
                         _gzl ? AnchorFace.ZLow : AnchorFace.ZHigh);
+                }
+
                 if (!_badFaces.Contains(AnchorFace.YHigh) && !_goodFaces.Contains(AnchorFace.YHigh))
+                {
                     yield return new TargetCorner(new Point3D(2.5, 5, 2.5), AnchorFace.YHigh,
                         _gxl ? AnchorFace.XLow : AnchorFace.XHigh,
                         _gzl ? AnchorFace.ZLow : AnchorFace.ZHigh);
+                }
 
                 if (!_badFaces.Contains(AnchorFace.XLow) && !_gxl)
+                {
                     yield return new TargetCorner(new Point3D(0, 2.5, 2.5), AnchorFace.XLow,
                         _gyl ? AnchorFace.YLow : AnchorFace.YHigh,
                         _gzl ? AnchorFace.ZLow : AnchorFace.ZHigh);
+                }
+
                 if (!_badFaces.Contains(AnchorFace.XHigh) && !_goodFaces.Contains(AnchorFace.XHigh))
+                {
                     yield return new TargetCorner(new Point3D(5, 2.5, 2.5), AnchorFace.XHigh,
                         _gyl ? AnchorFace.YLow : AnchorFace.YHigh,
                         _gzl ? AnchorFace.ZLow : AnchorFace.ZHigh);
+                }
             }
             yield break;
         }
@@ -680,7 +891,10 @@ namespace Uzi.Ikosa.Tactical
             {
                 // dangling...
                 if (_gripType.Disposition == GripDisposition.Full)
+                {
                     return GripRules.GetOuterDangling((bool)_gripType.IsPlus);
+                }
+
                 return GripRules.GetOuterDangling(_gripType.Disposition);
             }
 

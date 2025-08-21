@@ -30,7 +30,9 @@ namespace Uzi.Ikosa
         {
             _Delta.RemoveTerminateDependent(this);
             if (_Set != null)
+            {
                 _Set.PruneChunks();
+            }
         }
 
         #region IDependOnTerminate Members

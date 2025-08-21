@@ -69,7 +69,9 @@ namespace Uzi.Ikosa
 
                 // if not still looking for coins, done
                 if (_lookingFor <= 0)
+                {
                     break;
+                }
             }
         }
 

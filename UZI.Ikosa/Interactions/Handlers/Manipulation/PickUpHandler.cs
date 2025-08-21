@@ -35,7 +35,9 @@ namespace Uzi.Ikosa.Interactions
                     {
                         // try to take possession of slotted item
                         if (_item.Possessor != _critter)
+                        {
                             _item.Possessor = _critter;
+                        }
                     }
                     var _slotItem = HoldingSlot.GetHoldableItem(_obj, _critter);
 

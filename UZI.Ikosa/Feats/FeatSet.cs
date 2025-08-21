@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.ObjectModel;
 using System.Collections.Generic;
 using Uzi.Core;
@@ -16,7 +16,7 @@ namespace Uzi.Ikosa.Feats
         public FeatSet(Creature creature)
         {
             _Creature = creature;
-            _Feats = new Collection<FeatBase>();
+            _Feats = [];
             _FeatCtrl = new ChangeController<FeatBase>(this, null);
         }
 
@@ -27,7 +27,9 @@ namespace Uzi.Ikosa.Feats
                 _Feats.Add(item);
                 _FeatCtrl.DoValueChanged(item, "Added");
                 if (CollectionChanged != null)
+                {
                     CollectionChanged(this, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Add, item));
+                }
             }
         }
 
@@ -38,7 +40,9 @@ namespace Uzi.Ikosa.Feats
                 if (_feat.GetType() == featType)
                 {
                     if (_feat.PowerLevel <= powerLevel)
+                    {
                         return true;
+                    }
                 }
             }
             return false;
@@ -49,7 +53,9 @@ namespace Uzi.Ikosa.Feats
             foreach (FeatBase _feat in this._Feats)
             {
                 if (_feat.GetType() == featType)
+                {
                     return _feat.IsActive;
+                }
             }
             return false;
         }
@@ -67,7 +73,9 @@ namespace Uzi.Ikosa.Feats
             this._Feats.Remove(feat);
             _FeatCtrl.DoValueChanged(feat, "Removed");
             if (CollectionChanged != null)
+            {
                 CollectionChanged(this, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Remove, feat, _index));
+            }
         }
 
         public FeatBase this[int index]

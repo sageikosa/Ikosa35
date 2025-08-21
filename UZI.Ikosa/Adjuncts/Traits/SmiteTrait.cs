@@ -63,7 +63,9 @@ namespace Uzi.Ikosa.Adjuncts
                     {
                         // must be able to use charges to turn ON
                         if (!PowerBattery.CanUseCharges(1))
+                        {
                             return;
+                        }
 
                         SmiteDelta?.DoTerminate();
                         Creature.AddChangeMonitor(this);
@@ -98,7 +100,10 @@ namespace Uzi.Ikosa.Adjuncts
             SmiteDelta?.DoTerminate();
             Creature.RemoveChangeMonitor(this);
             if (Creature?.Actions.Providers.ContainsKey(this) ?? false)
+            {
                 Creature.Actions.Providers.Remove(this);
+            }
+
             base.OnDeactivate(source);
         }
         #endregion
@@ -114,9 +119,14 @@ namespace Uzi.Ikosa.Adjuncts
                 if (args.NewValue.Action is ISupplyAttackAction _atkAct)
                 {
                     if (IsMeleeOnly && !(_atkAct.Attack.Weapon is IMeleeWeapon))
+                    {
                         return;
+                    }
+
                     if (IsNaturalOnly && !(_atkAct.Attack.Weapon is NaturalWeapon))
+                    {
                         return;
+                    }
 
                     // consume use
                     PowerBattery.UseCharges(1);
@@ -132,7 +142,10 @@ namespace Uzi.Ikosa.Adjuncts
         public IEnumerable<CoreAction> GetActions(CoreActionBudget budget)
         {
             if (PowerBattery.CanUseCharges(1))
+            {
                 yield return new SmiteChoice(this);
+            }
+
             yield break;
         }
 
@@ -168,9 +181,14 @@ namespace Uzi.Ikosa.Adjuncts
                     if (_workset.Source is IWeaponHead _head)
                     {
                         if (SmiteTrait.IsMeleeOnly && !(_head.ContainingWeapon is IMeleeWeapon))
+                        {
                             yield break;
+                        }
+
                         if (SmiteTrait.IsNaturalOnly && !(_head.ContainingWeapon is NaturalWeapon))
+                        {
                             yield break;
+                        }
 
                         if (_workset.Target is Creature _critter
                             && _critter.Alignment.IsMatchingAxial(SmiteTrait.Alignment))

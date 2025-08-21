@@ -55,7 +55,9 @@ namespace Uzi.Ikosa.UI
             }
 
             if (AdvancementLogControl != null)
+            {
                 AdvancementLogControl.Items.Refresh();
+            }
         }
 
         private void ctxPDFeat_ContextMenuOpening(object sender, ContextMenuEventArgs e)

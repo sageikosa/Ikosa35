@@ -40,7 +40,10 @@ namespace Uzi.Ikosa.Workshop
                 cpStart.UsingAlphaChannel = true;
             }
             else
+            {
                 cpStart.UsingAlphaChannel = false;
+            }
+
             txtBrushKey.Text = name;
             lstStops.ItemsSource = new GradientStopCollection(stops.OrderBy(_s => _s.Offset));
             cboInterpolation.SelectedItem = mode;
@@ -123,7 +126,9 @@ namespace Uzi.Ikosa.Workshop
             {
                 var _key = txtBrushKey.Text;
                 if (!string.IsNullOrEmpty(_key))
+                {
                     e.CanExecute = _Exists || !_Manager.Any(_b => _b.BrushKey.Equals(_key));
+                }
             }
             e.Handled = true;
         }
@@ -237,7 +242,10 @@ namespace Uzi.Ikosa.Workshop
             // refresh controls and select new item
             lstStops.Items.Refresh();
             if (_new != null)
+            {
                 lstStops.SelectedItem = _new;
+            }
+
             RefreshSample();
             e.Handled = true;
         }
@@ -280,7 +288,10 @@ namespace Uzi.Ikosa.Workshop
             // refresh controls and select new item
             lstStops.Items.Refresh();
             if (_new != null)
+            {
                 lstStops.SelectedItem = _new;
+            }
+
             RefreshSample();
             e.Handled = true;
         }

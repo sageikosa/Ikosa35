@@ -160,7 +160,7 @@ namespace Uzi.Ikosa.Magic.Spells
             _TermCtrl = new TerminateController(this);
             _Factory = new ExtraAttackBudgetFactory(this);
             _Haste = new Delta(1, typeof(HasteEffect), @"Haste");
-            _SpeedUps = new Dictionary<MovementBase, Delta>();
+            _SpeedUps = [];
         }
 
         #region state

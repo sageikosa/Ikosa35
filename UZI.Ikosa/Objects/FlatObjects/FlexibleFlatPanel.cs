@@ -218,7 +218,9 @@ namespace Uzi.Ikosa.Objects
 
                     // block if a side is blocked
                     if (HedralTransitBlocking(moveTactical) > 0.4)
+                    {
                         return true;
+                    }
                 }
                 else
                 {

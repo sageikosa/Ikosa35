@@ -48,7 +48,10 @@ namespace Uzi.Ikosa.Items
             // TODO: throw shuriken from pouch???
             yield return new ArmShuriken(this, @"101");
             foreach (var _act in base.GetActions(budget))
+            {
                 yield return _act;
+            }
+
             yield break;
         }
     }

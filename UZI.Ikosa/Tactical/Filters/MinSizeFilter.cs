@@ -19,7 +19,9 @@ namespace Uzi.Ikosa.Tactical
             foreach (ISizable _size in locator.AllConnectedOf<ISizable>())
             {
                 if (_size.Sizer.Size.Order >= MinSize.Order)
+                {
                     return true;
+                }
             }
             return false;
         }

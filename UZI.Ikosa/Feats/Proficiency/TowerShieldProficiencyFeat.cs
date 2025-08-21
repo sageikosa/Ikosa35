@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using Uzi.Ikosa.Items.Shields;
 
 namespace Uzi.Ikosa.Feats
@@ -23,7 +23,9 @@ namespace Uzi.Ikosa.Feats
         public override bool MeetsPreRequisite(Creature creature)
         {
             if (IgnorePreRequisite)
+            {
                 return true;
+            }
 
             // proficient with shields, but not tower shields
             return (creature.Proficiencies.IsProficientWithShield(false, PowerLevel)

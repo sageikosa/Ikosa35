@@ -245,7 +245,9 @@ namespace Uzi.Ikosa.Magic.Spells
                 if (_locator != null)
                 {
                     if (!_locator.PlanarPresence.HasMaterialPresence())
+                    {
                         return false;
+                    }
 
                     if (CoreObject is Creature _critter)
                     {

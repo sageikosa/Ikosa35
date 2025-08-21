@@ -21,7 +21,9 @@ namespace Uzi.Ikosa
             {
                 IFeatParameterProvider _provider = (IFeatParameterProvider)Activator.CreateInstance(Provider);
                 foreach (FeatParameter _fParam in _provider.AvailableParameters(target, creature, powerDie))
+                {
                     yield return _fParam;
+                }
             }
             yield break;
         }

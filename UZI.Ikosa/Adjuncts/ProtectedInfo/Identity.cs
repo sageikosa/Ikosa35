@@ -29,10 +29,10 @@ namespace Uzi.Ikosa.Adjuncts
         {
             _InfoID = Guid.NewGuid();
             _Title = @"Identity";
-            _Users = new HashSet<Guid>();
-            _Critters = new Dictionary<Guid, string>();
-            _Adjuncts = new List<Adjunct>();
-            _Infos = new List<Info>();
+            _Users = [];
+            _Critters = [];
+            _Adjuncts = [];
+            _Infos = [];
         }
         #endregion
 
@@ -53,7 +53,7 @@ namespace Uzi.Ikosa.Adjuncts
             {
                 if (_Users == null)
                 {
-                    _Users = new HashSet<Guid>();
+                    _Users = [];
                     foreach (var _kvp in CreatureIDs)
                     {
                         _Users.Add(_kvp.Key);
@@ -97,7 +97,10 @@ namespace Uzi.Ikosa.Adjuncts
         {
             var _id = new Identity(Source);
             foreach (var _critter in _Critters)
+            {
                 _id._Critters.Add(_critter.Key, _critter.Value);
+            }
+
             _id._InfoID = _InfoID;
             _id._Adjuncts.AddRange(_Adjuncts);
             _id._Infos.AddRange(_Infos);

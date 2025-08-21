@@ -27,7 +27,7 @@ namespace Uzi.Ikosa.Items
             _PageCost = pageCost;
             _TotalPages = totalPages;
 
-            _Spells = new Collection<BookSpell>();
+            _Spells = [];
             ItemMaterial = LeatherMaterial.Static; // book binding
             MaxStructurePoints.BaseValue = 3;
             // TODO: ... break DC of 8.

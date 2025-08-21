@@ -76,7 +76,9 @@ namespace Uzi.Ikosa.Adjuncts
                     .Where(_tm => _tm != this && _tm.IsActive)
                     .FirstOrDefault();
                 if (_fallback != null)
+                {
                     _fallback.IsPrimary = true;
+                }
             }
             base.OnDeactivate(source);
         }

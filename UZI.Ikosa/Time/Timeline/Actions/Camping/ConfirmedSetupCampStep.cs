@@ -58,10 +58,9 @@ namespace Uzi.Ikosa.Time
                     new CoreActivity(
                         _budget.Actor,
                         new SetupCamp(_team, new ActionTime(Minute.UnitFactor), @"200"),
-                        new List<AimTarget>
-                        {
+                        [
                             new ValueTarget<CampingGroup>(nameof(CampingGroup), _campingGroup)
-                        });
+                        ]);
             }
 
             // eject decide setup camp

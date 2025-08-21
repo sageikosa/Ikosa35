@@ -44,7 +44,10 @@ namespace Uzi.Ikosa.Movement
             _HasMoved = false;
             _CanStillMove = true;
             foreach (var _move in _Critter.Movements.AllMovements)
+            {
                 _move.OnResetBudget();
+            }
+
             return false;
         }
 
@@ -84,7 +87,10 @@ namespace Uzi.Ikosa.Movement
         public bool EndTurn()
         {
             foreach (var _move in _Critter.Movements.AllMovements)
+            {
                 _move.OnEndTurn();
+            }
+
             return false;
         }
 

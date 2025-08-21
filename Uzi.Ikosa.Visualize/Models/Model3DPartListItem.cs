@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Uzi.Visualize.Packaging;
+﻿using Uzi.Visualize.Packaging;
 
 namespace Uzi.Visualize
 {

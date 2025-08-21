@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using Uzi.Core;
@@ -42,7 +42,9 @@ namespace Uzi.Ikosa.Advancement
         {
             // TODO: could use the 'if all else fails, try the fall-back list' option
             if (skills.Length != ratios.Length)
+            {
                 throw new ArgumentOutOfRangeException(@"skills and ratios must be same Length");
+            }
 
             // skill indexer
             var _skx = 0;
@@ -70,7 +72,9 @@ namespace Uzi.Ikosa.Advancement
 
                         // total failure must mean all skills are maxxed
                         if (_failDown == 0)
+                        {
                             break;
+                        }
 
                         // reset ratio indexer
                         _rsx = 0;
@@ -108,9 +112,13 @@ namespace Uzi.Ikosa.Advancement
             get
             {
                 if (_Groups.Any())
+                {
                     return _Groups.Last.Value.EndLevel;
+                }
                 else
+                {
                     return 0;
+                }
             }
         }
         #endregion
@@ -202,7 +210,9 @@ namespace Uzi.Ikosa.Advancement
                     if ((_group.AdvancementClass == advClass)
                         && (_group.AdvancementClassLevelLow >= level)
                         && (_group.AdvancementClassLevelHigh <= level))
+                    {
                         return _group;
+                    }
                 }
                 return null;
             }
@@ -218,7 +228,9 @@ namespace Uzi.Ikosa.Advancement
             foreach (AdvancementLogItem _group in this)
             {
                 if (_group.IsLockable)
+                {
                     return _group;
+                }
             }
             return null;
         }
@@ -232,9 +244,13 @@ namespace Uzi.Ikosa.Advancement
             {
                 // keep stepping until we find an unlocked group
                 if (_group.IsLocked)
+                {
                     _locked = _group;
+                }
                 else
+                {
                     break;
+                }
             }
 
             // whatever we picked up last (if anything) is it
@@ -441,9 +457,14 @@ namespace Uzi.Ikosa.Advancement
                     var _level = _curr.Value.AdvancementClassLevelLow + (powerLevel - _curr.Value.StartLevel);
                     // fixup levels to agree with group boundaries
                     if (_level > _curr.Value.AdvancementClassLevelHigh)
+                    {
                         _level = _curr.Value.AdvancementClassLevelHigh;
+                    }
+
                     if (_level < _curr.Value.AdvancementClassLevelLow)
+                    {
                         _level = _curr.Value.AdvancementClassLevelLow;
+                    }
 
                     if (_maxClassLevel.ContainsKey(_curr.Value.AdvancementClass))
                     {

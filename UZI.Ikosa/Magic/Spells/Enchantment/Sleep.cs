@@ -159,7 +159,9 @@ namespace Uzi.Ikosa.Magic.Spells
                             return true;
                         }
                         , 0))
+                    {
                         yield return _step;
+                    }
 
                     // update the context (power dice remaining)
                     if (_remaining != _power.Value)

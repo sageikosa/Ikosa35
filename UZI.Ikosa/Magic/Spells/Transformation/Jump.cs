@@ -74,11 +74,17 @@ namespace Uzi.Ikosa.Magic.Spells
                 // get delta
                 Delta _jump;
                 if (_spellEffect.CasterLevel < 5)
+                {
                     _jump = new Delta(10, typeof(Deltas.Enhancement));
+                }
                 else if (_spellEffect.CasterLevel > 8)
+                {
                     _jump = new Delta(30, typeof(Deltas.Enhancement));
+                }
                 else
+                {
                     _jump = new Delta(20, typeof(Deltas.Enhancement));
+                }
 
                 Creature _creature = target as Creature;
                 if (_creature != null)
@@ -86,7 +92,9 @@ namespace Uzi.Ikosa.Magic.Spells
                     // add to jump skill
                     JumpSkill _jSkill = _creature.Skills.Skill<JumpSkill>();
                     if (_jSkill != null)
+                    {
                         _jSkill.Deltas.Add(_jump);
+                    }
                 }
                 return _jump;
             }

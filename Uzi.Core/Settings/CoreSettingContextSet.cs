@@ -17,7 +17,7 @@ namespace Uzi.Core
         {
             _Setting = setting;
             _ProcessManager = _Setting.GenerateProcessManager();
-            _Contexts = new List<CoreSettingContext>();
+            _Contexts = [];
             _AdjunctGroups = new AdjunctGroupSet();
             ProcessManager.ContextReactors.Reactors.Add(_AdjunctGroups, _AdjunctGroups);
             _Reactors = new ReactorSet();
@@ -75,7 +75,10 @@ namespace Uzi.Core
         {
             var _idx = GetCoreIndex();
             if (_idx.TryGetValue(id, out var result))
+            {
                 return result;
+            }
+
             return null;
         }
 
@@ -130,7 +133,9 @@ namespace Uzi.Core
             // cleanup empty groups
             var _clean = AdjunctGroups.All().Where(_a => !_a.Members.Any()).ToArray();
             foreach (var _grp in _clean)
+            {
                 AdjunctGroups.Remove(_grp);
+            }
         }
         #endregion
 
@@ -188,7 +193,10 @@ namespace Uzi.Core
         public IEnumerator<CoreSettingContext> GetEnumerator()
         {
             foreach (var _ctx in _Contexts)
+            {
                 yield return _ctx;
+            }
+
             yield break;
         }
 
@@ -199,7 +207,10 @@ namespace Uzi.Core
         System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
         {
             foreach (var _ctx in _Contexts)
+            {
                 yield return _ctx;
+            }
+
             yield break;
         }
 

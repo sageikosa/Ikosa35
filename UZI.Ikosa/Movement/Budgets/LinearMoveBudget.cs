@@ -12,7 +12,7 @@ namespace Uzi.Ikosa.Movement
     {
         public LinearMoveBudget()
         {
-            _Previous = new Collection<byte>();
+            _Previous = [];
         }
 
         #region private data

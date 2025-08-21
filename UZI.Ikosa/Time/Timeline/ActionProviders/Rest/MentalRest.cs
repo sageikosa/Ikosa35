@@ -43,7 +43,9 @@ namespace Uzi.Ikosa.Time
         {
             base.BindToSetting();
             if (Anchor?.Setting?.ID != MapID)
+            {
                 Eject();
+            }
         }
 
         public double Resolution => Hour.UnitFactor;
@@ -64,7 +66,9 @@ namespace Uzi.Ikosa.Time
                         var _critter = Anchor as Creature;
                         foreach (var _caster in _critter.Classes.OfType<ISlottedCasterBaseClass>()
                             .Where(_slotBase => _slotBase.MustRestToRecharge).ToList())
+                        {
                             _critter.AddAdjunct(new FreshMind(_caster));
+                        }
 
                         // no longer need mental rest...
                         Eject();

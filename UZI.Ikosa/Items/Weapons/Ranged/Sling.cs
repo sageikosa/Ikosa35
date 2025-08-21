@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using Uzi.Core;
 using Uzi.Ikosa.Actions;
@@ -93,7 +93,9 @@ namespace Uzi.Ikosa.Items.Weapons.Ranged
                 if (_budget.CanPerformRegular)
                 {
                     foreach (var _strike in WeaponStrikes())
+                    {
                         yield return new RegularAttack(_strike);
+                    }
                 }
             }
             yield break;
@@ -106,9 +108,12 @@ namespace Uzi.Ikosa.Items.Weapons.Ranged
         {
             // creature-based damage bonuses
             if (CreaturePossessor != null)
+            {
                 yield return new DamageRollPrerequisite(typeof(Creature), workSet, $@"{keyFix}Creature", @"Creature",
                     new ConstantRoller(CreaturePossessor.ExtraWeaponDamage.QualifiedValue(workSet)), false,
                     (workSet.InteractData as AttackData)?.IsNonLethal ?? false, @"Creature", minGroup);
+            }
+
             yield break;
         }
         #endregion
@@ -143,7 +148,7 @@ namespace Uzi.Ikosa.Items.Weapons.Ranged
         {
             if (fetchedInfo is LoadableProjectileWeaponInfo _loadable)
             {
-                _loadable.LoadedAmmunition = _Ammo?.Select(_a => GetInfoData.GetInfoFeedback(_a, actor)).ToList() ?? new List<Info>();
+                _loadable.LoadedAmmunition = _Ammo?.Select(_a => GetInfoData.GetInfoFeedback(_a, actor)).ToList() ?? [];
             }
             return fetchedInfo;
         }

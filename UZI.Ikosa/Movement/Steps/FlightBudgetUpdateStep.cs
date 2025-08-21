@@ -68,11 +68,15 @@ namespace Uzi.Ikosa.Movement
                     // calculate "forward" distance this move
                     double _dist = 0;
                     if ((_moveHeading % 2 == 0) || (_moveHeading < 0) || (_moveHeading > 7))
+                    {
                         // non-diagonal
                         _dist = 5;
+                    }
                     else
+                    {
                         // diagonal
                         _dist = Math.Sqrt(2) * 5;
+                    }
                     #endregion
 
                     // update distance += this move
@@ -80,21 +84,33 @@ namespace Uzi.Ikosa.Movement
 
                     // update since turn += this move
                     if (_turnHeading == 0)
+                    {
                         _flightBudget.DistanceSinceTurn += _dist;
+                    }
                     else
+                    {
                         _flightBudget.DistanceSinceTurn = 0;
+                    }
 
                     // update since down += this move
                     if (_upAdjust < UpDownAdjustment.Level)
+                    {
                         _flightBudget.DistanceSinceDown = 0;
+                    }
                     else
+                    {
                         _flightBudget.DistanceSinceDown += _dist;
+                    }
 
                     // update upwards crossings
                     if (_upAdjust > UpDownAdjustment.Upward)
+                    {
                         _flightBudget.UpwardsCrossings += 1;
+                    }
                     else
+                    {
                         _flightBudget.UpwardsCrossings = 0;
+                    }
                 }
             }
             else

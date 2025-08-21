@@ -40,7 +40,9 @@ namespace Uzi.Ikosa.Adjuncts
         public void PreTestChange(object sender, AbortableChangeEventArgs<Activation> args)
         {
             if (args.NewValue.IsActive)
+            {
                 args.DoAbort(@"Suppressed");
+            }
         }
 
         public void PreValueChanged(object sender, ChangeValueEventArgs<Activation> args) { }

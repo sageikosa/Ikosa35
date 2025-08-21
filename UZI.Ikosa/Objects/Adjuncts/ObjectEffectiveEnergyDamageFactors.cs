@@ -15,9 +15,11 @@ namespace Uzi.Ikosa.Objects
         public ObjectEffectiveEnergyDamageFactors(object source, params (EnergyType energy, decimal factor)[] energies)
             : base(source)
         {
-            _Factors = new Dictionary<EnergyType, decimal>();
+            _Factors = [];
             foreach (var _e in energies)
+            {
                 _Factors.Add(_e.energy, _e.factor);
+            }
         }
 
         #region data

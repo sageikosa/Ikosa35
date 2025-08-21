@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using Uzi.Core;
 using Uzi.Ikosa.Actions;
@@ -103,7 +103,9 @@ namespace Uzi.Ikosa.Items.Shields
                 if (_budget.CanPerformRegular)
                 {
                     foreach (var _strike in WeaponStrikes())
+                    {
                         yield return new RegularAttack(_strike);
+                    }
 
                     // probe
                     yield return new Probe(MainHead, new ActionTime(TimeType.Regular), @"901");

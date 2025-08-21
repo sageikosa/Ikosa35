@@ -18,11 +18,20 @@ namespace Uzi.Ikosa.Adjuncts
             get
             {
                 if (_Power <= 2)
+                {
                     return AuraStrength.Faint;
+                }
+
                 if (_Power <= 8)
+                {
                     return AuraStrength.Moderate;
+                }
+
                 if (_Power <= 20)
+                {
                     return AuraStrength.Strong;
+                }
+
                 return AuraStrength.Overwhelming;
             }
         }

@@ -164,7 +164,10 @@ namespace Uzi.Ikosa.Magic.Spells
 
             // NOTE: this last depends on the creature's awareness, which automatically handles lighting
             if (_budget.CanPerformRegular)
+            {
                 yield return new ReadMagicMark(Source as IActionSource, @"102");
+            }
+
             yield break;
         }
         #endregion

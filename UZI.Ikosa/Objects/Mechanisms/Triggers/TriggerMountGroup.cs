@@ -55,7 +55,10 @@ namespace Uzi.Ikosa.Objects
                 // don't re-use this mechanism
                 Eject();
             }
-            else base.PathChanged(source);
+            else
+            {
+                base.PathChanged(source);
+            }
         }
 
         // IMonitorChange<Activation>
@@ -70,7 +73,9 @@ namespace Uzi.Ikosa.Objects
         public void ValueChanged(object sender, ChangeValueEventArgs<Activation> args)
         {
             if (args.NewValue.IsActive)
+            {
                 TriggerGroup.Target.CheckTriggering();
+            }
         }
     }
 

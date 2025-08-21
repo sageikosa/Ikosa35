@@ -61,8 +61,11 @@ namespace Uzi.Ikosa.Movement
                         _swm.Eject();
                     }
                     if (!fail)
+                    {
                         _critter.AddAdjunct(new Swimming(_PreReq.ToTarget()));
-                };
+                    }
+                }
+                ;
 
                 // TODO: charging and swimming
                 if (_PreReq.Success)

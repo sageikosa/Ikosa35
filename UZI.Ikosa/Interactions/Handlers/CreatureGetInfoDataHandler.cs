@@ -33,9 +33,13 @@ namespace Uzi.Ikosa.Interactions
                                 {
                                     // get slot info and object info
                                     if (_slot is MountSlot)
+                                    {
                                         _items.Add((_slot as MountSlot).ToMountSlotInfo(_observer));
+                                    }
                                     else
+                                    {
                                         _items.Add(_slot.ToItemSlotInfo(_observer));
+                                    }
                                 }
                             }
                         }

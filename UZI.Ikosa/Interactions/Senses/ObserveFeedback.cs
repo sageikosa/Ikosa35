@@ -16,9 +16,11 @@ namespace Uzi.Ikosa.Interactions
         public ObserveFeedback(object source, IEnumerable<KeyValuePair<Guid, AwarenessLevel>> levels)
             : base(source)
         {
-            Levels = new Dictionary<Guid, AwarenessLevel>();
+            Levels = [];
             foreach (var _kvp in levels)
+            {
                 Levels.Add(_kvp.Key, _kvp.Value);
+            }
         }
 
         public Dictionary<Guid, AwarenessLevel> Levels { get; private set; }
@@ -69,7 +71,9 @@ namespace Uzi.Ikosa.Interactions
                         {
                             var _cnDetail = new ObserveDetails(creature, sensors, targetLocator, sensorLocator, distance);
                             foreach (var _yor in YieldObserveResults(creature, _objConnect, _cnDetail))
+                            {
                                 yield return _yor;
+                            }
                         }
                     }
                     break;
@@ -81,7 +85,9 @@ namespace Uzi.Ikosa.Interactions
                     {
                         var _cnDetail = new ObserveDetails(creature, sensors, targetLocator, sensorLocator, distance);
                         foreach (var _yor in YieldObserveResults(creature, _objConnect, _cnDetail))
+                        {
                             yield return _yor;
+                        }
                     }
                     break;
 
@@ -97,7 +103,9 @@ namespace Uzi.Ikosa.Interactions
                         {
                             var _cnObserve = new Observe(creature, sensors, targetLocator, sensorLocator, distance);
                             foreach (var _yor in YieldObserveResults(creature, _objConnect, _cnObserve))
+                            {
                                 yield return _yor;
+                            }
                         }
                     }
                     break;

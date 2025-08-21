@@ -14,7 +14,7 @@ namespace Uzi.Core.Dice
         public ComplexDiceRoller()
         {
             _Expression = string.Empty;
-            _ComplexRollers = new List<Roller>();
+            _ComplexRollers = [];
         }
 
         #region Constructor(string expression)
@@ -24,7 +24,7 @@ namespace Uzi.Core.Dice
             expression = expression.Replace(@" ", @"");
             _Expression = expression;
 
-            _ComplexRollers = new List<Roller>();
+            _ComplexRollers = [];
             var _rollers = expression.Split('+', '-');
             foreach (var _roller in _rollers)
             {

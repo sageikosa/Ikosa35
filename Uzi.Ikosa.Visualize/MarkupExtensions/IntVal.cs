@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Markup;
 
 namespace Uzi.Visualize
@@ -21,7 +17,9 @@ namespace Uzi.Visualize
         public override object ProvideValue(IServiceProvider serviceProvider)
         {
             if (_KeyReferenced != null)
+            {
                 _KeyReferenced(this);
+            }
 
             if (MetaModelResolutionStack.Any())
             {
@@ -31,12 +29,17 @@ namespace Uzi.Visualize
                 if (_iVal != null)
                 {
                     if (!_iVal.UseMaster)
+                    {
                         return _iVal.Value;
+                    }
+
                     if (MetaModelResolutionStack.State != null)
                     {
                         _iVal = MetaModelResolutionStack.State.MasterIntReferences[Key];
                         if (_iVal != null)
+                        {
                             return _iVal.Value;
+                        }
                     }
                 }
             }

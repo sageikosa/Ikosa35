@@ -46,7 +46,10 @@ namespace Uzi.Ikosa.Contracts
             get
             {
                 foreach (var _inf in AdjunctInfos)
+                {
                     yield return _inf;
+                }
+
                 yield return VirtualHead;
                 yield break;
             }

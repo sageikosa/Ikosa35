@@ -31,7 +31,9 @@ namespace Uzi.Ikosa.Movement
                 if (_locator?.IsGravityEffective ?? false)
                 {
                     if (!_locator.PlanarPresence.HasMaterialPresence())
+                    {
                         return false;
+                    }
 
                     var _grav = _locator.GetGravityFace();
                     return _locator.Map.DirectionalBlockage(CoreObject, _locator.GeometricRegion, this, _grav, _grav, null, _locator.PlanarPresence) < 1;
@@ -143,11 +145,10 @@ namespace Uzi.Ikosa.Movement
             if (_loc != null)
             {
                 var _activity = new CoreTargetingProcess(CoreObject, Name,
-                    new List<AimTarget>
-                    {
+                    [
                         new HeadingTarget(MovementTargets.Direction, 8, -2),
                         new ValueTarget<int>(MovementTargets.StepIndex, 0)
-                    });
+                    ]);
                 if (IsValidActivity(_activity, _activity.MainObject))
                 {
                     return _activity

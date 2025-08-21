@@ -96,7 +96,7 @@ namespace Uzi.Ikosa.Magic.Spells
             var _actor = SpiritualWeaponGroup.ControlCreature;
             var _aLoc = _actor?.GetLocated()?.Locator;
             var _tProc = actualStep.Process as CoreTargetingProcess;
-            var _targets = _tProc?.Targets ?? new List<AimTarget>();
+            var _targets = _tProc?.Targets ?? [];
             _tProc.AddFinalizer(this);
             var _aim = _tProc?.GetFirstTarget<AwarenessTarget>(@"Creature");
             SpellDef.DeliverDurableNextStep(actualStep, _actor, _aLoc, PlanarPresence.Material, this, _targets, _aim, false, 1);

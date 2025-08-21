@@ -54,7 +54,9 @@ namespace Uzi.Ikosa.Feats
         public override bool MeetsPreRequisite(Creature creature)
         {
             if (IgnorePreRequisite)
+            {
                 return true;
+            }
 
             return base.MeetsPreRequisite(creature)
                 && creature.Proficiencies.IsProficientWith<WpnType>(PowerLevel)
@@ -66,9 +68,15 @@ namespace Uzi.Ikosa.Feats
             get
             {
                 if (Creature == null)
+                {
                     return false;
+                }
+
                 if (IgnorePreRequisite)
+                {
                     return true;
+                }
+
                 return base.MeetsRequirementsAtPowerLevel
                     && Creature.Proficiencies.IsProficientWith<WpnType>(PowerLevel)
                     && Creature.Feats.Contains(typeof(WeaponFocusFeat<WpnType>), PowerLevel);
@@ -84,7 +92,10 @@ namespace Uzi.Ikosa.Feats
         {
             if ((source is IWeaponHead _head)
                 && typeof(WpnType).IsAssignableFrom(_head.ContainingWeapon.GetType()))
+            {
                 return _Delta;
+            }
+
             return null;
         }
         #endregion

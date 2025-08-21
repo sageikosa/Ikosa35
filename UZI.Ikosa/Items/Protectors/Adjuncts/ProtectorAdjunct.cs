@@ -56,10 +56,14 @@ namespace Uzi.Ikosa.Items
             if (base.CanAnchor(newAnchor) && (newAnchor is IProtectorItem))
             {
                 if (!CanUseOnArmor && newAnchor is IArmor)
+                {
                     return false;
+                }
 
                 if (!CanUseOnShield && newAnchor is IShield)
+                {
                     return false;
+                }
 
                 return true;
             }

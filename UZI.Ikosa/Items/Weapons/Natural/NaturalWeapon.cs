@@ -1,4 +1,4 @@
-using Uzi.Core.Contracts;
+﻿using Uzi.Core.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,7 +38,10 @@ namespace Uzi.Ikosa.Items.Weapons.Natural
             ItemMaterial = Materials.HideMaterial.Static;
             Weight = 0d;
             if (!primary)
+            {
                 AddAdjunct(new NaturalSecondaryAdjunct(typeof(NaturalWeapon)));
+            }
+
             _SlotSub = slotsubType;
             _AlwaysOn = alwaysOn;
             _Sole = treatAsSole;
@@ -51,7 +54,10 @@ namespace Uzi.Ikosa.Items.Weapons.Natural
             DamageType damageType) where WpnType : NaturalWeapon
         {
             if (_DamageRollers != null)
+            {
                 return new WeaponBoundHead<WpnType>(this, mediumDamage, damageType, _DamageRollers, criticalLow, criticalMultiplier, ItemMaterial);
+            }
+
             return new WeaponBoundHead<WpnType>(this, mediumDamage, damageType, criticalLow, criticalMultiplier, ItemMaterial);
         }
 
@@ -59,7 +65,10 @@ namespace Uzi.Ikosa.Items.Weapons.Natural
         protected override bool FinalSlotCheck(ItemSlot slot)
         {
             if (slot != null)
+            {
                 return String.IsNullOrEmpty(SlotSubType) || SlotSubType.Equals(slot.SubType, StringComparison.OrdinalIgnoreCase);
+            }
+
             return false;
         }
         #endregion
@@ -88,7 +97,9 @@ namespace Uzi.Ikosa.Items.Weapons.Natural
                 if (_DamageRollers != null)
                 {
                     foreach (var _kvp in _DamageRollers)
+                    {
                         yield return _kvp;
+                    }
                 }
                 yield break;
             }
@@ -178,8 +189,12 @@ namespace Uzi.Ikosa.Items.Weapons.Natural
             {
                 var _budget = budget as LocalActionBudget;
                 if (_budget.CanPerformRegular)
+                {
                     foreach (var _strike in WeaponStrikes())
+                    {
                         yield return new RegularAttack(_strike);
+                    }
+                }
             }
         }
 
@@ -192,7 +207,10 @@ namespace Uzi.Ikosa.Items.Weapons.Natural
         public IEnumerable<IDelta> QualifiedDeltas(Qualifier qualify)
         {
             if (!(qualify is Interaction _iAct))
+            {
                 yield break;
+            }
+
             var _head = qualify.Source as IWeaponHead;
             if ((_iAct.InteractData is AttackData) && (_head == MainHead) && !IsPrimary)
             {

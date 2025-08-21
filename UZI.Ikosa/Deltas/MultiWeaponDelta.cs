@@ -46,7 +46,9 @@ namespace Uzi.Ikosa.Deltas
                 {
                     // natural weapons do are not affected by off-hand penalties
                     if (_head.ContainingWeapon is NaturalWeapon)
+                    {
                         yield break;
+                    }
 
                     // see if there are any non-light off-hand weapons
                     var _critter = qualify.Actor as Creature;

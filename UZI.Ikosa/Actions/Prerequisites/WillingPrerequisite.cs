@@ -14,8 +14,8 @@ namespace Uzi.Ikosa.Actions
             : base(source, workSet, key, name)
         {
             _IsSerial = isSerial;
-            _Choices = new List<OptionAimOption>
-            {
+            _Choices =
+            [
                 new OptionAimValue<bool>
                 {
                     Key = @"True",
@@ -30,7 +30,7 @@ namespace Uzi.Ikosa.Actions
                     Name = @"No",
                     Value = false
                 }
-            };
+            ];
         }
 
         #region private data
@@ -57,7 +57,9 @@ namespace Uzi.Ikosa.Actions
             set
             {
                 if (value != null)
+                {
                     _Selected = _Choices.FirstOrDefault(_c => _c.Key.Equals(value.Key));
+                }
             }
         }
 

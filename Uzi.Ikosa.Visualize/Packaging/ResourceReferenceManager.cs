@@ -1,12 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using Uzi.Visualize;
 using System.Windows.Media.Imaging;
 using System.Windows.Media.Media3D;
-using System.IO;
-using System.IO.Packaging;
 using System.Runtime.Serialization;
 using Uzi.Packaging;
 using System.ComponentModel;
@@ -52,12 +48,12 @@ namespace Uzi.Visualize.Packaging
         }
 
         #region state
-        private readonly List<ImagesResourceReference> _ImageResRefs = new List<ImagesResourceReference>();
-        private readonly List<ModelsResourceReference> _ModelResRefs = new List<ModelsResourceReference>();
-        private readonly List<FragmentsResourceReference> _FragResRefs = new List<FragmentsResourceReference>();
-        private readonly List<BrushSetsResourceReference> _BrushSetResRefs = new List<BrushSetsResourceReference>();
-        private readonly List<BrushesResourceReference> _BrushResRefs = new List<BrushesResourceReference>();
-        private List<IconsResourceReference> _IconResRefs = new List<IconsResourceReference>();
+        private readonly List<ImagesResourceReference> _ImageResRefs = [];
+        private readonly List<ModelsResourceReference> _ModelResRefs = [];
+        private readonly List<FragmentsResourceReference> _FragResRefs = [];
+        private readonly List<BrushSetsResourceReference> _BrushSetResRefs = [];
+        private readonly List<BrushesResourceReference> _BrushResRefs = [];
+        private List<IconsResourceReference> _IconResRefs = [];
         #endregion
 
         #region INotifyPropertyChanged Members
@@ -625,7 +621,7 @@ namespace Uzi.Visualize.Packaging
         #region internal void RefreshIconResolver()
         internal void RefreshIconResolver()
         {
-            _IconResRefs ??= new List<IconsResourceReference>();
+            _IconResRefs ??= [];
             var _resolvers = from _rsrc in _IconResRefs
                              let _part = GetIResolveIcon(_rsrc)
                              where (_part != null)

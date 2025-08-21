@@ -211,10 +211,15 @@ namespace Uzi.Ikosa.Actions
             {
                 // TODO: perhaps include other information about the power...
                 if (targetCount > 1)
+                {
                     return $@"{dmgRule.Name} @[{targetIndex + 1}]";
+                }
                 else
+                {
                     return $@"{dmgRule.Name}";
-            };
+                }
+            }
+            ;
             var _damageMode = capabilityRoot.GetCapability<IDamageCapable>();
             if (_damageMode != null)
             {
@@ -279,7 +284,9 @@ namespace Uzi.Ikosa.Actions
                         {
                             var _save = _saveMode.GetSaveMode(creature, powerSource, attack, _saveSub);
                             if (_save?.SaveType >= SaveType.Fortitude)
+                            {
                                 yield return new SavePrerequisite(powerSource, attack, _saveSub, @"Save", _save);
+                            }
                         }
                     }
                 }
@@ -360,7 +367,10 @@ namespace Uzi.Ikosa.Actions
 
                 // define all effects
                 if (durableModes.Length == 0)
+                {
                     durableModes = _durable.DurableSubModes.FirstOrDefault().ToEnumerable().ToArray();
+                }
+
                 var _effects = (from _subMode in durableModes
                                 let _dr = _durable.DurationRule(_subMode)
                                 select _getMagicEffect(_dr, _subMode)).ToList();
@@ -473,7 +483,9 @@ namespace Uzi.Ikosa.Actions
                 // NOTE: we use sequence=0 for bursts so that they do not animate in sequence
                 var _step = DeliverNextStep(_delivery, 0, _target, true, generalModes);
                 if (applyAllow(_step))
+                {
                     yield return _step;
+                }
             }
             yield break;
         }

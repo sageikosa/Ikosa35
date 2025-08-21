@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using Uzi.Core;
 using Uzi.Visualize;
 using Uzi.Ikosa.Contracts;
@@ -250,7 +250,11 @@ namespace Uzi.Ikosa
         public Size OffsetSize(int sizeOffset)
         {
             int _newSize = Order + sizeOffset;
-            if (_newSize < -4) _newSize = -4;
+            if (_newSize < -4)
+            {
+                _newSize = -4;
+            }
+
             switch (_newSize)
             {
                 case -4:

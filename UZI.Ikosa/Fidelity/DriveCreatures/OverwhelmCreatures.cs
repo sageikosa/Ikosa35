@@ -100,7 +100,9 @@ namespace Uzi.Ikosa.Fidelity
                     {
                         // skip over cowering creatures
                         if (DriveCreature.IsSkipping(burst.Activation))
+                        {
                             return null;
+                        }
                     }
 
                     // attempt to apply cowering
@@ -281,7 +283,10 @@ namespace Uzi.Ikosa.Fidelity
                         {
                             // update existing if greater
                             if (_check.Value > _existCmd.CheckValue)
+                            {
                                 _existCmd.CheckValue = _check.Value;
+                            }
+
                             _existCmd.Command = _issuedCommand.Value;
                             _ours = true;
                         }
@@ -290,7 +295,9 @@ namespace Uzi.Ikosa.Fidelity
 
                     // one of them was ours
                     if (_ours)
+                    {
                         return;
+                    }
 
                     // need a new adjunct
                     var _critterLevel = _critter.AdvancementLog.PowerLevel.QualifiedValue(_drive);

@@ -24,15 +24,25 @@ namespace Uzi.Ikosa.Movement
             _Track = 0;
             var _distance = fallMove.FallDice * 10d;
             if (_distance < 10)
+            {
                 _Max = 1;
+            }
             else if (_distance < 50)
+            {
                 _Max = 2;
+            }
             else if (_distance < 100)
+            {
                 _Max = 3;
+            }
             else if (_distance < 500)
+            {
                 _Max = 4;
+            }
             else
+            {
                 _Max = 5;
+            }
         }
         #endregion
 

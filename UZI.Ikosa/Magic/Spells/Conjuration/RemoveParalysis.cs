@@ -143,7 +143,9 @@ namespace Uzi.Ikosa.Magic.Spells
         protected override bool OnDoStep()
         {
             if (IsComplete)
+            {
                 return true;
+            }
 
             var _roll = GetPrerequisite<RollPrerequisite>();
             if (_roll != null)
@@ -256,7 +258,9 @@ namespace Uzi.Ikosa.Magic.Spells
         protected override bool OnDoStep()
         {
             if (IsComplete)
+            {
                 return true;
+            }
 
             var _roll = GetPrerequisite<RollPrerequisite>();
             if (_roll != null)

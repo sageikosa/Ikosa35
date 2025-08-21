@@ -53,7 +53,9 @@ namespace Uzi.Ikosa.Adjuncts
 
                 // if shrouded in shadows, can hide from this sense
                 if (_shadowShroud)
+                {
                     return true;
+                }
 
                 if (!sense.UsesLight || (sense.UsesLight && _litUp))
                 {
@@ -61,7 +63,9 @@ namespace Uzi.Ikosa.Adjuncts
                     {
                         // if unobscured from a point, then cannot hide
                         if (!targetLocator.IsObscuredFromObserverPoint(observer, _iSect, sense))
+                        {
                             return false;
+                        }
                     }
                 }
             }
@@ -102,7 +106,9 @@ namespace Uzi.Ikosa.Adjuncts
                             var _observerLocator = _obs.ObserverLocator;
                             if (!_viewer.Senses.BestSenses
                                 .Any(_s => CanHide(_viewer, _observerLocator, _targetLocator, _target as IVisible, _s)))
+                            {
                                 return;
+                            }
 
                             // auto-make spot check
                             var _distance = _obs.GetDistance(_target);

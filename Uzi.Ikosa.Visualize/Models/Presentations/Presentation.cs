@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Windows.Media.Media3D;
 
 namespace Uzi.Visualize
@@ -10,8 +7,8 @@ namespace Uzi.Visualize
     {
         protected Presentation()
         {
-            _ExternalValues = new Dictionary<string, int>();
-            _VisualEffects = new List<VisualEffectValue>();
+            _ExternalValues = [];
+            _VisualEffects = [];
             _BaseFace = AnchorFace.ZLow;
         }
 

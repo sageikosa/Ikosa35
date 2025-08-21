@@ -1,12 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Windows.Markup;
 using System.Windows.Media;
-using System.Windows;
-using System.Windows.Shapes;
-using System.Windows.Controls;
 
 namespace Uzi.Visualize
 {
@@ -78,7 +72,10 @@ namespace Uzi.Visualize
                         // TODO: ...go back to a visual brush solution, so colors will match
                         var _brush = new SolidColorBrush(Mono());
                         if (_brush.CanFreeze)
+                        {
                             _brush.Freeze();
+                        }
+
                         return _brush;
                     }
 
@@ -88,7 +85,10 @@ namespace Uzi.Visualize
                         // TODO: ...go back to a visual brush solution, so colors will match
                         var _brush = new SolidColorBrush(Mono(Colors.Magenta));
                         if (_brush.CanFreeze)
+                        {
                             _brush.Freeze();
+                        }
+
                         return _brush;
                     }
 
@@ -96,7 +96,10 @@ namespace Uzi.Visualize
                     {
                         var _brush = new SolidColorBrush(Dim(0.5f));
                         if (_brush.CanFreeze)
+                        {
                             _brush.Freeze();
+                        }
+
                         return _brush;
                     }
 
@@ -104,7 +107,10 @@ namespace Uzi.Visualize
                     {
                         var _brush = new SolidColorBrush(Dim(0.2f));
                         if (_brush.CanFreeze)
+                        {
                             _brush.Freeze();
+                        }
+
                         return _brush;
                     }
 
@@ -112,7 +118,10 @@ namespace Uzi.Visualize
                     {
                         var _brush = new SolidColorBrush(Dim(0.1f));
                         if (_brush.CanFreeze)
+                        {
                             _brush.Freeze();
+                        }
+
                         return _brush;
                     }
 
@@ -122,7 +131,10 @@ namespace Uzi.Visualize
                         // TODO: ...go back to a visual brush solution, so colors will match
                         var _brush = new SolidColorBrush(Mono(Color.FromArgb(255,32,32,32)));
                         if (_brush.CanFreeze)
+                        {
                             _brush.Freeze();
+                        }
+
                         return _brush;
                     }
 
@@ -147,7 +159,10 @@ namespace Uzi.Visualize
                         //var _brush = new VisualBrush(_rect);
                         var _brush = new SolidColorBrush(Average(1.35f));
                         if (_brush.CanFreeze)
+                        {
                             _brush.Freeze();
+                        }
+
                         return _brush;
                     }
 
@@ -155,7 +170,10 @@ namespace Uzi.Visualize
                     {
                         var _brush = new SolidColorBrush(Dim(1.3f));
                         if (_brush.CanFreeze)
+                        {
                             _brush.Freeze();
+                        }
+
                         return _brush;
                     }
             }

@@ -76,18 +76,27 @@ namespace Uzi.Ikosa.Actions
         private Delta AlternateChoicePenalty(AttackTargetInfo attack)
         {
             if (HasLethalAlternatePenalty)
+            {
                 switch (LethalOption)
                 {
                     case Lethality.NormallyLethal:
                         if (attack.IsNonLethal)
+                        {
                             return new Delta(-4, typeof(Lethality), @"Non-lethal attack");
+                        }
+
                         break;
 
                     case Lethality.NormallyNonLethal:
                         if (!attack.IsNonLethal)
+                        {
                             return new Delta(-4, typeof(Lethality), @"Lethal attack");
+                        }
+
                         break;
                 }
+            }
+
             return null;
         }
         #endregion
@@ -175,7 +184,9 @@ namespace Uzi.Ikosa.Actions
                             // reach!
                             var _rAtk = GetRangedAttack(false, _action, actor, _aLoc, _atk, _score, _iTarget, _tPlanar, _srcCell, _trgCell, _index, _allTargets.Count);
                             if (_rAtk != null)
+                            {
                                 yield return _rAtk;
+                            }
                         }
                     }
                     else
@@ -183,7 +194,9 @@ namespace Uzi.Ikosa.Actions
                         // ranged!
                         var _rAtk = GetRangedAttack(true, _action, actor, _aLoc, _atk, _score, _iTarget, _tPlanar, _srcCell, _trgCell, _index, _allTargets.Count);
                         if (_rAtk != null)
+                        {
                             yield return _rAtk;
+                        }
                     }
                 }
 
@@ -235,7 +248,9 @@ namespace Uzi.Ikosa.Actions
                                 select (iInteract: _capt, location: _mb.Location))
                                .FirstOrDefault();
                 if (_blocker.iInteract != null)
+                {
                     return _blocker;
+                }
             }
 
             // NOTE: perhaps a better selection mechanic?

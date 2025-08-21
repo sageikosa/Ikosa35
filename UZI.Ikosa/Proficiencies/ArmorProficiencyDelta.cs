@@ -28,7 +28,9 @@ namespace Uzi.Ikosa
                                    select _ab)
             {
                 if (!_Set.IsProficientWith(_armor, _powerLevel))
+                {
                     _penalty += _armor.CheckPenalty.EffectiveValue;
+                }
             }
 
             if (_penalty != 0)

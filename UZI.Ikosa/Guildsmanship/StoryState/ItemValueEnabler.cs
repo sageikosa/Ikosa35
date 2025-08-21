@@ -13,7 +13,7 @@ namespace Uzi.Ikosa.Guildsmanship
         public ItemValueEnabler(Description description)
             : base(description)
         {
-            _IDs = new HashSet<Guid>();
+            _IDs = [];
         }
 
         public HashSet<Guid> ItemIDs => _IDs;

@@ -53,7 +53,9 @@ namespace Uzi.Ikosa
         public void TrackTime(double timeVal, TimeValTransition direction)
         {
             if (timeVal >= EndTime)
+            {
                 Eject();
+            }
         }
     }
 }

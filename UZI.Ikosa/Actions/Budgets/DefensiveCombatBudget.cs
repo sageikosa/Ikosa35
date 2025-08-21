@@ -139,11 +139,15 @@ namespace Uzi.Ikosa.Actions
             if (args.Action.Equals(@"Start", StringComparison.OrdinalIgnoreCase))
             {
                 if (_Budget == null)
+                {
                     return;
+                }
 
                 // cannot drop the penalty if already attacked (unless the budget is not lockable)
                 if (_Locked && _Lockable)
+                {
                     return;
+                }
 
                 if (args.NewValue.Actor == _Budget.Actor)
                 {

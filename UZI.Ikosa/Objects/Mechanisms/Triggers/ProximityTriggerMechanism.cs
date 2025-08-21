@@ -123,7 +123,7 @@ namespace Uzi.Ikosa.Objects
         public ProximityTriggerTarget(ProximityTriggerGroup group)
             : base(group)
         {
-            _SizeCtrlrs = new Dictionary<Sizer, Locator>();
+            _SizeCtrlrs = [];
             _Capture = null;
         }
 

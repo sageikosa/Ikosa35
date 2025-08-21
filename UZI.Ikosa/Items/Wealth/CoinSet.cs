@@ -57,9 +57,13 @@ namespace Uzi.Ikosa.Items.Wealth
             {
                 var _dc = _Coins.Select(_c => _c.CoinType.Name).Distinct().ToList();
                 if (_dc.Count == 1)
+                {
                     return _dc.FirstOrDefault();
+                }
                 else
+                {
                     return @"-Mixed-";
+                }
             }
         }
 
@@ -195,7 +199,9 @@ namespace Uzi.Ikosa.Items.Wealth
             {
                 // TODO: negotiation with other stuff?
                 if (existingHandler is GetInfoDataHandler)
+                {
                     return true;
+                }
             }
             return false;
         }

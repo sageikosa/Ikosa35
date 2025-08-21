@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Windows.Media.Media3D;
 using System.Windows;
 
@@ -15,12 +12,20 @@ namespace Uzi.Visualize
             var _sliver = plus;
             var _flipAxis = param.Flip;
             if (_flipAxis)
+            {
                 _sliver = new SliverInverter(plus);
+            }
 
             if (!(_sliver.IsInvisible))
+            {
                 GenerateInnerSubModel(param, z, y, x, _sliver, addToGroup, false, effect);
+            }
+
             if (!(_sliver.IsPlusInvisible))
+            {
                 GenerateInnerSubModel(param, z, y, x, _sliver, addToGroup, true, effect);
+            }
+
             foreach (var _edge in param.GetSliverEdges(edge))
             {
                 WedgeSpaceFaces.BuildInnerStructures(addToGroup, z, y, x, _edge.Axis, _edge.PrimeOff, _edge.SecondOff,
@@ -235,14 +240,21 @@ namespace Uzi.Visualize
             var _sliver = plus;
             var _flipAxis = param.Flip;
             if (_flipAxis)
+            {
                 _sliver = new SliverInverter(plus);
+            }
 
             if (!_sliver.IsInvisible)
+            {
                 GenerateOuterSubModel(param, _sliver, group, _sliver.IsGas || _sliver.IsLiquid,
                     z, y, x, false, face, effect, bump);
+            }
+
             if (!_sliver.IsPlusInvisible)
+            {
                 GenerateOuterSubModel(param, _sliver, group, _sliver.IsPlusGas || _sliver.IsPlusLiquid,
                     z, y, x, true, face, effect, bump); // NOTE: fixed(?) isPlus flag
+            }
 
             Func<BuildableMaterial> _builder =
                 () => edge.GetOrthoFaceMaterial(face.GetAxis(), !face.IsLowFace(), effect);
@@ -343,12 +355,18 @@ namespace Uzi.Visualize
             {
                 var _flip = _param.Flip;
                 if (outwardFace.IsLowFace() ^ _flip)
+                {
                     return !plus.IsInvisible;
+                }
                 else
+                {
                     return !plus.IsPlusInvisible;
+                }
             }
             else
+            {
                 return !plus.IsInvisible && !plus.IsPlusInvisible;
+            }
         }
         #endregion
 
@@ -366,7 +384,9 @@ namespace Uzi.Visualize
                     : !plus.IsPlusInvisible) || _param.HasEdges(outwardFace);
             }
             else
+            {
                 return !plus.IsInvisible || !plus.IsPlusInvisible || _param.HasEdges(outwardFace);
+            }
         }
         #endregion
     }

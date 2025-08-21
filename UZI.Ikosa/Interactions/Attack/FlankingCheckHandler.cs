@@ -79,7 +79,9 @@ namespace Uzi.Ikosa.Interactions
                                                     // flanking achieved for this "ally"
                                                     workSet.InteractData.Alterations.Add(_target, new FlankingAlteration(_atk, 2, _threat.Flanker));
                                                     if (workSet.InteractData.Alterations.Contains(typeof(FlankingAlteration)))
+                                                    {
                                                         return;
+                                                    }
 
                                                     // checked
                                                     _allyChecked = true;
@@ -91,7 +93,9 @@ namespace Uzi.Ikosa.Interactions
 
                                     // since this ally flanked, skip extra cell checks
                                     if (_allyChecked)
+                                    {
                                         break;
+                                    }
                                 }
                             }
                         }

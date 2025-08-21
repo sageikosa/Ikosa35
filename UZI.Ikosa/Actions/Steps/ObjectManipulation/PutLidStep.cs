@@ -51,7 +51,9 @@ namespace Uzi.Ikosa.Actions.Steps
                         // remove from whatever path is connecting it to gameplay
                         HollowFurnishingLid.UnPath();
                         if (!HollowFurnishingLid.IsPathed())
+                        {
                             HollowFurnishingLid.BindToObject(HollowFurnishing);
+                        }
                     }
                     else
                     {

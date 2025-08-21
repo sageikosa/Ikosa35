@@ -97,8 +97,12 @@ namespace Uzi.Ikosa.UI
                     if (txtBox != null)
                     {
                         if (txtBox.Tag != null)
+                        {
                             if (txtBox.Tag.ToString() == @"Invalid")
+                            {
                                 return false;
+                            }
+                        }
                     }
                     return true;
                 };

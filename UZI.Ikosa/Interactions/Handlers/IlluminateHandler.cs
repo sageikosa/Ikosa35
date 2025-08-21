@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using Uzi.Core;
@@ -43,24 +43,34 @@ namespace Uzi.Ikosa.Interactions
                     // use best active light
                     LightRange _level;
                     if (_illuminator.FarShadowyLeft(_nearest.Location) < _nearest.Distance)
+                    {
                         return;                    // distance is too great to be lit
+                    }
                     else
                     {
                         var _shadowyLeft = _illuminator.ShadowyLeft(_nearest.Location);
                         if ((_shadowyLeft <= 0) || (_shadowyLeft < _nearest.Distance))
+                        {
                             _level = LightRange.FarShadow;  // far shadowy
+                        }
                         else
                         {
                             var _brightLeft = _illuminator.BrightLeft(_nearest.Location);
                             if ((_brightLeft <= 0) || (_brightLeft < _nearest.Distance))
+                            {
                                 _level = LightRange.NearShadow; // simply shadowy
+                            }
                             else
                             {
                                 var _veryLeft = _illuminator.VeryBrightLeft(_nearest.Location);
                                 if ((_veryLeft <= 0) || (_veryLeft < _nearest.Distance))
+                                {
                                     _level = LightRange.Bright;
+                                }
                                 else
+                                {
                                     _level = LightRange.VeryBright;
+                                }
                             }
                         }
                     }

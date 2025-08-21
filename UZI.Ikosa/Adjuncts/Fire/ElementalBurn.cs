@@ -46,10 +46,9 @@ namespace Uzi.Ikosa.Adjuncts
             // setup continuous damage
             var _nextTime = ((Anchor as ICoreObject)?.GetLocated()?.Locator.Map?.CurrentTime ?? 0d) + Round.UnitFactor;
             _DamageSource = new ContinuousDamageSource(Source,
-                new List<DamageRule>
-                {
+                [
                     new EnergyDamageRule(@"Fire.Damage", new DiceRange(@"Fire", @"Burn", DamageRoller), @"Burn Damage", EnergyType.Fire)
-                },
+                ],
                 _nextTime, EndTime, Resolution, PowerLevel);
             Anchor.AddAdjunct(_DamageSource);
 
@@ -84,7 +83,9 @@ namespace Uzi.Ikosa.Adjuncts
             if (direction == TimeValTransition.Leaving)
             {
                 if (timeVal >= EndTime)
+                {
                     Eject();
+                }
             }
         }
     }

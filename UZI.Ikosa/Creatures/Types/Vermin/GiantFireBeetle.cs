@@ -30,10 +30,10 @@ namespace Uzi.Ikosa.Creatures.Types
 
         static GiantFireBeetle()
         {
-            _SizeRanges = new List<SizeRange>
-            {
+            _SizeRanges =
+            [
                 new SizeRange(1, 3, Size.Small, 1)
-            };
+            ];
             _BiteRollers = WeaponDamageRollers.BuildRollerProgression(
                 @"1d3", @"1d4", @"1d6", @"2d4", @"2d6", @"3d6", @"4d6", @"6d6", @"8d6");
         }

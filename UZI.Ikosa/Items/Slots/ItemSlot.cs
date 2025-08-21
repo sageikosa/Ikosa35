@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using Uzi.Core;
 using Uzi.Ikosa.Contracts;
 using System.Linq;
@@ -43,7 +43,7 @@ namespace Uzi.Ikosa.Items
         private Guid _ID = Guid.NewGuid();
         private bool _UnslotAct;
 
-        // TODO: consider disabling item slots (¡¡¡ especially holding slots !!!)
+        // TODO: consider disabling item slots (Â¡Â¡Â¡ especially holding slots !!!)
 
         /// <summary>To mark 3rd+ hand (or 2nd head) as being incapable of wearing magical items</summary>
         public bool MagicalSlot { get; private set; }
@@ -66,14 +66,18 @@ namespace Uzi.Ikosa.Items
         {
             base.OnPreLink(newVal);
             if (SlottedItem != null)
+            {
                 Creature.ObjectLoad.Remove(SlottedItem, null);
+            }
         }
 
         protected override void OnLink()
         {
             base.OnLink();
             if (SlottedItem != null)
+            {
                 Creature.ObjectLoad.Add(SlottedItem);
+            }
         }
 
         public Guid ID => _ID;

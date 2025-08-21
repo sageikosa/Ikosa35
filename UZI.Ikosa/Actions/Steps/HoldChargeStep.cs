@@ -43,7 +43,9 @@ namespace Uzi.Ikosa.Actions.Steps
                         AppendFollowing(_activity.GetActivityResultNotifyStep(@"Holding the charge."));
                     }
                     else
+                    {
                         AppendFollowing(_activity.GetActivityResultNotifyStep(@"No empty holding slot."));
+                    }
                 }
             }
 

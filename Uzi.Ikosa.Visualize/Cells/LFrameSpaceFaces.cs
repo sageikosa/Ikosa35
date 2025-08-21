@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace Uzi.Visualize
+﻿namespace Uzi.Visualize
 {
     public static class LFrameSpaceFaces
     {
@@ -83,18 +78,30 @@ namespace Uzi.Visualize
             if ((param & 4) == 4)
             {
                 if ((param & 2) == 2)
+                {
                     return AnchorFace.ZHigh;
+                }
                 else if ((param & 1) == 1)
+                {
                     return AnchorFace.YHigh;
+                }
                 else
+                {
                     return AnchorFace.XHigh;
+                }
             }
             else if ((param & 2) == 2)
+            {
                 return AnchorFace.ZLow;
+            }
             else if ((param & 1) == 1)
+            {
                 return AnchorFace.YLow;
+            }
             else
+            {
                 return AnchorFace.XLow;
+            }
         }
         #endregion
 
@@ -104,18 +111,30 @@ namespace Uzi.Visualize
             if ((param & 32) == 32)
             {
                 if ((param & 16) == 16)
+                {
                     return AnchorFace.ZHigh;
+                }
                 else if ((param & 8) == 8)
+                {
                     return AnchorFace.YHigh;
+                }
                 else
+                {
                     return AnchorFace.XHigh;
+                }
             }
             else if ((param & 16) == 16)
+            {
                 return AnchorFace.ZLow;
+            }
             else if ((param & 8) == 8)
+            {
                 return AnchorFace.YLow;
+            }
             else
+            {
                 return AnchorFace.XLow;
+            }
         }
         #endregion
 
@@ -125,18 +144,30 @@ namespace Uzi.Visualize
             if ((param & 256) == 256)
             {
                 if ((param & 128) == 128)
+                {
                     return AnchorFace.ZHigh;
+                }
                 else if ((param & 64) == 64)
+                {
                     return AnchorFace.YHigh;
+                }
                 else
+                {
                     return AnchorFace.XHigh;
+                }
             }
             else if ((param & 128) == 128)
+            {
                 return AnchorFace.ZLow;
+            }
             else if ((param & 64) == 64)
+            {
                 return AnchorFace.YLow;
+            }
             else
+            {
                 return AnchorFace.XLow;
+            }
         }
         #endregion
 
@@ -144,7 +175,9 @@ namespace Uzi.Visualize
         {
             var _thickFace = GetThickFace(param);
             if (_thickFace.ReverseFace() == outwardFace)
+            {
                 return !plusSpace.IsPlusInvisible;
+            }
 
             // every other face has some part of both materials
             return !plusSpace.IsPlusInvisible && !plusSpace.IsInvisible;
@@ -154,7 +187,9 @@ namespace Uzi.Visualize
         {
             var _thickFace = GetThickFace(param);
             if (_thickFace.ReverseFace() == outwardFace)
+            {
                 return !plusSpace.IsPlusInvisible;
+            }
 
             // every other face has some part of both materials
             return !plusSpace.IsPlusInvisible || !plusSpace.IsInvisible;

@@ -1,16 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Windows.Media;
-using System.Collections.ObjectModel;
 using System.Windows.Media.Imaging;
-using System.Windows.Controls;
 using System.Windows.Media.Media3D;
-using System.Diagnostics;
-using System.Collections.Concurrent;
-using Uzi.Visualize.Packaging;
-using Uzi.Visualize.Packages;
 
 namespace Uzi.Visualize
 {
@@ -19,14 +11,14 @@ namespace Uzi.Visualize
         #region ctor()
         protected BrushDefinition()
         {
-            _Brushes = new Dictionary<VisualEffect, Brush>();
-            _Materials = new Dictionary<VisualEffect, Material>();
+            _Brushes = [];
+            _Materials = [];
         }
 
         protected BrushDefinition(BrushDefinition source)
         {
-            _Brushes = new Dictionary<VisualEffect, Brush>();
-            _Materials = new Dictionary<VisualEffect, Material>();
+            _Brushes = [];
+            _Materials = [];
             _Opacity = source.Opacity;
             BrushKey = source.BrushKey;
         }
@@ -75,7 +67,6 @@ namespace Uzi.Visualize
         public bool ShouldSerializeOwner()
             => false;
 
-        public IPartResolveImage PartOwner { get; set; }
         public IResolveBitmapImage Owner { get; set; }
 
         public Material Normal
@@ -121,12 +112,14 @@ namespace Uzi.Visualize
         protected void PreGenerateBrushes()
         {
             if (NeedsPreGenerate)
+            {
                 foreach (var _effect in GeneratedEffects())
                 {
                     var _newBrush = OnGetBrush(_effect);
                     _Brushes.Add(_effect, _newBrush);
                     _Materials.Add(_effect, OnGetMaterial(_effect));
                 }
+            }
         }
 
         #region public Brush GetBrush(VisualEffect effect)
@@ -135,7 +128,9 @@ namespace Uzi.Visualize
         public Brush GetBrush(VisualEffect effect)
         {
             if (effect == VisualEffect.Unseen)
+            {
                 return Brushes.Black;
+            }
 
             if (!_Brushes.ContainsKey(effect) && !NeedsPreGenerate)
             {
@@ -241,10 +236,15 @@ namespace Uzi.Visualize
         public Material GetMaterial(VisualEffect effect)
         {
             if (effect == VisualEffect.Unseen)
+            {
                 return _Black;
+            }
 
             if (!_Materials.ContainsKey(effect) && !NeedsPreGenerate)
+            {
                 _Materials.Add(effect, OnGetMaterial(effect));
+            }
+
             return _Materials[effect];
         }
         #endregion

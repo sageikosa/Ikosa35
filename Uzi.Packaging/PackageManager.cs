@@ -21,9 +21,9 @@ namespace Uzi.Packaging
         private PackageManager()
         {
             _Cache = new Dictionary<(string packageSet, string packageID), (CorePackage package, Dictionary<string, IBasePart> parts)>(new CompareRefKey());
-            _Listers = new List<IListPackagePartReferences>();
-            _PackagePaths = new List<string>();
-            _PackageSetPaths = new List<string>();
+            _Listers = [];
+            _PackagePaths = [];
+            _PackageSetPaths = [];
         }
 
         public void SetPaths(List<string> packagePaths, List<string> packageSetPaths)
@@ -71,7 +71,9 @@ namespace Uzi.Packaging
                 {
                     var _fInfo = new FileInfo($@"{_path}{_set}{packageID}");
                     if (_fInfo.Exists)
+                    {
                         return _fInfo;
+                    }
                 }
                 catch
                 {
@@ -121,7 +123,9 @@ namespace Uzi.Packaging
                           where !_Listers.SelectMany(_l => _l.AllReferences).Any(_ref => _ref.Part == _part)
                           select new { _kvp.Key, Dictionary = _c.Value.parts }).ToList();
             foreach (var _rmv in _clean)
+            {
                 _rmv.Dictionary.Remove(_rmv.Key);
+            }
 
             // all cache entries that no longer have parts
             var _recover = (from _c in _Cache

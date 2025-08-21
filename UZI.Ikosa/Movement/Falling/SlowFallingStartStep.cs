@@ -64,7 +64,10 @@ namespace Uzi.Ikosa.Movement
             if (_region != null)
             {
                 if (SlowFallMovement.CoreObject != null)
+                {
                     EnqueueNotify(new BadNewsNotify(SlowFallMovement.CoreObject.ID, @"Movement", new Description(@"Slow Falling", @"Started")), SlowFallMovement.CoreObject.ID);
+                }
+
                 new FallingStep(this, Locator, _region, SlowFallMovement, 0d, AnchorFaceListHelper.Create(Locator.GetGravityFace()), Locator.GetGravityFace());
             }
             else

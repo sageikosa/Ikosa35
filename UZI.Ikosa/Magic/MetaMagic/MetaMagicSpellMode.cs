@@ -23,7 +23,9 @@ namespace Uzi.Ikosa.Magic
         {
             // if this wrapper is the correct type, return true
             if (GetType() == typeof(MetaWrap))
+            {
                 return true;
+            }
 
             // if this is wrapping a metamagic wrapper itself, dig further in
             MetaMagicSpellMode _wrapper = _Wrapped as MetaMagicSpellMode;

@@ -80,7 +80,9 @@ namespace Uzi.Ikosa.Magic.Spells
             {
                 // is creature made of metal?
                 if (_check(_critter.Body.BodyMaterial))
+                {
                     _atkBonus = 3;
+                }
                 else
                 {
                     ItemSlot _armorSlot = _critter.Body.ItemSlots[ItemSlot.ArmorRobeSlot];
@@ -88,7 +90,9 @@ namespace Uzi.Ikosa.Magic.Spells
                     {
                         // is armor made of metal
                         if ((_armorSlot.SlottedItem is SlottedItemBase _slotItem) && _check(_slotItem.ItemMaterial))
+                        {
                             _atkBonus = 3;
+                        }
                     }
                     // TODO: consider checking for "a lot of metal" in the ObjectLoad or Parts enumerator
                 }
@@ -99,7 +103,9 @@ namespace Uzi.Ikosa.Magic.Spells
                 {
                     // is item made of metal?
                     if (_check(_item.ItemMaterial))
+                    {
                         _atkBonus = 3;
+                    }
                 }
                 else
                 {
@@ -107,7 +113,9 @@ namespace Uzi.Ikosa.Magic.Spells
                     {
                         // is object made of metal?
                         if (_check(_obj.ObjectMaterial))
+                        {
                             _atkBonus = 3;
+                        }
                     }
                 }
             }
@@ -121,7 +129,9 @@ namespace Uzi.Ikosa.Magic.Spells
                     // both attack and critical rolls get a boost
                     _target.Attack.AttackScore.Deltas.Add(_atkDelta);
                     if (_target.Attack.CriticalConfirmation != null)
+                    {
                         _target.Attack.CriticalConfirmation.Deltas.Add(_atkDelta);
+                    }
                 }
             }
 
@@ -153,7 +163,10 @@ namespace Uzi.Ikosa.Magic.Spells
         {
             yield return new EnergyDamageRule(@"Electricity.Damage", new DiceRange(@"Electric", DisplayName, 5, new DieRoller(6), 1), @"Shocking Grasp", EnergyType.Electric);
             if (isCriticalHit)
+            {
                 yield return new EnergyDamageRule(@"Electricity.Damage.Critical", new DiceRange(@"Electric (Critical)", DisplayName, 5, new DieRoller(6), 1), @"Shocking Grasp (Critical)", EnergyType.Electric);
+            }
+
             yield break;
         }
 

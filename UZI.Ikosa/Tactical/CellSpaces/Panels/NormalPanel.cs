@@ -80,9 +80,13 @@ namespace Uzi.Ikosa.Tactical
         {
             // TODO: determine visiblity?
             if (panelFace == visibleFace)
+            {
                 PanelSpaceFaces.AddOuterNormalPanel(group, new CellPosition(z, y, x), panelFace, effect, this);
+            }
             else
+            {
                 PanelSpaceFaces.AddOuterNormalPanel(group, z, y, x, panelFace, visibleFace, Thickness, effect, this);
+            }
         }
 
         public override bool OrthoOcclusion(PanelParams param, AnchorFace panelFace, AnchorFace sideFace)

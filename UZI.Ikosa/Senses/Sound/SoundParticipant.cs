@@ -30,7 +30,10 @@ namespace Uzi.Ikosa.Senses
         {
             var _loc = Anchor?.GetLocated()?.Locator;
             if (_loc?.PlanarPresence.HasMaterialPresence() ?? false)
+            {
                 return _loc.GetLocalCellGroups();
+            }
+
             return Enumerable.Empty<LocalCellGroup>();
         }
 

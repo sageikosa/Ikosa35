@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 using Uzi.Ikosa.Items.Armor;
@@ -15,9 +15,9 @@ namespace Uzi.Ikosa
         public ProficiencySet(Creature creature)
         {
             _Creature = creature;
-            _WeaponProficiencies = new Collection<IWeaponProficiency>();
-            _ArmorProficiencies = new Collection<IArmorProficiency>();
-            _ShieldProficiencies = new Collection<IShieldProficiency>();
+            _WeaponProficiencies = [];
+            _ArmorProficiencies = [];
+            _ShieldProficiencies = [];
             _WpnDelta = new WeaponProficiencyDelta(this);
             _ArmorDelta = new ArmorProficiencyDelta(this);
             _ShldDelta = new ShieldProficiencyDelta(this);
@@ -49,19 +49,25 @@ namespace Uzi.Ikosa
         public void Add(IShieldProficiency proficiency)
         {
             if (!_ShieldProficiencies.Contains(proficiency))
+            {
                 _ShieldProficiencies.Add(proficiency);
+            }
         }
 
         public void Add(IArmorProficiency proficiency)
         {
             if (!_ArmorProficiencies.Contains(proficiency))
+            {
                 _ArmorProficiencies.Add(proficiency);
+            }
         }
 
         public void Add(IWeaponProficiency proficiency)
         {
             if (!_WeaponProficiencies.Contains(proficiency))
+            {
                 _WeaponProficiencies.Add(proficiency);
+            }
         }
         #endregion
 
@@ -69,19 +75,25 @@ namespace Uzi.Ikosa
         public void Remove(IShieldProficiency proficiency)
         {
             if (_ShieldProficiencies.Contains(proficiency))
+            {
                 _ShieldProficiencies.Remove(proficiency);
+            }
         }
 
         public void Remove(IArmorProficiency proficiency)
         {
             if (_ArmorProficiencies.Contains(proficiency))
+            {
                 _ArmorProficiencies.Remove(proficiency);
+            }
         }
 
         public void Remove(IWeaponProficiency proficiency)
         {
             if (_WeaponProficiencies.Contains(proficiency))
+            {
                 _WeaponProficiencies.Remove(proficiency);
+            }
         }
         #endregion
 
@@ -91,7 +103,9 @@ namespace Uzi.Ikosa
             foreach (IShieldProficiency _proficiency in _ShieldProficiencies)
             {
                 if (_proficiency.IsProficientWithShield(tower, powerLevel))
+                {
                     return true;
+                }
             }
             return false;
         }
@@ -113,7 +127,9 @@ namespace Uzi.Ikosa
             foreach (IArmorProficiency _proficiency in _ArmorProficiencies)
             {
                 if (_proficiency.IsProficientWith(profType, powerLevel))
+                {
                     return true;
+                }
             }
             return profType == ArmorProficiencyType.None;
         }
@@ -124,9 +140,14 @@ namespace Uzi.Ikosa
             foreach (IArmorProficiency _proficiency in _ArmorProficiencies)
             {
                 if (_proficiency.IsProficientWith(armor.ProficiencyType, powerLevel))
+                {
                     return true;
+                }
+
                 if (_proficiency.IsProficientWith(armor, powerLevel))
+                {
                     return true;
+                }
             }
             return armor.ProficiencyType == ArmorProficiencyType.None;
         }
@@ -144,7 +165,9 @@ namespace Uzi.Ikosa
             foreach (var _proficiency in _WeaponProficiencies)
             {
                 if (_proficiency.IsProficientWith(profType, powerLevel))
+                {
                     return true;
+                }
             }
             return false;
         }
@@ -162,13 +185,17 @@ namespace Uzi.Ikosa
                 {
                     // since it is a martial weapon (normally), see if we are proficient with martial weapons
                     if (IsProficientWith(WeaponProficiencyType.Martial, powerLevel))
+                    {
                         return true;
+                    }
                 }
                 else
                 {
                     // since it is neither exotic nor martial, see if we are proficient with simple weapons
                     if (IsProficientWith(WeaponProficiencyType.Simple, powerLevel))
+                    {
                         return true;
+                    }
                 }
             }
 
@@ -179,7 +206,9 @@ namespace Uzi.Ikosa
             foreach (var _proficiency in _WeaponProficiencies)
             {
                 if (_proficiency.IsProficientWithWeapon(type, powerLevel))
+                {
                     return true;
+                }
             }
             return false;
         }
@@ -206,17 +235,23 @@ namespace Uzi.Ikosa
             {
                 // first check the weapon type unconditionally
                 if (IsProficientWithWeapon(weapon.GetType(), powerLevel))
+                {
                     return true;
+                }
 
                 foreach (var _proficiency in _WeaponProficiencies)
                 {
                     // some exotic weapons may change their proficiency-type to martial if wielded with 2-hands
                     if (_proficiency.IsProficientWith(weapon.ProficiencyType, powerLevel))
+                    {
                         return true;
+                    }
 
                     // then check if the specific weapon has a proficiency item (such as an enhancement)
                     if (_proficiency.IsProficientWith(weapon, powerLevel))
+                    {
                         return true;
+                    }
                 }
             }
             return false;
@@ -243,7 +278,9 @@ namespace Uzi.Ikosa
             {
                 var _treat = _treater.WeaponTreatment(weaponType, powerLevel);
                 if (_treat < _prof)
+                {
                     _prof = _treat;
+                }
             }
             return _prof;
         }
@@ -255,7 +292,9 @@ namespace Uzi.Ikosa
             {
                 var _treat = _treater.WeaponTreatment(weapon, powerLevel);
                 if (_treat < _prof)
+                {
                     _prof = _treat;
+                }
             }
             return _prof;
         }

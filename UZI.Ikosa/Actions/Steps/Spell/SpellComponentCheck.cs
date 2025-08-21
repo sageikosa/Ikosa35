@@ -35,7 +35,10 @@ namespace Uzi.Ikosa.Actions.Steps
                 .ToList();
 
             if (_components.All(_c => !_c.HasFailed))
+            {
                 AppendFollowing(_Follower);
+            }
+
             return true;
         }
     }

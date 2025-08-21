@@ -14,14 +14,14 @@ namespace Uzi.Core
         public AimTargetPrerequisite(ModeType aimMode, Qualifier workSet, string key, string name, bool serial)
             : base(aimMode, workSet, key, name)
         {
-            _AimTargets = new Collection<TargetType>();
+            _AimTargets = [];
             _IsSerial = serial;
         }
 
         public AimTargetPrerequisite(ModeType aimMode, CoreActor actor, object iSource, IInteract interactTarget, string key, string name, bool serial)
             : base(aimMode, actor, iSource, interactTarget, key, name)
         {
-            _AimTargets = new Collection<TargetType>();
+            _AimTargets = [];
             _IsSerial = serial;
         }
         #endregion

@@ -69,7 +69,10 @@ namespace Uzi.Ikosa.Objects
             }
 
             foreach (var _act in BaseMechanismActions(budget))
+            {
                 yield return _act;
+            }
+
             yield break;
         }
         #endregion
@@ -107,14 +110,20 @@ namespace Uzi.Ikosa.Objects
         public void AddKey(Guid key)
         {
             if (!_Keys.Contains(key))
+            {
                 _Keys.Add(key);
+            }
+
             DoPropertyChanged(nameof(Keys));
         }
 
         public void RemoveKey(Guid key)
         {
             if (_Keys.Contains(key))
+            {
                 _Keys.Remove(key);
+            }
+
             DoPropertyChanged(nameof(Keys));
         }
 

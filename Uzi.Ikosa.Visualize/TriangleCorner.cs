@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace Uzi.Visualize
 {
@@ -81,7 +79,10 @@ namespace Uzi.Visualize
         public static FaceEdge VerticalEdge(this TriangleCorner self)
         {
             if ((self == TriangleCorner.UpperLeft) || (self == TriangleCorner.UpperRight))
+            {
                 return FaceEdge.Top;
+            }
+
             return FaceEdge.Bottom;
         }
 
@@ -89,7 +90,10 @@ namespace Uzi.Visualize
         public static FaceEdge HorizontalEdge(this TriangleCorner self)
         {
             if ((self == TriangleCorner.UpperLeft) || (self == TriangleCorner.LowerLeft))
+            {
                 return FaceEdge.Left;
+            }
+
             return FaceEdge.Right;
         }
 
@@ -99,13 +103,19 @@ namespace Uzi.Visualize
             if (edges.Contains(FaceEdge.Left))
             {
                 if (edges.Contains(FaceEdge.Top))
+                {
                     return TriangleCorner.UpperLeft;
+                }
+
                 return TriangleCorner.LowerLeft;
             }
             else
             {
                 if (edges.Contains(FaceEdge.Top))
+                {
                     return TriangleCorner.UpperRight;
+                }
+
                 return TriangleCorner.LowerRight;
             }
         }

@@ -1,4 +1,4 @@
-using Uzi.Core;
+﻿using Uzi.Core;
 
 namespace Uzi.Ikosa.Interactions
 {
@@ -24,7 +24,9 @@ namespace Uzi.Ikosa.Interactions
             {
                 // add in for this check
                 if (_soft != null)
+                {
                     SaveRoll.Deltas.Add(_soft);
+                }
 
                 var _check = Deltable.GetCheckNotify(qualifier?.Target?.ID, $@"{SaveMode.SaveType} Save", null, @"Difficulty");
                 _check.OpposedInfo = SaveMode.Difficulty;

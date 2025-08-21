@@ -36,7 +36,10 @@ namespace Uzi.Ikosa.Workshop
         private void cbSave_CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
             if (_IsValid != null)
+            {
                 e.CanExecute = _IsValid(txtName.Text);
+            }
+
             e.Handled = true;
         }
 

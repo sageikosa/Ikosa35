@@ -28,7 +28,10 @@ namespace Uzi.Ikosa.Items.Weapons.Ranged
             // TODO: throw shuriken from bundle???
             yield return new ArmShuriken(this, @"101");
             foreach (var _act in base.GetActions(budget))
+            {
                 yield return _act;
+            }
+
             yield break;
         }
     }

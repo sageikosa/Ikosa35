@@ -85,7 +85,9 @@ namespace Uzi.Ikosa.Items.Weapons
                     if (_choice != null)
                     {
                         if (!((_choice.Selected as OptionAimValue<bool>)?.Value ?? false))
+                        {
                             return;
+                        }
                     }
                 }
                 SpecialAttack.ApplySpecialAttack(deliverDamageInteraction);

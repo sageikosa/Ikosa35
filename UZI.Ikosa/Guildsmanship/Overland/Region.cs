@@ -39,10 +39,10 @@ namespace Uzi.Ikosa.Guildsmanship.Overland
         {
             _OverRegion = new OverRegion(description.Clone() as Description);
             _StoryInfo = new StoryInformation();
-            _SubRegions = new List<SubRegion>();
-            _Sites = new List<SiteLink>();
-            _Names = new List<PlaceName>();
-            _Overlays = new List<SitePathGraphOverlay>();
+            _SubRegions = [];
+            _Sites = [];
+            _Names = [];
+            _Overlays = [];
 
             // NOTE: 6000 is the value for "mile" being used here
             //       each cell is a 16 mile square (one day at base 20')
@@ -53,7 +53,7 @@ namespace Uzi.Ikosa.Guildsmanship.Overland
             _Columns = 40;
             _Rows = 30;
 
-            _TerrainIndex = new Dictionary<byte, ITerrain>();
+            _TerrainIndex = [];
             _Terrain = new RegionLayer<ITerrain>(this,
                 (r, c, i) => _TerrainIndex.TryGetValue(i, out var _t) ? _t : null,
                 (r, c, i) => _TerrainIndex.ContainsKey(i));

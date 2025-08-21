@@ -19,8 +19,8 @@ namespace Uzi.Ikosa.Movement
         public TumbleBudget(Creature critter)
         {
             _Critter = critter;
-            _Past = new List<Guid>();
-            _Thru = new List<Guid>();
+            _Past = [];
+            _Thru = [];
         }
 
         // TODO: accelerated switch here, or on action?

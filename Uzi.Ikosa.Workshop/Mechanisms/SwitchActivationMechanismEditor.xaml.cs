@@ -43,7 +43,9 @@ namespace Uzi.Ikosa.Workshop
             set
             {
                 if (SwitchActivationMechanism != null)
+                {
                     SwitchActivationMechanism.OpenState = new OpenStatus(value);
+                }
             }
         }
 

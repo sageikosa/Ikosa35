@@ -39,7 +39,9 @@ namespace Uzi.Ikosa.Workshop
                 {
                     cboLock.Items.Add(_lock);
                     if (_lock == Keyhole.LockGroup)
+                    {
                         cboLock.SelectedItem = _lock;
+                    }
                 }
             }
         }
@@ -58,7 +60,9 @@ namespace Uzi.Ikosa.Workshop
                 if (Keyhole != null)
                 {
                     if (Openable != null)
+                    {
                         yield return new LockGroup(null, false, true);
+                    }
 
                     var _khLoc = Keyhole.GetLocated();
                     if (_khLoc != null)

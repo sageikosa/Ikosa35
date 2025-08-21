@@ -184,18 +184,26 @@ namespace Uzi.Ikosa.Host
         {
             _Incline--;
             if (_Incline < -2)
+            {
                 _Incline = -2;
+            }
             else
+            {
                 SetLook();
+            }
         }
 
         private void cbTiltBackward_Executed(object sender, ExecutedRoutedEventArgs e)
         {
             _Incline++;
             if (_Incline > 2)
+            {
                 _Incline = 2;
+            }
             else
+            {
                 SetLook();
+            }
         }
         #endregion
 
@@ -393,18 +401,28 @@ namespace Uzi.Ikosa.Host
                                  select _room.GenerateModel(_room.YieldEffects(_CellLoc, false, _visualizer)))
             {
                 if (_mdl.Opaque != null)
+                {
                     grpRooms.Children.Add(_mdl.Opaque);
+                }
+
                 if (_mdl.Alpha != null)
+                {
                     grpAlphaRooms.Children.Add(_mdl.Alpha);
+                }
             }
 
             foreach (var _grp in from _zone in _Map.ShadingZones.YieldShadeZoneEffects(_CellLoc, false, _visualizer).AsParallel()
                                  select _Map.ShadingZones.RenderShadingZoneEffects(_zone, _CellLoc, false, _visualizer))
             {
                 if (_grp.Opaque != null)
+                {
                     grpRooms.Children.Add(_grp.Opaque);
+                }
+
                 if (_grp.Alpha != null)
+                {
                     grpAlphaRooms.Children.Add(_grp.Alpha);
+                }
             }
             DrawingTools.DebugGroup = null;
         }

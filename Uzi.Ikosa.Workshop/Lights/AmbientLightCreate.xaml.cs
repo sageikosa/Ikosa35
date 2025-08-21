@@ -72,13 +72,21 @@ namespace Uzi.Ikosa.Workshop
 
                 var _level = LightRange.OutOfRange;
                 if (_vbr > 0)
+                {
                     _level = (chkSolar.IsChecked ?? false) ? LightRange.Solar : LightRange.VeryBright;
+                }
                 else if (_br > 0)
+                {
                     _level = LightRange.Bright;
+                }
                 else if (_nr > 0)
+                {
                     _level = LightRange.NearShadow;
+                }
                 else if (_fr > 0)
+                {
                     _level = LightRange.FarShadow;
+                }
 
                 // all clear
                 return new AmbientLight(_Map, txtName.Text, new System.Windows.Media.Media3D.Vector3D(_xLo, _yLo, _zLo),

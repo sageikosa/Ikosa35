@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using Uzi.Ikosa.Creatures.Types;
@@ -11,7 +11,7 @@ namespace Uzi.Ikosa.Advancement
         where CritterSpecies : Species
     {
         // default empty size range (no size changes)
-        private static Collection<SizeRange> _DefaultRanges = new Collection<SizeRange>();
+        private static Collection<SizeRange> _DefaultRanges = [];
 
         #region Construction
         protected MonsterClass(byte powerDie, int maxLevel, decimal optionalFraction, decimal smallestFraction,

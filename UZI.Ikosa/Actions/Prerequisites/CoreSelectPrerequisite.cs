@@ -51,7 +51,9 @@ namespace Uzi.Ikosa.Actions
             set
             {
                 if (value != null)
+                {
                     _Selected = _IDs.FirstOrDefault(_c => _c == value);
+                }
             }
         }
 

@@ -32,12 +32,15 @@ namespace Uzi.Ikosa.Workshop
             get
             {
                 if (cboMaterial.SelectedItem != null)
+                {
                     return (new TextBox[]
                     {
                         txtStructure, txtWeight, txtLightDifficulty,
                         txtLightXOffset, txtLightYOffset, txtLightZOffset,
                         txtBright, txtShadow, txtWeight
                     }).All(_txt => _txt.Tag == null);
+                }
+
                 return false;
             }
         }

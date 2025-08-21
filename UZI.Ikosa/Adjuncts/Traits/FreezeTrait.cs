@@ -21,7 +21,7 @@ namespace Uzi.Ikosa.Adjuncts
             : base(traitSource)
         {
             _Difficulty = spotDifficulty;
-            _Detected = new Dictionary<Guid, bool>();
+            _Detected = [];
             _AltInfo = altInfo;
         }
 
@@ -68,7 +68,9 @@ namespace Uzi.Ikosa.Adjuncts
         private bool HasDetected(Creature observer)
         {
             if (observer == null)
+            {
                 return false;
+            }
 
             if (!_Detected.ContainsKey(observer.ID))
             {
@@ -103,11 +105,16 @@ namespace Uzi.Ikosa.Adjuncts
         {
             // last feedback processor of visual presntation data
             if (interactType == typeof(VisualPresentationData))
+            {
                 return true;
+            }
 
             // first strike at get info data
             if (interactType == typeof(GetInfoData))
+            {
                 return true;
+            }
+
             return false;
         }
 

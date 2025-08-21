@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using Uzi.Ikosa.Items.Weapons;
 using Uzi.Ikosa.Advancement;
 using Uzi.Ikosa.Items;
@@ -32,13 +32,17 @@ namespace Uzi.Ikosa.Feats
             if (!creature.Proficiencies.IsProficientWith<Wpn>(PowerLevel))
             {
                 if (IgnorePreRequisite)
+                {
                     return true;
+                }
 
                 if (typeof(IExoticWeaponHeavy).IsAssignableFrom(typeof(Wpn)))
                 {
                     // must have Str 13
                     if (creature.Abilities.Strength.ValueAtPowerLevel(PowerLevel, null) >= 13)
+                    {
                         return base.MeetsPreRequisite(creature); // must meet other requirements (BAB>=1)
+                    }
                 }
                 else
                 {

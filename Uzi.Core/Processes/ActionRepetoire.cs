@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -11,8 +11,8 @@ namespace Uzi.Core
         public ActionRepetoire(CoreActor actor)
         {
             Actor = actor;
-            Providers = new Dictionary<object, IActionProvider>();
-            Filters = new Dictionary<object, IActionFilter>();
+            Providers = [];
+            Filters = [];
         }
         #endregion
 
@@ -32,15 +32,24 @@ namespace Uzi.Core
         public IEnumerable<ActionResult> ProvidedActions(CoreActionBudget budget, IEnumerable<IActionProvider> exclusions)
         {
             if (budget.Actor == Actor)
+            {
                 foreach (var _pkvp in Providers.Where(_pvp => !exclusions.Contains(_pvp.Value)))
+                {
                     foreach (var _action in _pkvp.Value.GetActions(budget))
+                    {
                         if (_action.CanPerformNow(budget).Success && !SuppressAction(budget, _pkvp.Key, _action))
+                        {
                             yield return new ActionResult
                             {
                                 Provider = _pkvp.Value,
                                 Action = _action,
                                 IsExternal = (_pkvp.Value is IExternalActionProvider)
                             };
+                        }
+                    }
+                }
+            }
+
             yield break;
         }
         #endregion

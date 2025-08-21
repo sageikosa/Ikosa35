@@ -130,14 +130,22 @@ namespace Uzi.Ikosa.Advancement.CharacterClasses
                 case 4:
                     // uncanny dodge if not already present, otherwise improved uncanny dodge
                     if (!(Creature?.HasAdjunct<UncannyDodge>() ?? false))
+                    {
                         Creature?.AddAdjunct(new UncannyDodge(this));
+                    }
                     else
+                    {
                         Creature?.AddAdjunct(new ImprovedUncannyDodge(this));
+                    }
+
                     Creature?.AddAdjunct(new ImprovedUncannyDodgeSupplier(this));
                     break;
                 case 8:
                     if (!(Creature?.HasAdjunct<ImprovedUncannyDodge>() ?? false))
+                    {
                         Creature?.AddAdjunct(new ImprovedUncannyDodge(this));
+                    }
+
                     break;
             }
             base.OnIncreaseLevel();
@@ -327,15 +335,29 @@ namespace Uzi.Ikosa.Advancement.CharacterClasses
             if (powerLevel >= Creature.AdvancementLog[this, 1].PowerDie.Level)
             {
                 if (type == typeof(HandCrossbow))
+                {
                     return true;
+                }
+
                 if (type == typeof(Rapier))
+                {
                     return true;
+                }
+
                 if (type == typeof(Sap))
+                {
                     return true;
+                }
+
                 if (type == typeof(ShortSword))
+                {
                     return true;
+                }
+
                 if (type == typeof(ShortBow))
+                {
                     return true;
+                }
 
                 // simple weapons
                 return (!typeof(IMartialWeapon).IsAssignableFrom(type)

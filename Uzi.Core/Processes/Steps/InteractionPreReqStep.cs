@@ -30,7 +30,9 @@ namespace Uzi.Core
                 {
                     // get prerequisites
                     foreach (var _stepPre in _preFeed.Prerequisites)
+                    {
                         _PendingPreRequisites.Enqueue(_stepPre);
+                    }
 
                     // indicate the prerequisites have been yielded
                     _preFeed.Yielded = true;

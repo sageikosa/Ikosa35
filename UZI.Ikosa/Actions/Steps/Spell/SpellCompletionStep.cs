@@ -53,9 +53,14 @@ namespace Uzi.Ikosa.Actions.Steps
         protected override StepPrerequisite OnNextPrerequisite()
         {
             if (CompleteSpell == null)
+            {
                 return null;
+            }
+
             if (!_Dispensing)
+            {
                 return null;
+            }
 
             var _complete = CompleteSpell.SpellCompletion;
             var _critter = Activity.Actor as Creature;
@@ -82,7 +87,9 @@ namespace Uzi.Ikosa.Actions.Steps
                         new SuccessCheck(_critter.Skills.Skill<UseMagicItemSkill>(), 20 + _complete.CasterLevel, _complete.SpellSource), true);
                 }
                 if (!_useScroll.IsReady)
+                {
                     return null;
+                }
                 #endregion
 
                 #region Emulate Ability Score
@@ -131,7 +138,9 @@ namespace Uzi.Ikosa.Actions.Steps
                                 new SuccessCheck(_class, _complete.CasterLevel + 1, _complete.SpellSource), true);
                         }
                         if (!_casterCheck.IsReady)
+                        {
                             return null;
+                        }
                         #endregion
 
                         if (!_casterCheck.Success)

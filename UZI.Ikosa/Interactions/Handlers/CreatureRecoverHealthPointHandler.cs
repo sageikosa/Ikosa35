@@ -20,17 +20,25 @@ namespace Uzi.Ikosa.Interactions
                 {
                     // every recover recovers non-lethal damage
                     if (_critter.HealthPoints.NonLethalDamage - _recover.Amount.EffectiveValue >= 0)
+                    {
                         _critter.HealthPoints.NonLethalDamage -= _recover.Amount.EffectiveValue;
+                    }
                     else
+                    {
                         _critter.HealthPoints.NonLethalDamage = 0;
+                    }
 
                     // see if lethal damage is affected
                     if (!_recover.NonLethalOnly)
                     {
                         if (_critter.HealthPoints.CurrentValue + _recover.Amount.EffectiveValue < _critter.HealthPoints.TotalValue)
+                        {
                             _critter.HealthPoints.CurrentValue += _recover.Amount.EffectiveValue;
+                        }
                         else
+                        {
                             _critter.HealthPoints.CurrentValue = _critter.HealthPoints.TotalValue;
+                        }
                     }
 
                     // adjust actor state

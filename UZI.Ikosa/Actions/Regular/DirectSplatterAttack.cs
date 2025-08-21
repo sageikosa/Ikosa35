@@ -152,7 +152,9 @@ namespace Uzi.Ikosa.Actions
             var _burst = new BurstCapture(locator.MapContext, activity, _cube, targetCell.AllIntersections().First(), this,
                 locator.PlanarPresence);
             foreach (var _follow in _burst.DoBurst().OfType<ApplySplatterStep>().Where(_as => _as.Target != interactor))
+            {
                 _step.AppendFollowing(_follow);
+            }
 
             // return step
             _Splat.DoneUseItem();

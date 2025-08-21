@@ -31,12 +31,16 @@ namespace Uzi.Core
             // try to eject parts
             var _eject = true;
             foreach (var _member in Group?.Members.Where(_m => _m != this).ToList()
-                ?? new List<GroupMemberAdjunct>())
+                ?? [])
+            {
                 _eject &= _member.Eject();
+            }
 
             // then self
             if (_eject)
+            {
                 _eject &= base.Eject();
+            }
 
             // and report it
             return _eject;
@@ -81,7 +85,9 @@ namespace Uzi.Core
         {
             // ensures group is removed
             if (Anchor.Setting != null)
+            {
                 Anchor.Setting.ContextSet.AdjunctGroups.Remove(MasterGroup);
+            }
         }
 
         #endregion

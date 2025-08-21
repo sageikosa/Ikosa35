@@ -35,10 +35,10 @@ namespace Uzi.Ikosa.Creatures.Types
 
         static BlackBear()
         {
-            _SizeRanges = new List<SizeRange>
-            {
+            _SizeRanges =
+            [
                 new SizeRange(1, 5, Size.Medium, 1)
-            };
+            ];
         }
         #endregion
 
@@ -57,7 +57,10 @@ namespace Uzi.Ikosa.Creatures.Types
         protected override string GenerateAbilityBoostMnemonic(int powerDieLevel)
         {
             if (powerDieLevel == 4)
+            {
                 return Abilities.MnemonicCode.Str;
+            }
+
             return null;
         }
         #endregion

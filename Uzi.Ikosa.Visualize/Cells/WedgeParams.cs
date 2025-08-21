@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.Specialized;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Specialized;
 
 namespace Uzi.Visualize
 {
@@ -110,18 +105,26 @@ namespace Uzi.Visualize
         {
             double _factor = InvertPrimary ? -1 : 1;
             if (FlipOffsets)
+            {
                 return offset2 * _factor;
+            }
             else
+            {
                 return offset1 * _factor;
+            }
         }
 
         public double SecondaryOffset(double offset1, double offset2)
         {
             double _factor = InvertSecondary ? -1 : 1;
             if (FlipOffsets)
+            {
                 return offset1 * _factor;
+            }
             else
+            {
                 return offset2 * _factor;
+            }
         }
     }
 }

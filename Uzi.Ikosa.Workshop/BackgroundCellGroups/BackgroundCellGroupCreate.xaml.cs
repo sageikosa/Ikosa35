@@ -37,7 +37,9 @@ namespace Uzi.Ikosa.Workshop
             cboAddPosition.Items.Add(new ComboBoxItem { Content = @"As Base Material", Tag = -1 });
 
             if (cboAddPosition.Items.Count > 0)
+            {
                 cboAddPosition.SelectedIndex = 0;
+            }
         }
 
         private LocalMap _Map { get { return DataContext as LocalMap; } }

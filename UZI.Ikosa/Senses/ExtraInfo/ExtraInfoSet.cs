@@ -14,8 +14,8 @@ namespace Uzi.Ikosa.Senses
         public ExtraInfoSet(Creature critter)
         {
             _Critter = critter;
-            _Sources = new Collection<object>();
-            _Markers = new Collection<ExtraInfo>();
+            _Sources = [];
+            _Markers = [];
         }
         #endregion
 
@@ -41,11 +41,15 @@ namespace Uzi.Ikosa.Senses
 
                 // and need to add a source
                 if (!_Sources.OfType<ExtraInfoSource>().Any(_s => _s.ID == marker.InfoSource.ID))
+                {
                     _Sources.Add(marker.InfoSource);
+                }
 
                 // action provider
                 if (marker.ActionProvider != null)
+                {
                     Creature.Actions.Providers.Add(marker, marker.ActionProvider);
+                }
 
                 // TODO: awaken creature from restful sleep when info becomes available
             }
@@ -66,12 +70,16 @@ namespace Uzi.Ikosa.Senses
                 {
                     var _source = Sources.FirstOrDefault(_s => _s.ID == marker.InfoSource.ID);
                     if (_source != null)
+                    {
                         _Sources.Remove(_source);
+                    }
                 }
 
                 // remove action providers
                 if (marker.ActionProvider != null)
+                {
                     Creature.Actions.Providers.Remove(marker);
+                }
             }
             // TODO: handle alert flag == false (indicating to "silently" remove the information from the set)
         }
@@ -90,17 +98,23 @@ namespace Uzi.Ikosa.Senses
             {
                 // if the marker is sourced to the removing source
                 if (_Markers[_mx].InfoSource.ID == id)
+                {
                     _Markers.RemoveAt(_mx);
+                }
             }
 
             // remove source
             var _source = Sources.FirstOrDefault(_s => _s.ID == id);
             if (_source != null)
+            {
                 _Sources.Remove(_source);
+            }
 
             // action providers
             foreach (var _m in _providers)
+            {
                 Creature.Actions.Providers.Remove(_m);
+            }
         }
         #endregion
 

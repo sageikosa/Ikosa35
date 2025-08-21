@@ -19,7 +19,9 @@ namespace Uzi.Ikosa
         {
             _Critter = creature;
             foreach (var _ability in Creature.Abilities.AllAbilities)
+            {
                 _ability.AddChangeMonitor(this);
+            }
         }
 
         #region data

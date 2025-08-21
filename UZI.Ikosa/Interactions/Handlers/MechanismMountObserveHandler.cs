@@ -37,20 +37,28 @@ namespace Uzi.Ikosa.Interactions
                                 // successful spot
                                 var _mechMax = _osFeed.SpotSuccesses.Max(_kvp => _kvp.Value);
                                 if (_mechMax > _mountMax)
+                                {
                                     _mountMax = _mechMax;
+                                }
                             }
                             else
                             {
                                 // regular observe
                                 var _mechMax = _oFeed.Levels.Max(_kvp => _kvp.Value);
                                 if (_mechMax > _mountMax)
+                                {
                                     _mountMax = _mechMax;
+                                }
                             }
                             if (_mountMax >= AwarenessLevel.Aware)
+                            {
                                 break;
+                            }
                         }
                         if (_mountMax >= AwarenessLevel.Aware)
+                        {
                             break;
+                        }
                     }
 
                     // return maximum observe of mechanisms
@@ -66,7 +74,10 @@ namespace Uzi.Ikosa.Interactions
         public override bool LinkBefore(Type interactType, IInteractHandler existingHandler)
         {
             if (existingHandler.GetType() == typeof(ObserveHandler))
+            {
                 return true;
+            }
+
             return false;
         }
     }

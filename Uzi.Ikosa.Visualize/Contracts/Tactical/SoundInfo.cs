@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.Serialization;
-using Uzi.Core.Contracts;
 
 namespace Uzi.Visualize.Contracts.Tactical
 {
@@ -26,20 +23,49 @@ namespace Uzi.Visualize.Contracts.Tactical
         {
             if (exceed < 8)
             {
-                if (strength >= 0.8) return @"strong ";
-                if (strength <= 0.2) return @"faint ";
+                if (strength >= 0.8)
+                {
+                    return @"strong ";
+                }
+
+                if (strength <= 0.2)
+                {
+                    return @"faint ";
+                }
             }
             else if (exceed < 12)
             {
-                if (strength >= 0.7) return (presence >= 90 ? "loud " : "close ");
-                if (strength <= 0.3) return (presence <= 75 ? "soft " : "far ");
+                if (strength >= 0.7)
+                {
+                    return (presence >= 90 ? "loud " : "close ");
+                }
+
+                if (strength <= 0.3)
+                {
+                    return (presence <= 75 ? "soft " : "far ");
+                }
             }
             else
             {
-                if (strength >= 0.8) return $@"very {(presence >= 90 ? "loud " : "close ")}";
-                if (strength >= 0.6) return (presence >= 90 ? "loud " : "close ");
-                if (strength <= 0.2) return (presence <= 75 ? "soft " : "far ");
-                if (strength <= 0.4) return $@"very {(presence <= 75 ? "soft " : "far ")} ";
+                if (strength >= 0.8)
+                {
+                    return $@"very {(presence >= 90 ? "loud " : "close ")}";
+                }
+
+                if (strength >= 0.6)
+                {
+                    return (presence >= 90 ? "loud " : "close ");
+                }
+
+                if (strength <= 0.2)
+                {
+                    return (presence <= 75 ? "soft " : "far ");
+                }
+
+                if (strength <= 0.4)
+                {
+                    return $@"very {(presence <= 75 ? "soft " : "far ")} ";
+                }
             }
             return string.Empty;
         }

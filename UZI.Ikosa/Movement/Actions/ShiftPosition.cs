@@ -30,7 +30,9 @@ namespace Uzi.Ikosa.Movement
             // first check base (effort and movement left)
             var _response = base.CanPerformNow(budget);
             if (!_response.Success)
+            {
                 return _response;
+            }
 
             // grab movement budget for updating and checking
             if (this.MovementBudget.HasMoved)
@@ -63,15 +65,19 @@ namespace Uzi.Ikosa.Movement
 
                 // ensure not immobilized
                 if (!(step.Activity.GetFirstTarget<ValueTarget<bool>>(@"Immobilized")?.Value ?? false))
+                {
                     // make the actual relocation
                     foreach (var _moveLoc in step.Activity.Targets
                         .OfType<ValueTarget<MovementLocatorTarget>>()
                         .Select(_vt => _vt.Value))
+                    {
                         yield return new RelocationStep(step.Activity, _moveLoc.Locator, _moveLoc.TargetRegion,
                             Movement, _moveLoc.Offset,
                             AnchorFaceListHelper.Create(step.StepDestinationTarget.CrossingFaces(
                                 _moveLoc.Locator.GetGravityFace(),
                                 step.StepIndexTarget?.Value ?? 0)), _moveLoc.BaseFace);
+                    }
+                }
             }
             else
             {

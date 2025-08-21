@@ -53,13 +53,40 @@ namespace Uzi.Ikosa.Workshop
             }
             else
             {
-                if (_editor.Resources.Contains(@"normalPanels")) _editor.Resources.Remove(@"normalPanels");
-                if (_editor.Resources.Contains(@"cornerPanels")) _editor.Resources.Remove(@"cornerPanels");
-                if (_editor.Resources.Contains(@"lFramePanels")) _editor.Resources.Remove(@"lFramePanels");
-                if (_editor.Resources.Contains(@"slopePanels")) _editor.Resources.Remove(@"slopePanels");
-                if (_editor.Resources.Contains(@"fillMaterials")) _editor.Resources.Remove(@"fillMaterials");
-                if (_editor.Resources.Contains(@"materialPanels")) _editor.Resources.Remove(@"materialPanels");
-                if (_editor.Resources.Contains(@"diagonalPanels")) _editor.Resources.Remove(@"diagonalPanels");
+                if (_editor.Resources.Contains(@"normalPanels"))
+                {
+                    _editor.Resources.Remove(@"normalPanels");
+                }
+
+                if (_editor.Resources.Contains(@"cornerPanels"))
+                {
+                    _editor.Resources.Remove(@"cornerPanels");
+                }
+
+                if (_editor.Resources.Contains(@"lFramePanels"))
+                {
+                    _editor.Resources.Remove(@"lFramePanels");
+                }
+
+                if (_editor.Resources.Contains(@"slopePanels"))
+                {
+                    _editor.Resources.Remove(@"slopePanels");
+                }
+
+                if (_editor.Resources.Contains(@"fillMaterials"))
+                {
+                    _editor.Resources.Remove(@"fillMaterials");
+                }
+
+                if (_editor.Resources.Contains(@"materialPanels"))
+                {
+                    _editor.Resources.Remove(@"materialPanels");
+                }
+
+                if (_editor.Resources.Contains(@"diagonalPanels"))
+                {
+                    _editor.Resources.Remove(@"diagonalPanels");
+                }
             }
         }
 

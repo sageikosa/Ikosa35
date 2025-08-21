@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using Uzi.Core;
@@ -59,9 +59,13 @@ namespace Uzi.Ikosa.Creatures.Types
             // longsword, rapier, longbow (including composite longbow), and shortbow (including composite shortbow)
             if (typeof(Longsword).IsAssignableFrom(type) || typeof(Rapier).IsAssignableFrom(type) ||
                 typeof(Longbow).IsAssignableFrom(type) || typeof(ShortBow).IsAssignableFrom(type))
+            {
                 return true;
+            }
             else
+            {
                 return false;
+            }
         }
 
         public bool IsProficientWith<WpnType>(int powerLevel) where WpnType : IWeapon

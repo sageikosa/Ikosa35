@@ -46,7 +46,10 @@ namespace Uzi.Ikosa.Workshop
             }
             else
             {
-                if (_editor.Resources.Contains(@"roomMaterials")) _editor.Resources.Remove(@"roomMaterials");
+                if (_editor.Resources.Contains(@"roomMaterials"))
+                {
+                    _editor.Resources.Remove(@"roomMaterials");
+                }
             }
         }
     }

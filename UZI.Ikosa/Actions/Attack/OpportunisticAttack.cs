@@ -54,7 +54,9 @@ namespace Uzi.Ikosa.Actions
                 return base.CanPerformNow(budget);
             }
             else
+            {
                 return new ActivityResponse(false);
+            }
         }
 
         public override void ProcessManagerInitialized(CoreActivity activity)

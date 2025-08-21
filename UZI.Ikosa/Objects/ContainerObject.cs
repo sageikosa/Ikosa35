@@ -26,10 +26,13 @@ namespace Uzi.Ikosa.Objects
             : base(name, objectMaterial)
         {
             _BaseObjCtrl = new ChangeController<ICoreObject>(this, null);
-            _Objs = new Collection<ICoreObject>();
+            _Objs = [];
             _AddsToLoad = true;
             if (actions)
+            {
                 AddAdjunct(new Containment(this));
+            }
+
             _CtxOnly = isContextMenuOnly;
         }
         #endregion
@@ -71,7 +74,10 @@ namespace Uzi.Ikosa.Objects
 
                 // track weight
                 if (ContentsAddToLoad)
+                {
                     item.AddChangeMonitor(this);
+                }
+
                 RecalcWeight();
 
                 _BaseObjCtrl.DoValueChanged(item, @"Add");
@@ -100,7 +106,10 @@ namespace Uzi.Ikosa.Objects
 
                 // untrack weight
                 if (ContentsAddToLoad)
+                {
                     item.RemoveChangeMonitor(this);
+                }
+
                 RecalcWeight();
 
                 _BaseObjCtrl.DoValueChanged(item, @"Remove");
@@ -156,11 +165,16 @@ namespace Uzi.Ikosa.Objects
             if (ContentsAddToLoad)
             {
                 foreach (var _cObj in _Objs)
+                {
                     yield return _cObj;
+                }
+
                 foreach (var _loaded in from _contain in _Objs.OfType<ILoadedObjects>()
                                         from _iC in _contain.AllLoadedObjects()
                                         select _iC)
+                {
                     yield return _loaded;
+                }
             }
             yield break;
         }
@@ -273,9 +287,13 @@ namespace Uzi.Ikosa.Objects
             set
             {
                 if (_StrucPts <= _MaxStrucPts)
+                {
                     _StrucPts = value;
+                }
                 else
+                {
                     _StrucPts = _MaxStrucPts;
+                }
 
                 DoPropertyChanged(nameof(StructurePoints));
 

@@ -1,4 +1,4 @@
-using Uzi.Core.Contracts;
+﻿using Uzi.Core.Contracts;
 using System;
 using System.Collections.Generic;
 using Uzi.Ikosa.Actions;
@@ -25,9 +25,12 @@ namespace Uzi.Ikosa.Items.Weapons
         public override IEnumerable<DamageRollPrerequisite> DamageRollers(Interaction workSet)
         {
             if (PoweredUp)
+            {
                 yield return
                     new EnergyDamageRollPrerequisite(typeof(Flaming), workSet, @"Fire", @"Flaming", new DieRoller(6),
                     false, @"Flaming", 0, EnergyType.Fire);
+            }
+
             yield break;
         }
 

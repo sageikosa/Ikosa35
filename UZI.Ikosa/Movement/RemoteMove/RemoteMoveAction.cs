@@ -47,7 +47,9 @@ namespace Uzi.Ikosa.Movement
             // first check effort budget
             var _response = base.CanPerformNow(budget);
             if (!_response.Success)
+            {
                 return _response;
+            }
 
             if (RemoteMoveGroup.Target.AnyMoveLeft)
             {

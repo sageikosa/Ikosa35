@@ -50,7 +50,9 @@ namespace Uzi.Ikosa.Actions
         {
             // removed multi-weapon delta
             if (_Delta != null)
+            {
                 _Delta.DoTerminate();
+            }
         }
 
         #endregion

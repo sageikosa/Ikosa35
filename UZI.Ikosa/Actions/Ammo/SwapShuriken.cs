@@ -69,7 +69,9 @@ namespace Uzi.Ikosa.Actions
                 // get ammunition already loaded
                 Shuriken[] _replacement = null;
                 if (ShurikenGrip.IsLoaded)
+                {
                     _replacement = ShurikenGrip.Ammunition;
+                }
 
                 // tactically accessible containers?
                 var _selector = (from _container in _critter.GetReachable<IAmmunitionTypedBundle<Shuriken, ShurikenGrip>>()
@@ -96,7 +98,9 @@ namespace Uzi.Ikosa.Actions
                             var _store = _rep.ToAmmunitionBundle(@"Shuriken") as AmmunitionBundle<Shuriken, ShurikenGrip>;
                             var _remainder = _selector.Container.Merge(_store);
                             if (_remainder.Count > 0)
+                            {
                                 Drop.DoDrop(_critter, _remainder, this, true);
+                            }
                         }
                     }
                 }

@@ -26,10 +26,10 @@ namespace Uzi.Ikosa.Guildsmanship
         public SitePathGraph(Description description, SitePath initialSegment)
             : base(description)
         {
-            _Regions = new List<OverRegion>();
-            _Segments = new List<SitePath> { initialSegment };
-            _Links = new Dictionary<Guid, SiteLink>();
-            _Encounters = new List<EncounterTableLink>();
+            _Regions = [];
+            _Segments = [initialSegment];
+            _Links = [];
+            _Encounters = [];
         }
 
         public static SitePathGraph GetSitePathGraph(PackagePart part)

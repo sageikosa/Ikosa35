@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows.Media.Media3D;
-using Uzi.Visualize.Contracts.Tactical;
-
-namespace Uzi.Visualize
+﻿namespace Uzi.Visualize
 {
     internal class SliverInverter : IPlusCellSpace
     {

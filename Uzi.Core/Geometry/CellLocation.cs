@@ -1,4 +1,4 @@
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,17 +34,32 @@ namespace Uzi.Core
             var _y = location.Y;
             var _x = location.X;
             if (adjacentTo.Contains(AnchorFace.ZHigh))
+            {
                 _z++;
+            }
             else if (adjacentTo.Contains(AnchorFace.ZLow))
+            {
                 _z--;
+            }
+
             if (adjacentTo.Contains(AnchorFace.YHigh))
+            {
                 _y++;
+            }
             else if (adjacentTo.Contains(AnchorFace.YLow))
+            {
                 _y--;
+            }
+
             if (adjacentTo.Contains(AnchorFace.XHigh))
+            {
                 _x++;
+            }
             else if (adjacentTo.Contains(AnchorFace.XLow))
+            {
                 _x--;
+            }
+
             return new CellLocation(_z, _y, _x);
         }
         #endregion
@@ -80,7 +95,10 @@ namespace Uzi.Core
         public override bool Equals(object obj)
         {
             if (obj is ICellLocation _cRef)
+            {
                 return (Z == _cRef.Z) && (Y == _cRef.Y) && (X == _cRef.X);
+            }
+
             return false;
         }
 
@@ -129,9 +147,16 @@ namespace Uzi.Core
         public IEnumerator<Intersection> GetEnumerator()
         {
             for (var _z = 0; _z <= 1; _z++)
+            {
                 for (var _y = 0; _y <= 1; _y++)
+                {
                     for (var _x = 0; _x <= 1; _x++)
+                    {
                         yield return new Intersection(_Z + _z, _Y + _y, _X + _x);
+                    }
+                }
+            }
+
             yield break;
         }
         #endregion
@@ -140,9 +165,16 @@ namespace Uzi.Core
         System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
         {
             for (var _z = 0; _z <= 1; _z++)
+            {
                 for (var _y = 0; _y <= 1; _y++)
+                {
                     for (var _x = 0; _x <= 1; _x++)
+                    {
                         yield return new Intersection(_Z + _z, _Y + _y, _X + _x);
+                    }
+                }
+            }
+
             yield break;
         }
         #endregion

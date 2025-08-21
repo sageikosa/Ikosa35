@@ -33,7 +33,9 @@ namespace Uzi.Ikosa.Interactions
                 // min of 1 structure point per ammo
                 var _pts = set.Ammunition.StructurePoints;
                 if (_pts < 1)
+                {
                     _pts = 1;
+                }
 
                 // hardness calculator
                 var _hardness = set.Ammunition.GetHardness();
@@ -55,7 +57,9 @@ namespace Uzi.Ikosa.Interactions
                     // how many ammo units affected (rounding up)
                     var _qty = _neDmg / _pts;
                     if ((_neDmg % _pts) > 0)
+                    {
                         _qty++;
+                    }
 
                     if (_qty > set.Count)
                     {
@@ -83,7 +87,9 @@ namespace Uzi.Ikosa.Interactions
                         // how many ammo units affected (rounding up)
                         var _qty = _eDmg / _pts;
                         if ((_eDmg % _pts) > 0)
+                        {
                             _qty++;
+                        }
 
                         if (_qty > set.Count)
                         {
@@ -127,7 +133,9 @@ namespace Uzi.Ikosa.Interactions
 
                             // if all damage is exhausted, break
                             if (_saveDamage.GetTotal() <= 0)
+                            {
                                 break;
+                            }
                         }
                     }
                     else
@@ -155,7 +163,9 @@ namespace Uzi.Ikosa.Interactions
 
                             // if all damage is exhausted, break
                             if (_saveDamage.GetTotal() <= 0)
+                            {
                                 break;
+                            }
                         }
 
                         // only if there are things to do and damage left
@@ -172,7 +182,9 @@ namespace Uzi.Ikosa.Interactions
 
                                 // if all damage is exhausted, break
                                 if (_saveDamage.GetTotal() <= 0)
+                                {
                                     break;
+                                }
                             }
                         }
                     }
@@ -186,7 +198,9 @@ namespace Uzi.Ikosa.Interactions
 
                         // if all damage is exhausted, break
                         if (_damage.GetTotal() <= 0)
+                        {
                             break;
+                        }
                     }
                 }
 

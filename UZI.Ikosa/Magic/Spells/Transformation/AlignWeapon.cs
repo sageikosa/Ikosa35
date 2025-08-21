@@ -34,13 +34,24 @@ namespace Uzi.Ikosa.Magic.Spells
                 if (_Align != null)
                 {
                     if (_Align.Ethicality == GoodEvilAxis.Good)
+                    {
                         yield return new Good();
+                    }
+
                     if (_Align.Ethicality == GoodEvilAxis.Evil)
+                    {
                         yield return new Evil();
+                    }
+
                     if (_Align.Orderliness == LawChaosAxis.Lawful)
+                    {
                         yield return new Lawful();
+                    }
+
                     if (_Align.Orderliness == LawChaosAxis.Chaotic)
+                    {
                         yield return new Chaotic();
+                    }
                 }
                 yield break;
             }

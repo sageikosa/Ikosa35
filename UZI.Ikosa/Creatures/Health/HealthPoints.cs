@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using Uzi.Core;
 using Uzi.Ikosa.Advancement;
 using Uzi.Ikosa.Adjuncts;
@@ -79,7 +79,9 @@ namespace Uzi.Ikosa
             // any healing removes dying...
             var _dying = Creature.Adjuncts.OfType<Dying>().FirstOrDefault();
             if (_dying != null)
+            {
                 _dying.Eject();
+            }
 
             var _value = CurrentValue;
             var _nonLethal = NonLethalDamage;
@@ -102,7 +104,9 @@ namespace Uzi.Ikosa
                 {
                     // not disabled, add missing stable assisted
                     if (!Creature.HasAdjunct<StableAssisted>())
+                    {
                         Creature.AddAdjunct(new StableAssisted(this));
+                    }
                 }
             }
             else if (_value == 0)
@@ -162,13 +166,17 @@ namespace Uzi.Ikosa
             if (dying)
             {
                 if (!Creature.HasAdjunct<Dying>())
+                {
                     Creature.AddAdjunct(new Dying(this));
+                }
             }
             else
             {
                 var _dying = Creature.Adjuncts.OfType<Dying>().FirstOrDefault();
                 if (_dying != null)
+                {
                     _dying.Eject();
+                }
             }
         }
         #endregion
@@ -309,12 +317,17 @@ namespace Uzi.Ikosa
                 var _deadValue = DeadValue.EffectiveValue;
                 var _newValue = value;
                 if (_newValue < _deadValue)
+                {
                     _newValue = _deadValue;
+                }
 
                 _DamageTaken = TotalValue - _newValue;
 
                 // do not go into negative damage (temporary hit points are separate entities)
-                if (_DamageTaken < 0) _DamageTaken = 0;
+                if (_DamageTaken < 0)
+                {
+                    _DamageTaken = 0;
+                }
 
                 if ((_lastValue - _newValue) >= MassiveDamage.EffectiveValue)
                 {
@@ -329,7 +342,9 @@ namespace Uzi.Ikosa
                     // not dying (anymore!)
                     var _dying = Creature.Adjuncts.OfType<Dying>().FirstOrDefault();
                     if (_dying != null)
+                    {
                         _dying.Eject();
+                    }
 
                     // no action limiters (dead is dead!)
                     EnsureNoLimiter();

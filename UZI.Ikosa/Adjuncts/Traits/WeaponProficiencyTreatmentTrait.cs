@@ -16,13 +16,18 @@ namespace Uzi.Ikosa.Adjuncts
         {
             base.OnActivate(source);
             if (Anchor is Creature _critter)
+            {
                 _critter.Proficiencies.Add(_Treatment);
+            }
         }
 
         protected override void OnDeactivate(object source)
         {
             if (Anchor is Creature _critter)
+            {
                 _critter.Proficiencies.Remove(_Treatment);
+            }
+
             base.OnDeactivate(source);
         }
 

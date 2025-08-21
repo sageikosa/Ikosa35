@@ -63,7 +63,7 @@ namespace Uzi.Ikosa
 
             SpeciesDock = new SpeciesDock(this);
             CreatureTypeDock = new CreatureTypeDock(this);
-            SubTypes = new WatchableSet<CreatureSubType>();
+            SubTypes = [];
             _ExtraSpellDifficulty = new DeltableQualifiedDelta(0, @"Spell Difficulty Qualifiers", this);
             _ExtraAbilityCheck = new DeltableQualifiedDelta(0, @"Ability Check Qualifiers", this);
             _ExtraSkillCheck = new DeltableQualifiedDelta(0, @"Skill Check Qualifiers", this);
@@ -100,7 +100,7 @@ namespace Uzi.Ikosa
             _Skills = new Uzi.Ikosa.Skills.SkillSet(this);
             _Feats = new Uzi.Ikosa.Feats.FeatSet(this);
             HeldItemsGroups = new HeldItemsGroupSet(this);
-            _Languages = new LanguageSet();
+            _Languages = [];
             _Senses = new SensorySet();
             _Senses.BindTo(this);
             _Moves = new MovementSet(this);
@@ -116,9 +116,9 @@ namespace Uzi.Ikosa
             Awarenesses = new AwarenessSet(this);
             _Rooms = new RoomAwarenessSet(this);
             _Sounds = new SoundAwarenessSet(this);
-            _FriendlyCreatures = new Collection<Guid>();
-            _UnfriendlyCreatures = new Collection<Guid>();
-            _InfoKeys = new Collection<Guid>();
+            _FriendlyCreatures = [];
+            _UnfriendlyCreatures = [];
+            _InfoKeys = [];
             _Age = 0;
             _Gender = Gender.Genderless;
 
@@ -942,7 +942,10 @@ namespace Uzi.Ikosa
             foreach (var _ci in Classes)
             {
                 if (_builder.Length > 0)
+                {
                     _builder.Append(@"/");
+                }
+
                 _builder.AppendFormat(@"{0}-{1}", _ci.ClassName, _ci.CurrentLevel);
             }
             _info.ClassString = _builder.ToString();

@@ -1,4 +1,4 @@
-using Uzi.Core.Contracts;
+﻿using Uzi.Core.Contracts;
 using System;
 using System.Collections.Generic;
 using Uzi.Core;
@@ -61,7 +61,9 @@ namespace Uzi.Ikosa.Items.Weapons
                 if (tracker != null)
                 {
                     if (tracker.TotalEnhancement.EffectiveValue + TrackedDelta.Value > 10)
+                    {
                         return false;
+                    }
                 }
                 else
                 {
@@ -71,7 +73,9 @@ namespace Uzi.Ikosa.Items.Weapons
             if (StandardCost > 0)
             {
                 if (item.Price.BasePrice + StandardCost > 200000)
+                {
                     return false;
+                }
             }
             return true;
         }
@@ -105,13 +109,19 @@ namespace Uzi.Ikosa.Items.Weapons
                         {
                             // throwable melee weapon
                             if (!CostAllowed(_wpn, _head))
+                            {
                                 return false;
+                            }
+
                             return OnCanBind(_wpn, _head);
                         }
                         if (typeof(IProjectileWeapon).IsAssignableFrom(_wpnType))
                         {
                             if (!CostAllowed(_wpn, _wpn as IProjectileWeapon))
+                            {
                                 return false;
+                            }
+
                             return OnCanBind(_wpn, _head);
                         }
                     }
@@ -120,7 +130,10 @@ namespace Uzi.Ikosa.Items.Weapons
                         if (typeof(AmmunitionBase).IsAssignableFrom(_headType))
                         {
                             if (!CostAllowed(_head as IAmmunitionBase, _head))
+                            {
                                 return false;
+                            }
+
                             return OnCanBind(_wpn, _head);
                         }
                     }
@@ -132,7 +145,10 @@ namespace Uzi.Ikosa.Items.Weapons
                         if (typeof(IMeleeWeapon).IsAssignableFrom(_wpnType))
                         {
                             if (!CostAllowed(_wpn, _head))
+                            {
                                 return false;
+                            }
+
                             return OnCanBind(_wpn, _head);
                         }
                     }

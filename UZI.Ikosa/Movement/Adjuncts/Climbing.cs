@@ -45,11 +45,17 @@ namespace Uzi.Ikosa.Movement
             get
             {
                 if (SuccessCheckTarget.Success)
+                {
                     return ClimbOutcome.Successful;
+                }
                 else if (SuccessCheckTarget.SoftFail(4))
+                {
                     return ClimbOutcome.Immobilized;
+                }
                 else
+                {
                     return ClimbOutcome.Falling;
+                }
             }
         }
         #endregion
@@ -63,11 +69,15 @@ namespace Uzi.Ikosa.Movement
             {
                 // remove all climbs that are not this
                 foreach (var _climb in Creature.Adjuncts.OfType<Climbing>().Where(_c => this != _c).ToList())
+                {
                     _climb.Eject();
+                }
 
                 // creatures without natural climb speed are not prepared to dodge
                 if (!Creature.Movements.AllMovements.OfType<ClimbMovement>().Any(_c => _c.IsNaturalClimber))
+                {
                     Creature.AddAdjunct(new UnpreparedToDodge(this));
+                }
 
                 Creature.AddIInteractHandler(this);
             }
@@ -111,7 +121,10 @@ namespace Uzi.Ikosa.Movement
         public bool LinkBefore(Type interactType, IInteractHandler existingHandler)
         {
             if (existingHandler is TempHPDamageHandler)
+            {
                 return true;
+            }
+
             return false;
         }
 

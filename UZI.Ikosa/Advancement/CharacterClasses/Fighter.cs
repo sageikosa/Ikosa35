@@ -84,7 +84,10 @@ namespace Uzi.Ikosa.Advancement.CharacterClasses
         {
             var _feat = BonusFeat(level);
             if (IsBonusFeatLevel(level) && ((_feat == null) || !_feat.MeetsRequirementsAtPowerLevel))
+            {
                 return false;
+            }
+
             return base.CanLockLevel(level);
         }
         #endregion
@@ -174,7 +177,9 @@ namespace Uzi.Ikosa.Advancement.CharacterClasses
                         _feat.UnbindFromCreature();
                     }
                     else
+                    {
                         return false;
+                    }
                 }
 
                 if (bonusFeat.CanAdd(Creature))
@@ -189,7 +194,9 @@ namespace Uzi.Ikosa.Advancement.CharacterClasses
                 }
             }
             else
+            {
                 return false;
+            }
         }
         #endregion
 
@@ -243,7 +250,9 @@ namespace Uzi.Ikosa.Advancement.CharacterClasses
             {
                 var _feat = BonusFeat(CurrentLevel + 1);
                 if (_feat != null)
+                {
                     _feat.UnbindFromCreature();
+                }
             }
             base.OnDecreaseLevel();
         }

@@ -1,4 +1,4 @@
-using Uzi.Core.Contracts;
+﻿using Uzi.Core.Contracts;
 using System;
 using System.Collections.Generic;
 using Uzi.Ikosa.Feats;
@@ -21,7 +21,9 @@ namespace Uzi.Ikosa.Movement
                 _Improved = true;
             }
             else
+            {
                 _Improved = false;
+            }
 
             // TODO: +4 push back on improved
         }

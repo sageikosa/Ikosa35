@@ -37,7 +37,9 @@ namespace Uzi.Ikosa.Objects
             {
                 // provide any overrides
                 foreach (var _iKey in IconKeyAdjunct.GetIconKeys(this))
+                {
                     yield return _iKey;
+                }
 
                 // material class combination
                 yield return $@"{ObjectMaterial?.Name}_{ClassIconKey}";

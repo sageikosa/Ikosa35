@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using Uzi.Core;
@@ -120,13 +120,22 @@ namespace Uzi.Ikosa.Adjuncts
             get
             {
                 if (VeryBrightRange > 0)
+                {
                     return LightRange.VeryBright;
+                }
                 else if (BrightRange > 0)
+                {
                     return LightRange.Bright;
+                }
                 else if (ShadowyRange > 0)
+                {
                     return LightRange.NearShadow;
+                }
                 else if (FarShadowyRange > 0)
+                {
                     return LightRange.FarShadow;
+                }
+
                 return LightRange.OutOfRange;
             }
         }

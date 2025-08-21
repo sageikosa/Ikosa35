@@ -39,7 +39,9 @@ namespace Uzi.Ikosa.Movement
                 if (_locator != null)
                 {
                     if (!_locator.PlanarPresence.HasMaterialPresence())
+                    {
                         return false;
+                    }
 
                     // TODO: generally true
                     return true;

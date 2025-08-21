@@ -52,9 +52,11 @@ namespace Uzi.Ikosa.Workshop
             set
             {
                 if (SurfaceTriggerMechanism != null)
+                {
                     SurfaceTriggerMechanism.Surfaces = value
                         ? SurfaceTriggerMechanism.Surfaces.Add(AnchorFace.ZLow)
                         : SurfaceTriggerMechanism.Surfaces.Remove(AnchorFace.ZLow);
+                }
             }
         }
 
@@ -64,9 +66,11 @@ namespace Uzi.Ikosa.Workshop
             set
             {
                 if (SurfaceTriggerMechanism != null)
+                {
                     SurfaceTriggerMechanism.Surfaces = value
                         ? SurfaceTriggerMechanism.Surfaces.Add(AnchorFace.ZHigh)
                         : SurfaceTriggerMechanism.Surfaces.Remove(AnchorFace.ZHigh);
+                }
             }
         }
 
@@ -76,9 +80,11 @@ namespace Uzi.Ikosa.Workshop
             set
             {
                 if (SurfaceTriggerMechanism != null)
+                {
                     SurfaceTriggerMechanism.Surfaces = value
                         ? SurfaceTriggerMechanism.Surfaces.Add(AnchorFace.YLow)
                         : SurfaceTriggerMechanism.Surfaces.Remove(AnchorFace.YLow);
+                }
             }
         }
 
@@ -88,9 +94,11 @@ namespace Uzi.Ikosa.Workshop
             set
             {
                 if (SurfaceTriggerMechanism != null)
+                {
                     SurfaceTriggerMechanism.Surfaces = value
                         ? SurfaceTriggerMechanism.Surfaces.Add(AnchorFace.YHigh)
                         : SurfaceTriggerMechanism.Surfaces.Remove(AnchorFace.YHigh);
+                }
             }
         }
 
@@ -100,9 +108,11 @@ namespace Uzi.Ikosa.Workshop
             set
             {
                 if (SurfaceTriggerMechanism != null)
+                {
                     SurfaceTriggerMechanism.Surfaces = value
                         ? SurfaceTriggerMechanism.Surfaces.Add(AnchorFace.XLow)
                         : SurfaceTriggerMechanism.Surfaces.Remove(AnchorFace.XLow);
+                }
             }
         }
 
@@ -112,9 +122,11 @@ namespace Uzi.Ikosa.Workshop
             set
             {
                 if (SurfaceTriggerMechanism != null)
+                {
                     SurfaceTriggerMechanism.Surfaces = value
                         ? SurfaceTriggerMechanism.Surfaces.Add(AnchorFace.XHigh)
                         : SurfaceTriggerMechanism.Surfaces.Remove(AnchorFace.XHigh);
+                }
             }
         }
 

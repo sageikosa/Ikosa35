@@ -13,7 +13,7 @@ namespace Uzi.Ikosa.Magic
         #region Construction
         public ImmunityTracker()
         {
-            _Infos = new Dictionary<Guid, ImmunityInfo>();
+            _Infos = [];
         }
         #endregion
 
@@ -31,7 +31,10 @@ namespace Uzi.Ikosa.Magic
         public void TrackAffect(Guid id)
         {
             if (IsTracking(id))
+            {
                 _Infos.Remove(id);
+            }
+
             _Infos.Add(id, new ImmunityInfo { Immune = false, ImmunityEndTime = double.MaxValue });
         }
 
@@ -43,7 +46,10 @@ namespace Uzi.Ikosa.Magic
         public void TrackAffect(Guid id, double endTime)
         {
             if (IsTracking(id))
+            {
                 _Infos.Remove(id);
+            }
+
             _Infos.Add(id, new ImmunityInfo { Immune = false, ImmunityEndTime = endTime });
         }
 
@@ -54,7 +60,10 @@ namespace Uzi.Ikosa.Magic
         public void TrackImmunity(Guid id)
         {
             if (IsTracking(id))
+            {
                 _Infos.Remove(id);
+            }
+
             _Infos.Add(id, new ImmunityInfo { Immune = true, ImmunityEndTime = double.MaxValue });
         }
 
@@ -66,7 +75,10 @@ namespace Uzi.Ikosa.Magic
         public void TrackImmunity(Guid id, double endTime)
         {
             if (IsTracking(id))
+            {
                 _Infos.Remove(id);
+            }
+
             _Infos.Add(id, new ImmunityInfo { Immune = true, ImmunityEndTime = endTime });
         }
 
@@ -79,7 +91,9 @@ namespace Uzi.Ikosa.Magic
             foreach (var _expired in (from _inf in _Infos
                                       where _inf.Value.ImmunityEndTime < currentTime
                                       select _inf.Key).ToArray())
+            {
                 _Infos.Remove(_expired);
+            }
         }
     }
 }

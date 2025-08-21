@@ -67,7 +67,9 @@ namespace Uzi.Ikosa.Workshop.Locale
             if (_effectBest.Any())
             {
                 if (ProcessAllLinesOfEffect(geomContext, pts, cellList, _effectBest))
+                {
                     return true;
+                }
             }
             return false;
         }
@@ -109,7 +111,10 @@ namespace Uzi.Ikosa.Workshop.Locale
                     if (IsAwareOfCells(geomContext, effectBest,
                         _g.SelectMany(_oi => _oi.Pts).Union(_g.Select(_oi => _oi.Out.GetPoint3D())).Distinct().ToList(),
                         new CellList(_g.Select(_oi => _oi.In).OfType<ICellLocation>(), 0, 0, 0)))
+                    {
                         return _g.Key.ToEnumerable();
+                    }
+
                     return new LocalCellGroup[] { };
 
                 }).Where(_g => _g != null));
@@ -122,7 +127,9 @@ namespace Uzi.Ikosa.Workshop.Locale
         private void MergeIn(ConcurrentDictionary<Guid, Guid> dest, IEnumerable<LocalCellGroup> source)
         {
             foreach (var _s in source)
+            {
                 dest.TryAdd(_s.ID, _s.ID);
+            }
         }
 
         private List<LocalCellGroup> IncludeBackgrounds(List<LocalCellGroup> groups)

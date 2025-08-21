@@ -69,11 +69,17 @@ namespace Uzi.Ikosa.Actions
                     var _line = GetSingleLine(_target.SourcePoint, _target.TargetPoint, _target.Target,
                         _target.Attack.SourceCell, _tCell, _planar);
                     if (_line.BlockedCell.IsActual)
+                    {
                         _tCell = _line.BlockedCell.ToCellPosition();
+                    }
                     else if (_line.UnblockedCell.IsActual)
+                    {
                         _tCell = _line.UnblockedCell.ToCellPosition();
+                    }
                     else
+                    {
                         _tCell = _target.Attack.SourceCell.ToCellPosition();
+                    }
 
                     // drop an instance of ammunition at target location
                     if (RangedAmmunition?.Ammunition is Arrow _arrow)

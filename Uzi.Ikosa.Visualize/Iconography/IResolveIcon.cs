@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Windows.Media;
 using Uzi.Visualize.Packaging;
-using System.Windows.Media.Imaging;
 using System.Windows.Media.Media3D;
 using Uzi.Visualize.Contracts.Tactical;
 

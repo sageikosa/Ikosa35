@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using Uzi.Packaging;
 
 namespace Uzi.Visualize.Packaging
@@ -27,7 +25,9 @@ namespace Uzi.Visualize.Packaging
             {
                 var _bcPart = _Part.FindBasePart(key.ToString()) as BrushCollectionPart;
                 if (_bcPart != null)
+                {
                     return _bcPart.BrushDefinitions;
+                }
             }
             return null;
         }
@@ -39,12 +39,14 @@ namespace Uzi.Visualize.Packaging
             get
             {
                 if (_Part != null)
+                {
                     return _Part.Relationships.OfType<BrushCollectionPart>()
                         .Select(_bc => new BrushCollectionListItem
                         {
                             BrushCollectionPart = _bc,
                             IsLocal = true
                         });
+                }
 
                 // empty list
                 return new BrushCollectionListItem[] { };

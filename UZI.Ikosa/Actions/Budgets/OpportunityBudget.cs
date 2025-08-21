@@ -20,7 +20,7 @@ namespace Uzi.Ikosa.Actions
         {
             _Critter = critter;
             _Capacity = capacity;
-            _Activities = new Collection<CoreActivity>();
+            _Activities = [];
         }
         #endregion
 
@@ -96,7 +96,9 @@ namespace Uzi.Ikosa.Actions
         {
             // none available?
             if (Available <= 0)
+            {
                 return false;
+            }
 
             // already taken for this opportunity?
             if (Activities.Contains(opportunity))

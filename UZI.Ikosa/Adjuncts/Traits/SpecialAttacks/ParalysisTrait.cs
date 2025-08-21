@@ -60,9 +60,15 @@ namespace Uzi.Ikosa.Adjuncts
         public virtual bool HasPlanarCompatibility(PlanarPresence source, PlanarPresence target)
         {
             if (source.HasOverlappingPresence(target))
+            {
                 return true;
+            }
+
             if (source.HasMaterialPresence() && target.HasEtherealPresence() && Descriptors.OfType<Force>().Any())
+            {
                 return true;
+            }
+
             return false;
         }
 
@@ -76,7 +82,10 @@ namespace Uzi.Ikosa.Adjuncts
                     ? $@"; {_Provider.TimeUnits.RollString} {_Provider.UnitFactor.PluralName}"
                     : @"; Permanent";
                 if (_difficulty != null)
+                {
                     return $@"Difficulty {_difficulty.EffectiveValue} {_Provider.SaveType}{_duration}";
+                }
+
                 return $@"No Save{_duration}";
             }
         }

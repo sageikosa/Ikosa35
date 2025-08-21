@@ -16,15 +16,19 @@ namespace Uzi.Ikosa.Actions
         {
             if (result)
             {
-                _Affected ??= new HashSet<Guid>();
+                _Affected ??= [];
                 if (!_Affected.Contains(targetID))
+                {
                     _Affected.Add(targetID);
+                }
             }
             else
             {
-                _Resisted ??= new HashSet<Guid>();
+                _Resisted ??= [];
                 if (!_Resisted.Contains(targetID))
+                {
                     _Resisted.Add(targetID);
+                }
             }
         }
 

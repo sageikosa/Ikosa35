@@ -35,7 +35,9 @@ namespace Uzi.Ikosa.Adjuncts
                             {
                                 // compare with blocked descriptors
                                 if (Blocked.Any(_b => _b.IsAssignableFrom(_def.Descriptors.GetType())))
+                                {
                                     workSet.Feedback.Add(new ValueFeedback<bool>(this, false));
+                                }
                             }
                         }
                     }

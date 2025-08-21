@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Linq;
 using Uzi.Ikosa.Advancement;
 
@@ -25,7 +25,9 @@ namespace Uzi.Ikosa.Feats
             {
                 if (critter.Feats.OfType<ImprovedCriticalRayFeat>()
                     .First().IsActive)
+                {
                     return 19;
+                }
             }
             return 20;
         }

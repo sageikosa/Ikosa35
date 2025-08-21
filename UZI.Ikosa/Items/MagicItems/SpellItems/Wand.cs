@@ -96,7 +96,9 @@ namespace Uzi.Ikosa.Items
         public void ValueChanged(object sender, ChangeValueEventArgs<int> args)
         {
             if (sender == SpellTrigger.PowerBattery)
+            {
                 SetPrice();
+            }
         }
 
         #endregion

@@ -32,8 +32,7 @@ namespace Uzi.Ikosa.Objects
         {
             get
             {
-                if (_Poison == null)
-                    _Poison = Poisonous.GetPoison(this);
+                _Poison ??= Poisonous.GetPoison(this);
                 return _Poison;
             }
         }

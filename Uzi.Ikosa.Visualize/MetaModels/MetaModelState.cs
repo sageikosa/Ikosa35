@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
 using Uzi.Visualize.Contracts;
@@ -12,10 +11,10 @@ namespace Uzi.Visualize
         #region ctor()
         public MetaModelState()
         {
-            DefaultBrushes = new BrushCrossRefNodeCollection();
+            DefaultBrushes = [];
             RootFragment = new MetaModelRootNode();
-            MasterIntReferences = new IntReferenceCollection();
-            MasterDoubleReferences = new DoubleReferenceCollection();
+            MasterIntReferences = [];
+            MasterDoubleReferences = [];
         }
 
         public MetaModelState(MetaModelState source)
@@ -45,12 +44,17 @@ namespace Uzi.Visualize
         private MetaModelFragmentNodeCollection FindParent(MetaModelFragmentNode child, MetaModelFragmentNodeCollection maybeParent)
         {
             if (maybeParent.Contains(child))
+            {
                 return maybeParent;
+            }
+
             foreach (var _next in maybeParent)
             {
                 var _found = FindParent(child, _next.Components);
                 if (_found != null)
+                {
                     return _found;
+                }
             }
             return null;
         }

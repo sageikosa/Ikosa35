@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Media.Media3D;
@@ -154,7 +154,10 @@ namespace Uzi.Ikosa.Tactical
         {
             var _param = new WedgeParams(paramsIn);
             if (_param.Axis == flipAxis)
+            {
                 return paramsIn;
+            }
+
             switch (_param.Axis)
             {
                 case Axis.Z:
@@ -256,17 +259,26 @@ namespace Uzi.Ikosa.Tactical
                     {
                         case Axis.X:
                             if (WedgeCollision(param, _pt.Y, _pt.Z, _pt.X, _basePt.Y, _basePt.Z, _basePt.X))
+                            {
                                 return true;
+                            }
+
                             break;
 
                         case Axis.Y:
                             if (WedgeCollision(param, _pt.Z, _pt.X, _pt.Y, _basePt.Z, _basePt.X, _basePt.Y))
+                            {
                                 return true;
+                            }
+
                             break;
 
                         default:
                             if (WedgeCollision(param, _pt.X, _pt.Y, _pt.Z, _basePt.X, _basePt.Y, _basePt.Z))
+                            {
                                 return true;
+                            }
+
                             break;
                     }
                 }
@@ -277,17 +289,26 @@ namespace Uzi.Ikosa.Tactical
                     {
                         case Axis.X:
                             if (PlusWedgeCollision(param, _pt.Y, _pt.Z, _pt.X, _basePt.Y, _basePt.Z, _basePt.X))
+                            {
                                 return true;
+                            }
+
                             break;
 
                         case Axis.Y:
                             if (PlusWedgeCollision(param, _pt.Z, _pt.X, _pt.Y, _basePt.Z, _basePt.X, _basePt.Y))
+                            {
                                 return true;
+                            }
+
                             break;
 
                         default:
                             if (PlusWedgeCollision(param, _pt.X, _pt.Y, _pt.Z, _basePt.X, _basePt.Y, _basePt.Z))
+                            {
                                 return true;
+                            }
+
                             break;
                     }
                 }
@@ -309,16 +330,24 @@ namespace Uzi.Ikosa.Tactical
                 if (_secondOff > 0)
                 {
                     if ((primePt <= primeBase + _primeOff) && Approx(secondPt, secondBase))
+                    {
                         return true;
+                    }
+
                     if ((secondPt <= secondBase + _secondOff) && Approx(primePt, primeBase))
+                    {
                         return true;
+                    }
+
                     if (Approx(testPt, testBase) || Approx(testPt, testBase + 5d))
                     {
                         if (_CornerStyle)
                         {
                             // in the rectangle
                             if ((primePt <= primeBase + _primeOff) && (secondPt <= secondBase + _secondOff))
+                            {
                                 return true;
+                            }
                         }
                         else
                         {
@@ -326,16 +355,23 @@ namespace Uzi.Ikosa.Tactical
                             var _wUzo = UzoMeter(primeBase + _primeOff, secondBase, primeBase, secondBase + _secondOff, primeBase, secondBase);
                             var _pUzo = UzoMeter(primeBase + _primeOff, secondBase, primeBase, secondBase + _secondOff, primePt, secondPt);
                             if ((_wUzo / _pUzo) > 0)
+                            {
                                 return true;
+                            }
                         }
                     }
                 }
                 else
                 {
                     if ((primePt <= primeBase + _primeOff) && Approx(secondPt, secondBase + 5d))
+                    {
                         return true;
+                    }
+
                     if ((secondPt >= secondBase + 5d + _secondOff) && Approx(primePt, primeBase))
+                    {
                         return true;
+                    }
                     // bottom and top
                     if (Approx(testPt, testBase) || Approx(testPt, testBase + 5d))
                     {
@@ -343,7 +379,9 @@ namespace Uzi.Ikosa.Tactical
                         {
                             // in the rectangle
                             if ((primePt <= primeBase + _primeOff) && (secondPt >= secondBase + 5d + _secondOff))
+                            {
                                 return true;
+                            }
                         }
                         else
                         {
@@ -351,7 +389,9 @@ namespace Uzi.Ikosa.Tactical
                             var _wUzo = UzoMeter(primeBase + _primeOff, secondBase + 5d, primeBase, secondBase + 5d + _secondOff, primeBase, secondBase + 5d);
                             var _pUzo = UzoMeter(primeBase + _primeOff, secondBase + 5d, primeBase, secondBase + 5d + _secondOff, primePt, secondPt);
                             if ((_wUzo / _pUzo) > 0)
+                            {
                                 return true;
+                            }
                         }
                     }
                 }
@@ -361,9 +401,14 @@ namespace Uzi.Ikosa.Tactical
                 if (_secondOff > 0)
                 {
                     if ((primePt >= primeBase + 5d + _primeOff) && Approx(secondPt, secondBase))
+                    {
                         return true;
+                    }
+
                     if ((secondPt <= secondBase + _secondOff) && Approx(primePt, primeBase + 5d))
+                    {
                         return true;
+                    }
                     // bottom and top
                     if (Approx(testPt, testBase) || Approx(testPt, testBase + 5d))
                     {
@@ -371,7 +416,9 @@ namespace Uzi.Ikosa.Tactical
                         {
                             // in the rectangle
                             if ((primePt >= primeBase + 5d + _primeOff) && (secondPt <= secondBase + _secondOff))
+                            {
                                 return true;
+                            }
                         }
                         else
                         {
@@ -379,16 +426,23 @@ namespace Uzi.Ikosa.Tactical
                             var _wUzo = UzoMeter(primeBase + 5d + _primeOff, secondBase, primeBase + 5d, secondBase + _secondOff, primeBase + 5d, secondBase);
                             var _pUzo = UzoMeter(primeBase + 5d + _primeOff, secondBase, primeBase + 5d, secondBase + _secondOff, primePt, secondPt);
                             if ((_wUzo / _pUzo) > 0)
+                            {
                                 return true;
+                            }
                         }
                     }
                 }
                 else
                 {
                     if ((primePt >= primeBase + 5d + _primeOff) && Approx(secondPt, secondBase + 5d))
+                    {
                         return true;
+                    }
+
                     if ((secondPt >= secondBase + 5d + _secondOff) && Approx(primePt, primeBase + 5d))
+                    {
                         return true;
+                    }
                     // bottom and top
                     if (Approx(testPt, testBase) || Approx(testPt, testBase + 5d))
                     {
@@ -396,7 +450,9 @@ namespace Uzi.Ikosa.Tactical
                         {
                             // in the rectangle
                             if ((primePt >= primeBase + 5d + _primeOff) && (secondPt >= secondBase + 5d + _secondOff))
+                            {
                                 return true;
+                            }
                         }
                         else
                         {
@@ -404,7 +460,9 @@ namespace Uzi.Ikosa.Tactical
                             var _wUzo = UzoMeter(primeBase + 5d + _primeOff, secondBase + 5d, primeBase + 5d, secondBase + 5d + _secondOff, primeBase + 5d, secondBase + 5d);
                             var _pUzo = UzoMeter(primeBase + 5d + _primeOff, secondBase + 5d, primeBase + 5d, secondBase + 5d + _secondOff, primePt, secondPt);
                             if ((_wUzo / _pUzo) > 0)
+                            {
                                 return true;
+                            }
                         }
                     }
                 }
@@ -423,34 +481,50 @@ namespace Uzi.Ikosa.Tactical
             {
                 // far full prime face
                 if (Approx(primePt, primeBase + 5d))
+                {
                     return true;
+                }
                 // either test face in the PlusMaterial
                 if ((Approx(testPt, testBase) || Approx(testPt, testBase + 5d))
                     && (primePt >= primeBase + _primeOff))
+                {
                     return true;
+                }
+
                 if (_secondOff > 0)
                 {
                     // far full second face
                     if (Approx(secondPt, secondBase + 5d))
+                    {
                         return true;
+                    }
                     // near prime face, above the wedge
                     if (Approx(primePt, primeBase) && (secondPt >= secondBase + _secondOff))
+                    {
                         return true;
+                    }
                     // near second face, beyond the wedge
                     if (Approx(secondPt, secondBase) && (primePt >= primeBase + _primeOff))
+                    {
                         return true;
+                    }
+
                     if (Approx(testPt, testBase) || Approx(testPt, testBase + 5d))
                     {
                         // either test face, above the wedge
                         if (secondPt >= secondBase + _secondOff)
+                        {
                             return true;
+                        }
                         else if (!_CornerStyle)
                         {
                             // see if the corner and point are on opposite sides of the hypoteneuse
                             var _wUzo = UzoMeter(primeBase + _primeOff, secondBase, primeBase, secondBase + _secondOff, primeBase, secondBase);
                             var _pUzo = UzoMeter(primeBase + _primeOff, secondBase, primeBase, secondBase + _secondOff, primePt, secondPt);
                             if ((_wUzo / _pUzo) < 0)
+                            {
                                 return true;
+                            }
                         }
                     }
                 }
@@ -458,25 +532,36 @@ namespace Uzi.Ikosa.Tactical
                 {
                     // near full second face
                     if (Approx(secondPt, secondBase))
+                    {
                         return true;
+                    }
                     // near prime face, below the wedge
                     if (Approx(primePt, primeBase) && (secondPt <= secondBase + 5d + _secondOff))
+                    {
                         return true;
+                    }
                     // far second face, past the wedge
                     if (Approx(secondPt, secondBase + 5d) && (primePt >= primeBase + _primeOff))
+                    {
                         return true;
+                    }
+
                     if (Approx(testPt, testBase) || Approx(testPt, testBase + 5d))
                     {
                         // either second face, below the wedge
                         if (secondPt <= secondBase + 5d + _secondOff)
+                        {
                             return true;
+                        }
                         else if (!_CornerStyle)
                         {
                             // see if the corner and point are on opposite sides of the hypoteneuse
                             var _wUzo = UzoMeter(primeBase + _primeOff, secondBase + 5d, primeBase, secondBase + 5d + _secondOff, primeBase, secondBase + 5d);
                             var _pUzo = UzoMeter(primeBase + _primeOff, secondBase + 5d, primeBase, secondBase + 5d + _secondOff, primePt, secondPt);
                             if ((_wUzo / _pUzo) < 0)
+                            {
                                 return true;
+                            }
                         }
                     }
                 }
@@ -485,34 +570,50 @@ namespace Uzi.Ikosa.Tactical
             {
                 // near full prime face
                 if (Approx(primePt, primeBase))
+                {
                     return true;
+                }
                 // either test face, before the wedge
                 if ((Approx(testPt, testBase) || Approx(testPt, testBase + 5d))
                     && (primePt <= primeBase + 5d + _primeOff))
+                {
                     return true;
+                }
+
                 if (_secondOff > 0)
                 {
                     // far full second face
                     if (Approx(secondPt, secondBase + 5d))
+                    {
                         return true;
+                    }
                     // far prime face, above the wedge
                     if (Approx(primePt, primeBase + 5d) && (secondPt >= secondBase + _secondOff))
+                    {
                         return true;
+                    }
                     // near second face, before the wedge
                     if (Approx(secondPt, secondBase) && (primePt <= primeBase + 5d + _primeOff))
+                    {
                         return true;
+                    }
+
                     if (Approx(testPt, testBase) || Approx(testPt, testBase + 5d))
                     {
                         // either test face, above the wedge
                         if (secondPt >= secondBase + _secondOff)
+                        {
                             return true;
+                        }
                         else if (!_CornerStyle)
                         {
                             // see if the corner and point are on opposite sides of the hypoteneuse
                             var _wUzo = UzoMeter(primeBase + 5d + _primeOff, secondBase, primeBase + 5d, secondBase + _secondOff, primeBase + 5d, secondBase);
                             var _pUzo = UzoMeter(primeBase + 5d + _primeOff, secondBase, primeBase + 5d, secondBase + _secondOff, primePt, secondPt);
                             if ((_wUzo / _pUzo) < 0)
+                            {
                                 return true;
+                            }
                         }
                     }
                 }
@@ -520,25 +621,36 @@ namespace Uzi.Ikosa.Tactical
                 {
                     // near full second face
                     if (Approx(secondPt, secondBase))
+                    {
                         return true;
+                    }
                     // far prime face, below the wedge
                     if (Approx(primePt, primeBase + 5d) && (secondPt <= secondBase + 5d + _secondOff))
+                    {
                         return true;
+                    }
                     // far second face, before the wedge
                     if (Approx(secondPt, secondBase + 5d) && (primePt <= primeBase + 5d + _primeOff))
+                    {
                         return true;
+                    }
+
                     if (Approx(testPt, testBase) || Approx(testPt, testBase + 5d))
                     {
                         // either test face, below the wedge
                         if (secondPt <= secondBase + 5d + _secondOff)
+                        {
                             return true;
+                        }
                         else if (!_CornerStyle)
                         {
                             // see if the corner and point are on opposite sides of the hypoteneuse
                             var _wUzo = UzoMeter(primeBase + 5d + _primeOff, secondBase + 5d, primeBase + 5d, secondBase + 5d + _secondOff, primeBase + 5d, secondBase + 5d);
                             var _pUzo = UzoMeter(primeBase + 5d + _primeOff, secondBase + 5d, primeBase + 5d, secondBase + 5d + _secondOff, primePt, secondPt);
                             if ((_wUzo / _pUzo) < 0)
+                            {
                                 return true;
+                            }
                         }
                     }
                 }
@@ -562,17 +674,26 @@ namespace Uzi.Ikosa.Tactical
                     {
                         case Axis.X:
                             if (WedgeCollision(param, _pt.Y, _pt.Z, _pt.X, _basePt.Y, _basePt.Z, _basePt.X))
+                            {
                                 return true;
+                            }
+
                             break;
 
                         case Axis.Y:
                             if (WedgeCollision(param, _pt.Z, _pt.X, _pt.Y, _basePt.Z, _basePt.X, _basePt.Y))
+                            {
                                 return true;
+                            }
+
                             break;
 
                         default:
                             if (WedgeCollision(param, _pt.X, _pt.Y, _pt.Z, _basePt.X, _basePt.Y, _basePt.Z))
+                            {
                                 return true;
+                            }
+
                             break;
                     }
                 }
@@ -582,17 +703,26 @@ namespace Uzi.Ikosa.Tactical
                     {
                         case Axis.X:
                             if (PlusWedgeCollision(param, _pt.Y, _pt.Z, _pt.X, _basePt.Y, _basePt.Z, _basePt.X))
+                            {
                                 return true;
+                            }
+
                             break;
 
                         case Axis.Y:
                             if (PlusWedgeCollision(param, _pt.Z, _pt.X, _pt.Y, _basePt.Z, _basePt.X, _basePt.Y))
+                            {
                                 return true;
+                            }
+
                             break;
 
                         default:
                             if (PlusWedgeCollision(param, _pt.X, _pt.Y, _pt.Z, _basePt.X, _basePt.Y, _basePt.Z))
+                            {
                                 return true;
+                            }
+
                             break;
                     }
                 }
@@ -614,9 +744,13 @@ namespace Uzi.Ikosa.Tactical
             var _cellBlock = !movement.CanMoveThrough(CellMaterial);
             var _plusBlock = !movement.CanMoveThrough(PlusMaterial);
             if (_cellBlock && _plusBlock)
+            {
                 return new HedralGrip(true);
+            }
             else if (!_cellBlock && !_plusBlock)
+            {
                 return new HedralGrip(false);
+            }
 
             var _surfaceAxis = surfaceFace.GetAxis();
             if (_surfaceAxis == _axis)
@@ -698,7 +832,9 @@ namespace Uzi.Ikosa.Tactical
                             if ((_primeOff < 0)         // if clipping from top
                                ? surfaceFace.IsLowFace()   // ... lowface is all plus
                                : !surfaceFace.IsLowFace()) // .. otherwise, hiface is all plus
+                            {
                                 return new HedralGrip(_plusBlock);
+                            }
                             else if (_cellBlock)
                             {
                                 // just _cell blocks (small corner)
@@ -720,7 +856,9 @@ namespace Uzi.Ikosa.Tactical
                             if ((_secondOff < 0)       // if clipping from top
                                ? surfaceFace.IsLowFace()   // ... lowface is all plus
                                : !surfaceFace.IsLowFace()) // .. otherwise, hiface is all plus
+                            {
                                 return new HedralGrip(_plusBlock);
+                            }
                             else if (_cellBlock)
                             {
                                 // just _cell blocks (small corner)
@@ -744,7 +882,9 @@ namespace Uzi.Ikosa.Tactical
                             if ((_primeOff < 0)         // if clipping from top
                                 ? surfaceFace.IsLowFace()   // ... lowface is all plus
                                 : !surfaceFace.IsLowFace()) // .. otherwise, hiface is all plus
+                            {
                                 return new HedralGrip(_plusBlock);
+                            }
                             else if (_cellBlock)
                             {
                                 // just _cell blocks (small corner)
@@ -766,7 +906,9 @@ namespace Uzi.Ikosa.Tactical
                             if ((_secondOff < 0)       // if clipping from top
                                 ? surfaceFace.IsLowFace()   // ... lowface is all plus
                                 : !surfaceFace.IsLowFace()) // .. otherwise, hiface is all plus
+                            {
                                 return new HedralGrip(_plusBlock);
+                            }
                             else if (_cellBlock)
                             {
                                 // just _cell blocks (small corner)
@@ -791,7 +933,9 @@ namespace Uzi.Ikosa.Tactical
                             if ((_primeOff < 0)         // if clipping from top
                                 ? surfaceFace.IsLowFace()   // ... lowface is all plus
                                 : !surfaceFace.IsLowFace()) // .. otherwise, hiface is all plus
+                            {
                                 return new HedralGrip( _plusBlock );
+                            }
                             else if (_cellBlock)
                             {
                                 // just _cell blocks (small corner)
@@ -813,7 +957,9 @@ namespace Uzi.Ikosa.Tactical
                             if ((_secondOff < 0)       // if clipping from top
                                 ? surfaceFace.IsLowFace()   // ... lowface is all plus
                                 : !surfaceFace.IsLowFace()) // .. otherwise, hiface is all plus
+                            {
                                 return new HedralGrip(_plusBlock);
+                            }
                             else if (_cellBlock)
                             {
                                 // just _cell blocks (small corner)
@@ -861,35 +1007,65 @@ namespace Uzi.Ikosa.Tactical
                     {
                         case Axis.Z:
                             if (_primeOff > 0)
+                            {
                                 yield return _opening(AnchorFace.XHigh, 5 - _primeOff, _secondOff);
+                            }
                             else
+                            {
                                 yield return _opening(AnchorFace.XLow, 5 + _primeOff, _secondOff);
+                            }
+
                             if (_secondOff > 0)
+                            {
                                 yield return _opening(AnchorFace.YHigh, 5 - _secondOff, _primeOff);
+                            }
                             else
+                            {
                                 yield return _opening(AnchorFace.YLow, 5 + _secondOff, _primeOff);
+                            }
+
                             break;
 
                         case Axis.Y:
                             if (_primeOff > 0)
+                            {
                                 yield return _opening(AnchorFace.ZHigh, 5 - _primeOff, _secondOff);
+                            }
                             else
+                            {
                                 yield return _opening(AnchorFace.ZLow, 5 + _primeOff, _secondOff);
+                            }
+
                             if (_secondOff > 0)
+                            {
                                 yield return _opening(AnchorFace.XHigh, 5 - _secondOff, _primeOff);
+                            }
                             else
+                            {
                                 yield return _opening(AnchorFace.XLow, 5 + _secondOff, _primeOff);
+                            }
+
                             break;
 
                         default: // X
                             if (_primeOff > 0)
+                            {
                                 yield return _opening(AnchorFace.YHigh, 5 - _primeOff, _secondOff);
+                            }
                             else
+                            {
                                 yield return _opening(AnchorFace.YLow, 5 + _primeOff, _secondOff);
+                            }
+
                             if (_secondOff > 0)
+                            {
                                 yield return _opening(AnchorFace.ZHigh, 5 - _secondOff, _primeOff);
+                            }
                             else
+                            {
                                 yield return _opening(AnchorFace.ZLow, 5 + _secondOff, _primeOff);
+                            }
+
                             break;
                     }
                 }
@@ -901,35 +1077,65 @@ namespace Uzi.Ikosa.Tactical
                 {
                     case Axis.Z:
                         if (_primeOff > 0)
+                        {
                             yield return _plusOpening(AnchorFace.XLow, _primeOff, _secondOff);
+                        }
                         else
+                        {
                             yield return _plusOpening(AnchorFace.XHigh, 0 - _primeOff, _secondOff);
+                        }
+
                         if (_secondOff > 0)
+                        {
                             yield return _plusOpening(AnchorFace.YLow, _secondOff, _primeOff);
+                        }
                         else
+                        {
                             yield return _plusOpening(AnchorFace.YHigh, 0 - _secondOff, _primeOff);
+                        }
+
                         break;
 
                     case Axis.Y:
                         if (_primeOff > 0)
+                        {
                             yield return _plusOpening(AnchorFace.ZLow, _primeOff, _secondOff);
+                        }
                         else
+                        {
                             yield return _plusOpening(AnchorFace.ZHigh, 0 - _primeOff, _secondOff);
+                        }
+
                         if (_secondOff > 0)
+                        {
                             yield return _plusOpening(AnchorFace.XLow, _secondOff, _primeOff);
+                        }
                         else
+                        {
                             yield return _plusOpening(AnchorFace.XHigh, 0 - _secondOff, _primeOff);
+                        }
+
                         break;
 
                     default: // X
                         if (_primeOff > 0)
+                        {
                             yield return _plusOpening(AnchorFace.YLow, _primeOff, _secondOff);
+                        }
                         else
+                        {
                             yield return _plusOpening(AnchorFace.YHigh, 0 - _primeOff, _secondOff);
+                        }
+
                         if (_secondOff > 0)
+                        {
                             yield return _plusOpening(AnchorFace.ZLow, _secondOff, _primeOff);
+                        }
                         else
+                        {
                             yield return _plusOpening(AnchorFace.ZHigh, 0 - _secondOff, _primeOff);
+                        }
+
                         break;
                 }
             }
@@ -1091,20 +1297,35 @@ namespace Uzi.Ikosa.Tactical
             {
                 case Axis.Z:
                     if (((primeOff >= 0) && xLow) || ((primeOff < 0) && !xLow))
+                    {
                         if (((secondoff >= 0) && yLow) || ((secondoff < 0) && !yLow))
+                        {
                             return false;
+                        }
+                    }
+
                     return true;
 
                 case Axis.Y:
                     if (((primeOff >= 0) && zLow) || ((primeOff < 0) && !zLow))
+                    {
                         if (((secondoff >= 0) && xLow) || ((secondoff < 0) && !xLow))
+                        {
                             return false;
+                        }
+                    }
+
                     return true;
 
                 default:
                     if (((primeOff >= 0) && yLow) || ((primeOff < 0) && !yLow))
+                    {
                         if (((secondoff >= 0) && zLow) || ((secondoff < 0) && !zLow))
+                        {
                             return false;
+                        }
+                    }
+
                     return true;
             }
         }
@@ -1123,7 +1344,9 @@ namespace Uzi.Ikosa.Tactical
             {
                 // same as base
                 foreach (var _pt in base.TacticalPoints(param, movement))
+                {
                     yield return _pt;
+                }
             }
             else
             {
@@ -1146,14 +1369,45 @@ namespace Uzi.Ikosa.Tactical
 
                     #region regular corners
                     // regular corners (x6)
-                    if (RegularCorner(_axis, _primeOff, _secondOff, true, true, true)) yield return new Point3D(0, 0, 0);
-                    if (RegularCorner(_axis, _primeOff, _secondOff, true, true, false)) yield return new Point3D(5, 0, 0);
-                    if (RegularCorner(_axis, _primeOff, _secondOff, true, false, true)) yield return new Point3D(0, 5, 0);
-                    if (RegularCorner(_axis, _primeOff, _secondOff, true, false, false)) yield return new Point3D(5, 5, 0);
-                    if (RegularCorner(_axis, _primeOff, _secondOff, false, true, true)) yield return new Point3D(0, 0, 5);
-                    if (RegularCorner(_axis, _primeOff, _secondOff, false, true, false)) yield return new Point3D(5, 0, 5);
-                    if (RegularCorner(_axis, _primeOff, _secondOff, false, false, true)) yield return new Point3D(0, 5, 5);
-                    if (RegularCorner(_axis, _primeOff, _secondOff, false, false, false)) yield return new Point3D(5, 5, 5);
+                    if (RegularCorner(_axis, _primeOff, _secondOff, true, true, true))
+                    {
+                        yield return new Point3D(0, 0, 0);
+                    }
+
+                    if (RegularCorner(_axis, _primeOff, _secondOff, true, true, false))
+                    {
+                        yield return new Point3D(5, 0, 0);
+                    }
+
+                    if (RegularCorner(_axis, _primeOff, _secondOff, true, false, true))
+                    {
+                        yield return new Point3D(0, 5, 0);
+                    }
+
+                    if (RegularCorner(_axis, _primeOff, _secondOff, true, false, false))
+                    {
+                        yield return new Point3D(5, 5, 0);
+                    }
+
+                    if (RegularCorner(_axis, _primeOff, _secondOff, false, true, true))
+                    {
+                        yield return new Point3D(0, 0, 5);
+                    }
+
+                    if (RegularCorner(_axis, _primeOff, _secondOff, false, true, false))
+                    {
+                        yield return new Point3D(5, 0, 5);
+                    }
+
+                    if (RegularCorner(_axis, _primeOff, _secondOff, false, false, true))
+                    {
+                        yield return new Point3D(0, 5, 5);
+                    }
+
+                    if (RegularCorner(_axis, _primeOff, _secondOff, false, false, false))
+                    {
+                        yield return new Point3D(5, 5, 5);
+                    }
                     #endregion
 
                     switch (_axis)
@@ -1162,15 +1416,24 @@ namespace Uzi.Ikosa.Tactical
                             #region adjust X/Y
                             // adjust X
                             if (_primeOff > 0)
+                            {
                                 _lowX = _primeOff;
+                            }
                             else if (_primeOff < 0)
+                            {
                                 _highX = 5 + _primeOff;
+                            }
 
                             // adjust Y
                             if (_secondOff > 0)
+                            {
                                 _lowY = _secondOff;
+                            }
                             else if (_secondOff < 0)
+                            {
                                 _highY = 5 + _secondOff;
+                            }
+
                             break;
                         #endregion
 
@@ -1178,15 +1441,24 @@ namespace Uzi.Ikosa.Tactical
                             #region adjust Z/X
                             // adjust Z
                             if (_primeOff > 0)
+                            {
                                 _lowZ = _primeOff;
+                            }
                             else if (_primeOff < 0)
+                            {
                                 _highZ = 5 + _primeOff;
+                            }
 
                             // adjust X
                             if (_secondOff > 0)
+                            {
                                 _lowX = _secondOff;
+                            }
                             else if (_secondOff < 0)
+                            {
                                 _highX = 5 + _secondOff;
+                            }
+
                             break;
                         #endregion
 
@@ -1194,15 +1466,24 @@ namespace Uzi.Ikosa.Tactical
                             #region adjust Y/Z
                             // adjust Y
                             if (_primeOff > 0)
+                            {
                                 _lowY = _primeOff;
+                            }
                             else if (_primeOff < 0)
+                            {
                                 _highY = 5 + _primeOff;
+                            }
 
                             // adjust Z
                             if (_secondOff > 0)
+                            {
                                 _lowZ = _secondOff;
+                            }
                             else if (_secondOff < 0)
+                            {
                                 _highZ = 5 + _secondOff;
+                            }
+
                             break;
                             #endregion
                     }
@@ -1460,15 +1741,24 @@ namespace Uzi.Ikosa.Tactical
                             #region adjust X/Y
                             // adjust X
                             if (_primeOff > 0)
+                            {
                                 _highX = _primeOff;
+                            }
                             else if (_primeOff < 0)
+                            {
                                 _lowX = 5 + _primeOff;
+                            }
 
                             // adjust Y
                             if (_secondOff > 0)
+                            {
                                 _highY = _secondOff;
+                            }
                             else if (_secondOff < 0)
+                            {
                                 _lowY = 5 + _secondOff;
+                            }
+
                             break;
                         #endregion
 
@@ -1476,15 +1766,24 @@ namespace Uzi.Ikosa.Tactical
                             #region adjust Z/X
                             // adjust Z
                             if (_primeOff > 0)
+                            {
                                 _highZ = _primeOff;
+                            }
                             else if (_primeOff < 0)
+                            {
                                 _lowZ = 5 + _primeOff;
+                            }
 
                             // adjust X
                             if (_secondOff > 0)
+                            {
                                 _highX = _secondOff;
+                            }
                             else if (_secondOff < 0)
+                            {
                                 _lowX = 5 + _secondOff;
+                            }
+
                             break;
                         #endregion
 
@@ -1492,28 +1791,68 @@ namespace Uzi.Ikosa.Tactical
                             #region adjust Y/Z
                             // adjust Y
                             if (_primeOff > 0)
+                            {
                                 _highY = _primeOff;
+                            }
                             else if (_primeOff < 0)
+                            {
                                 _lowY = 5 + _primeOff;
+                            }
 
                             // adjust Z
                             if (_secondOff > 0)
+                            {
                                 _highZ = _secondOff;
+                            }
                             else if (_secondOff < 0)
+                            {
                                 _lowZ = 5 + _secondOff;
+                            }
+
                             break;
                             #endregion
                     }
 
                     // corners (x8: corner, x6: wedge)
-                    if (_CornerStyle || HasExteriorValues(2, _lowX, _lowY, _lowZ)) yield return new Point3D(_lowX, _lowY, _lowZ);
-                    if (_CornerStyle || HasExteriorValues(2, _highX, _lowY, _lowZ)) yield return new Point3D(_highX, _lowY, _lowZ);
-                    if (_CornerStyle || HasExteriorValues(2, _lowX, _highY, _lowZ)) yield return new Point3D(_lowX, _highY, _lowZ);
-                    if (_CornerStyle || HasExteriorValues(2, _highX, _highY, _lowZ)) yield return new Point3D(_highX, _highY, _lowZ);
-                    if (_CornerStyle || HasExteriorValues(2, _lowX, _lowY, _highZ)) yield return new Point3D(_lowX, _lowY, _highZ);
-                    if (_CornerStyle || HasExteriorValues(2, _highX, _lowY, _highZ)) yield return new Point3D(_highX, _lowY, _highZ);
-                    if (_CornerStyle || HasExteriorValues(2, _lowX, _highY, _highZ)) yield return new Point3D(_lowX, _highY, _highZ);
-                    if (_CornerStyle || HasExteriorValues(2, _highX, _highY, _highZ)) yield return new Point3D(_highX, _highY, _highZ);
+                    if (_CornerStyle || HasExteriorValues(2, _lowX, _lowY, _lowZ))
+                    {
+                        yield return new Point3D(_lowX, _lowY, _lowZ);
+                    }
+
+                    if (_CornerStyle || HasExteriorValues(2, _highX, _lowY, _lowZ))
+                    {
+                        yield return new Point3D(_highX, _lowY, _lowZ);
+                    }
+
+                    if (_CornerStyle || HasExteriorValues(2, _lowX, _highY, _lowZ))
+                    {
+                        yield return new Point3D(_lowX, _highY, _lowZ);
+                    }
+
+                    if (_CornerStyle || HasExteriorValues(2, _highX, _highY, _lowZ))
+                    {
+                        yield return new Point3D(_highX, _highY, _lowZ);
+                    }
+
+                    if (_CornerStyle || HasExteriorValues(2, _lowX, _lowY, _highZ))
+                    {
+                        yield return new Point3D(_lowX, _lowY, _highZ);
+                    }
+
+                    if (_CornerStyle || HasExteriorValues(2, _highX, _lowY, _highZ))
+                    {
+                        yield return new Point3D(_highX, _lowY, _highZ);
+                    }
+
+                    if (_CornerStyle || HasExteriorValues(2, _lowX, _highY, _highZ))
+                    {
+                        yield return new Point3D(_lowX, _highY, _highZ);
+                    }
+
+                    if (_CornerStyle || HasExteriorValues(2, _highX, _highY, _highZ))
+                    {
+                        yield return new Point3D(_highX, _highY, _highZ);
+                    }
 
                     var _midX = (_lowX + _highX) / 2;
                     var _midY = (_lowY + _highY) / 2;
@@ -1527,24 +1866,69 @@ namespace Uzi.Ikosa.Tactical
                         #region corner style edges
                         if (_zOff >= 2.5)
                         {
-                            if (HasExteriorValues(1, _lowX, _lowY)) yield return new Point3D(_lowX, _lowY, _midZ);
-                            if (HasExteriorValues(1, _highX, _lowY)) yield return new Point3D(_highX, _lowY, _midZ);
-                            if (HasExteriorValues(1, _lowX, _highY)) yield return new Point3D(_lowX, _highY, _midZ);
-                            if (HasExteriorValues(1, _highX, _highY)) yield return new Point3D(_highX, _highY, _midZ);
+                            if (HasExteriorValues(1, _lowX, _lowY))
+                            {
+                                yield return new Point3D(_lowX, _lowY, _midZ);
+                            }
+
+                            if (HasExteriorValues(1, _highX, _lowY))
+                            {
+                                yield return new Point3D(_highX, _lowY, _midZ);
+                            }
+
+                            if (HasExteriorValues(1, _lowX, _highY))
+                            {
+                                yield return new Point3D(_lowX, _highY, _midZ);
+                            }
+
+                            if (HasExteriorValues(1, _highX, _highY))
+                            {
+                                yield return new Point3D(_highX, _highY, _midZ);
+                            }
                         }
                         if (_yOff >= 2.5)
                         {
-                            if (HasExteriorValues(1, _lowX, _lowZ)) yield return new Point3D(_lowX, _midY, _lowZ);
-                            if (HasExteriorValues(1, _highX, _lowZ)) yield return new Point3D(_highX, _midY, _lowZ);
-                            if (HasExteriorValues(1, _lowX, _highZ)) yield return new Point3D(_lowX, _midY, _highZ);
-                            if (HasExteriorValues(1, _highX, _highZ)) yield return new Point3D(_highX, _midY, _highZ);
+                            if (HasExteriorValues(1, _lowX, _lowZ))
+                            {
+                                yield return new Point3D(_lowX, _midY, _lowZ);
+                            }
+
+                            if (HasExteriorValues(1, _highX, _lowZ))
+                            {
+                                yield return new Point3D(_highX, _midY, _lowZ);
+                            }
+
+                            if (HasExteriorValues(1, _lowX, _highZ))
+                            {
+                                yield return new Point3D(_lowX, _midY, _highZ);
+                            }
+
+                            if (HasExteriorValues(1, _highX, _highZ))
+                            {
+                                yield return new Point3D(_highX, _midY, _highZ);
+                            }
                         }
                         if (_xOff >= 2.5)
                         {
-                            if (HasExteriorValues(1, _lowY, _lowZ)) yield return new Point3D(_midX, _lowY, _lowZ);
-                            if (HasExteriorValues(1, _highY, _lowZ)) yield return new Point3D(_midX, _highY, _lowZ);
-                            if (HasExteriorValues(1, _lowY, _highZ)) yield return new Point3D(_midX, _lowY, _highZ);
-                            if (HasExteriorValues(1, _highY, _highZ)) yield return new Point3D(_midX, _highY, _highZ);
+                            if (HasExteriorValues(1, _lowY, _lowZ))
+                            {
+                                yield return new Point3D(_midX, _lowY, _lowZ);
+                            }
+
+                            if (HasExteriorValues(1, _highY, _lowZ))
+                            {
+                                yield return new Point3D(_midX, _highY, _lowZ);
+                            }
+
+                            if (HasExteriorValues(1, _lowY, _highZ))
+                            {
+                                yield return new Point3D(_midX, _lowY, _highZ);
+                            }
+
+                            if (HasExteriorValues(1, _highY, _highZ))
+                            {
+                                yield return new Point3D(_midX, _highY, _highZ);
+                            }
                         }
                         #endregion
 
@@ -1553,23 +1937,38 @@ namespace Uzi.Ikosa.Tactical
                         if ((_xOff >= 2.5) && (_yOff >= 2.5))
                         {
                             if (_lowZ == 0)
+                            {
                                 yield return new Point3D(_midX, _midY, _lowZ);
+                            }
+
                             if (_highZ == 5)
+                            {
                                 yield return new Point3D(_midX, _midY, _highZ);
+                            }
                         }
                         if ((_xOff >= 2.5) && (_zOff >= 2.5))
                         {
                             if (_lowY == 0)
+                            {
                                 yield return new Point3D(_midX, _lowY, _midZ);
+                            }
+
                             if (_highY == 5)
+                            {
                                 yield return new Point3D(_midX, _highY, _midZ);
+                            }
                         }
                         if ((_yOff >= 2.5) && (_zOff >= 2.5))
                         {
                             if (_lowX == 0)
+                            {
                                 yield return new Point3D(_lowX, _midY, _midZ);
+                            }
+
                             if (_highX == 5)
+                            {
                                 yield return new Point3D(_lowY, _midY, _midZ);
+                            }
                         }
                         #endregion
                     }
@@ -1867,7 +2266,9 @@ namespace Uzi.Ikosa.Tactical
             {
                 // same as base
                 foreach (var _pt in base.TargetCorners(param, movement))
+                {
                     yield return _pt;
+                }
             }
             else
             {
@@ -1891,21 +2292,44 @@ namespace Uzi.Ikosa.Tactical
                     #region regular corners
                     // regular corners (x6)
                     if (RegularCorner(_axis, _primeOff, _secondOff, true, true, true))
+                    {
                         yield return new TargetCorner(new Point3D(0, 0, 0), AnchorFace.XLow, AnchorFace.YLow, AnchorFace.ZLow);
+                    }
+
                     if (RegularCorner(_axis, _primeOff, _secondOff, true, true, false))
+                    {
                         yield return new TargetCorner(new Point3D(5, 0, 0), AnchorFace.XHigh, AnchorFace.YLow, AnchorFace.ZLow);
+                    }
+
                     if (RegularCorner(_axis, _primeOff, _secondOff, true, false, true))
+                    {
                         yield return new TargetCorner(new Point3D(0, 5, 0), AnchorFace.XLow, AnchorFace.YHigh, AnchorFace.ZLow);
+                    }
+
                     if (RegularCorner(_axis, _primeOff, _secondOff, true, false, false))
+                    {
                         yield return new TargetCorner(new Point3D(5, 5, 0), AnchorFace.XHigh, AnchorFace.YHigh, AnchorFace.ZLow);
+                    }
+
                     if (RegularCorner(_axis, _primeOff, _secondOff, false, true, true))
+                    {
                         yield return new TargetCorner(new Point3D(0, 0, 5), AnchorFace.XLow, AnchorFace.YLow, AnchorFace.ZHigh);
+                    }
+
                     if (RegularCorner(_axis, _primeOff, _secondOff, false, true, false))
+                    {
                         yield return new TargetCorner(new Point3D(5, 0, 5), AnchorFace.XHigh, AnchorFace.YLow, AnchorFace.ZHigh);
+                    }
+
                     if (RegularCorner(_axis, _primeOff, _secondOff, false, false, true))
+                    {
                         yield return new TargetCorner(new Point3D(0, 5, 5), AnchorFace.XLow, AnchorFace.YHigh, AnchorFace.ZHigh);
+                    }
+
                     if (RegularCorner(_axis, _primeOff, _secondOff, false, false, false))
+                    {
                         yield return new TargetCorner(new Point3D(5, 5, 5), AnchorFace.XHigh, AnchorFace.YHigh, AnchorFace.ZHigh);
+                    }
                     #endregion
 
                     switch (_axis)
@@ -1914,15 +2338,24 @@ namespace Uzi.Ikosa.Tactical
                             #region adjust X/Y
                             // adjust X
                             if (_primeOff > 0)
+                            {
                                 _lowX = _primeOff;
+                            }
                             else if (_primeOff < 0)
+                            {
                                 _highX = 5 + _primeOff;
+                            }
 
                             // adjust Y
                             if (_secondOff > 0)
+                            {
                                 _lowY = _secondOff;
+                            }
                             else if (_secondOff < 0)
+                            {
                                 _highY = 5 + _secondOff;
+                            }
+
                             break;
                         #endregion
 
@@ -1930,15 +2363,24 @@ namespace Uzi.Ikosa.Tactical
                             #region adjust Z/X
                             // adjust Z
                             if (_primeOff > 0)
+                            {
                                 _lowZ = _primeOff;
+                            }
                             else if (_primeOff < 0)
+                            {
                                 _highZ = 5 + _primeOff;
+                            }
 
                             // adjust X
                             if (_secondOff > 0)
+                            {
                                 _lowX = _secondOff;
+                            }
                             else if (_secondOff < 0)
+                            {
                                 _highX = 5 + _secondOff;
+                            }
+
                             break;
                         #endregion
 
@@ -1946,15 +2388,24 @@ namespace Uzi.Ikosa.Tactical
                             #region adjust Y/Z
                             // adjust Y
                             if (_primeOff > 0)
+                            {
                                 _lowY = _primeOff;
+                            }
                             else if (_primeOff < 0)
+                            {
                                 _highY = 5 + _primeOff;
+                            }
 
                             // adjust Z
                             if (_secondOff > 0)
+                            {
                                 _lowZ = _secondOff;
+                            }
                             else if (_secondOff < 0)
+                            {
                                 _highZ = 5 + _secondOff;
+                            }
+
                             break;
                             #endregion
                     }
@@ -2047,15 +2498,24 @@ namespace Uzi.Ikosa.Tactical
                             #region adjust X/Y
                             // adjust X
                             if (_primeOff > 0)
+                            {
                                 _highX = _primeOff;
+                            }
                             else if (_primeOff < 0)
+                            {
                                 _lowX = 5 + _primeOff;
+                            }
 
                             // adjust Y
                             if (_secondOff > 0)
+                            {
                                 _highY = _secondOff;
+                            }
                             else if (_secondOff < 0)
+                            {
                                 _lowY = 5 + _secondOff;
+                            }
+
                             break;
                         #endregion
 
@@ -2063,15 +2523,24 @@ namespace Uzi.Ikosa.Tactical
                             #region adjust Z/X
                             // adjust Z
                             if (_primeOff > 0)
+                            {
                                 _highZ = _primeOff;
+                            }
                             else if (_primeOff < 0)
+                            {
                                 _lowZ = 5 + _primeOff;
+                            }
 
                             // adjust X
                             if (_secondOff > 0)
+                            {
                                 _highX = _secondOff;
+                            }
                             else if (_secondOff < 0)
+                            {
                                 _lowX = 5 + _secondOff;
+                            }
+
                             break;
                         #endregion
 
@@ -2079,36 +2548,68 @@ namespace Uzi.Ikosa.Tactical
                             #region adjust Y/Z
                             // adjust Y
                             if (_primeOff > 0)
+                            {
                                 _highY = _primeOff;
+                            }
                             else if (_primeOff < 0)
+                            {
                                 _lowY = 5 + _primeOff;
+                            }
 
                             // adjust Z
                             if (_secondOff > 0)
+                            {
                                 _highZ = _secondOff;
+                            }
                             else if (_secondOff < 0)
+                            {
                                 _lowZ = 5 + _secondOff;
+                            }
+
                             break;
                             #endregion
                     }
 
                     // corners (x8: corner, x6: wedge)
                     if (_CornerStyle || HasExteriorValues(2, _lowX, _lowY, _lowZ))
+                    {
                         yield return new TargetCorner(new Point3D(_lowX, _lowY, _lowZ), AnchorFace.XLow, AnchorFace.YLow, AnchorFace.ZLow);
+                    }
+
                     if (_CornerStyle || HasExteriorValues(2, _highX, _lowY, _lowZ))
+                    {
                         yield return new TargetCorner(new Point3D(_highX, _lowY, _lowZ), AnchorFace.XHigh, AnchorFace.YLow, AnchorFace.ZLow);
+                    }
+
                     if (_CornerStyle || HasExteriorValues(2, _lowX, _highY, _lowZ))
+                    {
                         yield return new TargetCorner(new Point3D(_lowX, _highY, _lowZ), AnchorFace.XLow, AnchorFace.YHigh, AnchorFace.ZLow);
+                    }
+
                     if (_CornerStyle || HasExteriorValues(2, _highX, _highY, _lowZ))
+                    {
                         yield return new TargetCorner(new Point3D(_highX, _highY, _lowZ), AnchorFace.XHigh, AnchorFace.YHigh, AnchorFace.ZLow);
+                    }
+
                     if (_CornerStyle || HasExteriorValues(2, _lowX, _lowY, _highZ))
+                    {
                         yield return new TargetCorner(new Point3D(_lowX, _lowY, _highZ), AnchorFace.XLow, AnchorFace.YLow, AnchorFace.ZHigh);
+                    }
+
                     if (_CornerStyle || HasExteriorValues(2, _highX, _lowY, _highZ))
+                    {
                         yield return new TargetCorner(new Point3D(_highX, _lowY, _highZ), AnchorFace.XHigh, AnchorFace.YLow, AnchorFace.ZHigh);
+                    }
+
                     if (_CornerStyle || HasExteriorValues(2, _lowX, _highY, _highZ))
+                    {
                         yield return new TargetCorner(new Point3D(_lowX, _highY, _highZ), AnchorFace.XLow, AnchorFace.YHigh, AnchorFace.ZHigh);
+                    }
+
                     if (_CornerStyle || HasExteriorValues(2, _highX, _highY, _highZ))
+                    {
                         yield return new TargetCorner(new Point3D(_highX, _highY, _highZ), AnchorFace.XHigh, AnchorFace.YHigh, AnchorFace.ZHigh);
+                    }
 
                     if (!_CornerStyle)
                     {
@@ -2177,20 +2678,32 @@ namespace Uzi.Ikosa.Tactical
         public BuildableMaterial GetPlusOrthoFaceMaterial(Axis axis, bool isPlus, VisualEffect effect)
         {
             if (PlusTiling == null)
+            {
                 return new BuildableMaterial { Material = null, IsAlpha = false };
+            }
+
             switch (axis)
             {
                 case Axis.Z:
                     if (isPlus)
+                    {
                         return new BuildableMaterial { Material = PlusTiling.ZPlusMaterial(effect), IsAlpha = PlusTiling.GetAnchorFaceAlpha(AnchorFace.ZHigh) };
+                    }
+
                     return new BuildableMaterial { Material = PlusTiling.ZMinusMaterial(effect), IsAlpha = PlusTiling.GetAnchorFaceAlpha(AnchorFace.ZLow) };
                 case Axis.Y:
                     if (isPlus)
+                    {
                         return new BuildableMaterial { Material = PlusTiling.YPlusMaterial(effect), IsAlpha = PlusTiling.GetAnchorFaceAlpha(AnchorFace.YHigh) };
+                    }
+
                     return new BuildableMaterial { Material = PlusTiling.YMinusMaterial(effect), IsAlpha = PlusTiling.GetAnchorFaceAlpha(AnchorFace.YLow) };
                 default:
                     if (isPlus)
+                    {
                         return new BuildableMaterial { Material = PlusTiling.XPlusMaterial(effect), IsAlpha = PlusTiling.GetAnchorFaceAlpha(AnchorFace.XHigh) };
+                    }
+
                     return new BuildableMaterial { Material = PlusTiling.XMinusMaterial(effect), IsAlpha = PlusTiling.GetAnchorFaceAlpha(AnchorFace.XLow) };
             }
         }
@@ -2293,48 +2806,72 @@ namespace Uzi.Ikosa.Tactical
                             if (Math.Abs(_primeOff) > Math.Abs(_secondOff))
                             {
                                 if (_primeOff > 0)
+                                {
                                     return AnchorFaceList.XHigh;
+                                }
                                 else
+                                {
                                     return AnchorFaceList.XLow;
+                                }
                             }
                             else
                             {
                                 if (_secondOff > 0)
+                                {
                                     return AnchorFaceList.YHigh;
+                                }
                                 else
+                                {
                                     return AnchorFaceList.YLow;
+                                }
                             }
 
                         case Axis.Y:
                             if (Math.Abs(_primeOff) > Math.Abs(_secondOff))
                             {
                                 if (_primeOff > 0)
+                                {
                                     return AnchorFaceList.ZHigh;
+                                }
                                 else
+                                {
                                     return AnchorFaceList.ZLow;
+                                }
                             }
                             else
                             {
                                 if (_secondOff > 0)
+                                {
                                     return AnchorFaceList.XHigh;
+                                }
                                 else
+                                {
                                     return AnchorFaceList.XLow;
+                                }
                             }
 
                         default: // X
                             if (Math.Abs(_primeOff) > Math.Abs(_secondOff))
                             {
                                 if (_primeOff > 0)
+                                {
                                     return AnchorFaceList.YHigh;
+                                }
                                 else
+                                {
                                     return AnchorFaceList.YLow;
+                                }
                             }
                             else
                             {
                                 if (_secondOff > 0)
+                                {
                                     return AnchorFaceList.ZHigh;
+                                }
                                 else
+                                {
                                     return AnchorFaceList.ZLow;
+                                }
                             }
                     }
                 }
@@ -2348,48 +2885,72 @@ namespace Uzi.Ikosa.Tactical
                         if (Math.Abs(_primeOff) > Math.Abs(_secondOff))
                         {
                             if (_primeOff > 0)
+                            {
                                 return AnchorFaceList.XLow;
+                            }
                             else
+                            {
                                 return AnchorFaceList.XHigh;
+                            }
                         }
                         else
                         {
                             if (_secondOff > 0)
+                            {
                                 return AnchorFaceList.YLow;
+                            }
                             else
+                            {
                                 return AnchorFaceList.YHigh;
+                            }
                         }
 
                     case Axis.Y:
                         if (Math.Abs(_primeOff) > Math.Abs(_secondOff))
                         {
                             if (_primeOff > 0)
+                            {
                                 return AnchorFaceList.ZLow;
+                            }
                             else
+                            {
                                 return AnchorFaceList.ZHigh;
+                            }
                         }
                         else
                         {
                             if (_secondOff > 0)
+                            {
                                 return AnchorFaceList.XLow;
+                            }
                             else
+                            {
                                 return AnchorFaceList.XHigh;
+                            }
                         }
 
                     default: // X
                         if (Math.Abs(_primeOff) > Math.Abs(_secondOff))
                         {
                             if (_primeOff > 0)
+                            {
                                 return AnchorFaceList.YLow;
+                            }
                             else
+                            {
                                 return AnchorFaceList.YHigh;
+                            }
                         }
                         else
                         {
                             if (_secondOff > 0)
+                            {
                                 return AnchorFaceList.ZLow;
+                            }
                             else
+                            {
                                 return AnchorFaceList.ZHigh;
+                            }
                         }
                 }
             }

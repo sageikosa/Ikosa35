@@ -100,7 +100,9 @@ namespace Uzi.Ikosa.Workshop
             {
                 var _k = (Guid)((lstSelected.SelectedItem as ListBoxItem).Tag);
                 if (_Key.Keys.Contains(_k))
+                {
                     _Key.Keys.Remove(_k);
+                }
             }
             RefreshLists();
         }

@@ -56,23 +56,33 @@ namespace Uzi.Ikosa.Adjuncts
         {
             // always friendly to oneself
             if (self.ID == targetID)
+            {
                 return false;
+            }
 
             // explicit attitude
             if (self.AttitudeTowards(targetID) < Attitude.Unbiased)
+            {
                 return true;
+            }
 
             // known unfriendly
             if (self.UnfriendlyCreatures.Contains(targetID))
+            {
                 return true;
+            }
 
             // known friendly are not unfriendly
             if (self.FriendlyCreatures.Contains(targetID))
+            {
                 return false;
+            }
 
             // same team are not unfriendly
             if (self.GetSameTeams(targetID).Any())
+            {
                 return false;
+            }
 
             // unknown treated as unfriendly?
             return self.TreatUnknownAsUnFriendly;
@@ -103,7 +113,9 @@ namespace Uzi.Ikosa.Adjuncts
 
             // known friendly
             if (self.FriendlyCreatures.Contains(targetID))
+            {
                 return true;
+            }
 
             return false;
         }

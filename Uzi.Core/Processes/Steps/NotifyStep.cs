@@ -23,7 +23,10 @@ namespace Uzi.Core
         protected override bool OnDoStep()
         {
             if (_Notify != null)
+            {
                 Process.ProcessManager.SendSysStatus(_Notify, InfoReceivers);
+            }
+
             return true;
         }
 

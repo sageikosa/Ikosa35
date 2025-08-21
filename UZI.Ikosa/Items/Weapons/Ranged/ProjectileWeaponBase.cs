@@ -137,11 +137,15 @@ namespace Uzi.Ikosa.Items.Weapons.Ranged
                         {
                             // if there are no matching bindKeys, add the prerequisite
                             if (!_unq.Contains(_pre.BindKey))
+                            {
                                 yield return _pre;
+                            }
                         }
                         else
+                        {
                             // add it!
                             yield return _pre;
+                        }
 
                         // keys
                         _unq.Add(_pre.BindKey);
@@ -158,11 +162,16 @@ namespace Uzi.Ikosa.Items.Weapons.Ranged
         {
             // same weapon
             if (source == this)
+            {
                 return true;
+            }
 
             // ranged ammunition from this weapon
             if ((source is RangedAmmunition _ammo) && (_ammo.Projector == this))
+            {
                 return true;
+            }
+
             return false;
         }
 

@@ -65,13 +65,16 @@ namespace Uzi.Ikosa.Advancement
             // get rid of any self-suppressions
             foreach (var _pcs in Creature.Adjuncts.OfType<PowerClassSuppress>()
                 .Where(_pcs => _pcs.Source.Equals(this)).ToList())
+            {
                 _pcs.Eject();
+            }
 
             // and anything suppressing this
             foreach (var _pcs in Creature.Adjuncts.OfType<PowerClassSuppress>()
                 .Where(_pcs => _pcs.PowerClass.Equals(this)).ToList())
+            {
                 _pcs.Eject();
-
+            }
         }
         #endregion
 

@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Uzi.Visualize;
 using Uzi.Core;
@@ -25,7 +25,10 @@ namespace Uzi.Ikosa.Tactical
         public static IEnumerable<ITacticalInquiry> GetITacticals(params ICore[] self)
         {
             foreach (var _core in self.Where(_s => _s != null).OfType<ITacticalInquiry>())
+            {
                 yield return _core;
+            }
+
             yield break;
         }
 

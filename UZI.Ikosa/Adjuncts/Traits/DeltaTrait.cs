@@ -28,7 +28,9 @@ namespace Uzi.Ikosa.Adjuncts
         {
             base.OnActivate(source);
             foreach (var _target in _Targets)
+            {
                 _target.Deltas.Add(_Delta);
+            }
         }
 
         protected override void OnDeactivate(object source)

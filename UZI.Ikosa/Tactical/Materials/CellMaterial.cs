@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.ComponentModel;
@@ -14,7 +14,7 @@ namespace Uzi.Ikosa.Tactical
         public CellMaterial(string name, LocalMap parent)
         {
             _Name = name;
-            _AvailableTilings = new Dictionary<string, TileSet>();
+            _AvailableTilings = [];
             _DetectBlockThick = 3;
             _LocalMap = parent;
         }
@@ -22,7 +22,7 @@ namespace Uzi.Ikosa.Tactical
         public CellMaterial(string name, double detectBlock, LocalMap parent)
         {
             _Name = name;
-            _AvailableTilings = new Dictionary<string, TileSet>();
+            _AvailableTilings = [];
             _DetectBlockThick = detectBlock;
             _LocalMap = parent;
         }
@@ -57,7 +57,9 @@ namespace Uzi.Ikosa.Tactical
             {
                 _AvailableTilings.Add(tileSet.Name, tileSet);
                 if (PropertyChanged != null)
+                {
                     PropertyChanged(this, new PropertyChangedEventArgs(@"AvailableTilings"));
+                }
             }
         }
         #endregion
@@ -70,7 +72,9 @@ namespace Uzi.Ikosa.Tactical
                 TileSet _tSet = _AvailableTilings[key];
                 _AvailableTilings.Remove(key);
                 if (PropertyChanged != null)
+                {
                     PropertyChanged(this, new PropertyChangedEventArgs(@"AvailableTilings"));
+                }
             }
         }
         #endregion

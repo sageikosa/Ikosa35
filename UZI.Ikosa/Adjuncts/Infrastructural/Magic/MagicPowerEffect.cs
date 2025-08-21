@@ -23,7 +23,7 @@ namespace Uzi.Ikosa.Adjuncts
             _SubMode = subMode;
             _Root = root;
             _Tracker = tracker;
-            _AllTargets = new Collection<AimTarget>();
+            _AllTargets = [];
         }
         #endregion
 
@@ -51,7 +51,9 @@ namespace Uzi.Ikosa.Adjuncts
         public void AddTargets(IEnumerable<AimTarget> targets)
         {
             foreach (AimTarget _target in targets)
+            {
                 _AllTargets.Add(_target);
+            }
         }
 
         /// <summary>

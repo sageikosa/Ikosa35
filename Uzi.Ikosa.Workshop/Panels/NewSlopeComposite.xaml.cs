@@ -63,9 +63,14 @@ namespace Uzi.Ikosa.Workshop
             }
 
             if (_txt == txtThickness)
+            {
                 _Thickness = _out;
+            }
             else if (_txt == txtSlope)
+            {
                 _SlopeThickness = _out;
+            }
+
             _txt.ToolTip = null;
             _txt.Tag = null;
         }

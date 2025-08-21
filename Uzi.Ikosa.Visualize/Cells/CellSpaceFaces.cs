@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Windows.Media.Media3D;
 using System.Windows;
 
@@ -56,7 +53,9 @@ namespace Uzi.Visualize
                     foreach (Transform3D _trans in trans)
                     {
                         if (_trans != null)
+                        {
                             _transform.Children.Add(_trans);
+                        }
                     }
                     _transform.Freeze();
                     geom.Transform = _transform;

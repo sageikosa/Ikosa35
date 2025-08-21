@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 
 namespace Uzi.Ikosa.Time
 {
@@ -36,9 +36,13 @@ namespace Uzi.Ikosa.Time
             set
             {
                 if (value >= 0)
+                {
                     _SpanLength = value;
-                else 
+                }
+                else
+                {
                     throw new ArgumentOutOfRangeException();
+                }
             }
         }
         #endregion

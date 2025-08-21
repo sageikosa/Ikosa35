@@ -67,7 +67,9 @@ namespace Uzi.Ikosa.Fidelity
                     && (_budget.TurnTick != null))
                 {
                     if (_budget.TurnTick.TurnTracker.Map.CurrentTime >= _Ready)
+                    {
                         yield return new StrengthInfluenceBoost(this, @"200");
+                    }
                 }
             }
             yield break;

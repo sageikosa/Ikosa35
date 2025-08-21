@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Linq;
 using Uzi.Ikosa.Advancement;
 using Uzi.Core;
@@ -30,7 +30,9 @@ namespace Uzi.Ikosa.Feats
             {
                 if (_critter.Feats.OfType<ImprovedCriticalRangedTouchFeat>()
                     .First().IsActive)
+                {
                     return 19;
+                }
             }
             return 20;
         }

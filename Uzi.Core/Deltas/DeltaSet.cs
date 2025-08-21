@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Linq;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -32,11 +32,12 @@ namespace Uzi.Core
         public void Add(IModifier item)
         {
             if (item == null)
+            {
                 return;
+            }
 
             // sourced modifier
-            if (_SDeltas == null)
-                _SDeltas = new Dictionary<object, CDSet>();
+            _SDeltas ??= [];
             if (_SDeltas.TryGetValue(item.Source, out CDSet _uStack))
             {
                 // add to collection
@@ -72,7 +73,9 @@ namespace Uzi.Core
                     return _uStack.Remove(item);
                 }
                 if (_SDeltas.Count == 0)
+                {
                     _SDeltas = null;
+                }
             }
             return false;
         }
@@ -85,7 +88,7 @@ namespace Uzi.Core
             {
                 // clone the sets (make sure they are isolated)
                 var _isolated = (_SDeltas == null)
-                    ? new Dictionary<object, CDSet>()
+                    ? []
                     : _SDeltas.ToDictionary(_kvp => _kvp.Key, _kvp => new CDSet(_kvp.Value));
                 foreach (var _del in _QDeltas.SelectMany(_qd => _qd.QualifiedDeltas(source)).Where(_d => _d != null))
                 {
@@ -141,8 +144,7 @@ namespace Uzi.Core
 
         public void Add(IQualifyDelta qualified)
         {
-            if (_QDeltas == null)
-                _QDeltas = new List<IQualifyDelta>();
+            _QDeltas ??= [];
             if (!_QDeltas.Contains(qualified))
             {
                 _QDeltas.Add(qualified);
@@ -156,7 +158,9 @@ namespace Uzi.Core
             {
                 qualified.RemoveTerminateDependent(this);
                 if (_QDeltas.Count == 0)
+                {
                     _QDeltas = null;
+                }
             }
         }
 
@@ -171,8 +175,13 @@ namespace Uzi.Core
             get
             {
                 if (_QDeltas != null)
+                {
                     foreach (IQualifyDelta _qual in _QDeltas)
+                    {
                         yield return _qual;
+                    }
+                }
+
                 yield break;
             }
         }
@@ -187,10 +196,13 @@ namespace Uzi.Core
         public IEnumerator<IModifier> GetEnumerator()
         {
             if (_SDeltas != null)
+            {
                 foreach (var _mod in _SDeltas)
                 {
                     yield return _mod.Value as IModifier;
                 }
+            }
+
             yield break;
         }
         #endregion
@@ -199,10 +211,13 @@ namespace Uzi.Core
         System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
         {
             if (_SDeltas != null)
+            {
                 foreach (var _mod in _SDeltas)
                 {
                     yield return _mod.Value as IModifier;
                 }
+            }
+
             yield break;
         }
         #endregion
@@ -237,10 +252,13 @@ namespace Uzi.Core
             {
                 var _val = 0;
                 if (_SDeltas != null)
+                {
                     foreach (var _mod in _SDeltas)
                     {
                         _val += _mod.Value.Value;
                     }
+                }
+
                 return _val;
             }
         }

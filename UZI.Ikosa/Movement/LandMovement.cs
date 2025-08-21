@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using Uzi.Ikosa.Adjuncts;
@@ -49,7 +49,9 @@ namespace Uzi.Ikosa.Movement
                 if (_locator != null)
                 {
                     if (_locator.PlanarPresence == PlanarPresence.Ethereal)
+                    {
                         return false;
+                    }
 
                     var _grav = _locator.GetGravityFace();
                     return _locator.Map.DirectionalBlockage(
@@ -187,9 +189,14 @@ namespace Uzi.Ikosa.Movement
             // balancing and not accelerated?
             var _factor = base.OnMoveCostFactor(activity);
             if (!((CoreObject as Creature)?.Skills.Skill<BalanceSkill>().IsSpeedNormal ?? true))
+            {
                 _factor *= 2;
+            }
+
             if (activity.Action is HopUp)
+            {
                 _factor *= 2;
+            }
             // TODO: tumble factor
             return _factor;
         }
@@ -395,7 +402,9 @@ namespace Uzi.Ikosa.Movement
 
                         // make sure we can enter "above" lead cell
                         if (!_canTransit(_fromCell, _revGrav))
+                        {
                             return null;
+                        }
 
                         // sufficient space to step up out of the cell (does not guarantee success)
                         // ... so set new lead cell, and new next cell
@@ -540,7 +549,9 @@ namespace Uzi.Ikosa.Movement
 
                         // anything contributing to end slopes can be ignored for squeeze offsets
                         if ((_endStep.slope.Source != null) && !exclusions.ContainsKey(_endStep.slope.Source.ID))
+                        {
                             exclusions.Add(_endStep.slope.Source.ID, _endStep.slope.Source);
+                        }
 
                         #region offset
                         var (_endSlope, _endElev) = _endStep; // TODO: improve
@@ -615,7 +626,9 @@ namespace Uzi.Ikosa.Movement
 
                         // make sure we can enter "above" lead cell
                         if (!_canTransit(_fromCell, _revGrav))
+                        {
                             return null;
+                        }
 
                         // sufficient space to step up out of the cell (does not guarantee success)
                         // ... so set new lead cell, and new next cell
@@ -683,8 +696,10 @@ namespace Uzi.Ikosa.Movement
                                     process.SetFirstTarget(new ValueTarget<double>(@"Cost.Elevation", 2));
                                 }
                                 if ((_endSlopes.Min(_e => _e.Low) - _startSlopes.Max(_s => _s.High)) > _maxUp)
+                                {
                                     // too high to step (must climb or jump)
                                     return null;
+                                }
                             }
                             else if (_bestElev > _endStep.elev)
                             {
@@ -704,7 +719,9 @@ namespace Uzi.Ikosa.Movement
 
                         // anything contributing to end slopes can be ignored for squeeze offsets
                         if ((_endStep.slope.Source != null) && !exclusions.ContainsKey(_endStep.slope.Source.ID))
+                        {
                             exclusions.Add(_endStep.slope.Source.ID, _endStep.slope.Source);
+                        }
 
                         #region offset
                         var (_endSlope, _endElev) = _endStep; // TODO: improve
@@ -860,7 +877,9 @@ namespace Uzi.Ikosa.Movement
 
                     // minimum speed
                     if (_val < 5)
+                    {
                         _val = 5;
+                    }
                 }
             }
             return _val;
@@ -878,7 +897,9 @@ namespace Uzi.Ikosa.Movement
         protected override IEnumerable<MovementAction> GetStartMoveActions(LocalActionBudget budget)
         {
             foreach (var _act in base.GetStartMoveActions(budget))
+            {
                 yield return _act;
+            }
 
             yield return new HopUp(this, new ActionTime(Contracts.TimeType.Brief));
             yield return new JumpDown(this, new ActionTime(Contracts.TimeType.Brief));
@@ -888,7 +909,9 @@ namespace Uzi.Ikosa.Movement
         protected override IEnumerable<MovementAction> GetContinueMoveActions()
         {
             foreach (var _act in base.GetContinueMoveActions())
+            {
                 yield return _act;
+            }
 
             yield return new HopUp(this, new ActionTime(Contracts.TimeType.SubAction));
             yield return new JumpDown(this, new ActionTime(Contracts.TimeType.SubAction));
@@ -926,7 +949,10 @@ namespace Uzi.Ikosa.Movement
 
             // and all the base actions
             foreach (var _act in base.GetActions(budget))
+            {
                 yield return _act;
+            }
+
             yield break;
         }
     }

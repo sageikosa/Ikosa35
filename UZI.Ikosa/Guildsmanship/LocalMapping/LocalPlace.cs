@@ -17,7 +17,7 @@ namespace Uzi.Ikosa.Guildsmanship
         {
             _StoryInfo = new StoryInformation();
             _LocalMap = localMapSite;
-            _RoomIDs = new HashSet<Guid>();
+            _RoomIDs = [];
         }
 
         public StoryInformation StoryInformation => _StoryInfo;

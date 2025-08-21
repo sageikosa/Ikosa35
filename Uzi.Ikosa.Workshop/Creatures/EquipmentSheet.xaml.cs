@@ -141,12 +141,14 @@ namespace Uzi.Ikosa.Workshop
                                             && (_si.SlotType == _itemSlot.SlotType)
                                             && (_si.MainSlot == null)
                                           select new { presentable = _i, slotted = _si })
+                    {
                         _menu.Items.Add(new MenuItem
                         {
                             Header = _item.presentable,
                             Command = SlotItemCommand,
                             CommandParameter = new KeyValuePair<ItemSlot, ISlottedItem>(_itemSlot, _item.slotted)
                         });
+                    }
 
                     var _mountSlot = _itemSlot as MountSlot;
                     if (_mountSlot != null)
@@ -181,12 +183,15 @@ namespace Uzi.Ikosa.Workshop
                                             && (_si.SlotType == _itemSlot.SlotType)
                                             && (_si.MainSlot == null)
                                           select new { presentable = _i, slotted = _si })
+                    {
                         _menu.Items.Add(new MenuItem
                         {
                             Header = _item.presentable,
                             Command = SlotItemCommand,
                             CommandParameter = new KeyValuePair<ItemSlot, ISlottedItem>(_itemSlot, _item.slotted)
                         });
+                    }
+
                     break;
             }
 
@@ -243,7 +248,9 @@ namespace Uzi.Ikosa.Workshop
             {
                 var _wrapper = _mounted.MountSlot.MountWrapper;
                 if (_wrapper != null)
+                {
                     _wrapper.UnmountItem();
+                }
             }
 
             foreach (var _contained in item.Adjuncts.OfType<Contained>().ToList())
@@ -444,7 +451,10 @@ namespace Uzi.Ikosa.Workshop
         {
             var _mountSlot = e.Parameter as MountSlot;
             if (_mountSlot != null)
+            {
                 _mountSlot.MountWrapper.UnmountItem();
+            }
+
             PresentableCreature.Rebind();
             PresentableCreature.DoChangedItemSlots();
             e.Handled = true;

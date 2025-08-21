@@ -124,7 +124,7 @@ namespace Uzi.Ikosa.Objects
         public SurfaceTriggerTarget(SurfaceTriggerGroup group)
             : base(group)
         {
-            _PhysCtrlrs = new List<IControlChange<Physical>>();
+            _PhysCtrlrs = [];
         }
 
         #region data
@@ -204,7 +204,10 @@ namespace Uzi.Ikosa.Objects
                             if (_locMove.Locator.ICore is ICoreObject _obj)
                             {
                                 if (_PhysCtrlrs.Contains(_obj))
+                                {
                                     _PhysCtrlrs.Remove(_obj);
+                                }
+
                                 _obj.RemoveChangeMonitor(this);
                             }
                         }
@@ -219,7 +222,10 @@ namespace Uzi.Ikosa.Objects
                                 if (_locMove.Locator.ICore is ICoreObject _obj)
                                 {
                                     if (!_PhysCtrlrs.Contains(_obj))
+                                    {
                                         _PhysCtrlrs.Add(_obj);
+                                    }
+
                                     _obj.AddChangeMonitor(this);
                                 }
                                 CheckTriggering();
@@ -238,7 +244,10 @@ namespace Uzi.Ikosa.Objects
                             if (_locMove.Locator.ICore is ICoreObject _obj)
                             {
                                 if (!_PhysCtrlrs.Contains(_obj))
+                                {
                                     _PhysCtrlrs.Add(_obj);
+                                }
+
                                 _obj.AddChangeMonitor(this);
                             }
                             CheckTriggering();
@@ -258,7 +267,10 @@ namespace Uzi.Ikosa.Objects
         public bool LinkBefore(Type interactType, IInteractHandler existingHandler)
         {
             if (interactType == typeof(LocatorMove))
+            {
                 return true;
+            }
+
             return false;
         }
 

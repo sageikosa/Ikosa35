@@ -1,4 +1,4 @@
-using Uzi.Core.Contracts;
+﻿using Uzi.Core.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -63,9 +63,13 @@ namespace Uzi.Ikosa.Movement
             get
             {
                 if (EffectiveValue != BaseValue)
+                {
                     return $@"{Name} {EffectiveValue} ft (Base {BaseValue})";
+                }
                 else
+                {
                     return $@"{Name} {EffectiveValue} ft.";
+                }
             }
         }
         #endregion
@@ -130,7 +134,9 @@ namespace Uzi.Ikosa.Movement
 
             // physical terrain blockage
             if (_cell.BlockedAt(lastMove, new CellSnap(face.ToAnchorFaceList())))
+            {
                 return true;
+            }
 
             // next cell object
             _blocker = map.MapContext.AllInCell<IMoveAlterer>(_nextLoc, planar)
@@ -144,7 +150,9 @@ namespace Uzi.Ikosa.Movement
 
             // physical terrain blockage
             if (_next.BlockedAt(this, new CellSnap(face.ReverseFace().ToAnchorFaceList())))
+            {
                 return true;
+            }
 
             return false;
         }
@@ -177,7 +185,10 @@ namespace Uzi.Ikosa.Movement
                 = map.MapContext.AllInCell<IMoveAlterer>(cell, planar).FirstOrDefault(_iti => !exclusions.ContainsKey(_iti.ID) && _iti.BlocksTransit(_currCtx))
                 ?? map.MapContext.AllInCell<IMoveAlterer>(_nextLoc, planar).FirstOrDefault(_iti => !exclusions.ContainsKey(_iti.ID) && _iti.BlocksTransit(_nextCtx));
             if (_blocker == null)
+            {
                 return false;
+            }
+
             process?.SetFirstTarget<ValueTarget<IMoveAlterer>>(
                 new ValueTarget<IMoveAlterer>(MovementTargets.IMoveAlterer_BlocksTransit, _blocker));
             return true;
@@ -221,20 +232,28 @@ namespace Uzi.Ikosa.Movement
                         // TODO: can moving thing squeeze at all?
                         // haven't flagged that already squeezing a dimension to move
                         if (!_squeezeAcross)
+                        {
                             _blockCount++;
+                        }
                         else
+                        {
                             // cannot transit squeeze across two dimensions
                             return false;
+                        }
                     }
                 }
 
                 // hit block threshold for viability
                 if ((_blockCount * 2) >= _nextCount)
+                {
                     return false;
+                }
 
                 // any blockage, must start squeezin
                 if (_blockCount > 0)
+                {
                     _squeezeAcross = true;
+                }
             }
             #endregion
 
@@ -246,7 +265,9 @@ namespace Uzi.Ikosa.Movement
                 if (start.AllCellLocations()
                     .Where(_cLoc => start.IsCellAtSurface(_cLoc, faces[0]) && start.IsCellAtSurface(_cLoc, faces[1]))
                     .Any(_cLoc => OnBlocksTransit(process, map, _cLoc, faces, planar, exclusions)))
+                {
                     return false;
+                }
                 #endregion
             }
             else if (faces.Length == 3)
@@ -258,32 +279,42 @@ namespace Uzi.Ikosa.Movement
                         && start.IsCellAtSurface(_cLoc, faces[1])
                         && start.IsCellAtSurface(_cLoc, faces[2]))
                     .Any(_cLoc => OnBlocksTransit(process, map, _cLoc, faces, planar, exclusions)))
+                {
                     return false;
+                }
 
                 // NOTE: this may not all be relevant
                 var _2faces = new AnchorFace[] { faces[0], faces[1] };
                 if (start.AllCellLocations()
                     .Where(_cloc => start.IsCellAtSurface(_cloc, faces[0]) && start.IsCellAtSurface(_cloc, faces[1]))
                     .Any(_cLoc => OnBlocksTransit(process, map, _cLoc, _2faces, planar, exclusions)))
+                {
                     return false;
+                }
 
                 _2faces = new AnchorFace[] { faces[0], faces[2] };
                 if (start.AllCellLocations()
                     .Where(_cloc => start.IsCellAtSurface(_cloc, faces[0]) && start.IsCellAtSurface(_cloc, faces[2]))
                     .Any(_cLoc => OnBlocksTransit(process, map, _cLoc, _2faces, planar, exclusions)))
+                {
                     return false;
+                }
 
                 _2faces = new AnchorFace[] { faces[1], faces[2] };
                 if (start.AllCellLocations()
                     .Where(_cloc => start.IsCellAtSurface(_cloc, faces[1]) && start.IsCellAtSurface(_cloc, faces[2]))
                     .Any(_cLoc => OnBlocksTransit(process, map, _cLoc, _2faces, planar, exclusions)))
+                {
                     return false;
+                }
                 #endregion
             }
 
             // squeezed movement is ambivalent
             if (_squeezeAcross)
+            {
                 return null;
+            }
 
             // all transit faces were OK
             return true;
@@ -323,9 +354,14 @@ namespace Uzi.Ikosa.Movement
                     (offset > 0) ? ((offset > _maxUp) ? 1 : 0) :
                     0;
                 if (_crossings.Contains(axis.GetLowFace()))
+                {
                     return low + _bump;
+                }
                 else if (_crossings.Contains(axis.GetHighFace()))
+                {
                     return high + _bump;
+                }
+
                 return (low + high) / 2;
             };
 
@@ -349,8 +385,10 @@ namespace Uzi.Ikosa.Movement
                     ITacticalInquiryHelper.EmptyArray, SegmentSetProcess.Geometry), _planar);
                 var _sRef = _lSet.All().FirstOrDefault(_cl => _locRgn.ContainsCell(_cl));
                 if (_sRef.IsActual)
+                {
                     // construct a new pure cell location
                     _cLoc = new CellLocation(_sRef);
+                }
             }
             return _cLoc;
         }
@@ -494,7 +532,9 @@ namespace Uzi.Ikosa.Movement
 
                 // highest cost from all locators
                 if (_cost > _maxCost)
+                {
                     _maxCost = _cost;
+                }
             }
 
             if (!_any)
@@ -508,7 +548,9 @@ namespace Uzi.Ikosa.Movement
 
                     // highest cost from all locators
                     if (_cost > _maxCost)
+                    {
                         _maxCost = _cost;
+                    }
                 }
             }
 
@@ -530,9 +572,13 @@ namespace Uzi.Ikosa.Movement
                     .Any(_eff => _eff == VisualEffect.Unseen || _eff == VisualEffect.Skip))
                 {
                     if ((CoreObject as Creature)?.Feats.Contains(typeof(BlindFight)) ?? false)
+                    {
                         cost *= 1.5;
+                    }
                     else
+                    {
                         cost *= 2;
+                    }
                 }
             }
 
@@ -545,7 +591,9 @@ namespace Uzi.Ikosa.Movement
             {
                 // treat squeezing as an obstacle
                 if (activity.GetFirstTarget<ValueTarget<double>>(@"Cost.Obstacle") == null)
+                {
                     cost *= 2;
+                }
             }
 
             foreach (var _costTarget in activity.Targets
@@ -783,7 +831,9 @@ namespace Uzi.Ikosa.Movement
                         if (_budget.CanPerformBrief && !_ovrLd)
                         {
                             foreach (var _act in GetStartMoveActions(_budget))
+                            {
                                 yield return _act;
+                            }
                         }
                         if (_budget.CanPerformRegular && !_ovrLd)
                         {
@@ -802,7 +852,9 @@ namespace Uzi.Ikosa.Movement
                                 if (!_ovrLd)
                                 {
                                     foreach (var _act in GetTotalMoveActions(_initiative))
+                                    {
                                         yield return _act;
+                                    }
                                 }
 
                                 if (!_ovrLd || !FailsAboveMaxLoad)
@@ -819,7 +871,9 @@ namespace Uzi.Ikosa.Movement
                     if (!_ovrLd)
                     {
                         foreach (var _act in GetContinueMoveActions())
+                        {
                             yield return _act;
+                        }
                     }
                 }
                 else if (_budget.TopActivity?.Action is StartRun)
@@ -842,7 +896,9 @@ namespace Uzi.Ikosa.Movement
                     if (!_ovrLd)
                     {
                         foreach (var _act in GetContinueMoveActions())
+                        {
                             yield return _act;
+                        }
 
                         if (_budget.CanPerformRegular && !(_budget.TopActivity?.Action is StartWithdraw))
                         {

@@ -30,7 +30,9 @@ namespace Uzi.Ikosa.Actions.Steps
                 if (_extra != null)
                 {
                     foreach (var _pre in _extra.PowerDeliveryPrerequisites(targetProcess, actor))
+                    {
                         _PendingPreReqs.Enqueue(_pre);
+                    }
                 }
             }
         }

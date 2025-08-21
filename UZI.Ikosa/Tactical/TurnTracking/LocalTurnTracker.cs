@@ -25,8 +25,8 @@ namespace Uzi.Ikosa.Tactical
 
             _Resolution = Time.Round.UnitFactor;
             _CtxSet = contextSet;
-            _Budgets = new List<LocalActionBudget>();
-            _Delayed = new List<LocalActionBudget>();
+            _Budgets = [];
+            _Delayed = [];
             _DelayIndex = 0;
             _Init = initiative;
             _CanTimeTick = true;
@@ -48,7 +48,9 @@ namespace Uzi.Ikosa.Tactical
 
                 // create action budgets
                 foreach (var _actor in initialActors)
+                {
                     AddBudget(_actor.CreateActionBudget(_tick) as LocalActionBudget);
+                }
 
                 // start tick
                 var _start = new LocalStartOfTickStep(this);
@@ -117,7 +119,9 @@ namespace Uzi.Ikosa.Tactical
                 _Process.IsActive = false;
             }
             if (IsInitiative)
+            {
                 _CtxSet.ProcessManager.ContextReactors.Reactors.Remove(this);
+            }
 
             void _cleanup(Creature critter)
             {
@@ -145,11 +149,15 @@ namespace Uzi.Ikosa.Tactical
             {
                 // remove budget items
                 foreach (var _item in _budget.BudgetItems.ToList())
+                {
                     _budget.BudgetItems.Remove(_item.Key);
+                }
 
                 // remove tracker conditions and adjuncts
                 if (_budget.Actor is Creature _critter)
+                {
                     _cleanup(_critter);
+                }
             }
         }
         #endregion
@@ -210,7 +218,9 @@ namespace Uzi.Ikosa.Tactical
 
                 // ... will now be removed
                 foreach (var _rmv in _removers)
+                {
                     _rmv.Budget.BudgetItems.Remove(_rmv.Key);
+                }
             }
             #endregion
 
@@ -319,7 +329,9 @@ namespace Uzi.Ikosa.Tactical
                             // reset delay list reference, if someone acted
                             ResetDelayList();
                             if (_Delayed.Contains(_budget))
+                            {
                                 _Delayed.Remove(_budget);
+                            }
                         }
                         else
                         {
@@ -390,7 +402,9 @@ namespace Uzi.Ikosa.Tactical
             else
             {
                 if (action.TimeCost.ActionTimeType == TimeType.Free)
+                {
                     return true;
+                }
 
                 // running in a RoundMarkerTickStep?
                 if (_procMgr.CurrentStep is RoundMarkerTickStep _marker)
@@ -481,14 +495,19 @@ namespace Uzi.Ikosa.Tactical
 
             // post tick
             foreach (var _b in TimeOrderedBudgets)
+            {
                 _b.TrackTime(_tick.Time, TimeValTransition.Leaving);
+            }
 
             // map tick
             Map.TimeTick(_tick.Time);
 
             // pre tick
             foreach (var _b in TimeOrderedBudgets)
+            {
                 _b.TrackTime(Map.CurrentTime, TimeValTransition.Entering);
+            }
+
             DoChanged();
         }
         #endregion
@@ -573,7 +592,7 @@ namespace Uzi.Ikosa.Tactical
                            // only list ticks where budgets exist
                            .Where(_ti => _ti.Budgets.Count > 0)
                            .ToList()
-                        : new List<TickInfo>()
+                        : []
                 };
             }
             else

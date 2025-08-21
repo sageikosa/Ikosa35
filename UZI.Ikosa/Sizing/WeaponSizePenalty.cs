@@ -51,14 +51,19 @@ namespace Uzi.Ikosa
         public virtual IEnumerable<IDelta> QualifiedDeltas(Qualifier qualify)
         {
             if (!(qualify?.Source is IWeaponHead _wpnHead))
+            {
                 yield break;
+            }
 
             var _critterSize = Creature.Sizer.Size.Order;
             var _itemSize = _wpnHead.ContainingWeapon.ItemSizer.EffectiveCreatureSize.Order;
             var _steps = Math.Abs(_itemSize - _critterSize);
 
             if (_steps > 0)
+            {
                 yield return new QualifyingDelta(-2 * _steps, typeof(WeaponSizePenalty), $@"Weapon Size: {_steps} Step Difference");
+            }
+
             yield break;
         }
     }

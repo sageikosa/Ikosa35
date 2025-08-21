@@ -56,11 +56,16 @@ namespace Uzi.Ikosa.Fidelity
             {
                 var _key = GetType().FullName;
                 if (Campaign.SystemCampaign.SpellLists.ContainsKey(_key))
+                {
                     foreach (var _spell in from _level in Campaign.SystemCampaign.SpellLists[_key]
                                            from _s in _level.Value
                                            orderby _s.Level
                                            select _s)
+                    {
                         yield return _spell;
+                    }
+                }
+
                 yield break;
             }
         }

@@ -22,7 +22,7 @@ namespace Uzi.Ikosa.Guildsmanship
             _StoryInfo = new StoryInformation();
             _Source = sourceLink;
             _Target = targetLink;
-            _Inflections = new Dictionary<Guid, List<Vector3D>>();
+            _Inflections = [];
             _RevFactor = reverseFactor;
             _LosePathChance = 0m;
         }

@@ -20,9 +20,9 @@ namespace Uzi.Ikosa.Objects
             MaxStructurePoints = Convert.ToInt32(Convert.ToDouble(material.StructurePerInch) * 12d / thickness);
         }
 
-        public override double Width { get => base.Width; set { if (value > 0 && value <= 10) base.Width = value; } }
-        public override double Height { get => base.Height; set { if (value > 0 && value <= 10) base.Height = value; } }
-        public override double Length { get => base.Length; set { if (value > 0 && value <= 0.1) base.Length = value; } }
+        public override double Width { get => base.Width; set { if (value > 0 && value <= 10) { base.Width = value; } } }
+        public override double Height { get => base.Height; set { if (value > 0 && value <= 10) { base.Height = value; } } }
+        public override double Length { get => base.Length; set { if (value > 0 && value <= 0.1) { base.Length = value; } } }
         public double Thickness { get => Length; set => Length = value; }
 
         public override bool IsTargetable => false;
@@ -48,7 +48,9 @@ namespace Uzi.Ikosa.Objects
 
             // mechanism actions...
             foreach (var _action in this.AccessibleActions(_budget))
+            {
                 yield return _action;
+            }
 
             yield break;
         }

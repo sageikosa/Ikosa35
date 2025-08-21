@@ -57,9 +57,14 @@ namespace Uzi.Ikosa.Fidelity
         public IEnumerable<Influence> Influences(IPrimaryInfluenceClass influenceClass)
         {
             if (Campaign.SystemCampaign.Devotions.ContainsKey(_Name))
+            {
                 foreach (var _inf in from _list in Campaign.SystemCampaign.Devotions[_Name].Influences
                                      select Activator.CreateInstance(_list.ListedType, this, influenceClass) as Influence)
+                {
                     yield return _inf;
+                }
+            }
+
             yield break;
         }
         #endregion

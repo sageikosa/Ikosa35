@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using System.Linq;
 using Uzi.Visualize;
 using Uzi.Core;
@@ -154,7 +154,9 @@ namespace Uzi.Ikosa.Movement
             }
 
             if (_val < 0)
+            {
                 _val = 0;
+            }
 
             return _val;
         }
@@ -226,13 +228,19 @@ namespace Uzi.Ikosa.Movement
                     case FlightManeuverability.Good:
                         // greater than 90 degree turn, extra 5 feet
                         if ((_turnHeading > 2) && (_turnHeading < 6))
+                        {
                             expected += 1;
+                        }
+
                         break;
 
                     case FlightManeuverability.Average:
                         // greater than 45 degree turn, extra 5 feet
                         if ((_turnHeading > 1) && (_turnHeading < 7))
+                        {
                             expected += 1;
+                        }
+
                         break;
                 }
 
@@ -298,13 +306,13 @@ namespace Uzi.Ikosa.Movement
                                 break;
 
                             case 3:
-                                // maximum turn is 90 degrees (with extra budget) (±2)
+                                // maximum turn is 90 degrees (with extra budget) (Â±2)
                                 _moveHeading = (_flightHeading + 2) % 8;
                                 _fixup = true;
                                 break;
 
                             case 5:
-                                // maximum turn is 90 degrees (with extra budget) (±2)
+                                // maximum turn is 90 degrees (with extra budget) (Â±2)
                                 _moveHeading = (_flightHeading + 6) % 8;
                                 _fixup = true;
                                 break;
@@ -349,14 +357,14 @@ namespace Uzi.Ikosa.Movement
 
                             case 2:
                             case 3:
-                                // maximum turn is 45 degrees (±1)
+                                // maximum turn is 45 degrees (Â±1)
                                 _moveHeading = (_flightHeading + 1) % 8;
                                 _fixup = true;
                                 break;
 
                             case 5:
                             case 6:
-                                // maximum turn is 45 degrees (±1)
+                                // maximum turn is 45 degrees (Â±1)
                                 _moveHeading = (_flightHeading + 7) % 8;
                                 _fixup = true;
                                 break;
@@ -404,14 +412,14 @@ namespace Uzi.Ikosa.Movement
 
                                 case 2:
                                 case 3:
-                                    // maximum turn is 45 degrees (±1)
+                                    // maximum turn is 45 degrees (Â±1)
                                     _moveHeading = (_flightHeading + 1) % 8;
                                     _fixup = true;
                                     break;
 
                                 case 5:
                                 case 6:
-                                    // maximum turn is 45 degrees (±1)
+                                    // maximum turn is 45 degrees (Â±1)
                                     _moveHeading = (_flightHeading + 7) % 8;
                                     _fixup = true;
                                     break;
@@ -441,11 +449,15 @@ namespace Uzi.Ikosa.Movement
 
                 // see if can occupy
                 if (!locator.Map.CanOccupy(_locCore, _next, this, exclusions, _planar))
+                {
                     return null;
+                }
 
                 // see if can transit
                 if (!TransitFitness(process, _crossings, leadCell, locator.Map, locator.ActiveMovement, _planar, exclusions) ?? false)
+                {
                     return null;
+                }
 
                 if (locator.NormalSize.XLength == 1)
                 {
@@ -503,7 +515,9 @@ namespace Uzi.Ikosa.Movement
                 if (_locator != null)
                 {
                     if (!_locator.PlanarPresence.HasMaterialPresence())
+                    {
                         return false;
+                    }
 
                     // TODO: always useable (unless unconscious)
                     return true;
@@ -553,7 +567,10 @@ namespace Uzi.Ikosa.Movement
             // therefore: InFlight will be put back-on even though it is taken off here
             var _inFlight = CoreObject.Adjuncts.OfType<InFlight>().FirstOrDefault();
             if (_inFlight != null)
+            {
                 _inFlight.Eject();
+            }
+
             base.OnEndActiveMovement();
         }
         #endregion

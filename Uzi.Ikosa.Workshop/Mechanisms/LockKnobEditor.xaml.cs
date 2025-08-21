@@ -40,7 +40,9 @@ namespace Uzi.Ikosa.Workshop
                 {
                     cboLock.Items.Add(_lock);
                     if (_lock == LockKnob.LockGroup)
+                    {
                         cboLock.SelectedItem = _lock;
+                    }
                 }
             }
         }
@@ -59,7 +61,9 @@ namespace Uzi.Ikosa.Workshop
                 if (LockKnob != null)
                 {
                     if (Openable != null)
+                    {
                         yield return new LockGroup(null, false, true);
+                    }
 
                     if (Openable is ItemBase)
                     {

@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Windows.Media.Media3D;
-using System.Windows.Media.Imaging;
-using System.Windows.Media;
 
 namespace Uzi.Visualize
 {
@@ -13,9 +9,13 @@ namespace Uzi.Visualize
         public ResourceModel3DResolver(IEnumerable<IResolveModel3D> resolvers)
         {
             if (resolvers != null)
+            {
                 _Resolvers = resolvers.ToList();
+            }
             else
-                _Resolvers = new List<IResolveModel3D>();
+            {
+                _Resolvers = [];
+            }
         }
 
         private List<IResolveModel3D> _Resolvers;
@@ -29,7 +29,9 @@ namespace Uzi.Visualize
             {
                 var _mdl = _resource.GetPrivateModel3D(key);
                 if (_mdl != null)
+                {
                     return _mdl;
+                }
             }
             return null;
         }

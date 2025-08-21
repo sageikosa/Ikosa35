@@ -103,7 +103,9 @@ namespace Uzi.Ikosa.Actions
                     foreach (var _slots in _Budget.BudgetItems.Items.OfType<IAttackPotential>()
                         .Where(_ap => _ap.CanUse(attack))
                         .ToList())
+                    {
                         _slots.RegisterUse(attack);
+                    }
                 }
                 else
                 {
@@ -135,7 +137,9 @@ namespace Uzi.Ikosa.Actions
                             .OrderBy(_ap => _ap is ISlotAttackPotential ? 2 : 1)
                             .FirstOrDefault(_ap => _ap.CanUse(_supplier.Attack));
                         if (_potential != null)
+                        {
                             yield return _potential.Delta;
+                        }
                     }
                 }
             }
@@ -172,7 +176,10 @@ namespace Uzi.Ikosa.Actions
         public static FullAttackBudget GetBudget(CoreActionBudget budget)
         {
             if (budget.BudgetItems.ContainsKey(typeof(AttackActionBase)))
+            {
                 return budget.BudgetItems[typeof(AttackActionBase)] as FullAttackBudget;
+            }
+
             return null;
         }
 
@@ -216,7 +223,9 @@ namespace Uzi.Ikosa.Actions
                                              where (_s != _slot)
                                              && ((_s is HoldingSlot) || (_s.SlotType == ItemSlot.UnarmedSlot))
                                              select _s)
+                        {
                             _Creature.AddAdjunct(new OffHand(this, _off));
+                        }
                     }
                 }
             }
@@ -233,7 +242,9 @@ namespace Uzi.Ikosa.Actions
                                        from _ap in _factory.GetIAttackPotentials(this)
                                        orderby (_ap is ISlotAttackPotential ? 2 : 1) ascending
                                        select _ap)
+            {
                 Budget.BudgetItems.Add(_potential.Source, _potential);
+            }
         }
 
         public void Removed()
@@ -241,7 +252,9 @@ namespace Uzi.Ikosa.Actions
             // remove off hand adjuncts
             var _main = _Creature.Adjuncts.OfType<OffHand>().Where(_mh => _mh.Source == this).ToList();
             foreach (var _mh in _main)
+            {
                 _mh.Eject();
+            }
 
             _Budget.Actor.Actions.Providers.Remove(this);
             DoTerminate();

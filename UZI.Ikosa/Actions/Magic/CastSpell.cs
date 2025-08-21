@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using Uzi.Core;
@@ -24,7 +24,7 @@ namespace Uzi.Ikosa.Actions
             _SpellMode = mode;
             _Slot = slot;
             _ConBase = new Deltable(PowerActionSource.PowerLevel);
-            _Spellcrafters = new Dictionary<Guid, bool>();
+            _Spellcrafters = [];
         }
 
         /// <summary>[ActionBase]</summary>
@@ -34,7 +34,7 @@ namespace Uzi.Ikosa.Actions
             _SpellMode = mode;
             _Slot = slot;
             _ConBase = new Deltable(PowerActionSource.PowerLevel);
-            _Spellcrafters = new Dictionary<Guid, bool>();
+            _Spellcrafters = [];
         }
         #endregion
 
@@ -107,7 +107,10 @@ namespace Uzi.Ikosa.Actions
                ? PowerActionSource.SpellDef.ArcaneComponents.ToList()
                : PowerActionSource.SpellDef.DivineComponents.ToList();
             if (_components.All(_c => _c.CanStartActivity(budget.Actor as Creature)) || !_components.Any())
+            {
                 return BaseCanPerformNow(budget);
+            }
+
             return new ActivityResponse(false);
         }
 
@@ -159,7 +162,10 @@ namespace Uzi.Ikosa.Actions
         public override IEnumerable<AimingMode> AimingMode(CoreActivity activity)
         {
             foreach (var _aimMode in SpellMode.AimingMode(activity.Actor, SpellMode))
+            {
                 yield return _aimMode;
+            }
+
             yield break;
         }
 

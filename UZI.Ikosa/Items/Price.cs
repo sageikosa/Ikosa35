@@ -182,9 +182,14 @@ namespace Uzi.Ikosa.Items
         protected void DoPropertyChanged(string propName)
         {
             if (PropertyChanged != null)
+            {
                 PropertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propName));
+            }
+
             if ((_Item != null) && (_Item.CreaturePossessor != null))
+            {
                 (_Item.CreaturePossessor.Possessions as IkosaPossessions).DoChangePrice();
+            }
         }
 
         // feedback processing
@@ -214,9 +219,13 @@ namespace Uzi.Ikosa.Items
         {
             // last feedback processor
             if (typeof(AddAdjunctData).Equals(interactType))
+            {
                 return true;
+            }
             else if (typeof(RemoveAdjunctData).Equals(interactType))
+            {
                 return true;
+            }
 
             return false;
         }

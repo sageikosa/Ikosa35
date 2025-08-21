@@ -63,7 +63,9 @@ namespace Uzi.Ikosa.Tactical
                     {
                         // background illuminations (no links between background, so get them all)
                         foreach (var _illum in _group.GetIlluminators(false))
+                        {
                             yield return _illum;
+                        }
 
                         // flag to process backgrounds only once
                         _backgroundGroup = true;
@@ -194,10 +196,14 @@ namespace Uzi.Ikosa.Tactical
                             _processed.Add(_illuminator.LightHandler);
                         }
                         if (_level == _maxLight)
+                        {
                             break;
+                        }
                     }
                     if (_level == _maxLight)
+                    {
                         break;
+                    }
                 }
             }
 

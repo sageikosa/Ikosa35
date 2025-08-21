@@ -31,7 +31,7 @@ namespace Uzi.Ikosa.Tactical
                 AnchorFace.XLow => new Vector3D(1 * _flip, 0, 0),
                 _ => new Vector3D(-1 * _flip, 0, 0),
             };
-            _Refs = new List<LightReference>();
+            _Refs = [];
             _Displace = _grp.Map[_Cell.Z, _Cell.Y, _Cell.X, _grp].InteractionOffset3D();
         }
         #endregion
@@ -148,15 +148,26 @@ namespace Uzi.Ikosa.Tactical
             get
             {
                 if (Solar > 0)
+                {
                     return LightRange.Solar;
+                }
                 else if (VeryBrightRange > 0)
+                {
                     return LightRange.VeryBright;
+                }
                 else if (BrightRange > 0)
+                {
                     return LightRange.Bright;
+                }
                 else if (ShadowyRange > 0)
+                {
                     return LightRange.NearShadow;
+                }
                 else if (FarShadowyRange > 0)
+                {
                     return LightRange.FarShadow;
+                }
+
                 return LightRange.OutOfRange;
             }
         }
@@ -273,7 +284,10 @@ namespace Uzi.Ikosa.Tactical
                         let _attenuate = Attenuation(_lr.Vector, _vector, sharpness)
                         select refLevel(_lr) * _attenuate).Max() * Link.AllowLightFactor;
             }
-            else return maxLevel * Link.AllowLightFactor;
+            else
+            {
+                return maxLevel * Link.AllowLightFactor;
+            }
         }
 
         public double SolarLeft(ICellLocation location)
@@ -310,7 +324,10 @@ namespace Uzi.Ikosa.Tactical
                         let _attenuate = Attenuation(_lr.Vector, _vector, sharpness)
                         select refLevel(_lr) * _attenuate).Max() * Link.AllowLightFactor;
             }
-            else return maxLevel * Link.AllowLightFactor;
+            else
+            {
+                return maxLevel * Link.AllowLightFactor;
+            }
         }
 
         public double SolarLeft(Point3D location)

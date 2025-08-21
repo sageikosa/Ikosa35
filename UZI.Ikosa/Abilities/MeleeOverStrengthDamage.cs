@@ -23,13 +23,20 @@ namespace Uzi.Ikosa.Abilities
         public override IEnumerable<IDelta> QualifiedDeltas(Qualifier qualify)
         {
             if (!(qualify.Source is IWeaponHead _wpnHead))
+            {
                 yield break;
+            }
 
             // ranged attacks neved user over strength
             if (!(qualify is Interaction _iAct))
+            {
                 yield break;
+            }
+
             if (_iAct.InteractData is RangedAttackData)
+            {
                 yield break;
+            }
 
             if (_wpnHead.ContainingWeapon is NaturalWeapon)
             {
@@ -37,17 +44,23 @@ namespace Uzi.Ikosa.Abilities
 
                 // secondary natural weapons get half STR damage
                 if (!_natrl.IsPrimary)
+                {
                     yield break;
+                }
 
                 // if more than one, and not treated as a sole natural weapon, then full STR damage
                 if (Creature.Body.NaturalWeapons.Count > 1 && !_natrl.TreatAsSoleWeapon)
+                {
                     yield break;
+                }
             }
             else
             {
                 // not a melee weapon
                 if (!(_wpnHead.ContainingWeapon is IMeleeWeapon))
+                {
                     yield break;
+                }
 
                 // off hand weapons get half STR damage
                 if (_wpnHead.IsOffHand)

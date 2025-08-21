@@ -10,7 +10,7 @@ namespace Uzi.Core
     {
         public AdjunctGroupSet()
         {
-            _AdjunctGroups = new Dictionary<Guid, AdjunctGroup>();
+            _AdjunctGroups = [];
         }
 
         private Dictionary<Guid, AdjunctGroup> _AdjunctGroups;
@@ -52,7 +52,10 @@ namespace Uzi.Core
             get
             {
                 if (_AdjunctGroups.TryGetValue(id, out var _group))
+                {
                     return _group;
+                }
+
                 return null;
             }
         }
@@ -62,7 +65,10 @@ namespace Uzi.Core
         public IEnumerable<AdjunctGroup> All()
         {
             foreach (var _kvp in _AdjunctGroups)
+            {
                 yield return _kvp.Value;
+            }
+
             yield break;
         }
         #endregion
@@ -76,19 +82,25 @@ namespace Uzi.Core
         public void ReactToProcessBySideEffect(CoreProcess process)
         {
             foreach (var _g in _AdjunctGroups.OfType<ICanReactBySideEffect>())
+            {
                 _g.ReactToProcessBySideEffect(process);
+            }
         }
 
         public void ReactToProcessBySuppress(CoreProcess process)
         {
             foreach (var _g in _AdjunctGroups.OfType<ICanReactBySuppress>())
+            {
                 _g.ReactToProcessBySuppress(process);
+            }
         }
 
         public void ReactToStepComplete(CoreStep step)
         {
             foreach (var _g in _AdjunctGroups.OfType<ICanReactToStepComplete>())
+            {
                 _g.ReactToStepComplete(step);
+            }
         }
 
         public bool CanReactToStepComplete(CoreStep step)

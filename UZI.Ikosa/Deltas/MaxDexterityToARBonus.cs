@@ -1,4 +1,4 @@
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using Uzi.Core;
@@ -22,7 +22,7 @@ namespace Uzi.Ikosa
             // hook into dexterity
             _Dexterity = creature.Abilities.Dexterity;
             _Dexterity.AddChangeMonitor(this);
-            _MaxValues = new Dictionary<object, int>();
+            _MaxValues = [];
             _Terminator = new TerminateController(this);
             _ValueCtrlr = new ChangeController<DeltaValue>(this, new DeltaValue(((IDelta)(_Dexterity)).Value));
         }

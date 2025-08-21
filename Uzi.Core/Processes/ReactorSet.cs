@@ -11,7 +11,7 @@ namespace Uzi.Core
         #region Construction
         public ReactorSet()
         {
-            _Reactors = new Dictionary<object, ICanReact>();
+            _Reactors = [];
         }
         #endregion
 
@@ -25,7 +25,10 @@ namespace Uzi.Core
         {
             foreach (var _r in (from _react in _Reactors
                                 select _react.Value).Distinct())
+            {
                 yield return _r;
+            }
+
             yield break;
         }
 
@@ -37,7 +40,10 @@ namespace Uzi.Core
         {
             foreach (var _r in (from _react in _Reactors
                                 select _react.Value).Distinct())
+            {
                 yield return _r;
+            }
+
             yield break;
         }
 

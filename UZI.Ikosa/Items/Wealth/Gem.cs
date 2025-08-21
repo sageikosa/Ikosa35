@@ -46,7 +46,9 @@ namespace Uzi.Ikosa.Items.Wealth
             {
                 // all adjunct overrides
                 foreach (var _ik in base.IconKeys.Where(_ik => _ik != ClassIconKey))
+                {
                     yield return _ik;
+                }
 
                 // standard class Icon
                 yield return ClassIconKey;

@@ -65,9 +65,15 @@ namespace Uzi.Ikosa.Actions.Steps
                 // TODO: building a list to send data?
                 var _list = new List<Guid>();
                 if (Actor != null)
+                {
                     _list.Add(Actor.ID);
+                }
+
                 if (_target is Creature _tCritter)
+                {
                     _list.Add(_tCritter.ID);
+                }
+
                 new RetryInteractionStep(this, @"Retry", _saveDmgInteract);
             }
             return true;

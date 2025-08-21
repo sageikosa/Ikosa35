@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Windows.Media.Media3D;
 
 namespace Uzi.Visualize
@@ -64,12 +63,35 @@ namespace Uzi.Visualize
             _UpperX = int.MinValue;
             foreach (var _loc in AllCellLocations())
             {
-                if (_loc.Z > _LowerZ) _LowerZ = _loc.Z;
-                if (_loc.Y > _LowerY) _LowerY = _loc.Y;
-                if (_loc.X > _LowerX) _LowerX = _loc.X;
-                if (_loc.Z < _UpperZ) _UpperZ = _loc.Z;
-                if (_loc.Y < _UpperY) _UpperY = _loc.Y;
-                if (_loc.X < _UpperX) _UpperX = _loc.X;
+                if (_loc.Z > _LowerZ)
+                {
+                    _LowerZ = _loc.Z;
+                }
+
+                if (_loc.Y > _LowerY)
+                {
+                    _LowerY = _loc.Y;
+                }
+
+                if (_loc.X > _LowerX)
+                {
+                    _LowerX = _loc.X;
+                }
+
+                if (_loc.Z < _UpperZ)
+                {
+                    _UpperZ = _loc.Z;
+                }
+
+                if (_loc.Y < _UpperY)
+                {
+                    _UpperY = _loc.Y;
+                }
+
+                if (_loc.X < _UpperX)
+                {
+                    _UpperX = _loc.X;
+                }
             }
             _Point = new Point3D
             {
@@ -111,7 +133,9 @@ namespace Uzi.Visualize
         {
             // if in an exclusion region, not in the multi-region
             if (_Excludes.Any(_excl => _excl.ContainsCell(location)))
+            {
                 return false;
+            }
 
             // true if any include contains the cell
             return _Includes.Any(_incl => _incl.ContainsCell(location));

@@ -1,14 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Windows.Media.Imaging;
 using System.Windows.Media;
 using System.Diagnostics;
 using System.Windows.Controls;
-using System.Windows.Shapes;
-using System.Threading;
-using System.Windows;
 
 namespace Uzi.Visualize
 {
@@ -193,15 +188,26 @@ namespace Uzi.Visualize
         {
             var _level = 6d * distance / maxDistance;
             if (_level <= 1d)
+            {
                 return VisualEffect.Monochrome;
+            }
             else if (_level <= 2d)
+            {
                 return VisualEffect.MonoSub1;
+            }
             else if (_level <= 3d)
+            {
                 return VisualEffect.MonoSub2;
+            }
             else if (_level <= 4d)
+            {
                 return VisualEffect.MonoSub3;
+            }
             else if (_level <= 5d)
+            {
                 return VisualEffect.MonoSub4;
+            }
+
             return VisualEffect.MonoSub5;
         }
 
@@ -209,15 +215,26 @@ namespace Uzi.Visualize
         {
             var _level = 6d * distance / maxDistance;
             if (_level <= 1d)
+            {
                 return VisualEffect.FormOnly;
+            }
             else if (_level <= 2d)
+            {
                 return VisualEffect.FormSub1;
+            }
             else if (_level <= 3d)
+            {
                 return VisualEffect.FormSub2;
+            }
             else if (_level <= 4d)
+            {
                 return VisualEffect.FormSub3;
+            }
             else if (_level <= 5d)
+            {
                 return VisualEffect.FormSub4;
+            }
+
             return VisualEffect.FormSub5;
         }
 

@@ -11,7 +11,7 @@ namespace Uzi.Ikosa.Magic
         #region construction
         public KnownSpellSet()
         {
-            _Spells = new Collection<KnownSpell>();
+            _Spells = [];
         }
         #endregion
 
@@ -24,7 +24,10 @@ namespace Uzi.Ikosa.Magic
             var _exist = _Spells.FirstOrDefault(_ks => (_ks.LearnedLevel == spell.LearnedLevel)
                 && (_ks.LearnedIndex == spell.LearnedIndex));
             if (_exist != null)
+            {
                 _Spells.Remove(_exist);
+            }
+
             _Spells.Add(spell);
         }
         #endregion
@@ -33,7 +36,9 @@ namespace Uzi.Ikosa.Magic
         public void Remove(KnownSpell spell)
         {
             if (Contains(spell))
+            {
                 _Spells.Remove(this[spell]);
+            }
         }
         #endregion
 
@@ -43,7 +48,10 @@ namespace Uzi.Ikosa.Magic
             get
             {
                 foreach (var _spell in _Spells)
+                {
                     yield return _spell;
+                }
+
                 yield break;
             }
         }
@@ -54,7 +62,10 @@ namespace Uzi.Ikosa.Magic
         public IEnumerable<KnownSpell> KnownForSpellLevel(int slotLevel)
         {
             foreach (var _known in _Spells.Where(_ks => _ks.SlotLevel == slotLevel))
+            {
                 yield return _known;
+            }
+
             yield break;
         }
         #endregion
@@ -64,7 +75,10 @@ namespace Uzi.Ikosa.Magic
         public IEnumerable<KnownSpell> LearnedAtPowerLevel(int classPowerLevel)
         {
             foreach (var _known in _Spells.Where(_ks => _ks.LearnedLevel == classPowerLevel))
+            {
                 yield return _known;
+            }
+
             yield break;
         }
         #endregion

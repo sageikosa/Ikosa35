@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.ObjectModel;
 
 namespace Uzi.Core
@@ -9,7 +9,7 @@ namespace Uzi.Core
         public TerminateController(object source)
         {
             _Src = source;
-            _Dependents = new Collection<IDependOnTerminate>();
+            _Dependents = [];
         }
 
         private Collection<IDependOnTerminate> _Dependents;

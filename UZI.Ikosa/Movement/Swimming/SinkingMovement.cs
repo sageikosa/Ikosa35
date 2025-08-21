@@ -49,7 +49,9 @@ namespace Uzi.Ikosa.Movement
                 if (_locator != null)
                 {
                     if (!_locator.PlanarPresence.HasMaterialPresence())
+                    {
                         return false;
+                    }
 
                     var _map = _locator.Map;
                     return (from _cell in _locator.GeometricRegion.AllCellLocations()

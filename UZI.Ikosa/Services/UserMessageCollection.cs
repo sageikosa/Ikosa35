@@ -11,7 +11,7 @@ namespace Uzi.Ikosa.Services
         public UserMessageCollection()
         {
             _Lock = new ReaderWriterLockSlim();
-            _Messages = new Collection<UserMessage>();
+            _Messages = [];
         }
 
         #region private data
@@ -30,7 +30,9 @@ namespace Uzi.Ikosa.Services
             finally
             {
                 if (_Lock.IsWriteLockHeld)
+                {
                     _Lock.ExitWriteLock();
+                }
             }
         }
         #endregion
@@ -42,12 +44,16 @@ namespace Uzi.Ikosa.Services
             {
                 _Lock.EnterWriteLock();
                 foreach (var _msg in messages)
+                {
                     _Messages.Add(_msg);
+                }
             }
             finally
             {
                 if (_Lock.IsWriteLockHeld)
+                {
                     _Lock.ExitWriteLock();
+                }
             }
         }
         #endregion
@@ -63,7 +69,9 @@ namespace Uzi.Ikosa.Services
             finally
             {
                 if (_Lock.IsWriteLockHeld)
+                {
                     _Lock.ExitWriteLock();
+                }
             }
         }
         #endregion
@@ -75,12 +83,16 @@ namespace Uzi.Ikosa.Services
             {
                 _Lock.EnterWriteLock();
                 foreach (var _msg in messages)
+                {
                     _Messages.Remove(_msg);
+                }
             }
             finally
             {
                 if (_Lock.IsWriteLockHeld)
+                {
                     _Lock.ExitWriteLock();
+                }
             }
         }
         #endregion
@@ -96,7 +108,9 @@ namespace Uzi.Ikosa.Services
             finally
             {
                 if (_Lock.IsReadLockHeld)
+                {
                     _Lock.ExitReadLock();
+                }
             }
         }
         #endregion
@@ -112,7 +126,9 @@ namespace Uzi.Ikosa.Services
             finally
             {
                 if (_Lock.IsReadLockHeld)
+                {
                     _Lock.ExitReadLock();
+                }
             }
         }
         #endregion

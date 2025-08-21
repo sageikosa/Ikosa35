@@ -14,7 +14,7 @@ namespace Uzi.Ikosa.Tactical
     {
         public LocatorCaptureSet(MapContext context)
         {
-            _Zones = new Collection<LocatorCapture>();
+            _Zones = [];
             MapContext = context;
         }
 
@@ -33,9 +33,13 @@ namespace Uzi.Ikosa.Tactical
         {
             var _zone = sender as LocatorCapture;
             if (args.NewValue.IsActive)
+            {
                 _zone.StartAll();
+            }
             else
+            {
                 _zone.EndAll();
+            }
         }
         #endregion
 

@@ -9,7 +9,7 @@ namespace Uzi.Ikosa.Tactical
     {
         public CellSpaceSet()
         {
-            _Spaces = new List<CellSpace>();
+            _Spaces = [];
         }
 
         private List<CellSpace> _Spaces;
@@ -19,9 +19,14 @@ namespace Uzi.Ikosa.Tactical
             if (!_Spaces.Any(_c => _c.Name.Equals(space.Name, StringComparison.OrdinalIgnoreCase)))
             {
                 if (_Spaces.Any())
+                {
                     space.Index = (ushort)(_Spaces.Max(_c => _c.Index) + 1);
+                }
                 else
+                {
                     space.Index = 1;
+                }
+
                 _Spaces.Add(space);
             }
         }
@@ -29,7 +34,9 @@ namespace Uzi.Ikosa.Tactical
         public void Remove(CellSpace space)
         {
             if (_Spaces.Contains(space))
+            {
                 _Spaces.Remove(space);
+            }
         }
 
         public void Renumber()
@@ -46,7 +53,10 @@ namespace Uzi.Ikosa.Tactical
         public IEnumerator<CellSpace> GetEnumerator()
         {
             foreach (var _c in _Spaces.OrderBy(_s => _s.Name))
+            {
                 yield return _c;
+            }
+
             yield break;
         }
         #endregion
@@ -55,7 +65,10 @@ namespace Uzi.Ikosa.Tactical
         System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
         {
             foreach (var _c in _Spaces.OrderBy(_s => _s.Name))
+            {
                 yield return _c;
+            }
+
             yield break;
         }
         #endregion

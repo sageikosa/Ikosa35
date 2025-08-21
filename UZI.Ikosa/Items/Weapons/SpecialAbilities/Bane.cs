@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using Uzi.Ikosa.Creatures.Types;
 using Uzi.Ikosa.Actions;
@@ -114,7 +114,9 @@ namespace Uzi.Ikosa.Items.Weapons
                 {
                     var _qd = QualifiedDelta(qualify.Target);
                     if (_qd != null)
+                    {
                         yield return _qd;
+                    }
                 }
             }
             yield break;
@@ -124,7 +126,10 @@ namespace Uzi.Ikosa.Items.Weapons
         {
             var _critter = iCore as Creature;
             if (typeof(CritterType).IsAssignableFrom(_critter.CreatureType.GetType()))
+            {
                 return new QualifyingDelta(2, GetType(), @"Bane");
+            }
+
             return null;
         }
         #endregion

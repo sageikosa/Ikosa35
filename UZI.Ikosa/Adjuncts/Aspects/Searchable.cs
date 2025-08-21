@@ -45,7 +45,7 @@ namespace Uzi.Ikosa.Adjuncts
 
         #region FoundSet
         private HashSet<Guid> GetFoundSet()
-            => _Found ??= new HashSet<Guid>();
+            => _Found ??= [];
 
         public void ClearFound()
             => GetFoundSet().Clear();
@@ -59,10 +59,14 @@ namespace Uzi.Ikosa.Adjuncts
             if (foundState)
             {
                 if (!_set.Contains(critterID))
+                {
                     _set.Add(critterID);
+                }
             }
             else if (_set.Contains(critterID))
+            {
                 _set.Remove(critterID);
+            }
         }
         #endregion
 
@@ -71,7 +75,7 @@ namespace Uzi.Ikosa.Adjuncts
             => Anchor?.GetCurrentTime() ?? double.MaxValue;
 
         private Dictionary<Guid, double> GetAutoTimeSet()
-            => _AutoTime ??= new Dictionary<Guid, double>();
+            => _AutoTime ??= [];
 
         public void ClearAutoTime()
             => GetAutoTimeSet().Clear();
@@ -80,7 +84,10 @@ namespace Uzi.Ikosa.Adjuncts
         {
             var _set = GetAutoTimeSet();
             if (_set.TryGetValue(critterID, out var _auto))
+            {
                 return _auto;
+            }
+
             return null;
         }
 
@@ -116,7 +123,9 @@ namespace Uzi.Ikosa.Adjuncts
                     if ((_target is IOpenable _open)
                         && !(_target is Mechanism)
                         && !_open.OpenState.IsClosed)
+                    {
                         return;
+                    }
 
                     // if searchable already found, we can skip this stuff
                     if (!HasFound(_viewer.ID))
@@ -195,9 +204,15 @@ namespace Uzi.Ikosa.Adjuncts
         public bool LinkBefore(Type interactType, IInteractHandler existingHandler)
         {
             if (interactType == typeof(ObserveDetails))
+            {
                 return true;
+            }
+
             if (typeof(ObserveHandler).IsAssignableFrom(existingHandler.GetType()))
+            {
                 return true;
+            }
+
             return existingHandler is Hiding;
         }
 

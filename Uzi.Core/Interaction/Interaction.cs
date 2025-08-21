@@ -13,7 +13,7 @@ namespace Uzi.Core
             : base(actor, source, target)
         {
             _InteractData = interactData;
-            _Feedback = new List<InteractionFeedback>();
+            _Feedback = [];
             _UseDefault = useDefault;
         }
 
@@ -36,7 +36,9 @@ namespace Uzi.Core
                 if (UseDefault && (InteractData != null))
                 {
                     foreach (var _h in InteractData.GetDefaultHandlers(Target))
+                    {
                         yield return _h;
+                    }
                 }
                 yield break;
             }

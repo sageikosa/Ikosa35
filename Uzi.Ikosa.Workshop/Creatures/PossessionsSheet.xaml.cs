@@ -319,7 +319,7 @@ namespace Uzi.Ikosa.Workshop
             var _source = _factory();
             var _mode = _filter(_source.SpellDef.SpellModes);
             var _opts = _options == null
-                ? new Dictionary<string, string>()
+                ? []
                 : _options.ToDictionary(_o => _o.optKey, _o => _o.optValue);
             var _potion = new Potion($@"vial of {_mode.DisplayName}{(!string.IsNullOrWhiteSpace(_extra) ? " " : string.Empty)}{_extra}", _source, _extra, _mode, _opts)
             {

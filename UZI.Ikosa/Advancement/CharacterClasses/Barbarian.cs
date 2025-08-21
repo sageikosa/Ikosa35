@@ -182,9 +182,14 @@ namespace Uzi.Ikosa.Advancement.CharacterClasses
                 case 2:
                     // uncanny dodge if not already present, otherwise improved uncanny dodge
                     if (!(Creature?.HasAdjunct<UncannyDodge>() ?? false))
+                    {
                         Creature?.AddAdjunct(new UncannyDodge(this));
+                    }
                     else
+                    {
                         Creature?.AddAdjunct(new ImprovedUncannyDodge(this));
+                    }
+
                     Creature?.AddAdjunct(new ImprovedUncannyDodgeSupplier(this));
                     break;
 
@@ -199,7 +204,10 @@ namespace Uzi.Ikosa.Advancement.CharacterClasses
 
                 case 5:
                     if (!(Creature?.HasAdjunct<ImprovedUncannyDodge>() ?? false))
+                    {
                         Creature?.AddAdjunct(new ImprovedUncannyDodge(this));
+                    }
+
                     break;
 
                 case 7:
@@ -500,7 +508,9 @@ namespace Uzi.Ikosa.Advancement.CharacterClasses
             {
                 // each land movement gets a boost
                 foreach (var _land in Critter.Movements.AllMovements.OfType<LandMovement>())
+                {
                     _land.Deltas.Add(_Delta);
+                }
             }
         }
         #endregion
@@ -536,7 +546,9 @@ namespace Uzi.Ikosa.Advancement.CharacterClasses
             {
                 // switching on
                 foreach (var _land in Critter.Movements.AllMovements.OfType<LandMovement>())
+                {
                     _land.Deltas.Add(_Delta);
+                }
             }
             else if ((args.OldValue <= EncumberanceVal.Encumbered)
                 && (args.NewValue >= EncumberanceVal.GreatlyEncumbered))

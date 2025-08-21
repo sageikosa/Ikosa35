@@ -81,18 +81,24 @@ namespace Uzi.Ikosa.Workshop
                 if (ammoSet.Ammunition.IsEnhanced())
                 {
                     if (cboEnhancement.SelectedIndex != ammoSet.Ammunition.ListedEnhancement + 1)
+                    {
                         cboEnhancement.SelectedIndex = ammoSet.Ammunition.ListedEnhancement + 1;
+                    }
                 }
                 else
                 {
                     if (cboEnhancement.SelectedIndex != 1)
+                    {
                         cboEnhancement.SelectedIndex = 1;
+                    }
                 }
             }
             else
             {
                 if (cboEnhancement.SelectedIndex != 0)
+                {
                     cboEnhancement.SelectedIndex = 0;
+                }
             }
         }
         #endregion
@@ -162,7 +168,9 @@ namespace Uzi.Ikosa.Workshop
 
                             // remove all old ones
                             foreach (var _a in _exist)
+                            {
                                 _proto.RemoveAdjunct(_a);
+                            }
                         }
                     }
                     else
@@ -187,7 +195,9 @@ namespace Uzi.Ikosa.Workshop
 
             // remove
             foreach (var _a in _list)
+            {
                 _proto.RemoveAdjunct(_a);
+            }
         }
 
         #region private void cmdbndAdjunctAdd_CanExecute(object sender, CanExecuteRoutedEventArgs e)
@@ -202,7 +212,9 @@ namespace Uzi.Ikosa.Workshop
                     .Any(_a => (_a.Augmentation.GetType().Equals(_aType))))
                 {
                     if (_augment.CanAnchor(AmmoSet.Ammunition))
+                    {
                         e.CanExecute = true;
+                    }
                 }
             }
             e.Handled = true;
@@ -225,7 +237,9 @@ namespace Uzi.Ikosa.Workshop
             {
                 var _adjunct = lstAdjuncts.SelectedItem as Adjunct;
                 if (_adjunct.CanUnAnchor())
+                {
                     e.CanExecute = true;
+                }
             }
             e.Handled = true;
         }

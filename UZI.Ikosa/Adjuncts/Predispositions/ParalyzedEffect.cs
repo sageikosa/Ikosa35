@@ -121,7 +121,9 @@ namespace Uzi.Ikosa.Adjuncts
         protected override bool OnDoStep()
         {
             if (IsComplete)
+            {
                 return true;
+            }
 
             var _save = GetPrerequisite<SavePrerequisite>();
             if (_save != null)

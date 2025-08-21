@@ -23,7 +23,9 @@ namespace Uzi.Ikosa.Workshop
         {
             InitializeComponent();
             if (map.NamedKeyGuids.ContainsKey(guid))
+            {
                 txtName.Text = map.NamedKeyGuids[guid];
+            }
 
             _Guid = guid;
             _Map = map;

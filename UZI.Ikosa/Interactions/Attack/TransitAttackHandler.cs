@@ -30,7 +30,9 @@ namespace Uzi.Ikosa.Interactions
 
             // add concealment alteration if necessary
             if (!atk.Alterations.OfType<ConcealmentAlteration>().Any())
+            {
                 atk.Alterations.Add(target, new ConcealmentAlteration(atk, this));
+            }
 
             // make sure there is a miss chance to check with
             if (missChance != null)
@@ -88,12 +90,16 @@ namespace Uzi.Ikosa.Interactions
             // if we didn't hit, there's no need to check miss chance
             var _feedback = workSet.Feedback.OfType<AttackFeedback>().FirstOrDefault();
             if (!(_feedback?.Hit ?? false))
+            {
                 return;
+            }
 
             // already have a miss change that failed to miss for max criteria?
             var _miss = workSet.InteractData.Alterations.OfType<MissChanceAlteration>().FirstOrDefault();
             if ((_miss?.PercentRolled ?? 0) > 50)
+            {
                 return;
+            }
 
             var _target = workSet.Target as ICoreObject;
             var _atk = workSet.InteractData as AttackData;
@@ -103,7 +109,9 @@ namespace Uzi.Ikosa.Interactions
             {
                 // anything being held has no concealment for attack purposes
                 if (_critter.Body.ItemSlots.HeldObjects.Any(_ho => _ho == _target))
+                {
                     return;
+                }
 
                 if (_critter.Awarenesses.IsTotalConcealmentMiss(_target.ID))
                 {
@@ -158,15 +166,21 @@ namespace Uzi.Ikosa.Interactions
                                         {
                                             // line not good enough to consider
                                             if (_sense.UsesLineOfEffect && !_line.IsLineOfEffect)
+                                            {
                                                 break;
+                                            }
 
                                             // concealment found for concealable sense
                                             if (!_sense.IgnoresConcealment && (_line.SuppliesConcealment() > CoverConcealmentResult.None))
+                                            {
                                                 break;
+                                            }
 
                                             // found a good sense line that doesn't transit and isn't concealed
                                             if (!_sense.UsesSenseTransit)
+                                            {
                                                 return;
+                                            }
 
                                             // regen a fresh sense transit (in case of alterations)
                                             var _sTrans = new SenseTransit(_sense);
@@ -174,7 +188,9 @@ namespace Uzi.Ikosa.Interactions
 
                                             // see if line really isn't good enough
                                             if (!_line.CarryInteraction(_senseSet))
+                                            {
                                                 break;
+                                            }
 
                                             // at this point, we have a "perfect" sense-line
                                             return;
@@ -222,6 +238,7 @@ namespace Uzi.Ikosa.Interactions
                                 {
                                     // ensure sense is in range
                                     if (_line.Vector.Length <= _sense.Range)
+                                    {
                                         if (!_sense.IgnoresConcealment && (_line.SuppliesConcealment() == CoverConcealmentResult.Partial))
                                         {
                                             // a particular sense was concealed, so it is not "left"
@@ -235,7 +252,9 @@ namespace Uzi.Ikosa.Interactions
                                             {
                                                 // check line of effect interference
                                                 if (_line.IsLineOfEffect)
+                                                {
                                                     RangeTestSense(workSet, _usedSenses, _line, _sense);
+                                                }
                                             }
                                             else if (!_sense.UsesSenseTransit && _sense.IgnoresConcealment)
                                             {
@@ -248,11 +267,14 @@ namespace Uzi.Ikosa.Interactions
                                             }
                                             #endregion
                                         }
+                                    }
                                 }
 
                                 // quit examining lines, if we ran out of senses in this group
                                 if (!_senses.Any())
+                                {
                                     break;
+                                }
                             }
                         }
                     }
@@ -298,7 +320,9 @@ namespace Uzi.Ikosa.Interactions
 
                 // check only if the sense could possibly determine visibility
                 if (!_visible || _shadowed)
+                {
                     _bestLeft.Remove(_sense);
+                }
             });
             #endregion
 
@@ -316,11 +340,15 @@ namespace Uzi.Ikosa.Interactions
                 var _sTrans = new SenseTransit(sense);
                 var _senseSet = new Interaction(workSet.Actor, sense, workSet.Target, _sTrans);
                 if (!line.CarryInteraction(_senseSet))
+                {
                     return;
+                }
             }
 
             if (!usedSenses.Contains(sense))
+            {
                 usedSenses.Add(sense);
+            }
         }
         #endregion
 

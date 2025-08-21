@@ -171,16 +171,27 @@ namespace Uzi.Ikosa.Tactical
                         // adjust position of cubic if offset away from high faces
                         var _adjFaces = AnchorFaceList.None;
                         if (_zHiOff && !_zLoOff && (_offSize.ZHeight != _size.ZHeight))
+                        {
                             _adjFaces = _adjFaces.Add(AnchorFace.ZLow);
+                        }
+
                         if (_yHiOff && !_yLoOff && (_offSize.YLength != _size.YLength))
+                        {
                             _adjFaces = _adjFaces.Add(AnchorFace.YLow);
+                        }
+
                         if (_xHiOff && !_xLoOff && (_offSize.XLength != _size.XLength))
+                        {
                             _adjFaces = _adjFaces.Add(AnchorFace.XLow);
+                        }
+
                         _candidate = new Cubic(_cube.Add(_adjFaces), _offSize);
 
                         // check occupation of fixed up candidate
                         if (!CanOccupy(_map, _candidate, _planar))
+                        {
                             return (null, default);
+                        }
 
                         // offsets from the far side (gravity axis + implied snap [if any])...
                         _zOffLo = Offset(_map, _candidate.EdgeCubic(AnchorFace.ZLow), _gravity, AnchorFace.ZHigh, _planar);
@@ -208,7 +219,9 @@ namespace Uzi.Ikosa.Tactical
                     {
                         // check occupation of cube
                         if (!CanOccupy(_map, _candidate, _planar))
+                        {
                             return (null, default);
+                        }
                     }
 
                     // _candidate*5 - (_reverse + Abs(_offset))

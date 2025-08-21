@@ -39,7 +39,7 @@ namespace Uzi.Ikosa.Tactical
                 EffectBytes = Effects.Select(_e => (byte)_e).ToArray(),
                 Face = (int)Face,
                 ID = _ID,
-                PanelShadings = _Panels?.ToList() ?? new List<PanelShadingInfo>()
+                PanelShadings = _Panels?.ToList() ?? []
             };
             _info.SetCubicInfo(Cube);
             return _info;

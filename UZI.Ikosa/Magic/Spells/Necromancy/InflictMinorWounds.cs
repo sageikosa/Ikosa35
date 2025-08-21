@@ -100,7 +100,10 @@ namespace Uzi.Ikosa.Magic.Spells
         {
             yield return new EnergyDamageRule(@"Inflict.Negative", FixedRange.One, @"Inflict Minor", EnergyType.Negative);
             if (isCriticalHit)
+            {
                 yield return new EnergyDamageRule(@"Inflict.Negative.Critical", FixedRange.One, @"Inflict Minor (Critical)", EnergyType.Negative);
+            }
+
             yield break;
         }
 

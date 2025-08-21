@@ -91,7 +91,10 @@ namespace Uzi.Ikosa.Actions
             var _info = ToInfo<SavePrerequisiteInfo>(step);
             _info.SaveType = SaveMode.SaveType.ToString();
             if (IsReady)
+            {
                 _info.Value = SaveRoll.EffectiveValue;
+            }
+
             return _info;
         }
 
@@ -100,7 +103,9 @@ namespace Uzi.Ikosa.Actions
             if (info is SavePrerequisiteInfo _savePre)
             {
                 if (_savePre.Value.HasValue)
+                {
                     SaveRoll = new Deltable(_savePre.Value.Value);
+                }
             }
         }
     }

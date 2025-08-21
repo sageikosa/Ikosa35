@@ -16,7 +16,7 @@ namespace Uzi.Ikosa.Magic
         public SpellSlotSet(object source)
         {
             _Source = source;
-            _Levels = new Dictionary<int, SpellSlotLevel<SlotClass>>();
+            _Levels = [];
         }
 
         #region data

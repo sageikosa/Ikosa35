@@ -12,13 +12,13 @@ namespace Uzi.Ikosa.Tactical
         public LocalLinkSet(LocalCellGroup owner)
         {
             _Owner = owner;
-            _Links = new Collection<LocalLink>();
+            _Links = [];
         }
 
         #region private data
         private Collection<LocalLink> _Links;
         private LocalCellGroup _Owner;
-        private List<Room> _Touching = new List<Room>();
+        private List<Room> _Touching = [];
         #endregion
 
         public LocalCellGroup Owner => _Owner;
@@ -30,8 +30,7 @@ namespace Uzi.Ikosa.Tactical
         {
             get
             {
-                if (_Touching == null)
-                    _Touching = new List<Room>();
+                _Touching ??= [];
                 return _Touching;
             }
         }

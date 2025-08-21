@@ -228,7 +228,9 @@ namespace Uzi.Ikosa.Host
 
             // set as UserValidator users
             if (UserValidator.UserDefinitions == null)
+            {
                 UserValidator.UserDefinitions = _userDefinitions.UserDefinitions;
+            }
 
             // user synchronizer continuance
             UserValidator.UserDefinitions.Synchronizer = _userLock ?? new ReaderWriterLockSlim();
@@ -314,7 +316,9 @@ namespace Uzi.Ikosa.Host
             finally
             {
                 if (Map?.Synchronizer.IsWriteLockHeld ?? false)
+                {
                     Map?.Synchronizer.ExitWriteLock();
+                }
             }
         }
         #endregion
@@ -333,7 +337,9 @@ namespace Uzi.Ikosa.Host
             finally
             {
                 if (Map.Synchronizer.IsReadLockHeld)
+                {
                     Map.Synchronizer.ExitReadLock();
+                }
             }
         }
         #endregion
@@ -363,10 +369,15 @@ namespace Uzi.Ikosa.Host
                 finally
                 {
                     if (Map.Synchronizer.IsWriteLockHeld)
+                    {
                         Map.Synchronizer.ExitWriteLock();
+                    }
+
                     LoadStatus.StopLoadStatusWindow();
                     if (UserValidator.UserDefinitions.Synchronizer.IsWriteLockHeld)
+                    {
                         UserValidator.UserDefinitions.Synchronizer.ExitWriteLock();
+                    }
                 }
             }
             else
@@ -405,9 +416,14 @@ namespace Uzi.Ikosa.Host
                 finally
                 {
                     if (Map.Synchronizer.IsWriteLockHeld)
+                    {
                         Map.Synchronizer.ExitWriteLock();
+                    }
+
                     if (UserValidator.UserDefinitions.Synchronizer.IsWriteLockHeld)
+                    {
                         UserValidator.UserDefinitions.Synchronizer.ExitWriteLock();
+                    }
                 }
             }
             else
@@ -683,7 +699,9 @@ namespace Uzi.Ikosa.Host
                     {
                         var _port = IkosaServices.CreatureProvider?.GetCreature(_cli.ID)?.GetPortrait(Map.Resources);
                         if (_port != null)
+                        {
                             _cli.Portrait = new Visualize.Contracts.BitmapImageInfo(_port);
+                        }
                     }
 
                     // show dialog
@@ -703,7 +721,9 @@ namespace Uzi.Ikosa.Host
             finally
             {
                 if (Map.Synchronizer.IsWriteLockHeld)
+                {
                     Map.Synchronizer.ExitWriteLock();
+                }
             }
             e.Handled = true;
         }
@@ -744,7 +764,9 @@ namespace Uzi.Ikosa.Host
             finally
             {
                 if (Map.Synchronizer.IsWriteLockHeld)
+                {
                     Map.Synchronizer.ExitWriteLock();
+                }
             }
             e.Handled = true;
         }
@@ -774,7 +796,10 @@ namespace Uzi.Ikosa.Host
             finally
             {
                 if (Map.Synchronizer.IsWriteLockHeld)
+                {
                     Map.Synchronizer.ExitWriteLock();
+                }
+
                 RefreshProcessManager();
             }
         }
@@ -793,7 +818,10 @@ namespace Uzi.Ikosa.Host
             finally
             {
                 if (Map.Synchronizer.IsWriteLockHeld)
+                {
                     Map.Synchronizer.ExitWriteLock();
+                }
+
                 RefreshProcessManager();
             }
         }
@@ -922,7 +950,9 @@ namespace Uzi.Ikosa.Host
                 //Save layout
                 var serializer = new XmlLayoutSerializer(dmHost);
                 using (var stream = new StreamWriter(@"IkosaHost.Layout"))
+                {
                     serializer.Serialize(stream);            //Restore the layout
+                }
             }
             catch
             {
@@ -935,7 +965,9 @@ namespace Uzi.Ikosa.Host
             {
                 var serializer = new XmlLayoutSerializer(dmHost);
                 using (var stream = new StreamReader(@"IkosaHost.Layout"))
+                {
                     serializer.Deserialize(stream);
+                }
             }
             catch
             {
@@ -965,7 +997,9 @@ namespace Uzi.Ikosa.Host
                     return _msg.IsPublic ? OutboundPublicTemplate : OutboundTemplate;
                 }
                 else
+                {
                     return _msg.IsPublic ? InboundPublicTemplate : InboundTemplate;
+                }
             }
             return null;
         }

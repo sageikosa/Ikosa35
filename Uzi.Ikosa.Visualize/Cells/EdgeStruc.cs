@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace Uzi.Visualize
+﻿namespace Uzi.Visualize
 {
     public struct EdgeStruc
     {
@@ -27,9 +22,14 @@ namespace Uzi.Visualize
             get
             {
                 if (!_Faces.Intersects(AnchorFaceList.ZMask))
+                {
                     return Axis.Z;
+                }
                 else if (!_Faces.Intersects(AnchorFaceList.YMask))
+                {
                     return Axis.Y;
+                }
+
                 return Axis.X;
             }
         }

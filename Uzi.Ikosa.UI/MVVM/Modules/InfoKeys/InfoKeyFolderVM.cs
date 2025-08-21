@@ -34,7 +34,10 @@ namespace Uzi.Ikosa.UI
             set
             {
                 if (_Selected != null)
+                {
                     _Selected.Commands = _Selected.GetDefaultCommands();
+                }
+
                 _Selected = value;
                 DoPropertyChanged(nameof(SelectedInfoKey));
             }

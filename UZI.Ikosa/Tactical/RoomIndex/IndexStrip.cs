@@ -12,7 +12,7 @@ namespace Uzi.Ikosa.Tactical
     {
         public IndexStrip()
         {
-            _Nuggets = new Dictionary<int, Dictionary<Guid, Room>>();
+            _Nuggets = [];
         }
 
         private const int THICK = 20;
@@ -51,7 +51,9 @@ namespace Uzi.Ikosa.Tactical
             foreach (var _nugget in GetRoomNuggets(room))
             {
                 if (!_nugget.ContainsKey(room.ID))
+                {
                     _nugget.Add(room.ID, room);
+                }
             }
         }
 
@@ -61,10 +63,14 @@ namespace Uzi.Ikosa.Tactical
             foreach (var _nugget in GetRoomNuggets(room, false))
             {
                 if (_nugget.ContainsKey(room.ID))
+                {
                     _nugget.Remove(room.ID);
+                }
             }
             foreach (var _n in _Nuggets.Where(_kvp => _kvp.Value.Count == 0).Select(_kvp => _kvp.Key).ToList())
+            {
                 _Nuggets.Remove(_n);
+            }
         }
 
         public Room GetRoom(ICellLocation location)

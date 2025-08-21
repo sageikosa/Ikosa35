@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Runtime.Serialization;
-using Uzi.Core;
-using Uzi.Visualize;
 
 namespace Uzi.Visualize.Contracts
 {
@@ -29,7 +26,10 @@ namespace Uzi.Visualize.Contracts
             get
             {
                 if ((z < ZHeight) && (y < YLength) && (x < XLength) && (z >= 0) && (y >= 0) && (x >= 0))
+                {
                     return (VisualEffect)EffectBytes[x + (y * XLength) + (z * XLength * YLength)];
+                }
+
                 return VisualEffect.Skip;
             }
         }

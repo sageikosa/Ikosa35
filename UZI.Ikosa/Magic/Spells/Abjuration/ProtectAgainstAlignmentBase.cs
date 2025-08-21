@@ -223,7 +223,9 @@ namespace Uzi.Ikosa.Magic.Spells
         public void ReactToProcessBySideEffect(CoreProcess process)
         {
             if (!Blocking)
+            {
                 return;
+            }
 
             if (process is CoreActivity _activity)
             {
@@ -250,7 +252,9 @@ namespace Uzi.Ikosa.Magic.Spells
         public void ReactToProcessBySuppress(CoreProcess process)
         {
             if (!Blocking)
+            {
                 return;
+            }
 
             if (process is CoreActivity _activity)
             {

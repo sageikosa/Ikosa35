@@ -91,7 +91,9 @@ namespace Uzi.Ikosa.Magic.Spells
         public void Deactivate(IAdjunctTracker source, IAdjunctable target, int subMode, object deactivateSource)
         {
             if (source.ActiveAdjunctObject is Delta _penalty)
+            {
                 _penalty.DoTerminate();
+            }
         }
 
         public IEnumerable<StepPrerequisite> GetDurableModePrerequisites(int subMode, Interaction interact)

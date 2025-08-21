@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using Uzi.Ikosa.Advancement;
 using Uzi.Core;
 using Uzi.Ikosa.Interactions;
@@ -75,7 +75,9 @@ namespace Uzi.Ikosa.Feats
         public void DoTerminate()
         {
             if (!IsActive)
+            {
                 _Term.DoTerminate();
+            }
         }
 
         public void AddTerminateDependent(IDependOnTerminate subscriber)

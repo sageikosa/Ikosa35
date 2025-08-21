@@ -83,18 +83,24 @@ namespace Uzi.Ikosa.Workshop
                 if (weapon.IsEnhanced())
                 {
                     if (cboEnhancement.SelectedIndex != weapon.ListedEnhancement + 1)
+                    {
                         cboEnhancement.SelectedIndex = weapon.ListedEnhancement + 1;
+                    }
                 }
                 else
                 {
                     if (cboEnhancement.SelectedIndex != 1)
+                    {
                         cboEnhancement.SelectedIndex = 1;
+                    }
                 }
             }
             else
             {
                 if (cboEnhancement.SelectedIndex != 0)
+                {
                     cboEnhancement.SelectedIndex = 0;
+                }
             }
             ProjectileWeapon?.DoAugmentationsChanged();
         }
@@ -165,7 +171,9 @@ namespace Uzi.Ikosa.Workshop
 
                             // remove all old ones
                             foreach (var _a in _exist)
+                            {
                                 Weapon.RemoveAdjunct(_a);
+                            }
                         }
                     }
                     else
@@ -187,7 +195,10 @@ namespace Uzi.Ikosa.Workshop
 
             // remove
             foreach (var _a in _list)
+            {
                 Weapon.RemoveAdjunct(_a);
+            }
+
             ProjectileWeapon?.DoAugmentationsChanged();
         }
 
@@ -203,7 +214,9 @@ namespace Uzi.Ikosa.Workshop
                     .Any(_a => (_a.Augmentation.GetType().Equals(_aType))))
                 {
                     if (_augment.CanAnchor(Weapon))
+                    {
                         e.CanExecute = true;
+                    }
                 }
             }
             e.Handled = true;
@@ -226,7 +239,9 @@ namespace Uzi.Ikosa.Workshop
             {
                 var _adjunct = lstAdjuncts.SelectedItem as Adjunct;
                 if (_adjunct.CanUnAnchor())
+                {
                     e.CanExecute = true;
+                }
             }
             e.Handled = true;
         }

@@ -35,13 +35,17 @@ namespace Uzi.Ikosa.Workshop
         void GemEditor_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
             if (Gem != null)
+            {
                 cboMaterial.SelectedItem = cboMaterial.Items.OfType<ComboBoxItem>().FirstOrDefault(_cbi => _cbi.Tag.GetType().Equals(Gem.ItemMaterial.GetType()));
+            }
         }
 
         private void cboMaterial_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (Gem != null)
+            {
                 Gem.ItemMaterial = (cboMaterial.SelectedItem as ComboBoxItem).Tag as Material;
+            }
         }
 
         #region Double text field validation

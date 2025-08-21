@@ -141,7 +141,9 @@ namespace Uzi.Ikosa.Adjuncts
         {
             // no spell-cast, no command-word, no spell-trigger, no spell-completion
             if (action is CastSpell)
+            {
                 return true;
+            }
 
             // Balance, Escape Artist, Intimidate, and Ride can be used
             if ((source is BalanceSkill)
@@ -179,7 +181,9 @@ namespace Uzi.Ikosa.Adjuncts
         {
             // time's up
             if (!IsExternal && (timeVal >= _Expiration))
+            {
                 Eject();
+            }
         }
     }
 }

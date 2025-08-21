@@ -15,7 +15,10 @@ namespace Uzi.Ikosa.Actions
             : base(process)
         {
             foreach (var _pre in preReqs)
+            {
                 _PendingPreRequisites.Enqueue(_pre);
+            }
+
             process.AppendPreEmption(this);
             _SuccessCtrl = new ChangeController<bool>(this, true);
         }

@@ -37,10 +37,12 @@ namespace Uzi.Ikosa.Actions
             if (_actor != null)
             {
                 if (IkosaStatics.ProcessManager.LocalTurnTracker?.GetBudget(_actor.ID) is LocalActionBudget _budget)
+                {
                     return (from _act in _budget.GetActions()
                             where _act.Action.ActionSource.ID == self.ActionID
                             && _act.Action.Key.Equals(self.ActionKey, StringComparison.OrdinalIgnoreCase)
                             select _act.Action).OfType<ActionBase>().FirstOrDefault();
+                }
             }
             return null;
         }

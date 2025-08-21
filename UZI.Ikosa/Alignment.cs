@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Text;
 
 namespace Uzi.Ikosa
@@ -31,11 +31,16 @@ namespace Uzi.Ikosa
             if (axialAlignment.IsAxial)
             {
                 if (axialAlignment.Ethicality != GoodEvilAxis.Neutral)
+                {
                     return axialAlignment.Ethicality == Ethicality;
+                }
+
                 return axialAlignment.Orderliness == Orderliness;
             }
             else
+            {
                 return false;
+            }
         }
 
         /// <summary>One (and only one) of the alignment axes must be neutral</summary>
@@ -72,14 +77,22 @@ namespace Uzi.Ikosa
         {
             var _affinity = new StringBuilder();
             if (_Orderliness == LawChaosAxis.Lawful)
+            {
                 _affinity.Append(@"Axiomatic");
+            }
             else if (_Orderliness == LawChaosAxis.Chaotic)
+            {
                 _affinity.Append(@"Anarchic");
+            }
 
             if (_Ethical == GoodEvilAxis.Good)
+            {
                 _affinity.Append(@" Holy");
+            }
             else if (_Ethical == GoodEvilAxis.Evil)
+            {
                 _affinity.Append(@" Unholy");
+            }
 
             return _affinity.ToString().TrimStart(null);
         }
@@ -91,10 +104,14 @@ namespace Uzi.Ikosa
         {
             var _neutral = new StringBuilder();
             if (_Orderliness != LawChaosAxis.Neutral)
+            {
                 _neutral.Append(_Orderliness.ToString());
+            }
 
             if (_Ethical != GoodEvilAxis.Neutral)
+            {
                 _neutral.AppendFormat(@" {0}", _Ethical.ToString());
+            }
 
             return _neutral.ToString().TrimStart(null);
         }
@@ -107,7 +124,9 @@ namespace Uzi.Ikosa
             {
                 // conventionally, true neutral
                 if (_Orderliness == LawChaosAxis.Neutral)
+                {
                     return @"true neutral";
+                }
             }
             return $@"{_Orderliness } {_Ethical }";
         }
@@ -117,7 +136,10 @@ namespace Uzi.Ikosa
         public bool IsMatchingAxial(Alignment comparitor)
         {
             if (IsNeutral)
+            {
                 return comparitor.IsNeutral;
+            }
+
             return ((Ethicality == GoodEvilAxis.Neutral) || (Ethicality == comparitor.Ethicality))
                 && ((Orderliness == LawChaosAxis.Neutral) || (Orderliness == comparitor.Orderliness));
         }
@@ -141,14 +163,22 @@ namespace Uzi.Ikosa
         {
             bool _opposable;
             if (Ethicality == GoodEvilAxis.Neutral)
+            {
                 _opposable = true;
+            }
             else
+            {
                 _opposable = (Ethicality != comparitor.Ethicality);
+            }
 
             if (Orderliness == LawChaosAxis.Neutral)
+            {
                 _opposable &= true;
+            }
             else
+            {
                 _opposable &= (Orderliness != comparitor.Orderliness);
+            }
 
             return _opposable;
         }

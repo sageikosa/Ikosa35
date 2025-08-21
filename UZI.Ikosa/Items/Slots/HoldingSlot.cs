@@ -66,7 +66,10 @@ namespace Uzi.Ikosa.Items
                     {
                         // if the action is in budget, yield it...
                         if (_budget.HasTime(_slottedItem.SlottingTime))
+                        {
                             yield return new DonSlottedItem(this, _wrapper, _avail, $@"3{_sx:0#}");
+                        }
+
                         _sx++;
                     }
                 }

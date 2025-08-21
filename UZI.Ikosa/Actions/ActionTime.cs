@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using Uzi.Core.Dice;
 using Uzi.Ikosa.Contracts;
 using Uzi.Ikosa.Time;
@@ -16,9 +16,13 @@ namespace Uzi.Ikosa
         {
             ActionTimeType = actionType;
             if (actionType.Equals(TimeType.Span))
+            {
                 _Span = 1;
+            }
             else
+            {
                 _Span = 0;
+            }
         }
 
         public ActionTime(double spanLength)

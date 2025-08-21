@@ -85,9 +85,13 @@ namespace Uzi.Ikosa.Adjuncts
             get
             {
                 if (Incubating)
+                {
                     return Disease.IncubationUnitFactor.BaseUnitFactor;
+                }
                 else
+                {
                     return Day.UnitFactor;
+                }
             }
         }
 
@@ -152,7 +156,9 @@ namespace Uzi.Ikosa.Adjuncts
             if (Save.Success)
             {
                 if (IsInfected)
+                {
                     Diseased.SaveSuccess += 1;
+                }
 
                 // success means disease doesn't take hold
             }
@@ -201,7 +207,9 @@ namespace Uzi.Ikosa.Adjuncts
         protected override bool OnDoStep()
         {
             if (IsComplete)
+            {
                 return true;
+            }
 
             var _roll = GetPrerequisite<RollPrerequisite>();
             if (_roll != null)
@@ -265,7 +273,9 @@ namespace Uzi.Ikosa.Adjuncts
         protected override bool OnDoStep()
         {
             if (IsComplete)
+            {
                 return true;
+            }
 
             var _rollers = (from _roll in Diseased.Disease.GetDamageRollers()
                             let _pre = AllPrerequisites<RollPrerequisite>(_roll.Key).FirstOrDefault()

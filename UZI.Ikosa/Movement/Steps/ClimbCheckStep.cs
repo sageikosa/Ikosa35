@@ -26,7 +26,9 @@ namespace Uzi.Ikosa.Movement
 
                 // must use accelerated?
                 if (_Climb.IsAccelerated)
+                {
                     _PreReq.IsUsingPenalty = true;
+                }
 
                 if (!_Climb.IsCheckRequired)
                 {

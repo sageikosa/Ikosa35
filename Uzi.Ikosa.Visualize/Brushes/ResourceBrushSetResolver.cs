@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace Uzi.Visualize
 {
@@ -10,9 +8,13 @@ namespace Uzi.Visualize
         public ResourceBrushSetResolver(IEnumerable<IResolveBrushCollection> resolvers)
         {
             if (resolvers != null)
+            {
                 _Resolvers = resolvers.ToList();
+            }
             else
-                _Resolvers = new List<IResolveBrushCollection>();
+            {
+                _Resolvers = [];
+            }
         }
 
         private readonly List<IResolveBrushCollection> _Resolvers;
@@ -26,7 +28,9 @@ namespace Uzi.Visualize
             {
                 var _set = _resource.GetBrushCollection(key);
                 if (_set != null)
+                {
                     return _set;
+                }
             }
             return null;
         }

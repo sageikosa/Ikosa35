@@ -277,7 +277,9 @@ namespace Uzi.Ikosa.Magic.Spells
         {
             // last feedback processor
             if (typeof(RemoveAdjunctData).Equals(interactType))
+            {
                 return true;
+            }
 
             return false;
         }

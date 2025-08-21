@@ -1,4 +1,4 @@
-using System.Linq;
+﻿using System.Linq;
 using Uzi.Core;
 using Uzi.Ikosa.Actions;
 using Uzi.Ikosa.Items.Weapons;
@@ -21,7 +21,10 @@ namespace Uzi.Ikosa.Items.Weapons
         public static IThrowableWeapon GetThrowable(this IMeleeWeapon self)
         {
             if (self is IThrowableWeapon)
+            {
                 return self as IThrowableWeapon;
+            }
+
             return self.Adjuncts.OfType<Throwing>().FirstOrDefault(_t => _t.IsActive);
         }
     }

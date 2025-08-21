@@ -157,7 +157,9 @@ namespace Uzi.Ikosa.Magic.Spells
         {
             PowerBattery.UseCharges(amount);
             if (PowerBattery.AvailableCharges <= 0)
+            {
                 MagicPowerEffect.Eject();
+            }
         }
     }
 }

@@ -1,6 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System;
 using System.Windows;
 
 namespace Uzi.Visualize
@@ -32,7 +30,9 @@ namespace Uzi.Visualize
                 return ((new Point(x * 5d, y * 5d)) - _ScaleDiscCenter).LengthSquared <= _SquaredRadius;
             }
             else
+            {
                 return false;
+            }
         }
 
         public override IGeometricRegion Move(ICellLocation offset)

@@ -117,7 +117,9 @@ namespace Uzi.Ikosa.Adjuncts
         {
             // if the initial contained can hold the object, OK...
             if (start.CanHold(self))
+            {
                 return start;
+            }
 
             // otherwise look for the container it is within
             var _contained = start.ContainedWithin();

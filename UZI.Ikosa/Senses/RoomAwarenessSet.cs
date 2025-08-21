@@ -74,7 +74,9 @@ namespace Uzi.Ikosa.Senses
             if (_effectBest.Any())
             {
                 if (AnyLineOfEffect(sensorContext, pts, outerCells, _effectBest, sensePresence))
+                {
                     return true;
+                }
             }
             return false;
         }
@@ -127,7 +129,9 @@ namespace Uzi.Ikosa.Senses
         private void MergeIn(ConcurrentDictionary<Guid, Guid> dest, IEnumerable<LocalCellGroup> source)
         {
             foreach (var _s in source)
+            {
                 dest.TryAdd(_s.ID, _s.ID);
+            }
         }
 
         private List<LocalCellGroup> IncludeBackgrounds(ConcurrentDictionary<Guid, Guid> render, List<LocalCellGroup> groups, LocalMap map)

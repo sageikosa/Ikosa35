@@ -50,7 +50,10 @@ namespace Uzi.Ikosa.Objects
                         {
                             var _out = rel % 4;
                             if (_out < 0)
+                            {
                                 _out += 4;
+                            }
+
                             return _out;
                         };
 

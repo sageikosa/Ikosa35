@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -46,13 +46,13 @@ namespace Uzi.Ikosa.Tactical
         private VisualResources _Resources = null;
 
         // configuration control
-        private Dictionary<string, CellMaterial> _CellMaterials = new Dictionary<string, CellMaterial>();
-        private Dictionary<Guid, string> _NamedKeys = new Dictionary<Guid, string>();
+        private Dictionary<string, CellMaterial> _CellMaterials = [];
+        private Dictionary<Guid, string> _NamedKeys = [];
         private CellSpaceSet _Spaces = null;
         private PanelPalette _Panels = null;
 
         // semi-morphable geometry
-        private Dictionary<string, AmbientLight> _AmbientLights = new Dictionary<string, AmbientLight>();
+        private Dictionary<string, AmbientLight> _AmbientLights = [];
         private RoomTracker _Tracker = null;
         private BackgroundCellGroupSet _Backgrounds;
         private RoomSet _Rooms;
@@ -77,7 +77,7 @@ namespace Uzi.Ikosa.Tactical
             _Backgrounds = new BackgroundCellGroupSet(this);
             _Rooms = new RoomSet(this);
             _Shadings = new ShadingZoneSet(this);
-            _Spaces = new CellSpaceSet();
+            _Spaces = [];
             _Panels = new PanelPalette();
             _Resources = new VisualResources(this, @"Resources");
             ContextSet.Add(new MapContext(@"Prime", this));
@@ -170,7 +170,9 @@ namespace Uzi.Ikosa.Tactical
 
             // add all new
             foreach (var _room in _groups.OfType<Room>())
+            {
                 _room.AddLinks();
+            }
 
             // let every local cell group propogate before finalizing locator effects and cell shadings
             // NOTE: notifyLighting = false allows the following three blocks to run from here for all groups
@@ -194,7 +196,9 @@ namespace Uzi.Ikosa.Tactical
             // update background shading
             var _bgGroup = _groups.OfType<BackgroundCellGroup>().FirstOrDefault();
             if (_bgGroup != null)
+            {
                 _bgGroup.RefreshTerrainShading();
+            }
 
             // TODO: should probably just do for all sensors...
             AwarenessSet.RecalculateAllSensors(this, _notifiers, false);
@@ -248,12 +252,16 @@ namespace Uzi.Ikosa.Tactical
                                       select _c)
                 {
                     if (_core is ITrackTime _tTrack)
+                    {
                         _tTrack.TrackTime(CurrentTime, direction);
+                    }
 
                     if (_core is IAdjunctable _iAdj)
                     {
                         foreach (var _adj in _iAdj.Adjuncts.OfType<ITrackTime>().ToList())
+                        {
                             _adj.TrackTime(CurrentTime, direction);
+                        }
                     }
                 }
             };
@@ -295,7 +303,9 @@ namespace Uzi.Ikosa.Tactical
                 {
                     ref readonly var _struct = ref _grp.GetCellSpace(z, y, x);
                     if (_struct.CellSpace != null)
+                    {
                         return ref _struct;
+                    }
 
                     // check linked rooms
                     foreach (var _room in _grp.Links.TouchingRooms)
@@ -326,7 +336,9 @@ namespace Uzi.Ikosa.Tactical
                 foreach (var _bgSet in Backgrounds.All())
                 {
                     if (_bgSet.ContainsCell(z, y, x))
+                    {
                         return ref _bgSet.TemplateCell;
+                    }
                 }
 
                 // no base cell-space anymore (it is in the backgrounds)
@@ -378,7 +390,9 @@ namespace Uzi.Ikosa.Tactical
                 foreach (var _bgSet in Backgrounds.All())
                 {
                     if (_bgSet.ContainsCell(location))
+                    {
                         return ref _bgSet.TemplateCell;
+                    }
                 }
 
                 // no base cell-space anymore (it is in the backgrounds)
@@ -404,7 +418,9 @@ namespace Uzi.Ikosa.Tactical
             foreach (var _bgSet in Backgrounds.All())
             {
                 if (_bgSet.ContainsCell(z, y, x))
+                {
                     return new SegmentRef(z, y, x, entry.Distance, _bgSet.TemplateCell, entry.Point3D, exit.Point3D, null);
+                }
             }
 
             // no base cell-space anymore (it is in the backgrounds)
@@ -550,7 +566,9 @@ namespace Uzi.Ikosa.Tactical
             if (climbing)
             {
                 if (_mod == 0d)
+                {
                     return 5d;
+                }
                 else if (d1 < 0d)
                 {
                     return 0d - _mod;
@@ -563,7 +581,9 @@ namespace Uzi.Ikosa.Tactical
             else
             {
                 if (_mod == 0d)
+                {
                     return -5d;
+                }
                 else if (d1 < 0d)
                 {
                     return (-5d - _mod) % 5d;
@@ -602,7 +622,9 @@ namespace Uzi.Ikosa.Tactical
 
                         // return value if not done
                         if (_zClimb ? _zPt.Z < pt2.Z : _zPt.Z > pt2.Z)
+                        {
                             return new DistantPoint3D(_zPt, pt1);
+                        }
 
                         // otherwise nul
                         return new DistantPoint3D(false);
@@ -625,7 +647,9 @@ namespace Uzi.Ikosa.Tactical
 
                         // return value if not done
                         if (_yClimb ? _yPt.Y < pt2.Y : _yPt.Y > pt2.Y)
+                        {
                             return new DistantPoint3D(_yPt, pt1);
+                        }
 
                         // otherwise null
                         return new DistantPoint3D(false);
@@ -648,7 +672,9 @@ namespace Uzi.Ikosa.Tactical
 
                         // return value if not done
                         if (_xClimb ? _xPt.X < pt2.X : _xPt.X > pt2.X)
+                        {
                             return new DistantPoint3D(_xPt, pt1);
+                        }
 
                         // otherwise null
                         return new DistantPoint3D(false);
@@ -747,7 +773,10 @@ namespace Uzi.Ikosa.Tactical
 
             // terminal (if counted at least one extra point)
             if (_px > 0)
+            {
                 AddSegment(_cells, _aPt, _aPt);
+            }
+
             return _cells;
         }
         #endregion
@@ -767,7 +796,7 @@ namespace Uzi.Ikosa.Tactical
             AxisSnap _makeFlag(int part)
                 => part < 0 ? AxisSnap.Low : (part > 0 ? AxisSnap.High : AxisSnap.None);
 
-            var _exclusions = (exclude ?? new Dictionary<Guid, ICore>())
+            var _exclusions = (exclude ?? [])
                 .Where(_x => _x.Value is IMoveAlterer)
                 .ToDictionary(_ima => _ima.Key, _ima => _ima.Value);
 
@@ -816,7 +845,9 @@ namespace Uzi.Ikosa.Tactical
 
             // if had any affecters, make sure they allow occupation
             if (_affecters.Any())
+            {
                 return _affecters.All(_ma => _ma.CanOccupy(movement, region, coreObj));
+            }
 
             return true;
         }
@@ -943,7 +974,9 @@ namespace Uzi.Ikosa.Tactical
             {
                 var _lSet = SegmentCells(source, _corner, _factory, planar);
                 if (_lSet.IsLineOfEffect)
+                {
                     yield return _lSet;
+                }
             }
             yield break;
         }
@@ -1003,12 +1036,14 @@ namespace Uzi.Ikosa.Tactical
                                 };
                                 foreach (var _cnKvp in ObserveFeedback.YieldConnectedResults(_kvp.Value, _obj, _osFeed,
                                     creature, sensors, _targetLocator, _sensorLocator, _distance))
+                                {
                                     yield return new AwarenessResult
                                     {
                                         ID = _cnKvp.Key,
                                         AwarenessLevel = _cnKvp.Value,
                                         Locator = _targetLocator
                                     };
+                                }
                             }
                         }
                         else
@@ -1024,12 +1059,14 @@ namespace Uzi.Ikosa.Tactical
                                 };
                                 foreach (var _cnKvp in ObserveFeedback.YieldConnectedResults(_kvp.Value, _obj, _oFeed,
                                     creature, sensors, _targetLocator, _sensorLocator, _distance))
+                                {
                                     yield return new AwarenessResult
                                     {
                                         ID = _cnKvp.Key,
                                         AwarenessLevel = _cnKvp.Value,
                                         Locator = _targetLocator
                                     };
+                                }
                             }
                         }
                     }
@@ -1073,7 +1110,10 @@ namespace Uzi.Ikosa.Tactical
             set
             {
                 if (value == null)
+                {
                     return;
+                }
+
                 if (!(_NameManager?.CanUseName(value, typeof(LocalMap)) ?? false))
                 {
                     return;
@@ -1165,7 +1205,9 @@ namespace Uzi.Ikosa.Tactical
                 var _rscPart = _MapPart.GetRelationships().RelatedPackageParts()
                     .FirstOrDefault(_p => _p.RelationshipType == VisualResources.VisualResourcesRelation);
                 if (_rscPart != null)
+                {
                     _Resources.RefreshPart(_rscPart.Part);
+                }
             }
         }
         #endregion
@@ -1417,6 +1459,7 @@ namespace Uzi.Ikosa.Tactical
             // outer proximal grip, ledges at edges...
             // any of the nearby edges as a last ditch dangling grip
             if (_grip.Difficulty == null)
+            {
                 foreach (var _rslt in (from _eco in AnchorFaceListHelper.EdgeCellOffsets().AsParallel()
                                        let _cell = cell.Add(_eco)
                                        where !region.ContainsCell(_cell) // only cells outside the region
@@ -1437,6 +1480,7 @@ namespace Uzi.Ikosa.Tactical
                     // TODO: since we had to use an edge, increase difficulty...???
                     // TODO: unless the edge is a "ledge" (support against gravity), in which case it decreases difficulty
                 }
+            }
 
             return _grip;
         }
@@ -1666,7 +1710,9 @@ namespace Uzi.Ikosa.Tactical
 
             // small creature climbing works with surface adhesion
             if (_critter.Body.Sizer.Size.Order < Size.Medium.Order)
+            {
                 return SmallClimbInDifficulty(coreObj, startRegion, endRegion, movement, moveTowards, lastCrossings, grippers, gravity, baseFace, planar);
+            }
 
             var _reach = _critter.Body.Height;
 
@@ -1759,7 +1805,10 @@ namespace Uzi.Ikosa.Tactical
                            select _mo).ToList();
                 var _max = 0d;
                 if (_openings.Count > 0)
+                {
                     _max = _openings.Max(_o => _o.Blockage);
+                }
+
                 if ((_openings.Count == 0) || (_max < 1d))
                 {
                     // direct support from cell "underneath"?
@@ -1768,7 +1817,10 @@ namespace Uzi.Ikosa.Tactical
                     var _cMask = _cs.HedralGripping(movement, blockDirection).Invert();
                     var _holdBlock = _hs.HedralGripping(movement, _revBlockage).Intersect(_cMask).GripCount() / 64d;
                     if (_holdBlock > _max)
+                    {
                         _max = _holdBlock;
+                    }
+
                     if (_max < 1d)
                     {
                         // support from IMoveAffecters "underneath"
@@ -1785,7 +1837,9 @@ namespace Uzi.Ikosa.Tactical
                         {
                             var _imaBlock = _ima.Max(_i => _i.HedralTransitBlocking(_mti));
                             if (_imaBlock > _max)
+                            {
                                 _max = _imaBlock;
+                            }
                         }
                     }
                 }

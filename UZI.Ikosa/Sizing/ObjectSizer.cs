@@ -13,17 +13,17 @@ namespace Uzi.Ikosa
             : base(size)
         {
             _Core = coreObj;
-            _Containers = new List<IObjectContainer>();
+            _Containers = [];
         }
 
         public ObjectSizer(Size size, ICoreObject coreObj, IObjectContainer container)
             : base(size)
         {
             _Core = coreObj;
-            _Containers = new List<IObjectContainer>
-            {
+            _Containers =
+            [
                 container
-            };
+            ];
         }
         #endregion
 

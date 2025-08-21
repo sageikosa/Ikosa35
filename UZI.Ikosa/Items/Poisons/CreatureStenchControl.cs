@@ -44,10 +44,7 @@ namespace Uzi.Ikosa.Items
 
         public void DisableStench()
         {
-            if (_EndTime == null)
-            {
-                _EndTime = (Anchor?.GetCurrentTime() ?? 0d) + LingerRounds;
-            }
+            _EndTime ??= (Anchor?.GetCurrentTime() ?? 0d) + LingerRounds;
         }
 
         protected override void OnActivate(object source)

@@ -92,7 +92,10 @@ namespace Uzi.Ikosa.Movement
 
                 // only provide non lethal roller if something is left
                 if (_non > 0)
+                {
                     return new DiceRoller(Convert.ToInt32(Math.Round(_non, MidpointRounding.AwayFromZero)), IsSofterNonLethal ? (byte)3 : (byte)6);
+                }
+
                 return null;
             }
         }
@@ -124,8 +127,10 @@ namespace Uzi.Ikosa.Movement
             {
                 _FallTrack += amount;
                 if (_FallTrack < 0)
+                {
                     // zero out damage
                     _FallTrack = 0;
+                }
             }
             else
             {

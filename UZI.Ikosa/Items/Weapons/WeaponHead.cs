@@ -1,4 +1,4 @@
-using Uzi.Core.Contracts;
+﻿using Uzi.Core.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -38,7 +38,10 @@ namespace Uzi.Ikosa.Items.Weapons
             _CriticalRangeFactor = new DeltableQualifiedDelta(1, @"Critical Range", typeof(WeaponHead));
             _CriticalDamageFactor = criticalMultiplier;
             if (ContainingWeapon != null)
+            {
                 ContainingWeapon.ItemSizer.AddChangeMonitor(this);
+            }
+
             _DamageBonus.AddChangeMonitor(this);
             _CriticalRangeFactor.AddChangeMonitor(this);
             _TotalEnhancement.AddChangeMonitor(this);
@@ -95,22 +98,28 @@ namespace Uzi.Ikosa.Items.Weapons
             if (!MediumDamageRollString.Equals(@"-"))
             {
                 if (ContainingWeapon != null)
+                {
                     yield return new DamageRollPrerequisite(this, attack, string.Concat(keyFix, @"Weapon"), MyName,
                         RollerProgression()[MySizer.EffectiveCreatureSize.Order], false, _nonLethal, @"Weapon", minGroup);
+                }
 
                 // weapon damage bonuses
                 var _wpnBonus = DamageBonus.QualifiedValue(attack);
                 if (_wpnBonus != 0)
+                {
                     yield return new DamageRollPrerequisite(typeof(DeltableQualifiedDelta), attack, string.Concat(keyFix, @"Enhancement"), @"Enhancement",
                         new ConstantRoller(_wpnBonus), false, _nonLethal, @"Bonus", minGroup);
+                }
 
                 // creature-based damage bonuses
                 if ((MyPossessor != null) && (ContainingWeapon?.MainSlot != null))
                 {
                     var _extraWpnDmg = MyPossessor.ExtraWeaponDamage.QualifiedValue(attack);
                     if (_extraWpnDmg != 0)
+                    {
                         yield return new DamageRollPrerequisite(typeof(Creature), attack, string.Concat(keyFix, @"Creature"), @"Creature",
                             new ConstantRoller(_extraWpnDmg), false, _nonLethal, @"Creature", minGroup);
+                    }
                 }
             }
             yield break;
@@ -129,11 +138,16 @@ namespace Uzi.Ikosa.Items.Weapons
                                  where _wed.PoweredUp
                                  from _edr in _wed.DamageRollers(attack)
                                  select _edr)
+            {
                 yield return _dmg;
+            }
 
             // extra damage due to creature
             foreach (var _dmg in GetDamageRollPrerequisites.GetDamageRollFeedback(MyPossessor, attack))
+            {
                 yield return _dmg;
+            }
+
             yield break;
         }
 
@@ -144,7 +158,9 @@ namespace Uzi.Ikosa.Items.Weapons
 
             // base weapon damage
             foreach (var _roll in BaseDamageRollers(attack, string.Empty, 0))
+            {
                 yield return _roll;
+            }
 
             if (attack != null)
             {
@@ -156,14 +172,19 @@ namespace Uzi.Ikosa.Items.Weapons
                     for (var _cx = 1; _cx < _multiplier; _cx++)
                     {
                         foreach (var _roll in BaseDamageRollers(attack, $@"Critical.{_cx}.", _cx))
+                        {
                             yield return _roll;
+                        }
                     }
                 }
             }
 
             // extra damage effects due to the weapon...
             foreach (var _dmgRoll in ExtraDamageRollers(attack))
+            {
                 yield return _dmgRoll;
+            }
+
             yield break;
         }
         #endregion
@@ -188,9 +209,13 @@ namespace Uzi.Ikosa.Items.Weapons
                     // exclude 0 constants, negatives don't get a plus
                     var _val = (_roll.Roller as ConstantRoller).MaxRoll;
                     if (_val > 0)
+                    {
                         _build.AppendFormat(@"{0}{1}", (_build.Length > 0 ? @"+" : string.Empty), _roll.ToString());
+                    }
                     else if (_val < 0)
+                    {
                         _build.Append(_roll.ToString());
+                    }
                 }
 
             }
@@ -246,9 +271,13 @@ namespace Uzi.Ikosa.Items.Weapons
                     if (_dbl.IsDualWielding)
                     {
                         if (this == _dbl.MainHead)
+                        {
                             yield return _dbl.MainSlot;
+                        }
                         else
+                        {
                             yield return _dbl.SecondarySlot;
+                        }
                     }
                     else
                     {
@@ -269,7 +298,9 @@ namespace Uzi.Ikosa.Items.Weapons
                 {
                     // all slots
                     foreach (var _slot in ContainingWeapon.AllSlots)
+                    {
                         yield return _slot;
+                    }
                 }
                 yield break;
             }
@@ -353,7 +384,10 @@ namespace Uzi.Ikosa.Items.Weapons
                 // damage total
                 var _deliverDamage = new DeliverDamageData(_critter, _damages, false, _atkFB.CriticalHit);
                 if (secondaries.Any())
+                {
                     _deliverDamage.Secondaries.AddRange(secondaries);
+                }
+
                 result.EnqueueNotify(
                     new DealingDamageNotify(_critter.ID, @"Dealing Damage", GetInfoData.GetInfoFeedback(this, _critter),
                     _damages.Select(_d => _d.ToDamageInfo()).ToList()),
@@ -412,11 +446,15 @@ namespace Uzi.Ikosa.Items.Weapons
                     {
                         // if there are no matching bindKeys, add the prerequisite
                         if (!_unq.Contains(_rollPre.BindKey))
+                        {
                             yield return _rollPre;
+                        }
                     }
                     else
+                    {
                         // add it!
                         yield return _rollPre;
+                    }
 
                     // keys
                     _unq.Add(_rollPre.BindKey);
@@ -441,11 +479,15 @@ namespace Uzi.Ikosa.Items.Weapons
                         {
                             // if there are no matching bindKeys, add the prerequisite
                             if (!_unq.Contains(_pre.BindKey))
+                            {
                                 yield return _pre;
+                            }
                         }
                         else
+                        {
                             // add it!
                             yield return _pre;
+                        }
 
                         // keys
                         _unq.Add(_pre.BindKey);

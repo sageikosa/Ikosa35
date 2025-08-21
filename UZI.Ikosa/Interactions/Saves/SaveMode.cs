@@ -17,7 +17,7 @@ namespace Uzi.Ikosa.Interactions
             _Effect = saveEffect;
             _Difficulty = difficulty;
             _Object = affectsObject;
-            _Deltas = new List<IQualifyDelta>();
+            _Deltas = [];
         }
 
         public SaveMode(SaveType saveType, SaveEffect saveEffect, DeltaCalcInfo difficulty)
@@ -26,7 +26,7 @@ namespace Uzi.Ikosa.Interactions
             _Effect = saveEffect;
             _Difficulty = difficulty;
             _Object = SaveType == SaveType.Reflex;
-            _Deltas = new List<IQualifyDelta>();
+            _Deltas = [];
         }
         #endregion
 

@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Windows.Media.Media3D;
 using System.Windows.Media.Imaging;
 using System.Windows.Media;
@@ -32,7 +30,7 @@ namespace Uzi.Visualize
             System.Windows.Application.Current.Dispatcher.Invoke(() =>
              {
 
-                 _Materials = new Dictionary<VisualEffect, System.Windows.Media.Media3D.Material>();
+                 _Materials = [];
                  var _image = new BitmapImage(new Uri(@"pack://application:,,,/Uzi.Visualize;component/Images/NoModel.png"));
                  var _brush = new ImageBrush(_image);
                  _brush.Freeze();

@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Linq;
 
 namespace Uzi.Visualize
 {
@@ -30,11 +27,17 @@ namespace Uzi.Visualize
         {
             bool _hiFlag = (param & 32) == 32;
             if ((param & 16) == 16)
+            {
                 return _hiFlag ? AnchorFace.ZHigh : AnchorFace.ZLow;
+            }
             else if ((param & 8) == 8)
+            {
                 return _hiFlag ? AnchorFace.YHigh : AnchorFace.YLow;
+            }
             else
+            {
                 return _hiFlag ? AnchorFace.XHigh : AnchorFace.XLow;
+            }
         }
         #endregion
 
@@ -100,25 +103,40 @@ namespace Uzi.Visualize
             if (!openings.Any(_o => _o.GetAxis() == Axis.X))
             {
                 if (openings.Any(_o => _o == AnchorFace.YLow))
+                {
                     _axis += 8; // invert primary
+                }
+
                 if (openings.Any(_o => _o == AnchorFace.ZLow))
+                {
                     _axis += 16; // invert secondary
+                }
             }
             else if (!openings.Any(_o => _o.GetAxis() == Axis.Y))
             {
                 _axis = 1;
                 if (openings.Any(_o => _o == AnchorFace.ZLow))
+                {
                     _axis += 8; // invert primary
+                }
+
                 if (openings.Any(_o => _o == AnchorFace.XLow))
+                {
                     _axis += 16; // invert secondary
+                }
             }
             else if (!openings.Any(_o => _o.GetAxis() == Axis.Z))
             {
                 _axis = 2;
                 if (openings.Any(_o => _o == AnchorFace.XLow))
+                {
                     _axis += 8; // invert primary
+                }
+
                 if (openings.Any(_o => _o == AnchorFace.YLow))
+                {
                     _axis += 16; // invert secondary
+                }
             }
             return _axis;
         }
@@ -130,9 +148,15 @@ namespace Uzi.Visualize
             var _climbOpen = GetClimbOpening(param);
             var _travelOpen = GetTravelOpening(param);
             if ((outwardFace == _climbOpen) || (outwardFace == _travelOpen))
+            {
                 return !plusSpace.IsPlusInvisible;
+            }
+
             if ((outwardFace == _climbOpen.ReverseFace()) || (outwardFace == _travelOpen.ReverseFace()))
+            {
                 return !plusSpace.IsInvisible;
+            }
+
             return !plusSpace.IsInvisible && !plusSpace.IsPlusInvisible;
         }
 
@@ -142,9 +166,15 @@ namespace Uzi.Visualize
             var _climbOpen = GetClimbOpening(param);
             var _travelOpen = GetTravelOpening(param);
             if ((outwardFace == _climbOpen) || (outwardFace == _travelOpen))
+            {
                 return !plusSpace.IsPlusInvisible;
+            }
+
             if ((outwardFace == _climbOpen.ReverseFace()) || (outwardFace == _travelOpen.ReverseFace()))
+            {
                 return !plusSpace.IsInvisible;
+            }
+
             return !plusSpace.IsInvisible || !plusSpace.IsPlusInvisible;
         }
     }

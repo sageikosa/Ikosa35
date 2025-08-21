@@ -1,4 +1,4 @@
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -14,7 +14,7 @@ namespace Uzi.Ikosa.Languages
         #region construction
         public LanguageSet()
         {
-            _LanguageSet = new Collection<Language>();
+            _LanguageSet = [];
             _UCtrl = new ChangeController<Utterance>(this, null);
             _LastUtterance = new Utterance(string.Empty, new Common(this), double.MinValue);
         }
@@ -80,7 +80,9 @@ namespace Uzi.Ikosa.Languages
             foreach (Language _lang in _LanguageSet)
             {
                 if (_lang.IsCompatible(languageType))
+                {
                     return true;
+                }
             }
             return false;
         }
@@ -96,7 +98,9 @@ namespace Uzi.Ikosa.Languages
             foreach (Language _lang in _LanguageSet)
             {
                 if (_lang.IsAlphabetCompatible(alphabet))
+                {
                     return true;
+                }
             }
             return false;
         }

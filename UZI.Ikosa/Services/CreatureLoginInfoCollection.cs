@@ -12,7 +12,7 @@ namespace Uzi.Ikosa.Services
         public CreatureLoginInfoCollection()
         {
             _Lock = new ReaderWriterLockSlim();
-            _Creatures = new Dictionary<Guid, CreatureLoginInfo>();
+            _Creatures = [];
         }
 
         #region data
@@ -29,13 +29,17 @@ namespace Uzi.Ikosa.Services
                 {
                     _Lock.EnterWriteLock();
                     if (!_Creatures.ContainsKey(critterLoginInfo.ID))
+                    {
                         _Creatures.Add(critterLoginInfo.ID, critterLoginInfo);
+                    }
                 }
             }
             finally
             {
                 if (_Lock.IsWriteLockHeld)
+                {
                     _Lock.ExitWriteLock();
+                }
             }
         }
         #endregion
@@ -47,13 +51,18 @@ namespace Uzi.Ikosa.Services
             {
                 _Lock.EnterWriteLock();
                 if (_Creatures.ContainsKey(id))
+                {
                     return _Creatures.Remove(id);
+                }
+
                 return false;
             }
             finally
             {
                 if (_Lock.IsWriteLockHeld)
+                {
                     _Lock.ExitWriteLock();
+                }
             }
         }
         #endregion
@@ -69,7 +78,9 @@ namespace Uzi.Ikosa.Services
             finally
             {
                 if (_Lock.IsWriteLockHeld)
+                {
                     _Lock.ExitWriteLock();
+                }
             }
         }
         #endregion
@@ -85,7 +96,9 @@ namespace Uzi.Ikosa.Services
             finally
             {
                 if (_Lock.IsReadLockHeld)
+                {
                     _Lock.ExitReadLock();
+                }
             }
         }
         #endregion
@@ -97,13 +110,18 @@ namespace Uzi.Ikosa.Services
             {
                 _Lock.EnterReadLock();
                 if (_Creatures.ContainsKey(id))
+                {
                     return _Creatures[id];
+                }
+
                 return null;
             }
             finally
             {
                 if (_Lock.IsReadLockHeld)
+                {
                     _Lock.ExitReadLock();
+                }
             }
         }
         #endregion

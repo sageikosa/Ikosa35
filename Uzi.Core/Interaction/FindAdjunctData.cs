@@ -29,7 +29,10 @@ namespace Uzi.Core
             foreach (var _found in (from _back in _findInteract.Feedback.OfType<FindAdjunctFeedback>()
                                     from _adj in _back.Adjuncts
                                     select _adj).Distinct())
+            {
                 yield return _found;
+            }
+
             yield break;
         }
 
@@ -40,7 +43,10 @@ namespace Uzi.Core
             foreach (var _found in (from _back in _findInteract.Feedback.OfType<FindAdjunctFeedback>()
                                     from _adj in _back.Adjuncts
                                     select _adj).Distinct())
+            {
                 yield return _found;
+            }
+
             yield break;
         }
 

@@ -37,7 +37,9 @@ namespace Uzi.Ikosa.Actions
             {
                 // multi-step destinations
                 foreach (var _multi in SelectedTargets<MultiStepDestinationInfo>(actor, action, infos))
+                {
                     yield return new MultiStepDestinationTarget(this.Key, _multi.Offset);
+                }
             }
 
             // step index variable

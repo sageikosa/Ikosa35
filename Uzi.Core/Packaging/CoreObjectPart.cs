@@ -72,7 +72,9 @@ namespace Uzi.Core
         public override void Save(Package parent)
         {
             if (_CoreObject == null)
+            {
                 ResolveObject();
+            }
 
             var _target = UriHelper.ConcatRelative(new Uri(@"/", UriKind.Relative), Name);
             _Part = parent.CreatePart(_target, @"ikosa/object", CompressionOption.Normal);
@@ -84,7 +86,9 @@ namespace Uzi.Core
         public override void Save(PackagePart parent, Uri baseUri)
         {
             if (_CoreObject == null)
+            {
                 ResolveObject();
+            }
 
             var _target = UriHelper.ConcatRelative(baseUri, Name);
             _Part = parent.Package.CreatePart(_target, @"ikosa/object", CompressionOption.Normal);

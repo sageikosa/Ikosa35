@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Timers;
 using System.Windows;
 using System.Windows.Controls;
@@ -52,7 +50,9 @@ namespace Uzi.Visualize
         {
             _Timer.Stop();
             if (_ToolTip != null)
+            {
                 _ToolTip.IsOpen = false;
+            }
         }
     }
 }

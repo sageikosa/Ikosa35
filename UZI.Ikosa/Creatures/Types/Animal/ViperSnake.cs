@@ -41,12 +41,12 @@ namespace Uzi.Ikosa.Creatures.Types
 
         static ViperSnake()
         {
-            _SizeRanges = new List<SizeRange>
-            {
+            _SizeRanges =
+            [
                 new CustomSizeRange(0, 0, Size.Tiny, 0, 0,   0, 0, 0, 0),
                 new CustomSizeRange(1, 1, Size.Small, 1, 1,  0, 2, 0, 1),
                 new CustomSizeRange(2, 2, Size.Medium, 1, 1, 0, 2, 0, 0)
-            };
+            ];
 
             // non-standard bite progression
             _BiteRollers = WeaponDamageRollers.BuildRollerProgression(

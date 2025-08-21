@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Windows.Media.Media3D;
 using System.Windows;
 
@@ -13,7 +11,10 @@ namespace Uzi.Visualize
         {
             var _group = new Transform3DGroup();
             foreach (var _t in transforms)
+            {
                 _group.Children.Add(_t);
+            }
+
             var _matrix = new MatrixTransform3D(_group.Value);
             _matrix.Freeze();
             return _matrix;
@@ -188,7 +189,10 @@ namespace Uzi.Visualize
             }
 
             if (freeze)
+            {
                 _geom.Freeze();
+            }
+
             return _geom;
         }
         #endregion
@@ -323,7 +327,10 @@ namespace Uzi.Visualize
                 _geom.TextureCoordinates.Add(new Point(1d, 0d));
             }
             if (freeze)
+            {
                 _geom.Freeze();
+            }
+
             return _geom;
         }
         #endregion
@@ -381,7 +388,9 @@ namespace Uzi.Visualize
             foreach (var _trans in trans)
             {
                 if (_trans != null)
+                {
                     _tGroup.Children.Add(_trans);
+                }
             }
             _tGroup.Freeze();
 

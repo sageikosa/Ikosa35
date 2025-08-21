@@ -28,7 +28,7 @@ namespace Uzi.Ikosa.Objects
             _OpenNumber = openNumber;
             _OpenState = this.GetOpenStatus(null, this, 0);
             _OCtrl = new ChangeController<OpenStatus>(this, _OpenState);
-            _Connected = new Collection<ICoreObject>();
+            _Connected = [];
             _COCtrl = new ChangeController<ICoreObject>(this, null);
 
             // anchor container to this...
@@ -106,7 +106,9 @@ namespace Uzi.Ikosa.Objects
             {
                 // everything inside and out if it is open (all connected stuff and recursive contents)
                 foreach (var _core in base.Accessible(principal))
+                {
                     yield return _core;
+                }
             }
         }
         #endregion
@@ -247,7 +249,10 @@ namespace Uzi.Ikosa.Objects
             get
             {
                 foreach (var _obj in Connected.Where(_o => !_o.Equals(_Container)))
+                {
                     yield return _obj;
+                }
+
                 yield break;
             }
         }
@@ -271,7 +276,10 @@ namespace Uzi.Ikosa.Objects
         {
             // anchored objects are part of load, the container's contents and the container itself
             foreach (var _core in _Connected.AsEnumerable().Union(_Container.AllLoadedObjects()))
+            {
                 yield return _core;
+            }
+
             yield return Container;
             yield break;
         }
@@ -351,7 +359,10 @@ namespace Uzi.Ikosa.Objects
 
             // openable
             if (_budget?.CanPerformBrief ?? false)
+            {
                 yield return new OpenCloseAction(this, this, @"101");
+            }
+
             yield break;
         }
 

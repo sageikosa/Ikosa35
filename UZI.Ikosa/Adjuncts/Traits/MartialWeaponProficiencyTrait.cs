@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using Uzi.Ikosa.Items.Weapons;
 using Uzi.Ikosa.Contracts;
 using Uzi.Core;
@@ -19,14 +19,19 @@ namespace Uzi.Ikosa.Adjuncts
             base.OnActivate(source);
             var _critter = Anchor as Creature;
             if (_critter != null)
+            {
                 _critter.Proficiencies.Add(this);
+            }
         }
 
         protected override void OnDeactivate(object source)
         {
             var _critter = Anchor as Creature;
             if (_critter != null)
+            {
                 _critter.Proficiencies.Remove(this);
+            }
+
             base.OnDeactivate(source);
         }
 

@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows.Documents;
@@ -64,7 +64,9 @@ namespace Uzi.Ikosa.UI
         {
             AdornerLayer _aLayer = this.Parent as AdornerLayer;
             if (_aLayer != null)
+            {
                 _aLayer.Update(AdornedElement);
+            }
         }
 
         public override GeneralTransform GetDesiredTransform(GeneralTransform transform)

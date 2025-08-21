@@ -160,7 +160,7 @@ namespace Uzi.Ikosa.Objects
                             {
                                 var _proc = new CoreTargetingProcess(new TriggeredMultiRangedAttackStep(this), this, @"Ranged Trap Multi",
                                         IsDirect
-                                        ? new List<AimTarget> { new ValueTarget<List<Locator>>(@"Direct", locators.ToList()) }
+                                        ? [new ValueTarget<List<Locator>>(@"Direct", locators.ToList())]
                                         : null);
                                 _proc.AppendCompletion(new AttackTriggerablePostTriggerStep(_proc, this));
                                 _loc.Map.ContextSet.ProcessManager.StartProcess(_proc);
@@ -172,7 +172,7 @@ namespace Uzi.Ikosa.Objects
                             {
                                 var _proc = new CoreTargetingProcess(new TriggeredRangedAttackStep(this, 1, 1), this, @"Ranged Trap",
                                         IsDirect
-                                        ? new List<AimTarget> { new ValueTarget<List<Locator>>(@"Direct", locators.ToList()) }
+                                        ? [new ValueTarget<List<Locator>>(@"Direct", locators.ToList())]
                                         : null);
                                 _proc.AppendCompletion(new AttackTriggerablePostTriggerStep(_proc, this));
                                 _loc.Map.ContextSet.ProcessManager.StartProcess(_proc);
@@ -204,11 +204,17 @@ namespace Uzi.Ikosa.Objects
                     var _line = GetSingleLine(_target.SourcePoint, _target.TargetPoint, _target.Target,
                         _target.Attack.SourceCell, _tCell, _aLoc.PlanarPresence);
                     if (_line.BlockedCell.IsActual)
+                    {
                         _tCell = _line.BlockedCell.ToCellPosition();
+                    }
                     else if (_line.UnblockedCell.IsActual)
+                    {
                         _tCell = _line.UnblockedCell.ToCellPosition();
+                    }
                     else
+                    {
                         _tCell = _target.Attack.SourceCell.ToCellPosition();
+                    }
                 }
 
                 void _dropItem(IItemBase item)

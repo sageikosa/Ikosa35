@@ -126,9 +126,15 @@ namespace Uzi.Ikosa.Objects
             {
                 base.Name = value;
                 if (PortalledObjectA != null)
+                {
                     PortalledObjectA.SetName(value);
+                }
+
                 if (PortalledObjectB != null)
+                {
                     PortalledObjectB.SetName(value);
+                }
+
                 DoPropertyChanged(nameof(Name));
             }
         }
@@ -287,7 +293,9 @@ namespace Uzi.Ikosa.Objects
         {
             // tactical
             foreach (var _act in GetTacticalActions(budget))
+            {
                 yield return _act;
+            }
 
             // figure out where the actor is
             var _actorRgn = Locator.FindFirstLocator(budget.Actor)?.GeometricRegion;
@@ -441,7 +449,10 @@ namespace Uzi.Ikosa.Objects
 
                 // base
                 foreach (ICoreObject _iCore in base.Connected)
+                {
                     yield return _iCore;
+                }
+
                 yield break;
             }
         }
@@ -452,7 +463,10 @@ namespace Uzi.Ikosa.Objects
         {
             var _portal = this.GetLocated()?.Locator.GeometricRegion;
             if (_portal != null)
+            {
                 return IsSideAccessible(inside, region, _portal);
+            }
+
             return false;
         }
 
@@ -470,19 +484,25 @@ namespace Uzi.Ikosa.Objects
             {
                 // only return stuff on the side
                 foreach (var _o in _PObjA.Accessible(principal))
+                {
                     yield return _o;
+                }
             }
 
             if (IsSideAccessible(true, _actorRgn, _portalRgn))
             {
                 // only return stuff on the side
                 foreach (var _o in _PObjB.Accessible(principal))
+                {
                     yield return _o;
+                }
             }
 
             // everything except the sides
             foreach (var _obj in Connected.Where(_o => _o != _PObjA && _o != _PObjB))
+            {
                 yield return _obj;
+            }
 
             yield break;
         }
@@ -532,7 +552,10 @@ namespace Uzi.Ikosa.Objects
             yield return PortalledObjectA;
             yield return PortalledObjectB;
             foreach (var _core in PortalledObjectA.AllLoadedObjects().Union(PortalledObjectB.AllLoadedObjects()))
+            {
                 yield return _core;
+            }
+
             yield break;
         }
 
@@ -569,7 +592,9 @@ namespace Uzi.Ikosa.Objects
         public void ValueChanged(object sender, ChangeValueEventArgs<Physical> args)
         {
             if (args.NewValue.PropertyType == Physical.PhysicalType.Weight)
+            {
                 RecalcWeight();
+            }
         }
 
         #endregion
@@ -690,7 +715,9 @@ namespace Uzi.Ikosa.Objects
             {
                 // if there is an explicit opener/closer, no default OpenCloseAction
                 if (!this.HasActiveAdjunct<OpenerCloserTarget>())
+                {
                     yield return new OpenCloseAction(this, this, @"101");
+                }
 
                 if (_budget.CanPerformTotal)
                 {

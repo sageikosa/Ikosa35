@@ -77,15 +77,25 @@ namespace Uzi.Ikosa.Movement
                 if (_tumble.Success)
                 {
                     if (_tumble.Result >= 100)
+                    {
                         FallMovement.FallReduce += 20;
+                    }
                     else if (_tumble.Result >= 60)
+                    {
                         FallMovement.FallReduce += 4;
+                    }
                     else if (_tumble.Result >= 45)
+                    {
                         FallMovement.FallReduce += 3;
+                    }
                     else if (_tumble.Result >= 30)
+                    {
                         FallMovement.FallReduce += 2;
+                    }
                     else
+                    {
                         FallMovement.FallReduce += 1;
+                    }
                 }
             }
             #endregion
@@ -105,7 +115,10 @@ namespace Uzi.Ikosa.Movement
             if (_region != null)
             {
                 if (FallMovement.CoreObject != null)
+                {
                     EnqueueNotify(new BadNewsNotify(FallMovement.CoreObject.ID, @"Movement", new Description(@"Falling", @"Started")), FallMovement.CoreObject.ID);
+                }
+
                 new FallingStep(this, Locator, _region, FallMovement, 0d, AnchorFaceListHelper.Create(Locator.GetGravityFace()), Locator.GetGravityFace());
             }
             else
@@ -117,13 +130,19 @@ namespace Uzi.Ikosa.Movement
                 {
                     // if we can sink, we should sink
                     if (FallMovement.CoreObject != null)
+                    {
                         EnqueueNotify(new BadNewsNotify(FallMovement.CoreObject.ID, @"Movement", new Description(@"Falling", @"going to sink")), FallMovement.CoreObject.ID);
+                    }
+
                     AppendFollowing(new SinkingStartStep(Process, Locator, 5));
                 }
                 else
                 {
                     if (FallMovement.CoreObject != null)
+                    {
                         EnqueueNotify(new GoodNewsNotify(FallMovement.CoreObject.ID, @"Movement", new Description(@"Falling", @"no fall to location")), FallMovement.CoreObject.ID);
+                    }
+
                     new FallingStopStep(this, Locator, FallMovement);
                 }
             }

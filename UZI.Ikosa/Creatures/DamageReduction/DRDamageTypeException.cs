@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using Uzi.Ikosa.Items.Weapons;
 using Uzi.Ikosa.Contracts;
 
@@ -36,7 +36,9 @@ namespace Uzi.Ikosa
             {
                 // if the bit-wise AND shows an intersection, then the weapon is good
                 if ((_damageType & _DamageType) > 0)
+                {
                     return true;
+                }
             }
             return false;
         }

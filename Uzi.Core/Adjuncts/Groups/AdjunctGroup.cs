@@ -39,7 +39,7 @@ namespace Uzi.Core
         private Guid _ID;
         private object _Src;
         [NonSerialized, JsonIgnore]
-        private Collection<GroupMemberAdjunct> _Members = new Collection<GroupMemberAdjunct>();
+        private Collection<GroupMemberAdjunct> _Members = [];
         #endregion
 
         /// <summary>Assigns a new ID to the group, propagating to all members</summary>
@@ -47,7 +47,9 @@ namespace Uzi.Core
         {
             _ID = Guid.NewGuid();
             foreach (var _m in Members)
+            {
                 _m.GroupID = _ID;
+            }
         }
 
         public int Count => _Members?.Count ?? 0;
@@ -61,7 +63,7 @@ namespace Uzi.Core
         /// <summary>To be called from GroupMemberAdjunct or CoreSettingContextSet</summary>
         internal void AddMember(GroupMemberAdjunct member)
         {
-            _Members ??= new Collection<GroupMemberAdjunct>();
+            _Members ??= [];
             _Members.Add(member);
             OnMemberAdded(member);
         }
@@ -86,15 +88,19 @@ namespace Uzi.Core
         public void EjectMembers()
         {
             if (_Members != null)
+            {
                 foreach (var _member in _Members.ToList())
+                {
                     _member.Eject();
+                }
+            }
         }
 
         public IEnumerable<GroupMemberAdjunct> Members
         {
             get
             {
-                _Members ??= new Collection<GroupMemberAdjunct>();
+                _Members ??= [];
                 return _Members.Select(_m => _m);
             }
         }

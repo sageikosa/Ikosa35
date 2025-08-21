@@ -10,7 +10,7 @@ namespace Uzi.Ikosa.Tactical
         public PanelPalette()
         {
 
-            _Panels = new Dictionary<string, BasePanel>();
+            _Panels = [];
         }
 
         private Dictionary<string, BasePanel> _Panels;
@@ -33,7 +33,10 @@ namespace Uzi.Ikosa.Tactical
         public bool Remove(BasePanel panel)
         {
             if (_Panels.ContainsKey(panel.Name))
+            {
                 return _Panels.Remove(panel.Name);
+            }
+
             return false;
         }
 
@@ -42,7 +45,10 @@ namespace Uzi.Ikosa.Tactical
             get
             {
                 if (_Panels.ContainsKey(key))
+                {
                     return _Panels[key];
+                }
+
                 return null;
             }
             set

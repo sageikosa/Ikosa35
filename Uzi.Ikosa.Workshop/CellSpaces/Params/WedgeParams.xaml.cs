@@ -40,7 +40,10 @@ namespace Uzi.Ikosa.Workshop
             get
             {
                 if (cboAxis.SelectedIndex > -1)
+                {
                     return (Axis)cboAxis.SelectedItem;
+                }
+
                 return Axis.Z;
             }
         }

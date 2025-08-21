@@ -21,7 +21,7 @@ namespace Uzi.Ikosa.Services
 
         public IList<CreatureLoginInfo> GetCreatureLogins()
             => LoginService.GetUserInfo(_User.UserName)?.CreatureInfos.ToList()
-            ?? new List<CreatureLoginInfo>();
+            ?? [];
 
         // IPrincipal Members
         public IIdentity Identity => _Identity;

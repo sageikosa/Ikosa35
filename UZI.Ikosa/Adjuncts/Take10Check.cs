@@ -70,16 +70,19 @@ namespace Uzi.Ikosa.Adjuncts
                     .Where(_e => _e.ExpirableAdjuncts.Any(_xa => _xa == _take10))
                     .FirstOrDefault();
                 if (_expiry != null)
+                {
                     _expiry.Eject();
+                }
                 else
+                {
                     _take10.Eject();
+                }
             }
 
             // add if necessary
             if (duration > 0)
             {
-                if (_take10 == null)
-                    _take10 = new Take10Check(testType);
+                _take10 ??= new Take10Check(testType);
                 var _expiry = new Expiry(_take10, (critter?.GetCurrentTime() ?? double.MaxValue) + duration, TimeValTransition.Entering, Round.UnitFactor);
                 critter.AddAdjunct(_expiry);
             }

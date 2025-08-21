@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using Uzi.Core;
@@ -15,7 +15,7 @@ namespace Uzi.Ikosa.Items
         #region Construction
         public ItemSlotSet()
         {
-            _Slots = new List<ItemSlot>();
+            _Slots = [];
         }
         #endregion
 

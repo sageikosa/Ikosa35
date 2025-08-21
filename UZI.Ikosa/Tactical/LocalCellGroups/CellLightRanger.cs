@@ -63,28 +63,42 @@ namespace Uzi.Ikosa.Tactical
                 if (_max >= LightRange.VeryBright)
                 {
                     if (_Distance <= VeryBrightLeft)
+                    {
                         return _max;
+                    }
                 }
                 if (_max >= LightRange.Bright)
                 {
                     if (_Distance <= BrightLeft)
+                    {
                         return LightRange.Bright;
+                    }
                     else if (_Distance <= NearBoostLeft)
+                    {
                         return LightRange.NearBoost;
+                    }
                 }
                 if (_max >= LightRange.NearShadow)
                 {
                     if (_Distance <= ShadowyLeft)
+                    {
                         return LightRange.NearShadow;
+                    }
                     else if (_Distance <= FarBoostLeft)
+                    {
                         return LightRange.FarBoost;
+                    }
                 }
                 if (_max >= LightRange.FarShadow)
                 {
                     if (_Distance <= FarShadowyLeft)
+                    {
                         return LightRange.FarShadow;
+                    }
                     else if (_Distance <= ExtentBoostLeft)
+                    {
                         return LightRange.ExtentBoost;
+                    }
                 }
                 return LightRange.OutOfRange;
             }
@@ -217,17 +231,25 @@ namespace Uzi.Ikosa.Tactical
                     case 3:
                         // one level adjustment
                         if (expected > LightRange.OutOfRange)
+                        {
                             return expected - 1;
+                        }
                         else
+                        {
                             return LightRange.OutOfRange;
+                        }
 
                     case 2:
                     case 1:
                         // two level adjustment
                         if (expected > LightRange.ExtentBoost)
+                        {
                             return expected - 2;
+                        }
                         else
+                        {
                             return LightRange.OutOfRange;
+                        }
 
                     default:
                         // nothing
@@ -245,9 +267,13 @@ namespace Uzi.Ikosa.Tactical
                     case 1:
                         // one level adjustment
                         if (expected > LightRange.OutOfRange)
+                        {
                             return expected - 1;
+                        }
                         else
+                        {
                             return LightRange.OutOfRange;
+                        }
 
                     default:
                         // nothing

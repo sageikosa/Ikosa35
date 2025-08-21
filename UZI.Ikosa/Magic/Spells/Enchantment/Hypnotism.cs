@@ -102,9 +102,13 @@ namespace Uzi.Ikosa.Magic.Spells
                 {
                     Attitude _newAttitude = target.AttitudeTowards(_attitudeID.Value);
                     if (_newAttitude <= Attitude.Unbiased)
+                    {
                         _newAttitude += 2;
+                    }
                     else
+                    {
                         _newAttitude = Attitude.Helpful;
+                    }
 
                     // NOTE: no expiration...attitude stays past duration
                     target.AddAdjunct(new AttitudeAdjunct(null, _suggest.CharacterString, _attitudeID.Value, _newAttitude));
@@ -256,7 +260,7 @@ namespace Uzi.Ikosa.Magic.Spells
                 }
 
                 // something to track the locators as well...
-                _spellBurst.Context.Add(new ValueTarget<Collection<Locator>>(@"Locators", new Collection<Locator>()));
+                _spellBurst.Context.Add(new ValueTarget<Collection<Locator>>(@"Locators", []));
             }
         }
         #endregion

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Windows.Media.Media3D;
 using System.IO.Packaging;
 using System.Windows.Media.Imaging;
@@ -24,7 +23,7 @@ namespace Uzi.Visualize.Packaging
             : base(manager, fileInfo.Name.Replace(@" ", @"_"))
         {
             _FileInfo = fileInfo;
-            _Images = new Dictionary<string, BitmapImagePart>();
+            _Images = [];
             _Parent = this.GetIResolveBitmapImage();
 
             _Brushes = new BrushCollectionPart(this, @"Brushes");
@@ -37,7 +36,7 @@ namespace Uzi.Visualize.Packaging
             _Parent = this.GetIResolveBitmapImage();
 
             // copy images...
-            _Images = new Dictionary<string, BitmapImagePart>();
+            _Images = [];
             foreach (var _img in source.Images)
             {
                 AddImage(new BitmapImagePart(this, _img.Value, _img.Key));
@@ -50,7 +49,7 @@ namespace Uzi.Visualize.Packaging
         public Model3DPart(ICorePartNameManager manager, PackagePart part, string id)
             : base( manager, part, id.Replace(@" ", @"_"))
         {
-            _Images = new Dictionary<string, BitmapImagePart>();
+            _Images = [];
             _Parent = this.GetIResolveBitmapImage();
 
             var _related = Part.GetRelationships().RelatedBaseParts(this).ToList();
@@ -64,8 +63,7 @@ namespace Uzi.Visualize.Packaging
 
             // brushes
             _Brushes = _related.OfType<BrushCollectionPart>().FirstOrDefault();
-            if (_Brushes == null)
-                _Brushes = new BrushCollectionPart(this, @"Brushes");
+            _Brushes ??= new BrushCollectionPart(this, @"Brushes");
         }
         #endregion
 
@@ -79,7 +77,7 @@ namespace Uzi.Visualize.Packaging
         // Visual Effect Material Keys
         protected SortedSet<string> _VEMKeys = null;
         protected List<Type> _SETypes = null;
-        protected List<(ModelCacheSelector selector, Model3D model)> _ModelCache = new List<(ModelCacheSelector selector, Model3D model)>();
+        protected List<(ModelCacheSelector selector, Model3D model)> _ModelCache = [];
         #endregion
 
         /// <summary>Lists all instances of BitmapImagePart related to this Model3DPart</summary>
@@ -96,8 +94,7 @@ namespace Uzi.Visualize.Packaging
         {
             if (CanUseName(part.Name, typeof(BitmapImagePart)))
             {
-                if (_Images == null)
-                    _Images = new Dictionary<string, BitmapImagePart>();
+                _Images ??= [];
                 _Images.Add(part.Name, part);
                 part.NameManager = this;
                 DoPropertyChanged(@"Relationships");
@@ -124,7 +121,10 @@ namespace Uzi.Visualize.Packaging
             get
             {
                 if (_VEMKeys == null)
+                {
                     ResolveModel();
+                }
+
                 return _VEMKeys.ToList();
             }
         }
@@ -144,7 +144,9 @@ namespace Uzi.Visualize.Packaging
                 var (_, _model) = _ModelCache
                     .FirstOrDefault(_ce => _ce.selector.Equals(_selector));
                 if (_model != null)
+                {
                     return _model;
+                }
             }
             else
             {
@@ -161,14 +163,14 @@ namespace Uzi.Visualize.Packaging
                 if (_VEMKeys == null)
                 {
                     // referenced keys
-                    _VEMKeys = new SortedSet<string>();
-                    VisualEffectMaterial.ReferencedKey = (key) => { if (!_VEMKeys.Contains(key)) _VEMKeys.Add(key); };
+                    _VEMKeys = [];
+                    VisualEffectMaterial.ReferencedKey = (key) => { if (!_VEMKeys.Contains(key)) { _VEMKeys.Add(key); } };
                 }
                 if (_SETypes == null)
                 {
                     // referenced sense extensions
-                    _SETypes = new List<Type>();
-                    SenseEffectExtension.ReferencedEffect = (type) => { if (!_SETypes.Contains(type)) _SETypes.Add(type); };
+                    _SETypes = [];
+                    SenseEffectExtension.ReferencedEffect = (type) => { if (!_SETypes.Contains(type)) { _SETypes.Add(type); } };
                 }
 
                 // resolve
@@ -226,7 +228,9 @@ namespace Uzi.Visualize.Packaging
             {
                 var _key = key.ToString();
                 if (_Images.ContainsKey(_key))
+                {
                     return _Images[_key];
+                }
             }
             return null;
         }
@@ -237,7 +241,9 @@ namespace Uzi.Visualize.Packaging
             {
                 var _key = key.ToString();
                 if (_Images.ContainsKey(_key))
+                {
                     return _Images[_key].GetImage(effect);
+                }
             }
             return null;
         }
@@ -268,8 +274,13 @@ namespace Uzi.Visualize.Packaging
             {
                 yield return _Brushes;
                 if (_Images != null)
+                {
                     foreach (var _img in Images)
+                    {
                         yield return _img.Value;
+                    }
+                }
+
                 yield break;
             }
         }
@@ -286,7 +297,10 @@ namespace Uzi.Visualize.Packaging
         {
             var _name = name.ToSafeString();
             if (partType == typeof(BitmapImagePart))
+            {
                 return ((_Images == null) || !_Images.ContainsKey(_name));
+            }
+
             return false;
         }
 
@@ -414,9 +428,13 @@ namespace Uzi.Visualize.Packaging
                 foreach (var _bRef in BitmapImagePart.GetImageResources(this, Part))
                 {
                     if (_Images.ContainsKey(_bRef.Name))
+                    {
                         _Images[_bRef.Name].RefreshPart(_bRef.Part);
+                    }
                     else
+                    {
                         _Images.Add(_bRef.Name, _bRef);
+                    }
                 }
 
                 // brushes

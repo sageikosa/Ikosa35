@@ -54,8 +54,8 @@ namespace Uzi.Ikosa.Creatures.Types
         static AnimatedObject()
         {
             // non-standard size range adjustments for animated objects
-            _SizeRanges = new List<SizeRange>
-            {
+            _SizeRanges =
+            [
                 new CustomSizeRange(0, 0, Size.Tiny, 0, 0, 0, 0, 0, 0),
                 new CustomSizeRange(1, 1, Size.Small, 1, 1, -2, 2, 0, 2),
                 new CustomSizeRange(2, 3, Size.Medium, 1, 1, -2, 2, 0, 2),
@@ -63,7 +63,7 @@ namespace Uzi.Ikosa.Creatures.Types
                 new CustomSizeRange(8, 15, Size.Huge, 3, 2, -2, 4, 0, 1),
                 new CustomSizeRange(16, 31, Size.Gigantic, 4, 3, -2, 4, 0, 2),
                 new CustomSizeRange(32, 47, Size.Colossal, 6, 4, -2, 4, 0, 4)
-            };
+            ];
 
             // non-standard slam progression
             _SlamRollers = WeaponDamageRollers.BuildRollerProgression(
@@ -178,8 +178,7 @@ namespace Uzi.Ikosa.Creatures.Types
             get { return _BodyMaterial; }
             set
             {
-                if (value == null)
-                    value = WoodMaterial.Static;
+                value ??= WoodMaterial.Static;
                 if (value != _BodyMaterial)
                 {
                     _BodyMaterial = value;
@@ -200,7 +199,10 @@ namespace Uzi.Ikosa.Creatures.Types
                 => new AdvancementParameter<BodyForm>(target, form.ToString(), description, form);
 
             foreach (var _kvp in FormPairs())
+            {
                 yield return _option(_kvp.Key, _kvp.Value);
+            }
+
             yield break;
         }
         #endregion
@@ -294,7 +296,9 @@ namespace Uzi.Ikosa.Creatures.Types
 
                 // features
                 foreach (var _feature in GenerateBodyFeatures())
+                {
                     _newBody.Features.Add(_feature);
+                }
 
                 // new natural armor
                 _newBody.NaturalArmor.BaseValue = GenerateNaturalArmor();

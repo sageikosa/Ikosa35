@@ -1,4 +1,4 @@
-using Uzi.Core.Contracts;
+﻿using Uzi.Core.Contracts;
 using System;
 using System.Collections.Generic;
 using Uzi.Core;
@@ -74,7 +74,10 @@ namespace Uzi.Ikosa.Movement
         {
             yield return new AwarenessAim(@"Creature", @"Creature", FixedRange.One, FixedRange.One, new FarRange(), new CreatureTargetType());
             foreach (var _aim in base.AimingMode(activity))
+            {
                 yield return _aim;
+            }
+
             yield break;
         }
         #endregion

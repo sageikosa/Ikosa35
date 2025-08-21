@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.Specialized;
-using System.Linq;
+﻿using System.Collections.Specialized;
 
 namespace Uzi.Visualize
 {
@@ -59,7 +56,9 @@ namespace Uzi.Visualize
             set
             {
                 if ((value <= 60) && (value >= 0))
+                {
                     _Vector[_Pediment] = value;
+                }
             }
         }
 
@@ -69,7 +68,9 @@ namespace Uzi.Visualize
             set
             {
                 if ((value <= 5d) && (value >= 0d))
+                {
                     PedimentUnits = (int)(value * 60d / 5d);
+                }
             }
         }
     }

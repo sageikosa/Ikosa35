@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.IO.Packaging;
 using System.Windows.Media.Imaging;
 using System.IO;
@@ -24,7 +23,7 @@ namespace Uzi.Visualize.Packaging
             : base(manager, part, id)
         {
             // track directly related images
-            _Images = new Dictionary<string, BitmapImagePart>();
+            _Images = [];
             foreach (var _bRef in BitmapImagePart.GetImageResources(this, Part))
             {
                 if (!_Images.ContainsKey(_bRef.Name))
@@ -44,7 +43,7 @@ namespace Uzi.Visualize.Packaging
             : base(manager, id)
         {
             // copy images
-            _Images = new Dictionary<string, BitmapImagePart>();
+            _Images = [];
             foreach (var _img in source.Images)
             {
                 AddImage(new BitmapImagePart(this, _img.Value, _img.Key));
@@ -55,7 +54,7 @@ namespace Uzi.Visualize.Packaging
             _MatParent = this.GetIResolveMaterial();
 
             // copy brushes
-            _Brushes = new BrushCollection();
+            _Brushes = [];
             try
             {
                 IkosaImageSource.PushResolver(this);
@@ -80,8 +79,8 @@ namespace Uzi.Visualize.Packaging
         public BrushCollectionPart(ICorePartNameManager manager, string id)
             : base(manager, id)
         {
-            _Images = new Dictionary<string, BitmapImagePart>();
-            _Brushes = new BrushCollection();
+            _Images = [];
+            _Brushes = [];
             _Parent = this.GetIResolveBitmapImage();
             _MatParent = this.GetIResolveMaterial();
         }
@@ -103,9 +102,13 @@ namespace Uzi.Visualize.Packaging
                 foreach (var _bRef in BitmapImagePart.GetImageResources(this, Part))
                 {
                     if (_Images.ContainsKey(_bRef.Name))
+                    {
                         _Images[_bRef.Name].RefreshPart(_bRef.Part);
+                    }
                     else
+                    {
                         _Images.Add(_bRef.Name, _bRef);
+                    }
                 }
             }
         }
@@ -201,7 +204,7 @@ namespace Uzi.Visualize.Packaging
             }
             else
             {
-                _Brushes = new BrushCollection();
+                _Brushes = [];
             }
         }
         #endregion
@@ -214,7 +217,9 @@ namespace Uzi.Visualize.Packaging
             {
                 var _key = key.ToString();
                 if (_Images.ContainsKey(_key))
+                {
                     return _Images[_key];
+                }
             }
             return null;
         }
@@ -225,7 +230,9 @@ namespace Uzi.Visualize.Packaging
             {
                 var _key = key.ToString();
                 if (_Images.ContainsKey(_key))
+                {
                     return _Images[_key].GetImage(effect);
+                }
             }
             return null;
         }
@@ -235,12 +242,15 @@ namespace Uzi.Visualize.Packaging
             get
             {
                 if (_Parent == null)
+                {
                     return _Images.Select(_k => new BitmapImagePartListItem
                     {
                         BitmapImagePart = _k.Value,
                         IsLocal = true
                     }).OrderBy(_bipli => _bipli.BitmapImagePart.Name);
+                }
                 else
+                {
                     return _Images.Select(_k => new BitmapImagePartListItem
                     {
                         BitmapImagePart = _k.Value,
@@ -250,6 +260,7 @@ namespace Uzi.Visualize.Packaging
                         BitmapImagePart = _pi.BitmapImagePart,
                         IsLocal = false
                     })).OrderBy(_bipli => _bipli.BitmapImagePart.Name);
+                }
             }
         }
 
@@ -262,7 +273,10 @@ namespace Uzi.Visualize.Packaging
             get
             {
                 foreach (var _img in Images)
+                {
                     yield return _img.Value;
+                }
+
                 yield break;
             }
         }
@@ -381,12 +395,15 @@ namespace Uzi.Visualize.Packaging
             get
             {
                 if (_MatParent == null)
+                {
                     return _Brushes.Select(_b => new BrushDefinitionListItem
                     {
                         BrushDefinition = _b,
                         IsLocal = true
                     });
+                }
                 else
+                {
                     return _Brushes.Select(_b => new BrushDefinitionListItem
                     {
                         BrushDefinition = _b,
@@ -396,6 +413,7 @@ namespace Uzi.Visualize.Packaging
                         BrushDefinition = _pb.BrushDefinition,
                         IsLocal = false
                     }));
+                }
             }
         }
 

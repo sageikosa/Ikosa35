@@ -22,7 +22,7 @@ namespace Uzi.Ikosa.Tactical
             _Panels3 = new PanelSet<NormalPanel>();
             _Corners = new PanelSet<CornerPanel>();
             _LFrames = new PanelSet<LFramePanel>();
-            _Slopes = new List<SlopeComposite>();
+            _Slopes = [];
             _Fill0 = new MaterialFill(@"Fill", fillMaterial, fillTiling);
             _Diagonal = new DiagonalComposite(@"Diagonal", diagonalMaterial, diagonalTiling);
         }
@@ -140,9 +140,13 @@ namespace Uzi.Ikosa.Tactical
                     #region corner
                     // corners
                     if (Corners[panelFace] != null)
+                    {
                         return Corners[panelFace];
+                    }
                     else
+                    {
                         return Panel1s[panelFace];
+                    }
                 #endregion
 
                 case PanelType.LFrame:
@@ -150,9 +154,13 @@ namespace Uzi.Ikosa.Tactical
                     #region LFrames
                     // lframes
                     if (LFrames[panelFace] != null)
+                    {
                         return LFrames[panelFace];
+                    }
                     else
+                    {
                         return Panel1s[panelFace];
+                    }
                 #endregion
 
                 case PanelType.Panel1:
@@ -357,11 +365,15 @@ namespace Uzi.Ikosa.Tactical
 
             // draw innards of interiors
             foreach (var _i in _interiors.OfType<BaseComposite>())
+            {
                 _i.AddInnerStructures(_param, addToGroup, z, y, x, effect, _sides, _interiors);
+            }
 
             // draw innards of natural sides
             foreach (var _side in _sides)
+            {
                 _side.Value.AddInnerStructures(_param, _side.Key, addToGroup, z, y, x, effect, _interiors);
+            }
         }
         #endregion
 
@@ -371,10 +383,13 @@ namespace Uzi.Ikosa.Tactical
             var _param = new PanelParams(param);
             var _panels = GetFacePanels(_param, face).ToList();
             foreach (var _p in _panels)
+            {
                 _p.AddOuterSurface(_param, pair, z, y, x, face, face, effect, bump, _panels);
+            }
 
             // for any side face not occluded by the panel faces, must draw natural side face sides...
             foreach (var _of in face.GetOrthoFaces())
+            {
                 if (_panels.All(_p => !_p.OrthoOcclusion(_param, face, _of)))
                 {
                     var _natSide = GetNaturalPanel(_param, _of);
@@ -383,6 +398,7 @@ namespace Uzi.Ikosa.Tactical
                         _natSide.AddOuterSurface(_param, pair, z, y, x, _of, face, effect, bump, null);
                     }
                 }
+            }
         }
         #endregion
 
@@ -398,7 +414,9 @@ namespace Uzi.Ikosa.Tactical
 
             // any face is visible
             if (GetFacePanels(_param, outwardFace).Any(_p => !_p.IsInvisible))
+            {
                 return true;
+            }
 
             // any edged face is visible
             return ((from _ortho in outwardFace.GetOrthoFaces()
@@ -424,7 +442,9 @@ namespace Uzi.Ikosa.Tactical
 
             // all interiors blocked (which would include surface slopes)
             if (GetInteriors(_param).All(_i => !movement.CanMoveThrough(_i.Material)))
+            {
                 return true;
+            }
 
             var _faces = snap.ToFaceList();
             if (_faces.Any())
@@ -446,13 +466,18 @@ namespace Uzi.Ikosa.Tactical
 
             // all interiors blocked (which would include surface slopes)
             if (GetInteriors(_param).All(_i => !movement.CanMoveThrough(_i.Material)))
+            {
                 return new HedralGrip(true);
+            }
 
             // union...
             var _panels = GetFacePanels(_param, surfaceFace);
             var _grip = new HedralGrip(false);
             foreach (var _p in _panels)
+            {
                 _grip = _grip.Union(_p.HedralGripping(_param, surfaceFace, movement, _panels));
+            }
+
             return _grip;
         }
 
@@ -474,7 +499,10 @@ namespace Uzi.Ikosa.Tactical
                     // drop past the permeable top panel
                     var _offset = _surfaces.First().AverageThickness;
                     if (!upDirection.IsLowFace())
+                    {
                         _offset = 5d - _offset;
+                    }
+
                     return new SlopeSegment
                     {
                         Low = _offset + baseElev,
@@ -551,7 +579,9 @@ namespace Uzi.Ikosa.Tactical
                                         // bottom panel thickness...(if valid bottom panel)
                                         var _bSlope = _bottomSlope();
                                         if (_bSlope.HasValue)
+                                        {
                                             yield return _bSlope.Value;
+                                        }
                                     }
                                     else
                                     {
@@ -585,7 +615,9 @@ namespace Uzi.Ikosa.Tactical
                                     // bottom panel thickness...
                                     var _bSlope = _bottomSlope();
                                     if (_bSlope.HasValue)
+                                    {
                                         yield return _bSlope.Value;
+                                    }
                                 }
                             }
                             #endregion
@@ -623,7 +655,9 @@ namespace Uzi.Ikosa.Tactical
                                         // bottom panel thickness...
                                         var _bSlope = _bottomSlope();
                                         if (_bSlope.HasValue)
+                                        {
                                             yield return _bSlope.Value;
+                                        }
                                     }
                                 }
                             }
@@ -654,7 +688,9 @@ namespace Uzi.Ikosa.Tactical
                                     // bottom panel thickness...
                                     var _bSlope = _bottomSlope();
                                     if (_bSlope.HasValue)
+                                    {
                                         yield return _bSlope.Value;
+                                    }
                                 }
                             }
                             #endregion
@@ -699,7 +735,9 @@ namespace Uzi.Ikosa.Tactical
                                     // bottom panel thickness...
                                     var _bSlope = _bottomSlope();
                                     if (_bSlope.HasValue)
+                                    {
                                         yield return _bSlope.Value;
+                                    }
                                 }
                             }
                             #endregion
@@ -715,14 +753,18 @@ namespace Uzi.Ikosa.Tactical
                                 // intended diagonal blockage
                                 _checkBottom = true;
                                 if (_bends.Contains(upDirection))
+                                {
                                     yield return _topSlope();
+                                }
                                 else
+                                {
                                     yield return new SlopeSegment
                                     {
                                         Low = baseElev,
                                         High = 5 + baseElev,
                                         Run = 5
                                     };
+                                }
                             }
                             else if (!_diagBlock && _fillBlock)
                             {
@@ -753,7 +795,9 @@ namespace Uzi.Ikosa.Tactical
                                 // bottom panel thickness...
                                 var _bSlope = _bottomSlope();
                                 if (_bSlope.HasValue)
+                                {
                                     yield return _bSlope.Value;
+                                }
                             }
                             #endregion
                         }
@@ -787,7 +831,9 @@ namespace Uzi.Ikosa.Tactical
                                     // bottom panel thickness...
                                     var _bSlope = _bottomSlope();
                                     if (_bSlope.HasValue)
+                                    {
                                         yield return _bSlope.Value;
+                                    }
                                 }
                                 #endregion
                             }
@@ -870,7 +916,9 @@ namespace Uzi.Ikosa.Tactical
                                     // bottom panel thickness...
                                     var _bSlope = _bottomSlope();
                                     if (_bSlope.HasValue)
+                                    {
                                         yield return _bSlope.Value;
+                                    }
                                 }
                                 #endregion
                             }
@@ -879,13 +927,17 @@ namespace Uzi.Ikosa.Tactical
                         {
                             // regular old material fill
                             if (!movement.CanMoveThrough(_fill.Material))
+                            {
                                 yield return _topSlope();
+                            }
                             else
                             {
                                 // bottom panel thickness...
                                 var _bSlope = _bottomSlope();
                                 if (_bSlope.HasValue)
+                                {
                                     yield return _bSlope.Value;
+                                }
                             }
                         }
                     }
@@ -950,16 +1002,26 @@ namespace Uzi.Ikosa.Tactical
                             if (_diagBlock && !_fillBlock)
                             {
                                 if (!_pBlocks[_source.ReverseFace()].Blocks)
+                                {
                                     yield return new MovementOpening(_source.ReverseFace(), 2.5d, 1d);
+                                }
+
                                 if (!_pBlocks[_sink.ReverseFace()].Blocks)
+                                {
                                     yield return new MovementOpening(_sink.ReverseFace(), 2.5d, 1d);
+                                }
                             }
                             else if (!_diagBlock && _fillBlock)
                             {
                                 if (!_pBlocks[_source].Blocks)
+                                {
                                     yield return new MovementOpening(_source, 2.5d, 1d);
+                                }
+
                                 if (!_pBlocks[_sink].Blocks)
+                                {
                                     yield return new MovementOpening(_sink, 2.5d, 1d);
+                                }
                             }
 
                             // sides (panel blocks)
@@ -970,7 +1032,9 @@ namespace Uzi.Ikosa.Tactical
                             {
                                 var _rev = _pBlocks[_side.ReverseFace()];
                                 if (!_pBlocks[_side].Blocks && _rev.Blocks)
+                                {
                                     yield return new MovementOpening(_side, 5d - _rev.Thickness, 1d);
+                                }
                             }
                             #endregion
                         }
@@ -982,16 +1046,26 @@ namespace Uzi.Ikosa.Tactical
                             if (_diagBlock && !_fillBlock)
                             {
                                 if (!_pBlocks[_sink.ReverseFace()].Blocks)
+                                {
                                     yield return new MovementOpening(_sink.ReverseFace(), 2.5d, 1d);
+                                }
+
                                 if (!_pBlocks[_source.ReverseFace()].Blocks)
+                                {
                                     yield return new MovementOpening(_source.ReverseFace(), 2.5d, 1d);
+                                }
+
                                 if (!_pBlocks[_other.ReverseFace()].Blocks)
+                                {
                                     yield return new MovementOpening(_other.ReverseFace(), 2.5d, 1d);
+                                }
                             }
                             else if (!_diagBlock && _fillBlock)
                             {
                                 if (!_pBlocks[_sink].Blocks)
+                                {
                                     yield return new MovementOpening(_sink, 2.5d, 1d);
+                                }
 
                                 // source 1 axis
                                 var _srcBlock = _pBlocks[_source];
@@ -1007,7 +1081,9 @@ namespace Uzi.Ikosa.Tactical
 
                                     // opposite panel
                                     if (_revSrcBlock.Blocks)
+                                    {
                                         yield return new MovementOpening(_source, 5 - _revSrcBlock.Thickness, 1d);
+                                    }
                                 }
 
                                 // source 2 axis
@@ -1024,7 +1100,9 @@ namespace Uzi.Ikosa.Tactical
 
                                     // opposite panel
                                     if (_revEtcBlock.Blocks)
+                                    {
                                         yield return new MovementOpening(_other, 5 - _revEtcBlock.Thickness, 1d);
+                                    }
                                 }
                             }
                             #endregion
@@ -1065,16 +1143,26 @@ namespace Uzi.Ikosa.Tactical
                         if (!_diagBlock && _fillBlock)
                         {
                             if (!_pBlocks[_bSource].Blocks)
+                            {
                                 yield return new MovementOpening(_bSource, 2.5d, 1d);
+                            }
+
                             if (!_pBlocks[_bSink].Blocks)
+                            {
                                 yield return new MovementOpening(_bSink, 2.5d, 1d);
+                            }
+
                             if (!_pBlocks[_bOther].Blocks)
+                            {
                                 yield return new MovementOpening(_bOther, 2.5d, 1d);
+                            }
                         }
                         else if (_diagBlock && !_fillBlock)
                         {
                             if (!_pBlocks[_bSource.ReverseFace()].Blocks)
+                            {
                                 yield return new MovementOpening(_bSource.ReverseFace(), 2.5d, 1d);
+                            }
 
                             // sink 1 axis
                             var _snkBlock = _pBlocks[_bSink];
@@ -1090,7 +1178,9 @@ namespace Uzi.Ikosa.Tactical
 
                                 // opposite panel
                                 if (_snkBlock.Blocks)
+                                {
                                     yield return new MovementOpening(_bSink.ReverseFace(), 5 - _snkBlock.Thickness, 1d);
+                                }
                             }
 
                             // sink 2 axis
@@ -1107,7 +1197,9 @@ namespace Uzi.Ikosa.Tactical
 
                                 // opposite panel
                                 if (_etcBlock.Blocks)
+                                {
                                     yield return new MovementOpening(_bOther.ReverseFace(), 5 - _etcBlock.Thickness, 1d);
+                                }
                             }
                         }
                         else
@@ -1157,15 +1249,23 @@ namespace Uzi.Ikosa.Tactical
                         {
                             #region not slope blocking
                             if (_fillBlock)
+                            {
                                 // fill blocks, so openings account for slope
                                 yield return new MovementOpening(_slope, _slopePanel.AverageThickness, 1d);
+                            }
+
                             if (!_isBlocking(_sinkFace))
                             {
                                 // sink face allows openings
                                 if (_fillBlock)
+                                {
                                     yield return new MovementOpening(_sinkFace, 2.5d, (5 - _slopePanel.AverageThickness) / 5d);
+                                }
+
                                 if (_isBlocking(_sinkFace.ReverseFace()))
+                                {
                                     yield return new MovementOpening(_sinkFace, 5 - _faceBlocks[_sinkFace.ReverseFace()].Thickness, 1d);
+                                }
                             }
                             else if (!_isBlocking(_sinkFace.ReverseFace()))
                             {
@@ -1179,14 +1279,18 @@ namespace Uzi.Ikosa.Tactical
                             #region slope blocking
                             // from blocking slope panel to top 
                             if (!_isBlocking(_slope.ReverseFace()))
+                            {
                                 yield return new MovementOpening(_slope.ReverseFace(), 5 - _slopePanel.AverageThickness, 1d);
+                            }
 
                             // sink axis blocking
                             if (_isBlocking(_sinkFace.ReverseFace()))
                             {
                                 if (!_isBlocking(_sinkFace))
+                                {
                                     // reverse sink is blocking, but sink face itself isn't
                                     yield return new MovementOpening(_sinkFace, 5 - _faceBlocks[_sinkFace.ReverseFace()].Thickness, 1);
+                                }
                             }
                             else
                             {
@@ -1194,8 +1298,10 @@ namespace Uzi.Ikosa.Tactical
                                 yield return new MovementOpening(_sinkFace.ReverseFace(), 2.5, _slopePanel.AverageThickness / 5);
                             }
                             if (_isBlocking(_sinkFace))
+                            {
                                 // sink face blocker
                                 yield return new MovementOpening(_sinkFace.ReverseFace(), 5 - _faceBlocks[_sinkFace].Thickness, 1);
+                            }
                             #endregion
                         }
 
@@ -1232,7 +1338,10 @@ namespace Uzi.Ikosa.Tactical
                         {
                             var _grip = new HedralGrip(false);
                             foreach (var _bp in panels)
+                            {
                                 _grip = _grip.Union(_bp.HedralGripping(_param, face, movement, panels));
+                            }
+
                             return _grip;
                         }
 
@@ -1293,17 +1402,32 @@ namespace Uzi.Ikosa.Tactical
         {
             var _list = AnchorFaceList.None;
             if (point.X == 0)
+            {
                 _list = _list.Add(AnchorFace.XLow);
+            }
             else if (point.X == 5)
+            {
                 _list = _list.Add(AnchorFace.XHigh);
+            }
+
             if (point.Y == 0)
+            {
                 _list = _list.Add(AnchorFace.YLow);
+            }
             else if (point.Y == 5)
+            {
                 _list = _list.Add(AnchorFace.YHigh);
+            }
+
             if (point.Z == 0)
+            {
                 _list = _list.Add(AnchorFace.ZLow);
+            }
             else if (point.Z == 5)
+            {
                 _list = _list.Add(AnchorFace.ZHigh);
+            }
+
             return _list;
         }
         #endregion
@@ -1332,9 +1456,15 @@ namespace Uzi.Ikosa.Tactical
                 {
                     // get optional face if on a cell boundary
                     if (value <= 0)
+                    {
                         return axis.GetLowFace().ToOptionalAnchorFace();
+                    }
+
                     if (value >= 5)
+                    {
                         return axis.GetHighFace().ToOptionalAnchorFace();
+                    }
+
                     return OptionalAnchorFace.None;
                 };
             Func<Point3D, OptionalAnchorFace, Point3D> _adjustOne = (source, face) =>
@@ -1549,9 +1679,15 @@ namespace Uzi.Ikosa.Tactical
             {
                 // get optional face if on a cell boundary
                 if (value <= 0)
+                {
                     return axis.GetLowFace().ToOptionalAnchorFace();
+                }
+
                 if (value >= 5)
+                {
                     return axis.GetHighFace().ToOptionalAnchorFace();
+                }
+
                 return OptionalAnchorFace.None;
             };
             Point3D _adjustOne(Point3D source, OptionalAnchorFace face)
@@ -1607,21 +1743,33 @@ namespace Uzi.Ikosa.Tactical
                         _diagAdjust = (orig) =>
                         {
                             if (_big.IsSubset(orig.Faces))
+                            {
                                 return new TargetCorner(_adjust(orig.Point3D + _bigVector), orig.Faces);
+                            }
                             else if (_src.IsSubset(orig.Faces))
+                            {
                                 return new TargetCorner(_adjust(orig.Point3D + _srcVector), orig.Faces);
+                            }
                             else if (_oth.IsSubset(orig.Faces))
+                            {
                                 return new TargetCorner(_adjust(orig.Point3D + _othVector), orig.Faces);
+                            }
+
                             return new TargetCorner(_adjust(orig.Point3D), orig.Faces);
                         };
                     }
                     else
+                    {
                         _diagAdjust = (orig) =>
                         {
                             if (_big.IsSubset(orig.Faces))
+                            {
                                 return new TargetCorner(_adjust(orig.Point3D + _bigVector), orig.Faces);
+                            }
+
                             return new TargetCorner(_adjust(orig.Point3D), orig.Faces);
                         };
+                    }
                     #endregion
                 }
                 else
@@ -1639,7 +1787,10 @@ namespace Uzi.Ikosa.Tactical
                     _diagAdjust = (orig) =>
                     {
                         if (_adjFaces.IsSubset(orig.Faces))
+                        {
                             return new TargetCorner(_adjust(orig.Point3D + _adjVector), orig.Faces);
+                        }
+
                         return new TargetCorner(_adjust(orig.Point3D), orig.Faces);
                     };
                     #endregion
@@ -1692,21 +1843,33 @@ namespace Uzi.Ikosa.Tactical
                         _diagAdjust = (orig) =>
                         {
                             if (_big.IsSubset(orig.Faces))
+                            {
                                 return new TargetCorner(_adjust(orig.Point3D + _bigVector), orig.Faces);
+                            }
                             else if (_src.IsSubset(orig.Faces))
+                            {
                                 return new TargetCorner(_adjust(orig.Point3D + _srcVector), orig.Faces);
+                            }
                             else if (_oth.IsSubset(orig.Faces))
+                            {
                                 return new TargetCorner(_adjust(orig.Point3D + _othVector), orig.Faces);
+                            }
+
                             return new TargetCorner(_adjust(orig.Point3D), orig.Faces);
                         };
                     }
                     else
+                    {
                         _diagAdjust = (orig) =>
                         {
                             if (_big.IsSubset(orig.Faces))
+                            {
                                 return new TargetCorner(_adjust(orig.Point3D + _bigVector), orig.Faces);
+                            }
+
                             return new TargetCorner(_adjust(orig.Point3D), orig.Faces);
                         };
+                    }
                     #endregion
 
                     // corners (x8)
@@ -1793,7 +1956,9 @@ namespace Uzi.Ikosa.Tactical
                  let _np = GetNaturalPanel(_param, _af)
                  where (_np != null) && _np.BlocksDetect(_param, _af, z, y, x, entryPt, exitPt)
                  select _np).Any())
+            {
                 return true;
+            }
 
             // interiors
             var _list = GetInteriors(_param).ToList();
@@ -1811,7 +1976,9 @@ namespace Uzi.Ikosa.Tactical
                  let _np = GetNaturalPanel(_param, _af)
                  where (_np != null) && _np.Material.BlocksEffect && _np.BlocksPath(_param, _af, z, y, x, pt1, pt2)
                  select _np).Any())
+            {
                 return true;
+            }
 
             // interiors
             var _list = GetInteriors(_param).ToList();
@@ -1907,16 +2074,32 @@ namespace Uzi.Ikosa.Tactical
                             switch (_param.GetPanelEdge(face))
                             {
                                 case FaceEdge.Bottom:
-                                    if (!leftRight) _param.SetPanelEdge(face, FaceEdge.Top);
+                                    if (!leftRight)
+                                    {
+                                        _param.SetPanelEdge(face, FaceEdge.Top);
+                                    }
+
                                     break;
                                 case FaceEdge.Top:
-                                    if (!leftRight) _param.SetPanelEdge(face, FaceEdge.Bottom);
+                                    if (!leftRight)
+                                    {
+                                        _param.SetPanelEdge(face, FaceEdge.Bottom);
+                                    }
+
                                     break;
                                 case FaceEdge.Left:
-                                    if (leftRight) _param.SetPanelEdge(face, FaceEdge.Right);
+                                    if (leftRight)
+                                    {
+                                        _param.SetPanelEdge(face, FaceEdge.Right);
+                                    }
+
                                     break;
                                 case FaceEdge.Right:
-                                    if (leftRight) _param.SetPanelEdge(face, FaceEdge.Left);
+                                    if (leftRight)
+                                    {
+                                        _param.SetPanelEdge(face, FaceEdge.Left);
+                                    }
+
                                     break;
                             }
                             break;
@@ -2452,11 +2635,15 @@ namespace Uzi.Ikosa.Tactical
                         // face to which the corner is snapped
                         var _snap = gripFace.GetSnappedFace(_param.GetPanelEdge(gripFace));
                         if (_cBlock)
+                        {
                             // ledge or base
                             return (gravity == _snap) ? _cPanel.Ledge : _cPanel.Base;
+                        }
                         else if (_mBlock)
+                        {
                             // ledge or base
                             return (_revGravity == _snap) ? _mFill.Ledge : _mFill.Base;
+                        }
                     }
                 }
                 else if (_panels.OfType<LFramePanel>().Any())
@@ -2471,11 +2658,15 @@ namespace Uzi.Ikosa.Tactical
                             gripFace.HorizontalSnappedFace(_corner),
                             gripFace.VerticalSnappedFace(_corner));
                         if (_lBlock)
+                        {
                             // ledge or base
                             return _snap.Contains(gravity) ? _lPanel.Ledge : _lPanel.Base;
+                        }
                         else if (_mBlock)
+                        {
                             // ledge or base
                             return _snap.Contains(_revGravity) ? _mFill.Ledge : _mFill.Base;
+                        }
                     }
                 }
                 else if (_panels.OfType<SlopeComposite>().Any())
@@ -2527,11 +2718,15 @@ namespace Uzi.Ikosa.Tactical
                         // composite face controls
                         var _gripControl = _param.DiagonalFaceControlFaces(gripFace);
                         if (_dBlock)
+                        {
                             // ledge or base
                             return _gripControl.Contains(gravity) ? _dComp.Ledge : _dComp.Base;
+                        }
                         else if (_mBlock)
+                        {
                             // ledge or base
                             return _gripControl.Contains(_revGravity) ? _mFill.Ledge : _mFill.Base;
+                        }
                     }
                 }
             }

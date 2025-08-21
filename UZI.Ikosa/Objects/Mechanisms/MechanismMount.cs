@@ -16,7 +16,7 @@ namespace Uzi.Ikosa.Objects
         public MechanismMount(string name)
             : base(name, true)
         {
-            _Connected = new List<ICoreObject>();
+            _Connected = [];
             _COCtrl = new ChangeController<ICoreObject>(this, null);
             _GeometricSize = new GeometricSize(1, 1, 1);
             _MountFace = AnchorFace.ZLow;
@@ -148,7 +148,9 @@ namespace Uzi.Ikosa.Objects
 
             // mechanism actions...
             foreach (var _action in this.AccessibleActions(_budget))
+            {
                 yield return _action;
+            }
 
             yield break;
         }
@@ -250,7 +252,9 @@ namespace Uzi.Ikosa.Objects
         public void ValueChanged(object sender, ChangeValueEventArgs<Physical> args)
         {
             if (args.NewValue.PropertyType == Physical.PhysicalType.Weight)
+            {
                 RecalcWeight();
+            }
         }
 
         #endregion

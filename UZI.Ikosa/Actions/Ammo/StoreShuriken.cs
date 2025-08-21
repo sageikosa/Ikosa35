@@ -79,7 +79,9 @@ namespace Uzi.Ikosa.Actions
                                 var _store = _ammo.ToAmmunitionBundle(@"Shuriken") as AmmunitionBundle<Shuriken, ShurikenGrip>;
                                 var _remainder = _storeInto.Merge(_store);
                                 if (_remainder.Count > 0)
+                                {
                                     Drop.DoDrop(_critter, _remainder, this, true);
+                                }
                             }
                         }
 

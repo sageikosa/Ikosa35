@@ -17,10 +17,12 @@ namespace Uzi.Packaging
         public static void RegisterFactory(IBasePartFactory factory)
         {
             foreach (var _rType in factory.Relationships)
+            {
                 _Factories.AddOrUpdate(_rType, factory, (name, f) =>
                 {
                     return f;
                 });
+            }
         }
 
         /// <summary>Provides IBaseParts implied by this relationship collection</summary>
@@ -32,9 +34,13 @@ namespace Uzi.Packaging
             LoadMessage?.Invoke($@"Load: {relation.TargetUri.OriginalString}");
             var _part = relation.Package.GetPart(relation.TargetUri);
             if (_Factories.TryGetValue(relation.RelationshipType, out IBasePartFactory _factory))
+            {
                 return _factory.GetPart( relation.RelationshipType, manager, _part, relation.Id);
+            }
             else
+            {
                 return new UnknownPart( manager, _part, relation.Id, relation.RelationshipType);
+            }
         }
 
         public static void RefreshParts(this PackageRelationshipCollection relations, ICorePartNameManager manager)
@@ -88,7 +94,9 @@ namespace Uzi.Packaging
             {
                 _current = _current.Relationships.FirstOrDefault(_p => _p.Name.Equals(_part, StringComparison.InvariantCultureIgnoreCase));
                 if (_current == null)
+                {
                     break;
+                }
             }
             return _current as IBasePart;
         }
@@ -108,7 +116,9 @@ namespace Uzi.Packaging
                     _mgr = _part.NameManager;
                 }
                 else
+                {
                     _mgr = null;
+                }
             }
             return _builder.ToString();
         }

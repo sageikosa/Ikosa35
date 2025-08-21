@@ -94,7 +94,9 @@ namespace Uzi.Ikosa.Magic.Spells
 
             // applied to land movement
             foreach (var _move in (target as Creature)?.Movements.AllMovements.OfType<LandMovement>() ?? new LandMovement[] { })
+            {
                 _move.Deltas.Add(_speed);
+            }
 
             return _speed;
         }

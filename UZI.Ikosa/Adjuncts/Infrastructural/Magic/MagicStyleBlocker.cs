@@ -45,7 +45,9 @@ namespace Uzi.Ikosa.Adjuncts
                     if (_magic != null)
                     {
                         if (_magic.MagicStyle is MStyle)
+                        {
                             workSet.Feedback.Add(new ValueFeedback<bool>(this, false));
+                        }
                     }
                 }
             }

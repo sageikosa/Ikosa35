@@ -11,7 +11,7 @@ namespace Uzi.Ikosa.Interactions
         /// <summary>Implicitly Any in the list of finds</summary>
         public FindAdjunctDataExcluderHandler()
         {
-            _Exclude = new List<Type>();
+            _Exclude = [];
         }
 
         private List<Type> _Exclude;
@@ -26,7 +26,9 @@ namespace Uzi.Ikosa.Interactions
                 // if this is filtering, then block by reporting the request was understood as the only feedback
                 // since any feedback prevents the handler chain from progressing, understood is a good stopgap
                 if (Exclusions.Any(_e => _find.AdjunctTypes.Contains(_e)))
+                {
                     workSet.Feedback.Add(new UnderstoodFeedback(this));
+                }
             }
         }
         #endregion

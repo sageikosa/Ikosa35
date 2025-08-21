@@ -94,7 +94,9 @@ namespace Uzi.Ikosa.Adjuncts
         {
             // terminate attack
             if (_Attack != null)
+            {
                 _Attack.DoTerminate();
+            }
 
             // terminate defense
             _Term.DoTerminate();

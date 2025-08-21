@@ -19,9 +19,15 @@ namespace Uzi.Core
         public static bool HasDepenent(this IActivatable self, IActivatable target)
         {
             if (self == target)
+            {
                 return true;
+            }
+
             if (self.Dependents.Any(_d => _d.HasDepenent(target)))
+            {
                 return true;
+            }
+
             return false;
 
         }

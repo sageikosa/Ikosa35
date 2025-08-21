@@ -50,7 +50,9 @@ namespace Uzi.Ikosa.Interactions
         {
             // this should be before the standard creature damage handler
             if (existingHandler is TempHPDamageHandler)
+            {
                 return true;
+            }
 
             return false;
         }

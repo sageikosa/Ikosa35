@@ -22,7 +22,7 @@ namespace Uzi.Ikosa.Tactical
             base(mapContext, source, geometry, planar)
         {
             _Capturer = capturer;
-            _Contents = new Collection<Locator>();
+            _Contents = [];
             _ACtrl = new ChangeController<Activation>(this, new Activation(this, active));
             capturer.AddChangeMonitor(this);
             mapContext.LocatorZones.Add(this);
@@ -34,7 +34,7 @@ namespace Uzi.Ikosa.Tactical
             base(mapContext, source, geometry, planar, origin)
         {
             _Capturer = capturer;
-            _Contents = new Collection<Locator>();
+            _Contents = [];
             _ACtrl = new ChangeController<Activation>(this, new Activation(this, active));
             capturer.AddChangeMonitor(this);
             mapContext.LocatorZones.Add(this);
@@ -58,7 +58,9 @@ namespace Uzi.Ikosa.Tactical
             {
                 // filters when an intersection point is provided
                 if (ContainsGeometricRegion(_loc.GeometricRegion, _loc.ICore as ICoreObject, _loc.PlanarPresence))
+                {
                     Start(_loc);
+                }
             }
         }
         #endregion
@@ -141,7 +143,9 @@ namespace Uzi.Ikosa.Tactical
         public void MoveInArea(Locator locator, bool followOn)
         {
             if (_Contents.Contains(locator))
+            {
                 _Capturer.MoveInArea(locator, followOn);
+            }
         }
 
         public bool IsActive

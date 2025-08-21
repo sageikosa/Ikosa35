@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Runtime.Serialization;
 using Uzi.Visualize.Packaging;
 using System.Windows.Media.Media3D;
@@ -50,8 +47,7 @@ namespace Uzi.Visualize.Contracts
         {
             get
             {
-                if (_Meshes == null)
-                    _Meshes = new Dictionary<int, MeshGeometry3D>();
+                _Meshes ??= [];
                 return _Meshes;
             }
         }

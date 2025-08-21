@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Windows.Media.Media3D;
 using Uzi.Visualize;
 using System.Windows.Media;
@@ -49,7 +49,9 @@ namespace Uzi.Ikosa.Tactical
             {
                 // found!
                 if ((_Brushes != null) && string.Equals(_CachedKey, _Key))
+                {
                     return _Brushes;
+                }
 
                 // look...
                 var _resolve = _Map.Resources as IResolveBrushCollection;
@@ -69,7 +71,7 @@ namespace Uzi.Ikosa.Tactical
                 }
 
                 // nothing
-                _Brushes = new BrushCollection();
+                _Brushes = [];
                 return _Brushes;
             }
         }
@@ -127,11 +129,15 @@ namespace Uzi.Ikosa.Tactical
             try
             {
                 if (BrushCollection == null)
+                {
                     return false;
+                }
 
                 var _index = GetAnchorFaceMaterialIndex(face);
                 if (_index < BrushCollection.Count)
+                {
                     return BrushCollection[_index].Opacity < 1d;
+                }
             }
             catch { }
             return false;
@@ -144,11 +150,15 @@ namespace Uzi.Ikosa.Tactical
             try
             {
                 if (BrushCollection == null)
+                {
                     return BrushDefinition.MissingMaterial;
+                }
 
                 var _index = GetAnchorFaceMaterialIndex(face);
                 if (_index < BrushCollection.Count)
+                {
                     return BrushCollection[_index].GetMaterial(effect);
+                }
             }
             catch { }
             return null;
@@ -161,10 +171,14 @@ namespace Uzi.Ikosa.Tactical
             try
             {
                 if (BrushCollection == null)
+                {
                     return BrushDefinition.MissingMaterial;
+                }
 
                 if (_XMinusMaterialIndex < BrushCollection.Count)
+                {
                     return BrushCollection[_XMinusMaterialIndex].GetMaterial(effect);
+                }
             }
             catch { }
             return null;
@@ -177,10 +191,14 @@ namespace Uzi.Ikosa.Tactical
             try
             {
                 if (BrushCollection == null)
+                {
                     return BrushDefinition.MissingMaterial;
+                }
 
                 if (_XPlusMaterialIndex < BrushCollection.Count)
+                {
                     return BrushCollection[_XPlusMaterialIndex].GetMaterial(effect);
+                }
             }
             catch { }
             return null;
@@ -193,10 +211,14 @@ namespace Uzi.Ikosa.Tactical
             try
             {
                 if (BrushCollection == null)
+                {
                     return BrushDefinition.MissingMaterial;
+                }
 
                 if (_YMinusMaterialIndex < BrushCollection.Count)
+                {
                     return BrushCollection[_YMinusMaterialIndex].GetMaterial(effect);
+                }
             }
             catch { }
             return null;
@@ -209,10 +231,14 @@ namespace Uzi.Ikosa.Tactical
             try
             {
                 if (BrushCollection == null)
+                {
                     return BrushDefinition.MissingMaterial;
+                }
 
                 if (_YPlusMaterialIndex < BrushCollection.Count)
+                {
                     return BrushCollection[_YPlusMaterialIndex].GetMaterial(effect);
+                }
             }
             catch { }
             return null;
@@ -225,10 +251,14 @@ namespace Uzi.Ikosa.Tactical
             try
             {
                 if (BrushCollection == null)
+                {
                     return BrushDefinition.MissingMaterial;
+                }
 
                 if (_ZMinusMaterialIndex < BrushCollection.Count)
+                {
                     return BrushCollection[_ZMinusMaterialIndex].GetMaterial(effect);
+                }
             }
             catch { }
             return null;
@@ -241,10 +271,14 @@ namespace Uzi.Ikosa.Tactical
             try
             {
                 if (BrushCollection == null)
+                {
                     return BrushDefinition.MissingMaterial;
+                }
 
                 if (_ZPlusMaterialIndex < BrushCollection.Count)
+                {
                     return BrushCollection[_ZPlusMaterialIndex].GetMaterial(effect);
+                }
             }
             catch { }
             return null;
@@ -257,10 +291,14 @@ namespace Uzi.Ikosa.Tactical
             try
             {
                 if (BrushCollection == null)
+                {
                     return false;
+                }
 
                 if (_WedgeMaterialIndex < BrushCollection.Count)
+                {
                     return BrushCollection[_WedgeMaterialIndex].Opacity < 1d;
+                }
             }
             catch { }
             return false;
@@ -273,10 +311,14 @@ namespace Uzi.Ikosa.Tactical
             try
             {
                 if (BrushCollection == null)
+                {
                     return BrushDefinition.MissingMaterial;
+                }
 
                 if (_WedgeMaterialIndex < BrushCollection.Count)
+                {
                     return BrushCollection[_WedgeMaterialIndex].GetMaterial(effect);
+                }
             }
             catch { }
             return null;
@@ -289,10 +331,14 @@ namespace Uzi.Ikosa.Tactical
             try
             {
                 if (BrushCollection == null)
+                {
                     return false;
+                }
 
                 if (_InnerMaterialIndex < BrushCollection.Count)
+                {
                     return BrushCollection[_InnerMaterialIndex].Opacity < 1d;
+                }
             }
             catch { }
             return false;
@@ -305,10 +351,14 @@ namespace Uzi.Ikosa.Tactical
             try
             {
                 if (BrushCollection == null)
+                {
                     return BrushDefinition.MissingMaterial;
+                }
 
                 if (_InnerMaterialIndex < BrushCollection.Count)
+                {
                     return BrushCollection[_InnerMaterialIndex].GetMaterial(effect);
+                }
             }
             catch { }
             return null;
@@ -321,11 +371,18 @@ namespace Uzi.Ikosa.Tactical
             try
             {
                 if (BrushCollection == null)
+                {
                     return Brushes.Magenta;
+                }
 
                 if (_InnerMaterialIndex < BrushCollection.Count)
+                {
                     if ((effect == VisualEffect.Unseen) && GetInnerAlpha())
+                    {
                         return BrushCollection[_InnerMaterialIndex].GetBrush(VisualEffect.DimTo25);
+                    }
+                }
+
                 return BrushCollection[_InnerMaterialIndex].GetBrush(effect);
             }
             catch { }

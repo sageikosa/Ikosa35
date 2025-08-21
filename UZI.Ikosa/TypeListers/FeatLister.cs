@@ -45,7 +45,9 @@ namespace Uzi.Ikosa.TypeListers
                         // generic feat type
                         var _pflItem = new ParameterizedFeatListItem(_tli.Value.ListedType, creature, powerDie);
                         if ((_pflItem.Info != null) && _pflItem.AvailableParameters.Any())
+                        {
                             yield return _pflItem;
+                        }
                     }
                 }
             }

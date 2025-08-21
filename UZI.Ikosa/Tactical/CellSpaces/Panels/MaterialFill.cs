@@ -23,11 +23,15 @@ namespace Uzi.Ikosa.Tactical
         {
             // must be able to block
             if (movement.CanMoveThrough(Material))
+            {
                 return false;
+            }
 
             // must have some connection to the panel face
             if (!faces.Contains(panelFace))
+            {
                 return false;
+            }
 
             if (param.IsFaceDiagonalSide(panelFace))
             {
@@ -76,8 +80,10 @@ namespace Uzi.Ikosa.Tactical
         public override HedralGrip HedralGripping(PanelParams param, AnchorFace panelFace, MovementBase movement, IEnumerable<BasePanel> transitPanels)
         {
             if (movement.CanMoveThrough(Material))
+            {
                 // no blocking, since material doesn't block
                 return new HedralGrip(false);
+            }
 
             if (param.IsFaceDiagonalSide(panelFace) || param.IsFaceTriangularSink(panelFace))
             {
@@ -89,17 +95,21 @@ namespace Uzi.Ikosa.Tactical
                 // slope side
                 var _slope = transitPanels.OfType<SlopeComposite>().FirstOrDefault();
                 if (_slope != null)
+                {
                     return new HedralGrip(panelFace.GetAxis(), param.SourceFace.ReverseFace(),
                         5 - (param.SinkFace.IsLowFace() ? _slope.GreaterThickness : _slope.LesserThickness),
                         5 - (param.SinkFace.IsLowFace() ? _slope.LesserThickness : _slope.GreaterThickness));
+                }
             }
             else if (param.IsFaceSlopeEnd(panelFace))
             {
                 // slope end
                 var _slope = transitPanels.OfType<SlopeComposite>().FirstOrDefault();
                 if (_slope != null)
+                {
                     return new HedralGrip(panelFace.GetAxis(), param.SourceFace,
                         ((param.SinkFace == panelFace) ? _slope.GreaterThickness : _slope.LesserThickness));
+                }
             }
             else
             {
@@ -158,7 +168,9 @@ namespace Uzi.Ikosa.Tactical
                 // inverse of slope panel
                 var _slope = interiors.OfType<SlopeComposite>().FirstOrDefault();
                 if (_slope != null)
+                {
                     return _slope.GetPlaneListShell(param, z, y, x, true).Intersects(p1, p2);
+                }
             }
 
             // uniform fill
@@ -182,12 +194,16 @@ namespace Uzi.Ikosa.Tactical
                     {
                         // take out bend section
                         if (_bSegment.Value.Vector.LengthSquared < _segment.Value.Vector.LengthSquared)
+                        {
                             return _segment.Value.Vector.Length - _bSegment.Value.Vector.Length;
+                        }
                     }
                 }
                 else
+                {
                     // no negative segment
                     return _segment.Value.Vector.Length;
+                }
             }
 
             // no transit?
@@ -210,7 +226,9 @@ namespace Uzi.Ikosa.Tactical
                 // inverse of slope panel
                 var _slope = interiors.OfType<SlopeComposite>().FirstOrDefault();
                 if (_slope != null)
+                {
                     return _slope.GetPlaneListShell(param, z, y, x, true).TransitSegment(p1, p2);
+                }
             }
 
             // entire segment when uniform fill
@@ -224,7 +242,9 @@ namespace Uzi.Ikosa.Tactical
             IEnumerable<IBasePanel> transitPanels)
         {
             if (IsInvisible)
+            {
                 return;
+            }
 
             PanelSpaceFaces.AddOuterMaterialFill(group, z, y, x, panelFace, this, effect, bump);
         }

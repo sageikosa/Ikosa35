@@ -68,12 +68,14 @@ namespace Uzi.Ikosa.Adjuncts
         public void Release(Locator locator)
         {
             if (locator.ICore is ICoreObject _obj)
+            {
                 foreach (var _adj in (from _a in _obj.Adjuncts.OfType<DarknessShrouded>()
                                       where _a.Source == Source
                                       select _a).ToList())
                 {
                     _adj.Eject();
                 }
+            }
         }
 
         public void MoveInArea(Locator locator, bool followOn) { }

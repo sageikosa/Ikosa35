@@ -32,7 +32,9 @@ namespace Uzi.Ikosa.UI
         public RelayCommand(Action<T> execute, Predicate<T> canExecute)
         {
             if (execute == null)
+            {
                 throw new ArgumentNullException("execute");
+            }
 
             _execute = execute;
             _canExecute = canExecute;
@@ -53,12 +55,16 @@ namespace Uzi.Ikosa.UI
             add
             {
                 if (_canExecute != null)
+                {
                     CommandManager.RequerySuggested += value;
+                }
             }
             remove
             {
                 if (_canExecute != null)
+                {
                     CommandManager.RequerySuggested -= value;
+                }
             }
         }
 
@@ -105,7 +111,9 @@ namespace Uzi.Ikosa.UI
         public RelayCommand(Action execute, Func<bool> canExecute)
         {
             if (execute == null)
+            {
                 throw new ArgumentNullException("execute");
+            }
 
             _execute = execute;
             _canExecute = canExecute;
@@ -126,12 +134,16 @@ namespace Uzi.Ikosa.UI
             add
             {
                 if (_canExecute != null)
+                {
                     CommandManager.RequerySuggested += value;
+                }
             }
             remove
             {
                 if (_canExecute != null)
+                {
                     CommandManager.RequerySuggested -= value;
+                }
             }
         }
 

@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Windows.Media.Media3D;
 using System.Windows;
 
@@ -92,9 +89,13 @@ namespace Uzi.Visualize
                             if (primeOff > 0)
                             {
                                 if (secondOff > 0)
+                                {
                                     _addRect(new Rect(5d - secondOff, 0d, secondOff, 5d));
+                                }
                                 else if (secondOff < 0)
+                                {
                                     _addRect(new Rect(0, 0, Math.Abs(secondOff), 5d));
+                                }
                             }
                             break;
 
@@ -102,9 +103,13 @@ namespace Uzi.Visualize
                             if (primeOff < 0)
                             {
                                 if (secondOff > 0)
+                                {
                                     _addRect(new Rect(0, 0, secondOff, 5d));
+                                }
                                 else if (secondOff < 0)
+                                {
                                     _addRect(new Rect(5d + secondOff, 0d, Math.Abs(secondOff), 5d));
+                                }
                             }
                             break;
 
@@ -112,9 +117,13 @@ namespace Uzi.Visualize
                             if (secondOff > 0)
                             {
                                 if (primeOff > 0)
+                                {
                                     _addRect(new Rect(0, 0, primeOff, 5d));
+                                }
                                 else if (primeOff < 0)
+                                {
                                     _addRect(new Rect(_revPrimary, 0d, _magPrimary, 5d));
+                                }
                             }
                             break;
 
@@ -122,9 +131,13 @@ namespace Uzi.Visualize
                             if (secondOff < 0)
                             {
                                 if (primeOff > 0)
+                                {
                                     _addRect(new Rect(_revPrimary, 0d, primeOff, 5d));
+                                }
                                 else if (primeOff < 0)
+                                {
                                     _addRect(new Rect(0, 0, _magPrimary, 5d));
+                                }
                             }
                             break;
 
@@ -137,16 +150,24 @@ namespace Uzi.Visualize
                                     if (secondOff > 0)
                                     {
                                         if (!corner)
+                                        {
                                             _addTri(new Rect(_revPrimary, 0, primeOff, secondOff), TriangleCorner.LowerRight);
+                                        }
                                         else
+                                        {
                                             _addRect(new Rect(_revPrimary, 0, primeOff, secondOff));
+                                        }
                                     }
                                     else
                                     {
                                         if (!corner)
+                                        {
                                             _addTri(new Rect(_revPrimary, _revSecondary, primeOff, _magSecondary), TriangleCorner.UpperRight);
+                                        }
                                         else
+                                        {
                                             _addRect(new Rect(_revPrimary, _revSecondary, primeOff, _magSecondary));
+                                        }
                                     }
                                 }
                                 else
@@ -154,16 +175,24 @@ namespace Uzi.Visualize
                                     if (secondOff > 0)
                                     {
                                         if (!corner)
+                                        {
                                             _addTri(new Rect(0, 0, _magPrimary, secondOff), TriangleCorner.LowerLeft);
+                                        }
                                         else
+                                        {
                                             _addRect(new Rect(0, 0, _magPrimary, secondOff));
+                                        }
                                     }
                                     else
                                     {
                                         if (!corner)
+                                        {
                                             _addTri(new Rect(0, _revSecondary, _magPrimary, _magSecondary), TriangleCorner.UpperLeft);
+                                        }
                                         else
+                                        {
                                             _addRect(new Rect(0, _revSecondary, _magPrimary, _magSecondary));
+                                        }
                                     }
                                 }
                                 #endregion
@@ -179,16 +208,24 @@ namespace Uzi.Visualize
                                     if (secondOff > 0)
                                     {
                                         if (!corner)
+                                        {
                                             _addTri(new Rect(0, 0, primeOff, secondOff), TriangleCorner.LowerLeft);
+                                        }
                                         else
+                                        {
                                             _addRect(new Rect(0, 0, primeOff, secondOff));
+                                        }
                                     }
                                     else
                                     {
                                         if (!corner)
+                                        {
                                             _addTri(new Rect(0, _revSecondary, primeOff, _magSecondary), TriangleCorner.UpperLeft);
+                                        }
                                         else
+                                        {
                                             _addRect(new Rect(0, _revSecondary, primeOff, _magSecondary));
+                                        }
                                     }
                                 }
                                 else
@@ -196,16 +233,24 @@ namespace Uzi.Visualize
                                     if (secondOff > 0)
                                     {
                                         if (!corner)
+                                        {
                                             _addTri(new Rect(_revPrimary, 0, _magPrimary, secondOff), TriangleCorner.LowerRight);
+                                        }
                                         else
+                                        {
                                             _addRect(new Rect(_revPrimary, 0, _magPrimary, secondOff));
+                                        }
                                     }
                                     else
                                     {
                                         if (!corner)
+                                        {
                                             _addTri(new Rect(_revPrimary, _revSecondary, _magPrimary, _magSecondary), TriangleCorner.UpperRight);
+                                        }
                                         else
+                                        {
                                             _addRect(new Rect(_revPrimary, _revSecondary, _magPrimary, _magSecondary));
+                                        }
                                     }
                                 }
                                 #endregion
@@ -223,9 +268,13 @@ namespace Uzi.Visualize
                             if (primeOff > 0)
                             {
                                 if (secondOff > 0)
+                                {
                                     _addRect(new Rect(_revSecondary, 0d, secondOff, 5d));
+                                }
                                 else if (secondOff < 0)
+                                {
                                     _addRect(new Rect(0, 0, _magSecondary, 5d));
+                                }
                             }
                             break;
 
@@ -234,9 +283,13 @@ namespace Uzi.Visualize
                             {
                                 // ZP Face
                                 if (secondOff > 0)
+                                {
                                     _addRect(new Rect(0, 0, secondOff, 5d));
+                                }
                                 else if (secondOff < 0)
+                                {
                                     _addRect(new Rect(5d + secondOff, 0d, Math.Abs(secondOff), 5d));
+                                }
                             }
                             break;
 
@@ -245,9 +298,13 @@ namespace Uzi.Visualize
                             {
                                 // XM Face
                                 if (primeOff > 0)
+                                {
                                     _addRect(new Rect(0, 0, 5d, primeOff));
+                                }
                                 else if (primeOff < 0)
+                                {
                                     _addRect(new Rect(0d, _revPrimary, 5d, _magPrimary));
+                                }
                             }
                             break;
 
@@ -256,9 +313,13 @@ namespace Uzi.Visualize
                             {
                                 // XP Face
                                 if (primeOff > 0)
+                                {
                                     _addRect(new Rect(0, 0, 5d, primeOff));
+                                }
                                 else if (primeOff < 0)
+                                {
                                     _addRect(new Rect(0d, _revPrimary, 5d, _magPrimary));
+                                }
                             }
                             break;
 
@@ -271,9 +332,13 @@ namespace Uzi.Visualize
                                     if (secondOff > 0)
                                     {
                                         if (!corner)
+                                        {
                                             _addTri(new Rect(0, 0, secondOff, primeOff), TriangleCorner.LowerLeft);
+                                        }
                                         else
+                                        {
                                             _addRect(new Rect(0, 0, secondOff, primeOff));
+                                        }
                                     }
                                     else
                                     {
@@ -393,9 +458,13 @@ namespace Uzi.Visualize
                             {
                                 // YM Face
                                 if (secondOff > 0)
+                                {
                                     _addRect(new Rect(0, 0, 5d, secondOff));
+                                }
                                 else if (secondOff < 0)
+                                {
                                     _addRect(new Rect(0d, _revSecondary, 5d, _magSecondary));
+                                }
                             }
                             break;
 
@@ -404,9 +473,13 @@ namespace Uzi.Visualize
                             {
                                 // YP Face
                                 if (secondOff > 0)
+                                {
                                     _addRect(new Rect(0, 0, 5d, secondOff));
+                                }
                                 else if (secondOff < 0)
+                                {
                                     _addRect(new Rect(0d, _revSecondary, 5d, _magSecondary));
+                                }
                             }
                             break;
 
@@ -415,9 +488,13 @@ namespace Uzi.Visualize
                             {
                                 // ZM Face
                                 if (primeOff > 0)
+                                {
                                     _addRect(new Rect(0, 0, 5d, primeOff));
+                                }
                                 else if (primeOff < 0)
+                                {
                                     _addRect(new Rect(0d, _revPrimary, 5d, _magPrimary));
+                                }
                             }
                             break;
 
@@ -426,9 +503,13 @@ namespace Uzi.Visualize
                             {
                                 // ZP Face
                                 if (primeOff > 0)
+                                {
                                     _addRect(new Rect(0, 0, 5d, primeOff));
+                                }
                                 else if (primeOff < 0)
+                                {
                                     _addRect(new Rect(0d, _revPrimary, 5d, _magPrimary));
+                                }
                             }
                             break;
 
@@ -468,16 +549,24 @@ namespace Uzi.Visualize
                                     if (secondOff > 0)
                                     {
                                         if (!corner)
+                                        {
                                             _addTri(new Rect(0, 0, _magPrimary, secondOff), TriangleCorner.LowerLeft);
+                                        }
                                         else
+                                        {
                                             _addRect(new Rect(0, 0, _magPrimary, secondOff));
+                                        }
                                     }
                                     else
                                     {
                                         if (!corner)
+                                        {
                                             _addTri(new Rect(0, _revSecondary, _magPrimary, _magSecondary), TriangleCorner.UpperLeft);
+                                        }
                                         else
+                                        {
                                             _addRect(new Rect(0, _revSecondary, _magPrimary, _magSecondary));
+                                        }
                                     }
                                 }
                                 #endregion
@@ -520,16 +609,24 @@ namespace Uzi.Visualize
                                     if (primeOff > 0)
                                     {
                                         if (secondOff > 0)
+                                        {
                                             _addRect(new Rect(0, 0, primeOff, secondOff));
+                                        }
                                         else
+                                        {
                                             _addRect(new Rect(0, 5 + secondOff, primeOff, Math.Abs(secondOff)));
+                                        }
                                     }
                                     else
                                     {
                                         if (secondOff > 0)
+                                        {
                                             _addRect(new Rect(5 + primeOff, 0, Math.Abs(primeOff), secondOff));
+                                        }
                                         else
+                                        {
                                             _addRect(new Rect(5 + primeOff, 5 + secondOff, Math.Abs(primeOff), Math.Abs(secondOff)));
+                                        }
                                     }
                                 }
                                 // Inward Faces?
@@ -603,9 +700,14 @@ namespace Uzi.Visualize
                             {
                                 // XM Partial
                                 if (secondOff > 0)
+                                {
                                     _rect = new Rect(0d, 0d, _revSecondary, 5d);
+                                }
                                 else
+                                {
                                     _rect = new Rect(_magSecondary, 0d, _revSecondary, 5d);
+                                }
+
                                 _addRect(_rect);
                             }
                             else if (face == AnchorFace.XHigh)
@@ -627,9 +729,14 @@ namespace Uzi.Visualize
                             {
                                 // XP Partial
                                 if (secondOff > 0)
+                                {
                                     _rect = new Rect(secondOff, 0d, _revSecondary, 5d);
+                                }
                                 else
+                                {
                                     _rect = new Rect(0d, 0d, _revSecondary, 5d);
+                                }
+
                                 _addRect(_rect);
                             }
                         }
@@ -642,9 +749,14 @@ namespace Uzi.Visualize
                             {
                                 // YM Partial
                                 if (primeOff > 0)
+                                {
                                     _rect = new Rect(primeOff, 0, _revPrimary, 5d);
+                                }
                                 else
+                                {
                                     _rect = new Rect(0, 0, _revPrimary, 5d);
+                                }
+
                                 _addRect(_rect);
                             }
                             else if (face == AnchorFace.YHigh)
@@ -666,9 +778,14 @@ namespace Uzi.Visualize
                             {
                                 // YP Partial
                                 if (primeOff > 0)
+                                {
                                     _rect = new Rect(0d, 0d, _revPrimary, 5d);
+                                }
                                 else
+                                {
                                     _rect = new Rect(_magPrimary, 0d, _revPrimary, 5d);
+                                }
+
                                 _addRect(_rect);
                             }
                         }
@@ -759,9 +876,14 @@ namespace Uzi.Visualize
                             {
                                 // ZM Partial
                                 if (secondOff > 0)
+                                {
                                     _rect = new Rect(0d, 0d, _revSecondary, 5d);
+                                }
                                 else
+                                {
                                     _rect = new Rect(_magSecondary, 0d, _revSecondary, 5d);
+                                }
+
                                 _addRect(_rect);
                             }
 
@@ -785,9 +907,14 @@ namespace Uzi.Visualize
                             {
                                 // ZP Partial
                                 if (secondOff > 0)
+                                {
                                     _rect = new Rect(secondOff, 0d, _revSecondary, 5d);
+                                }
                                 else
+                                {
                                     _rect = new Rect(0d, 0d, _revSecondary, 5d);
+                                }
+
                                 _addRect(_rect);
                             }
                         }
@@ -800,9 +927,14 @@ namespace Uzi.Visualize
                             {
                                 // XM Partial
                                 if (primeOff > 0)
+                                {
                                     _rect = new Rect(0d, primeOff, 5d, _revPrimary);
+                                }
                                 else
+                                {
                                     _rect = new Rect(0d, 0d, 5d, _revPrimary);
+                                }
+
                                 _addRect(_rect);
                             }
 
@@ -826,9 +958,14 @@ namespace Uzi.Visualize
                             {
                                 // XP Partial
                                 if (primeOff > 0)
+                                {
                                     _rect = new Rect(0, primeOff, 5d, _revPrimary);
+                                }
                                 else
+                                {
                                     _rect = new Rect(0d, 0d, 5d, _revPrimary);
+                                }
+
                                 _addRect(_rect);
                             }
                         }
@@ -920,9 +1057,14 @@ namespace Uzi.Visualize
                             {
                                 // YM Partial
                                 if (secondOff > 0)
+                                {
                                     _rect = new Rect(0d, secondOff, 5d, _revSecondary);
+                                }
                                 else
+                                {
                                     _rect = new Rect(0d, 0d, 5d, _revSecondary);
+                                }
+
                                 _addRect(_rect);
                             }
 
@@ -946,9 +1088,14 @@ namespace Uzi.Visualize
                             {
                                 // YP Partial
                                 if (secondOff > 0)
+                                {
                                     _rect = new Rect(0d, secondOff, 5d, _revSecondary);
+                                }
                                 else
+                                {
                                     _rect = new Rect(0d, 0d, 5d, _revSecondary);
+                                }
+
                                 _addRect(_rect);
                             }
                         }
@@ -961,9 +1108,14 @@ namespace Uzi.Visualize
                             {
                                 // ZM Partial
                                 if (primeOff > 0)
+                                {
                                     _rect = new Rect(0d, primeOff, 5d, _revPrimary);
+                                }
                                 else
+                                {
                                     _rect = new Rect(0d, 0d, 5d, _revPrimary);
+                                }
+
                                 _addRect(_rect);
                             }
 
@@ -987,9 +1139,14 @@ namespace Uzi.Visualize
                             {
                                 // ZP Partial
                                 if (primeOff > 0)
+                                {
                                     _rect = new Rect(0d, primeOff, 5d, _revPrimary);
+                                }
                                 else
+                                {
                                     _rect = new Rect(0d, 0d, 5d, _revPrimary);
+                                }
+
                                 _addRect(_rect);
                             }
                         }
@@ -1080,7 +1237,9 @@ namespace Uzi.Visualize
             var _fillVisible = !wedge.IsPlusInvisible;
 
             if (!_wedgeVisible && !_fillVisible)
+            {
                 return;
+            }
 
             var _param = new WedgeParams(param);
             var _axis = _param.Axis;
@@ -1144,14 +1303,23 @@ namespace Uzi.Visualize
                             var _rect = new Rect();
                             var _bump = new Vector3D(_revPrimary, 0d, 0d);
                             if (secondOff > 0)
+                            {
                                 _rect = new Rect(5d - secondOff, 0d, secondOff, 5d);
+                            }
                             else if (secondOff < 0)
+                            {
                                 _rect = new Rect(0, 0, Math.Abs(secondOff), 5d);
+                            }
 
                             if (hasTiling)
+                            {
                                 _addRect(false, AnchorFace.XLow, _bump, _rect);
+                            }
+
                             if (hasPlusTiling)
+                            {
                                 _addRect(true, AnchorFace.XLow, _bump, _rect);
+                            }
                             #endregion
                         }
                         else if (primeOff > 0)
@@ -1161,14 +1329,23 @@ namespace Uzi.Visualize
                             var _rect = new Rect();
                             var _bump = new Vector3D(0 - _revPrimary, 0d, 0d);
                             if (secondOff > 0)
+                            {
                                 _rect = new Rect(0, 0, secondOff, 5d);
+                            }
                             else if (secondOff < 0)
+                            {
                                 _rect = new Rect(5d + secondOff, 0d, Math.Abs(secondOff), 5d);
+                            }
 
                             if (hasTiling)
+                            {
                                 _addRect(false, AnchorFace.XHigh, _bump, _rect);
+                            }
+
                             if (hasPlusTiling)
+                            {
                                 _addRect(true, AnchorFace.XHigh, _bump, _rect);
+                            }
                             #endregion
                         }
                         if (secondOff < 0)
@@ -1178,14 +1355,23 @@ namespace Uzi.Visualize
                             var _rect = new Rect();
                             var _bump = new Vector3D(0d, _revSecondary, 0d);
                             if (primeOff > 0)
+                            {
                                 _rect = new Rect(0, 0, primeOff, 5d);
+                            }
                             else if (primeOff < 0)
+                            {
                                 _rect = new Rect(_revPrimary, 0d, _magPrimary, 5d);
+                            }
 
                             if (hasTiling)
+                            {
                                 _addRect(false, AnchorFace.YLow, _bump, _rect);
+                            }
+
                             if (hasPlusTiling)
+                            {
                                 _addRect(true, AnchorFace.YLow, _bump, _rect);
+                            }
                             #endregion
                         }
                         else if (secondOff > 0)
@@ -1195,14 +1381,23 @@ namespace Uzi.Visualize
                             var _rect = new Rect();
                             var _bump = new Vector3D(0d, 0d - _revSecondary, 0d);
                             if (primeOff > 0)
+                            {
                                 _rect = new Rect(_revPrimary, 0d, primeOff, 5d);
+                            }
                             else if (primeOff < 0)
+                            {
                                 _rect = new Rect(0, 0, _magPrimary, 5d);
+                            }
 
                             if (hasTiling)
+                            {
                                 _addRect(false, AnchorFace.YHigh, _bump, _rect);
+                            }
+
                             if (hasPlusTiling)
+                            {
                                 _addRect(true, AnchorFace.YHigh, _bump, _rect);
+                            }
                             #endregion
                         }
                     }
@@ -1282,14 +1477,23 @@ namespace Uzi.Visualize
                             var _rect = new Rect();
                             var _bump = new Vector3D(0d, 0d, _revPrimary);
                             if (secondOff > 0)
+                            {
                                 _rect = new Rect(_revSecondary, 0d, secondOff, 5d);
+                            }
                             else if (secondOff < 0)
+                            {
                                 _rect = new Rect(0, 0, _magSecondary, 5d);
+                            }
 
                             if (hasTiling)
+                            {
                                 _addRect(false, AnchorFace.ZLow, _bump, _rect);
+                            }
+
                             if (hasPlusTiling)
+                            {
                                 _addRect(true, AnchorFace.ZLow, _bump, _rect);
+                            }
                             #endregion
                         }
                         if (primeOff > 0)
@@ -1299,14 +1503,23 @@ namespace Uzi.Visualize
                             var _rect = new Rect();
                             var _bump = new Vector3D(0d, 0d, _magPrimary);
                             if (secondOff > 0)
+                            {
                                 _rect = new Rect(0, 0, secondOff, 5d);
+                            }
                             else if (secondOff < 0)
+                            {
                                 _rect = new Rect(5d + secondOff, 0d, Math.Abs(secondOff), 5d);
+                            }
 
                             if (hasTiling)
+                            {
                                 _addRect(false, AnchorFace.ZHigh, _bump, _rect);
+                            }
+
                             if (hasPlusTiling)
+                            {
                                 _addRect(true, AnchorFace.ZHigh, _bump, _rect);
+                            }
                             #endregion
                         }
                         if (secondOff < 0)
@@ -1316,14 +1529,23 @@ namespace Uzi.Visualize
                             var _rect = new Rect();
                             var _bump = new Vector3D(_revSecondary, 0d, 0d);
                             if (primeOff > 0)
+                            {
                                 _rect = new Rect(0, 0, 5d, primeOff);
+                            }
                             else if (primeOff < 0)
+                            {
                                 _rect = new Rect(0d, _revPrimary, 5d, _magPrimary);
+                            }
 
                             if (hasTiling)
+                            {
                                 _addRect(false, AnchorFace.XLow, _bump, _rect);
+                            }
+
                             if (hasPlusTiling)
+                            {
                                 _addRect(true, AnchorFace.XLow, _bump, _rect);
+                            }
                             #endregion
                         }
                         if (secondOff > 0)
@@ -1333,14 +1555,23 @@ namespace Uzi.Visualize
                             var _rect = new Rect();
                             var _bump = new Vector3D(0 - _revSecondary, 0d, 0d);
                             if (primeOff > 0)
+                            {
                                 _rect = new Rect(0, 0, 5d, primeOff);
+                            }
                             else if (primeOff < 0)
+                            {
                                 _rect = new Rect(0d, _revPrimary, 5d, _magPrimary);
+                            }
 
                             if (hasTiling)
+                            {
                                 _addRect(false, AnchorFace.XHigh, _bump, _rect);
+                            }
+
                             if (hasPlusTiling)
+                            {
                                 _addRect(true, AnchorFace.XHigh, _bump, _rect);
+                            }
                             #endregion
                         }
                     }
@@ -1419,14 +1650,23 @@ namespace Uzi.Visualize
                             var _rect = new Rect();
                             var _bump = new Vector3D(0d, _revPrimary, 0d);
                             if (secondOff > 0)
+                            {
                                 _rect = new Rect(0, 0, 5d, secondOff);
+                            }
                             else if (secondOff < 0)
+                            {
                                 _rect = new Rect(0d, _revSecondary, 5d, _magSecondary);
+                            }
 
                             if (hasTiling)
+                            {
                                 _addRect(false, AnchorFace.YLow, _bump, _rect);
+                            }
+
                             if (hasPlusTiling)
+                            {
                                 _addRect(true, AnchorFace.YLow, _bump, _rect);
+                            }
                             #endregion
                         }
                         if (primeOff > 0)
@@ -1436,14 +1676,23 @@ namespace Uzi.Visualize
                             var _rect = new Rect();
                             var _bump = new Vector3D(0d, 0d - _revPrimary, 0d);
                             if (secondOff > 0)
+                            {
                                 _rect = new Rect(0, 0, 5d, secondOff);
+                            }
                             else if (secondOff < 0)
+                            {
                                 _rect = new Rect(0d, _revSecondary, 5d, _magSecondary);
+                            }
 
                             if (hasTiling)
+                            {
                                 _addRect(false, AnchorFace.YHigh, _bump, _rect);
+                            }
+
                             if (hasPlusTiling)
+                            {
                                 _addRect(true, AnchorFace.YHigh, _bump, _rect);
+                            }
                             #endregion
                         }
                         if (secondOff < 0)
@@ -1453,14 +1702,23 @@ namespace Uzi.Visualize
                             var _rect = new Rect();
                             var _bump = new Vector3D(0d, 0d, _revSecondary);
                             if (primeOff > 0)
+                            {
                                 _rect = new Rect(0, 0, 5d, primeOff);
+                            }
                             else if (primeOff < 0)
+                            {
                                 _rect = new Rect(0d, _revPrimary, 5d, _magPrimary);
+                            }
 
                             if (hasTiling)
+                            {
                                 _addRect(false, AnchorFace.ZLow, _bump, _rect);
+                            }
+
                             if (hasPlusTiling)
+                            {
                                 _addRect(true, AnchorFace.ZLow, _bump, _rect);
+                            }
                             #endregion
                         }
                         if (secondOff > 0)
@@ -1470,14 +1728,23 @@ namespace Uzi.Visualize
                             var _rect = new Rect();
                             var _bump = new Vector3D(0d, 0d, _magSecondary);
                             if (primeOff > 0)
+                            {
                                 _rect = new Rect(0, 0, 5d, primeOff);
+                            }
                             else if (primeOff < 0)
+                            {
                                 _rect = new Rect(0d, _revPrimary, 5d, _magPrimary);
+                            }
 
                             if (hasTiling)
+                            {
                                 _addRect(false, AnchorFace.ZHigh, _bump, _rect);
+                            }
+
                             if (hasPlusTiling)
+                            {
                                 _addRect(true, AnchorFace.ZHigh, _bump, _rect);
+                            }
                             #endregion
                         }
                     }
@@ -1557,9 +1824,13 @@ namespace Uzi.Visualize
             var _wedgeBlock = !wedge.IsInvisible;
             var _fillBlock = !wedge.IsPlusInvisible;
             if (_wedgeBlock && _fillBlock)
+            {
                 return true;
+            }
             else if (!_wedgeBlock && !_fillBlock)
+            {
                 return false;
+            }
             else if (_fillBlock)
             {
                 // only sides opposite wedge corner can occlude!
@@ -1577,7 +1848,10 @@ namespace Uzi.Visualize
             var _param = new WedgeParams(param);
             var _ortho = _param.Axis;
             if (!wedge.IsPlusInvisible)
+            {
                 return true;
+            }
+
             if (!wedge.IsInvisible)
             {
                 // any side except the opposite sides of the wedge corner should be shown!

@@ -60,7 +60,10 @@ namespace Uzi.Ikosa.Movement
 
             // distraction
             if (_Distract != null)
+            {
                 _Distract.Eject();
+            }
+
             _critter.Actions.Filters.Remove(this);
 
             // remove move penalties

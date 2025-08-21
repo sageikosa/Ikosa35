@@ -25,7 +25,7 @@ namespace Uzi.Packaging
             : base(manager, name)
         {
             _Invisible = invisible;
-            _IBaseParts = new List<IBasePart>();
+            _IBaseParts = [];
         }
         #endregion
 
@@ -117,9 +117,13 @@ namespace Uzi.Packaging
                         .FirstOrDefault(_p => _p.Name.Equals(_part.Name, StringComparison.OrdinalIgnoreCase)
                         && _p.GetType().Equals(_part.GetType()));
                     if (_exist != null)
+                    {
                         _exist.RefreshPart(_part.Part);
+                    }
                     else
+                    {
                         _IBaseParts.Add(_part);
+                    }
                 }
             }
         }
@@ -127,7 +131,9 @@ namespace Uzi.Packaging
         public override void Close()
         {
             foreach (var _part in _IBaseParts)
+            {
                 _part.Close();
+            }
         }
     }
 }

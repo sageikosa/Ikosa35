@@ -24,7 +24,9 @@ namespace Uzi.Ikosa.Movement
             // must use accelerated?
             _Accelerated = accelerated;
             if (_Accelerated)
+            {
                 _PreReq.IsUsingPenalty = true;
+            }
         }
         #endregion
 

@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Uzi.Core;
 using Uzi.Ikosa.Actions;
@@ -21,7 +21,7 @@ namespace Uzi.Ikosa.Interactions
             Damages = damages.ToList();
             SaveFactor = saveFactor;
             IsContinuous = isContinuous;
-            Secondaries = new List<ISecondaryAttackResult>();
+            Secondaries = [];
             CriticalFailDamagesItems = criticalFailDamagesItems;
         }
 
@@ -29,13 +29,13 @@ namespace Uzi.Ikosa.Interactions
             SaveMode saveMode, double saveFactor, Deltable saveRoll, bool isContinuous, bool criticalFailDamagesItems)
             : base(critter, saveMode, saveRoll)
         {
-            Damages = new List<DamageData>
-            {
+            Damages =
+            [
                 damage
-            };
+            ];
             SaveFactor = saveFactor;
             IsContinuous = isContinuous;
-            Secondaries = new List<ISecondaryAttackResult>();
+            Secondaries = [];
             CriticalFailDamagesItems = criticalFailDamagesItems;
         }
         #endregion

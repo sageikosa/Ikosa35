@@ -60,7 +60,9 @@ namespace Uzi.Ikosa.Actions
             {
                 // if grappling, default is no attack
                 if (_critter.Conditions.Contains(Condition.Grappling))
+                {
                     return new ActivityResponse(false);
+                }
 
                 // regular action base checks
                 return base.OnCanPerformActivity(activity);
@@ -118,10 +120,14 @@ namespace Uzi.Ikosa.Actions
                         .Where(_t => _t.Key.Equals(targetKey, StringComparison.OrdinalIgnoreCase)))
                     {
                         if (_target.Target.ID == potentialTarget.ID)
+                        {
                             return true;
+                        }
 
                         if ((_target.Target as IAdjunctable)?.GetLocated()?.Locator == _loc)
+                        {
                             return true;
+                        }
                     }
                 }
             }

@@ -10,9 +10,13 @@ namespace Uzi.Core
         {
             _Tracker = tracker;
             if (addToTail)
+            {
                 _Tracker.Ticks.AddLast(this);
+            }
             else
+            {
                 _Tracker.Ticks.AddFirst(this);
+            }
         }
 
         protected CoreTurnTick(CoreTickTracker tracker, LinkedListNode<CoreTurnTick> refNode)

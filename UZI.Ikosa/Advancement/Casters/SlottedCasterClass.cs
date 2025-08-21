@@ -19,10 +19,10 @@ namespace Uzi.Ikosa.Advancement
         protected SlottedCasterClass(byte powerDie, PowerDieCalcMethod calcMethod)
             : base(powerDie, calcMethod)
         {
-            _SpellSlots = new List<SpellSlotSet<SlotClass>>
-            {
+            _SpellSlots =
+            [
                 new SpellSlotSet<SlotClass>(this)
-            };
+            ];
         }
         #endregion
 

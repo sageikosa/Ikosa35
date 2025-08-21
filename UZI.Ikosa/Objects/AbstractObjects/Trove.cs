@@ -44,11 +44,19 @@ namespace Uzi.Ikosa.Objects
                 {
                     var _gs = _sz.GeometricSize;
                     if (_gs.ZExtent > _z)
+                    {
                         _z = _gs.ZExtent;
+                    }
+
                     if (_gs.YExtent > _y)
+                    {
                         _y = _gs.YExtent;
+                    }
+
                     if (_gs.XExtent > _x)
+                    {
                         _x = _gs.XExtent;
+                    }
                 }
                 return new GeometricSize(_z, _y, _x);
             }
@@ -117,7 +125,10 @@ namespace Uzi.Ikosa.Objects
             {
                 var _obj = Contents.OfType<ICoreIconic>().FirstOrDefault();
                 if (_obj != null)
+                {
                     return _obj.IconKeys;
+                }
+
                 return new string[] { };
             }
         }
@@ -220,13 +231,10 @@ namespace Uzi.Ikosa.Objects
                 }
 
                 #region Get trove at location
-                if (_trove == null)
-                {
-                    // see if a trove is at the location
-                    _trove = (from _l in map.MapContext.LocatorsInCell(_location, _ethereal ? PlanarPresence.Ethereal : PlanarPresence.Material)
-                              where _l.ICore is Trove
-                              select _l.ICore as Trove).FirstOrDefault();
-                }
+                // see if a trove is at the location
+                _trove ??= (from _l in map.MapContext.LocatorsInCell(_location, _ethereal ? PlanarPresence.Ethereal : PlanarPresence.Material)
+                            where _l.ICore is Trove
+                            select _l.ICore as Trove).FirstOrDefault();
 
                 // if not create one
                 if (_trove == null)

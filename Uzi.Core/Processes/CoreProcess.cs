@@ -11,7 +11,10 @@ namespace Uzi.Core
         {
             _RootStep = rootStep;
             if (rootStep != null)
+            {
                 rootStep.Process = this;
+            }
+
             _IsActive = true;
             _Reactives = new Queue<CoreStep>();
             _Completions = new Queue<CoreStep>();
@@ -86,7 +89,9 @@ namespace Uzi.Core
             if (_Finalizers?.Any() ?? false)
             {
                 foreach (var _final in _Finalizers)
+                {
                     _final.FinalizeProcess(this, deactivated);
+                }
             }
         }
 
@@ -107,7 +112,10 @@ namespace Uzi.Core
             if (_next != null)
             {
                 if (_next.IsNewRoot)
+                {
                     _RootStep = _next;
+                }
+
                 return _next;
             }
 
@@ -140,9 +148,11 @@ namespace Uzi.Core
 
         public void AddFinalizer(IFinalizeProcess finalizer)
         {
-            _Finalizers ??= new List<IFinalizeProcess>();
+            _Finalizers ??= [];
             if (!_Finalizers.Contains(finalizer))
+            {
                 _Finalizers.Add(finalizer);
+            }
         }
     }
 }

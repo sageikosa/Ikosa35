@@ -53,7 +53,7 @@ namespace Uzi.Ikosa.Interactions
         public VisualEffectFeedback(object source)
             : base(source)
         {
-            _VisualEffects = new Dictionary<Type, VisualEffect>();
+            _VisualEffects = [];
         }
         #endregion
 

@@ -35,7 +35,9 @@ namespace Uzi.Ikosa.Tactical
         public override bool BlockedAt(PanelParams param, AnchorFace panelFace, MovementBase movement, List<AnchorFace> _faces)
         {
             if (movement.CanMoveThrough(Material))
+            {
                 return false;
+            }
 
             // cornered edge face
             var _snap = param.GetPanelEdge(panelFace);
@@ -49,7 +51,9 @@ namespace Uzi.Ikosa.Tactical
         public override HedralGrip HedralGripping(PanelParams param, AnchorFace panelFace, MovementBase movement, IEnumerable<BasePanel> transitPanels)
         {
             if (movement.CanMoveThrough(Material))
+            {
                 return new HedralGrip(false);
+            }
 
             // offset from corner divided by maximum extent
             return new HedralGrip(panelFace.GetAxis(), panelFace.GetSnappedFace(param.GetPanelEdge(panelFace)), Offset);
@@ -119,12 +123,18 @@ namespace Uzi.Ikosa.Tactical
             if (param.GetPanelType(panelFace) == PanelType.MaskedCorner)
             {
                 if (panelFace == visibleFace)
+                {
                     PanelSpaceFaces.AddOuterNormalPanel(group, new CellPosition(z, y, x), panelFace, effect, this);
+                }
                 else
+                {
                     PanelSpaceFaces.AddOuterNormalPanel(group, z, y, x, panelFace, visibleFace, Thickness, effect, this);
+                }
             }
             else
+            {
                 PanelSpaceFaces.AddOuterCornerPanel(group, z, y, x, panelFace, visibleFace, Thickness, param.GetPanelEdge(panelFace), Offset, effect, this);
+            }
         }
 
         public override bool OrthoOcclusion(PanelParams param, AnchorFace panelFace, AnchorFace sideFace)
@@ -132,7 +142,10 @@ namespace Uzi.Ikosa.Tactical
             if (!IsInvisible)
             {
                 if (param.GetPanelType(panelFace) == PanelType.MaskedCorner)
+                {
                     return true;
+                }
+
                 var _snapped = panelFace.GetSnappedFace(param.GetPanelEdge(panelFace));
                 return (_snapped == sideFace);
             }

@@ -112,7 +112,10 @@ namespace Uzi.Ikosa.Objects
         protected override bool IsSideAccessible(bool inside, IGeometricRegion actor, IGeometricRegion portal)
         {
             if (actor == null)
+            {
                 return true;
+            }
+
             bool _faceTest(AnchorFace face)
                 => face switch
                 {
@@ -166,22 +169,28 @@ namespace Uzi.Ikosa.Objects
                 // TODO: bigger portals need to ensure cells at appropriate edge
                 // TODO: planar points?
                 if (AnchorMatch(AnchorOpen, tacticalInfo.TacticalCellRef) && tacticalInfo.CrossesFace(AnchorOpen))
+                {
                     return (PortalledObjectA.DoesSupplyCover > PortalledObjectB.DoesSupplyCover ? PortalledObjectA.DoesSupplyCover : PortalledObjectB.DoesSupplyCover);
+                }
             }
             else if (OpenState.Value < 0.25d)
             {
                 // TODO: bigger portals need to track cells at appropriate edge
                 // TODO: planar points?
                 if (AnchorMatch(AnchorClose, tacticalInfo.TacticalCellRef) && tacticalInfo.CrossesFace(AnchorClose))
+                {
                     return (PortalledObjectA.DoesSupplyCover > PortalledObjectB.DoesSupplyCover ? PortalledObjectA.DoesSupplyCover : PortalledObjectB.DoesSupplyCover);
+                }
             }
             else
             {
                 // TODO: use expanded info to see if line goes through open door
                 if (InPortal(tacticalInfo, this.GetLocated()?.Locator.GeometricRegion))
+                {
                     return (PortalledObjectA.DoesSupplyCover > PortalledObjectB.DoesSupplyCover
                         ? PortalledObjectA.DoesSupplyCover
                         : PortalledObjectB.DoesSupplyCover);
+                }
             }
             return CoverLevel.None;
         }
@@ -192,15 +201,19 @@ namespace Uzi.Ikosa.Objects
         {
             var _geom = new Lazy<IGeometricRegion>(() => this.GetLocated()?.Locator.GeometricRegion);
             if (OpenState.Value <= 0.1d)
+            {
                 return (PortalledObjectA.DoesSupplyConcealment || PortalledObjectB.DoesSupplyConcealment)
                     && !_geom.Value.HasTargetAccess(AnchorClose, tacticalInfo.SourceRegion, tacticalInfo.TargetRegion)
                     && tacticalInfo.CrossesFace(AnchorClose)
                     && AnchorMatch(AnchorClose, tacticalInfo.TacticalCellRef);
+            }
             else if (OpenState.Value >= 0.9d)
+            {
                 return (PortalledObjectA.DoesSupplyConcealment || PortalledObjectB.DoesSupplyConcealment)
                     && !_geom.Value.HasTargetAccess(AnchorOpen, tacticalInfo.SourceRegion, tacticalInfo.TargetRegion)
                     && tacticalInfo.CrossesFace(AnchorOpen)
                     && AnchorMatch(AnchorOpen, tacticalInfo.TacticalCellRef);
+            }
             else
             {
                 // somewhere in-between
@@ -217,15 +230,19 @@ namespace Uzi.Ikosa.Objects
         {
             var _geom = new Lazy<IGeometricRegion>(() => this.GetLocated()?.Locator.GeometricRegion);
             if (OpenState.Value <= 0.1d)
+            {
                 return (PortalledObjectA.DoesSupplyTotalConcealment || PortalledObjectB.DoesSupplyTotalConcealment)
                     && !_geom.Value.HasTargetAccess(AnchorClose, tacticalInfo.SourceRegion, tacticalInfo.TargetRegion)
                     && tacticalInfo.CrossesFace(AnchorClose)
                     && AnchorMatch(AnchorClose, tacticalInfo.TacticalCellRef);
+            }
             else if (OpenState.Value >= 0.9d)
+            {
                 return (PortalledObjectA.DoesSupplyTotalConcealment || PortalledObjectB.DoesSupplyTotalConcealment)
                     && !_geom.Value.HasTargetAccess(AnchorOpen, tacticalInfo.SourceRegion, tacticalInfo.TargetRegion)
                     && tacticalInfo.CrossesFace(AnchorOpen)
                     && AnchorMatch(AnchorOpen, tacticalInfo.TacticalCellRef);
+            }
             else
             {
                 // somewhere in-between
@@ -242,15 +259,19 @@ namespace Uzi.Ikosa.Objects
         {
             var _geom = new Lazy<IGeometricRegion>(() => this.GetLocated()?.Locator.GeometricRegion);
             if (OpenState.Value.CloseEnough(0, 0.025d))
+            {
                 return (PortalledObjectA.DoesBlocksLineOfEffect || PortalledObjectB.DoesBlocksLineOfEffect)
                     && !_geom.Value.HasTargetAccess(AnchorClose, tacticalInfo.SourceRegion, tacticalInfo.TargetRegion)
                     && tacticalInfo.CrossesFace(AnchorClose)
                     && InPortal(tacticalInfo, _geom.Value);
+            }
             else if (OpenState.Value.CloseEnough(1, 0.025d))
+            {
                 return (PortalledObjectA.DoesBlocksLineOfEffect || PortalledObjectB.DoesBlocksLineOfEffect)
                     && !_geom.Value.HasTargetAccess(AnchorOpen, tacticalInfo.SourceRegion, tacticalInfo.TargetRegion)
                     && tacticalInfo.CrossesFace(AnchorOpen)
                     && InPortal(tacticalInfo, _geom.Value);
+            }
             else
             {
                 // somewhere in-between
@@ -267,15 +288,19 @@ namespace Uzi.Ikosa.Objects
         {
             var _geom = new Lazy<IGeometricRegion>(() => this.GetLocated()?.Locator.GeometricRegion);
             if (OpenState.Value.CloseEnough(0, 0.025d))
+            {
                 return (PortalledObjectA.DoesBlocksLineOfDetect || PortalledObjectB.DoesBlocksLineOfDetect)
                     && !_geom.Value.HasTargetAccess(AnchorOpen, tacticalInfo.SourceRegion, tacticalInfo.TargetRegion)
                     && tacticalInfo.CrossesFace(AnchorClose)
                     && InPortal(tacticalInfo, _geom.Value);
+            }
             else if (OpenState.Value.CloseEnough(1, 0.025d))
+            {
                 return (PortalledObjectA.DoesBlocksLineOfDetect || PortalledObjectB.DoesBlocksLineOfDetect)
                     && !_geom.Value.HasTargetAccess(AnchorOpen, tacticalInfo.SourceRegion, tacticalInfo.TargetRegion)
                     && tacticalInfo.CrossesFace(AnchorOpen)
                     && InPortal(tacticalInfo, _geom.Value);
+            }
             else
             {
                 // somewhere in-between
@@ -294,13 +319,18 @@ namespace Uzi.Ikosa.Objects
             if ((OpenState.Value <= 0.375d)
                 && (moveTactical.TransitFaces.Contains(AnchorClose))
                 && this.InLocator(moveTactical))
+            {
                 return ((IMoveAlterer)PortalledObjectA).BlocksTransit(moveTactical)
                     || ((IMoveAlterer)PortalledObjectB).BlocksTransit(moveTactical);
+            }
             else if ((OpenState.Value >= 0.625d)
                 && (moveTactical.TransitFaces.Contains(AnchorOpen))
                 && this.InLocator(moveTactical))
+            {
                 return ((IMoveAlterer)PortalledObjectA).BlocksTransit(moveTactical)
                     || ((IMoveAlterer)PortalledObjectB).BlocksTransit(moveTactical);
+            }
+
             return false;
         }
         #endregion
@@ -312,13 +342,18 @@ namespace Uzi.Ikosa.Objects
             if ((OpenState.Value <= 0.875d)
                 && (moveTactical.TransitFaces.Contains(AnchorClose))
                 && this.InLocator(moveTactical))
+            {
                 return ((IMoveAlterer)PortalledObjectA).HindersTransit(moveTactical.Movement, new CellLocation(moveTactical.SourceCell))
                     || ((IMoveAlterer)PortalledObjectB).HindersTransit(moveTactical.Movement, new CellLocation(moveTactical.SourceCell));
+            }
             else if ((OpenState.Value >= 0.125d)
                 && (moveTactical.TransitFaces.Contains(AnchorOpen))
                 && this.InLocator(moveTactical))
+            {
                 return ((IMoveAlterer)PortalledObjectA).HindersTransit(moveTactical.Movement, new CellLocation(moveTactical.SourceCell))
                     || ((IMoveAlterer)PortalledObjectB).HindersTransit(moveTactical.Movement, new CellLocation(moveTactical.SourceCell));
+            }
+
             return false;
         }
         #endregion
@@ -328,11 +363,17 @@ namespace Uzi.Ikosa.Objects
         {
             // TODO: source or target cell must be in locator
             if (OpenState.Value.CloseEnough(0, 0.025d))
+            {
                 return (PortalledObjectA.DoesBlocksSpread || PortalledObjectB.DoesBlocksSpread) && (AnchorClose == transitFace);
+            }
             else if (OpenState.Value.CloseEnough(1, 0.025d))
+            {
                 return (PortalledObjectA.DoesBlocksSpread || PortalledObjectB.DoesBlocksSpread) && (AnchorOpen == transitFace);
+            }
             else
+            {
                 return false;
+            }
         }
         #endregion
 
@@ -353,11 +394,15 @@ namespace Uzi.Ikosa.Objects
             // if the material is immaterial to the movement, can-occupy
             if (movement.CanMoveThrough(PortalledObjectA.ObjectMaterial)
                     && movement.CanMoveThrough(PortalledObjectB.ObjectMaterial))
+            {
                 return true;
+            }
 
             // don't really touch this cell?
             if (!this.InLocator(region))
+            {
                 return true;
+            }
 
             if (OpenState.Value <= 0.25)
             {
@@ -384,7 +429,9 @@ namespace Uzi.Ikosa.Objects
             // if the material is immaterial to the movement, no hinderance
             if (movement.CanMoveThrough(PortalledObjectA.ObjectMaterial)
                     && movement.CanMoveThrough(PortalledObjectB.ObjectMaterial))
+            {
                 return false;
+            }
 
             // open enough to hinder
             return (OpenState.Value >= 0.125d) && (OpenState.Value <= 0.875d)
@@ -453,9 +500,14 @@ namespace Uzi.Ikosa.Objects
                 var _h = Math.Ceiling(PortalledObjectA.Height / 5d);
                 var _w = Math.Ceiling(PortalledObjectA.Width / 5d);
                 if (!HasAnchor(AnchorFace.ZLow) && !HasAnchor(AnchorFace.ZHigh))
+                {
                     return new GeometricSize(_h, _w, _w);
+                }
                 else if (!HasAnchor(AnchorFace.YLow) && !HasAnchor(AnchorFace.YHigh))
+                {
                     return new GeometricSize(_w, _h, _w);
+                }
+
                 return new GeometricSize(_w, _w, _h);
             }
         }
@@ -485,7 +537,10 @@ namespace Uzi.Ikosa.Objects
                     || ((AnchorOpen == AnchorFace.ZHigh) && (AnchorClose == AnchorFace.YHigh))
                     || ((AnchorOpen == AnchorFace.ZHigh) && (AnchorClose == AnchorFace.XLow))
                     )
+                {
                     return true;
+                }
+
                 return false;
             }
         }
@@ -616,12 +671,14 @@ namespace Uzi.Ikosa.Objects
                             CenterZ = 0
                         });
                     if (InnerHinge && AnchorClose == AnchorFace.XLow)
+                    {
                         _custom.Add(new Translate3DInfo
                         {
                             OffsetX = 0,
                             OffsetY = _yH - PortalledObjectA.Width,
                             OffsetZ = 0
                         });
+                    }
                 }
                 else if (HasAnchor(AnchorFace.YHigh))
                 {
@@ -643,6 +700,7 @@ namespace Uzi.Ikosa.Objects
                             CenterZ = 0
                         });
                     if (InnerHinge && AnchorClose == AnchorFace.XLow)
+                    {
                         _custom.Add(
                             new Translate3DInfo
                             {
@@ -650,6 +708,7 @@ namespace Uzi.Ikosa.Objects
                                 OffsetY = PortalledObjectA.Width - _yH,
                                 OffsetZ = 0
                             });
+                    }
                 }
                 else if (HasAnchor(AnchorFace.ZLow))
                 {
@@ -673,6 +732,7 @@ namespace Uzi.Ikosa.Objects
                            CenterZ = _thickBump
                        });
                     if (InnerHinge && AnchorClose == AnchorFace.XLow)
+                    {
                         _custom.Add(
                             new Translate3DInfo
                             {
@@ -680,6 +740,7 @@ namespace Uzi.Ikosa.Objects
                                 OffsetY = 0,
                                 OffsetZ = _zH - PortalledObjectA.Width
                             });
+                    }
                 }
                 else
                 {
@@ -715,6 +776,7 @@ namespace Uzi.Ikosa.Objects
                            CenterZ = _zH - _thickBump
                        });
                     if (InnerHinge && AnchorClose == AnchorFace.XLow)
+                    {
                         _custom.Add(
                             new Translate3DInfo
                             {
@@ -722,8 +784,10 @@ namespace Uzi.Ikosa.Objects
                                 OffsetY = 0,
                                 OffsetZ = PortalledObjectA.Width - _zH
                             });
+                    }
                 }
                 if (InnerHinge && AnchorOpen == AnchorFace.XLow)
+                {
                     _custom.Add(
                         new Translate3DInfo
                         {
@@ -731,6 +795,7 @@ namespace Uzi.Ikosa.Objects
                             OffsetY = 0,
                             OffsetZ = 0
                         });
+                }
             }
             else if (HasAnchor(AnchorFace.XHigh))
             {
@@ -739,6 +804,7 @@ namespace Uzi.Ikosa.Objects
 
                 // Flip halfway up
                 if (Flip ^ NativeFlip)
+                {
                     _custom.Add(
                         new AxisAngleRotate3DInfo
                         {
@@ -747,6 +813,7 @@ namespace Uzi.Ikosa.Objects
                             AxisZ = 0,
                             Angle = 180
                         });
+                }
 
                 if (HasAnchor(AnchorFace.YLow))
                 {
@@ -770,6 +837,7 @@ namespace Uzi.Ikosa.Objects
                         CenterZ = 0
                     });
                     if (InnerHinge && AnchorClose == AnchorFace.XHigh)
+                    {
                         _custom.Add(
                             new Translate3DInfo
                             {
@@ -777,6 +845,7 @@ namespace Uzi.Ikosa.Objects
                                 OffsetY = _yH - PortalledObjectA.Width,
                                 OffsetZ = 0
                             });
+                    }
                 }
                 else if (HasAnchor(AnchorFace.YHigh))
                 {
@@ -801,6 +870,7 @@ namespace Uzi.Ikosa.Objects
                     });
 
                     if (InnerHinge && AnchorClose == AnchorFace.XHigh)
+                    {
                         _custom.Add(
                             new Translate3DInfo
                             {
@@ -808,6 +878,7 @@ namespace Uzi.Ikosa.Objects
                                 OffsetY = PortalledObjectA.Width - _yH,
                                 OffsetZ = 0
                             });
+                    }
                 }
                 else if (HasAnchor(AnchorFace.ZLow))
                 {
@@ -831,6 +902,7 @@ namespace Uzi.Ikosa.Objects
                         CenterZ = _thickBump
                     });
                     if (InnerHinge && AnchorClose == AnchorFace.XHigh)
+                    {
                         _custom.Add(
                             new Translate3DInfo
                             {
@@ -838,6 +910,7 @@ namespace Uzi.Ikosa.Objects
                                 OffsetY = 0,
                                 OffsetZ = _zH - PortalledObjectA.Width
                             });
+                    }
                 }
                 else // ZHigh
                 {
@@ -861,6 +934,7 @@ namespace Uzi.Ikosa.Objects
                         CenterZ = _zH - _thickBump
                     });
                     if (InnerHinge && AnchorClose == AnchorFace.XHigh)
+                    {
                         _custom.Add(
                             new Translate3DInfo
                             {
@@ -868,8 +942,10 @@ namespace Uzi.Ikosa.Objects
                                 OffsetY = 0,
                                 OffsetZ = PortalledObjectA.Width - _zH
                             });
+                    }
                 }
                 if (InnerHinge && AnchorOpen == AnchorFace.XHigh)
+                {
                     _custom.Add(
                        new Translate3DInfo
                        {
@@ -877,6 +953,7 @@ namespace Uzi.Ikosa.Objects
                            OffsetY = 0,
                            OffsetZ = 0
                        });
+                }
             }
             else if (HasAnchor(AnchorFace.YLow))
             {
@@ -884,6 +961,7 @@ namespace Uzi.Ikosa.Objects
 
                 // flip around Y
                 if (Flip ^ NativeFlip)
+                {
                     _custom.Add(
                         new AxisAngleRotate3DInfo
                         {
@@ -892,6 +970,7 @@ namespace Uzi.Ikosa.Objects
                             AxisZ = 0,
                             Angle = 180
                         });
+                }
 
                 if (HasAnchor(AnchorFace.ZLow))
                 {
@@ -915,6 +994,7 @@ namespace Uzi.Ikosa.Objects
                         CenterZ = _thickBump
                     });
                     if (InnerHinge && AnchorClose == AnchorFace.YLow)
+                    {
                         _custom.Add(
                             new Translate3DInfo
                             {
@@ -922,6 +1002,7 @@ namespace Uzi.Ikosa.Objects
                                 OffsetY = 0,
                                 OffsetZ = _zH - PortalledObjectA.Width
                             });
+                    }
                 }
                 else // ZHigh
                 {
@@ -945,6 +1026,7 @@ namespace Uzi.Ikosa.Objects
                         CenterZ = _zH - _thickBump
                     });
                     if (InnerHinge && AnchorClose == AnchorFace.YLow)
+                    {
                         _custom.Add(
                             new Translate3DInfo
                             {
@@ -952,8 +1034,10 @@ namespace Uzi.Ikosa.Objects
                                 OffsetY = 0,
                                 OffsetZ = PortalledObjectA.Width - _zH
                             });
+                    }
                 }
                 if (InnerHinge && AnchorOpen == AnchorFace.YLow)
+                {
                     _custom.Add(
                         new Translate3DInfo
                         {
@@ -961,6 +1045,7 @@ namespace Uzi.Ikosa.Objects
                             OffsetY = _yH - PortalledObjectA.Width,
                             OffsetZ = 0
                         });
+                }
             }
             else
             {
@@ -968,6 +1053,7 @@ namespace Uzi.Ikosa.Objects
 
                 // flip around Y
                 if (Flip ^ NativeFlip)
+                {
                     _custom.Add(
                         new AxisAngleRotate3DInfo
                         {
@@ -976,6 +1062,7 @@ namespace Uzi.Ikosa.Objects
                             AxisZ = 0,
                             Angle = 180
                         });
+                }
 
                 // YHigh
                 if (HasAnchor(AnchorFace.ZLow))
@@ -1000,6 +1087,7 @@ namespace Uzi.Ikosa.Objects
                         CenterZ = _thickBump
                     });
                     if (InnerHinge && AnchorClose == AnchorFace.YHigh)
+                    {
                         _custom.Add(
                             new Translate3DInfo
                             {
@@ -1007,6 +1095,7 @@ namespace Uzi.Ikosa.Objects
                                 OffsetY = 0,
                                 OffsetZ = _zH - PortalledObjectA.Width
                             });
+                    }
                 }
                 else // ZHigh
                 {
@@ -1030,6 +1119,7 @@ namespace Uzi.Ikosa.Objects
                         CenterZ = _zH - _thickBump
                     });
                     if (InnerHinge && AnchorClose == AnchorFace.YHigh)
+                    {
                         _custom.Add(
                             new Translate3DInfo
                             {
@@ -1037,8 +1127,10 @@ namespace Uzi.Ikosa.Objects
                                 OffsetY = 0,
                                 OffsetZ = PortalledObjectA.Width - _zH
                             });
+                    }
                 }
                 if (InnerHinge && AnchorOpen == AnchorFace.YHigh)
+                {
                     _custom.Add(
                         new Translate3DInfo
                         {
@@ -1046,6 +1138,7 @@ namespace Uzi.Ikosa.Objects
                             OffsetY = PortalledObjectA.Width - _yH,
                             OffsetZ = 0
                         });
+                }
             }
             return _custom;
         }
@@ -1154,9 +1247,13 @@ namespace Uzi.Ikosa.Objects
 
             // when light is in a deep shadows room, reduce it through the link (indicating less reflecting glow)
             if (this.GetLocated()?.Locator.GetLocalCellGroups().FirstOrDefault()?.DeepShadows ?? false)
+            {
                 return (1 - _block) / 8d;
+            }
             else
+            {
                 return (1 - _block);
+            }
         }
 
         public int GetExtraSoundDifficulty(LocalLink link)

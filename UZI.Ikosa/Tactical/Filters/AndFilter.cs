@@ -18,7 +18,9 @@ namespace Uzi.Ikosa.Tactical
             foreach (ILocatorFilter _filter in Filters)
             {
                 if (!_filter.IsIncluded(locator))
+                {
                     return false;
+                }
             }
             return true;
         }

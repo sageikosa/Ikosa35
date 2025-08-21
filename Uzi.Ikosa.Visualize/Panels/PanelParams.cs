@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Collections.Specialized;
-using Uzi.Visualize;
 
 namespace Uzi.Visualize
 {
@@ -363,7 +360,10 @@ namespace Uzi.Visualize
                 {
                     var _list = AnchorFaceListHelper.Create(SinkFace, SourceFace);
                     if (OtherFace != OptionalAnchorFace.None)
+                    {
                         _list = _list.Add(OtherFace.ToAnchorFace());
+                    }
+
                     return _list;
                 }
                 return AnchorFaceList.None;
@@ -483,7 +483,10 @@ namespace Uzi.Visualize
         {
             // Slope bottom can be used on any complete panel or no panel
             if (IsTrueSlope)
+            {
                 return face == SourceFace;
+            }
+
             return false;
         }
         #endregion

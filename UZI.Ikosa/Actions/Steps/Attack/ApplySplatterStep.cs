@@ -16,12 +16,16 @@ namespace Uzi.Ikosa.Actions
             if (_Direct)
             {
                 foreach (var _pre in _Splat.GetDirectPrerequisites(activity))
+                {
                     _PendingPreRequisites.Enqueue(_pre);
+                }
             }
             else
             {
                 foreach (var _pre in _Splat.GetSplatterPrerequisites(activity))
+                {
                     _PendingPreRequisites.Enqueue(_pre);
+                }
             }
             _Target = target;
         }

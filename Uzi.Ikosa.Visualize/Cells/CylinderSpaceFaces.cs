@@ -1,8 +1,6 @@
 ﻿using HelixToolkit.Wpf;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media.Media3D;
 
@@ -21,16 +19,16 @@ namespace Uzi.Visualize
             _trans.Children.Add(new RotateTransform3D(new AxisAngleRotation3D(new Vector3D(1, 0, 0), -90)));
             _trans.Children.Add(new TranslateTransform3D(new Vector3D(2.5d, 0, -2.5d)));
 
-            _Smooth = new Dictionary<int, MeshGeometry3D>();
-            _Facet = new Dictionary<int, MeshGeometry3D>();
-            _Segment = new Dictionary<int, MeshGeometry3D>();
-            _Cap = new Dictionary<int, MeshGeometry3D>();
-            _SmallSmooth = new Dictionary<int, MeshGeometry3D>();
-            _SmallFacet = new Dictionary<int, MeshGeometry3D>();
-            _SmallSegment = new Dictionary<int, MeshGeometry3D>();
-            _SmallCap = new Dictionary<int, MeshGeometry3D>();
-            _SmallTrans = new Dictionary<int, Transform3D>();
-            _SmallCapTrans = new Dictionary<int, Transform3D>();
+            _Smooth = [];
+            _Facet = [];
+            _Segment = [];
+            _Cap = [];
+            _SmallSmooth = [];
+            _SmallFacet = [];
+            _SmallSegment = [];
+            _SmallCap = [];
+            _SmallTrans = [];
+            _SmallCapTrans = [];
 
             for (var _sx = MINSEG; _sx <= MAXSEG; _sx++)
             {
@@ -80,7 +78,9 @@ namespace Uzi.Visualize
 
             // transforms
             foreach (var _a in AxisHelper.GetAll())
+            {
                 foreach (var _p in new bool[] { false, true })
+                {
                     foreach (var _s in new bool[] { false, true })
                     {
                         var _grp = new Transform3DGroup();
@@ -110,6 +110,8 @@ namespace Uzi.Visualize
                         _grp.Freeze();
                         _SmallTrans.Add(GetSmallTransformIndex(_a, _p, _s), _grp);
                     }
+                }
+            }
 
             // small cap transforms
             TranslateTransform3D _tt3(double x, double y)
@@ -215,7 +217,9 @@ namespace Uzi.Visualize
             BuildableGroup buildable, VisualEffect effect)
         {
             if (cylinderSpace.IsInvisible)
+            {
                 return;
+            }
 
             var _param = new WedgeParams(param);
 
@@ -256,7 +260,9 @@ namespace Uzi.Visualize
             int z, int y, int x, AnchorFace face, VisualEffect effect, Vector3D bump)
         {
             if (cylinderSpace.IsInvisible)
+            {
                 return;
+            }
 
             var _param = new WedgeParams(param);
             var _axis = _param.Axis;

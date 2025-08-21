@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Windows.Media.Media3D;
+﻿using System.Windows.Media.Media3D;
 
 namespace Uzi.Visualize
 {
@@ -17,9 +14,15 @@ namespace Uzi.Visualize
         {
             var _clone = mesh.Clone();
             for (var _px = 0; _px < _clone.Positions.Count; _px++)
+            {
                 _clone.Positions[_px] = transform.Transform(_clone.Positions[_px]);
+            }
+
             for (var _nx = 0; _nx < _clone.Normals.Count; _nx++)
+            {
                 _clone.Normals[_nx] = transform.Transform(_clone.Normals[_nx]);
+            }
+
             return _clone;
         }
     }

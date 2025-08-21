@@ -64,7 +64,10 @@ namespace Uzi.Ikosa.Magic.Spells
         {
             yield return new EnergyDamageRule(@"Cold.Damage", new DiceRange(@"Cold", DisplayName, new DieRoller(3)), @"Cold Damage", EnergyType.Cold);
             if (isCriticalHit)
+            {
                 yield return new EnergyDamageRule(@"Cold.Damage.Critical", new DiceRange(@"Cold (Critical)", DisplayName, new DieRoller(3)), @"Cold Damage (Critical)", EnergyType.Cold);
+            }
+
             yield break;
         }
 

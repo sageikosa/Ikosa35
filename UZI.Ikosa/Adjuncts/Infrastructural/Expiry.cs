@@ -32,11 +32,15 @@ namespace Uzi.Ikosa.Adjuncts
 
             // add all controlled adjuncts
             if (ExpirableAdjuncts != null)
+            {
                 foreach (var _adj in ExpirableAdjuncts)
                 {
                     if (!Anchor.Adjuncts.Contains(_adj))
+                    {
                         Anchor.AddAdjunct(_adj);
+                    }
                 }
+            }
         }
 
         protected override void OnDeactivate(object source)
@@ -45,7 +49,9 @@ namespace Uzi.Ikosa.Adjuncts
             if (ExpirableAdjuncts != null)
             {
                 foreach (var _adj in ExpirableAdjuncts)
+                {
                     _adj.Eject();
+                }
             }
             base.OnDeactivate(source);
         }

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Windows.Media.Media3D;
-using Uzi.Visualize;
 
 namespace Uzi.Visualize.Contracts.Tactical
 {
@@ -27,7 +26,7 @@ namespace Uzi.Visualize.Contracts.Tactical
             }
 
             // external values
-            ExternalValues = new Dictionary<string, int>();
+            ExternalValues = [];
             foreach (var _kvp in presentation.ExternalValues)
             {
                 ExternalValues.Add(_kvp.Key, _kvp.Value);
@@ -70,7 +69,7 @@ namespace Uzi.Visualize.Contracts.Tactical
             {
                 if (_Effects == null)
                 {
-                    _Effects = new List<VisualEffectValue>();
+                    _Effects = [];
                     foreach (var _kvp in VisualEffectBytes)
                     {
                         try

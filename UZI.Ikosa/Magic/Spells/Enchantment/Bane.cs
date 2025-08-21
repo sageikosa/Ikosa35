@@ -165,7 +165,9 @@ namespace Uzi.Ikosa.Magic.Spells
                     {
                         return (core is Creature) && _actor.IsUnfriendly(core.ID);
                     }, delegate (CoreStep step) { return true; }, 0))
+                {
                     yield return _step;
+                }
             }
             yield break;
         }

@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Windows.Media.Media3D;
 
 namespace Uzi.Visualize
@@ -59,8 +57,10 @@ namespace Uzi.Visualize
                 _norm.Normalize();
 
                 if (_bx == 0)
+                {
                     // capture first normal vector
                     _test = _norm;
+                }
                 else if (_test != _norm)
                 {
                     _bearing.Normalize();
@@ -108,11 +108,15 @@ namespace Uzi.Visualize
                     // planar intersect point
                     var _iPt = pt1 + (_segment * _fraction);
                     if (!InsidePlanarBounds(_iPt))
+                    {
                         // outside the bounds
                         return null;
+                    }
                     else
+                    {
                         // intersection
                         return _iPt;
+                    }
                 }
             }
         }
@@ -121,7 +125,9 @@ namespace Uzi.Visualize
         public void Transform(Transform3D transform)
         {
             for (var _px = 0; _px < _Points.Length; _px++)
+            {
                 _Points[_px] = transform?.Transform(_Points[_px]) ?? _Points[_px];
+            }
 
             // plane
             _Norm = Vector3D.CrossProduct((_Points[1] - _Points[0]), (_Points[1] - _Points[2]));
@@ -133,7 +139,10 @@ namespace Uzi.Visualize
         public IEnumerator<Point3D> GetEnumerator()
         {
             foreach (var _p in _Points)
+            {
                 yield return _p;
+            }
+
             yield break;
         }
 
@@ -144,7 +153,10 @@ namespace Uzi.Visualize
         System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
         {
             foreach (var _p in _Points)
+            {
                 yield return _p;
+            }
+
             yield break;
         }
 

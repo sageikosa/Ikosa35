@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows.Markup;
+﻿using System.Windows.Markup;
 using System.Windows.Media.Media3D;
 using HelixToolkit.Wpf;
 using System.Windows;
@@ -51,7 +47,7 @@ namespace Uzi.Visualize
             if (FlatMap)
             {
                 // fixup texture mapping
-                _mesh.TextureCoordinates = new PointCollection();
+                _mesh.TextureCoordinates = [];
                 var _center = new Point(0, 0);
                 var _vector = new Vector(-0.5, 0);
                 var _point = _center + _vector;

@@ -20,7 +20,9 @@ namespace Uzi.Ikosa.Abilities
         public override IEnumerable<IDelta> QualifiedDeltas(Qualifier qualify)
         {
             if (!(qualify.Source is IWeaponHead _wpnHead))
+            {
                 yield break;
+            }
 
             if (_wpnHead.ContainingWeapon is NaturalWeapon)
             {
@@ -28,17 +30,23 @@ namespace Uzi.Ikosa.Abilities
 
                 // primary natural weapons get full STR damage
                 if (_natrl.IsPrimary)
+                {
                     yield break;
+                }
 
                 // sole natural weapons get 1.5 STR damage
                 if ((Creature.Body.NaturalWeapons.Count == 1) || _natrl.TreatAsSoleWeapon)
+                {
                     yield break;
+                }
             }
             else
             {
                 // not a melee weapon
                 if (!(_wpnHead.ContainingWeapon is IMeleeWeapon))
+                {
                     yield break;
+                }
 
                 // if assigned slots has any non off-hand, then no half-strength damage
                 if (!_wpnHead.IsOffHand)

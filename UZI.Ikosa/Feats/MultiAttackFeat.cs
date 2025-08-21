@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using Uzi.Ikosa.Advancement;
 using Uzi.Core;
 using Uzi.Ikosa.Interactions;
@@ -45,7 +45,10 @@ namespace Uzi.Ikosa.Feats
         public IEnumerable<IDelta> QualifiedDeltas(Qualifier qualify)
         {
             if (!(qualify is Interaction _iAct))
+            {
                 yield break;
+            }
+
             if ((_iAct.InteractData is AttackData) && (qualify.Source is IWeaponHead _wpnHead))
             {
                 if ((_wpnHead.ContainingWeapon is NaturalWeapon _natrl) && !_natrl.IsPrimary)

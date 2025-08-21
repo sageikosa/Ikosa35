@@ -32,9 +32,13 @@ namespace Uzi.Ikosa.Adjuncts
                 // get next time
                 var _time = CurrentTime;
                 if (_time < (double.MaxValue - Hour.UnitFactor))
+                {
                     _NextCheck = _time + Hour.UnitFactor;
+                }
                 else
+                {
                     _NextCheck = _time;
+                }
 
                 // notify
                 NotifyStateChange();
@@ -72,7 +76,9 @@ namespace Uzi.Ikosa.Adjuncts
             if ((timeVal >= _NextCheck) && (direction == TimeValTransition.Entering))
             {
                 if (_NextCheck < (double.MaxValue - Hour.UnitFactor))
+                {
                     _NextCheck += Hour.UnitFactor;
+                }
 
                 // setup roll split
                 var _critter = Anchor as Creature;

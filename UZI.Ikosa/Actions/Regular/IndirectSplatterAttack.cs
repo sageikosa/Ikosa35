@@ -31,7 +31,9 @@ namespace Uzi.Ikosa.Actions
         {
             // in case there was an interactor there
             if (interactor != null)
+            {
                 return base.SplatterOnTarget(activity, interactor, locator, targetCell);
+            }
 
             // since we were attacking a point, simply perform that activity
             if (activity.Targets.Where(_t => _t.Key.Equals(@"Target")) is AttackTarget _target)

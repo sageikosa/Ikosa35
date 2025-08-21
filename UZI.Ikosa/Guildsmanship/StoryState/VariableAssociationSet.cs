@@ -24,7 +24,7 @@ namespace Uzi.Ikosa.Guildsmanship
         /// </summary>
         public VariableAssociationSet()
         {
-            _Associations = new Dictionary<Guid, Dictionary<Guid, HashSet<Guid>>>();
+            _Associations = [];
         }
 
         public bool? IsAssociated(TeamTracker tracker, Module module, Guid moduleElementID)
@@ -95,7 +95,7 @@ namespace Uzi.Ikosa.Guildsmanship
         {
             if (!_Associations.TryGetValue(moduleElementID, out var _preferences))
             {
-                _preferences = new Dictionary<Guid, HashSet<Guid>>();
+                _preferences = [];
                 _Associations[moduleElementID] = _preferences;
             }
 
@@ -106,7 +106,7 @@ namespace Uzi.Ikosa.Guildsmanship
                 if (!_preferences.TryGetValue(variable.ID, out var _list))
                 {
                     // add preference condition
-                    _list = new HashSet<Guid>();
+                    _list = [];
                     _preferences.Add(variable.ID, _list);
                 }
                 if (!_list.Contains(value.ID))

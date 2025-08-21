@@ -91,7 +91,9 @@ namespace Uzi.Ikosa.Workshop
             {
                 var _key = txtBrushKey.Text;
                 if (!string.IsNullOrEmpty(_key))
+                {
                     e.CanExecute = _Exists || !_Manager.Any(_b => _b.BrushKey.Equals(_key));
+                }
             }
             e.Handled = true;
         }

@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Windows.Markup;
 using System.Windows.Media.Media3D;
-using System.Windows;
-using Uzi.Visualize.Packages;
 
 namespace Uzi.Visualize
 {
@@ -13,39 +10,13 @@ namespace Uzi.Visualize
     public class FragmentReference : MarkupExtension
     {
         [ThreadStatic]
-        private static List<IPartResolveFragment> _PartResolvers = new();
-
-        public static List<IPartResolveFragment> PartResolvers
-        {
-            get
-            {
-                if (_PartResolvers == null)
-                    _PartResolvers = new List<IPartResolveFragment>();
-                return _PartResolvers;
-            }
-        }
-
-        public static void PushResolver(IPartResolveFragment resolver)
-        {
-            if (!FragmentReference.PartResolvers.Contains(resolver))
-                FragmentReference.PartResolvers.Insert(0, resolver);
-        }
-
-        public static void PullResolver(IPartResolveFragment resolver)
-        {
-            if (FragmentReference.PartResolvers.Contains(resolver))
-                FragmentReference.PartResolvers.Remove(resolver);
-        }
-
-        [ThreadStatic]
-        private static List<IResolveFragment> _Resolvers = new();
+        private static List<IResolveFragment> _Resolvers = [];
 
         public static List<IResolveFragment> Resolvers
         {
             get
             {
-                if (_Resolvers == null)
-                    _Resolvers = new List<IResolveFragment>();
+                _Resolvers ??= [];
                 return _Resolvers;
             }
         }
@@ -53,22 +24,24 @@ namespace Uzi.Visualize
         public static void PushResolver(IResolveFragment resolver)
         {
             if (!FragmentReference.Resolvers.Contains(resolver))
+            {
                 FragmentReference.Resolvers.Insert(0, resolver);
+            }
         }
 
         public static void PullResolver(IResolveFragment resolver)
         {
             if (FragmentReference.Resolvers.Contains(resolver))
+            {
                 FragmentReference.Resolvers.Remove(resolver);
+            }
         }
 
-        #region public static Action<string> ReferencedKey { get { return _KeyFound; } set { _KeyFound = value; } }
         [ThreadStatic]
         private static Action<string> _KeyReferenced = null;
 
         /// <summary>Thread static tracking callback</summary>
         public static Action<string> ReferencedKey { get { return _KeyReferenced; } set { _KeyReferenced = value; } }
-        #endregion
 
         public string Key { get; set; }
         public double? OffsetX { get; set; }
@@ -84,7 +57,9 @@ namespace Uzi.Visualize
             {
                 // able to track reference keys?
                 if (_KeyReferenced != null)
+                {
                     _KeyReferenced(this.Key);
+                }
 
                 var _thisNode = MetaModelResolutionStack.Peek();
                 // TODO: handle programmatic nodes...(such as head model)
@@ -105,10 +80,14 @@ namespace Uzi.Visualize
 
                         // highlight if selected
                         if (_fragNode.IsSelected)
+                        {
                             SenseEffectExtension.EffectValue = VisualEffect.Highlighted;
+                        }
 
                         if (_track)
+                        {
                             _fragNode.AttachReferenceTrackers();
+                        }
 
                         // tracking list
                         var _repeat = new List<IResolveFragment>();
@@ -183,10 +162,16 @@ namespace Uzi.Visualize
             var _origin = new Vector3D(this.OffsetX ?? 0, this.OffsetY ?? 0, this.OffsetZ ?? 0);
 
             // origin offset
-            if (node.OriginOffset.HasValue) _tx.Children.Add(new TranslateTransform3D(node.OriginOffset.Value));
+            if (node.OriginOffset.HasValue)
+            {
+                _tx.Children.Add(new TranslateTransform3D(node.OriginOffset.Value));
+            }
 
             // node scale
-            if (node.Scale.HasValue) _tx.Children.Add(new ScaleTransform3D(node.Scale ?? new Vector3D(1, 1, 1)));
+            if (node.Scale.HasValue)
+            {
+                _tx.Children.Add(new ScaleTransform3D(node.Scale ?? new Vector3D(1, 1, 1)));
+            }
 
             // node orientation
             if (node.Roll.HasValue)
@@ -194,7 +179,11 @@ namespace Uzi.Visualize
                 var _rollAxis = node.NoseUp ? new Vector3D(0, 0, 1) : new Vector3D(0, 1, 0);
                 _tx.Children.Add(new RotateTransform3D(new AxisAngleRotation3D(_rollAxis, node.Roll ?? 0d)));
             }
-            if (node.Pitch.HasValue) _tx.Children.Add(new RotateTransform3D(new AxisAngleRotation3D(new Vector3D(1, 0, 0), node.Pitch ?? 0d)));
+            if (node.Pitch.HasValue)
+            {
+                _tx.Children.Add(new RotateTransform3D(new AxisAngleRotation3D(new Vector3D(1, 0, 0), node.Pitch ?? 0d)));
+            }
+
             if (node.Yaw.HasValue)
             {
                 var _yawAxis = node.NoseUp ? new Vector3D(0, 1, 0) : new Vector3D(0, 0, 1);

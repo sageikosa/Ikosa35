@@ -55,10 +55,14 @@ namespace Uzi.Ikosa.Actions
                     foreach (var _target in activity.Targets.OfType<AttackTarget>())
                     {
                         if (_target.Target.ID == potentialTarget.ID)
+                        {
                             return true;
+                        }
 
                         if ((_target.Target as IAdjunctable)?.GetLocated()?.Locator == _loc)
+                        {
                             return true;
+                        }
                     }
                 }
             }

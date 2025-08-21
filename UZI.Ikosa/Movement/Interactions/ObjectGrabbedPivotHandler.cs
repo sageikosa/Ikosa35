@@ -19,7 +19,9 @@ namespace Uzi.Ikosa.Movement
         public void HandleInteraction(Interaction workSet)
         {
             if (workSet.InteractData is ObjectGrabbedPivotData _obpd)
+            {
                 workSet.Feedback.Add(new ValueFeedback<int>(this, 1));
+            }
         }
 
         public bool LinkBefore(Type interactType, IInteractHandler existingHandler)

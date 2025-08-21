@@ -146,7 +146,10 @@ namespace Uzi.Ikosa.Tactical
         {
             var _vector = TransitSegment(param, panelFace, z, y, x, p1, p2);
             if (_vector.HasValue)
+            {
                 return _vector.Value.Vector.Length;
+            }
+
             return 0d;
         }
 
@@ -155,7 +158,10 @@ namespace Uzi.Ikosa.Tactical
         {
             var _vector = TransitSegment(param, z, y, x, p1, p2, interiors);
             if (_vector.HasValue)
+            {
                 return _vector.Value.Vector.Length;
+            }
+
             return 0d;
         }
 
@@ -258,7 +264,10 @@ namespace Uzi.Ikosa.Tactical
         public BuildableMaterial GetSideFaceMaterial(SideIndex side, VisualEffect effect)
         {
             if (Tiling == null)
+            {
                 return new BuildableMaterial { Material = null, IsAlpha = false };
+            }
+
             switch (side)
             {
                 case SideIndex.Top:
@@ -282,7 +291,10 @@ namespace Uzi.Ikosa.Tactical
         public BuildableMaterial GetAnchorFaceMaterial(AnchorFace face, VisualEffect effect)
         {
             if (Tiling == null)
+            {
                 return new BuildableMaterial { Material = null, IsAlpha = false };
+            }
+
             switch (face)
             {
                 case AnchorFace.ZHigh:
@@ -306,7 +318,10 @@ namespace Uzi.Ikosa.Tactical
         public BuildableMaterial GetWedgeMaterial(VisualEffect effect)
         {
             if (Tiling == null)
+            {
                 return new BuildableMaterial { Material = null, IsAlpha = false };
+            }
+
             return new BuildableMaterial { Material = Tiling.WedgeMaterial(effect), IsAlpha = Tiling.GetWedgeAlpha() };
         }
         #endregion

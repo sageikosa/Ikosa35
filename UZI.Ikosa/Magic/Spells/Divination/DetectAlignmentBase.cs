@@ -37,7 +37,10 @@ namespace Uzi.Ikosa.Magic.Spells
         protected override DetectAlignmentAdjunct NewEffect(MagicPowerEffect source, IAdjunctable target)
         {
             foreach (var _range in source.CapabilityRoot.GetCapability<IRegionCapable>().Dimensions(null, source.CasterLevel))
+            {
                 return new DetectAlignmentAdjunct(source.MagicPowerActionSource, _range, GetFilter());
+            }
+
             return new DetectAlignmentAdjunct(source.MagicPowerActionSource, 60, GetFilter());
         }
     }
@@ -205,7 +208,9 @@ namespace Uzi.Ikosa.Magic.Spells
                     if ((_adj is IAlignmentAura _aligned)
                         && _aligned.Alignment.DetectsAs(_Filter)
                         && (_aligned.AlignmentStrength > AuraStrength.None))
+                    {
                         return true;
+                    }
                 }
             }
             return false;

@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Windows.Media.Media3D;
 
 namespace Uzi.Visualize
@@ -11,9 +9,13 @@ namespace Uzi.Visualize
         public ResourceMetaModelFragmentResolver(IEnumerable<IResolveFragment> resolvers)
         {
             if (resolvers != null)
+            {
                 _Resolvers = resolvers.ToList();
+            }
             else
-                _Resolvers = new List<IResolveFragment>();
+            {
+                _Resolvers = [];
+            }
         }
 
         private List<IResolveFragment> _Resolvers;
@@ -27,7 +29,9 @@ namespace Uzi.Visualize
             {
                 var _frag = _resource.GetFragment(fragRef, node);
                 if (_frag != null)
+                {
                     return _frag;
+                }
             }
             return null;
         }

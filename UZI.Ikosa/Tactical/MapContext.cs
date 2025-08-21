@@ -32,17 +32,17 @@ namespace Uzi.Ikosa.Tactical
         public MapContext(string name, LocalMap map)
             : base(name, map.ContextSet)
         {
-            _InteractTransitZones = new WatchableSet<InteractCapture>();
+            _InteractTransitZones = [];
             _LCtrl = new ChangeController<Locator>(this, null);
             _LocatorZones = new LocatorCaptureSet(this);
             _StrikeZones = new StrikeCaptureSet();
-            _TransientVisualizers = new List<TransientVisualizer>();
+            _TransientVisualizers = [];
         }
         #endregion
 
         #region data
         private WatchableSet<InteractCapture> _InteractTransitZones;
-        private Collection<MovementZone> _MoveZones = new Collection<MovementZone>();
+        private Collection<MovementZone> _MoveZones = [];
         private LocatorCaptureSet _LocatorZones;
         private StrikeCaptureSet _StrikeZones;
         private ChangeController<Locator> _LCtrl;
@@ -52,7 +52,7 @@ namespace Uzi.Ikosa.Tactical
         private CreatureLoginInfoCollection _CreatureLogins;
 
         [NonSerialized, JsonIgnore]
-        private List<TransientVisualizer> _TransientVisualizers = new List<TransientVisualizer>();
+        private List<TransientVisualizer> _TransientVisualizers = [];
 
         [NonSerialized, JsonIgnore]
         private ulong _SerialState = 0;
@@ -76,7 +76,7 @@ namespace Uzi.Ikosa.Tactical
             => _StrikeZones;
 
         public List<CreatureLoginInfo> CreatureLoginsInfos
-            => _CreatureLogins?.GetList() ?? new List<CreatureLoginInfo>();
+            => _CreatureLogins?.GetList() ?? [];
 
         public CreatureLoginInfo GetCreatureLoginInfo(Guid id)
             => _CreatureLogins.GetCreatureLoginInfo(id);
@@ -178,7 +178,9 @@ namespace Uzi.Ikosa.Tactical
             void _addLightNotify(LocalCellGroup group)
             {
                 if (!_lightNotify.Value.ContainsKey(group.ID))
+                {
                     _lightNotify.Value.Add(group.ID, group);
+                }
             }
 
             // TODO: light/sound notify (ethereal/ethereal change)
@@ -429,7 +431,10 @@ namespace Uzi.Ikosa.Tactical
         public IEnumerator<Locator> GetEnumerator()
         {
             foreach (var _loc in AllTokensOf<Locator>().OrderBy(_l => _l.Name))
+            {
                 yield return _loc;
+            }
+
             yield break;
         }
 
@@ -439,14 +444,17 @@ namespace Uzi.Ikosa.Tactical
         IEnumerator IEnumerable.GetEnumerator()
         {
             foreach (var _loc in AllTokensOf<Locator>().OrderBy(_l => _l.Name))
+            {
                 yield return _loc;
+            }
+
             yield break;
         }
         #endregion
 
         /// <summary>Transient Visualizers as specified by actions</summary>
         public List<TransientVisualizer> TransientVisualizers
-            => _TransientVisualizers ??= new List<TransientVisualizer>();
+            => _TransientVisualizers ??= [];
 
         public void RefreshAwarenesses()
         {
@@ -508,7 +516,10 @@ namespace Uzi.Ikosa.Tactical
         {
             var _index = new LocatorIndex(Map);
             foreach (var _loc in AllTokensOf<Locator>())
+            {
                 _index.Add(_loc);
+            }
+
             _Index = _index;
 
             CacheLocatorGroups();

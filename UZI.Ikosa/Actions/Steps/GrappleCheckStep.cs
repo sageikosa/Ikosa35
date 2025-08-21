@@ -52,7 +52,9 @@ namespace Uzi.Ikosa.Actions.Steps
         protected override bool OnDoStep()
         {
             if (IsComplete)
+            {
                 return true;
+            }
 
             // doer score (qualifiedValue, qualifiedDeltas, softQualified Delta?)
             var _doerRoll = DoerRoll;

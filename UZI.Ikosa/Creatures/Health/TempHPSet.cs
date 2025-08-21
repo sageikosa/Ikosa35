@@ -11,7 +11,7 @@ namespace Uzi.Ikosa
         public TempHPSet(Creature creature)
         {
             _Critter = creature;
-            _Chunks = new Collection<TempHPChunk>();
+            _Chunks = [];
         }
         #endregion
 
@@ -82,7 +82,9 @@ namespace Uzi.Ikosa
         public void Remove(TempHPChunk chunk)
         {
             if (_Chunks.Contains(chunk))
+            {
                 _Chunks.Remove(chunk);
+            }
         }
 
         public int Total { get { return _Chunks.Where(_c => _c.Delta.Enabled).Sum(_c => _c.Value); } }
@@ -92,7 +94,9 @@ namespace Uzi.Ikosa
             for (var _cx = _Chunks.Count - 1; _cx >= 0; _cx--)
             {
                 if (_Chunks[_cx].Value <= 0)
+                {
                     _Chunks.RemoveAt(_cx);
+                }
             }
         }
     }

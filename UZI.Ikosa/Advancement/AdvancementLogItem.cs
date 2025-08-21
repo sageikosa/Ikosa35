@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -22,7 +22,7 @@ namespace Uzi.Ikosa.Advancement
             AdvancementClass = advClass;
             AdvancementClassLevelLow = level;
             AdvancementClassLevelHigh = level;
-            _PowerDiceList = new Collection<PowerDie>();
+            _PowerDiceList = [];
             _ValueCtrlr = new ChangeController<int>(this, 0);
         }
 
@@ -33,7 +33,7 @@ namespace Uzi.Ikosa.Advancement
             AdvancementClass = advClass;
             AdvancementClassLevelLow = levelLow;
             AdvancementClassLevelHigh = levelHigh;
-            _PowerDiceList = new Collection<PowerDie>();
+            _PowerDiceList = [];
             _ValueCtrlr = new ChangeController<int>(this, 0);
         }
         #endregion
@@ -80,7 +80,9 @@ namespace Uzi.Ikosa.Advancement
             {
                 // roll back levels (should be in sync so should only loop once per "for" iteration)
                 while (AdvancementClass.LockedLevel >= _level)
+                {
                     AdvancementClass.UnlockOneLevel();
+                }
             }
             foreach (var _pd in _PowerDiceList)
             {
@@ -157,7 +159,9 @@ namespace Uzi.Ikosa.Advancement
                 foreach (PowerDie _pd in _PowerDiceList)
                 {
                     if (!_pd.IsLocked)
+                    {
                         return false;
+                    }
                 }
                 return AdvancementClass.LockedLevel >= AdvancementClassLevelHigh;
             }
@@ -173,7 +177,9 @@ namespace Uzi.Ikosa.Advancement
                 foreach (PowerDie _pd in _PowerDiceList)
                 {
                     if (!_pd.IsLockable)
+                    {
                         return false;
+                    }
                 }
                 return AdvancementClass.CanLockLevel(AdvancementClassLevelHigh);
             }
@@ -213,7 +219,9 @@ namespace Uzi.Ikosa.Advancement
                     foreach (var _pd in _PowerDiceList)
                     {
                         foreach (var _feature in AdvancementClass.Creature.Species.Features(_pd.Level))
+                        {
                             yield return _feature;
+                        }
                     }
                 }
                 yield break;
@@ -238,7 +246,9 @@ namespace Uzi.Ikosa.Advancement
                     foreach (var _pd in _PowerDiceList)
                     {
                         foreach (var _advReq in AdvancementClass.Creature.Species.Requirements(_pd.Level))
+                        {
                             yield return _advReq;
+                        }
                     }
                 }
                 yield break;
@@ -285,7 +295,11 @@ namespace Uzi.Ikosa.Advancement
         public int HealthPoints
         {
             get => _HealthPoints;
-            set { if (Count == 1) PowerDie.SetHealthPoints(value); }
+            set { if (Count == 1)
+                {
+                    PowerDie.SetHealthPoints(value);
+                }
+            }
         }
         #endregion
 
@@ -356,7 +370,7 @@ namespace Uzi.Ikosa.Advancement
                 Features = Features.Select(_f => _f.ToFeatureInfo()).ToList(),
                 Requirements = !IsLocked
                                 ? Requirements.Select(_r => _r.ToAdvancementRequirementInfo()).ToList()
-                                : new List<AdvancementRequirementInfo>(),
+                                : [],
                 PowerDice = _PowerDiceList.Select(_pd => _pd.ToPowerDieInfo()).ToList()
             };
 

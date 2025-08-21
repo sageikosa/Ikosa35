@@ -48,21 +48,32 @@ namespace Uzi.Ikosa.Abilities
         public virtual IEnumerable<IDelta> QualifiedDeltas(Qualifier qualify)
         {
             if (!(qualify.Source is IWeaponHead _wpnHead))
+            {
                 yield break;
+            }
 
             // ranged attack interactions only
             if (!(qualify is Interaction _iAct))
+            {
                 yield break;
+            }
+
             if (!(_iAct.InteractData is RangedAttackData))
+            {
                 yield break;
+            }
 
             // only projectile weapons
             if (!(_wpnHead.ContainingWeapon is IProjectileWeapon _projectile))
+            {
                 yield break;
+            }
 
             // some projectile weapons do not deal with strength at all
             if (_projectile.UsesStrengthDamage || _projectile.TakesStrengthDamagePenalty)
+            {
                 yield break;
+            }
 
             // NOTE: strict unqualified delta value
             var _delta = Creature.Abilities.Strength.DeltaValue;

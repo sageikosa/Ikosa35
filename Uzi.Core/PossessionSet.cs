@@ -1,4 +1,4 @@
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,7 +14,7 @@ namespace Uzi.Core
         public PossessionSet(CoreActor owner)
         {
             Owner = owner;
-            _Items = new Dictionary<Guid, CoreItem>();
+            _Items = [];
             _ChangeCtrlr = new ChangeController<CoreItem>(this, null);
         }
         #endregion
@@ -81,7 +81,10 @@ namespace Uzi.Core
         public IEnumerator<CoreItem> GetEnumerator()
         {
             foreach (KeyValuePair<Guid, CoreItem> _kvp in _Items)
+            {
                 yield return _kvp.Value;
+            }
+
             yield break;
         }
 
@@ -89,7 +92,10 @@ namespace Uzi.Core
         System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
         {
             foreach (KeyValuePair<Guid, CoreItem> _kvp in _Items)
+            {
                 yield return _kvp.Value;
+            }
+
             yield break;
         }
         #endregion

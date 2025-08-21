@@ -15,8 +15,16 @@ namespace Uzi.Core
         /// <summary>0 = IsClosed</summary>
         internal OpenStatus(object source, double value)
         {
-            if (value < 0) value = 0;
-            if (value > 1) value = 1;
+            if (value < 0)
+            {
+                value = 0;
+            }
+
+            if (value > 1)
+            {
+                value = 1;
+            }
+
             _Value = value;
             _Src = source;
         }

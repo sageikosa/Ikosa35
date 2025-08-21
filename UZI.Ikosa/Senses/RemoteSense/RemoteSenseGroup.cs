@@ -25,8 +25,10 @@ namespace Uzi.Ikosa.Senses
 
         public override void ValidateGroup()
         {
-            if (_CoPlanar) 
+            if (_CoPlanar)
+            {
                 this.ValidateOneToOnePlanarGroup();
+            }
         }
     }
 }

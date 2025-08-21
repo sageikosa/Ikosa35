@@ -1,4 +1,4 @@
-using Uzi.Core.Contracts;
+﻿using Uzi.Core.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -76,7 +76,10 @@ namespace Uzi.Ikosa.Actions
         public override IEnumerable<AimingMode> AimingMode(CoreActivity activity)
         {
             foreach (var _mode in Attack.AimingMode(activity))
+            {
                 yield return _mode;
+            }
+
             yield break;
         }
 

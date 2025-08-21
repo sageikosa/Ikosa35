@@ -86,7 +86,10 @@ namespace Uzi.Ikosa.Magic
         {
             // last feedback processor
             if (typeof(AddAdjunctData).Equals(interactType))
+            {
                 return true;
+            }
+
             return false;
         }
 

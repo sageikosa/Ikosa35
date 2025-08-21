@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using Uzi.Ikosa.Tactical;
 using Uzi.Core;
 using Uzi.Visualize;
@@ -48,10 +48,15 @@ namespace Uzi.Ikosa.Movement
                 {
                     var _next = leadCell.Move(_crossings.GetAnchorOffset()) as CellLocation;
                     if (!locator.Map.CanOccupy(_locCore, _next, this, exclusions, locator.PlanarPresence))
+                    {
                         return null;
+                    }
+
                     if (!TransitFitness(process as CoreActivity, _crossings, leadCell, locator.Map, locator.ActiveMovement,
                         locator.PlanarPresence, exclusions) ?? true)
+                    {
                         return null;
+                    }
                     // TODO: see if total region (including any extended) needs to squeeze...
                     return new MovementLocatorTarget
                     {
@@ -78,7 +83,9 @@ namespace Uzi.Ikosa.Movement
                 if (_locator != null)
                 {
                     if (!_locator.PlanarPresence.HasMaterialPresence())
+                    {
                         return false;
+                    }
 
                     // TODO: creature's locator must be in, or adjacent to, ground
                     return true;

@@ -88,7 +88,9 @@ namespace Uzi.Ikosa.Magic.Spells
                 // calulate bonus
                 int _bonus = 1 + (_spellEffect.MagicPowerActionSource.CasterLevel / 3);
                 if (_bonus > 5)
+                {
                     _bonus = 5;
+                }
 
                 // apply the delta creature's natural armor
                 var _enhanced = new Delta(_bonus, typeof(Deltas.Enhancement));

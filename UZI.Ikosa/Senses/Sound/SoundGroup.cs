@@ -22,7 +22,7 @@ namespace Uzi.Ikosa.Senses
         {
             _Channels = new ConcurrentDictionary<(LocalLink link, LocalCellGroup project), SoundChannel>();
             _SoundRef = soundRef;
-            _LastGroups = new List<LocalCellGroup>();
+            _LastGroups = [];
             _Presence = PlanarPresence.None;
         }
 
@@ -80,8 +80,7 @@ namespace Uzi.Ikosa.Senses
             foreach (var (_distance, _geom, _map) in _geometries)
             {
                 // from geometry to _link...
-                if (_audible == null)
-                    _audible = _map.GetICore<ICore>(SoundPresence.Audible.SourceID);
+                _audible ??= _map.GetICore<ICore>(SoundPresence.Audible.SourceID);
                 var _distanceDiff = (int)Math.Ceiling(_distance / 10);
                 var _range = Math.Max(SoundPresence.RangeRemaining - _distance, 0);
                 if (_range > 0)

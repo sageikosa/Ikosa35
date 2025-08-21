@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using Uzi.Core;
@@ -203,7 +203,9 @@ namespace Uzi.Ikosa.Items.Weapons.Ranged
         public virtual BestSoftQualifiedDelta GetBestSoftSave(SavingThrowData saveData)
         {
             if (AlwaysFailsSave)
+            {
                 return null;
+            }
 
             // potential save values
             var _deltables = new List<ConstDeltable>();
@@ -214,10 +216,15 @@ namespace Uzi.Ikosa.Items.Weapons.Ranged
                                 orderby _msaa.CasterLevel descending
                                 select new ConstDeltable(Math.Max(_msaa.CasterLevel / 2, 1))).FirstOrDefault();
             if (_casterLevel != null)
+            {
                 _deltables.Add(_casterLevel);
+            }
 
             if (_deltables.Any())
+            {
                 return new BestSoftQualifiedDelta(_deltables.ToArray());
+            }
+
             return null;
         }
         #endregion

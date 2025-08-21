@@ -33,9 +33,13 @@ namespace Uzi.Ikosa.Actions
         {
             // NOTE: creature may be null
             if (_Doubler)
+            {
                 return 50d + 5d * casterLevel;
+            }
             else
+            {
                 return 25d + 5d * Math.Floor(casterLevel / 2d);
+            }
         }
 
         public override RangeInfo ToRangeInfo(CoreAction action, CoreActor actor)

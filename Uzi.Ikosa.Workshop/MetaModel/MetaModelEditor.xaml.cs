@@ -53,7 +53,10 @@ namespace Uzi.Ikosa.Workshop
                 var _mdl = _meta.ResolveModel();
                 MetaModelResolutionStack.IsHitTestable = false;
                 if (_mdl != null)
+                {
                     mdlHolder.Children.Add(_mdl);
+                }
+
                 if (!renderOnly)
                 {
                     tvwFolders.ItemsSource = null;
@@ -77,7 +80,10 @@ namespace Uzi.Ikosa.Workshop
                 _meta.State.RootFragment.UnSelect();
             }
             if (CurrentFragGeometry != null)
+            {
                 CurrentFragGeometry.PropertyChanged -= new System.ComponentModel.PropertyChangedEventHandler(_geom_PropertyChanged);
+            }
+
             grdFragOffset.DataContext = null;
             grdFragOrigin.DataContext = null;
             grdFragRotations.DataContext = null;
@@ -208,7 +214,10 @@ namespace Uzi.Ikosa.Workshop
             {
                 var _brush = lvwDefaultBrushes.SelectedItem as BrushCrossRefNode;
                 if (_brush != null)
+                {
                     _brush.BrushKey = null;
+                }
+
                 Refresh();
             }
             else
@@ -219,14 +228,20 @@ namespace Uzi.Ikosa.Workshop
                     _frag.Clear();
                     var _parent = MetaModel.State.FindParent(_frag);
                     if ((_parent != null) && (_parent.Count((f) => f.ReferenceKey == _frag.ReferenceKey) > 1))
+                    {
                         _parent.Remove(_frag);
+                    }
+
                     Refresh();
                 }
                 else
                 {
                     var _brush = e.Parameter as BrushCrossRefNode;
                     if (_brush != null)
+                    {
                         _brush.BrushKey = null;
+                    }
+
                     Refresh();
                 }
             }
@@ -264,12 +279,15 @@ namespace Uzi.Ikosa.Workshop
                         // add a new reference with the fragment
                         var _parent = MetaModel.State.FindParent(_fXRef);
                         if (_parent != null)
+                        {
                             _parent.Add(new MetaModelFragmentNode
                             {
                                 ReferenceKey = _fXRef.ReferenceKey,
                                 FragmentKey = _frag.Name,
                                 IsExpanded = true
                             });
+                        }
+
                         Refresh();
                     }
                 }

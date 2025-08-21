@@ -86,7 +86,10 @@ namespace Uzi.Ikosa.Items
 
             // assign slot
             if (_slot.SlottedItem == null)
+            {
                 SetItemSlot(_slot);
+            }
+
             return _slot;
         }
         #endregion
@@ -96,7 +99,10 @@ namespace Uzi.Ikosa.Items
         {
             // can only fill the attachment slot with this attachment wrapper
             if ((slot is AttachmentSlot _attSlot) && (_attSlot.Source == this))
+            {
                 return base.FinalSlotCheck(slot);
+            }
+
             return false;
         }
         #endregion
@@ -135,10 +141,15 @@ namespace Uzi.Ikosa.Items
             // get rid of pathed and aspects
             var _held = _myObj.Adjuncts.OfType<Attached>().FirstOrDefault(_a => _a.AttachmentWrapper == this);
             if (_held != null)
+            {
                 _held.Eject();
+            }
+
             var _attended = _myObj.Adjuncts.OfType<Attended>().FirstOrDefault();
             if (_attended != null)
+            {
                 _attended.Eject();
+            }
 
             // remove the attachment slot
             var _slot = CreaturePossessor.Body.ItemSlots.AllSlots

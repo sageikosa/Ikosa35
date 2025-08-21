@@ -48,7 +48,9 @@ namespace Uzi.Ikosa.UI
             var _pd = (sender as ContextMenu).Tag as PowerDie;
             var _ability = (e.OriginalSource as MenuItem).Header as AbilityBase;
             if (_pd.IsAbilityBoostPowerDie && !_pd.IsLocked)
+            {
                 _pd.AbilityBoost = _ability;
+            }
         }
         #endregion
     }

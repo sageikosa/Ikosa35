@@ -46,7 +46,10 @@ namespace Uzi.Ikosa.Objects
         protected IEnumerable<CoreAction> BaseFastenerActions(LocalActionBudget budget)
         {
             if (Activation.IsActive && budget.CanPerformBrief)
+            {
                 yield return new OpenCloseAction(this, this, @"101");
+            }
+
             yield break;
         }
 
@@ -95,9 +98,14 @@ namespace Uzi.Ikosa.Objects
 
                     // perform fastener behavior
                     if (_oldVal.IsClosed && !value.IsClosed)
+                    {
                         OnOpen();
+                    }
+
                     if (!_oldVal.IsClosed && value.IsClosed)
+                    {
                         OnClose();
+                    }
                 }
             }
         }

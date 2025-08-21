@@ -34,7 +34,9 @@ namespace Uzi.Ikosa.Fidelity
                     && _critter.Conditions.Contains(Condition.Repulsed))
                 {
                     if (DriveCreature.IsSkipping(burst.Activation))
+                    {
                         return null;
+                    }
                 }
 
                 // otherwise, repulse

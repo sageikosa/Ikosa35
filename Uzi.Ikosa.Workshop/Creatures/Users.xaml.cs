@@ -33,8 +33,8 @@ namespace Uzi.Ikosa.Workshop
             DataContextChanged += Users_DataContextChanged;
 
             // initialize
-            _Users = new ObservableCollection<string>();
-            _Available = new ObservableCollection<string>();
+            _Users = [];
+            _Available = [];
 
             // bind
             lstUsers.ItemsSource = _Users;
@@ -155,7 +155,10 @@ namespace Uzi.Ikosa.Workshop
             {
                 // clear
                 foreach (var _uc in _critter.Adjuncts.OfType<UserController>().ToList())
+                {
                     _uc.Eject();
+                }
+
                 _Users.Clear();
                 _Available.Clear();
 

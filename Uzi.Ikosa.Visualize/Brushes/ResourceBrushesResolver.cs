@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Windows.Media.Media3D;
 
 namespace Uzi.Visualize
@@ -11,9 +9,13 @@ namespace Uzi.Visualize
         public ResourceBrushesResolver(IEnumerable<IResolveMaterial> resolvers)
         {
             if (resolvers != null)
+            {
                 _Resolvers = resolvers.ToList();
+            }
             else
-                _Resolvers = new List<IResolveMaterial>();
+            {
+                _Resolvers = [];
+            }
         }
 
         private List<IResolveMaterial> _Resolvers;
@@ -27,7 +29,9 @@ namespace Uzi.Visualize
             {
                 var _material = _resource.GetMaterial(key, effect);
                 if (_material != null)
+                {
                     return _material;
+                }
             }
             return null;
         }

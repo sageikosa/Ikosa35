@@ -151,7 +151,10 @@ namespace Uzi.Ikosa.Workshop
         private void btnClose_Click(object sender, RoutedEventArgs e)
         {
             foreach (var _item in tabHost.Items.OfType<IHostedTabItem>())
+            {
                 _item.CloseTabItem();
+            }
+
             Close();
         }
 

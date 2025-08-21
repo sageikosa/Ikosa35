@@ -36,11 +36,17 @@ namespace Uzi.Ikosa.Movement
             get
             {
                 if (SuccessCheckTarget.Success)
+                {
                     return SwimOutcome.Successful;
+                }
                 else if (SuccessCheckTarget.SoftFail(4))
+                {
                     return SwimOutcome.Immobilized;
+                }
                 else
+                {
                     return SwimOutcome.Uncontrolled;
+                }
             }
         }
         #endregion

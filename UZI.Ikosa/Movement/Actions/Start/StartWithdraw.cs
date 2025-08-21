@@ -1,4 +1,4 @@
-using Uzi.Core.Contracts;
+﻿using Uzi.Core.Contracts;
 using System;
 using System.Collections.Generic;
 using Uzi.Core;
@@ -22,7 +22,10 @@ namespace Uzi.Ikosa.Movement
             // must use double move
             yield return new ForceDoubleStep(step.Activity);
             foreach (var _step in BaseOnMoveCostCheck(step, finalCost))
+            {
                 yield return _step;
+            }
+
             yield break;
         }
 

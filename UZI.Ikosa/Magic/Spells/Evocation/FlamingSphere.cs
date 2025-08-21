@@ -261,10 +261,10 @@ namespace Uzi.Ikosa.Magic.Spells
                                 {
                                     var _act = new PowerActivationStep<SpellSource>(null, this, _critter);
                                     var _process = new CoreTargetingProcess(_act, RemoteMoveGroup.Master.Anchor as Creature,
-                                        @"Flaming Sphere Impact", new List<AimTarget>
-                                        {
+                                        @"Flaming Sphere Impact",
+                                        [
                                             new AimTarget(@"Target", _target.ICore as IInteract)
-                                        });
+                                        ]);
                                     _critter.ProcessManager.StartProcess(_process);
                                 }
                             }

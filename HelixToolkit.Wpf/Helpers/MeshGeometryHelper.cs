@@ -446,7 +446,10 @@ namespace HelixToolkit.Wpf
             var ch = new ContourHelper(p, n);
             var mb = new MeshBuilder(false, false);
             foreach (var pos in mesh.Positions)
+            {
                 mb.Positions.Add(pos);
+            }
+
             int j = mb.Positions.Count;
             for (int i = 0; i < mesh.TriangleIndices.Count; i += 3)
             {

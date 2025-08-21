@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using Uzi.Core;
 using Uzi.Ikosa.Abilities;
@@ -38,11 +38,11 @@ namespace Uzi.Ikosa.Creatures.Types
         private readonly static List<SizeRange> _SizeRanges;
         static Gargoyle()
         {
-            _SizeRanges = new List<SizeRange>
-            {
+            _SizeRanges =
+            [
                 new SizeRange(5, 6, Size.Medium, 1),
                 new SizeRange(7, 12, Size.Large, 2)
-            };
+            ];
         }
 
         // NOTE: gargoyle's default abilities are for making a basic gargoyle
@@ -109,7 +109,7 @@ namespace Uzi.Ikosa.Creatures.Types
         #region protected override IEnumerable<MovementBase> GenerateMovements()
         protected override IEnumerable<MovementBase> GenerateMovements()
         {
-            // A gargoyle�s base land speed is 40 feet. It also has a fly speed of 60 feet (average).
+            // A gargoyle’s base land speed is 40 feet. It also has a fly speed of 60 feet (average).
             var _land = new LandMovement(40, Creature, this);
             yield return new FlightExMovement(60, Creature, this, FlightManeuverability.Average);
             yield return _land;

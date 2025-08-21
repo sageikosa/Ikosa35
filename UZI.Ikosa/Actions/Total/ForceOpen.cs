@@ -46,7 +46,10 @@ namespace Uzi.Ikosa.Actions
         public override IEnumerable<AimingMode> AimingMode(CoreActivity activity)
         {
             if (OptionAim != null)
+            {
                 yield return _Option;
+            }
+
             yield return new RollAim(@"Strength", @"Strength Check Roll", new DieRoller(20));
             yield break;
         }

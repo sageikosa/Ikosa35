@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Media;
 using Uzi.Visualize.Packaging;
@@ -12,7 +11,7 @@ namespace Uzi.Visualize
     {
         public ResourceIconResolver(IEnumerable<IResolveIcon> resolvers)
         {
-            _Resolvers = resolvers?.ToList() ?? new List<IResolveIcon>();
+            _Resolvers = resolvers?.ToList() ?? [];
         }
 
         private readonly List<IResolveIcon> _Resolvers;
@@ -26,7 +25,9 @@ namespace Uzi.Visualize
             {
                 var _ico = _resource.GetIconVisual(key, iconRef);
                 if (_ico != null)
+                {
                     return _ico;
+                }
             }
             return null;
         }
@@ -37,7 +38,9 @@ namespace Uzi.Visualize
             {
                 var _ico = _resource.GetIconMaterial(key, iconRef, detailLevel);
                 if (_ico != null)
+                {
                     return _ico;
+                }
             }
             return null;
         }

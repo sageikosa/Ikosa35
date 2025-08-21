@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Linq;
 using Uzi.Ikosa.Movement;
 
@@ -30,7 +30,10 @@ namespace Uzi.Ikosa.Skills
             {
                 var _balance = Creature.Adjuncts.OfType<Balancing>().FirstOrDefault(_a => _a.IsActive);
                 if (_balance == null)
+                {
                     return true;
+                }
+
                 return _balance.SuccessCheckTarget.IsUsingPenalty;
             }
         }

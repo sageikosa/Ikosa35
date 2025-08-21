@@ -152,7 +152,9 @@ namespace Uzi.Ikosa.Movement
 
                 // normal post move check stuff
                 foreach (var _step in BaseOnMoveCostCheck(step, finalCost))
+                {
                     yield return _step;
+                }
             }
             else
             {
@@ -171,7 +173,9 @@ namespace Uzi.Ikosa.Movement
             // first check effort budget
             var _response = base.CanPerformNow(budget);
             if (!_response.Success)
+            {
                 return _response;
+            }
 
             // grab movement budget for updating
             _MoveBudget = MovementBudget.GetBudget(budget);
@@ -182,7 +186,10 @@ namespace Uzi.Ikosa.Movement
             {
                 // needs solitary movement: must not have moved
                 if (SolitaryMove)
+                {
                     return new ActivityResponse(!MovementBudget.HasMoved);
+                }
+
                 return new ActivityResponse(true);
             }
 
@@ -221,7 +228,10 @@ namespace Uzi.Ikosa.Movement
             yield return new VolumeAim(MovementTargets.LeadCell, @"Lead Cell", new FixedRange(0), FixedRange.One, new FixedRange(0), new FixedRange(1));
             yield return new MovementAim(MovementTargets.Direction, @"Direction");
             foreach (var _aim in Movement.GetAimingModes(activity))
+            {
                 yield return _aim;
+            }
+
             yield break;
         }
         #endregion

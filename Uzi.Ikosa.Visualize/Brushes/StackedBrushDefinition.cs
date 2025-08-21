@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Linq;
 using System.Windows.Media;
 using Uzi.Visualize.Packaging;
-using System.Windows.Controls;
 using System.Windows;
 
 namespace Uzi.Visualize
@@ -20,7 +16,9 @@ namespace Uzi.Visualize
             : base(source)
         {
             foreach (var _c in source.Components)
+            {
                 _Components.Add(_c.Clone());
+            }
         }
 
         public StackedBrushDefinition(BrushCollectionPart owner)
@@ -30,7 +28,7 @@ namespace Uzi.Visualize
         #endregion
 
         #region public BrushCollection Components { get; set; }
-        private BrushCollection _Components = new BrushCollection();
+        private BrushCollection _Components = [];
         public BrushCollection Components
         {
             get { return _Components; }

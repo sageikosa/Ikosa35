@@ -24,8 +24,8 @@ namespace Uzi.Core
             }
             else
             {
-                _Targets = new List<AimTarget>();
-                _OriginalTargets = new List<AimTarget>();
+                _Targets = [];
+                _OriginalTargets = [];
             }
         }
 

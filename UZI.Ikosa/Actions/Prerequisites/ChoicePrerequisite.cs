@@ -52,7 +52,9 @@ namespace Uzi.Ikosa.Actions
             set
             {
                 if (value != null)
+                {
                     _Selected = _Choices.FirstOrDefault(_c => _c.Key.Equals(value.Key));
+                }
             }
         }
 

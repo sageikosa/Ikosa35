@@ -45,7 +45,9 @@ namespace Uzi.Ikosa.Actions
             // first check effort budget
             var _response = base.CanPerformNow(budget);
             if (!_response.Success)
+            {
                 return _response;
+            }
 
             // see if the turns are still left
 

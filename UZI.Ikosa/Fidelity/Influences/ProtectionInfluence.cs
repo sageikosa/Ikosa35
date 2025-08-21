@@ -69,7 +69,9 @@ namespace Uzi.Ikosa.Fidelity
                     && _budget.CanPerformRegular)
                 {
                     if (_budget.TurnTick.TurnTracker.Map.CurrentTime >= _Ready)
+                    {
                         yield return new ProtectionInfluenceWard(this, @"101");
+                    }
                 }
             }
             yield break;
@@ -166,9 +168,13 @@ namespace Uzi.Ikosa.Fidelity
                 // eject when done with the save
                 var _expiry = Anchor.Adjuncts.OfType<Expiry>().FirstOrDefault(_ex => _ex.ExpirableAdjuncts.Contains(this));
                 if (_expiry != null)
+                {
                     _expiry.Eject();
+                }
                 else
+                {
                     Eject();
+                }
             }
         }
         #endregion
@@ -193,13 +199,18 @@ namespace Uzi.Ikosa.Fidelity
         {
             base.OnActivate(source);
             if (Anchor is Creature)
+            {
                 (Anchor as Creature).AddIInteractHandler(this);
+            }
         }
 
         protected override void OnDeactivate(object source)
         {
             if (Anchor is Creature)
+            {
                 (Anchor as Creature).RemoveIInteractHandler(this);
+            }
+
             base.OnDeactivate(source);
         }
     }

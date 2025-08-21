@@ -31,7 +31,10 @@ namespace Uzi.Ikosa.Host.Prerequisites
         private void cboRoll_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if ((cboRoll != null) && (cboRoll.SelectedItem != null))
+            {
                 txtValue.Text = (cboRoll.SelectedItem as ComboBoxItem).Content.ToString();
+            }
+
             e.Handled = true;
         }
 
@@ -58,10 +61,14 @@ namespace Uzi.Ikosa.Host.Prerequisites
         public int? Value()
         {
             if ((txtValue == null) || (txtValue.Text == null))
+            {
                 return null;
+            }
 
             if (!Int32.TryParse(txtValue.Text, out var _out))
+            {
                 return null;
+            }
 
             return _out;
         }

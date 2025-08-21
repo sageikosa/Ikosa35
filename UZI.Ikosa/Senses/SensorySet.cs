@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using Uzi.Core;
 using System.Collections.ObjectModel;
@@ -15,7 +15,7 @@ namespace Uzi.Ikosa.Senses
     {
         public SensorySet()
         {
-            _Senses = new Collection<SensoryBase>();
+            _Senses = [];
         }
 
         #region state
@@ -53,17 +53,27 @@ namespace Uzi.Ikosa.Senses
             {
                 // NOTE: ethereal vision is granted upon going ethereal
                 if (AllSenses.Any(_s => _s.IsActive && _s.PlanarPresence == PlanarPresence.Both))
+                {
                     return PlanarPresence.Both;
+                }
 
                 var _material = AllSenses.Any(_s => _s.IsActive && _s.PlanarPresence.HasMaterialPresence());
                 var _ethereal = AllSenses.Any(_s => _s.IsActive && _s.PlanarPresence.HasEtherealPresence());
                 if (_material && _ethereal)
+                {
                     return PlanarPresence.Both;
+                }
 
                 if (_material)
+                {
                     return PlanarPresence.Material;
+                }
+
                 if (_ethereal)
+                {
                     return PlanarPresence.Ethereal;
+                }
+
                 return PlanarPresence.None;
             }
         }

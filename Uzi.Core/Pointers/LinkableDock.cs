@@ -1,4 +1,4 @@
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using System;
 
 namespace Uzi.Core
@@ -47,13 +47,17 @@ namespace Uzi.Core
             // set and notify new link
             _Link = newVal;
             if (_Link != null)
+            {
                 _Link.LinkAdded(this);
+            }
 
             OnLink();
 
             // notify old link
             if (_dropLink != null)
+            {
                 _dropLink.LinkDropped(this);
+            }
 
             // notify all else
             _ChangeCtrl.DoValueChanged(newVal);

@@ -43,7 +43,9 @@ namespace Uzi.Ikosa.Movement
             if (_any)
             {
                 foreach (var _step in PostMoveSteps(step))
+                {
                     yield return _step;
+                }
             }
         }
         #endregion
@@ -60,7 +62,10 @@ namespace Uzi.Ikosa.Movement
                 yield return _aim;
             }
             if (TimeCost.ActionTimeType == TimeType.SubAction)
+            {
                 yield return new OptionAim(@"Double", @"Allow Double", true, FixedRange.One, FixedRange.One, DoubleOptions());
+            }
+
             yield break;
         }
         #endregion

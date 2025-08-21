@@ -29,22 +29,76 @@ namespace Uzi.Ikosa.UI
 
         public override DataTemplate SelectTemplate(object item, DependencyObject container)
         {
-            if (item is EnergyResistor) return EnergyResistorTemplate;
-            if (item is SlipperyArmor) return SlipperyArmorTemplate;
-            if (item is WeaponSpecialAbility) return WeaponSpecialAbilityTemplate;
-            if (item is MagicAugment) return MagicAugmentTemplate;
-            if (item is AbilityEnhanceSlotActivation) return AbilityEnhanceSlotActivationTemplate;
-            if (item is NaturalArmorSlotActivation) return NaturalArmorSlotActivationTemplate;
-            if (item is ResistanceSlotActivation) return ResistanceSlotActivationTemplate;
-            if (item is ArmorSlotActivation) return ArmorSlotActivationTemplate;
-            if (item is DeflectionSlotActivation) return DeflectionSlotActivationTemplate;
-            if (item is EnergyResistorSlotActivation) return EnergyResistorSlotActivationTemplate;
+            if (item is EnergyResistor)
+            {
+                return EnergyResistorTemplate;
+            }
+
+            if (item is SlipperyArmor)
+            {
+                return SlipperyArmorTemplate;
+            }
+
+            if (item is WeaponSpecialAbility)
+            {
+                return WeaponSpecialAbilityTemplate;
+            }
+
+            if (item is MagicAugment)
+            {
+                return MagicAugmentTemplate;
+            }
+
+            if (item is AbilityEnhanceSlotActivation)
+            {
+                return AbilityEnhanceSlotActivationTemplate;
+            }
+
+            if (item is NaturalArmorSlotActivation)
+            {
+                return NaturalArmorSlotActivationTemplate;
+            }
+
+            if (item is ResistanceSlotActivation)
+            {
+                return ResistanceSlotActivationTemplate;
+            }
+
+            if (item is ArmorSlotActivation)
+            {
+                return ArmorSlotActivationTemplate;
+            }
+
+            if (item is DeflectionSlotActivation)
+            {
+                return DeflectionSlotActivationTemplate;
+            }
+
+            if (item is EnergyResistorSlotActivation)
+            {
+                return EnergyResistorSlotActivationTemplate;
+            }
+
             if (item.GetType().IsGenericType
                 && typeof(SkillBonusSlotActivation<>).Equals(item.GetType().GetGenericTypeDefinition()))
+            {
                 return SkillBonusSlotActivationTemplate;
-            if (item is AdjunctSlotActivation) return AdjunctSlotActivationTemplate;
-            if (item is SlottedItemSpellActivation) return SlottedItemSpellActivationTemplate;
-            if (item is SpellCommandWord) return SpellCommandWordTemplate;
+            }
+
+            if (item is AdjunctSlotActivation)
+            {
+                return AdjunctSlotActivationTemplate;
+            }
+
+            if (item is SlottedItemSpellActivation)
+            {
+                return SlottedItemSpellActivationTemplate;
+            }
+
+            if (item is SpellCommandWord)
+            {
+                return SpellCommandWordTemplate;
+            }
             // TODO:
             return null;
         }

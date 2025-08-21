@@ -38,7 +38,10 @@ namespace Uzi.Ikosa.Workshop
             get
             {
                 if (cboThickWall.SelectedIndex > -1)
+                {
                     return (AnchorFace)cboThickWall.SelectedItem;
+                }
+
                 return AnchorFace.XLow;
             }
         }
@@ -82,6 +85,7 @@ namespace Uzi.Ikosa.Workshop
                 case AnchorFace.ZHigh:
                 case AnchorFace.ZLow:
                     if (cboFrame1.SelectedItem != null)
+                    {
                         switch ((AnchorFace)cboFrame1.SelectedItem)
                         {
                             case AnchorFace.YHigh:
@@ -98,11 +102,14 @@ namespace Uzi.Ikosa.Workshop
                                 cboFrame2.SelectedIndex = 0;
                                 break;
                         }
+                    }
+
                     break;
 
                 case AnchorFace.YHigh:
                 case AnchorFace.YLow:
                     if (cboFrame1.SelectedItem != null)
+                    {
                         switch ((AnchorFace)cboFrame1.SelectedItem)
                         {
                             case AnchorFace.ZHigh:
@@ -119,10 +126,13 @@ namespace Uzi.Ikosa.Workshop
                                 cboFrame2.SelectedIndex = 0;
                                 break;
                         }
+                    }
+
                     break;
 
                 default:
                     if (cboFrame1.SelectedItem != null)
+                    {
                         switch ((AnchorFace)cboFrame1.SelectedItem)
                         {
                             case AnchorFace.ZHigh:
@@ -139,6 +149,8 @@ namespace Uzi.Ikosa.Workshop
                                 cboFrame2.SelectedIndex = 0;
                                 break;
                         }
+                    }
+
                     break;
             }
         }

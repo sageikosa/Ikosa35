@@ -16,7 +16,7 @@ namespace Uzi.Ikosa.Services
         public UserDefinitionsPart(ICorePartNameManager nameManager, string name)
             : base(nameManager, name)
         {
-            _Users = new UserDefinitionCollection();
+            _Users = [];
             UserValidator.UserDefinitions ??= _Users;
         }
 
@@ -66,7 +66,7 @@ namespace Uzi.Ikosa.Services
             }
             else
             {
-                _Users = new UserDefinitionCollection();
+                _Users = [];
             }
         }
         #endregion
@@ -112,7 +112,9 @@ namespace Uzi.Ikosa.Services
         public override void Close()
         {
             if (UserValidator.UserDefinitions == _Users)
+            {
                 UserValidator.UserDefinitions = null;
+            }
         }
     }
 }

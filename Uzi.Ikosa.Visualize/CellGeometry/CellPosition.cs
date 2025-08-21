@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Windows.Media.Media3D;
 
 namespace Uzi.Visualize
@@ -43,17 +42,32 @@ namespace Uzi.Visualize
             var _y = location.Y;
             var _x = location.X;
             if (adjacentTo.Contains(AnchorFace.ZHigh))
+            {
                 _z++;
+            }
             else if (adjacentTo.Contains(AnchorFace.ZLow))
+            {
                 _z--;
+            }
+
             if (adjacentTo.Contains(AnchorFace.YHigh))
+            {
                 _y++;
+            }
             else if (adjacentTo.Contains(AnchorFace.YLow))
+            {
                 _y--;
+            }
+
             if (adjacentTo.Contains(AnchorFace.XHigh))
+            {
                 _x++;
+            }
             else if (adjacentTo.Contains(AnchorFace.XLow))
+            {
                 _x--;
+            }
+
             return new CellPosition(_z, _y, _x);
         }
 

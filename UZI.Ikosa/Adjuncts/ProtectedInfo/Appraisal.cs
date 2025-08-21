@@ -14,7 +14,7 @@ namespace Uzi.Ikosa.Adjuncts
             : base(source)
         {
             _Title = @"Appraisal";
-            _Critters = new Dictionary<Guid, string>();
+            _Critters = [];
             _Cost = cost;
         }
 

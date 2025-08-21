@@ -44,7 +44,9 @@ namespace Uzi.Ikosa.Adjuncts
         {
             // once all distractions are gone, we can end the distracted adjunct
             if (BaseDifficulty.EffectiveValue == BaseDifficulty.BaseValue)
+            {
                 this.Eject();
+            }
         }
 
         #endregion

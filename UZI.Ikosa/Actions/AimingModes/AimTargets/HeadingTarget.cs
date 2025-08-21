@@ -211,19 +211,32 @@ namespace Uzi.Ikosa.Actions
             var _crossings = CrossingFaces(gravity, stepIndex);
             // X
             if (_crossings.Contains(AnchorFace.XLow))
+            {
                 _result += XLOW;
+            }
             else if (_crossings.Contains(AnchorFace.XHigh))
+            {
                 _result += XHI;
+            }
             // Y
             if (_crossings.Contains(AnchorFace.YLow))
+            {
                 _result += YLOW;
+            }
             else if (_crossings.Contains(AnchorFace.YHigh))
+            {
                 _result += YHI;
+            }
             // Z
             if (_crossings.Contains(AnchorFace.ZLow))
+            {
                 _result += ZLOW;
+            }
             else if (_crossings.Contains(AnchorFace.ZHigh))
+            {
                 _result += ZHI;
+            }
+
             return (byte)_result;
         }
         #endregion

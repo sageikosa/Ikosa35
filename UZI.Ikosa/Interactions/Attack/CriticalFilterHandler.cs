@@ -53,9 +53,13 @@ namespace Uzi.Ikosa.Interactions
             // put this after the transit handler
             var _type = existingHandler.GetType();
             if ((_type == typeof(TransitAttackHandler)) || (_type == typeof(FlankingCheckHandler)))
+            {
                 return false;
+            }
             else
+            {
                 return true;
+            }
         }
         #endregion
 

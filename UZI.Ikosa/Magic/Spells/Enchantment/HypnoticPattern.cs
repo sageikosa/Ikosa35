@@ -399,9 +399,11 @@ namespace Uzi.Ikosa.Magic.Spells
                     var _target = new AimTarget(@"Target", _interactCore);
 
                     // setup targeting process targets
-                    var _targets = new List<AimTarget>();
-                    _targets.Add(new ValueTarget<ConcentrationMagicControl>(nameof(ConcentrationMagicControl), Control));
-                    _targets.Add(new ValueTarget<Duration>(nameof(Duration), Duration));
+                    var _targets = new List<AimTarget>
+                    {
+                        new ValueTarget<ConcentrationMagicControl>(nameof(ConcentrationMagicControl), Control),
+                        new ValueTarget<Duration>(nameof(Duration), Duration)
+                    };
 
                     // deliver from myLocator to target, durable mode 0 via this as the power use
                     var _process = new CoreTargetingProcess(

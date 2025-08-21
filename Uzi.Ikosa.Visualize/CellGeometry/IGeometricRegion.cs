@@ -1,7 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Windows.Media.Media3D;
 
 namespace Uzi.Visualize
@@ -32,50 +29,89 @@ namespace Uzi.Visualize
         public static BoundarySide GetBoundarySide(this IGeometricRegion self, IGeometricRegion other, AnchorFace face)
         {
             if ((self != null) && (other != null))
+            {
                 switch (face)
                 {
                     case AnchorFace.XLow:
                         if (other.UpperX < self.LowerX)
+                        {
                             return BoundarySide.Other;
+                        }
+
                         if (other.LowerX < self.LowerX)
+                        {
                             return BoundarySide.Stradle;
+                        }
+
                         return BoundarySide.Same;
 
                     case AnchorFace.XHigh:
                         if (other.LowerX > self.UpperX)
+                        {
                             return BoundarySide.Other;
+                        }
+
                         if (other.UpperX > self.UpperX)
+                        {
                             return BoundarySide.Stradle;
+                        }
+
                         return BoundarySide.Same;
 
                     case AnchorFace.YLow:
                         if (other.UpperY < self.LowerY)
+                        {
                             return BoundarySide.Other;
+                        }
+
                         if (other.LowerY < self.LowerY)
+                        {
                             return BoundarySide.Stradle;
+                        }
+
                         return BoundarySide.Same;
                     case AnchorFace.YHigh:
                         if (other.LowerY > self.UpperY)
+                        {
                             return BoundarySide.Other;
+                        }
+
                         if (other.UpperY > self.UpperY)
+                        {
                             return BoundarySide.Stradle;
+                        }
+
                         return BoundarySide.Same;
 
                     case AnchorFace.ZLow:
                         if (other.UpperZ < self.LowerZ)
+                        {
                             return BoundarySide.Other;
+                        }
+
                         if (other.LowerZ < self.LowerZ)
+                        {
                             return BoundarySide.Stradle;
+                        }
+
                         return BoundarySide.Same;
 
                     case AnchorFace.ZHigh:
                     default:
                         if (other.LowerZ > self.UpperZ)
+                        {
                             return BoundarySide.Other;
+                        }
+
                         if (other.UpperZ > self.UpperZ)
+                        {
                             return BoundarySide.Stradle;
+                        }
+
                         return BoundarySide.Same;
                 }
+            }
+
             return BoundarySide.Stradle;
         }
 
@@ -83,10 +119,16 @@ namespace Uzi.Visualize
         {
             var _source = self.GetBoundarySide(source, boundary);
             if (_source == BoundarySide.Stradle)
+            {
                 return true;
+            }
+
             var _target = self.GetBoundarySide(target, boundary);
             if (_target == BoundarySide.Stradle)
+            {
                 return true;
+            }
+
             return _source == _target;
         }
     }

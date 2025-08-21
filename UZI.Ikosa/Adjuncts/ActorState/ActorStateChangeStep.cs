@@ -27,7 +27,10 @@ namespace Uzi.Ikosa.Adjuncts
             get
             {
                 if (_Critter != null)
+                {
                     return string.Format(@"{0} changed from {1} to {2}", _Critter.Name, _Remove.SourceName(), _Add.SourceName());
+                }
+
                 return base.Name;
             }
         }
@@ -36,13 +39,17 @@ namespace Uzi.Ikosa.Adjuncts
         {
             // remove
             if (_Remove != null)
+            {
                 _Remove.Eject();
+            }
 
             if (_Critter != null)
             {
                 // add
                 if (_Add != null)
+                {
                     _Critter.AddAdjunct(_Add);
+                }
 
                 // special state change!
                 if ((_Remove is NotHealing) && (_Add is Disabled))

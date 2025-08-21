@@ -60,7 +60,10 @@ namespace Uzi.Ikosa.Actions
             HeldCharge.OriginalActivity.IsActive = true;
             var _located = activity.Actor.GetLocated();
             if (_located != null)
+            {
                 _located.Locator.MapContext.ContextSet.ProcessManager.StartProcess(HeldCharge.OriginalActivity);
+            }
+
             activity.IsActive = false;
 
             // no root step...
@@ -78,7 +81,9 @@ namespace Uzi.Ikosa.Actions
             {
                 var _touch = _mode as TouchAim;
                 if (_touch?.Range is MeleeRange)
+                {
                     yield return _touch;
+                }
             }
             yield break;
         }
@@ -93,10 +98,14 @@ namespace Uzi.Ikosa.Actions
                     foreach (var _target in activity.Targets.OfType<AttackTarget>())
                     {
                         if (_target.Target.ID == potentialTarget.ID)
+                        {
                             return true;
+                        }
 
                         if ((_target.Target as IAdjunctable)?.GetLocated()?.Locator == _loc)
+                        {
                             return true;
+                        }
                     }
                 }
             }

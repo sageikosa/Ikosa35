@@ -207,16 +207,24 @@ namespace Uzi.Ikosa.Magic.Spells
             var _budget = budget as LocalActionBudget;
 
             foreach (var _act in PrimeActions(_budget))
+            {
                 yield return _act;
+            }
 
             if (_ChainRound > 0)
             {
                 foreach (var _act in SecondActions(_budget))
+                {
                     yield return _act;
+                }
 
                 if (_ChainRound > 1)
+                {
                     foreach (var _act in ThirdActions(_budget))
+                    {
                         yield return _act;
+                    }
+                }
             }
             yield break;
         }
@@ -402,7 +410,9 @@ namespace Uzi.Ikosa.Magic.Spells
                         // find strongest
                         AuraStrength _test = Detector.GetStrongestAura(_loc).AuraStrength;
                         if (_test > _strong)
+                        {
                             _strong = _test;
+                        }
                     }
                 }
             }

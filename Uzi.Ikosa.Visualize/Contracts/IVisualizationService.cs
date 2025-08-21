@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Serialization;
+﻿using System.Collections.Generic;
 using System.ServiceModel;
-using System.Text;
 using Uzi.Visualize.Contracts.Tactical;
 using Uzi.Core.Contracts.Faults;
 

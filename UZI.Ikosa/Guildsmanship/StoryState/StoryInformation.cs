@@ -15,8 +15,8 @@ namespace Uzi.Ikosa.Guildsmanship
         public StoryInformation()
         {
             _Mutabilities = new Mutabilities();
-            _Encounters = new Dictionary<Guid, EncounterTableLink>();
-            _Infos = new Dictionary<Guid, StoryInfoElement>();
+            _Encounters = [];
+            _Infos = [];
         }
 
         public Mutabilities Mutabilities => _Mutabilities;

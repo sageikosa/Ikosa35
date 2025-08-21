@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Windows.Media.Media3D;
 using HelixToolkit.Wpf;
 using System.Windows;
@@ -147,12 +145,36 @@ namespace Uzi.Visualize
 
             // return planes
             var _corners = GetSlopeCorners(z, y, x, isUpper, _ortho, _slope, _loOffset, _hiOffset);
-            if (facingPt.Z > ((z + 1) * 5d)) yield return GetPlane(_corners, AnchorFace.ZHigh, _sloped);
-            if (facingPt.Y > ((y + 1) * 5d)) yield return GetPlane(_corners, AnchorFace.YHigh, _sloped);
-            if (facingPt.X > ((x + 1) * 5d)) yield return GetPlane(_corners, AnchorFace.XHigh, _sloped);
-            if (facingPt.Z < (z * 5d)) yield return GetPlane(_corners, AnchorFace.ZLow, _sloped);
-            if (facingPt.Y < (y * 5d)) yield return GetPlane(_corners, AnchorFace.YLow, _sloped);
-            if (facingPt.X < (x * 5d)) yield return GetPlane(_corners, AnchorFace.XLow, _sloped);
+            if (facingPt.Z > ((z + 1) * 5d))
+            {
+                yield return GetPlane(_corners, AnchorFace.ZHigh, _sloped);
+            }
+
+            if (facingPt.Y > ((y + 1) * 5d))
+            {
+                yield return GetPlane(_corners, AnchorFace.YHigh, _sloped);
+            }
+
+            if (facingPt.X > ((x + 1) * 5d))
+            {
+                yield return GetPlane(_corners, AnchorFace.XHigh, _sloped);
+            }
+
+            if (facingPt.Z < (z * 5d))
+            {
+                yield return GetPlane(_corners, AnchorFace.ZLow, _sloped);
+            }
+
+            if (facingPt.Y < (y * 5d))
+            {
+                yield return GetPlane(_corners, AnchorFace.YLow, _sloped);
+            }
+
+            if (facingPt.X < (x * 5d))
+            {
+                yield return GetPlane(_corners, AnchorFace.XLow, _sloped);
+            }
+
             yield break;
         }
         #endregion
@@ -302,12 +324,20 @@ namespace Uzi.Visualize
             var _slope = plus;
             var _flipAxis = param.Flip;
             if (_flipAxis)
+            {
                 _slope = new SlopeInverter(plus);
+            }
 
             if (!(_slope.IsGas && _slope.IsInvisible))
+            {
                 GenerateInnerSubModel(param, z, y, x, _slope, addToGroup, false, effect);
+            }
+
             if (!(_slope.IsPlusGas && _slope.IsPlusInvisible))
+            {
                 GenerateInnerSubModel(param, z, y, x, _slope, addToGroup, true, effect);
+            }
+
             foreach (var _edge in param.GetSlopeEdges(edge))
             {
                 WedgeSpaceFaces.BuildInnerStructures(addToGroup, z, y, x, _edge.Axis, _edge.PrimeOff, _edge.SecondOff,
@@ -383,8 +413,10 @@ namespace Uzi.Visualize
             void _addTri(Rect rect, TriangleCorner corner)
             {
                 if (_doTri)
+                {
                     addToGroup.Context.GetBuildableMesh(meshKey, material)
                       .AddRightTriangularMesh(rect, corner, _textureSize, true, face, false, trans);
+                }
             }
 
             // generate model, apply material, and move into place
@@ -398,7 +430,9 @@ namespace Uzi.Visualize
                         {
                             case AnchorFace.XLow:
                                 if (slopeAxis == Axis.X)
+                                {
                                     _addRect(new Rect(0, 0, 5d - loOffset, 5d));
+                                }
                                 else
                                 {
                                     _addRect(new Rect(0, 0, 5d - _maxOff, 5d));
@@ -408,7 +442,9 @@ namespace Uzi.Visualize
                                 break;
                             case AnchorFace.XHigh:
                                 if (slopeAxis == Axis.X)
+                                {
                                     _addRect(new Rect(hiOffset, 0, 5d - hiOffset, 5d));
+                                }
                                 else
                                 {
                                     _addRect(new Rect(_maxOff, 0, 5d - _maxOff, 5d));
@@ -425,7 +461,9 @@ namespace Uzi.Visualize
 
                             case AnchorFace.ZLow:
                                 if (slopeAxis == Axis.Z)
+                                {
                                     _addRect(new Rect(0, loOffset, 5d, 5d - loOffset));
+                                }
                                 else
                                 {
                                     _addRect(new Rect(0, _maxOff, 5d, 5d - _maxOff));
@@ -435,7 +473,9 @@ namespace Uzi.Visualize
                                 break;
                             default: // ZHigh
                                 if (slopeAxis == Axis.Z)
+                                {
                                     _addRect(new Rect(0, hiOffset, 5d, 5d - hiOffset));
+                                }
                                 else
                                 {
                                     _addRect(new Rect(0, _maxOff, 5d, 5d - _maxOff));
@@ -451,7 +491,9 @@ namespace Uzi.Visualize
                         {
                             case AnchorFace.XLow:
                                 if (slopeAxis == Axis.X)
+                                {
                                     _addRect(new Rect(5d - loOffset, 0, loOffset, 5d));
+                                }
                                 else
                                 {
                                     _addRect(new Rect(5d - _minOff, 0, _minOff, 5d));
@@ -461,7 +503,9 @@ namespace Uzi.Visualize
                                 break;
                             case AnchorFace.XHigh:
                                 if (slopeAxis == Axis.X)
+                                {
                                     _addRect(new Rect(0, 0, hiOffset, 5d));
+                                }
                                 else
                                 {
                                     _addRect(new Rect(0, 0, _minOff, 5d));
@@ -478,7 +522,9 @@ namespace Uzi.Visualize
 
                             case AnchorFace.ZLow:
                                 if (slopeAxis == Axis.Z)
+                                {
                                     _addRect(new Rect(0, 0, 5d, loOffset));
+                                }
                                 else
                                 {
                                     _addRect(new Rect(0, 0, 5d, _minOff));
@@ -488,9 +534,11 @@ namespace Uzi.Visualize
                                 break;
                             default: // ZHigh
                                 if (slopeAxis == Axis.Z)
+                                {
                                     addToGroup.Context.GetBuildableMesh(meshKey, material)
                                         .AddRectangularMesh(new Rect(0, 0, 5d, hiOffset),
                                         _textureSize, true, face, false, trans);
+                                }
                                 else
                                 {
                                     _addRect(new Rect(0, 0, 5d, _minOff));
@@ -787,14 +835,21 @@ namespace Uzi.Visualize
             var _slope = plus;
             var _flipAxis = param.Flip;
             if (_flipAxis)
+            {
                 _slope = new SlopeInverter(plus);
+            }
 
             if (!_slope.IsInvisible)
+            {
                 GenerateOuterSubModel(param, _slope, addToGroup, _slope.IsGas || _slope.IsLiquid,
                     z, y, x, false, face, effect, bump);
+            }
+
             if (!_slope.IsPlusInvisible)
+            {
                 GenerateOuterSubModel(param, _slope, addToGroup, _slope.IsPlusGas || _slope.IsPlusLiquid,
                     z, y, x, true, face, effect, bump); // NOTE: fixed(?) isPlus flag
+            }
 
             Func<BuildableMaterial> _builder =
                 () => edge.GetOrthoFaceMaterial(face.GetAxis(), !face.IsLowFace(), effect);

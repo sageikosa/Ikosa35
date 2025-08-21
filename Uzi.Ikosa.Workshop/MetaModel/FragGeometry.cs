@@ -27,7 +27,9 @@ namespace Uzi.Ikosa.Workshop
         private void DoPropertyChanged(string propName)
         {
             if (PropertyChanged != null)
+            {
                 PropertyChanged(this, new PropertyChangedEventArgs(propName));
+            }
         }
 
         #endregion
@@ -84,9 +86,13 @@ namespace Uzi.Ikosa.Workshop
             set
             {
                 if ((value.X == 1) && (value.Y == 1) && (value.Z == 1))
+                {
                     _Node.Scale = null;
+                }
                 else
+                {
                     _Node.Scale = value;
+                }
             }
         }
 
@@ -132,9 +138,13 @@ namespace Uzi.Ikosa.Workshop
             set
             {
                 if (value.LengthSquared == 0)
+                {
                     _Node.Offset = null;
+                }
                 else
+                {
                     _Node.Offset = value;
+                }
             }
         }
 
@@ -180,9 +190,13 @@ namespace Uzi.Ikosa.Workshop
             set
             {
                 if (value.LengthSquared == 0)
+                {
                     _Node.OriginOffset = null;
+                }
                 else
+                {
                     _Node.OriginOffset = value;
+                }
             }
         }
 

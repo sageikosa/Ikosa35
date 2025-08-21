@@ -34,9 +34,13 @@ namespace Uzi.Ikosa.Creatures
             set
             {
                 if (value >= 0)
+                {
                     _HeldCount = value;
+                }
                 else
+                {
                     _HeldCount = 0;
+                }
             }
         }
         #endregion
@@ -54,9 +58,13 @@ namespace Uzi.Ikosa.Creatures
             {
                 // allow it to be adjusted over the floor value
                 if (value >= 10)
+                {
                     _ContinueDifficulty = value;
+                }
                 else
+                {
                     _ContinueDifficulty = 10;
+                }
             }
         }
         #endregion

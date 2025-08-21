@@ -35,7 +35,7 @@ namespace Uzi.Ikosa.Magic.Spells
         public override IEnumerable<Descriptor> Descriptors => _Descriptors;
 
         /// <summary>GetCreature will set this...</summary>
-        protected IList<Descriptor> _Descriptors = new List<Descriptor>();
+        protected IList<Descriptor> _Descriptors = [];
 
         protected abstract IPowerDef NewForPowerSource();
 
@@ -201,8 +201,15 @@ namespace Uzi.Ikosa.Magic.Spells
             _critter.AddAdjunct(new AlignedCreature(new Alignment(lawChaos, goodEvil)));
 
             // just ensure no conflicts
-            if (celestial && goodEvil != GoodEvilAxis.Evil) _critter.AddAdjunct(new Celestial());
-            if (fiendish && goodEvil != GoodEvilAxis.Good) _critter.AddAdjunct(new Fiendish());
+            if (celestial && goodEvil != GoodEvilAxis.Evil)
+            {
+                _critter.AddAdjunct(new Celestial());
+            }
+
+            if (fiendish && goodEvil != GoodEvilAxis.Good)
+            {
+                _critter.AddAdjunct(new Fiendish());
+            }
 
             // summoned monster is in the same teams as the caster
             foreach (var _t in actor.Adjuncts.OfType<TeamMember>())

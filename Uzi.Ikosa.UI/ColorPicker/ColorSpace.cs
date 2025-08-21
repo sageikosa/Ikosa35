@@ -57,7 +57,10 @@ namespace SilverlightContrib.Controls
             if (s > 0)
             {
                 if (h >= 1)
+                {
                     h = 0;
+                }
+
                 h = 6 * h;
                 int hueFloor = (int)Math.Floor(h);
                 byte a = (byte)Math.Round(MAX * v * (1.0 - s));
@@ -105,7 +108,9 @@ namespace SilverlightContrib.Controls
 
             double h = 0.0;
             if (max == min)
+            {
                 h = 0.0;
+            }
             else if (max == r && g >= b)
             {
                 h = 60 * (g - b) / (max - min);

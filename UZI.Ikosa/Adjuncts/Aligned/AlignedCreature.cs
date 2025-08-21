@@ -38,11 +38,20 @@ namespace Uzi.Ikosa.Adjuncts
             {
                 var _pd = Creature.AdvancementLog.NumberPowerDice;
                 if (_pd <= 10)
+                {
                     return AuraStrength.Faint;
+                }
+
                 if (_pd <= 25)
+                {
                     return AuraStrength.Moderate;
+                }
+
                 if (_pd <= 50)
+                {
                     return AuraStrength.Strong;
+                }
+
                 return AuraStrength.Overwhelming;
             }
         }

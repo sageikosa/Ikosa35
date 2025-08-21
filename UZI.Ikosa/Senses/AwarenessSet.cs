@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using Uzi.Ikosa.Tactical;
 using System.Linq;
@@ -18,14 +18,14 @@ namespace Uzi.Ikosa.Senses
         public AwarenessSet(Creature creature)
         {
             _Creature = creature;
-            _Awarenesses = new Dictionary<Guid, AwarenessLevel>();
+            _Awarenesses = [];
         }
         #endregion
 
         #region data
         private Dictionary<Guid, AwarenessLevel> _Awarenesses;
         private Dictionary<Guid, Locator> _Roots;
-        private HashSet<Guid> _DarkDraws = new HashSet<Guid>();
+        private HashSet<Guid> _DarkDraws = [];
         private Creature _Creature;
         #endregion
 
@@ -75,11 +75,15 @@ namespace Uzi.Ikosa.Senses
             // completely aware
             var _aware = this[guid];
             if (_aware == AwarenessLevel.Aware)
+            {
                 return _aware;
+            }
 
             // action aware
             if (Creature.Adjuncts.OfType<IActionAwareProvider>().Any(_aap => _aap.IsActionAware(guid) ?? false))
+            {
                 return AwarenessLevel.Aware;
+            }
 
             // or whatever we first got
             return _aware;
@@ -93,11 +97,15 @@ namespace Uzi.Ikosa.Senses
             // completely aware
             var _aware = this[guid];
             if (_aware == AwarenessLevel.Aware)
+            {
                 return false;
+            }
 
             // action aware
             if (Creature.Adjuncts.OfType<IActionAwareProvider>().Any(_aap => _aap.IsActionAware(guid) ?? true))
+            {
                 return false;
+            }
 
             // or whatever we first got
             return true;
@@ -145,7 +153,10 @@ namespace Uzi.Ikosa.Senses
         public IEnumerator<KeyValuePair<Guid, AwarenessLevel>> GetEnumerator()
         {
             foreach (KeyValuePair<Guid, AwarenessLevel> _aware in _Awarenesses)
+            {
                 yield return _aware;
+            }
+
             yield break;
         }
         #endregion
@@ -154,7 +165,10 @@ namespace Uzi.Ikosa.Senses
         System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
         {
             foreach (KeyValuePair<Guid, AwarenessLevel> _aware in _Awarenesses)
+            {
                 yield return _aware;
+            }
+
             yield break;
         }
         #endregion

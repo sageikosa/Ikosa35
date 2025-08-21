@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Windows.Media.Media3D;
 using System.Windows.Media.Animation;
-using System.Windows;
 using Uzi.Visualize.Contracts;
 
 namespace Uzi.Visualize
@@ -16,7 +14,7 @@ namespace Uzi.Visualize
     {
         protected TransientVisualizer()
         {
-            Followers = new List<TransientVisualizer>();
+            Followers = [];
             MyName = string.Concat(@"my", (Guid.NewGuid()).ToString().Replace(@"-", string.Empty));
         }
 
@@ -49,7 +47,9 @@ namespace Uzi.Visualize
 
                     // see how long the duration may need to be extended
                     if (_inner.Duration.TimeSpan > _extra)
+                    {
                         _extra = _inner.Duration.TimeSpan;
+                    }
                 }
 
                 // this timeline is as long as the direct, and the longest inner timeline

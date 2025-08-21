@@ -1323,12 +1323,19 @@ namespace HelixToolkit.Wpf
             var _txtPts = new List<double>();
 
             if (first < 0)
+            {
                 first = 0;
+            }
+
             if (last <= first)
+            {
                 last = points.Count - 1;
+            }
 
             for (int _skip = 0; _skip <= first; _skip++)
+            {
                 _txtPts.Add(0d);
+            }
 
             // get distances
             for (int _px = first; (_px + 1) <= last; _px++)
@@ -1338,8 +1345,12 @@ namespace HelixToolkit.Wpf
             }
 
             if (last < points.Count)
+            {
                 for (int _skip = last; (_skip + 1) < points.Count; _skip++)
+                {
                     _txtPts.Add(_sum);
+                }
+            }
 
             // flatten to total distance
             for (int _tpx = 0; _tpx < _txtPts.Count; _tpx++)

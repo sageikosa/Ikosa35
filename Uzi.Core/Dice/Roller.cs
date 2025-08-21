@@ -22,7 +22,10 @@ namespace Uzi.Core.Dice
             {
                 var _targets = targets.ToList();
                 if (!_targets.Contains(Guid.Empty))
+                {
                     _targets.Add(Guid.Empty);
+                }
+
                 Roller.RollLog?.Invoke(title, description, principalID, rollerLog, _targets);
             }
             return rollerLog.Total;

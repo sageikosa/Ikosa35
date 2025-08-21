@@ -112,11 +112,19 @@ namespace Uzi.Ikosa.Magic.Spells
                         break;
                 }
                 if (_knockedOut != null)
+                {
                     _critter.AddAdjunct(_knockedOut);
+                }
+
                 if (_blinded != null)
+                {
                     _critter.AddAdjunct(_blinded);
+                }
+
                 if (_stunned != null)
+                {
                     _critter.AddAdjunct(_stunned);
+                }
             }
         }
         #endregion
@@ -185,11 +193,15 @@ namespace Uzi.Ikosa.Magic.Spells
                 // skip actor's locator
                 var _actLoc = _actor.GetLocated();
                 if ((_actLoc == null) || (_actLoc.Locator != locator))
+                {
                     // everything directly on the locator (for now)
                     foreach (var _step in DeliverDirectFromBurst(_spellBurst, locator,
                         delegate (Locator loc, ICore core) { return true; },
                         delegate (CoreStep step) { return true; }, 0))
+                    {
                         yield return _step;
+                    }
+                }
             }
             yield break;
         }

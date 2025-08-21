@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Runtime.Serialization;
-using Uzi.Core;
-using Uzi.Visualize;
 using System.Windows.Media.Media3D;
 
 namespace Uzi.Visualize.Contracts
@@ -61,9 +56,16 @@ namespace Uzi.Visualize.Contracts
         public IEnumerable<ICellLocation> AllCellLocations()
         {
             for (int _z = Z; _z <= UpperZ; _z++)
+            {
                 for (int _y = Y; _y <= UpperY; _y++)
+                {
                     for (int _x = X; _x <= UpperX; _x++)
+                    {
                         yield return new CellPosition { Z = _z, Y = _y, X = _x };
+                    }
+                }
+            }
+
             yield break;
         }
 

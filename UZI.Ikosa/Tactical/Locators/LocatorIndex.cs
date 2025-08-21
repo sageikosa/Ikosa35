@@ -65,14 +65,17 @@ namespace Uzi.Ikosa.Tactical
                 _layer.Value.Remove(locator);
                 if (_layer.Value.IsEmpty)
                 {
-                    if (_empty == null)
-                        _empty = new List<int>();
+                    _empty ??= [];
                     _empty.Add(_layer.Key);
                 }
             }
             if (_empty?.Any() ?? false)
+            {
                 foreach (var _e in _empty)
+                {
                     _Layers.Remove(_e);
+                }
+            }
         }
 
         public IEnumerable<Locator> GetLocators(ICellLocation location, PlanarPresence locPlanes)
@@ -91,7 +94,9 @@ namespace Uzi.Ikosa.Tactical
                 if (_Layers.TryGetValue(_idx, out var _layer))
                 {
                     foreach (var _loc in _layer.GetLocatorsInRegion(region, locPlanes))
+                    {
                         yield return _loc;
+                    }
                 }
             }
             yield break;

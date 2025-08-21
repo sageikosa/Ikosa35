@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using Uzi.Ikosa.Items.Weapons.Natural;
 using Uzi.Ikosa.Contracts;
 
@@ -9,11 +9,20 @@ namespace Uzi.Ikosa.Items.Weapons
         public static WeaponProficiencyType StandardType(Type type)
         {
             if (typeof(NaturalWeapon).IsAssignableFrom(type))
+            {
                 return WeaponProficiencyType.Natural;
+            }
+
             if (typeof(IExoticWeapon).IsAssignableFrom(type))
+            {
                 return WeaponProficiencyType.Exotic;
+            }
+
             if (typeof(IMartialWeapon).IsAssignableFrom(type))
+            {
                 return WeaponProficiencyType.Martial;
+            }
+
             return WeaponProficiencyType.Simple;
         }
     }

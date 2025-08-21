@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using Uzi.Core;
@@ -37,7 +37,9 @@ namespace Uzi.Ikosa.Items.Armor
                 _BodyType = bodyType;
             }
             else
+            {
                 throw new ArgumentOutOfRangeException("bodyType", "Only body types allowed for armor");
+            }
         }
         #endregion
 
@@ -131,7 +133,9 @@ namespace Uzi.Ikosa.Items.Armor
             // adjust max structure points (based upon armor bonus)
             _ArmorStruc.Value = (int)(ProtectionBonus.BaseDoubleValue * 5d * args.NewValue.ItemWeightFactor);
             if (_ArmorStruc.Value < 1)
+            {
                 _ArmorStruc.Value = 1;
+            }
         }
         #endregion
 

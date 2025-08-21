@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -18,7 +18,7 @@ namespace Uzi.Ikosa.Tactical
             : base()
         {
             _Map = map;
-            _Index = new Dictionary<Guid, Room>();
+            _Index = [];
         }
 
         #region state
@@ -35,7 +35,10 @@ namespace Uzi.Ikosa.Tactical
             _Map.RoomIndex.Add(item);
             _Index[item.ID] = item;
             if (_Map.ContextSet.Count > 0)
+            {
                 _Map.MapContext.CacheLocatorGroups();
+            }
+
             _Map.RelightMap();
             _Map.SignalMapChanged(this);
             CollectionChanged?.Invoke(this, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Add, item, index));
@@ -48,7 +51,10 @@ namespace Uzi.Ikosa.Tactical
             base.RemoveItem(index);
             _Index.Remove(_item.ID);
             if (_Map.ContextSet.Count > 0)
+            {
                 _Map.MapContext.CacheLocatorGroups();
+            }
+
             _Map.RelightMap();
             _Map.SignalMapChanged(this);
             CollectionChanged?.Invoke(this, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Remove, _item, index));
@@ -62,7 +68,10 @@ namespace Uzi.Ikosa.Tactical
             _Map.RoomIndex.Add(item);
             _Index[item.ID] = item;
             if (_Map.ContextSet.Count > 0)
+            {
                 _Map.MapContext.CacheLocatorGroups();
+            }
+
             _Map.RelightMap();
             _Map.SignalMapChanged(this);
             CollectionChanged?.Invoke(this, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Replace, item, _old, index));
@@ -76,7 +85,7 @@ namespace Uzi.Ikosa.Tactical
                 if (_Index == null)
                 {
                     // fill if not defined
-                    _Index = new Dictionary<Guid, Room>();
+                    _Index = [];
                     foreach (var _r in this)
                     {
                         _Index[_r.ID] = _r;
@@ -84,7 +93,10 @@ namespace Uzi.Ikosa.Tactical
                 }
 
                 if (_Index.TryGetValue(id, out var _return))
+                {
                     return _return;
+                }
+
                 return null;
             }
         }

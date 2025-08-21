@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Windows.Media.Media3D;
 
 namespace Uzi.Visualize
@@ -65,7 +63,9 @@ namespace Uzi.Visualize
             // not even in the ballpark
 
             if (!CellInCube(location))
+            {
                 return false;
+            }
 
             var _lz = false;
             var _ly = false;
@@ -79,7 +79,9 @@ namespace Uzi.Visualize
 
                 // any pair of opposite points "in" indicates success
                 if (_zMyMxM && _zPyPxP)
+                {
                     return true;
+                }
                 else if (_zMyMxM)
                 {
                     // if a single point is in, then set its three face flags to true
@@ -98,7 +100,9 @@ namespace Uzi.Visualize
 
                 // any pair of opposite points "in" indicates success
                 if (_zPyMxM && _zMyPxP)
+                {
                     return true;
+                }
                 else if (_zPyMxM)
                 {
                     // if a single point is in, then set its three face flags to true
@@ -112,7 +116,9 @@ namespace Uzi.Visualize
 
                 // if all 6 face flags are true indicates success
                 if (_lz && _ly && _lx & _uz & _uy && _ux)
+                {
                     return true;
+                }
             }
 
             {
@@ -121,7 +127,9 @@ namespace Uzi.Visualize
 
                 // any pair of opposite points "in" indicates success
                 if (_zPyPxM && _zMyMxP)
+                {
                     return true;
+                }
                 else if (_zPyPxM)
                 {
                     // if a single point is in, then set its three face flags to true
@@ -135,7 +143,9 @@ namespace Uzi.Visualize
 
                 // if all 6 face flags are true indicates success
                 if (_lz && _ly && _lx & _uz & _uy && _ux)
+                {
                     return true;
+                }
             }
 
             {
@@ -144,7 +154,9 @@ namespace Uzi.Visualize
 
                 // any pair of opposite points "in" indicates success
                 if (_zMyPxM && _zPyMxP)
+                {
                     return true;
+                }
                 else if (_zMyPxM)
                 {
                     // if a single point is in, then set its three face flags to true
@@ -158,7 +170,9 @@ namespace Uzi.Visualize
 
                 // if all 6 face flags are true indicates success
                 if (_lz && _ly && _lx & _uz & _uy && _ux)
+                {
                     return true;
+                }
             }
 
             return false;
@@ -170,13 +184,20 @@ namespace Uzi.Visualize
         public virtual IEnumerable<ICellLocation> AllCellLocations()
         {
             for (var _z = LowerZ; _z <= UpperZ; _z++)
+            {
                 for (var _y = LowerY; _y <= UpperY; _y++)
+                {
                     for (var _x = LowerX; _x < UpperX; _x++)
                     {
                         var _cLoc = new CellPosition(_z, _y, _x);
                         if (ContainsCell(_cLoc))
+                        {
                             yield return _cLoc;
+                        }
                     }
+                }
+            }
+
             yield break;
         }
         #endregion

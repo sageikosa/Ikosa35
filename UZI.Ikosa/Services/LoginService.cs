@@ -30,7 +30,7 @@ namespace Uzi.Ikosa.Services
         private static UserMessageCollection _ArchivedMessages = new UserMessageCollection();
 
         private static ReaderWriterLockSlim _TrackedLock = new ReaderWriterLockSlim();
-        private static Collection<UserInfo> _TrackedUsers = new Collection<UserInfo>();
+        private static Collection<UserInfo> _TrackedUsers = [];
         #endregion
 
         public static Action<ConsoleMessage> Console { get; set; }
@@ -50,7 +50,9 @@ namespace Uzi.Ikosa.Services
             finally
             {
                 if (_TrackedLock.IsReadLockHeld)
+                {
                     _TrackedLock.ExitReadLock();
+                }
             }
         }
         #endregion
@@ -66,7 +68,9 @@ namespace Uzi.Ikosa.Services
             finally
             {
                 if (_TrackedLock.IsReadLockHeld)
+                {
                     _TrackedLock.ExitReadLock();
+                }
             }
         }
         #endregion
@@ -91,7 +95,9 @@ namespace Uzi.Ikosa.Services
                     finally
                     {
                         if (_TrackedLock.IsWriteLockHeld)
+                        {
                             _TrackedLock.ExitWriteLock();
+                        }
                     }
                 }
             }
@@ -102,7 +108,9 @@ namespace Uzi.Ikosa.Services
             finally
             {
                 if (_TrackedLock.IsUpgradeableReadLockHeld)
+                {
                     _TrackedLock.ExitUpgradeableReadLock();
+                }
             }
 
             // NOTE: userName shouldn't be in the list...
@@ -139,11 +147,17 @@ namespace Uzi.Ikosa.Services
         #region public static void ClearArchivedMessages(string fromUser, string toUser)
         public static void ClearArchivedMessages(string fromUser, string toUser)
         {
-            IList<UserMessage> _msgs = new List<UserMessage>();
+            IList<UserMessage> _msgs = [];
             if (!string.IsNullOrEmpty(fromUser))
+            {
                 _msgs = _msgs.Union(_ArchivedMessages.GetFromUser(fromUser)).ToList();
+            }
+
             if (!string.IsNullOrEmpty(toUser))
+            {
                 _msgs = _msgs.Union(_ArchivedMessages.GetToUser(toUser)).ToList();
+            }
+
             _ArchivedMessages.Remove(_msgs);
         }
         #endregion
@@ -168,13 +182,18 @@ namespace Uzi.Ikosa.Services
             try
             {
                 if (readLock)
+                {
                     _TrackedLock.EnterReadLock();
+                }
+
                 return _TrackedUsers.ToList();
             }
             finally
             {
                 if (readLock)
+                {
                     _TrackedLock.ExitReadLock();
+                }
             }
         }
         #endregion
@@ -365,7 +384,9 @@ namespace Uzi.Ikosa.Services
                 // missing a notifier?
                 var _callback = OperationContext.Current.GetCallbackChannel<ILoginCallback>();
                 if (_callback == null)
+                {
                     throw new FaultException<InvalidStateFault>(new InvalidStateFault(), @"No callback defined");
+                }
 
                 if (userInfo.Notifier != _callback)
                 {
@@ -446,7 +467,9 @@ namespace Uzi.Ikosa.Services
                     {
                         // desynchronize
                         if (_provider.Synchronizer.IsReadLockHeld)
+                        {
                             _provider.Synchronizer.ExitReadLock();
+                        }
                     }
                 }
                 else
@@ -494,7 +517,9 @@ namespace Uzi.Ikosa.Services
                     {
                         // desynchronize
                         if (_provider.Synchronizer.IsReadLockHeld)
+                        {
                             _provider.Synchronizer.ExitReadLock();
+                        }
                     }
                 }
                 else
@@ -519,7 +544,7 @@ namespace Uzi.Ikosa.Services
                         where _portrait != null
                         select new BitmapImageInfo(_portrait)).ToList();
             }
-            return new List<BitmapImageInfo>();
+            return [];
         }
         #endregion
 
@@ -530,7 +555,10 @@ namespace Uzi.Ikosa.Services
             if (_principal?.Identity != null)
             {
                 if (!allUsers)
+                {
                     return GetLoggedInUserList();
+                }
+
                 if (_principal.IsInRole(@"Master"))
                 {
                     return UserValidator.UserDefinitions.GetList()
@@ -605,14 +633,18 @@ namespace Uzi.Ikosa.Services
                                             finally
                                             {
                                                 if (_map.Synchronizer.IsWriteLockHeld)
+                                                {
                                                     _map.Synchronizer.ExitWriteLock();
+                                                }
                                             }
                                         }
                                     }
                                     finally
                                     {
                                         if (_map.Synchronizer.IsUpgradeableReadLockHeld)
+                                        {
                                             _map.Synchronizer.ExitUpgradeableReadLock();
+                                        }
                                     }
                                 }
                             };
@@ -644,7 +676,9 @@ namespace Uzi.Ikosa.Services
                                 finally
                                 {
                                     if (_TrackedLock.IsWriteLockHeld)
+                                    {
                                         _TrackedLock.ExitWriteLock();
+                                    }
                                 }
                                 #endregion
                             }
@@ -668,7 +702,9 @@ namespace Uzi.Ikosa.Services
                 finally
                 {
                     if (_TrackedLock.IsUpgradeableReadLockHeld)
+                    {
                         _TrackedLock.ExitUpgradeableReadLock();
+                    }
 
                     // notify
                     DoNotifyUserList(_principal.Identity.Name);
@@ -722,7 +758,9 @@ namespace Uzi.Ikosa.Services
                     finally
                     {
                         if (_TrackedLock.IsWriteLockHeld)
+                        {
                             _TrackedLock.ExitWriteLock();
+                        }
                     }
 
                     // otherwise, ensure the callback is still accurate
@@ -732,7 +770,9 @@ namespace Uzi.Ikosa.Services
                 finally
                 {
                     if (_TrackedLock.IsUpgradeableReadLockHeld)
+                    {
                         _TrackedLock.ExitUpgradeableReadLock();
+                    }
 
                     // notify
                     DoNotifyUserList(_principal.Identity.Name);

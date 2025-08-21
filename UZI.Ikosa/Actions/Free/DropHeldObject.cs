@@ -1,4 +1,4 @@
-using Uzi.Core.Contracts;
+﻿using Uzi.Core.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -37,9 +37,13 @@ namespace Uzi.Ikosa.Actions
                 return $@"Drop {_info.Message}";
             }
             if (!string.IsNullOrWhiteSpace(ItemSlot.SubType))
+            {
                 return $@"Drop Held Object in {ItemSlot.SubType} {ItemSlot.SlotType}";
+            }
             else
+            {
                 return $@"Drop Held Object in {ItemSlot.SlotType}";
+            }
         }
 
         public override bool IsStackBase(CoreActivity activity)

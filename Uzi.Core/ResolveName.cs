@@ -13,13 +13,19 @@ namespace Uzi.Core
         public static string SourceName(this object target)
         {
             if (target is string)
+            {
                 return target as string;
+            }
 
             var _tType = target as Type ?? target.GetType();
             if (_tType.GetCustomAttributes(typeof(SourceInfoAttribute), false).FirstOrDefault() is SourceInfoAttribute _srcName)
+            {
                 return _srcName.Name;
+            }
             else
+            {
                 return _tType.Name;
+            }
         }
     }
 

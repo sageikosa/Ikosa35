@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Linq;
 using System.Collections.Generic;
 using Uzi.Core;
@@ -53,7 +53,9 @@ namespace Uzi.Ikosa.Actions
                     _components = (new[] { new SomaticComponent() }).Cast<SpellComponent>().ToList();
                 }
                 if (_components.All(_c => _c.CanStartActivity(budget.Actor as Creature)))
+                {
                     return base.CanPerformNow(budget);
+                }
             }
 
             return new ActivityResponse(false);

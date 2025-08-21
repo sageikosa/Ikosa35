@@ -23,7 +23,7 @@ namespace Uzi.Packaging
         {
             _FileInfo = null;
             _Package = null;
-            _AllParts = new List<IBasePart>();
+            _AllParts = [];
         }
         #endregion
 
@@ -65,7 +65,9 @@ namespace Uzi.Packaging
                 if ((_AllParts != null) && _AllParts.Any())
                 {
                     foreach (var _part in _AllParts)
+                    {
                         _part.Close();
+                    }
                 }
             }
             _AllParts = null;
@@ -126,7 +128,9 @@ namespace Uzi.Packaging
 
             // close old package
             if (_Package != null)
+            {
                 _Package.Close();
+            }
 
             // and swap...
             _Package = _savePack;

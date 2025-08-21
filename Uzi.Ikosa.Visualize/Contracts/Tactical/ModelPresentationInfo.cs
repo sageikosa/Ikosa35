@@ -3,10 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Windows.Media.Media3D;
-using System.Collections.ObjectModel;
 using Uzi.Visualize;
-using System.Windows.Markup;
-using System.Diagnostics;
 
 namespace Uzi.Visualize.Contracts.Tactical
 {

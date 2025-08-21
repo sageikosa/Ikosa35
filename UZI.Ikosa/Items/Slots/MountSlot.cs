@@ -39,7 +39,10 @@ namespace Uzi.Ikosa.Items
                                      Name = (_info != null) ? _info.Message : _slottedItem.Name,
                                      Value = _slottedItem
                                  })
+            {
                 yield return _opt;
+            }
+
             yield break;
         }
         #endregion
@@ -76,20 +79,26 @@ namespace Uzi.Ikosa.Items
                                 {
                                     // otherwise, need brief to draw a wieldable item
                                     if (_budget.CanPerformBrief)
+                                    {
                                         yield return new DrawWieldable(this, new ActionTime(TimeType.Brief), @"101");
+                                    }
                                 }
                             }
                         }
                         else
                         {
                             if (_budget.CanPerformBrief)
+                            {
                                 yield return new SheatheWieldable(this, new ActionTime(TimeType.Brief), _wrap.GetMountables(), @"102");
+                            }
                         }
                     }
                     else if (SlottedItem == null)
                     {
                         if (_budget.CanPerformBrief)
+                        {
                             yield return new SheatheWieldable(this, new ActionTime(TimeType.Brief), Mountables(this), @"102");
+                        }
                     }
                 }
             }
@@ -107,14 +116,23 @@ namespace Uzi.Ikosa.Items
         {
             var _info = ToInfo<MountSlotInfo>(observer);
             if ((MountedItem != null) && (MountedItem is CoreObject))
+            {
                 _info.MountedItem = GetInfoData.GetInfoFeedback(MountedItem as CoreObject, observer) as ObjectInfo;
+            }
             else
+            {
                 _info.MountedItem = null;
+            }
 
             if ((MountWrapper != null) && (MountWrapper is CoreObject))
+            {
                 _info.MountWrapper = GetInfoData.GetInfoFeedback(MountWrapper as CoreObject, observer) as ObjectInfo;
+            }
             else
+            {
                 _info.MountWrapper = null;
+            }
+
             return _info;
         }
 

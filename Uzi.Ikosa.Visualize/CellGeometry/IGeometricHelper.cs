@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Windows.Media.Media3D;
 
 namespace Uzi.Visualize
@@ -87,17 +86,32 @@ namespace Uzi.Visualize
             var _y = origin.Y;
             var _x = origin.X;
             if (offsets.Contains(AnchorFace.ZHigh))
+            {
                 _z++;
+            }
             else if (offsets.Contains(AnchorFace.ZLow))
+            {
                 _z--;
+            }
+
             if (offsets.Contains(AnchorFace.YHigh))
+            {
                 _y++;
+            }
             else if (offsets.Contains(AnchorFace.YLow))
+            {
                 _y--;
+            }
+
             if (offsets.Contains(AnchorFace.XHigh))
+            {
                 _x++;
+            }
             else if (offsets.Contains(AnchorFace.XLow))
+            {
                 _x--;
+            }
+
             return new CellPosition(_z, _y, _x);
         }
         #endregion
@@ -110,17 +124,32 @@ namespace Uzi.Visualize
             var _y = origin.Y;
             var _x = origin.X;
             if (offsets.Contains(AnchorFace.ZHigh))
+            {
                 _z++;
+            }
             else if (offsets.Contains(AnchorFace.ZLow))
+            {
                 _z--;
+            }
+
             if (offsets.Contains(AnchorFace.YHigh))
+            {
                 _y++;
+            }
             else if (offsets.Contains(AnchorFace.YLow))
+            {
                 _y--;
+            }
+
             if (offsets.Contains(AnchorFace.XHigh))
+            {
                 _x++;
+            }
             else if (offsets.Contains(AnchorFace.XLow))
+            {
                 _x--;
+            }
+
             return new CellPosition(_z, _y, _x);
         }
         #endregion
@@ -141,9 +170,15 @@ namespace Uzi.Visualize
                 double _separation(int lSrc, int uSrc, int lTrg, int uTrg)
                 {
                     if (lSrc > uTrg)
+                    {
                         return lSrc - uTrg;
+                    }
+
                     if (lTrg > uSrc)
+                    {
                         return lTrg - uSrc;
+                    }
+
                     return 0;
                 };
                 var _z = _separation(self.LowerZ, self.UpperZ, cell.Z, cell.Z + 1) * 5;
@@ -167,9 +202,15 @@ namespace Uzi.Visualize
                 double _separation(int lSrc, int uSrc, int lTrg, int uTrg)
                 {
                     if (lSrc > uTrg)
+                    {
                         return lSrc - uTrg;
+                    }
+
                     if (lTrg > uSrc)
+                    {
                         return lTrg - uSrc;
+                    }
+
                     return 0;
                 };
                 var _z = _separation(source.LowerZ, source.UpperZ, target.LowerZ, target.UpperZ) * 5;

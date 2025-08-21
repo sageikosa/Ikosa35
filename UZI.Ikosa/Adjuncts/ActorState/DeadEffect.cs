@@ -15,7 +15,7 @@ namespace Uzi.Ikosa.Adjuncts
             : base(source)
         {
             _Time = timeOfDeath;
-            _Senses = new List<SensoryBase>();
+            _Senses = [];
         }
 
         #region private data
@@ -102,7 +102,9 @@ namespace Uzi.Ikosa.Adjuncts
         public void PreTestChange(object sender, AbortableChangeEventArgs<Activation> args)
         {
             if (args.NewValue.IsActive)
+            {
                 args.DoAbort();
+            }
         }
 
         public void PreValueChanged(object sender, ChangeValueEventArgs<Activation> args)

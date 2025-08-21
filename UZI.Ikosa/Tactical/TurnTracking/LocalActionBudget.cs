@@ -61,7 +61,7 @@ namespace Uzi.Ikosa.Tactical
         private bool _UsingTurn;
 
         // choice tracking
-        private Dictionary<string, ChoiceBinder> _Choices = new Dictionary<string, ChoiceBinder>();
+        private Dictionary<string, ChoiceBinder> _Choices = [];
 
         // held activity
         private CoreActivity _HeldActivity;     // activity to unhold when span is done
@@ -150,7 +150,9 @@ namespace Uzi.Ikosa.Tactical
 
                 // clear out pending next activity
                 if (activity == NextActivity)
+                {
                     NextActivity = null;
+                }
 
                 // begin processing
                 manager?.StartProcess(activity);
@@ -200,7 +202,9 @@ namespace Uzi.Ikosa.Tactical
 
                 // remove!
                 foreach (var _key in _removers)
+                {
                     BudgetItems.Remove(_key);
+                }
 
                 // done
                 _UsingTurn = false;
@@ -227,10 +231,14 @@ namespace Uzi.Ikosa.Tactical
             foreach (var _item in _tickEnd)
             {
                 if (_item.TickEnder.EndTick())
+                {
                     _removers.Add(_item.Key);
+                }
             }
             foreach (var _rmv in _removers)
+            {
                 BudgetItems.Remove(_rmv);
+            }
         }
         #endregion
 
@@ -265,10 +273,14 @@ namespace Uzi.Ikosa.Tactical
             foreach (var _item in _resets)
             {
                 if (_item.Value.Reset())
+                {
                     _removers.Add(_item.Key);
+                }
             }
             foreach (var _key in _removers)
+            {
                 BudgetItems.Remove(_key);
+            }
 
             // stop doing anything else stacked
             ClearActivities();
@@ -351,7 +363,10 @@ namespace Uzi.Ikosa.Tactical
             get
             {
                 if (!_CanTwitch)
+                {
                     _CanTwitch = (Actor?.GetCurrentTime() ?? 0d) >= _TwitchReady;
+                }
+
                 return _CanTwitch;
             }
         }
@@ -437,13 +452,19 @@ namespace Uzi.Ikosa.Tactical
                             case TimeType.Span:
                                 // full-round needs brief and regular budget
                                 if (CanPerformTotal)
+                                {
                                     yield return _provided;
+                                }
+
                                 break;
 
                             case TimeType.TimelineScheduling:
                                 // timeline durations only in time tracker
                                 if (CanPerformTotal && !(TurnTick?.TurnTracker.IsInitiative ?? true))
+                                {
                                     yield return _provided;
+                                }
+
                                 break;
                         }
                     }
@@ -556,9 +577,13 @@ namespace Uzi.Ikosa.Tactical
                     case TimeType.TimelineScheduling:
                         // timeline only valid without initiative
                         if (TurnTick?.TurnTracker.IsInitiative ?? true)
+                        {
                             break;
+                        }
                         else
+                        {
                             goto case TimeType.Span;
+                        }
 
                     case TimeType.Span:
                         {
@@ -732,7 +757,9 @@ namespace Uzi.Ikosa.Tactical
                               where _itm.Value is ITrackTime
                               select _itm.Value as ITrackTime).ToList();
             foreach (var _item in _timeItems)
+            {
                 _item.TrackTime(timeVal, direction);
+            }
 
             // budget reset?
             if ((timeVal >= _NextReset) && (direction == TimeValTransition.Entering))
@@ -824,7 +851,9 @@ namespace Uzi.Ikosa.Tactical
                 };
             }
             else
+            {
                 return new LocalActionBudgetInfo();
+            }
         }
         #endregion
     }

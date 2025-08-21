@@ -26,7 +26,9 @@ namespace Uzi.Ikosa.Workshop
             InitializeComponent();
             DataContextChanged += new DependencyPropertyChangedEventHandler(DescriptionEditor_DataContextChanged);
             foreach (var _dev in Campaign.SystemCampaign.Devotions)
+            {
                 cbDevotion.Items.Add(_dev.Key);
+            }
         }
 
         void DescriptionEditor_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
@@ -87,7 +89,9 @@ namespace Uzi.Ikosa.Workshop
             if ((DataContext is Creature _critter) && (_devotion != null))
             {
                 if (!_critter.Devotion.Name.Equals(_devotion))
+                {
                     _critter.Devotion = new Devotion(_devotion);
+                }
             }
         }
 

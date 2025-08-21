@@ -23,7 +23,7 @@ namespace Uzi.Ikosa.Adjuncts
             : base(source)
         {
             _Handling = handleDamage;
-            _Senses = new List<SensoryBase>();
+            _Senses = [];
         }
         #endregion
 
@@ -170,7 +170,9 @@ namespace Uzi.Ikosa.Adjuncts
         {
             // attempting to reactivate a sense will fail
             if (args.NewValue.IsActive)
+            {
                 args.DoAbort();
+            }
         }
 
         public void PreValueChanged(object sender, ChangeValueEventArgs<Activation> args)

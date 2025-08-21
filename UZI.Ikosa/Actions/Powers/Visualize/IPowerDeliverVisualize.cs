@@ -32,7 +32,9 @@ namespace Uzi.Ikosa.Actions
             else
             {
                 foreach (var _vis in visualizers.Where(_v => _v != null))
+                {
                     context.TransientVisualizers.Add(_vis);
+                }
             }
         }
         #endregion
@@ -183,7 +185,10 @@ namespace Uzi.Ikosa.Actions
                                 Duration = TimeSpan.FromMilliseconds(_duration / 2)
                             });
                         if (_marker != null)
+                        {
                             _fullSurge.Followers.Add(_marker);
+                        }
+
                         break;
 
                     case VisualizeTransferType.SurgeTo:
@@ -198,7 +203,10 @@ namespace Uzi.Ikosa.Actions
                         };
                         AddVisualizersToContext(mapContext, sequence, _surgeTo);
                         if (_marker != null)
+                        {
                             _surgeTo.Followers.Add(_marker);
+                        }
+
                         break;
 
                     case VisualizeTransferType.ConeBolt:
@@ -214,7 +222,10 @@ namespace Uzi.Ikosa.Actions
                         };
                         AddVisualizersToContext(mapContext, sequence, _coneBolt);
                         if (_marker != null)
+                        {
                             _coneBolt.Followers.Add(_marker);
+                        }
+
                         break;
 
                     case VisualizeTransferType.CylinderBolt:
@@ -230,7 +241,10 @@ namespace Uzi.Ikosa.Actions
                         };
                         AddVisualizersToContext(mapContext, sequence, _cylinerBolt);
                         if (_marker != null)
+                        {
                             _cylinerBolt.Followers.Add(_marker);
+                        }
+
                         break;
 
                     case VisualizeTransferType.Orb:
@@ -244,7 +258,10 @@ namespace Uzi.Ikosa.Actions
                         };
                         AddVisualizersToContext(mapContext, sequence, _flyingOrb);
                         if (_marker != null)
+                        {
                             _flyingOrb.Followers.Add(_marker);
+                        }
+
                         break;
                 }
             }

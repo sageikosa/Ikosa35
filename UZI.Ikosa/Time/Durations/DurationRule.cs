@@ -76,9 +76,13 @@ namespace Uzi.Ikosa.Time
         {
             var _map = actor.GetLocated().Locator.Map;
             if (RoundUp)
+            {
                 return Math.Ceiling(EffectiveSpan(powerSource, target).SpanLength + _map.CurrentTime);
+            }
             else
+            {
                 return EffectiveSpan(powerSource, target).SpanLength + _map.CurrentTime;
+            }
         }
         #endregion
 

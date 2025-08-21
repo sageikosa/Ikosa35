@@ -15,7 +15,7 @@ namespace Uzi.Ikosa.Adjuncts
         {
             _PowerSource = powerSource;
             _Seed = 0;
-            _NatrlWpnEnh = new List<Enhanced>();
+            _NatrlWpnEnh = [];
         }
 
         #region data

@@ -44,7 +44,10 @@ namespace Uzi.Ikosa.Adjuncts
             {
                 // cyclic, not offset
                 while (_NextRecharge < timeVal)
+                {
                     _NextRecharge += _RechargeTime;
+                }
+
                 AddCharges(UsedCharges);
             }
         }

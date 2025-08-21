@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -32,7 +32,10 @@ namespace Uzi.Core
             // all connected objects
             var _found = ContextSet.GetICore(coreID);
             if (_found is ObjType _oFound)
+            {
                 return _oFound;
+            }
+
             return default(ObjType);
         }
         #endregion

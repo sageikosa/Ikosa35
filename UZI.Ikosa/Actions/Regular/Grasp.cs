@@ -34,7 +34,10 @@ namespace Uzi.Ikosa.Actions
         {
             // do not pop if this is stacked on another grasp action
             if (budget.TopActivity?.Action is Grasp)
+            {
                 return false;
+            }
+
             return base.WillClearStack(budget, activity);
         }
         #endregion
@@ -81,7 +84,9 @@ namespace Uzi.Ikosa.Actions
         {
             var _graspBudget = GraspProbeBudget.GetBudget(_Budget);
             if (_graspBudget != null)
+            {
                 _graspBudget.UseGrasp();
+            }
 
             var _activity = result.TargetingProcess as CoreActivity;
             void _notify(string message)
@@ -202,10 +207,14 @@ namespace Uzi.Ikosa.Actions
                         .Where(_t => _t.Key.Equals(@"Cell", StringComparison.OrdinalIgnoreCase)))
                     {
                         if (_target.Target.ID == potentialTarget.ID)
+                        {
                             return true;
+                        }
 
                         if ((_target.Target as IAdjunctable)?.GetLocated()?.Locator == _loc)
+                        {
                             return true;
+                        }
                     }
                 }
             }

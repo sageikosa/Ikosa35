@@ -47,7 +47,9 @@ namespace Uzi.Ikosa.Adjuncts
 
                 // empty == done
                 if (!_Damages.Any())
+                {
                     Eject();
+                }
             }
         }
 

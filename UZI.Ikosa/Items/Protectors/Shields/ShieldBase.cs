@@ -1,4 +1,4 @@
-using Uzi.Core.Contracts;
+﻿using Uzi.Core.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,7 +33,9 @@ namespace Uzi.Ikosa.Items.Shields
             MaxStructurePoints.BaseValue = baseStructure;
             ProtectionBonus.BaseValue = (int)((decimal)ProtectionBonus.BaseValue * ItemSizer.ExpectedCreatureSize.ArmorBonusFactor);
             if (ProtectionBonus.BaseValue < 1)
+            {
                 ProtectionBonus.BaseValue = 1;
+            }
         }
 
         #region private data
@@ -65,9 +67,13 @@ namespace Uzi.Ikosa.Items.Shields
 
                 // move to true slots
                 if (_second != null)
+                {
                     return (_obj, _main, _second);
+                }
                 else
+                {
                     return (_obj, _main, null);
+                }
             }
             return (null, null, null);
         }
@@ -143,7 +149,9 @@ namespace Uzi.Ikosa.Items.Shields
                 if ((!(_budget.Actor is Creature _critter))
                     || (_critter.BaseAttack.EffectiveValue < 1)
                        || !(_budget.TopActivity?.Action is StartMove))
+                {
                     yield return new DropHeldObject(MainSlot as HoldingSlot, TimeType.Brief, @"201");
+                }
             }
             yield break;
         }
@@ -189,7 +197,9 @@ namespace Uzi.Ikosa.Items.Shields
                     // but cannot confirm the creature is moving, or has a base attack bonus high enough to freely drop
                     && ((_critter == null) || (_critter.BaseAttack.EffectiveValue < 1)
                     || !(_budget.TopActivity?.Action is StartMove)))
+                {
                     return false;
+                }
             }
             return false;
         }

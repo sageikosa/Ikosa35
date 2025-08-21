@@ -73,7 +73,9 @@ namespace Uzi.Ikosa.Magic.Spells
 
             // undead get panicked (possibly)
             if (_critter.CreatureType is UndeadType)
+            {
                 SpellDef.DeliverDurableToTouch(deliver, @"Creature", 0);
+            }
 
             // living get damaged if hit...
             if (_critter.CreatureType.IsLiving)
@@ -161,13 +163,19 @@ namespace Uzi.Ikosa.Magic.Spells
                 case 0:
                     yield return new EnergyDamageRule(@"Negative.Damage", new DiceRange(@"Negative", DisplayName, new DieRoller(6)), @"Chill Touch", EnergyType.Negative);
                     if (isCriticalHit)
+                    {
                         yield return new EnergyDamageRule(@"Negative.Damage.Critical", new DiceRange(@"Negative (Critical)", DisplayName, new DieRoller(6)), @"Chill Touch (Critical)", EnergyType.Negative);
+                    }
+
                     break;
 
                 case 1:
                     yield return new AbilityDamageRule(@"Ability.Damage", FixedRange.One, MnemonicCode.Str, @"Strength Damage");
                     if (isCriticalHit)
+                    {
                         yield return new AbilityDamageRule(@"Ability.Damage.Critical", FixedRange.One, MnemonicCode.Str, @"Strength Damage (Critical)");
+                    }
+
                     break;
             }
             yield break;

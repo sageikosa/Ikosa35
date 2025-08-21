@@ -71,7 +71,9 @@ namespace HelixToolkit.Wpf
         {
             OuterDictionary.Clear();
             if (m_innerDictionary!=null)
+            {
                 m_innerDictionary.Clear();
+            }
         }
 
         /// <summary>
@@ -103,8 +105,10 @@ namespace HelixToolkit.Wpf
             }
             else
             {
-                this.m_innerDictionary = new Dictionary<T, V>();
-                this.m_innerDictionary[key2] = value;
+                this.m_innerDictionary = new Dictionary<T, V>
+                {
+                    [key2] = value
+                };
                 this.OuterDictionary.Add(key1, this.m_innerDictionary);
             }
         }

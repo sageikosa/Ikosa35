@@ -38,11 +38,11 @@ namespace Uzi.Ikosa.Creatures.Types
 
         static Monkey()
         {
-            _SizeRanges = new List<SizeRange>
-            {
+            _SizeRanges =
+            [
                 new SizeRange(1, 1, Size.Tiny, 0),
                 new SizeRange(2, 3, Size.Small, 1)
-            };
+            ];
         }
         #endregion
 

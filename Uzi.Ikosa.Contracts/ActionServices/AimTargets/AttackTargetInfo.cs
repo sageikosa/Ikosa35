@@ -38,7 +38,10 @@ namespace Uzi.Ikosa.Contracts
             get
             {
                 if (TargetX.HasValue && TargetY.HasValue && TargetZ.HasValue)
+                {
                     return new CellPosition(TargetZ.Value, TargetY.Value, TargetX.Value);
+                }
+
                 return null;
             }
             set

@@ -25,7 +25,10 @@ namespace Uzi.Ikosa.Magic.Spells
         protected override DetectMagicEffect NewEffect(MagicPowerEffect source, IAdjunctable target)
         {
             foreach (var _range in source.CapabilityRoot.GetCapability<IRegionCapable>().Dimensions(null, source.CasterLevel))
+            {
                 return new DetectMagicEffect(source.MagicPowerActionSource, _range);
+            }
+
             return new DetectMagicEffect(source.MagicPowerActionSource, 60);
         }
     }
@@ -37,7 +40,7 @@ namespace Uzi.Ikosa.Magic.Spells
         public DetectMagicEffect(INamedActionSource source, double range) :
             base(source, range)
         {
-            _Checked = new Dictionary<Guid, bool>();
+            _Checked = [];
         }
 
         #region data
@@ -48,21 +51,30 @@ namespace Uzi.Ikosa.Magic.Spells
         protected override IEnumerable<ActionBase> PrimeActions(LocalActionBudget budget)
         {
             if (budget.CanPerformRegular)
+            {
                 yield return new DetectPresenceAction<DetectMagicEffect>(@"Detect.Magic.1", @"Detect Magic Presence", this, @"101");
+            }
+
             yield break;
         }
 
         protected override IEnumerable<ActionBase> SecondActions(LocalActionBudget budget)
         {
             if (budget.CanPerformRegular)
+            {
                 yield return new DetectNumberAuraAction<DetectMagicEffect>(@"Detect.Magic.2", @"Detect Number of Magic Auras", this, @"102");
+            }
+
             yield break;
         }
 
         protected override IEnumerable<ActionBase> ThirdActions(LocalActionBudget budget)
         {
             if (budget.CanPerformRegular)
+            {
                 yield return new DetectDivinationAction<DetectMagicEffect>(@"Detect.Magic.3", @"Detect Location and Strength of Magic Auras", this, @"103");
+            }
+
             yield break;
         }
         #endregion
@@ -196,7 +208,10 @@ namespace Uzi.Ikosa.Magic.Spells
         {
             // only allow check action if we haven't checked it before
             if (!_Results.ContainsKey(_Aura.ID))
+            {
                 yield return new MagicAuraStyleCheckAction(this, @"100");
+            }
+
             yield break;
         }
 

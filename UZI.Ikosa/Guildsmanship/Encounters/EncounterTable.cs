@@ -24,7 +24,7 @@ namespace Uzi.Ikosa.Guildsmanship
             : base(description)
         {
             _Roller = roller;
-            _Entries = new List<EncounterEntry>();
+            _Entries = [];
         }
 
         public static EncounterTable GetEncounterTable(PackagePart part)

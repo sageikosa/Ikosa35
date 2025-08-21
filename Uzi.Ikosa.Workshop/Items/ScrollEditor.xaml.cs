@@ -62,7 +62,10 @@ namespace Uzi.Ikosa.Workshop
                 // and all of the above
                 var _casterLevel = _spellLevel.Level * 2 - 1;
                 if (_casterLevel < 1)
+                {
                     _casterLevel = 1;
+                }
+
                 foreach (var _classSpell in _spellLevel)
                 {
                     _levelSpells.Items.Add(new MenuItem

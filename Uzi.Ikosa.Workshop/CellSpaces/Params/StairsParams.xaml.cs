@@ -37,7 +37,10 @@ namespace Uzi.Ikosa.Workshop
             get
             {
                 if (cboClimb.SelectedIndex > -1)
+                {
                     return (AnchorFace)cboClimb.SelectedItem;
+                }
+
                 return AnchorFace.ZHigh;
             }
         }
@@ -47,9 +50,15 @@ namespace Uzi.Ikosa.Workshop
             get
             {
                 if (cboTravel.SelectedIndex > -1)
+                {
                     return (AnchorFace)cboTravel.SelectedItem;
+                }
+
                 if (cboClimb.SelectedIndex == -1)
+                {
                     return AnchorFace.YHigh;
+                }
+
                 switch ((AnchorFace)cboClimb.SelectedItem)
                 {
                     case AnchorFace.ZHigh:

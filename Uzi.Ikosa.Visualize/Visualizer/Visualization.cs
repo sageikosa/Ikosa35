@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Windows.Media;
 using System.Windows.Media.Media3D;
 using System.Windows;
 using System.Windows.Media.Animation;
@@ -22,7 +21,7 @@ namespace Uzi.Visualize
             _TokenContainer = tokenContainer;
             _TransientGroup = transientGroup;
             _PresentationBinder = presentationInputBinder;
-            _Transients = new List<TransientVisualizer>();
+            _Transients = [];
 
             // namescope for animations
             _Element = element;
@@ -56,9 +55,14 @@ namespace Uzi.Visualize
             foreach (var _group in terrain)
             {
                 if (_group.Opaque != null)
+                {
                     _OpaqueTerrain.Children.Add(_group.Opaque);
+                }
+
                 if (_group.Alpha != null)
+                {
                     _AlphaTerrain.Children.Add(_group.Alpha);
+                }
             }
         }
         #endregion
@@ -122,7 +126,10 @@ namespace Uzi.Visualize
                             // TODO: duration of movement
                             var _visible = new ParallelTimeline(TimeSpan.FromTicks(0), TimeSpan.FromMilliseconds(75));
                             foreach (var _a in _anim)
+                            {
                                 _visible.Children.Add(_a);
+                            }
+
                             _TokenBoard.Children.Add(_visible);
                         }
                     }
@@ -155,7 +162,9 @@ namespace Uzi.Visualize
             {
                 var _timeline = _transient.GetTimeline(this);
                 if (_timeline != null)
+                {
                     _TransientBoard.Children.Add(_timeline);
+                }
             }
 
             // when done, must stop

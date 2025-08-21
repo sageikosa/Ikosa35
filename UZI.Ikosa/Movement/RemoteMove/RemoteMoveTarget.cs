@@ -49,7 +49,9 @@ namespace Uzi.Ikosa.Movement
 
             // flip diagonal flag
             if (diagonal)
+            {
                 _DiagFlag = !_DiagFlag;
+            }
         }
         #endregion
 

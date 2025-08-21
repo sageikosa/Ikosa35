@@ -60,11 +60,14 @@ namespace Uzi.Core
                 activity.Action.DoSetStackBase(this, activity);
             }
             else
+            {
                 while (_ActStack.Any() && activity.Action.WillClearStack(this, activity))
                 {
                     var _top = _ActStack.Pop();
                     _top?.Action.DoClearStack(this, _top);
                 }
+            }
+
             OnRegisterActivity(activity);
         }
     }

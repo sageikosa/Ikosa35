@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Linq;
 using Uzi.Core;
 using Uzi.Ikosa.Adjuncts;
@@ -70,7 +70,10 @@ namespace Uzi.Ikosa.Actions
 
                     case TimeType.TimelineScheduling:
                         if (!(_Budget?.TurnTick?.TurnTracker.IsInitiative ?? true))
+                        {
                             return new ActivityResponse(_Budget.CanPerformTotal);
+                        }
+
                         return new ActivityResponse(false);
 
                     case TimeType.Total:
@@ -90,7 +93,9 @@ namespace Uzi.Ikosa.Actions
             {
                 _Time = value;
                 if (TimeCost > TimeNeeded)
+                {
                     _NeedsTime = TimeCost;
+                }
             }
         }
         #endregion

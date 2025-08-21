@@ -149,7 +149,9 @@ namespace Uzi.Ikosa.Tactical
         {
             // Check for null values and compare run-time types.
             if (obj == null || GetType() != obj.GetType())
+            {
                 return false;
+            }
 
             var _struc = (CellStructure)obj;
             return (_struc.ParamData == ParamData) && (_struc.CellSpace == CellSpace);

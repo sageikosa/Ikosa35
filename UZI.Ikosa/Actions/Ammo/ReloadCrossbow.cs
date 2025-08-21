@@ -66,7 +66,9 @@ namespace Uzi.Ikosa.Actions
                     // get ammunition already loaded
                     CrossbowBolt[] _replacement = null;
                     if (CrossBow.IsLoaded)
+                    {
                         _replacement = CrossBow.Ammunition;
+                    }
 
                     // tactically accessible containers?
                     var _selector = (from _container in _critter.GetReachable<IAmmunitionTypedBundle<CrossbowBolt, CrossbowBase>>()
@@ -94,7 +96,9 @@ namespace Uzi.Ikosa.Actions
                                 var _store = _rep.ToAmmunitionBundle(@"Bolt") as AmmunitionBundle<CrossbowBolt, CrossbowBase>;
                                 var _remainder = _selector.Container.Merge(_store);
                                 if (_remainder.Count > 0)
+                                {
                                     Drop.DoDrop(_critter, _remainder, this, true);
+                                }
                             }
                         }
                     }

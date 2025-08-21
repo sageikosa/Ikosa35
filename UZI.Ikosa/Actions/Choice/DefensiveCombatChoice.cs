@@ -69,10 +69,13 @@ namespace Uzi.Ikosa.Actions
         {
             DefensiveCombatBudget _current = null;
             if (_Budget != null)
+            {
                 _current = (from _bi in _Budget.BudgetItems
                             where (_bi.Value is DefensiveCombatBudget)
                             && ((_bi.Key as Type) == typeof(DefensiveCombatChoice))
                             select _bi.Value as DefensiveCombatBudget).FirstOrDefault();
+            }
+
             if (_current != null)
             {
                 yield return new OptionAimOption

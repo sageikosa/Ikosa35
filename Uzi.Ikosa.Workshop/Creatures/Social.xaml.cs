@@ -109,7 +109,10 @@ namespace Uzi.Ikosa.Workshop
         private void cbRemoveAll_Executed(object sender, ExecutedRoutedEventArgs e)
         {
             foreach (var _team in Creature?.Adjuncts.OfType<TeamMember>().ToList())
+            {
                 _team.Eject();
+            }
+
             ResyncLists();
         }
         #endregion

@@ -36,10 +36,14 @@ namespace Uzi.Ikosa.Adjuncts
                     if ((budget as LocalActionBudget)?.CanPerformBrief ?? false)
                     {
                         if (StoreObject.CanStore(_container, _critter))
+                        {
                             yield return new StoreObject(_container, @"201");
+                        }
 
                         if (RetrieveObject.CanRetrieve(_container, _critter))
+                        {
                             yield return new LoadObject(_container, @"301");
+                        }
 
                         if ((_container.Count > 0) && RetrieveObject.CanRetrieve(_container, _critter))
                         {

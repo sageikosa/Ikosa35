@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Linq;
@@ -66,7 +66,10 @@ namespace Uzi.Ikosa.Feats
         {
             var _fInfo = FeatInfo(featType);
             if (_fInfo != null)
+            {
                 return _fInfo.Name;
+            }
+
             return featType.Name;
         }
 
@@ -74,7 +77,10 @@ namespace Uzi.Ikosa.Feats
         {
             var _fInfo = FeatInfo(featType);
             if (_fInfo != null)
+            {
                 return _fInfo.Singleton;
+            }
+
             return true;
         }
 
@@ -94,9 +100,13 @@ namespace Uzi.Ikosa.Feats
                 if ((PowerLevel > 0)
                     && (PowerLevel <= Creature.AdvancementLog.NumberPowerDice)
                     && (Creature.AdvancementLog[PowerLevel].Feat == this))
+                {
                     return false;
+                }
                 else
+                {
                     return Source == source;
+                }
             }
             else
             {
@@ -120,9 +130,13 @@ namespace Uzi.Ikosa.Feats
                     _builder.Append($"{(_builder.Length > 0 ? "\n" : string.Empty)}{_req.Description}");
                 }
                 if (_builder.Length == 0)
+                {
                     return "None";
+                }
                 else
+                {
                     return _builder.ToString();
+                }
             }
         }
         #endregion
@@ -137,10 +151,14 @@ namespace Uzi.Ikosa.Feats
         public virtual bool MeetsPreRequisite(Creature creature)
         {
             if (IgnorePreRequisite)
+            {
                 return true;
+            }
 
             if (FeatBase.IsSingleton(GetType()) && creature.Feats.Contains(GetType()))
+            {
                 return false;
+            }
 
             return GetRequirements().All(_r => _r?.MeetsRequirement(creature, PowerLevel) ?? true);
         }
@@ -153,9 +171,15 @@ namespace Uzi.Ikosa.Feats
             get
             {
                 if (Creature == null)
+                {
                     return false;
+                }
+
                 if (IgnorePreRequisite)
+                {
                     return true;
+                }
+
                 return GetRequirements().All(_r => _r?.MeetsRequirement(Creature) ?? true);
             }
         }
@@ -168,9 +192,15 @@ namespace Uzi.Ikosa.Feats
             get
             {
                 if (Creature == null)
+                {
                     return false;
+                }
+
                 if (IgnorePreRequisite)
+                {
                     return true;
+                }
+
                 return GetRequirements().All(_r => _r?.MeetsRequirement(Creature, PowerLevel) ?? true);
             }
         }
@@ -188,11 +218,13 @@ namespace Uzi.Ikosa.Feats
             {
                 foreach (var _req in GetRequirements())
                 {
-                    _ReqMonitors ??= new Collection<RequirementMonitor>();
+                    _ReqMonitors ??= [];
 
                     var _mon = _req.CreateMonitor(this, Creature);
                     if (_mon != null)
+                    {
                         _ReqMonitors.Add(_mon);
+                    }
                 }
             }
         }
@@ -201,15 +233,22 @@ namespace Uzi.Ikosa.Feats
         {
             var _meets = MeetsRequirements;
             if (!_Enabled && _meets)
+            {
                 OnActivate();
+            }
             else if (_Enabled && !_meets)
+            {
                 OnDeactivate();
+            }
         }
 
         protected override void OnRemove()
         {
             if (_Enabled)
+            {
                 OnDeactivate();
+            }
+
             _Creature.Feats.Remove(this);
 
             if (_ReqMonitors != null)

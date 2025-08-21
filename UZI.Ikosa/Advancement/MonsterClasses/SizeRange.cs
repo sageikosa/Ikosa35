@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 
 namespace Uzi.Ikosa.Advancement.MonsterClasses
 {
@@ -38,7 +38,10 @@ namespace Uzi.Ikosa.Advancement.MonsterClasses
             get
             {
                 if (CreatureSize.Order < Size.Gigantic.Order)
+                {
                     return -2;
+                }
+
                 return 0;
             }
         }
@@ -53,13 +56,22 @@ namespace Uzi.Ikosa.Advancement.MonsterClasses
             get
             {
                 if (CreatureSize.Order == Size.Miniature.Order)
+                {
                     return 0;
+                }
                 else if (CreatureSize.Order == Size.Tiny.Order)
+                {
                     return 2;
+                }
                 else if (CreatureSize.Order == Size.Small.Order)
+                {
                     return 4;
+                }
                 else if (CreatureSize.Order == Size.Medium.Order)
+                {
                     return 4;
+                }
+
                 return 8;
             }
         }
@@ -74,15 +86,26 @@ namespace Uzi.Ikosa.Advancement.MonsterClasses
             get
             {
                 if (CreatureSize.Order == Size.Medium.Order)
+                {
                     return 2;
+                }
                 else if (CreatureSize.Order == Size.Large.Order)
+                {
                     return 4;
+                }
                 else if (CreatureSize.Order == Size.Huge.Order)
+                {
                     return 4;
+                }
                 else if (CreatureSize.Order == Size.Gigantic.Order)
+                {
                     return 4;
+                }
                 else if (CreatureSize.Order == Size.Colossal.Order)
+                {
                     return 5;
+                }
+
                 return 0;
             }
         }
@@ -92,7 +115,9 @@ namespace Uzi.Ikosa.Advancement.MonsterClasses
         public virtual int NaturalArmorUp(int oldValue)
         {
             if (oldValue <= 0)
+            {
                 return 0;
+            }
 
             if (CreatureSize.Order == Size.Large.Order)
             {

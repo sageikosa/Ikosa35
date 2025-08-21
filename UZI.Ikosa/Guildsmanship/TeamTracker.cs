@@ -43,9 +43,9 @@ namespace Uzi.Ikosa.Guildsmanship
             _NodeID = Guid.Empty;
             _TeamID = teamGroup.ID;
             _Name = teamGroup.Name;
-            _ModuleElements = new Dictionary<string, HashSet<Guid>>();
-            _InfoKeyMembers = new Dictionary<Guid, HashSet<Guid>>();
-            _Variables = new Dictionary<Guid, Guid>();
+            _ModuleElements = [];
+            _InfoKeyMembers = [];
+            _Variables = [];
         }
 
         public Guid TeamID => _TeamID;
@@ -73,7 +73,7 @@ namespace Uzi.Ikosa.Guildsmanship
         {
             if (!_ModuleElements.TryGetValue(module, out var _elements))
             {
-                _elements = new HashSet<Guid>();
+                _elements = [];
                 _ModuleElements.Add(module, _elements);
             }
             if (!_elements.Contains(guid))
@@ -125,7 +125,7 @@ namespace Uzi.Ikosa.Guildsmanship
         {
             if (!_InfoKeyMembers.TryGetValue(infoKey, out var _critterIDs))
             {
-                _critterIDs = new HashSet<Guid>();
+                _critterIDs = [];
                 _InfoKeyMembers.Add(infoKey, _critterIDs);
                 AddModuleElement(module, infoKey);
             }

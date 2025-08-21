@@ -109,7 +109,9 @@ namespace Uzi.Ikosa.Adjuncts
             {
                 var _locator = Locator.FindFirstLocator(Weapon.Possessor);
                 if (_locator != null)
+                {
                     _locator.RemoveChangeMonitor(this);
+                }
 
                 // remove opportunistic capture
                 _loc.MapContext.StrikeZones.FindCaptureByZoneLink(ZoneLink)?.RemoveZone();
@@ -144,7 +146,9 @@ namespace Uzi.Ikosa.Adjuncts
         {
             // strike zone member may have been ejected prior to this...
             if (Weapon != null)
+            {
                 RefreshStrikeZone();
+            }
         }
         #endregion
 
@@ -156,7 +160,9 @@ namespace Uzi.Ikosa.Adjuncts
         {
             // strike zone member may have been ejected prior to this...
             if (Weapon != null)
+            {
                 RefreshStrikeZone();
+            }
         }
         #endregion
 

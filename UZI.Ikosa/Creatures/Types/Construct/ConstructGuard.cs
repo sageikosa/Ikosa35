@@ -40,11 +40,11 @@ namespace Uzi.Ikosa.Creatures.Types
 
         static ConstructGuard()
         {
-            _SizeRanges = new List<SizeRange>
-            {
+            _SizeRanges =
+            [
                 new SizeRange(1, 10, Size.Medium, 1),
                 new SizeRange(11, 15, Size.Large, 2)
-            };
+            ];
         }
         #endregion
 
@@ -261,7 +261,10 @@ namespace Uzi.Ikosa.Creatures.Types
         protected override string GenerateAbilityBoostMnemonic(int powerDieLevel)
         {
             if ((powerDieLevel % 4) == 0)
+            {
                 return MnemonicCode.Str;
+            }
+
             return null;
         }
         #endregion

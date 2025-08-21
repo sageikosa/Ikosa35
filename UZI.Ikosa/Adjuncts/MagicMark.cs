@@ -20,10 +20,10 @@ namespace Uzi.Ikosa.Adjuncts
         public MagicMark(object source, Guid seedCaster, bool isVisible, string mark)
             : base(source)
         {
-            _Casters = new Collection<Guid>
-            {
+            _Casters =
+            [
                 seedCaster
-            };
+            ];
             _IsVisible = isVisible;
             _Mark = mark;
         }

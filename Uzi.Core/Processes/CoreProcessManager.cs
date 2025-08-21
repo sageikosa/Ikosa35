@@ -48,17 +48,24 @@ namespace Uzi.Core
                                 if (_pre.Fulfiller != null)
                                 {
                                     if (!_actors.Contains(_pre.Fulfiller.ID))
+                                    {
                                         _actors.Add(_pre.Fulfiller.ID);
+                                    }
                                 }
                                 else
                                 {
                                     if (!_actors.Contains(Guid.Empty))
+                                    {
                                         _actors.Add(Guid.Empty);
+                                    }
                                 }
                             }
 
                             if (_actors.Count > 0)
+                            {
                                 NewPrerequisiteActors?.Invoke(this, new PrerequisiteActorsEventArgs(_actors));
+                            }
+
                             CurrentPrerequisities?.Invoke(this, new EventArgs());
                         }
                     }
@@ -85,7 +92,9 @@ namespace Uzi.Core
         public void StartProcess(CoreProcess process)
         {
             if (_ProcessStack.Contains(process))
+            {
                 return;
+            }
 
             // let reactors know what's going on
             var _activity = process as CoreActivity;
@@ -99,30 +108,41 @@ namespace Uzi.Core
                     if (process.IsActive)
                     {
                         if (_reactor.IsFunctional)
+                        {
                             _reactor.ReactToProcessBySuppress(process);
+                        }
                     }
                     else
+                    {
                         break;
+                    }
                 }
             }
             #endregion
 
             #region setting suppressors
             if (process.IsActive)
+            {
                 foreach (var _reactor in GetReactors().OfType<ICanReactBySuppress>().ToList())
                 {
                     if (process.IsActive)
                     {
                         if (_reactor.IsFunctional)
+                        {
                             _reactor.ReactToProcessBySuppress(process);
+                        }
                     }
                     else
+                    {
                         break;
+                    }
                 }
+            }
             #endregion
 
             #region actor side effects
             if (process.IsActive)
+            {
                 if (_activity != null)
                 {
                     foreach (var _reactor in _activity.Actor.Adjuncts.OfType<ICanReactBySideEffect>().ToList())
@@ -130,30 +150,42 @@ namespace Uzi.Core
                         if (process.IsActive)
                         {
                             if (_reactor.IsFunctional)
+                            {
                                 _reactor.ReactToProcessBySideEffect(process);
+                            }
                         }
                         else
+                        {
                             break;
+                        }
                     }
                 }
+            }
             #endregion
 
             #region setting side effects
             if (process.IsActive)
+            {
                 foreach (var _reactor in GetReactors().OfType<ICanReactBySideEffect>().ToList())
                 {
                     if (process.IsActive)
                     {
                         if (_reactor.IsFunctional)
+                        {
                             _reactor.ReactToProcessBySideEffect(process);
+                        }
                     }
                     else
+                    {
                         break;
+                    }
                 }
+            }
             #endregion
 
             #region actor step reactions
             if (process.IsActive)
+            {
                 if (_activity != null)
                 {
                     foreach (var _reactor in _activity.Actor.Adjuncts.OfType<ICanReactWithNewProcess>().ToList())
@@ -161,16 +193,22 @@ namespace Uzi.Core
                         if (process.IsActive)
                         {
                             if (_reactor.IsFunctional)
+                            {
                                 _reactor.ReactToProcessByStep(process);
+                            }
                         }
                         else
+                        {
                             break;
+                        }
                     }
                 }
+            }
             #endregion
 
             #region setting step reactions
             if (process.IsActive)
+            {
                 foreach (var _reactor in GetReactors().OfType<ICanReactWithNewProcess>().ToList())
                 {
                     if (process.IsActive)
@@ -178,8 +216,11 @@ namespace Uzi.Core
                         _reactor.ReactToProcessByStep(process);
                     }
                     else
+                    {
                         break;
+                    }
                 }
+            }
             #endregion
 
             // stack the activity on top
@@ -198,7 +239,10 @@ namespace Uzi.Core
             if (process.IsActive && !_ProcessStack.Contains(process))
             {
                 if (process.IsHeld)
+                {
                     process.IsHeld = false;
+                }
+
                 _ProcessStack.Push(process);
                 SignalCurrentProcess();
             }
@@ -331,7 +375,9 @@ namespace Uzi.Core
                             {
                                 // always send to master
                                 if (!_actors.Contains(Guid.Empty))
+                                {
                                     _actors.Add(Guid.Empty);
+                                }
 
                                 // service callback processing
                                 NewPrerequisiteActors?.Invoke(this, new PrerequisiteActorsEventArgs(_actors));
@@ -352,7 +398,10 @@ namespace Uzi.Core
         {
             var _processed = false;
             while (DoProcess())
+            {
                 _processed = true;
+            }
+
             OnDoProcessAllEnd();
             return _processed;
         }

@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using Uzi.Ikosa.Skills;
@@ -117,19 +117,25 @@ namespace Uzi.Ikosa.Movement
                         {
                             // can only revbase offset if not already moving that way
                             if (_moveTowards.Contains(_revBase))
+                            {
                                 return null;
+                            }
 
                             // make sure we can enter "above" lead cell
                             if (!TransitFitness(process, new[] { _revBase }, leadCell, locator.Map, locator.ActiveMovement, _planar, exclusions) ?? true)
+                            {
                                 return null;
+                            }
 
                             // sufficient space to slide away from base surface (does not guarantee success)
                             // ... so set new lead cell, and new next cell
                             leadCell = leadCell.Move(_revBase.GetAnchorOffset()) as CellLocation;
                             _next = leadCell.Move(_crossings.GetAnchorOffset()) as CellLocation;
                             if (!_canMove())
+                            {
                                 // cannot move into the up-step cell
                                 return null;
+                            }
                         }
                         #endregion
 
@@ -204,7 +210,9 @@ namespace Uzi.Ikosa.Movement
 
                                 // anything contributing to end slopes can be ignored for squeeze offsets
                                 if ((_endStep.slope.Source != null) && !exclusions.ContainsKey(_endStep.slope.Source.ID))
+                                {
                                     exclusions.Add(_endStep.slope.Source.ID, _endStep.slope.Source);
+                                }
 
                                 #region offset
                                 var _best = _endStep; // TODO: improve
@@ -290,11 +298,15 @@ namespace Uzi.Ikosa.Movement
                         {
                             // can only revbase offset if not already moving that way
                             if (_moveTowards.Contains(_revBase))
+                            {
                                 return null;
+                            }
 
                             // make sure we can enter "above" lead cell
                             if (!TransitFitness(process, new[] { _revBase }, leadCell, locator.Map, locator.ActiveMovement, _planar, exclusions) ?? true)
+                            {
                                 return null;
+                            }
 
                             // sufficient space to step up out of the cell (does not guarantee success)
                             // ... so set new lead cell, and new next cell
@@ -303,8 +315,10 @@ namespace Uzi.Ikosa.Movement
 
                             _cubic = _getCubic(_next);
                             if (!_canMove())
+                            {
                                 // cannot move into the up-step cell
                                 return null;
+                            }
                         }
                         #endregion
 
@@ -366,8 +380,10 @@ namespace Uzi.Ikosa.Movement
                                             process.SetFirstTarget(new ValueTarget<double>(@"Cost.Elevation", 2));
                                         }
                                         if ((_endSlopes.Min(_e => _e.Low) - _startSlopes.Max(_s => _s.High)) > _maxUp)
+                                        {
                                             // too high to step (must climb or jump)
                                             return null;
+                                        }
                                     }
                                     else if (_startStep.elev > elev)
                                     {
@@ -382,7 +398,9 @@ namespace Uzi.Ikosa.Movement
 
                                 // anything contributing to end slopes can be ignored for squeeze offsets
                                 if ((slope.Source != null) && !exclusions.ContainsKey(slope.Source.ID))
+                                {
                                     exclusions.Add(slope.Source.ID, slope.Source);
+                                }
 
                                 #region offset
                                 var _best = elev; // TODO: improve
@@ -470,7 +488,9 @@ namespace Uzi.Ikosa.Movement
                 if (_locator != null)
                 {
                     if (!_locator.PlanarPresence.HasMaterialPresence())
+                    {
                         return false;
+                    }
 
                     // TODO: creature's locator must be adjacent to something solid
                     return true;
@@ -625,7 +645,10 @@ namespace Uzi.Ikosa.Movement
 
             // all base actions
             foreach (var _act in base.GetActions(budget))
+            {
                 yield return _act;
+            }
+
             yield break;
         }
 

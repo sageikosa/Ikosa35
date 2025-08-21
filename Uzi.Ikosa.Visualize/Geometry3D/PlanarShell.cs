@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Media.Media3D;
 
@@ -11,7 +10,7 @@ namespace Uzi.Visualize
         /// <summary>Represents a shell made of PlanarPoints (effectively planes)</summary>
         protected PlanarShell()
         {
-            _Faces = new List<PlanarPoints>();
+            _Faces = [];
         }
 
         protected List<PlanarPoints> _Faces;
@@ -46,7 +45,9 @@ namespace Uzi.Visualize
         public void Transform(Transform3D transform)
         {
             foreach (var _plane in Faces)
+            {
                 _plane.Transform(transform);
+            }
         }
     }
 }

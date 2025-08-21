@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Windows.Media.Media3D;
 using Uzi.Core;
@@ -40,11 +40,14 @@ namespace Uzi.Ikosa.Tactical
             _RegionCtrl = new ChangeController<IGeometricRegion>(this, region);
             _LocationCtrl = new ChangeController<ICellLocation>(this, Location);
             _CurrentSizeCtrl = new ChangeController<IGeometricSize>(this, new GeometricSize(region));
-            _CellGroups = new List<LocalCellGroup>();
+            _CellGroups = [];
             LightLevel = LightRange.OutOfRange;
             ActiveMovement = null;
             if (addToContext)
+            {
                 context.Add(this);
+            }
+
             _Ethereal = false;
         }
         #endregion
@@ -92,6 +95,7 @@ namespace Uzi.Ikosa.Tactical
             var _planar = PlanarPresence;
             foreach (var _tLoc in GeometricRegion.AllCellLocations()
                 .Select(_cl => _cl is CellLocation ? _cl as CellLocation : new CellLocation(_cl)))
+            {
                 foreach (var _sLoc in source.GeometricRegion.AllCellLocations()
                     .Select(_cl => _cl is CellLocation ? _cl as CellLocation : new CellLocation(_cl)))
                 {
@@ -104,8 +108,12 @@ namespace Uzi.Ikosa.Tactical
                     // anything less than +4 cover means no melee cover
                     if (_map.CoverValue(_srcPts.Value, _trgPts.Value, source.GeometricRegion, _mAtk.TargetCell.ToCellPosition(),
                         false, new Interaction(_mAtk.Attacker, this, ICore as IInteract, _mAtk), _planar, ICore, source.ICore) < 4)
+                    {
                         return false;
+                    }
                 }
+            }
+
             return true;
         }
         #endregion
@@ -228,8 +236,10 @@ namespace Uzi.Ikosa.Tactical
                 {
                     // locator is passing by each other locator
                     if (ICore is ICoreObject _thisObj)
+                    {
                         _thisObj.HandleInteraction(new Interaction(null, this, _thisObj,
                             new LocatorMove(Chief, _otherLoc, LocatorMoveState.PassingBy)));
+                    }
 
                     // each other locator is passed by this locator
                     if (_otherLoc.ICore is ICoreObject _otherObj)
@@ -569,10 +579,7 @@ namespace Uzi.Ikosa.Tactical
                 if (_Movement == null)
                 {
                     _Movement = (Chief as Creature)?.Movements.AllMovements.FirstOrDefault(_m => _m.IsUsable);
-                    if (_Movement == null)
-                    {
-                        _Movement = new LandMovement(ICore as CoreObject, this);
-                    }
+                    _Movement ??= new LandMovement(ICore as CoreObject, this);
                 }
                 return _Movement;
             }
@@ -935,12 +942,18 @@ namespace Uzi.Ikosa.Tactical
 
                 // first found (nearest) point
                 if (_points.Any())
+                {
                     return _points.First();
+                }
                 else
+                {
                     return _start;
+                }
             }
             else
+            {
                 return _start;
+            }
         }
         #endregion
 
@@ -1002,10 +1015,17 @@ namespace Uzi.Ikosa.Tactical
             get
             {
                 if (ICoreAs<ICorePhysical>().Any())
+                {
                     if (GetGravityFace().GetAxis() == Axis.Z)
+                    {
                         return ICoreAs<ICorePhysical>().Max(_icp => _icp.Height);
+                    }
                     else
+                    {
                         return ICoreAs<ICorePhysical>().Max(_icp => _icp.Width);
+                    }
+                }
+
                 return 0d;
             }
         }
@@ -1017,10 +1037,17 @@ namespace Uzi.Ikosa.Tactical
             get
             {
                 if (ICoreAs<ICorePhysical>().Any())
+                {
                     if (GetGravityFace().GetAxis() == Axis.Y)
+                    {
                         return ICoreAs<ICorePhysical>().Max(_icp => _icp.Height);
+                    }
                     else
+                    {
                         return ICoreAs<ICorePhysical>().Max(_icp => _icp.Width);
+                    }
+                }
+
                 return 0d;
             }
         }
@@ -1032,10 +1059,17 @@ namespace Uzi.Ikosa.Tactical
             get
             {
                 if (ICoreAs<ICorePhysical>().Any())
+                {
                     if (GetGravityFace().GetAxis() == Axis.X)
+                    {
                         return ICoreAs<ICorePhysical>().Max(_icp => _icp.Height);
+                    }
                     else
+                    {
                         return ICoreAs<ICorePhysical>().Max(_icp => _icp.Width);
+                    }
+                }
+
                 return 0d;
             }
         }
@@ -1106,7 +1140,9 @@ namespace Uzi.Ikosa.Tactical
                 // must have something to interact with
                 IInteract _iTarget = Chief ?? ICoreAs<IInteract>().FirstOrDefault();
                 if (_iTarget == null)
+                {
                     yield break;
+                }
 
                 var _planar = critter.GetPlanarPresence();
 
@@ -1152,7 +1188,9 @@ namespace Uzi.Ikosa.Tactical
 
                         // return
                         if (!_skip)
+                        {
                             yield return _vpBack.Presentation;
+                        }
                     }
                 }
             }

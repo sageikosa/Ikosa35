@@ -35,7 +35,9 @@ namespace Uzi.Ikosa.Adjuncts
         public override bool CanAnchor(IAdjunctable newAnchor)
         {
             if (!Trait.CanAnchor(newAnchor))
+            {
                 return false;
+            }
 
             return true;
         }

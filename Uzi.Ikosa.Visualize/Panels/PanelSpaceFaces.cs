@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Windows.Media.Media3D;
 using System.Windows;
 using HelixToolkit.Wpf;
@@ -110,9 +108,13 @@ namespace Uzi.Visualize
             var _material = panel.GetAnchorFaceMaterial(panelFace, effect);
             var _geom = HedralGenerator.GeometryModel3DTransform(_mesh, _material.Material, null, panelFace.Transform(), bump);
             if (_material.IsAlpha)
+            {
                 group.Alpha.Children.Add(_geom);
+            }
             else
+            {
                 group.Opaque.Children.Add(_geom);
+            }
         }
         #endregion
 
@@ -222,28 +224,48 @@ namespace Uzi.Visualize
                             {
                                 case AnchorFace.XLow:
                                     if (showFace == AnchorFace.YHigh)
+                                    {
                                         _addCorner(TriangleCorner.UpperRight, SideIndex.Top, edgeWidth, thickness);
+                                    }
                                     else if (showFace == AnchorFace.YLow)
+                                    {
                                         _addCorner(TriangleCorner.UpperLeft, SideIndex.Bottom, edgeWidth, thickness);
+                                    }
+
                                     break;
                                 case AnchorFace.XHigh:
                                     if (showFace == AnchorFace.YHigh)
+                                    {
                                         _addCorner(TriangleCorner.UpperLeft, SideIndex.Top, edgeWidth, thickness);
+                                    }
                                     else if (showFace == AnchorFace.YLow)
+                                    {
                                         _addCorner(TriangleCorner.UpperRight, SideIndex.Bottom, edgeWidth, thickness);
+                                    }
+
                                     break;
                                 case AnchorFace.YLow:
                                     if (showFace == AnchorFace.XHigh)
+                                    {
                                         _addCorner(TriangleCorner.UpperLeft, SideIndex.Left, edgeWidth, thickness);
+                                    }
                                     else if (showFace == AnchorFace.XLow)
+                                    {
                                         _addCorner(TriangleCorner.UpperRight, SideIndex.Right, edgeWidth, thickness);
+                                    }
+
                                     break;
                                 case AnchorFace.YHigh:
                                 default:
                                     if (showFace == AnchorFace.XHigh)
+                                    {
                                         _addCorner(TriangleCorner.UpperRight, SideIndex.Left, edgeWidth, thickness);
+                                    }
                                     else if (showFace == AnchorFace.XLow)
+                                    {
                                         _addCorner(TriangleCorner.UpperLeft, SideIndex.Right, edgeWidth, thickness);
+                                    }
+
                                     break;
                             }
                             break;
@@ -255,28 +277,48 @@ namespace Uzi.Visualize
                             {
                                 case AnchorFace.XLow:
                                     if (showFace == AnchorFace.YHigh)
+                                    {
                                         _addCorner(TriangleCorner.LowerRight, SideIndex.Top, edgeWidth, thickness);
+                                    }
                                     else if (showFace == AnchorFace.YLow)
+                                    {
                                         _addCorner(TriangleCorner.LowerLeft, SideIndex.Bottom, edgeWidth, thickness);
+                                    }
+
                                     break;
                                 case AnchorFace.XHigh:
                                     if (showFace == AnchorFace.YHigh)
+                                    {
                                         _addCorner(TriangleCorner.LowerLeft, SideIndex.Top, edgeWidth, thickness);
+                                    }
                                     else if (showFace == AnchorFace.YLow)
+                                    {
                                         _addCorner(TriangleCorner.LowerRight, SideIndex.Bottom, edgeWidth, thickness);
+                                    }
+
                                     break;
                                 case AnchorFace.YLow:
                                     if (showFace == AnchorFace.XHigh)
+                                    {
                                         _addCorner(TriangleCorner.LowerLeft, SideIndex.Right, edgeWidth, thickness);
+                                    }
                                     else if (showFace == AnchorFace.XLow)
+                                    {
                                         _addCorner(TriangleCorner.LowerRight, SideIndex.Left, edgeWidth, thickness);
+                                    }
+
                                     break;
                                 case AnchorFace.YHigh:
                                 default:
                                     if (showFace == AnchorFace.XHigh)
+                                    {
                                         _addCorner(TriangleCorner.LowerRight, SideIndex.Right, edgeWidth, thickness);
+                                    }
                                     else if (showFace == AnchorFace.XLow)
+                                    {
                                         _addCorner(TriangleCorner.LowerLeft, SideIndex.Left, edgeWidth, thickness);
+                                    }
+
                                     break;
                             }
                             break;
@@ -288,28 +330,48 @@ namespace Uzi.Visualize
                             {
                                 case AnchorFace.XLow:
                                     if (showFace == AnchorFace.ZHigh)
+                                    {
                                         _addCorner(TriangleCorner.UpperLeft, SideIndex.Top, edgeWidth, thickness);
+                                    }
                                     else if (showFace == AnchorFace.ZLow)
+                                    {
                                         _addCorner(TriangleCorner.UpperRight, SideIndex.Bottom, edgeWidth, thickness);
+                                    }
+
                                     break;
                                 case AnchorFace.XHigh:
                                     if (showFace == AnchorFace.ZHigh)
+                                    {
                                         _addCorner(TriangleCorner.UpperRight, SideIndex.Top, edgeWidth, thickness);
+                                    }
                                     else if (showFace == AnchorFace.ZLow)
+                                    {
                                         _addCorner(TriangleCorner.UpperLeft, SideIndex.Bottom, edgeWidth, thickness);
+                                    }
+
                                     break;
                                 case AnchorFace.ZLow:
                                     if (showFace == AnchorFace.XHigh)
+                                    {
                                         _addCorner(TriangleCorner.LowerRight, SideIndex.Right, thickness, edgeWidth);
+                                    }
                                     else if (showFace == AnchorFace.XLow)
+                                    {
                                         _addCorner(TriangleCorner.LowerLeft, SideIndex.Left, thickness, edgeWidth);
+                                    }
+
                                     break;
                                 case AnchorFace.ZHigh:
                                 default:
                                     if (showFace == AnchorFace.XHigh)
+                                    {
                                         _addCorner(TriangleCorner.UpperRight, SideIndex.Right, thickness, edgeWidth);
+                                    }
                                     else if (showFace == AnchorFace.XLow)
+                                    {
                                         _addCorner(TriangleCorner.UpperLeft, SideIndex.Left, thickness, edgeWidth);
+                                    }
+
                                     break;
                             }
                             break;
@@ -321,28 +383,48 @@ namespace Uzi.Visualize
                             {
                                 case AnchorFace.XLow:
                                     if (showFace == AnchorFace.ZHigh)
+                                    {
                                         _addCorner(TriangleCorner.LowerLeft, SideIndex.Top, edgeWidth, thickness);
+                                    }
                                     else if (showFace == AnchorFace.ZLow)
+                                    {
                                         _addCorner(TriangleCorner.LowerRight, SideIndex.Bottom, edgeWidth, thickness);
+                                    }
+
                                     break;
                                 case AnchorFace.XHigh:
                                     if (showFace == AnchorFace.ZHigh)
+                                    {
                                         _addCorner(TriangleCorner.LowerRight, SideIndex.Top, edgeWidth, thickness);
+                                    }
                                     else if (showFace == AnchorFace.ZLow)
+                                    {
                                         _addCorner(TriangleCorner.LowerLeft, SideIndex.Bottom, edgeWidth, thickness);
+                                    }
+
                                     break;
                                 case AnchorFace.ZLow:
                                     if (showFace == AnchorFace.XHigh)
+                                    {
                                         _addCorner(TriangleCorner.LowerLeft, SideIndex.Left, thickness, edgeWidth);
+                                    }
                                     else if (showFace == AnchorFace.XLow)
+                                    {
                                         _addCorner(TriangleCorner.LowerRight, SideIndex.Right, thickness, edgeWidth);
+                                    }
+
                                     break;
                                 case AnchorFace.ZHigh:
                                 default:
                                     if (showFace == AnchorFace.XHigh)
+                                    {
                                         _addCorner(TriangleCorner.UpperLeft, SideIndex.Left, thickness, edgeWidth);
+                                    }
                                     else if (showFace == AnchorFace.XLow)
+                                    {
                                         _addCorner(TriangleCorner.UpperRight, SideIndex.Right, thickness, edgeWidth);
+                                    }
+
                                     break;
                             }
                             break;
@@ -354,28 +436,48 @@ namespace Uzi.Visualize
                             {
                                 case AnchorFace.YLow:
                                     if (showFace == AnchorFace.ZHigh)
+                                    {
                                         _addCorner(TriangleCorner.LowerRight, SideIndex.Top, thickness, edgeWidth);
+                                    }
                                     else if (showFace == AnchorFace.ZLow)
+                                    {
                                         _addCorner(TriangleCorner.LowerLeft, SideIndex.Bottom, thickness, edgeWidth);
+                                    }
+
                                     break;
                                 case AnchorFace.YHigh:
                                     if (showFace == AnchorFace.ZHigh)
+                                    {
                                         _addCorner(TriangleCorner.UpperRight, SideIndex.Top, thickness, edgeWidth);
+                                    }
                                     else if (showFace == AnchorFace.ZLow)
+                                    {
                                         _addCorner(TriangleCorner.UpperLeft, SideIndex.Bottom, thickness, edgeWidth);
+                                    }
+
                                     break;
                                 case AnchorFace.ZLow:
                                     if (showFace == AnchorFace.YHigh)
+                                    {
                                         _addCorner(TriangleCorner.LowerLeft, SideIndex.Left, thickness, edgeWidth);
+                                    }
                                     else if (showFace == AnchorFace.YLow)
+                                    {
                                         _addCorner(TriangleCorner.LowerRight, SideIndex.Right, thickness, edgeWidth);
+                                    }
+
                                     break;
                                 case AnchorFace.ZHigh:
                                 default:
                                     if (showFace == AnchorFace.YHigh)
+                                    {
                                         _addCorner(TriangleCorner.UpperLeft, SideIndex.Left, thickness, edgeWidth);
+                                    }
                                     else if (showFace == AnchorFace.YLow)
+                                    {
                                         _addCorner(TriangleCorner.UpperRight, SideIndex.Right, thickness, edgeWidth);
+                                    }
+
                                     break;
                             }
                             break;
@@ -388,28 +490,48 @@ namespace Uzi.Visualize
                             {
                                 case AnchorFace.YLow:
                                     if (showFace == AnchorFace.ZHigh)
+                                    {
                                         _addCorner(TriangleCorner.LowerLeft, SideIndex.Top, thickness, edgeWidth);
+                                    }
                                     else if (showFace == AnchorFace.ZLow)
+                                    {
                                         _addCorner(TriangleCorner.LowerRight, SideIndex.Bottom, thickness, edgeWidth);
+                                    }
+
                                     break;
                                 case AnchorFace.YHigh:
                                     if (showFace == AnchorFace.ZHigh)
+                                    {
                                         _addCorner(TriangleCorner.UpperLeft, SideIndex.Top, thickness, edgeWidth);
+                                    }
                                     else if (showFace == AnchorFace.ZLow)
+                                    {
                                         _addCorner(TriangleCorner.UpperRight, SideIndex.Bottom, thickness, edgeWidth);
+                                    }
+
                                     break;
                                 case AnchorFace.ZLow:
                                     if (showFace == AnchorFace.YHigh)
+                                    {
                                         _addCorner(TriangleCorner.LowerRight, SideIndex.Right, thickness, edgeWidth);
+                                    }
                                     else if (showFace == AnchorFace.YLow)
+                                    {
                                         _addCorner(TriangleCorner.LowerLeft, SideIndex.Left, thickness, edgeWidth);
+                                    }
+
                                     break;
                                 case AnchorFace.ZHigh:
                                 default:
                                     if (showFace == AnchorFace.YHigh)
+                                    {
                                         _addCorner(TriangleCorner.UpperRight, SideIndex.Right, thickness, edgeWidth);
+                                    }
                                     else if (showFace == AnchorFace.YLow)
+                                    {
                                         _addCorner(TriangleCorner.UpperLeft, SideIndex.Left, thickness, edgeWidth);
+                                    }
+
                                     break;
                             }
                             break;
@@ -626,9 +748,13 @@ namespace Uzi.Visualize
             Func<Axis, SideIndex> _leftRight = (axis) =>
             {
                 if (sink.GetAxis() == axis)
+                {
                     return _sameThen(SideIndex.Left, SideIndex.Right);
+                }
                 else
+                {
                     return _sameThen(SideIndex.Right, SideIndex.Left);
+                }
             };
 
             switch (source)
@@ -792,16 +918,24 @@ namespace Uzi.Visualize
                             if (_bend.Contains(AnchorFace.YLow))
                             {
                                 if (_bend.Contains(AnchorFace.ZLow))
+                                {
                                     _addTriangles(2, 3, 5, 4, 3, 1, 4, 6);
+                                }
                                 else
+                                {
                                     _addTriangles(0, 2, 7, 5, 2, 3, 5, 4);
+                                }
                             }
                             else
                             {
                                 if (_bend.Contains(AnchorFace.ZLow))
+                                {
                                     _addTriangles(3, 1, 4, 6, 1, 0, 6, 7);
+                                }
                                 else
+                                {
                                     _addTriangles(1, 0, 6, 7, 0, 2, 7, 5);
+                                }
                             }
                             break;
                         #endregion
@@ -811,16 +945,24 @@ namespace Uzi.Visualize
                             if (_bend.Contains(AnchorFace.YLow))
                             {
                                 if (_bend.Contains(AnchorFace.ZLow))
+                                {
                                     _addTriangles(5, 7, 2, 0, 7, 6, 0, 1);
+                                }
                                 else
+                                {
                                     _addTriangles(7, 6, 0, 1, 6, 4, 1, 3);
+                                }
                             }
                             else
                             {
                                 if (_bend.Contains(AnchorFace.ZLow))
+                                {
                                     _addTriangles(4, 5, 3, 2, 5, 7, 2, 0);
+                                }
                                 else
+                                {
                                     _addTriangles(6, 4, 1, 3, 4, 5, 3, 2);
+                                }
                             }
                             break;
                         #endregion
@@ -830,16 +972,24 @@ namespace Uzi.Visualize
                             if (_bend.Contains(AnchorFace.XLow))
                             {
                                 if (_bend.Contains(AnchorFace.ZLow))
+                                {
                                     _addTriangles(1, 5, 6, 2, 5, 4, 2, 3);
+                                }
                                 else
+                                {
                                     _addTriangles(5, 4, 2, 3, 4, 0, 3, 7);
+                                }
                             }
                             else
                             {
                                 if (_bend.Contains(AnchorFace.ZLow))
+                                {
                                     _addTriangles(0, 1, 7, 6, 1, 5, 6, 2);
+                                }
                                 else
+                                {
                                     _addTriangles(4, 0, 3, 7, 0, 1, 7, 6);
+                                }
                             }
                             break;
                         #endregion
@@ -849,16 +999,24 @@ namespace Uzi.Visualize
                             if (_bend.Contains(AnchorFace.XLow))
                             {
                                 if (_bend.Contains(AnchorFace.ZLow))
+                                {
                                     _addTriangles(6, 7, 1, 0, 7, 3, 0, 4);
+                                }
                                 else
+                                {
                                     _addTriangles(2, 6, 5, 1, 6, 7, 1, 0);
+                                }
                             }
                             else
                             {
                                 if (_bend.Contains(AnchorFace.ZLow))
+                                {
                                     _addTriangles(7, 3, 0, 4, 3, 2, 4, 5);
+                                }
                                 else
+                                {
                                     _addTriangles(3, 2, 4, 5, 2, 6, 5, 1);
+                                }
                             }
                             break;
                         #endregion
@@ -868,16 +1026,24 @@ namespace Uzi.Visualize
                             if (_bend.Contains(AnchorFace.XLow))
                             {
                                 if (_bend.Contains(AnchorFace.YLow))
+                                {
                                     _addTriangles(4, 6, 3, 1, 6, 2, 1, 5);
+                                }
                                 else
+                                {
                                     _addTriangles(0, 4, 7, 3, 4, 6, 3, 1);
+                                }
                             }
                             else
                             {
                                 if (_bend.Contains(AnchorFace.YLow))
+                                {
                                     _addTriangles(6, 2, 1, 5, 2, 0, 5, 7);
+                                }
                                 else
+                                {
                                     _addTriangles(2, 0, 5, 7, 0, 4, 7, 3);
+                                }
                             }
                             break;
                         #endregion
@@ -888,16 +1054,24 @@ namespace Uzi.Visualize
                             if (_bend.Contains(AnchorFace.XLow))
                             {
                                 if (_bend.Contains(AnchorFace.YLow))
+                                {
                                     _addTriangles(3, 7, 4, 0, 7, 5, 0, 2);
+                                }
                                 else
+                                {
                                     _addTriangles(7, 5, 0, 2, 5, 1, 2, 6);
+                                }
                             }
                             else
                             {
                                 if (_bend.Contains(AnchorFace.YLow))
+                                {
                                     _addTriangles(1, 3, 6, 4, 3, 7, 4, 0);
+                                }
                                 else
+                                {
                                     _addTriangles(5, 1, 2, 6, 1, 3, 6, 4);
+                                }
                             }
                             break;
                             #endregion
@@ -962,38 +1136,62 @@ namespace Uzi.Visualize
             if (faces.Contains(AnchorFace.XLow))
             {
                 if (faces.Contains(AnchorFace.YLow))
+                {
                     return _diagPlane(2, 3, 5, 4);
+                }
                 else if (faces.Contains(AnchorFace.YHigh))
+                {
                     return _diagPlane(1, 0, 6, 7);
+                }
                 else if (faces.Contains(AnchorFace.ZLow))
+                {
                     return _diagPlane(4, 6, 3, 1);
+                }
                 else // ZHigh
+                {
                     return _diagPlane(0, 2, 7, 5);
+                }
             }
             else if (faces.Contains(AnchorFace.XHigh))
             {
                 if (faces.Contains(AnchorFace.YLow))
+                {
                     return _diagPlane(7, 6, 0, 1);
+                }
                 else if (faces.Contains(AnchorFace.YHigh))
+                {
                     return _diagPlane(4, 5, 3, 2);
+                }
                 else if (faces.Contains(AnchorFace.ZLow))
+                {
                     return _diagPlane(2, 0, 5, 7);
+                }
                 else // ZHigh
+                {
                     return _diagPlane(6, 4, 1, 3);
+                }
             }
             else if (faces.Contains(AnchorFace.YLow))
             {
                 if (faces.Contains(AnchorFace.ZLow))
+                {
                     return _diagPlane(6, 2, 1, 5);
+                }
                 else // ZHigh
+                {
                     return _diagPlane(4, 0, 3, 7);
+                }
             }
             else // YHigh
             {
                 if (faces.Contains(AnchorFace.ZLow))
+                {
                     return _diagPlane(0, 4, 7, 3);
+                }
                 else // ZHigh
+                {
                     return _diagPlane(2, 6, 5, 1);
+                }
             }
         }
         #endregion
@@ -1004,7 +1202,9 @@ namespace Uzi.Visualize
             BuildableMeshKey meshKey, Func<BuildableMaterial> builder)
         {
             if ((horizontal == 0) || (vertical == 0))
+            {
                 return;
+            }
 
             // mesh parameters
             var _textureSize = new Vector(5d, 5d);
@@ -1085,7 +1285,9 @@ namespace Uzi.Visualize
             BuildableMeshKey meshKey, Func<BuildableMaterial> builder)
         {
             if (thickness == 0d)
+            {
                 return;
+            }
 
             // mesh parameters
             var _textureSize = new Vector(5d, 5d);

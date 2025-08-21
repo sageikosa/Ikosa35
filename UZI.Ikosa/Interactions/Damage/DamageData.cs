@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using Uzi.Ikosa.Contracts;
 
 namespace Uzi.Ikosa.Interactions
@@ -40,7 +40,10 @@ namespace Uzi.Ikosa.Interactions
         public virtual DamageInfo ToDamageInfo()
         {
             if (IsNonLethal)
+            {
                 return ToBaseDamageInfo<NonLethalDamageInfo>();
+            }
+
             return ToBaseDamageInfo<LethalDamageInfo>();
         }
 

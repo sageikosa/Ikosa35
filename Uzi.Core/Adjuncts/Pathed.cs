@@ -41,10 +41,12 @@ namespace Uzi.Core
                 }
             }
             else
+            {
                 foreach (var _adj in Anchor.Adjuncts.OfType<IPathDependent>().ToList())
                 {
                     _adj.PathChanged(this);
                 }
+            }
         }
 
         protected override void OnAnchorSet(IAdjunctable oldAnchor, CoreSetting oldSetting)
@@ -72,10 +74,12 @@ namespace Uzi.Core
                     }
                 }
                 else
+                {
                     foreach (var _adj in oldAnchor.Adjuncts.OfType<IPathDependent>().ToList())
                     {
                         _adj.PathChanged(this);
                     }
+                }
             }
             else
             {
@@ -102,7 +106,9 @@ namespace Uzi.Core
                 // if next has no path, exit loop
                 var _path = _next.GetPathed();
                 if (_path == null)
+                {
                     break;
+                }
 
                 // otherwise, push part and get next parent
                 _pathStack.Push(_path.GetPathPartString());
@@ -115,7 +121,9 @@ namespace Uzi.Core
             {
                 var _pop = _pathStack.Pop();
                 if (!string.IsNullOrEmpty(_pop))
+                {
                     _final.AppendFormat(@"/{0}", _pop);
+                }
             }
             return _final.ToString();
         }

@@ -37,7 +37,10 @@ namespace Uzi.Ikosa.Workshop
                 cpSolid.UsingAlphaChannel = true;
             }
             else
+            {
                 cpSolid.UsingAlphaChannel = false;
+            }
+
             txtBrushKey.Text = name;
         }
 
@@ -59,7 +62,9 @@ namespace Uzi.Ikosa.Workshop
             {
                 var _key = txtBrushKey.Text;
                 if (!string.IsNullOrEmpty(_key))
+                {
                     e.CanExecute = _Exists || !_Manager.Any(_b => _b.BrushKey.Equals(_key));
+                }
             }
             e.Handled = true;
         }

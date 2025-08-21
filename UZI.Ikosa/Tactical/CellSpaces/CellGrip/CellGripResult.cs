@@ -16,11 +16,15 @@ namespace Uzi.Ikosa.Tactical
         {
             // find gravity?
             if (Faces.Contains(gravity))
+            {
                 return gravity;
+            }
 
             // find last base?
             if (Faces.Contains(baseFace))
+            {
                 return baseFace;
+            }
 
             // ignore gravity axis
             var _gAxis = gravity.GetAxis();
@@ -28,12 +32,16 @@ namespace Uzi.Ikosa.Tactical
 
             // nothing left?
             if (_faces == AnchorFaceList.None)
+            {
                 return gravity.ReverseFace();
+            }
 
             // first inner face (without gravity)
             var _inner = InnerFaces.StripAxis(_gAxis);
             if (_inner != AnchorFaceList.None)
+            {
                 return _inner.ToAnchorFaces().First();
+            }
 
             // first other face (without gravity)
             return _faces.ToAnchorFaces().First();

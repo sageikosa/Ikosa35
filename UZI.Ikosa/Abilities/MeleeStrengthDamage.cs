@@ -51,11 +51,16 @@ namespace Uzi.Ikosa.Abilities
         public virtual IEnumerable<IDelta> QualifiedDeltas(Qualifier qualify)
         {
             if (qualify.Source as IWeaponHead == null)
+            {
                 yield break;
+            }
 
             // ranged attacks use strength or half strength
             if (!(qualify is Interaction _iAct))
+            {
                 yield break;
+            }
+
             var _ranged = _iAct.InteractData is RangedAttackData;
 
             if ((qualify.Source as IWeaponHead).ContainingWeapon is NaturalWeapon)
@@ -64,17 +69,23 @@ namespace Uzi.Ikosa.Abilities
 
                 // secondary natural weapons get only half STR damage
                 if (!_natrl.IsPrimary)
+                {
                     yield break;
+                }
 
                 // sole natural weapons get 1.5 STR damage
                 if ((Creature.Body.NaturalWeapons.Count == 1) || _natrl.TreatAsSoleWeapon)
+                {
                     yield break;
+                }
             }
             else
             {
                 // not a melee weapon (or thrown melee)
                 if (!((qualify.Source as IWeaponHead).ContainingWeapon is IMeleeWeapon))
+                {
                     yield break;
+                }
 
                 // if not thrown, check wield templates
                 if (!_ranged)
@@ -93,7 +104,10 @@ namespace Uzi.Ikosa.Abilities
                         case WieldTemplate.Double:
                             // two-hand wielding these types gets 1.5 STR damage
                             if ((qualify.Source as IWeaponHead).AssignedSlots.Count() == 2)
+                            {
                                 yield break;
+                            }
+
                             break;
                     }
                 }

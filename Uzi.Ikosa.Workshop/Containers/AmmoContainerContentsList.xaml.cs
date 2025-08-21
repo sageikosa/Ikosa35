@@ -29,7 +29,9 @@ namespace Uzi.Ikosa.Workshop
             if (sender is ListBox _list)
             {
                 if (_list.HasItems)
+                {
                     _list.SelectedIndex = 0;
+                }
             }
         }
     }

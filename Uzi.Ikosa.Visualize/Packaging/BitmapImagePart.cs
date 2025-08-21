@@ -1,15 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Windows.Media.Imaging;
 using System.IO.Packaging;
 using System.IO;
 using System.Collections.Specialized;
 using System.Diagnostics;
-using System.Windows.Media;
 using System.Windows.Forms;
-using Uzi.Visualize;
 using Uzi.Packaging;
 using Newtonsoft.Json;
 
@@ -106,13 +102,15 @@ namespace Uzi.Visualize.Packaging
                 ResolveStream();
 
                 // build image from the stream and keep it for XamlReader.Load
-                _Images = new Dictionary<VisualEffect, BitmapSource>();
+                _Images = [];
                 var _normal = new BitmapImage();
                 try
                 {
                     _normal.BeginInit();
                     if (_MemStream != null)
+                    {
                         _normal.StreamSource = _MemStream;
+                    }
                 }
                 catch
                 {
@@ -151,7 +149,9 @@ namespace Uzi.Visualize.Packaging
             }
 
             if (_MemStream != null)
+            {
                 _MemStream.Seek(0, SeekOrigin.Begin);
+            }
         }
         #endregion
 

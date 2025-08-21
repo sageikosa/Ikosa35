@@ -23,16 +23,25 @@ namespace Uzi.Ikosa.UI.SpellPrep
             {
                 var _slot = item as SpontaneousSpellSlotModel;
                 if (_slot.IsCharged)
+                {
                     return ChargedSpontaneousSlotStyle;
+                }
+
                 return UnchargedSlotStyle;
             }
             else if (item is PreparedSpellSlotModel)
             {
                 var _slot = item as PreparedSpellSlotModel;
                 if (_slot.SpellSlot.PreparedSpell != null)
+                {
                     return FilledPreparedSlotStyle;
+                }
+
                 if (_slot.IsCharged)
+                {
                     return EmptyPreparedSlotStyle;
+                }
+
                 return UnchargedSlotStyle;
             }
             else if (item is PrepareSpellModel)

@@ -44,7 +44,10 @@ namespace Uzi.Ikosa.Services
             Action action, CancellationToken cancellationToken)
         {
             // Validate
-            if (action == null) throw new ArgumentNullException(nameof(action));
+            if (action == null)
+            {
+                throw new ArgumentNullException(nameof(action));
+            }
 
             // Declare the block variable, it needs to be captured.
             ActionBlock<DateTimeOffset> _block = null;
@@ -174,7 +177,11 @@ namespace Uzi.Ikosa.Services
                                 if ((ProcessManager?.CurrentStep as LocalTimeStep)?.TimeTickablePrerequisite?.IsReady ?? false)
                                 {
                                     // yes!
-                                    while (ProcessManager?.DoProcessAll() ?? false) ;
+                                    while (ProcessManager?.DoProcessAll() ?? false)
+                                    {
+                                        ;
+                                    }
+
                                     _processed = true;
                                 }
                             }
@@ -208,7 +215,9 @@ namespace Uzi.Ikosa.Services
             {
                 // if locked when flushing, allow readers to sweep through
                 if (_locked)
+                {
                     Synchronizer.ExitWriteLock();
+                }
 
                 FlushNotifySysStatus();
             }
@@ -216,7 +225,9 @@ namespace Uzi.Ikosa.Services
             {
                 // re-aquire lock if previously held
                 if (_locked)
+                {
                     Synchronizer.EnterWriteLock();
+                }
             }
         }
         #endregion
@@ -339,7 +350,9 @@ namespace Uzi.Ikosa.Services
                 {
                     // create a list if none already gathering
                     if (!_gather.ContainsKey(_id))
-                        _gather.Add(_id, new List<SysNotify>());
+                    {
+                        _gather.Add(_id, []);
+                    }
 
                     // add to list
                     var _list = _gather[_id];
@@ -364,7 +377,7 @@ namespace Uzi.Ikosa.Services
                     else
                     {
                         // no, build one
-                        _list = new List<Notification>();
+                        _list = [];
                         _signals.Add(_target.Key, _list);
                     }
 
@@ -429,6 +442,7 @@ namespace Uzi.Ikosa.Services
         public static void DoNotifySerialState(ulong original)
         {
             if (original < MapContext.SerialState)
+            {
                 foreach (var _cBack in _Callbacks)
                 {
                     var _target = _cBack;
@@ -447,6 +461,7 @@ namespace Uzi.Ikosa.Services
                         }
                     }));
                 }
+            }
         }
         #endregion
 
@@ -466,7 +481,9 @@ namespace Uzi.Ikosa.Services
 
                 // master registers for master-level pre-requisites
                 if (_principal.IsInRole(@"Master"))
+                {
                     _tracker.IDs.Add(Guid.Empty);
+                }
 
                 // add or update
                 _Callbacks.AddOrUpdate(_tracker.UserName, _tracker,
@@ -522,13 +539,17 @@ namespace Uzi.Ikosa.Services
                     finally
                     {
                         if (Synchronizer.IsReadLockHeld)
+                        {
                             Synchronizer.ExitReadLock();
+                        }
                     }
                 }
                 else
+                {
                     throw new FaultException<SecurityFault>(new SecurityFault(), @"User not authorized");
+                }
             }
-            return new List<string>();
+            return [];
         }
         #endregion
 
@@ -544,7 +565,9 @@ namespace Uzi.Ikosa.Services
                     {
                         var _roll = _pre as RollPrerequisite;
                         if (!(_roll.Roller is ConstantRoller))
+                        {
                             return _roll.ToPrerequisiteInfo(_step);
+                        }
                     }
                     else
                     {
@@ -573,11 +596,15 @@ namespace Uzi.Ikosa.Services
                         finally
                         {
                             if (Synchronizer.IsReadLockHeld)
+                            {
                                 Synchronizer.ExitReadLock();
+                            }
                         }
                     }
                     else
+                    {
                         throw new FaultException<SecurityFault>(new SecurityFault(), @"User not authorized to access generic prerequisites");
+                    }
                 }
                 else
                 {
@@ -589,23 +616,29 @@ namespace Uzi.Ikosa.Services
                         {
                             Synchronizer.EnterReadLock();
                             if (ProcessManager.CurrentStep != null)
+                            {
                                 return (from _dp in ProcessManager.CurrentStep.DispensedPrerequisites
                                         where (_dp.Fulfiller?.ID.Equals(_id) ?? false)
                                         let _pre = _preReqConverter(ProcessManager.CurrentStep, _dp)
                                         where (_pre != null)
                                         select _pre).ToList();
+                            }
                         }
                         finally
                         {
                             if (Synchronizer.IsReadLockHeld)
+                            {
                                 Synchronizer.ExitReadLock();
+                            }
                         }
                     }
                     else
+                    {
                         throw new FaultException<SecurityFault>(new SecurityFault(), @"User not authorized to access this creature");
+                    }
                 }
             }
-            return new List<PrerequisiteInfo>();
+            return [];
         }
         #endregion
 
@@ -619,18 +652,25 @@ namespace Uzi.Ikosa.Services
                 {
                     Synchronizer.EnterReadLock();
                     if (ProcessManager.LocalTurnTracker.GetBudget(_id) is LocalActionBudget _budget)
+                    {
                         return _budget.ToLocalActionBudgetInfo();
+                    }
+
                     return new LocalActionBudgetInfo();
 
                 }
                 finally
                 {
                     if (Synchronizer.IsReadLockHeld)
+                    {
                         Synchronizer.ExitReadLock();
+                    }
                 }
             }
             else
+            {
                 throw new FaultException<SecurityFault>(new SecurityFault(), @"User not authorized to access this creature");
+            }
         }
         #endregion
 
@@ -650,7 +690,9 @@ namespace Uzi.Ikosa.Services
                     finally
                     {
                         if (Synchronizer.IsReadLockHeld)
+                        {
                             Synchronizer.ExitReadLock();
+                        }
                     }
                 }
             }
@@ -665,12 +707,16 @@ namespace Uzi.Ikosa.Services
                         Synchronizer.EnterReadLock();
                         var _critter = CreatureProvider.GetCreature(_id);
                         if (_critter != null)
+                        {
                             return ProcessManager?.LocalTurnTracker.ToLocalTurnTrackerInfo(_critter);
+                        }
                     }
                     finally
                     {
                         if (Synchronizer.IsReadLockHeld)
+                        {
                             Synchronizer.ExitReadLock();
+                        }
                     }
                 }
             }
@@ -687,12 +733,16 @@ namespace Uzi.Ikosa.Services
                 {
                     Synchronizer.EnterReadLock();
                     if (ProcessManager.CurrentStep != null)
+                    {
                         return ProcessManager.CurrentStep.ID;
+                    }
                 }
                 finally
                 {
                     if (Synchronizer.IsReadLockHeld)
+                    {
                         Synchronizer.ExitReadLock();
+                    }
                 }
             }
             return null;
@@ -708,12 +758,16 @@ namespace Uzi.Ikosa.Services
                 {
                     Synchronizer.EnterReadLock();
                     if (ProcessManager.CurrentStep != null)
+                    {
                         return MapContext.SerialState;
+                    }
                 }
                 finally
                 {
                     if (Synchronizer.IsReadLockHeld)
+                    {
                         Synchronizer.ExitReadLock();
+                    }
                 }
             }
             return 0;
@@ -738,9 +792,13 @@ namespace Uzi.Ikosa.Services
                     foreach (var _slot in _critter.Body.ItemSlots.AllSlots)
                     {
                         if (_slot is MountSlot)
+                        {
                             _slots.Add((_slot as MountSlot).ToMountSlotInfo());
+                        }
                         else
+                        {
                             _slots.Add(_slot.ToItemSlotInfo());
+                        }
                     }
 
                     // return
@@ -749,11 +807,15 @@ namespace Uzi.Ikosa.Services
                 finally
                 {
                     if (Synchronizer.IsReadLockHeld)
+                    {
                         Synchronizer.ExitReadLock();
+                    }
                 }
             }
             else
+            {
                 throw new FaultException<SecurityFault>(new SecurityFault(), @"User not authorized to access this creature");
+            }
         }
         #endregion
 
@@ -762,9 +824,13 @@ namespace Uzi.Ikosa.Services
             bool autoMelee, double distance)
         {
             if (coreObj == critter)
+            {
                 autoMelee = true;
+            }
             else
+            {
                 autoMelee = (coreObj as Creature)?.IsFriendly(critter.ID) ?? autoMelee;
+            }
 
             var _info = GetInfoData.GetInfoFeedback(coreObj, critter);
             return new AwarenessInfo
@@ -828,11 +894,15 @@ namespace Uzi.Ikosa.Services
                 finally
                 {
                     if (Synchronizer.IsReadLockHeld)
+                    {
                         Synchronizer.ExitReadLock();
+                    }
                 }
             }
             else
+            {
                 throw new FaultException<SecurityFault>(new SecurityFault(), @"User not authorized to access this creature");
+            }
         }
         #endregion
 
@@ -881,7 +951,10 @@ namespace Uzi.Ikosa.Services
                             ExtraInfoInfo _convert(ExtraInfo extra)
                             {
                                 if (extra is ExtraInfoMarker _marker)
+                                {
                                     return _marker.ToExtraInfoMarkerInfo(_critter);
+                                }
+
                                 return extra.ToExtraInfoInfo(_critter);
                             }
 
@@ -894,7 +967,9 @@ namespace Uzi.Ikosa.Services
                 finally
                 {
                     if (Synchronizer.IsReadLockHeld)
+                    {
                         Synchronizer.ExitReadLock();
+                    }
                 }
             }
             else
@@ -946,7 +1021,9 @@ namespace Uzi.Ikosa.Services
                 finally
                 {
                     if (Synchronizer.IsReadLockHeld)
+                    {
                         Synchronizer.ExitReadLock();
+                    }
                 }
             }
             return null;
@@ -971,11 +1048,15 @@ namespace Uzi.Ikosa.Services
                 finally
                 {
                     if (Synchronizer.IsReadLockHeld)
+                    {
                         Synchronizer.ExitReadLock();
+                    }
                 }
             }
             else
+            {
                 throw new FaultException<SecurityFault>(new SecurityFault(), @"User not authorized to access this creature");
+            }
         }
         #endregion
 
@@ -1006,11 +1087,15 @@ namespace Uzi.Ikosa.Services
                 finally
                 {
                     if (Synchronizer.IsReadLockHeld)
+                    {
                         Synchronizer.ExitReadLock();
+                    }
                 }
             }
             else
+            {
                 throw new FaultException<SecurityFault>(new SecurityFault(), @"User not authorized to access this creature");
+            }
         }
         #endregion
 
@@ -1045,16 +1130,20 @@ namespace Uzi.Ikosa.Services
                     }
 
                     // return
-                    return new List<PossessionInfo>();
+                    return [];
                 }
                 finally
                 {
                     if (Synchronizer.IsReadLockHeld)
+                    {
                         Synchronizer.ExitReadLock();
+                    }
                 }
             }
             else
+            {
                 throw new FaultException<SecurityFault>(new SecurityFault(), @"User not authorized to access this creature");
+            }
         }
         #endregion
 
@@ -1084,7 +1173,7 @@ namespace Uzi.Ikosa.Services
                         }
                         else
                         {
-                            return new List<IdentityInfo>();
+                            return [];
                         }
                     }
                     return null;
@@ -1092,11 +1181,15 @@ namespace Uzi.Ikosa.Services
                 finally
                 {
                     if (Synchronizer.IsReadLockHeld)
+                    {
                         Synchronizer.ExitReadLock();
+                    }
                 }
             }
             else
+            {
                 throw new FaultException<SecurityFault>(new SecurityFault(), @"User not authorized to access this creature");
+            }
         }
         #endregion
 
@@ -1125,11 +1218,15 @@ namespace Uzi.Ikosa.Services
                 finally
                 {
                     if (Synchronizer.IsReadLockHeld)
+                    {
                         Synchronizer.ExitReadLock();
+                    }
                 }
             }
             else
+            {
                 throw new FaultException<SecurityFault>(new SecurityFault(), @"User not authorized to access this creature");
+            }
         }
         #endregion
 
@@ -1172,11 +1269,15 @@ namespace Uzi.Ikosa.Services
                 finally
                 {
                     if (Synchronizer.IsReadLockHeld)
+                    {
                         Synchronizer.ExitReadLock();
+                    }
                 }
             }
             else
+            {
                 throw new FaultException<SecurityFault>(new SecurityFault(), @"User not authorized to access this creature");
+            }
         }
         #endregion
 
@@ -1210,7 +1311,9 @@ namespace Uzi.Ikosa.Services
                                     _pre.MergeFrom(_info);
                                 }
                                 else
+                                {
                                     throw new FaultException<SecurityFault>(new SecurityFault(), @"User not authorized to access generic prerequisites");
+                                }
                             }
                             else
                             {
@@ -1221,11 +1324,16 @@ namespace Uzi.Ikosa.Services
                                     _pre.MergeFrom(_info);
                                 }
                                 else
+                                {
                                     throw new FaultException<SecurityFault>(new SecurityFault(), @"User not authorized to access this creature");
+                                }
                             }
 
                             // Do step's activity, or get more prerequisites (or possible start a new step)
-                            while (ProcessManager.DoProcess()) ;
+                            while (ProcessManager.DoProcess())
+                            {
+                                ;
+                            }
                         }
                     }
 
@@ -1284,7 +1392,9 @@ namespace Uzi.Ikosa.Services
                 }
             }
             else
+            {
                 throw new FaultException<SecurityFault>(new SecurityFault(), @"User not authorized to access this creature");
+            }
         }
         #endregion
 
@@ -1345,7 +1455,9 @@ namespace Uzi.Ikosa.Services
                 }
             }
             else
+            {
                 throw new FaultException<SecurityFault>(new SecurityFault(), @"User not authorized to access this creature");
+            }
         }
         #endregion
 
@@ -1379,7 +1491,9 @@ namespace Uzi.Ikosa.Services
                 }
             }
             else
+            {
                 throw new FaultException<SecurityFault>(new SecurityFault(), @"User not authorized to access this creature");
+            }
         }
         #endregion
 
@@ -1406,7 +1520,9 @@ namespace Uzi.Ikosa.Services
                 }
             }
             else
+            {
                 throw new FaultException<SecurityFault>(new SecurityFault(), @"User not authorized to force processing");
+            }
         }
         #endregion
 
@@ -1433,7 +1549,9 @@ namespace Uzi.Ikosa.Services
                             {
                                 _critter.SetTake10Duration(_skill.GetType(), duration);
                                 if (duration > 0)
+                                {
                                     return new Take10Info { RemainingRounds = duration };
+                                }
                             }
                         }
                         else if (target is AbilityInfo)
@@ -1443,7 +1561,9 @@ namespace Uzi.Ikosa.Services
                             {
                                 _critter.SetTake10Duration(_ability.GetType(), duration);
                                 if (duration > 0)
+                                {
                                     return new Take10Info { RemainingRounds = duration };
+                                }
                             }
                         }
                     }
@@ -1459,7 +1579,9 @@ namespace Uzi.Ikosa.Services
                 }
             }
             else
+            {
                 throw new FaultException<SecurityFault>(new SecurityFault(), @"User not authorized to access this creature");
+            }
         }
         #endregion
 
@@ -1480,7 +1602,9 @@ namespace Uzi.Ikosa.Services
                     {
                         _critter.SetTake10Duration(typeof(AbilityBase), duration);
                         if (duration > 0)
+                        {
                             return new Take10Info { RemainingRounds = duration };
+                        }
                     }
                     return null;
                 }
@@ -1494,7 +1618,9 @@ namespace Uzi.Ikosa.Services
                 }
             }
             else
+            {
                 throw new FaultException<SecurityFault>(new SecurityFault(), @"User not authorized to access this creature");
+            }
         }
         #endregion
 
@@ -1515,7 +1641,9 @@ namespace Uzi.Ikosa.Services
                     {
                         _critter.SetTake10Duration(typeof(SkillBase), duration);
                         if (duration > 0)
+                        {
                             return new Take10Info { RemainingRounds = duration };
+                        }
                     }
                     return null;
                 }
@@ -1529,7 +1657,9 @@ namespace Uzi.Ikosa.Services
                 }
             }
             else
+            {
                 throw new FaultException<SecurityFault>(new SecurityFault(), @"User not authorized to access this creature");
+            }
         }
         #endregion
 
@@ -1554,7 +1684,7 @@ namespace Uzi.Ikosa.Services
                             ? GetIdentityData.GetIdentities(_critter.Possessions[_objID], _critter)
                             : (_critter.ObjectLoad.Contains(_objID) || (_critter.Awarenesses.GetAwarenessLevel(_objID) > AwarenessLevel.UnAware))
                             ? GetIdentityData.GetIdentities(InteractProvider.GetIInteract(_objID) as ICoreObject, _critter)
-                            : new List<Identity>();
+                            : [];
                         foreach (var _identity in _idents)
                         {
                             // is this the one being set?
@@ -1588,7 +1718,9 @@ namespace Uzi.Ikosa.Services
                 }
             }
             else
+            {
                 throw new FaultException<SecurityFault>(new SecurityFault(), @"User not authorized to access this creature");
+            }
         }
         #endregion
 
@@ -1657,7 +1789,9 @@ namespace Uzi.Ikosa.Services
                     finally
                     {
                         if (Synchronizer.IsReadLockHeld)
+                        {
                             Synchronizer.ExitReadLock();
+                        }
                     }
                 }
                 else
@@ -1674,7 +1808,9 @@ namespace Uzi.Ikosa.Services
                     finally
                     {
                         if (Synchronizer.IsReadLockHeld)
+                        {
                             Synchronizer.ExitReadLock();
+                        }
                     }
                 }
             }
@@ -1697,7 +1833,9 @@ namespace Uzi.Ikosa.Services
             finally
             {
                 if (Synchronizer.IsReadLockHeld)
+                {
                     Synchronizer.ExitReadLock();
+                }
             }
         }
         #endregion
@@ -1716,12 +1854,14 @@ namespace Uzi.Ikosa.Services
                             select _feat.ToAdvancementOptionInfo())
                             .ToList();
                 }
-                return new List<AdvancementOptionInfo>();
+                return [];
             }
             finally
             {
                 if (Synchronizer.IsReadLockHeld)
+                {
                     Synchronizer.ExitReadLock();
+                }
             }
         }
         #endregion
@@ -1753,12 +1893,14 @@ namespace Uzi.Ikosa.Services
                                 EffectiveValue = _pdSkill.EffectiveValue
                             }).ToList();
                 }
-                return new List<SkillInfo>();
+                return [];
             }
             finally
             {
                 if (Synchronizer.IsReadLockHeld)
+                {
                     Synchronizer.ExitReadLock();
+                }
             }
         }
         #endregion
@@ -1779,7 +1921,9 @@ namespace Uzi.Ikosa.Services
             finally
             {
                 if (Synchronizer.IsReadLockHeld)
+                {
                     Synchronizer.ExitReadLock();
+                }
             }
         }
         #endregion
@@ -1889,7 +2033,9 @@ namespace Uzi.Ikosa.Services
 
                 // if lock succeeds, no more advancement capacity
                 if (_critter.AdvancementLog.LockNext())
+                {
                     _critter.Adjuncts.EjectAll<AdvancementCapacity>();
+                }
 
                 return _critter?.ToAdvanceableCreature();
             }

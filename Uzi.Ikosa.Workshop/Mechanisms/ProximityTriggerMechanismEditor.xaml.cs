@@ -68,7 +68,9 @@ namespace Uzi.Ikosa.Workshop
             set
             {
                 if (ProximityTriggerMechanism != null)
+                {
                     ProximityTriggerMechanism.MinimumSize = value.Order;
+                }
             }
         }
 

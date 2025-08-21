@@ -38,11 +38,16 @@ namespace Uzi.Ikosa.Objects
             {
                 // NOTE: use key will attempt to lock/unlock
                 if (_budget?.CanPerformTotal ?? false)
+                {
                     yield return new PickLockAction(this, @"102");
+                }
             }
 
             foreach (var _act in BaseMechanismActions(budget))
+            {
                 yield return _act;
+            }
+
             yield break;
         }
 
@@ -51,14 +56,20 @@ namespace Uzi.Ikosa.Objects
         public void AddKey(Guid key)
         {
             if (!_Keys.Contains(key))
+            {
                 _Keys.Add(key);
+            }
+
             DoPropertyChanged(nameof(Keys));
         }
 
         public void RemoveKey(Guid key)
         {
             if (_Keys.Contains(key))
+            {
                 _Keys.Remove(key);
+            }
+
             DoPropertyChanged(nameof(Keys));
         }
 
@@ -67,11 +78,16 @@ namespace Uzi.Ikosa.Objects
             get
             {
                 if (this.GetLocated().Locator.Map is LocalMap _map)
+                {
                     foreach (var _k in Keys)
                     {
                         if (_map.NamedKeyGuids.ContainsKey(_k))
+                        {
                             yield return new KeyValuePair<Guid, string>(_k, _map.NamedKeyGuids[_k]);
+                        }
                     }
+                }
+
                 yield break;
             }
         }

@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using Uzi.Visualize;
-using System.Windows;
 using System.Windows.Media.Media3D;
 using Uzi.Visualize.Contracts.Tactical;
 
@@ -14,7 +10,7 @@ namespace Uzi.Visualize
         #region ctor()
         public ModelPresentation()
         {
-            _TransformInfos = new List<Transform3DInfo>();
+            _TransformInfos = [];
             _Twist = 0d;
             _Pivot = 0d;
             _Tilt = 0d;
@@ -22,7 +18,7 @@ namespace Uzi.Visualize
             _TiltElevation = 0d;
             _Key = null;
             _Origin = false;
-            _Adornments = new List<ModelAdornment>();
+            _Adornments = [];
         }
         #endregion
 

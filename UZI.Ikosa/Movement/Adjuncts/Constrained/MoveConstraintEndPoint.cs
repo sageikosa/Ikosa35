@@ -55,7 +55,10 @@ namespace Uzi.Ikosa.Movement.Adjuncts
         public bool LinkBefore(Type interactType, IInteractHandler existingHandler)
         {
             if (interactType == typeof(PreRelocateData))
+            {
                 return true;
+            }
+
             return false;
         }
     }

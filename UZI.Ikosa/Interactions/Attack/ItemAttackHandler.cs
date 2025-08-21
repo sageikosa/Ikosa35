@@ -46,7 +46,9 @@ namespace Uzi.Ikosa.Interactions
                         var _srcDelta = new SoftQualifiedDelta(_atkSource.AttackBonus);
                         _atk.AttackScore.Deltas.Add(_srcDelta);
                         if (_atk.CriticalThreat && (_atk.CriticalConfirmation != null))
+                        {
                             _atk.CriticalConfirmation.Deltas.Add(_srcDelta);
+                        }
                     }
 
                     _ar.AttendeeAdjustments(workSet.Source as IAttackSource, _atk);

@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using Uzi.Visualize.Contracts.Tactical;
 
 namespace Uzi.Visualize
@@ -10,7 +7,7 @@ namespace Uzi.Visualize
     {
         public IconPresentation()
         {
-            _refs = new List<IconReferenceInfo>();
+            _refs = [];
         }
 
         #region state

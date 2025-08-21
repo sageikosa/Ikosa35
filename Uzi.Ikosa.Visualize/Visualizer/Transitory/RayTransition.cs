@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Windows.Media.Media3D;
 using System.Windows.Media.Animation;
 using HelixToolkit.Wpf;
-using System.Windows;
 using Uzi.Visualize.Contracts;
 
 namespace Uzi.Visualize

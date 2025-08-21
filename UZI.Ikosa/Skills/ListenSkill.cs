@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using Uzi.Core;
 using Uzi.Core.Contracts;
@@ -29,7 +29,10 @@ namespace Uzi.Ikosa.Skills
                 }
             }
             foreach (var _del in base.QualifiedDeltas(qualify, baseSource, baseName))
+            {
                 yield return _del;
+            }
+
             yield break;
         }
     }

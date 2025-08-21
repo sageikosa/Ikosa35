@@ -34,11 +34,11 @@ namespace Uzi.Ikosa.Creatures.Types
 
         static Wolf()
         {
-            _SizeRanges = new List<SizeRange>
-            {
+            _SizeRanges =
+            [
                 new SizeRange(1, 3, Size.Medium, 1),
                 new SizeRange(4, 6, Size.Large, 1)
-            };
+            ];
         }
         #endregion
 
@@ -143,7 +143,10 @@ namespace Uzi.Ikosa.Creatures.Types
         protected override string GenerateAbilityBoostMnemonic(int powerDieLevel)
         {
             if (powerDieLevel == 4)
+            {
                 return Abilities.MnemonicCode.Str;
+            }
+
             return null;
         }
         #endregion

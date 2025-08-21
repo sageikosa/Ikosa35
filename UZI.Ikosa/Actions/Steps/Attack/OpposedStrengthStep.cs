@@ -52,7 +52,9 @@ namespace Uzi.Ikosa.Actions.Steps
         protected override bool OnDoStep()
         {
             if (IsComplete)
+            {
                 return true;
+            }
 
             var _actRoll = AllPrerequisites<RollPrerequisite>(@"Strength.Actor").FirstOrDefault();
             var _actScore = _actRoll.RollValue + Actor.Abilities.Strength.QualifiedDeltas(_actRoll.Qualification).Sum(_d => _d.Value);
@@ -66,14 +68,20 @@ namespace Uzi.Ikosa.Actions.Steps
                 {
                     // actor wins
                     if (_ActorWins != null)
+                    {
                         AppendFollowing(_ActorWins);
+                    }
+
                     return true;
                 }
                 else if (_oppScore > _actScore)
                 {
                     // opposer wins (abort activity)
                     if (_OpposerWins != null)
+                    {
                         AppendFollowing(_OpposerWins);
+                    }
+
                     return true;
                 }
                 else

@@ -16,7 +16,10 @@ namespace Uzi.Ikosa.Magic.Spells
             var _dice = new DiceRange(@"Cure", DisplayName, new DiceRoller(4, 8), 20, new ConstantRoller(1), 1);
             yield return new EnergyDamageRule(@"Cure.Positive", _dice, @"Cure Critical", EnergyType.Positive);
             if (isCriticalHit)
+            {
                 yield return new EnergyDamageRule(@"Cure.Positive.Critical", _dice, @"Cure Critical (Critical)", EnergyType.Positive);
+            }
+
             yield break;
         }
     }

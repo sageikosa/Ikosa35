@@ -16,7 +16,7 @@ namespace Uzi.Core
         {
             _Name = name;
             _ContextSet = contextSet;
-            _Tokens = new List<CoreToken>();
+            _Tokens = [];
         }
         #endregion
 

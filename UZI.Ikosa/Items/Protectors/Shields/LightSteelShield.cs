@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using Uzi.Core;
@@ -113,7 +113,9 @@ namespace Uzi.Ikosa.Items.Shields
             if (action is ISupplyAttackAction _atk)
             {
                 if (_atk.Attack.Weapon == _FreeHand.SlottedItem)
+                {
                     return true;
+                }
 
                 // projectile, needing two hands
                 if ((_atk.Attack.Weapon is IProjectileWeapon _projectile)
@@ -125,7 +127,9 @@ namespace Uzi.Ikosa.Items.Shields
                     {
                         // and there are no other empty slots besides this hand
                         if (CreaturePossessor.Body.ItemSlots.GetFreeHand(_FreeHand) == null)
+                        {
                             return true;
+                        }
                     }
                 }
             }
@@ -163,7 +167,9 @@ namespace Uzi.Ikosa.Items.Shields
                 if (_budget.CanPerformRegular)
                 {
                     foreach (var _strike in WeaponStrikes())
+                    {
                         yield return new RegularAttack(_strike);
+                    }
 
                     // probe
                     yield return new Probe(MainHead, new ActionTime(TimeType.Regular), @"901");

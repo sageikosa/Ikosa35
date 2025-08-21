@@ -86,7 +86,10 @@ namespace Uzi.Ikosa.Interactions
         public bool LinkBefore(Type interactType, IInteractHandler existingHandler)
         {
             if (typeof(ObserveHandler).IsAssignableFrom(existingHandler.GetType()))
+            {
                 return true;
+            }
+
             return false;
         }
         #endregion

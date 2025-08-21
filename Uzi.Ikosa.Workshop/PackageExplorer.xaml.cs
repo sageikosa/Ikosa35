@@ -236,9 +236,13 @@ namespace Uzi.Ikosa.Workshop
                         if (_newBackground != null)
                         {
                             if (_index == -1)
+                            {
                                 _map.Backgrounds.AddBase(_newBackground);
+                            }
                             else
+                            {
                                 _map.Backgrounds.AddOverlay(_newBackground, _index);
+                            }
                         }
                     }
                 }
@@ -314,7 +318,9 @@ namespace Uzi.Ikosa.Workshop
                             {
                                 var _iPart = new IconPart(_resourceManager, _fInfo);
                                 if (_iPart.BindableName.EndsWith(@".xaml", StringComparison.OrdinalIgnoreCase))
+                                {
                                     _iPart.BindableName = _iPart.BindableName.Substring(0, _iPart.BindableName.Length - 5);
+                                }
 
                                 // add image part
                                 _resourceManager.AddPart(_iPart);
@@ -1211,7 +1217,7 @@ namespace Uzi.Ikosa.Workshop
         }
         #endregion
 
-        private readonly List<Locale.Preview> _Previews = new List<Locale.Preview>();
+        private readonly List<Locale.Preview> _Previews = [];
 
         private void _preview_Closed(object sender, EventArgs e)
         {
@@ -1308,7 +1314,9 @@ namespace Uzi.Ikosa.Workshop
                 _Package.Close();
                 (Parent as TabControl).Items.Remove(this);
                 foreach (var _preview in _Previews.ToList())
+                {
                     _preview.Close();
+                }
             }
             catch { }
         }
@@ -1498,7 +1506,9 @@ namespace Uzi.Ikosa.Workshop
                             using var _fStream = _fInfo.OpenRead();
                             var _ip = new IconPart(_Package, _fInfo);
                             if (_ip.BindableName.EndsWith(@".xaml", StringComparison.OrdinalIgnoreCase))
+                            {
                                 _ip.BindableName = _ip.BindableName.Substring(0, _ip.BindableName.Length - 5);
+                            }
 
                             // add icon part
                             _Package.Add(_ip);
@@ -1634,7 +1644,10 @@ namespace Uzi.Ikosa.Workshop
                         // add icon part
                         var _iPart = new IconPart(_folder, _fInfo);
                         if (_iPart.BindableName.EndsWith(@".xaml", StringComparison.OrdinalIgnoreCase))
+                        {
                             _iPart.BindableName = _iPart.BindableName.Substring(0, _iPart.BindableName.Length - 5);
+                        }
+
                         _folder.Add(_iPart);
                     }
                 }
@@ -2079,9 +2092,13 @@ namespace Uzi.Ikosa.Workshop
                             var _newImgRef = new ImagesResourceReference(_refMgr, _newRef.ReferenceName, string.Empty, string.Empty, string.Empty);
                             var _index = _refMgr.GetIndex(_imgRef);
                             if (_index < _refMgr.ImageResourceReferenceCount - 1)
+                            {
                                 _refMgr.InsertImageResourceReference(_index + 1, _newImgRef);
+                            }
                             else
+                            {
                                 _refMgr.AddImageResourceReference(_newImgRef);
+                            }
                         }
                     }
                 }
@@ -2160,9 +2177,13 @@ namespace Uzi.Ikosa.Workshop
                             var _newImgRef = new IconsResourceReference(_refMgr, _newRef.ReferenceName, string.Empty, string.Empty, string.Empty);
                             var _index = _refMgr.GetIndex(_imgRef);
                             if (_index < _refMgr.IconResourceReferenceCount - 1)
+                            {
                                 _refMgr.InsertIconResourceReference(_index + 1, _newImgRef);
+                            }
                             else
+                            {
                                 _refMgr.AddIconResourceReference(_newImgRef);
+                            }
                         }
                     }
                 }
@@ -2241,9 +2262,13 @@ namespace Uzi.Ikosa.Workshop
                             var _newMdlRef = new ModelsResourceReference(_refMgr, _newRef.ReferenceName, string.Empty, string.Empty, string.Empty);
                             var _index = _refMgr.GetIndex(_mdlRef);
                             if (_index < _refMgr.ModelResourceReferenceCount - 1)
+                            {
                                 _refMgr.InsertModelResourceReference(_index + 1, _newMdlRef);
+                            }
                             else
+                            {
                                 _refMgr.AddModelResourceReference(_newMdlRef);
+                            }
                         }
                     }
                 }
@@ -2322,9 +2347,13 @@ namespace Uzi.Ikosa.Workshop
                             var _newFragRef = new FragmentsResourceReference(_refMgr, _newRef.ReferenceName, string.Empty, string.Empty, string.Empty);
                             var _index = _refMgr.GetIndex(_fragRef);
                             if (_index < _refMgr.FragmentResourceReferenceCount - 1)
+                            {
                                 _refMgr.InsertFragmentResourceReference(_index + 1, _newFragRef);
+                            }
                             else
+                            {
                                 _refMgr.AddFragmentResourceReference(_newFragRef);
+                            }
                         }
                     }
                 }
@@ -2403,9 +2432,13 @@ namespace Uzi.Ikosa.Workshop
                             var _newBrshRef = new BrushesResourceReference(_refMgr, _newRef.ReferenceName, string.Empty, string.Empty, string.Empty);
                             var _index = _refMgr.GetIndex(_brshRef);
                             if (_index < _refMgr.BrushResourceReferenceCount - 1)
+                            {
                                 _refMgr.InsertBrushResourceReference(_index + 1, _newBrshRef);
+                            }
                             else
+                            {
                                 _refMgr.AddBrushResourceReference(_newBrshRef);
+                            }
                         }
                     }
                 }
@@ -2484,9 +2517,13 @@ namespace Uzi.Ikosa.Workshop
                             var _newBSetRef = new BrushSetsResourceReference(_refMgr, _newRef.ReferenceName, string.Empty, string.Empty, string.Empty);
                             var _index = _refMgr.GetIndex(_bSetRef);
                             if (_index < _refMgr.BrushSetResourceReferenceCount - 1)
+                            {
                                 _refMgr.InsertBrushSetResourceReference(_index + 1, _newBSetRef);
+                            }
                             else
+                            {
                                 _refMgr.AddBrushSetResourceReference(_newBSetRef);
+                            }
                         }
                     }
                 }
@@ -2527,37 +2564,66 @@ namespace Uzi.Ikosa.Workshop
                         // (visual) resources
                         // .../images
                         if (_parts.PartType == typeof(BitmapImagePart))
+                        {
                             return _resource(@"stylePreviewFolder");
+                        }
                         // .../icons
                         if (_parts.PartType == typeof(IconPart))
+                        {
                             return _resource(@"stylePreviewFolder");
+                        }
                         // .../fragments
                         if (_parts.PartType == typeof(PartsFolder))
+                        {
                             return _resource(@"styleNone");
+                        }
                         // .../models
                         if (_parts.PartType == typeof(Model3DPart))
+                        {
                             return _resource(@"styleModelFolder");
+                        }
                         // (visual) resource references
                         if (_parts.PartType == typeof(ImagesResourceReference))
+                        {
                             return _resource(@"styleImagesResourceFolder");
+                        }
+
                         if (_parts.PartType == typeof(IconsResourceReference))
+                        {
                             return _resource(@"styleIconsResourceFolder");
+                        }
+
                         if (_parts.PartType == typeof(ModelsResourceReference))
+                        {
                             return _resource(@"styleModelsResourceFolder");
+                        }
+
                         if (_parts.PartType == typeof(FragmentsResourceReference))
+                        {
                             return _resource(@"styleFragmentsResourceFolder");
+                        }
+
                         if (_parts.PartType == typeof(BrushSetsResourceReference))
+                        {
                             return _resource(@"styleBrushSetsResourceFolder");
+                        }
+
                         if (_parts.PartType == typeof(BrushesResourceReference))
+                        {
                             return _resource(@"styleBrushesResourceFolder");
+                        }
 
                         // cell templating/
                         // .../cell spaces
                         if (_parts.PartType == typeof(CellSpace))
+                        {
                             return _resource(@"styleCellSpaceFolder");
+                        }
                         // .../cell panels
                         if (_parts.PartType == typeof(BasePanel))
+                        {
                             return _resource(@"styleCellPanelFolder");
+                        }
                     }
                     return _resource(@"styleFolder");
 

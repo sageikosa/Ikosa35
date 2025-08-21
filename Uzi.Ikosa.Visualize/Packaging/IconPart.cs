@@ -1,16 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using Uzi.Packaging;
 using System.IO;
 using System.IO.Packaging;
 using System.Windows.Media;
 using System.Windows.Markup;
 using System.Collections.Specialized;
-using System.Windows.Media.Imaging;
 using System.Windows.Media.Media3D;
-using System.Diagnostics;
 using System.Windows.Controls;
 using System.Windows;
 using System.Windows.Shapes;
@@ -94,29 +91,24 @@ namespace Uzi.Visualize.Packaging
             switch (detailLevel)
             {
                 case IconDetailLevel.Lowest:
-                    if (_Lowest == null)
-                        _Lowest = _makeDictionary(2d);
+                    _Lowest ??= _makeDictionary(2d);
                     return _Lowest;
 
                 case IconDetailLevel.Low:
-                    if (_Low == null)
-                        _Low = _makeDictionary(1.5d);
+                    _Low ??= _makeDictionary(1.5d);
                     return _Low;
 
                 case IconDetailLevel.High:
-                    if (_High == null)
-                        _High = _makeDictionary(0.5d);
+                    _High ??= _makeDictionary(0.5d);
                     return _High;
 
                 case IconDetailLevel.Highest:
-                    if (_Highest == null)
-                        _Highest = _makeDictionary(0.25d);
+                    _Highest ??= _makeDictionary(0.25d);
                     return _Highest;
 
                 case IconDetailLevel.Normal:
                 default:
-                    if (_Normal == null)
-                        _Normal = _makeDictionary(1d);
+                    _Normal ??= _makeDictionary(1d);
                     return _Normal;
             }
         }
@@ -125,11 +117,18 @@ namespace Uzi.Visualize.Packaging
         private Stream StorageStream()
         {
             if (Part != null)
+            {
                 return Part.GetStream(FileMode.Open, FileAccess.Read);
+            }
             else if (_FileInfo != null)
+            {
                 return _FileInfo.OpenRead();
+            }
             else if (_Info != null)
+            {
                 return new MemoryStream(_Info.Bytes);
+            }
+
             return null;
         }
 
@@ -168,11 +167,11 @@ namespace Uzi.Visualize.Packaging
         {
             var _transform = new TransformGroup()
             {
-                Children = new TransformCollection
-                {
+                Children =
+                [
                     new RotateTransform(iconRef.IconAngle),
                     new ScaleTransform(iconRef.IconScale, iconRef.IconScale)
-                }
+                ]
             };
             _transform.Freeze();
             var _control = new ContentControl

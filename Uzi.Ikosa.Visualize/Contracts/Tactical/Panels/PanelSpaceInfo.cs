@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Linq;
 using System.Runtime.Serialization;
 
 namespace Uzi.Visualize.Contracts.Tactical
@@ -24,11 +21,30 @@ namespace Uzi.Visualize.Contracts.Tactical
             Corners = panelSpace.CornerMap.Select(_cp => _cp != null ? new CornerPanelInfo(_cp) : null).ToArray();
             LFrames = panelSpace.LFrameMap.Select(_lf => _lf != null ? new LFramePanelInfo(_lf) : null).ToArray();
             Slopes = panelSpace.SlopeCompositeMap.Select(_sc => _sc != null ? new SlopeCompositeInfo(_sc) : null).ToArray();
-            if (panelSpace.DiagonalPanel != null) Diagonal = new DiagonalCompositeInfo(panelSpace.DiagonalPanel);
-            if (panelSpace.Fill0Panel != null) Fill0 = new MaterialFillInfo(panelSpace.Fill0Panel);
-            if (panelSpace.Fill1Panel != null) Fill1 = new MaterialFillInfo(panelSpace.Fill1Panel);
-            if (panelSpace.Fill2Panel != null) Fill2 = new MaterialFillInfo(panelSpace.Fill2Panel);
-            if (panelSpace.Fill3Panel != null) Fill3 = new MaterialFillInfo(panelSpace.Fill3Panel);
+            if (panelSpace.DiagonalPanel != null)
+            {
+                Diagonal = new DiagonalCompositeInfo(panelSpace.DiagonalPanel);
+            }
+
+            if (panelSpace.Fill0Panel != null)
+            {
+                Fill0 = new MaterialFillInfo(panelSpace.Fill0Panel);
+            }
+
+            if (panelSpace.Fill1Panel != null)
+            {
+                Fill1 = new MaterialFillInfo(panelSpace.Fill1Panel);
+            }
+
+            if (panelSpace.Fill2Panel != null)
+            {
+                Fill2 = new MaterialFillInfo(panelSpace.Fill2Panel);
+            }
+
+            if (panelSpace.Fill3Panel != null)
+            {
+                Fill3 = new MaterialFillInfo(panelSpace.Fill3Panel);
+            }
         }
         #endregion
 

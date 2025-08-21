@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using Uzi.Core;
@@ -40,7 +40,9 @@ namespace Uzi.Ikosa.Items
                 {
                     yield return _MainSlot.LinkDock;
                     if (_SecondarySlot.LinkDock != null)
+                    {
                         yield return _SecondarySlot.LinkDock;
+                    }
                 }
                 yield break;
             }
@@ -51,11 +53,15 @@ namespace Uzi.Ikosa.Items
         {
             // action provider?
             if ((this is IActionProvider) && !CreaturePossessor.Actions.Providers.ContainsKey(this))
+            {
                 CreaturePossessor.Actions.Providers.Add(this, (IActionProvider)this);
+            }
 
             // action filters
             if ((this is IActionFilter) && !CreaturePossessor.Actions.Filters.ContainsKey(this))
+            {
                 CreaturePossessor.Actions.Filters.Add(this, (IActionFilter)this);
+            }
 
             _SetCtrl.DoValueChanged(SlotChange.Set);
             AddAdjunct(new Slotted(MainSlot));
@@ -66,9 +72,14 @@ namespace Uzi.Ikosa.Items
         protected void DoSlotCleared(ItemSlot slotA)
         {
             if ((this is IActionProvider) && CreaturePossessor.Actions.Providers.ContainsKey(this))
+            {
                 CreaturePossessor.Actions.Providers.Remove(this);
+            }
+
             if ((this is IActionFilter) && CreaturePossessor.Actions.Filters.ContainsKey(this))
+            {
                 CreaturePossessor.Actions.Filters.Remove(this);
+            }
 
             foreach (var _slotted in Adjuncts.OfType<Slotted>().Where(_s => _s.ItemSlot == slotA).ToList())
             {
@@ -106,7 +117,9 @@ namespace Uzi.Ikosa.Items
             if (slot != null)
             {
                 if ((Possessor == slot.Creature) && (slot.SlotType.Equals(SlotType)))
+                {
                     return FinalSlotCheck(slot);
+                }
             }
             return false;
         }

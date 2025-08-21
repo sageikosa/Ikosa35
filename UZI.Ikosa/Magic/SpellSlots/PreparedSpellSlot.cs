@@ -34,7 +34,10 @@ namespace Uzi.Ikosa.Magic
         {
             var _info = ToInfo<PreparedSpellSlotInfo>(slotIndex, currentTime);
             if (PreparedSpell != null)
+            {
                 _info.SpellSource = PreparedSpell.ToSpellSourceInfo();
+            }
+
             return _info;
         }
     }

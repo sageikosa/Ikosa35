@@ -67,9 +67,14 @@ namespace Uzi.Core
             if (rangeCheck)
             {
                 if (_targets.Count() < MinimumAimingModes.EffectiveRange(actor, _classLevel))
+                {
                     throw new ArgumentOutOfRangeException(@"Too few targets of correct type with correct key", Key);
+                }
+
                 if (_targets.Count() > MaximumAimingModes.EffectiveRange(actor, _classLevel))
+                {
                     throw new ArgumentOutOfRangeException(@"Too many targets of correct type with correct key", Key);
+                }
             }
             return _targets;
         }

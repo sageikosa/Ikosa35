@@ -3,11 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using Uzi.Packaging;
 using System.IO.Packaging;
-using System.Windows.Media.Imaging;
 using System.Windows.Media.Media3D;
 using System.IO;
 using System.Windows.Markup;
-using System.Threading;
 
 namespace Uzi.Visualize.Packaging
 {
@@ -26,7 +24,7 @@ namespace Uzi.Visualize.Packaging
         public MetaModel(ICorePartNameManager manager, FileInfo modelFile)
             : base(manager, modelFile)
         {
-            _Fragments = new Dictionary<string, MetaModelFragment>();
+            _Fragments = [];
             _State = new MetaModelState();
             _FragParent = this.GetIResolveFragment();
             _MatParent = this.GetIResolveMaterial();
@@ -35,9 +33,11 @@ namespace Uzi.Visualize.Packaging
         public MetaModel(ICorePartNameManager manager, MetaModel source, string name)
             : base(manager, source, name)
         {
-            _Fragments = new Dictionary<string, MetaModelFragment>();
+            _Fragments = [];
             foreach (var _frag in _Fragments)
+            {
                 AddFragment(new MetaModelFragment(this, _frag.Value, _frag.Key));
+            }
 
             _FragParent = this.GetIResolveFragment();
             _MatParent = this.GetIResolveMaterial();
@@ -48,7 +48,7 @@ namespace Uzi.Visualize.Packaging
         public MetaModel(ICorePartNameManager manager, PackagePart part, string id)
             : base(manager, part, id)
         {
-            _Fragments = new Dictionary<string, MetaModelFragment>();
+            _Fragments = [];
 
             foreach (var _fRef in MetaModelFragment.GetMetaModelFragmentResources(this, Part))
             {
@@ -77,8 +77,7 @@ namespace Uzi.Visualize.Packaging
                     }
                 }
             }
-            if (_State == null)
-                _State = new MetaModelState();
+            _State ??= new MetaModelState();
         }
         #endregion
 
@@ -97,8 +96,7 @@ namespace Uzi.Visualize.Packaging
         {
             if (CanUseName(fragment.Name, typeof(MetaModelFragment)))
             {
-                if (_Fragments == null)
-                    _Fragments = new Dictionary<string, MetaModelFragment>();
+                _Fragments ??= [];
                 _Fragments.Add(fragment.Name, fragment);
                 fragment.NameManager = this;
                 // TODO: add fragment parameter expectations
@@ -140,7 +138,9 @@ namespace Uzi.Visualize.Packaging
                 var (_, _model) = _ModelCache
                     .FirstOrDefault(_ce => _ce.selector.Equals(_selector));
                 if (_model != null)
+                {
                     return _model;
+                }
             }
             else
             {
@@ -153,14 +153,14 @@ namespace Uzi.Visualize.Packaging
                 MetaModelResolutionStack.Push(State.RootFragment);
 
                 // start tracking visualEffectMaterial and FragmentReference nodes
-                _VEMKeys = new SortedSet<string>();
+                _VEMKeys = [];
 
                 State.RootFragment.AttachReferenceTrackers();
                 if (_SETypes == null)
                 {
                     // referenced sense extensions
-                    _SETypes = new List<Type>();
-                    SenseEffectExtension.ReferencedEffect = (type) => { if (!_SETypes.Contains(type)) _SETypes.Add(type); };
+                    _SETypes = [];
+                    SenseEffectExtension.ReferencedEffect = (type) => { if (!_SETypes.Contains(type)) { _SETypes.Add(type); } };
                 }
 
                 // NOTE: different and additional resolution of references
@@ -185,17 +185,26 @@ namespace Uzi.Visualize.Packaging
                 // default brush sync
                 var _defBrushes = State.RootFragment.GatherDefaultBrushNames().Distinct().OrderBy(_s => _s);
                 foreach (var _brush in State.DefaultBrushes.Where(_b => !_defBrushes.Contains(_b.ReferenceKey)).ToList())
+                {
                     State.DefaultBrushes.Remove(_brush);
+                }
+
                 foreach (var _newBrush in _defBrushes.Where(_b => !State.DefaultBrushes.Any(_db => _db.ReferenceKey == _b)))
+                {
                     State.DefaultBrushes.Add(new BrushCrossRefNode { ReferenceKey = _newBrush });
+                }
 
                 // default IntRefs sync
                 var _intRefs = State.RootFragment.GatherMasterIntReferences();
                 foreach (var _iRef in State.MasterIntReferences
                     .Where(_mir => !_intRefs.Any(_ir => _mir.Key == _ir.Key)).ToList())
+                {
                     State.MasterIntReferences.Remove(_iRef);
+                }
+
                 foreach (var _newIRef in _intRefs
                     .Where(_ir => !State.MasterIntReferences.Any(_mir => _mir.Key == _ir.Key)).ToList())
+                {
                     State.MasterIntReferences.Add(new IntReference
                     {
                         Key = _newIRef.Key,
@@ -205,14 +214,19 @@ namespace Uzi.Visualize.Packaging
                         MinValue = _newIRef.MinValue,
                         MaxValue = _newIRef.MaxValue
                     });
+                }
 
                 // default DoubleRefs sync
                 var _dblRefs = State.RootFragment.GatherMasterDoubleReferences();
                 foreach (var _dRef in State.MasterDoubleReferences
                     .Where(_mdr => !_dblRefs.Any(_dr => _mdr.Key == _dr.Key)).ToList())
+                {
                     State.MasterDoubleReferences.Remove(_dRef);
+                }
+
                 foreach (var _newDRef in _dblRefs
                     .Where(_dr => !State.MasterDoubleReferences.Any(_mdr => _mdr.Key == _dr.Key)).ToList())
+                {
                     State.MasterDoubleReferences.Add(new DoubleReference
                     {
                         Key = _newDRef.Key,
@@ -222,6 +236,7 @@ namespace Uzi.Visualize.Packaging
                         MinValue = _newDRef.MinValue,
                         MaxValue = _newDRef.MaxValue
                     });
+                }
 
                 // cleanup thread tracking
                 VisualEffectMaterial.ReferencedKey = null;
@@ -306,9 +321,13 @@ namespace Uzi.Visualize.Packaging
                 foreach (var _fRef in MetaModelFragment.GetMetaModelFragmentResources(this, Part))
                 {
                     if (_Fragments.ContainsKey(_fRef.Name))
+                    {
                         _Fragments[_fRef.Name].RefreshPart(_fRef.Part);
+                    }
                     else
+                    {
                         _Fragments.Add(_fRef.Name, _fRef);
+                    }
                 }
             }
         }
@@ -320,7 +339,10 @@ namespace Uzi.Visualize.Packaging
         {
             var _name = name.ToSafeString();
             if (partType == typeof(MetaModelFragment))
+            {
                 return ((_Fragments != null) && !_Fragments.ContainsKey(_name));
+            }
+
             return base.CanUseName(name, partType);
         }
 
@@ -368,12 +390,16 @@ namespace Uzi.Visualize.Packaging
                     // try to resolve the material from private set
                     var _material = Brushes.GetMaterial(_brushNode.BrushKey, effect);
                     if (_material != null)
+                    {
                         return _material;
+                    }
 
                     // use the resolver, only if the brush key wouldn't circle back to reference key resolution
                     if (!_current.Brushes.Any(_b => _b.ReferenceKey == _brushNode.BrushKey)
                         && !State.DefaultBrushes.Any(_b => _b.ReferenceKey == _brushNode.BrushKey))
+                    {
                         return VisualEffectMaterial.ResolveMaterial(_brushNode.BrushKey, effect);
+                    }
                 }
             }
 
@@ -385,11 +411,15 @@ namespace Uzi.Visualize.Packaging
                 // try to resolve the material from private set
                 var _material = Brushes.GetMaterial(_defBrush.BrushKey, effect);
                 if (_material != null)
+                {
                     return _material;
+                }
 
                 // use the resolver, only if the brush key wouldn't circle back to reference key resolution
                 if (!State.DefaultBrushes.Any(_b => _b.ReferenceKey == _defBrush.BrushKey))
+                {
                     return VisualEffectMaterial.ResolveMaterial(_defBrush.BrushKey, effect);
+                }
             }
 
             // no mapping defined
@@ -410,11 +440,13 @@ namespace Uzi.Visualize.Packaging
                 });
 
                 if (_MatParent != null)
+                {
                     _brsh = _brsh.Union(_MatParent.ResolvableBrushes.Select(_pb => new BrushDefinitionListItem
                     {
                         BrushDefinition = _pb.BrushDefinition,
                         IsLocal = false
                     }));
+                }
 
                 // done
                 return _brsh;
@@ -436,14 +468,21 @@ namespace Uzi.Visualize.Packaging
 
                 // collect and end resolve of fragment
                 if (_mdl != null)
+                {
                     _group.Children.Add(fragRef.ApplyTransforms(node, _mdl));
+                }
             }
 
             // return smallest possible grouping
             if (_group.Children.Count == 1)
+            {
                 return _group.Children.First();
+            }
             else if (_group.Children.Any())
+            {
                 return _group;
+            }
+
             return null;
         }
 
@@ -460,12 +499,15 @@ namespace Uzi.Visualize.Packaging
                     IsLocal = true
                 });
                 if (IResolveFragmentParent != null)
+                {
                     _resolvable = _resolvable.Union(IResolveFragmentParent.ResolvableFragments
                         .Select(_f => new MetaModelFragmentListItem
                         {
                             IsLocal = false,
                             MetaModelFragment = _f.MetaModelFragment
                         }));
+                }
+
                 return _resolvable;
             }
         }

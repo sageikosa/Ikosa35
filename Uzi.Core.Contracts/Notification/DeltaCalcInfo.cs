@@ -34,7 +34,10 @@ namespace Uzi.Core.Contracts
         public void AddDelta(string name, int value)
         {
             if (Deltas == null)
+            {
                 Deltas = new List<DeltaInfo>();
+            }
+
             Deltas.Add(new DeltaInfo { Name = name, Value = value });
         }
 
@@ -42,7 +45,10 @@ namespace Uzi.Core.Contracts
         public void AddDelta(DeltaInfo delta)
         {
             if (Deltas == null)
+            {
                 Deltas = new List<DeltaInfo>();
+            }
+
             Deltas.Add(delta);
         }
 
@@ -54,10 +60,13 @@ namespace Uzi.Core.Contracts
                 Result = Result
             };
             if (Deltas != null)
+            {
                 foreach (var _d in Deltas)
                 {
                     _info.AddDelta(_d);
                 }
+            }
+
             return _info;
         }
     }

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Media3D;
@@ -42,7 +38,9 @@ namespace Uzi.Visualize
             if ((bump?.Length ?? 0) > 0)
             {
                 foreach (var _b in bump)
+                {
                     _offset += _b;
+                }
             }
 
             void _addPoint(Point3D pt)
@@ -124,7 +122,9 @@ namespace Uzi.Visualize
             if ((bump?.Length ?? 0) > 0)
             {
                 foreach (var _b in bump)
+                {
                     _offset += _b;
+                }
             }
 
             // setup
@@ -166,9 +166,15 @@ namespace Uzi.Visualize
             // transformation (location, rotation, etc...)
             var _transform = new Transform3DGroup();
             if (rotate != 0d)
+            {
                 _transform.Children.Add(new RotateTransform3D(new AxisAngleRotation3D(new Vector3D(0, 0, 1), rotate), rotatePoint));
+            }
+
             if (fixup != null)
+            {
                 _transform.Children.Add(fixup);
+            }
+
             _transform.Children.Add(face.Transform());
             _transform.Children.Add(new TranslateTransform3D(location.Vector3D()));
 
@@ -181,11 +187,15 @@ namespace Uzi.Visualize
 
             // points and meta-data copy
             for (var _px = 0; _px < mesh.Positions.Count; _px++)
+            {
                 _addPoint(mesh.Positions[_px], mesh.Normals[_px], mesh.TextureCoordinates[_px]);
+            }
 
             // triangle copy
             foreach (var _ti in mesh.TriangleIndices)
+            {
                 _TriIndexes.Add(_ti + _start);
+            }
         }
         #endregion
 
@@ -197,7 +207,9 @@ namespace Uzi.Visualize
             if ((bump?.Length ?? 0) > 0)
             {
                 foreach (var _b in bump)
+                {
                     _offset += _b;
+                }
             }
 
             // setup
@@ -263,7 +275,9 @@ namespace Uzi.Visualize
             if ((bump?.Length ?? 0) > 0)
             {
                 foreach (var _t in bump)
+                {
                     _delta = _delta + _t;
+                }
             }
             var _offset = _delta - (new Point3D());
 

@@ -95,7 +95,10 @@ namespace Uzi.Ikosa.Magic.Spells
             var _dazed = new Condition(Condition.Dazed, source);
             _critter.Conditions.Add(_dazed);
             if (_critter.Conditions.Contains(_dazed))
+            {
                 _critter.Actions.Filters.Add(_dazed, (IActionFilter)this);
+            }
+
             return _dazed;
         }
 

@@ -116,7 +116,9 @@ namespace Uzi.Ikosa.Time
 
                                 // break if total fill exceeded, or level fill exceeded
                                 if ((_sx >= _maxFill) || (_lx >= _maxLevelFill))
+                                {
                                     break;
+                                }
                             }
 
                             // clear target level if empty
@@ -127,7 +129,9 @@ namespace Uzi.Ikosa.Time
 
                             // break if total fill exceeded
                             if (_sx >= _maxFill)
+                            {
                                 break;
+                            }
                         }
 
                         // clear target level if empty
@@ -138,7 +142,9 @@ namespace Uzi.Ikosa.Time
 
                         // break if total fill exceeded
                         if (_sx >= _maxFill)
+                        {
                             break;
+                        }
                     }
                 }
 

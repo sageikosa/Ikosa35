@@ -183,11 +183,15 @@ namespace Uzi.Ikosa.Movement
 
             // flip diagonal flag
             if (diagonal)
+            {
                 _DiagFlag = !_DiagFlag;
+            }
 
             // tapped into reserves, let the movement know it
             if (_reserves)
+            {
                 moveAct.Movement.OnSecondIncrementOfTotal(moveAct);
+            }
         }
         #endregion
 

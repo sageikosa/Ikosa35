@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using Uzi.Ikosa.Items.Weapons;
 using Uzi.Ikosa.Advancement;
 using Uzi.Core;
@@ -29,7 +29,9 @@ namespace Uzi.Ikosa.Feats
         public override bool MeetsPreRequisite(Creature creature)
         {
             if (IgnorePreRequisite)
+            {
                 return true;
+            }
 
             return (creature.Proficiencies.IsProficientWith<Wpn>(PowerLevel))
                 && base.MeetsPreRequisite(creature);
@@ -53,7 +55,10 @@ namespace Uzi.Ikosa.Feats
         {
             if ((qualify.Source is IWeaponHead _head)
                 && typeof(Wpn).IsAssignableFrom(_head.ContainingWeapon.GetType()))
+            {
                 yield return _Delta;
+            }
+
             yield break;
         }
         #endregion

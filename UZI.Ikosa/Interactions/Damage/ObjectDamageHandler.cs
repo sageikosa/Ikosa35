@@ -57,7 +57,9 @@ namespace Uzi.Ikosa.Interactions
 
                 _neDmg -= _effectiveHardness(null);
                 if (_neDmg > 0)
+                {
                     _structure.StructurePoints -= _neDmg;
+                }
 
                 // handle all energies
                 foreach (var _energy in _damage.GetEnergyTypes())
@@ -65,7 +67,9 @@ namespace Uzi.Ikosa.Interactions
                     // effective energy damage less effective energy hardness
                     var _eDmg = _energyDamage(_energy, _damage.GetEnergy(_energy)) - _effectiveHardness(_energy);
                     if (_eDmg > 0)
+                    {
                         _structure.StructurePoints -= _eDmg;
+                    }
                 }
 
                 workSet.Feedback.Add(new UnderstoodFeedback(this));
@@ -76,7 +80,10 @@ namespace Uzi.Ikosa.Interactions
         {
             // this should be before the standard creature damage handler (if added for a creature)
             if (existingHandler is CreatureDamageHandler)
+            {
                 return true;
+            }
+
             return false;
         }
     }

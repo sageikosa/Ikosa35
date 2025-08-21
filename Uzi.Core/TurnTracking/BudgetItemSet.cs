@@ -9,7 +9,7 @@ namespace Uzi.Core
     {
         public BudgetItemSet(CoreActionBudget budget)
         {
-            _Items = new Dictionary<object, IBudgetItem>();
+            _Items = [];
             _Budget = budget;
         }
 
@@ -52,7 +52,10 @@ namespace Uzi.Core
         public IEnumerator<KeyValuePair<object, IBudgetItem>> GetEnumerator()
         {
             foreach (var _i in _Items)
+            {
                 yield return _i;
+            }
+
             yield break;
         }
 
@@ -63,7 +66,10 @@ namespace Uzi.Core
         System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
         {
             foreach (var _i in _Items)
+            {
                 yield return _i;
+            }
+
             yield break;
         }
 

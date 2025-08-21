@@ -55,12 +55,16 @@ namespace Uzi.Ikosa.Workshop
             if (cboCorner.SelectedItem != null)
             {
                 foreach (var _f in PanelCellSpace.AllFaces)
+                {
                     _panel.Corners[_f] = cboCorner.SelectedItem as CornerPanel;
+                }
             }
             if (cboLFrame.SelectedItem != null)
             {
                 foreach (var _f in PanelCellSpace.AllFaces)
+                {
                     _panel.LFrames[_f] = cboLFrame.SelectedItem as LFramePanel;
+                }
             }
             return _panel;
         }

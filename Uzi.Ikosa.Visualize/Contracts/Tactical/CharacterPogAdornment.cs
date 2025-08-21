@@ -1,10 +1,5 @@
 ﻿using HelixToolkit.Wpf;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Media3D;
@@ -102,23 +97,35 @@ namespace Uzi.Visualize.Contracts.Tactical
             if (IsSelf)
             {
                 if (!HasInitiative)
+                {
                     group.Children.Add(_Pogs[2].Clone());
+                }
                 else
+                {
                     group.Children.Add(_Pogs[3].Clone());
+                }
             }
             else if (IsTeam)
             {
                 if (!HasInitiative)
+                {
                     group.Children.Add(_Pogs[0].Clone());
+                }
                 else
+                {
                     group.Children.Add(_Pogs[1].Clone());
+                }
             }
             else
             {
                 if (!HasInitiative)
+                {
                     group.Children.Add(_Pogs[4].Clone());
+                }
                 else
+                {
                     group.Children.Add(_Pogs[5].Clone());
+                }
             }
         }
     }

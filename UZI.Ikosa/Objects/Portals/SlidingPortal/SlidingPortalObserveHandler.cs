@@ -53,7 +53,9 @@ namespace Uzi.Ikosa.Objects
 
                             // null means dark visible
                             if (_check == null)
+                            {
                                 _darkVisible = true;
+                            }
                         }
                     }
                 }
@@ -75,7 +77,9 @@ namespace Uzi.Ikosa.Objects
 
                     // open or closed, if cube is closer
                     if (observerLocator.GeometricRegion.NearDistance(_rgn) > observerLocator.GeometricRegion.NearDistance(_cube))
+                    {
                         return _offset(_cube);
+                    }
                 }
             }
             return _default();

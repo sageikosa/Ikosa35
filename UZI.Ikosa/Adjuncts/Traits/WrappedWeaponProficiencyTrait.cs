@@ -20,14 +20,19 @@ namespace Uzi.Ikosa.Adjuncts
             base.OnActivate(source);
             var _critter = Anchor as Creature;
             if (_critter != null)
+            {
                 _critter.Proficiencies.Add(_Proficiency);
+            }
         }
 
         protected override void OnDeactivate(object source)
         {
             var _critter = Anchor as Creature;
             if (_critter != null)
+            {
                 _critter.Proficiencies.Remove(_Proficiency);
+            }
+
             base.OnDeactivate(source);
         }
 

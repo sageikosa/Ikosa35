@@ -59,7 +59,9 @@ namespace Uzi.Ikosa.Actions.Steps
         protected override StepPrerequisite OnNextPrerequisite()
         {
             if (!IsDispensingPrerequisites)
+            {
                 return null;
+            }
 
             var _spellSource = (_Delivery.InteractData as PowerActionTransit<SpellSource>).PowerSource;
 
@@ -75,8 +77,10 @@ namespace Uzi.Ikosa.Actions.Steps
             {
                 // did not decide to lower, so caster check now
                 if (CasterLevelCheck == null)
+                {
                     return new CasterLevelPrerequisite(_spellSource, _Delivery, _Delivery.Actor,
                         @"CasterLevel.Check", @"Spell Resistance", _Target.ID, _Tracker, _Target.SpellResistance, true);
+                }
             }
 
             // done

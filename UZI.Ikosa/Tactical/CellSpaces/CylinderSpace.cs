@@ -141,7 +141,9 @@ namespace Uzi.Ikosa.Tactical
         {
             CylinderSpaceFaces.AddCylindricalQuarterFace(param, this, buildable, z, y, x, face, effect, bump);
             if (!IsPlusInvisible)
+            {
                 CellSpaceFaces.AddPlusOuterSurface(param, this, buildable, z, y, x, face, effect, bump);
+            }
             // TODO: pediment? cornice?
         }
 
@@ -149,9 +151,14 @@ namespace Uzi.Ikosa.Tactical
         {
             var _param = new CylinderParams(paramsIn);
             if (axis1 == _param.AnchorFace.GetAxis())
+            {
                 _param.AnchorFace = _param.AnchorFace.IsLowFace() ? axis2.GetLowFace() : axis2.GetHighFace();
+            }
             else if (axis2 == _param.AnchorFace.GetAxis())
+            {
                 _param.AnchorFace = _param.AnchorFace.IsLowFace() ? axis1.GetLowFace() : axis2.GetHighFace();
+            }
+
             return _param.Value;
         }
 
@@ -180,20 +187,32 @@ namespace Uzi.Ikosa.Tactical
         public BuildableMaterial GetPlusOrthoFaceMaterial(Axis axis, bool isPlus, VisualEffect effect)
         {
             if (PlusTiling == null)
+            {
                 return new BuildableMaterial { Material = null, IsAlpha = false };
+            }
+
             switch (axis)
             {
                 case Axis.Z:
                     if (isPlus)
+                    {
                         return new BuildableMaterial { Material = PlusTiling.ZPlusMaterial(effect), IsAlpha = PlusTiling.GetAnchorFaceAlpha(AnchorFace.ZHigh) };
+                    }
+
                     return new BuildableMaterial { Material = PlusTiling.ZMinusMaterial(effect), IsAlpha = PlusTiling.GetAnchorFaceAlpha(AnchorFace.ZLow) };
                 case Axis.Y:
                     if (isPlus)
+                    {
                         return new BuildableMaterial { Material = PlusTiling.YPlusMaterial(effect), IsAlpha = PlusTiling.GetAnchorFaceAlpha(AnchorFace.YHigh) };
+                    }
+
                     return new BuildableMaterial { Material = PlusTiling.YMinusMaterial(effect), IsAlpha = PlusTiling.GetAnchorFaceAlpha(AnchorFace.YLow) };
                 default:
                     if (isPlus)
+                    {
                         return new BuildableMaterial { Material = PlusTiling.XPlusMaterial(effect), IsAlpha = PlusTiling.GetAnchorFaceAlpha(AnchorFace.XHigh) };
+                    }
+
                     return new BuildableMaterial { Material = PlusTiling.XMinusMaterial(effect), IsAlpha = PlusTiling.GetAnchorFaceAlpha(AnchorFace.XLow) };
             }
         }

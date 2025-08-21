@@ -101,7 +101,9 @@ namespace Uzi.Ikosa.Objects
                 {
                     // NOTE: once all the members are ejected, the group auto-ejects the master SurfaceContainer
                     foreach (var _member in _surface.Surface.Contained.ToList())
+                    {
                         _member.Eject();
+                    }
                 }
             }
         }
@@ -143,7 +145,9 @@ namespace Uzi.Ikosa.Objects
                 // twist
                 twist %= 4;
                 if (twist < 0)
+                {
                     twist += 4;
+                }
 
                 // twist only allows a single face to be the new front
                 _newTop |= Upright switch
@@ -162,7 +166,9 @@ namespace Uzi.Ikosa.Objects
                 // new value
                 _Heading = heading.Value % 4;
                 if (_Heading < 0)
+                {
                     _Heading += 4;
+                }
             }
             #endregion
 
@@ -196,17 +202,27 @@ namespace Uzi.Ikosa.Objects
 
                     // relocate if size changed
                     if (!_origSize.SameSize(_fitCube))
+                    {
                         _loc.Relocate(_fitCube, _loc.PlanarPresence);
+                    }
                 }
             }
 
             // notify
             if (_origHeading != Heading)
+            {
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Heading)));
+            }
+
             if (_origUpright != Upright)
+            {
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Upright)));
+            }
+
             if (_origTwist != Twist)
+            {
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Twist)));
+            }
         }
         #endregion
 
@@ -497,7 +513,10 @@ namespace Uzi.Ikosa.Objects
             {
                 var _rgn = Furnishing?.GetLocated()?.Locator.GeometricRegion;
                 if (_rgn != null)
+                {
                     return new GeometricSize(_rgn);
+                }
+
                 return null;
             }
         }
@@ -594,14 +613,18 @@ namespace Uzi.Ikosa.Objects
                 // rotate around Z
                 var _pivot = GetModelPivot();// + 90d;
                 if (_pivot != 0)
+                {
                     _group.Children.Add(new RotateTransform3D(new AxisAngleRotation3D(new Vector3D(0, 0, 1), _pivot)));
+                }
                 #endregion
 
                 #region Displacement
                 // intra model offset
                 var _offset = Displacement;
                 if (_offset.Length > 0)
+                {
                     _group.Children.Add(new TranslateTransform3D(_offset));
+                }
 
                 #endregion
 
@@ -621,7 +644,9 @@ namespace Uzi.Ikosa.Objects
                     // base face
                     var _baseTx = ModelGenerator.GetBaseFaceTransform(GravityFace, _rgn.GetPoint3D());
                     if (_baseTx != null)
+                    {
                         _group.Children.Add(_baseTx);
+                    }
                 }
                 #endregion
 
@@ -637,10 +662,13 @@ namespace Uzi.Ikosa.Objects
         {
             var _rgn = locator.GeometricRegion;
             foreach (var _cell in _rgn.AllCellLocations())
+            {
                 if (_rgn.IsCellAtSurface(_cell, face))
                 {
                     yield return CellLocation.GetAdjacentCellLocation(_cell, face);
                 }
+            }
+
             yield break;
         }
         #endregion
@@ -712,9 +740,14 @@ namespace Uzi.Ikosa.Objects
                 }
 
                 if (_bestEffect.GetEffectRank() < _effect.GetEffectRank())
+                {
                     _bestEffect = _effect;
+                }
+
                 if (_bestEffect == VisualEffect.Brighter)
+                {
                     break;
+                }
             }
             return _bestEffect;
         }
@@ -857,9 +890,15 @@ namespace Uzi.Ikosa.Objects
                 VisualEffect _effect(AnchorFace? anchor)
                 {
                     if (!anchor.HasValue)
+                    {
                         return standard;
+                    }
+
                     if (!IsFaceSnapped(anchor.Value, _extents))
+                    {
                         return standard;
+                    }
+
                     return OffsetVisualEffect(location, filteredSenses, _locator, OffsetCell(_locator, anchor.Value));
                 };
                 #endregion
@@ -889,8 +928,14 @@ namespace Uzi.Ikosa.Objects
                     {
                         case 2:
                             // range of 2 can give lower OR upper
-                            if (pos == upper) return tAxis.GetHighFace().ToAnchorFaceList();
-                            else return tAxis.GetLowFace().ToAnchorFaceList();
+                            if (pos == upper)
+                            {
+                                return tAxis.GetHighFace().ToAnchorFaceList();
+                            }
+                            else
+                            {
+                                return tAxis.GetLowFace().ToAnchorFaceList();
+                            }
 
                         default:
                             // range of 1 can only give lower AND upper
@@ -928,7 +973,10 @@ namespace Uzi.Ikosa.Objects
                     {
                         case 2:
                             if ((pos == lower) ^ highSnap)
+                            {
                                 return new HedralGrip(true);
+                            }
+
                             return new HedralGrip(axis, face, extent - 5d);
 
                         default:
@@ -973,7 +1021,10 @@ namespace Uzi.Ikosa.Objects
                     {
                         var _corners = Furnishing.GetDimensionalCorners(_f);
                         if (_trans.Children.Any())
+                        {
                             _trans.Transform(_corners);
+                        }
+
                         return new PlanarPoints(_corners);
                     }).ToList();
             });

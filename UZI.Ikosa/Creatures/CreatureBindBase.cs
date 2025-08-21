@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 
 namespace Uzi.Ikosa
 {
@@ -16,12 +16,15 @@ namespace Uzi.Ikosa
         public bool BindTo(Creature creature)
         {
             if (CanAdd(creature))
+            {
                 if (_Creature == null)
                 {
                     _Creature = creature;
                     OnAdd();
                     return true;
                 }
+            }
+
             return false;
         }
 

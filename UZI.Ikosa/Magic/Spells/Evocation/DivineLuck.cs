@@ -92,8 +92,16 @@ namespace Uzi.Ikosa.Magic.Spells
             if (_spellEffect != null)
             {
                 int _bonus = _spellEffect.MagicPowerActionSource.CasterLevel / 3;
-                if (_bonus < 1) _bonus = 1;
-                if (_bonus > 3) _bonus = 3;
+                if (_bonus < 1)
+                {
+                    _bonus = 1;
+                }
+
+                if (_bonus > 3)
+                {
+                    _bonus = 3;
+                }
+
                 Delta _luck = new Delta(_bonus, typeof(Uzi.Ikosa.Deltas.Luck));
                 Creature _critter = target as Creature;
                 if (_critter != null)
@@ -112,7 +120,9 @@ namespace Uzi.Ikosa.Magic.Spells
         {
             Delta _luck = source.ActiveAdjunctObject as Delta;
             if (_luck != null)
+            {
                 _luck.DoTerminate();
+            }
         }
 
         public bool IsDismissable(int subMode) { return false; }

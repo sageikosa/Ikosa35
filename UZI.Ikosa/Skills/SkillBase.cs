@@ -68,7 +68,9 @@ namespace Uzi.Ikosa.Skills
             {
                 var _attr = skillType.GetCustomAttributes(typeof(SkillInfoAttribute), false);
                 if (_attr.Length != 0)
+                {
                     return (SkillInfoAttribute)_attr[0];
+                }
             }
             catch
             {
@@ -166,7 +168,9 @@ namespace Uzi.Ikosa.Skills
             // can add support for IActionProviders after skills have already been saved
             if ((this is IActionProvider _provider)
                 && !Creature.Actions.Providers.ContainsKey(this))
+            {
                 Creature.Actions.Providers.Add(this, _provider);
+            }
         }
     }
 }

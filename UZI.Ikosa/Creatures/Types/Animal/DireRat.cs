@@ -38,11 +38,11 @@ namespace Uzi.Ikosa.Creatures.Types
 
         static DireRat()
         {
-            _SizeRanges = new List<SizeRange>
-            {
+            _SizeRanges =
+            [
                 new SizeRange(1, 3, Size.Small, 1),
                 new SizeRange(4, 6, Size.Medium, 1)
-            };
+            ];
         }
 
         public override AbilitySet DefaultAbilities() => new AbilitySet(10, 17, 12, 1, 12, 4);

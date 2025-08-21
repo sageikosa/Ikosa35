@@ -66,7 +66,10 @@ namespace Uzi.Ikosa.Objects
 
                 case PostTriggerState.Disable:
                     if (!this.HasAdjunct<DisabledObject>())
+                    {
                         AddAdjunct(new DisabledObject());
+                    }
+
                     break;
 
                 case PostTriggerState.DeActivate:

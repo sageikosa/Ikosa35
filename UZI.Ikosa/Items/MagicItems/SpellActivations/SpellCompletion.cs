@@ -22,10 +22,10 @@ namespace Uzi.Ikosa.Items
         public SpellCompletion(SpellSource source, bool autoActivate)
             : base(source, new PowerCapacity(source), new SpellActivationCost(), true, null)
         {
-            _Casters = new Collection<Guid>
-            {
+            _Casters =
+            [
                 source.ID
-            };
+            ];
             _AutoAct = autoActivate;
         }
         #endregion
@@ -157,8 +157,13 @@ namespace Uzi.Ikosa.Items
         public static IEnumerable<SpellCompletion> GetSpellCompletions(ICoreObject coreObject)
         {
             if (coreObject is CoreObject _core)
+            {
                 foreach (var _completion in _core.Adjuncts.OfType<SpellCompletion>())
+                {
                     yield return _completion;
+                }
+            }
+
             yield break;
         }
         #endregion

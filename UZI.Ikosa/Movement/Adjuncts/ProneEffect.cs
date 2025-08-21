@@ -32,11 +32,19 @@ namespace Uzi.Ikosa.Movement
                 {
                     // these are all ok to apply prone
                     if (_loc.ActiveMovement is LandMovement)
+                    {
                         return true;
+                    }
+
                     if (_loc.ActiveMovement is FallMovement)
+                    {
                         return true;
+                    }
+
                     if (_loc.ActiveMovement is JumpMovement)
+                    {
                         return true;
+                    }
                 }
             }
             return false;
@@ -90,7 +98,9 @@ namespace Uzi.Ikosa.Movement
         {
             // crawl not suppressed
             if (action is Crawl)
+            {
                 return false;
+            }
 
             if (action is ISupplyAttackAction _supply)
             {
@@ -108,7 +118,9 @@ namespace Uzi.Ikosa.Movement
             }
 
             if (action is DirectSplatterAttack)
+            {
                 return true;
+            }
 
             // movements suppressed, all else OK
             return (action.Source is MovementBase);
@@ -134,10 +146,14 @@ namespace Uzi.Ikosa.Movement
         {
             // last feedback processor
             if (typeof(AddAdjunctData).Equals(interactType))
+            {
                 return true;
+            }
 
             if (typeof(VisualPresentationData).Equals(interactType))
+            {
                 return true;
+            }
 
             return false;
         }
@@ -149,17 +165,29 @@ namespace Uzi.Ikosa.Movement
             {
                 // these adjuncts indicate movement that ends prone
                 if (_addAdjunct.Adjunct is Climbing)
+                {
                     Eject();
+                }
                 else if (_addAdjunct.Adjunct is InFlight)
+                {
                     Eject();
+                }
                 else if (_addAdjunct.Adjunct is Burrowing)
+                {
                     Eject();
+                }
                 else if (_addAdjunct.Adjunct is Swimming)
+                {
                     Eject();
+                }
                 else if (_addAdjunct.Adjunct is SmallClimbing)
+                {
                     Eject();
+                }
                 else if (_addAdjunct.Adjunct is Tumbling)
+                {
                     Eject();
+                }
             }
             else if (workSet?.InteractData is VisualPresentationData _visData)
             {

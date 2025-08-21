@@ -84,9 +84,13 @@ namespace Uzi.Ikosa.Workshop
                 }
 
                 if (_txt == txtHorizontal)
+                {
                     _Horizontal = _out;
+                }
                 else if (_txt == txtVertical)
+                {
                     _Vertical = _out;
+                }
             }
             _txt.ToolTip = null;
             _txt.Tag = null;

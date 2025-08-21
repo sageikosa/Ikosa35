@@ -116,7 +116,9 @@ namespace Uzi.Ikosa.Creatures.Templates
         protected override IEnumerable<BodyFeature> GenerateBodyFeatures()
         {
             foreach (var _bodyFeature in _Original.Body.Features)
+            {
                 yield return new BodyFeature(this, _bodyFeature.Key, _bodyFeature.IsMajor, _bodyFeature.Description);
+            }
             // TODO: any special zombie features...
             // TODO: filter any features that shouldn't be shown...
             yield break;
@@ -133,7 +135,9 @@ namespace Uzi.Ikosa.Creatures.Templates
             foreach (var _sub in _Original.SubTypes)
             {
                 if (!(_sub is BaseCreatureSpeciesSubType) && !(_sub is CreatureAlignmentSubType))
+                {
                     yield return _sub.Clone(this);
+                }
             }
             yield break;
         }
@@ -247,16 +251,22 @@ namespace Uzi.Ikosa.Creatures.Templates
                 TraitCategory.Quality, new AdjunctTrait(this, new SingleActionsOnly(this)));
 
             foreach (var _trait in UndeadType.UndeadPowerImmunities(this))
+            {
                 yield return _trait;
+            }
 
             // DR 5/slashing
             yield return DamageReductionTrait.GetDRDamageTypeTrait(this, 5, Contracts.DamageType.Slashing);
 
             foreach (var _trait in UndeadType.UndeadEffectImmunities(this))
+            {
                 yield return _trait;
+            }
 
             foreach (var _trait in UndeadType.UndeadUnhealth(this))
+            {
                 yield return _trait;
+            }
 
             // TODO: undead immunities
 

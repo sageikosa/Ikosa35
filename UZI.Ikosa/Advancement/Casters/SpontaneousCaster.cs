@@ -76,6 +76,7 @@ namespace Uzi.Ikosa.Advancement
                     // all known spells at level 1 are requirements
                     var _idx = 0;
                     foreach (var _kvp in KnownSpellsPerLevel(1))
+                    {
                         for (var _lx = 0; _lx < _kvp.Value; _lx++)
                         {
                             yield return new AdvancementRequirement(
@@ -87,13 +88,16 @@ namespace Uzi.Ikosa.Advancement
                             };
                             _idx++;
                         }
+                    }
                 }
                 else
                 {
                     // collect previous level's known spells
                     var _previous = new Dictionary<int, int>();
                     foreach (var _old in KnownSpellsPerLevel(level - 1))
+                    {
                         _previous.Add(_old.Key, _old.Value);
+                    }
 
                     // compare and yield differences
                     var _idx = 0;
@@ -170,7 +174,10 @@ namespace Uzi.Ikosa.Advancement
         {
             // each auto-known spell is a feature
             foreach (var _known in KnownSpells.AllKnown.Where(_k => _k.LearnedLevel == level))
+            {
                 yield return _known;
+            }
+
             yield break;
         }
         #endregion
@@ -189,7 +196,9 @@ namespace Uzi.Ikosa.Advancement
 
                 // return the first found
                 if (_rslt != null)
+                {
                     return _rslt;
+                }
             }
             return null;
         }
@@ -207,7 +216,10 @@ namespace Uzi.Ikosa.Advancement
                     SpellSlot _getSlot(int level)
                     {
                         if (!_readySlots.ContainsKey(level))
+                        {
                             _readySlots.Add(level, GetAvailableSlot(level));
+                        }
+
                         return _readySlots[level];
                     }
 
@@ -225,9 +237,11 @@ namespace Uzi.Ikosa.Advancement
                             {
                                 // some spells have multiple modes, so include them all
                                 foreach (var _spellMode in _def.SpellModes)
+                                {
                                     yield return new CastSpell(
                                         new SpellSource(this, _spell.SlotLevel, _slot.SlotLevel, true, _def),
                                         _spellMode, _actTime, _slot, _def.DisplayName);
+                                }
                             }
                         }
                     }

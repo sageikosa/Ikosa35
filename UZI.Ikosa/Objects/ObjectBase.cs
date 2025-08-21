@@ -61,9 +61,13 @@ namespace Uzi.Ikosa.Objects
             set
             {
                 if (_StrucPts <= _MaxStrucPts)
+                {
                     _StrucPts = value;
+                }
                 else
+                {
                     _StrucPts = _MaxStrucPts;
+                }
 
                 DoPropertyChanged(nameof(StructurePoints));
 
@@ -229,7 +233,9 @@ namespace Uzi.Ikosa.Objects
         public virtual BestSoftQualifiedDelta GetBestSoftSave(SavingThrowData saveData)
         {
             if (AlwaysFailsSave)
+            {
                 return null;
+            }
 
             // potential save values
             var _deltables = new List<ConstDeltable>();
@@ -240,7 +246,9 @@ namespace Uzi.Ikosa.Objects
                                 orderby _msaa.CasterLevel descending
                                 select new ConstDeltable(Math.Max(_msaa.CasterLevel / 2, 1))).FirstOrDefault();
             if (_casterLevel != null)
+            {
                 _deltables.Add(_casterLevel);
+            }
 
             // may be multiple attendees?
             ConstDeltable _save(Creature critter)
@@ -255,9 +263,15 @@ namespace Uzi.Ikosa.Objects
             foreach (var _attendee in (from _a in Adjuncts.OfType<Attended>()
                                        where _a.IsActive
                                        select _save(_a.Creature)))
+            {
                 _deltables.Add(_attendee);
+            }
+
             if (_deltables.Any())
+            {
                 return new BestSoftQualifiedDelta(_deltables.ToArray());
+            }
+
             return null;
         }
         #endregion

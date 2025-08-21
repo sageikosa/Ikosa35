@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Linq;
 using System.Windows.Media.Media3D;
 
 namespace Uzi.Visualize
@@ -51,16 +48,24 @@ namespace Uzi.Visualize
                     if (sides.Contains(AnchorFace.XLow))
                     {
                         if (sides.Contains(AnchorFace.YLow))
+                        {
                             _sides(1, 0, 6, 4, 2);
+                        }
                         else // YHigh
+                        {
                             _sides(3, 2, 4, 0, 6);
+                        }
                     }
                     else // XHigh
                     {
                         if (sides.Contains(AnchorFace.YLow))
+                        {
                             _sides(5, 4, 2, 6, 0);
+                        }
                         else // YHigh
+                        {
                             _sides(7, 6, 0, 2, 4);
+                        }
                     }
                     break;
                 #endregion
@@ -71,16 +76,24 @@ namespace Uzi.Visualize
                     if (sides.Contains(AnchorFace.XLow))
                     {
                         if (sides.Contains(AnchorFace.YLow))
+                        {
                             _sides(0, 1, 7, 3, 5);
+                        }
                         else // YHigh
+                        {
                             _sides(2, 3, 5, 7, 1);
+                        }
                     }
                     else // ZHigh, XHigh
                     {
                         if (sides.Contains(AnchorFace.YLow))
+                        {
                             _sides(4, 5, 3, 1, 7);
+                        }
                         else // YHigh
+                        {
                             _sides(6, 7, 1, 5, 3);
+                        }
                     }
                     break;
                 #endregion
@@ -91,16 +104,24 @@ namespace Uzi.Visualize
                     if (sides.Contains(AnchorFace.XLow))
                     {
                         if (sides.Contains(AnchorFace.ZLow))
+                        {
                             _sides(2, 0, 5, 1, 4);
+                        }
                         else // ZHigh
+                        {
                             _sides(3, 1, 4, 5, 0);
+                        }
                     }
                     else // YLow, XHigh
                     {
                         if (sides.Contains(AnchorFace.ZLow))
+                        {
                             _sides(6, 4, 1, 0, 5);
+                        }
                         else // ZHigh
+                        {
                             _sides(7, 5, 0, 4, 1);
+                        }
                     }
                     break;
                 #endregion
@@ -111,16 +132,24 @@ namespace Uzi.Visualize
                     if (sides.Contains(AnchorFace.XLow))
                     {
                         if (sides.Contains(AnchorFace.ZLow))
+                        {
                             _sides(0, 2, 7, 6, 3);
+                        }
                         else // ZHigh
+                        {
                             _sides(1, 3, 6, 2, 7);
+                        }
                     }
                     else // YHigh, XHigh
                     {
                         if (sides.Contains(AnchorFace.ZLow))
+                        {
                             _sides(4, 6, 3, 7, 2);
+                        }
                         else // ZHigh
+                        {
                             _sides(5, 7, 2, 3, 6);
+                        }
                     }
                     break;
                 #endregion
@@ -131,16 +160,24 @@ namespace Uzi.Visualize
                     if (sides.Contains(AnchorFace.ZLow))
                     {
                         if (sides.Contains(AnchorFace.YLow))
+                        {
                             _sides(4, 0, 3, 2, 1);
+                        }
                         else // YHigh
+                        {
                             _sides(6, 2, 1, 3, 0);
+                        }
                     }
                     else // XLow, ZHigh
                     {
                         if (sides.Contains(AnchorFace.YLow))
+                        {
                             _sides(5, 1, 2, 0, 3);
+                        }
                         else // YHigh
+                        {
                             _sides(7, 3, 0, 1, 2);
+                        }
                     }
                     break;
                 #endregion
@@ -152,16 +189,24 @@ namespace Uzi.Visualize
                     if (sides.Contains(AnchorFace.ZLow))
                     {
                         if (sides.Contains(AnchorFace.YLow))
+                        {
                             _sides(0, 4, 7, 5, 6);
+                        }
                         else // YHigh
+                        {
                             _sides(2, 6, 5, 4, 7);
+                        }
                     }
                     else // XHigh, ZHigh
                     {
                         if (sides.Contains(AnchorFace.YLow))
+                        {
                             _sides(1, 5, 6, 7, 4);
+                        }
                         else // YHigh
+                        {
                             _sides(3, 7, 4, 6, 5);
+                        }
                     }
                     break;
                     #endregion

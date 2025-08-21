@@ -1,4 +1,4 @@
-using Uzi.Core.Contracts;
+﻿using Uzi.Core.Contracts;
 using System;
 using System.Collections.ObjectModel;
 using System.Collections.Generic;
@@ -18,7 +18,7 @@ namespace Uzi.Ikosa.Items.Weapons
         protected DoubleMeleeWeaponBase(string name, bool finessable, Size itemSize)
             : base(name, itemSize)
         {
-            _WeaponHeads = new Collection<IWeaponHead>();
+            _WeaponHeads = [];
             _WieldTemplate = WieldTemplate.Double;
             _Finessable = finessable;
         }
@@ -52,9 +52,13 @@ namespace Uzi.Ikosa.Items.Weapons
             get
             {
                 if ((index < 2) && (index >= 0))
+                {
                     return _WeaponHeads[index] as IWeaponHead;
+                }
                 else
+                {
                     return null;
+                }
             }
         }
         #endregion
@@ -131,7 +135,9 @@ namespace Uzi.Ikosa.Items.Weapons
             yield return new MeleeStrike(MainHead, Contracts.AttackImpact.Penetrating, @"101");
             yield return new Disarm(MainHead,@"102");
             if (MainHead.DamageTypes.Any(_dt => _dt != DamageType.Piercing))
+            {
                 yield return new SunderWieldedItem(MainHead, @"103");
+            }
 
             // off hand attacks
             if ((SecondarySlot != null) && (!_UseAsTwoHanded))
@@ -139,7 +145,9 @@ namespace Uzi.Ikosa.Items.Weapons
                 yield return new MeleeStrike(OffHandHead, Contracts.AttackImpact.Penetrating, @"201");
                 yield return new Disarm(OffHandHead, @"202");
                 if (OffHandHead.DamageTypes.Any(_dt => _dt != DamageType.Piercing))
+                {
                     yield return new SunderWieldedItem(OffHandHead, @"203");
+                }
             }
             yield break;
         }
@@ -156,12 +164,16 @@ namespace Uzi.Ikosa.Items.Weapons
                 if (_budget.CanPerformRegular)
                 {
                     foreach (var _strike in WeaponStrikes())
+                    {
                         yield return new RegularAttack(_strike);
+                    }
 
                     // probe
                     yield return new Probe(MainHead, new ActionTime(TimeType.Regular), @"901");
                     if ((SecondarySlot != null) && (!_UseAsTwoHanded))
+                    {
                         yield return new Probe(OffHandHead, new ActionTime(TimeType.Regular), @"902");
+                    }
                 }
 
                 // off hand heads

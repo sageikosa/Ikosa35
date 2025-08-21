@@ -59,9 +59,15 @@ namespace Uzi.Ikosa.Adjuncts
         public virtual bool HasPlanarCompatibility(PlanarPresence source, PlanarPresence target)
         {
             if (source.HasOverlappingPresence(target))
+            {
                 return true;
+            }
+
             if (source.HasMaterialPresence() && target.HasEtherealPresence() && Descriptors.OfType<Force>().Any())
+            {
                 return true;
+            }
+
             return false;
         }
 

@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Windows.Markup;
 using System.Windows.Media.Media3D;
 using System.Windows.Media;
 using System.Windows;
-using Uzi.Visualize.Packages;
 
 namespace Uzi.Visualize
 {
@@ -14,39 +11,13 @@ namespace Uzi.Visualize
     public class VisualEffectMaterial : MarkupExtension
     {
         [ThreadStatic]
-        private static List<IResolveMaterial> _Resolvers = new();
-
-        [ThreadStatic]
-        private static List<IPartResolveMaterial> _PartResolvers = new();
-
-        public static List<IPartResolveMaterial> PartResolvers
-        {
-            get
-            {
-                if (_PartResolvers == null)
-                    _PartResolvers = new List<IPartResolveMaterial>();
-                return _PartResolvers;
-            }
-        }
-
-        public static void PushResolver(IPartResolveMaterial resolver)
-        {
-            if (!VisualEffectMaterial.PartResolvers.Contains(resolver))
-                VisualEffectMaterial.PartResolvers.Insert(0, resolver);
-        }
-
-        public static void PullResolver(IPartResolveMaterial resolver)
-        {
-            if (VisualEffectMaterial.PartResolvers.Contains(resolver))
-                VisualEffectMaterial.PartResolvers.Remove(resolver);
-        }
+        private static List<IResolveMaterial> _Resolvers = [];
 
         public static List<IResolveMaterial> Resolvers
         {
             get
             {
-                if (_Resolvers == null)
-                    _Resolvers = new List<IResolveMaterial>();
+                _Resolvers ??= [];
                 return _Resolvers;
             }
         }
@@ -54,13 +25,17 @@ namespace Uzi.Visualize
         public static void PushResolver(IResolveMaterial resolver)
         {
             if (!VisualEffectMaterial.Resolvers.Contains(resolver))
+            {
                 VisualEffectMaterial.Resolvers.Insert(0, resolver);
+            }
         }
 
         public static void PullResolver(IResolveMaterial resolver)
         {
             if (VisualEffectMaterial.Resolvers.Contains(resolver))
+            {
                 VisualEffectMaterial.Resolvers.Remove(resolver);
+            }
         }
 
         #region public static Action<string> ReferencedKey { get { return _KeyFound; } set { _KeyFound = value; } }
@@ -92,7 +67,9 @@ namespace Uzi.Visualize
         {
             // TODO: =System.Brush
             if ((_KeyReferenced != null) && !IsLiteral(Key))
+            {
                 _KeyReferenced(Key);
+            }
 
             return VisualEffectMaterial.ResolveMaterial(Key, VisualEffect);
         }
@@ -169,22 +146,11 @@ namespace Uzi.Visualize
                         _track.Add(_rez);
                         var _material = _rez.GetMaterial(key, effect);
                         if (_material != null)
+                        {
                             return _material;
-                        _rez = _rez.IResolveMaterialParent;
-                    }
-                }
+                        }
 
-                var _pTrack = new List<IPartResolveMaterial>();
-                foreach (var _res in VisualEffectMaterial.PartResolvers)
-                {
-                    var _rez = _res;
-                    while ((_rez != null) && !_pTrack.Contains(_rez))
-                    {
-                        _pTrack.Add(_rez);
-                        var _material = _rez.GetMaterial(key, effect);
-                        if (_material != null)
-                            return _material;
-                        _rez = _rez.IPartResolveMaterialParent;
+                        _rez = _rez.IResolveMaterialParent;
                     }
                 }
             }

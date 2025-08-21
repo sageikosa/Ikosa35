@@ -49,7 +49,7 @@ namespace Uzi.Ikosa.Actions
                     {
                         ID = _realSet.ID,
                         SetIndex = _inSet.SetIndex,
-                        SlotLevels = new List<SpellSlotLevelInfo>()
+                        SlotLevels = []
                     };
                     foreach (var _inLevel in _inSet.SlotLevels
                         .Where(_sl => _sl.SlotLevel <= _realSet.MaximumSlotLevel && _sl.SlotLevel >= _realSet.MinimumSlotLevel))
@@ -64,7 +64,7 @@ namespace Uzi.Ikosa.Actions
                         var _gatherLevel = new SpellSlotLevelInfo
                         {
                             SlotLevel = _inLevel.SlotLevel,
-                            SpellSlots = new List<SpellSlotInfo>()
+                            SpellSlots = []
                         };
 
                         // slot counter
@@ -245,12 +245,16 @@ namespace Uzi.Ikosa.Actions
 
                     // if gather target set collected any levels, add to slot sets in _target
                     if (_gatherSet.SlotLevels.Any())
+                    {
                         _target.SlotSets.Add(_gatherSet);
+                    }
                 }
 
                 // target, if any collected
                 if (_target.SlotSets.Any())
+                {
                     yield return _target;
+                }
             }
             yield break;
         }

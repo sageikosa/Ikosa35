@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Linq;
 using System.Collections.Generic;
 using Uzi.Core;
@@ -69,7 +69,9 @@ namespace Uzi.Ikosa.Movement
             {
                 // NOTE: no double move option, need the action budget for the potential regular action
                 if (!(_aim is OptionAim _opt) || !_opt.Key.Equals(@"Double", StringComparison.OrdinalIgnoreCase))
+                {
                     yield return _aim;
+                }
             }
             yield break;
         }
@@ -80,7 +82,10 @@ namespace Uzi.Ikosa.Movement
         {
             // must have a local budget to overrun
             if (!(budget is LocalActionBudget _local))
+            {
                 return new ActivityResponse(false);
+            }
+
             if (!IsContinuing && (_local.BudgetItems[typeof(OverrunBudget)] != null))
             {
                 // since the budget is attached, it has been used once already

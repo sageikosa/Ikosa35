@@ -24,7 +24,7 @@ namespace Uzi.Ikosa.Objects
         {
             _ACtrl = new ChangeController<Activation>(this, new Activation(this, false));
             _Difficulty = new Deltable(seedDifficulty);
-            _Disablers = new Collection<Guid>();
+            _Disablers = [];
             _DFCtrl = new ChangeController<DisableFail>(this, new DisableFail());
         }
         #endregion
@@ -52,12 +52,16 @@ namespace Uzi.Ikosa.Objects
                     if (value.IsActive)
                     {
                         if (!OnPreActivate())
+                        {
                             return;
+                        }
                     }
                     else
                     {
                         if (!OnPreDeactivate())
+                        {
                             return;
+                        }
                     }
 
                     // do pre-value changed
@@ -149,13 +153,24 @@ namespace Uzi.Ikosa.Objects
                     var _budget = budget as LocalActionBudget;
                     var _canDo = (ActionTime.ActionTimeType == TimeType.Span || ActionTime.ActionTimeType == TimeType.Total) && _budget.CanPerformTotal;
                     if (!_canDo)
+                    {
                         _canDo = _budget.CanPerformRegular;
+                    }
+
                     if (!_canDo)
+                    {
                         _canDo = (ActionTime.ActionTimeType == TimeType.Brief) && _budget.CanPerformBrief;
+                    }
+
                     if (_canDo)
+                    {
                         yield return new DisableMechanismAction(this, @"401");
+                    }
+
                     if (_canDo)
+                    {
                         yield return new EnableMechanismAction(this, @"402");
+                    }
                 }
             }
             yield break;

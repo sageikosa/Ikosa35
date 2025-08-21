@@ -31,7 +31,9 @@ namespace Uzi.Ikosa.Adjuncts
             {
                 // cannot already be masterwork
                 if (this.IsOtherMasterwork(newAnchor))
+                {
                     return false;
+                }
 
                 return base.CanAnchor(newAnchor);
             }
@@ -44,12 +46,17 @@ namespace Uzi.Ikosa.Adjuncts
         {
             // prevent if independent and other independent adjuncts require enhancement...
             if (Anchor.IsEnhanced())
+            {
                 return false;
+            }
+
             if (Anchor is IMeleeWeapon)
             {
                 // melee weapon cannot become un-masterwork if a head is enhanced
                 if ((Anchor as IMeleeWeapon).AllHeads.Any(_h => _h.IsEnhanced()))
+                {
                     return false;
+                }
             }
             return base.CanUnAnchor();
         }

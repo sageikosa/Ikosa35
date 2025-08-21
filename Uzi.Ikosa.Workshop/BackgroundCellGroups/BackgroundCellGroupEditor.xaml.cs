@@ -71,9 +71,14 @@ namespace Uzi.Ikosa.Workshop
                 var _sample = new SampleCellSpace(_space.CellMaterial, _space.Tiling);
                 var _model = _sample.GenerateModel(0, 0, 0, 0, null);
                 if (_model.Opaque != null)
+                {
                     grpObjects.Children.Add(_model.Opaque);
+                }
+
                 if (_model.Alpha != null)
+                {
                     grpObjects.Children.Add(_model.Alpha);
+                }
             }
             catch (Exception /*_except*/)
             {

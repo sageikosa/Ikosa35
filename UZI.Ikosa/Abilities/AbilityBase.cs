@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using Uzi.Core;
@@ -26,7 +26,7 @@ namespace Uzi.Ikosa.Abilities
         {
             _Mnemonic = mnemonic;
             _Term = new TerminateController(this);
-            _PowerBoosts = new SortedList<int, int>();
+            _PowerBoosts = [];
             _ADCtrl = new ChangeController<AbilityDamageValue>(this, new AbilityDamageValue { Mnemonic = mnemonic, Source = this, Value = 0 });
             _CheckQual = new DeltableQualifiedDelta(0, @"Check", this);
         }
@@ -40,7 +40,7 @@ namespace Uzi.Ikosa.Abilities
             _NonAbility = true;
             _Mnemonic = mnemonic;
             _Term = new TerminateController(this);
-            _PowerBoosts = new SortedList<int, int>();
+            _PowerBoosts = [];
             _ADCtrl = new ChangeController<AbilityDamageValue>(this, new AbilityDamageValue { Mnemonic = mnemonic, Source = this, Value = 0 });
             _CheckQual = new DeltableQualifiedDelta(0, @"Check", this);
         }
@@ -79,7 +79,7 @@ namespace Uzi.Ikosa.Abilities
         public AbilitySet Abilities
         {
             get { return _Abilities; }
-            set { if (_Abilities == null) _Abilities = value; }
+            set { _Abilities ??= value; }
         }
 
         #region public bool IsNonAbility { get; }
@@ -96,7 +96,7 @@ namespace Uzi.Ikosa.Abilities
 
         public void SetZeroHold(object source, bool hold)
         {
-            _Zeros ??= new List<object>();
+            _Zeros ??= [];
             if (hold && !_Zeros.Contains(source))
             {
                 _Zeros.Add(source);
@@ -183,7 +183,9 @@ namespace Uzi.Ikosa.Abilities
                 // no CON means no ability drain
                 var _drains = Deltas.Where(_d => (_d.Source as Type) == typeof(Drain)).ToList();
                 foreach (var _d in _drains)
+                {
                     Deltas.Remove(_d);
+                }
             }
             DoPropertyChanged(@"DisplayValue");
             DoPropertyChanged(@"DeltaValue");
@@ -201,7 +203,10 @@ namespace Uzi.Ikosa.Abilities
         {
             // no damage for non-living
             if ((Abilities != null) && Abilities.Constitution.IsNonAbility)
+            {
                 return;
+            }
+
             if (!_ADCtrl.WillAbortChange(new AbilityDamageValue { Mnemonic = Mnemonic, Source = source, Value = amount }, @"PreAdd"))
             {
                 if (_Dmg == null)
@@ -223,7 +228,10 @@ namespace Uzi.Ikosa.Abilities
         {
             // no damage for non-living
             if ((Abilities != null) && Abilities.Constitution.IsNonAbility)
+            {
                 return;
+            }
+
             if (!_ADCtrl.WillAbortChange(new AbilityDamageValue { Mnemonic = Mnemonic, Source = this, Value = amount }, @"PreRemove"))
             {
                 if (_Dmg != null)
@@ -248,7 +256,10 @@ namespace Uzi.Ikosa.Abilities
         {
             // no damage for non-living
             if ((Abilities != null) && Abilities.Constitution.IsNonAbility)
+            {
                 return;
+            }
+
             if (!_ADCtrl.WillAbortChange(new AbilityDamageValue { Mnemonic = Mnemonic, Source = source, Value = amount }, @"PreRemove"))
             {
                 if (_Dmg != null)

@@ -282,38 +282,54 @@ namespace Uzi.Ikosa.Tactical
                         case AnchorFace.YLow:
                             // left tall
                             if (_loUnits > _hiUnits)
+                            {
                                 // lower
                                 return (_LowerLeftSlopeTall[_idx] >> _hiUnits) | LeftSliver(_hiUnits);
+                            }
                             else
+                            {
                                 // upper
                                 return (_UpperLeftSlopeTall[_idx] >> _loUnits) | LeftSliver(_loUnits);
+                            }
 
                         case AnchorFace.YHigh:
                             // right tall
                             if (_loUnits > _hiUnits)
+                            {
                                 // lower
                                 return (_LowerRightSlopeTall[_idx] << _hiUnits) | RightSliver(_hiUnits);
+                            }
                             else
+                            {
                                 // upper
                                 return (_UpperRightSlopeTall[_idx] << _loUnits) | RightSliver(_loUnits);
+                            }
 
                         case AnchorFace.ZLow:
                             // lower wide
                             if (_loUnits > _hiUnits)
+                            {
                                 // left
                                 return (_LowerLeftSlopeWide[_idx] << (_hiUnits * 8)) | BottomSliver(_hiUnits);
+                            }
                             else
+                            {
                                 // right
                                 return (_LowerRightSlopeWide[_idx] << (_loUnits * 8)) | BottomSliver(_loUnits);
+                            }
 
                         case AnchorFace.ZHigh:
                             // upper wide
                             if (_loUnits > _hiUnits)
+                            {
                                 // left
                                 return (_UpperLeftSlopeWide[_idx] >> (_hiUnits * 8)) | TopSliver(_hiUnits);
+                            }
                             else
+                            {
                                 // right
                                 return (_UpperRightSlopeWide[_idx] >> (_loUnits * 8)) | TopSliver(_loUnits);
+                            }
                     }
                     return 0;
 
@@ -323,38 +339,54 @@ namespace Uzi.Ikosa.Tactical
                         case AnchorFace.XLow:
                             // lower wide
                             if (_loUnits > _hiUnits)
+                            {
                                 // left
                                 return (_LowerLeftSlopeWide[_idx] << (_hiUnits * 8)) | BottomSliver(_hiUnits);
+                            }
                             else
+                            {
                                 // right
                                 return (_LowerRightSlopeWide[_idx] << (_loUnits * 8)) | BottomSliver(_loUnits);
+                            }
 
                         case AnchorFace.XHigh:
                             // upper wide
                             if (_loUnits > _hiUnits)
+                            {
                                 // left
                                 return (_UpperLeftSlopeWide[_idx] >> (_hiUnits * 8)) | TopSliver(_hiUnits);
+                            }
                             else
+                            {
                                 // right
                                 return (_UpperRightSlopeWide[_idx] >> (_loUnits * 8)) | TopSliver(_loUnits);
+                            }
 
                         case AnchorFace.ZLow:
                             // left tall
                             if (_loUnits > _hiUnits)
+                            {
                                 // lower
                                 return (_LowerLeftSlopeTall[_idx] >> _hiUnits) | LeftSliver(_hiUnits);
+                            }
                             else
+                            {
                                 // upper
                                 return (_UpperLeftSlopeTall[_idx] >> _loUnits) | LeftSliver(_loUnits);
+                            }
 
                         case AnchorFace.ZHigh:
                             // right tall
                             if (_loUnits > _hiUnits)
+                            {
                                 // lower
                                 return (_LowerRightSlopeTall[_idx] << _hiUnits) | RightSliver(_hiUnits);
+                            }
                             else
+                            {
                                 // upper
                                 return (_UpperRightSlopeTall[_idx] << _loUnits) | RightSliver(_loUnits);
+                            }
                     }
                     return 0;
 
@@ -365,38 +397,54 @@ namespace Uzi.Ikosa.Tactical
                         case AnchorFace.XLow:
                             // left tall
                             if (_loUnits > _hiUnits)
+                            {
                                 // lower
                                 return (_LowerLeftSlopeTall[_idx] >> _hiUnits) | LeftSliver(_hiUnits);
+                            }
                             else
+                            {
                                 // upper
                                 return (_UpperLeftSlopeTall[_idx] >> _loUnits) | LeftSliver(_loUnits);
+                            }
 
                         case AnchorFace.XHigh:
                             // right tall
                             if (_loUnits > _hiUnits)
+                            {
                                 // lower
                                 return (_LowerRightSlopeTall[_idx] << _hiUnits) | RightSliver(_hiUnits);
+                            }
                             else
+                            {
                                 // upper
                                 return (_UpperRightSlopeTall[_idx] << _loUnits) | RightSliver(_loUnits);
+                            }
 
                         case AnchorFace.YLow:
                             // lower wide
                             if (_loUnits > _hiUnits)
+                            {
                                 // left
                                 return (_LowerLeftSlopeWide[_idx] << (_hiUnits * 8)) | BottomSliver(_hiUnits);
+                            }
                             else
+                            {
                                 // right
                                 return (_LowerRightSlopeWide[_idx] << (_loUnits * 8)) | BottomSliver(_loUnits);
+                            }
 
                         case AnchorFace.YHigh:
                             // upper wide
                             if (_loUnits > _hiUnits)
+                            {
                                 // left
                                 return (_UpperLeftSlopeWide[_idx] >> (_hiUnits * 8)) | TopSliver(_hiUnits);
+                            }
                             else
+                            {
                                 // right
                                 return (_UpperRightSlopeWide[_idx] >> (_loUnits * 8)) | TopSliver(_loUnits);
+                            }
                     }
                     return 0;
             }
@@ -526,7 +574,9 @@ namespace Uzi.Ikosa.Tactical
                     // since we went wide, only have to shift left or right
                     var _horz = (byte)(8 - _pUnits);
                     if (_right)
+                    {
                         return (_grip >> _horz);
+                    }
 
                     // left
                     return _grip << _horz;
@@ -536,7 +586,9 @@ namespace Uzi.Ikosa.Tactical
                     // since we went tall, only have to shift up or down
                     var _vert = (byte)((8 - _sUnits) * 8);
                     if (_upper)
+                    {
                         return _grip << _vert;
+                    }
 
                     // lower
                     return _grip >> _vert;

@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using Uzi.Packaging;
 using System.IO;
 using System.IO.Packaging;
-using System.Xml;
 using System.Windows.Media.Media3D;
 using System.Windows.Markup;
 
@@ -21,20 +19,20 @@ namespace Uzi.Visualize.Packaging
             : base( manager, fragFile.Name.Replace(@" ", @"_"))
         {
             _FragFile = fragFile;
-            _Meshes = new Dictionary<int, MeshGeometry3D>();
+            _Meshes = [];
         }
 
         public MetaModelFragment(ICorePartNameManager manager, MetaModelFragment source, string id)
             : base( manager, id)
         {
             _Source = source;
-            _Meshes = new Dictionary<int, MeshGeometry3D>();
+            _Meshes = [];
         }
 
         public MetaModelFragment(ICorePartNameManager manager, PackagePart part, string id)
             : base( manager, part, id.Replace(@" ", @"_"))
         {
-            _Meshes = new Dictionary<int, MeshGeometry3D>();
+            _Meshes = [];
         }
         #endregion
 
@@ -63,10 +61,7 @@ namespace Uzi.Visualize.Packaging
         {
             get
             {
-                if (_Model == null)
-                {
-                    _Model = ResolveModel(this);
-                }
+                _Model ??= ResolveModel(this);
                 return _Model;
             }
         }

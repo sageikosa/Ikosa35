@@ -31,15 +31,34 @@ namespace Uzi.Ikosa.Tactical
 
             // light results
             _Solar = (light.SolarLeft(point) - _dist) * link.AllowLightFactor;
-            if (_Solar < 0) _Solar = 0;
+            if (_Solar < 0)
+            {
+                _Solar = 0;
+            }
+
             _VBright = (light.VeryBrightLeft(point) - _dist) * link.AllowLightFactor;
-            if (_VBright < 0) _VBright = 0;
+            if (_VBright < 0)
+            {
+                _VBright = 0;
+            }
+
             _Bright = (light.BrightLeft(point) - _dist) * link.AllowLightFactor;
-            if (_Bright < 0) _Bright = 0;
+            if (_Bright < 0)
+            {
+                _Bright = 0;
+            }
+
             _Shadow = (light.ShadowyLeft(point) - _dist) * link.AllowLightFactor;
-            if (_Shadow < 0) _Shadow = 0;
+            if (_Shadow < 0)
+            {
+                _Shadow = 0;
+            }
+
             _FarShadow = (light.FarShadowyLeft(point) - _dist) * link.AllowLightFactor;
-            if (_FarShadow < 0) _FarShadow = 0;
+            if (_FarShadow < 0)
+            {
+                _FarShadow = 0;
+            }
 
             // line of effect and "normal" shadow determination of light level...
             var _lightUp = new Illuminate(null, link, light);
@@ -52,9 +71,14 @@ namespace Uzi.Ikosa.Tactical
                 {
                     // only if very bright light continued to target
                     if (_result.Level < LightRange.Solar)
+                    {
                         _Solar = 0;
+                    }
+
                     if (_result.Level < LightRange.VeryBright)
+                    {
                         _VBright = 0;
+                    }
 
                     switch (_result.Level)
                     {

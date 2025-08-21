@@ -48,17 +48,25 @@ namespace Uzi.Ikosa.Creatures
 
             // no longer holding breath
             if (HoldingBreath != null)
+            {
                 HoldingBreath.Eject();
+            }
 
             // 0 health points
             if (_critter?.HealthPoints.CurrentValue > 0)
+            {
                 _critter.HealthPoints.CurrentValue = 0;
+            }
 
             var _time = CurrentTime;
             if (_time < (double.MaxValue - Round.UnitFactor))
+            {
                 _NextCheck = _time + Round.UnitFactor;
+            }
             else
+            {
                 _NextCheck = _time;
+            }
 
             // unconscious
             _critter?.AddAdjunct(_Unconscious);
@@ -89,7 +97,9 @@ namespace Uzi.Ikosa.Creatures
             if ((timeVal >= _NextCheck) && (direction == TimeValTransition.Entering))
             {
                 if (_NextCheck < (double.MaxValue - Round.UnitFactor))
+                {
                     _NextCheck += Round.UnitFactor;
+                }
 
                 var _critter = Creature;
                 _Count++;
@@ -98,7 +108,10 @@ namespace Uzi.Ikosa.Creatures
                 {
                     // round 2: -1 hp and dying
                     if (_critter?.HealthPoints.CurrentValue == 0)
+                    {
                         _critter.HealthPoints.CurrentValue = -1;
+                    }
+
                     _critter?.AddAdjunct(_Dying);
                 }
                 else

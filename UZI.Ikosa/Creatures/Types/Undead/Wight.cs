@@ -255,13 +255,19 @@ namespace Uzi.Ikosa.Creatures.Types
                 TraitCategory.Quality, new AdjunctTrait(this, _aligned));
 
             foreach (var _trait in UndeadType.UndeadPowerImmunities(this))
+            {
                 yield return _trait;
+            }
 
             foreach (var _trait in UndeadType.UndeadEffectImmunities(this))
+            {
                 yield return _trait;
+            }
 
             foreach (var _trait in UndeadType.UndeadUnhealth(this))
+            {
                 yield return _trait;
+            }
 
             // energy drain...
             var _energyDrainTrait = new EnergyDrainTrait(this, this);

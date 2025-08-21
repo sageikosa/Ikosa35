@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using Uzi.Packaging;
 using System.Windows.Media.Media3D;
 
@@ -27,7 +25,9 @@ namespace Uzi.Visualize.Packaging
                 string _key = key.ToString();
                 var _mdl = _Part.FindBasePart(_key) as Model3DPart;
                 if (_mdl != null)
+                {
                     return _mdl.ResolveModel();
+                }
             }
             return null;
         }
@@ -38,7 +38,9 @@ namespace Uzi.Visualize.Packaging
             {
                 string _key = key.ToString();
                 if (_Part.FindBasePart(_key) is Model3DPart)
+                {
                     return true;
+                }
             }
             return false;
         }

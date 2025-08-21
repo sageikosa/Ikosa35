@@ -46,11 +46,20 @@ namespace Uzi.Ikosa.Magic
             get
             {
                 if (PowerLevel < 4)
+                {
                     return AuraStrength.Faint;
+                }
+
                 if (PowerLevel < 7)
+                {
                     return AuraStrength.Moderate;
+                }
+
                 if (PowerLevel < 10)
+                {
                     return AuraStrength.Strong;
+                }
+
                 return AuraStrength.Overwhelming;
             }
         }

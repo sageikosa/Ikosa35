@@ -88,9 +88,14 @@ namespace Uzi.Ikosa.Workshop
                 var _sample = new WedgeCellSpace(_gas, null, CellMaterial, _tiles.TileSet, 1.5, 1.5);
                 var _model = _sample.GenerateModel(0, 0, 0, 0, null);
                 if (_model.Opaque != null)
+                {
                     grpObjects.Children.Add(_model.Opaque);
+                }
+
                 if (_model.Alpha != null)
+                {
                     grpObjects.Children.Add(_model.Alpha);
+                }
             }
             catch (Exception _except)
             {
@@ -101,7 +106,9 @@ namespace Uzi.Ikosa.Workshop
         private void lstTilings_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (lstTilings.SelectedItem != null)
+            {
                 DrawSample();
+            }
         }
 
         #region IHostedTabItem Members
