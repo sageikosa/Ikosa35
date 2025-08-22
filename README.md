@@ -15,3 +15,52 @@ into what are now legacy and seldom used features outside of older enterprise ap
 
 ## More Stuff
 [SageIkosa: the Blog](https://sageikosa.guildsmanship.com/)
+
+## Host and Workshop Module Hierarchy
+- Contracts are the WCF data contracts and service contracts.
+- Core is an abstraction on game mechanics.
+- Ikosa is specific SRD implementations.
+- UI here is for native model UI presentation
+
+``` mermaid
+stateDiagram-v2
+   Visualize : Uzi.Visualize
+   Packaging : Uzi.Packaging
+   Contracts : Uzi.Core.Contracts
+   IkosaContracts : Uzi.Ikosa.Contracts
+   Core : Uzi.Core
+   Ikosa : Uzi.Ikosa
+   IkosaUI : Uzi.Ikosa.UI
+   IkosaHost : Uzi.Ikosa.Host
+   IkosaWorkshop : Uzi.Ikosa.Workshop
+   Packaging --> Visualize
+   Contracts --> Visualize
+   Visualize --> Core
+   Visualize --> IkosaContracts
+   Core --> Ikosa
+   IkosaContracts --> Ikosa
+   Ikosa --> IkosaUI
+   IkosaUI --> IkosaHost
+   IkosaUI --> IkosaWorkshop
+```
+
+## Client Module Hierarchy
+- UI here is for data contract and view-model presentation
+- Proxy includes some view models
+
+``` mermaid
+stateDiagram-v2
+   Visualize : Uzi.Visualize
+   Packaging : Uzi.Packaging
+   Contracts : Uzi.Core.Contracts
+   IkosaContracts : Uzi.Ikosa.Contracts
+   IkosaCUI : Uzi.Ikosa.Client.UI
+   Proxy : Uzi.Ikosa.Proxy
+   IkosaClient : Uzi.Ikosa.Client
+   Packaging --> Visualize
+   Contracts --> Visualize
+   Visualize --> IkosaContracts
+   IkosaContracts --> IkosaCUI
+   IkosaContracts --> Proxy
+   Proxy --> IkosaClient
+   IkosaCUI --> IkosaClient
