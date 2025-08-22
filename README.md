@@ -12,3 +12,6 @@ config.json in the project (and ultimately runtime) folder for Workshop and Host
 
 It all runs on .NET Framework 4.8 and uses WPF (ie, DirectX 9) as well as WCF for C/S communication, so setting it up can be a bit of a fun ride and exploration
 into what are now legacy and seldom used features outside of older enterprise applications.
+
+## More Stuff
+[SageIkosa: the Blog](https://sageikosa.guildsmanship.com/)
